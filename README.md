@@ -1,4 +1,6 @@
-# tsfun - Functional array processing library for typescript
+# tsfun
+
+**Functional array processing tools for typescript**
 
 ```
 npm install --save tsfun
