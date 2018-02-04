@@ -2,7 +2,7 @@
 
 **Functional array processing tools for typescript**
 
-## Getting started
+## Using tsfun
 
 ```bash
 npm install --save tsfun
@@ -24,3 +24,7 @@ Transpile to js and run with
 $ node hello.js
 [ 1, 2 ]
 ```
+
+## Development
+
+Test with `npm run build && npm test`.
