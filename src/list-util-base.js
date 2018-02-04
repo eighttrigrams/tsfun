@@ -29,3 +29,4 @@ exports.flip = function (v) { return !v; };
 exports.uncurry2 = function (f) {
     return function (as1, as2) { return f(as1)(as2); };
 };
+//# sourceMappingURL=list-util-base.js.map

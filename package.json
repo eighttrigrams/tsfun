@@ -1,11 +1,22 @@
 {
   "name": "list-util",
   "version": "1.0.0",
-  "description": "",
+  "description": "functional array processing library for typescript",
   "main": "list-util.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "karma start test/karma.conf.js",
+    "build": "tsc -p tsconfig.json"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Daniel de Oliveira",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jasmine": "~2.5.41",
+    "jasmine": "2.5.2",
+    "karma": "1.4.0",
+    "karma-chrome-launcher": "2.0.0",
+    "karma-jasmine": "1.1.0",
+    "karma-typescript": "^3.0.12",
+    "systemjs": "0.19.31",
+    "typescript": "2.3.1"
+  }
 }

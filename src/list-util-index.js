@@ -10,3 +10,4 @@ exports.getAtIndexOr = function (as, i, defaultValue) {
     return as.length < i ? defaultValue : as[i];
 };
 exports.removeAtIndex = function (as) { return function (i) { return as.splice(i, 1); }; };
+//# sourceMappingURL=list-util-index.js.map
