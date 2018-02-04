@@ -1,7 +1,7 @@
 {
   "name": "list-util",
   "version": "1.0.0",
-  "description": "functional array processing library for typescript",
+  "description": "Functional array processing library for typescript",
   "main": "list-util.js",
   "scripts": {
     "test": "karma start test/karma.conf.js",
