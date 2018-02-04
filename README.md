@@ -21,5 +21,6 @@ hello.ts:
 Transpile to js and run with 
 
 ```bash
-node hello.js
+$ node hello.js
+[ 1, 2 ]
 ```
