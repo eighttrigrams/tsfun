@@ -2,3 +2,5 @@
 node_modules
 **/*.js
 **/*.js.map
+!**/test/karma.conf.js
+!**/test/test-main.js
