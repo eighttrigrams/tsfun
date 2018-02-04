@@ -1,5 +1,5 @@
 {
-  "name": "list-util",
+  "name": "tsfun",
   "version": "1.0.0",
   "description": "Functional array processing library for typescript",
   "main": "list-util.js",
