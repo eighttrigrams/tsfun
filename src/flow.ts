@@ -28,6 +28,7 @@ export const filter = <A>(predicate: (_: A) => boolean): Transformation<A> =>
     (as: Array<A>) => as.filter(predicate);
 
 
-export const reverse = <A>(): Transformation<A> => (as: Array<A>) => as.reverse();
+export const reverse = <A>(): Transformation<A> =>
+    (as: Array<A>) => as.reverse();
 
 
