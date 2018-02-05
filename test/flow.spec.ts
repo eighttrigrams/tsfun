@@ -1,5 +1,5 @@
-import {filter, flow, map, reverse, reduce} from '../src/flow';
-import {dropWhile, takeRightWhile, takeWhile} from '../src/drop-take';
+import {filter, flow, map, reverse, reduce, flowP} from '../src/flow';
+import {dropWhile, take, takeRightWhile, takeWhile} from '../src/drop-take';
 import {bigger, differentFrom, includedIn, smaller, times} from '../src/base';
 import {intersection, subtract, union, unite} from '../src/sets';
 
@@ -36,6 +36,35 @@ export function main() {
                 )
 
             ).toEqual([5,6])
+        );
+
+
+        it('flowP', () =>
+
+            expect(
+
+                flowP(
+                    take(1)
+                )([5, 6])
+
+            ).toEqual([5])
+        );
+
+
+        it('flowP - nest', () =>
+
+            expect(
+
+                flow(
+                    [5, 6],
+                    flowP(
+                        flowP(
+                            take(1)
+                        )
+                    )
+                )
+
+            ).toEqual([5])
         );
 
 

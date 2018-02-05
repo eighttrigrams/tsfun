@@ -13,6 +13,11 @@ export const flow = <A>(collection: Array<A>, ...transformations: Array<Transfor
     transformations.reduce((acc, transformation) => transformation(acc), collection);
 
 
+export const flowP = <A>(...transformations: Array<Transformation<A>>) =>
+    (collection: Array<A>) =>
+        transformations.reduce((acc, transformation) => transformation(acc), collection);
+
+
 // These are special versions of the javascript array methods that work within
 // the core constraint posed by flow: They take as well as return an Array of A.
 
