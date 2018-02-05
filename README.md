@@ -139,4 +139,30 @@ flow(
 -> true
 ```
 
+### Set methods
 
+```
+union
+intersect
+subtract
+unite
+```
+
+as well as
+
+```
+union
+intersection
+```
+
+which within flows have to be used like that
+
+```
+flow(
+    union([1, 2], [2, 4]),
+    take(2))
+    
+-> [1, 2]
+```
+
+due to the type difference between the param and the result
