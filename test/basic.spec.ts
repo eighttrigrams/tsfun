@@ -1,6 +1,5 @@
-import {intersect, intersection, subtract, unite, union} from '../src/sets';
+import {intersect, intersection, subtract, unite, union, removeFrom} from '../src/sets';
 import {times} from '../src/base';
-import {removeFrom} from "../src/extras";
 
 
 /**
