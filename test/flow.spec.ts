@@ -65,7 +65,7 @@ export function main() {
 
             expect(
 
-                reverse([1, 3])
+                reverse()([1, 3])
 
             ).toEqual(([3, 1]))
         );
@@ -130,7 +130,7 @@ export function main() {
 
                 flow(
                     [1, 3],
-                    reverse
+                    reverse()
                 )
 
             ).toEqual(([3, 1]))
@@ -146,7 +146,7 @@ export function main() {
                     reduce(
                         (acc, val: number) => acc.concat([val * 2])
                     ),
-                    reverse
+                    reverse()
                 )
 
             ).toEqual(([6, 2]))
@@ -189,7 +189,7 @@ export function main() {
                 flow(
                     [7, 9, 10, 13, 21, 20],
                     dropWhile(smaller(20)),
-                    reverse
+                    reverse()
                 )
 
             ).toEqual([20, 21])
