@@ -1,7 +1,7 @@
-import {filter, flow, map, reverse} from '../src/list-util-flow';
-import {dropWhile, takeRightWhile, takeWhile} from '../src/list-util-drop-take';
-import {bigger, differentFrom, includedIn, smaller, times} from '../src/list-util-base';
-import {intersection, subtract, union, unite} from '../src/list-util-sets';
+import {filter, flow, map, reverse} from '../src/flow';
+import {dropWhile, takeRightWhile, takeWhile} from '../src/drop-take';
+import {bigger, differentFrom, includedIn, smaller, times} from '../src/base';
+import {intersection, subtract, union, unite} from '../src/sets';
 
 
 /**

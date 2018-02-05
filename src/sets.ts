@@ -1,4 +1,4 @@
-import {includedIn, isNot, uncurry2} from './list-util-base';
+import {includedIn, isNot, uncurry2} from './base';
 
 
 export type NestedArray<A> = Array<Array<A>>;

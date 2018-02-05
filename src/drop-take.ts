@@ -1,4 +1,4 @@
-import {isNot} from './list-util-base';
+import {isNot} from './base';
 
 /**
  * @author Daniel de Oliveira

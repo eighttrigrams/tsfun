@@ -1,5 +1,5 @@
-import {dropWhile, take, takeRightWhile, takeUntil, takeWhile} from '../src/list-util-drop-take';
-import {smaller, bigger} from '../src/list-util-base';
+import {dropWhile, take, takeRightWhile, takeUntil, takeWhile} from '../src/drop-take';
+import {smaller, bigger} from '../src/base';
 
 
 /**

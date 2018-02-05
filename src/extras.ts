@@ -1,4 +1,4 @@
-import {subtract} from './list-util-sets';
+import {subtract} from './sets';
 
 
 /**
