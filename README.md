@@ -32,7 +32,7 @@ Test with `npm run build && npm test`.
 
 A flow is a series of transformations of Array of A to Array of A.
 The design goal of a flow is to provide a way to mix javascript functional style
-methods like *map* and *filter*, with other functional style methods like *takeWhile* 
+methods like `map` and `filter`, with other functional style methods like takeWhile` 
 in a way which feels as natural as possible, given that we do not want to mix in new methods
 into the Array prototype.
 
@@ -46,26 +46,6 @@ flow(
 -> true
 ```
 
-
-There is also flowP, which is a partially applied flow. 
-It allows a composition of flows.
-
-
-```
-const evenAndSmaller6 = flowP(
-    filter(smaller(6)),
-    filter((x: number) => x % 2 == 0)
-)
-
-flow(
-    [1, 2, 3, 4, 6, 7, 8],
-    evenAndSmaller6,
-    take(1)    
-).includes(2)
-
--> true
-```
-
 Some of the array methods have corresponding flow compatible implementations.
 
 ```
@@ -75,15 +55,49 @@ flow(
     map(x => x * 2),
     reduce((acc, val) => acc.concat([val * 2])),
     reverse(),
-    take(1)
-)
+    take(1))
 
 -> 8
 ```
 
 This allows us to stay in the flow in between calls to methods we don't have native javascript
-version for, like for example *take*.
+version for, like for example `take`.
 
 **Note** that, as stated earlier, a flow consists of only transformations from Array of A to Array of A,
 thus constraining our versions of the methods somewhat in comparison to the native methods (
-consider for example *map*, which typically maps from A to B, not necessarily from A to A).
+consider for example `map`, which typically maps from A to B, not necessarily from A to A).
+
+Nevertheless, with flow you have the possibility to combine a mapping from A to B with 
+for example `take` like this
+
+```
+flow(
+    [true, false, true]
+    .map((x: boolean) => x ? 1 : 0),
+    take(2))
+
+-> [1, 0]
+```
+
+#### Nesting
+
+There is also `flowP`, which is a partially applied flow. 
+It allows a composition of flows.
+
+
+```
+const evenAndSmaller6 = flowP(
+    filter(smaller(6)),
+    filter((x: number) => x % 2 == 0))
+
+  
+flow(
+    [1, 2, 3, 4, 6, 7, 8],
+    evenAndSmaller6,
+    take(1))
+    .includes(2)
+
+-> true
+```
+
+
