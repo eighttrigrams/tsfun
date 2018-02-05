@@ -6,8 +6,8 @@
 // A flow is a transformation from Array of A to Array of A, consisting
 // of one or more tranformation steps
 
-export const flow = <A>(collection: Array<A>, ...fs: Array<(_: Array<A>) => Array<A>>) =>
-    fs.reduce((acc, f) => f(acc), collection);
+export const flow = <A>(collection: Array<A>, ...transformations: Array<(_: Array<A>) => Array<A>>) =>
+    transformations.reduce((acc, transformation) => transformation(acc), collection);
 
 
 // These are special versions of the javascript array methods that work within
