@@ -29,7 +29,7 @@ $ node hello.js
 
 ### Flow
 
-A flow is a series of transformations of Array<A> to Array<A>.
+A flow is a series of transformations of Array of A to Array of A.
 The design goal of a flow is to provide a way to mix javascript functional style
 methods like *map* and *filter*, with other functional style methods like *takeWhile* 
 in a way which feels as natural as possible, given that we do not want to mix in new methods
@@ -83,7 +83,7 @@ flow(
 This allows us to stay in the flow in between calls to methods we don't have native javascript
 version for, like for example *take*.
 
-**Note** that, as stated earlier, a flow consists of only transformations from Array<A> to Array<A>,
+**Note** that, as stated earlier, a flow consists of only transformations from Array of A to Array of A,
 thus constraining our versions of the methods somewhat in comparison to the native methods (
 consider for example *map*, which typically maps from A to B, not necessarily from A to A).
 
