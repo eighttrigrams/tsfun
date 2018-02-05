@@ -25,6 +25,70 @@ $ node hello.js
 [ 1, 2 ]
 ```
 
+## Features
+
+### Flow
+
+A flow is a series of transformations of Array<A> to Array<A>.
+The design goal of a flow is to provide a way to mix javascript functional style
+methods like *map* and *filter*, with other functional style methods like *takeWhile* 
+in a way which feels as natural as possible, given that we do not want to mix in new methods
+into the Array prototype.
+
+```
+flow(
+    [1, 2, 3, 5, 7],
+    takeWhile(smaller(3)))
+    .map((x: number) => x * 2)
+    .includes(2)
+
+-> true
+```
+
+
+There is also flowP, which is a partially applied flow. 
+It allows a composition of flows.
+
+
+```
+const evenAndSmaller6 = flowP(
+    filter(smaller(6)),
+    filter((x: number) => x % 2 == 0)
+)
+
+flow(
+    [1, 2, 3, 4, 6, 7, 8],
+    evenAndSmaller6,
+    take(1)    
+).includes(2)
+
+-> true
+```
+
+Some of the array methods have corresponding flow compatible implementations.
+
+```
+flow(
+    [1, 2, 3, 4],
+    filter((x: number) => x < 3),
+    map(x => x * 2),
+    reduce((acc, val) => acc.concat([val * 2])),
+    reverse()
+    take(1)
+)
+
+-> 8
+```
+
+This allows us to stay in the flow in between calls to methods we don't have native javascript
+version for, like for example *take*.
+
+**Note** that, as stated earlier, a flow consists of only transformations from Array<A> to Array<A>,
+thus constraining our versions of the methods somewhat in comparison to the native methods (
+consider for example *map*, which typically maps from A to B, not necessarily from A to A).
+
+
+
 ## Development
 
 Test with `npm run build && npm test`.
