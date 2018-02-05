@@ -3,9 +3,8 @@
  */
 
 
-export const flow = <A>(...fs: Array<(_: Array<A>) => Array<A>>) =>
-    (collection: Array<A>): Array<A> =>
-        fs.reduce((acc, f) => f(acc), collection);
+export const flow = <A>(collection: Array<A>, ...fs: Array<(_: Array<A>) => Array<A>>) =>
+    fs.reduce((acc, f) => f(acc), collection);
 
 
 export const map = <A>(f: (_: A) => A) =>

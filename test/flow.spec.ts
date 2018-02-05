@@ -13,14 +13,17 @@ export function main() {
 
         it('flow', () =>
 
-            expect(flow(
-                takeWhile(bigger(4)),
-                map(times(2)),
-                filter(smaller(16)),
-                filter(differentFrom(12)),
-                filter(includedIn([14]))
-            )
-            ([5,6,7,8,4,16,5])).toEqual([14])
+            expect(
+
+                flow(
+                    [5,6,7,8,4,16,5],
+                    takeWhile(bigger(4)),
+                    map(times(2)),
+                    filter(smaller(16)),
+                    filter(differentFrom(12)),
+                    filter(includedIn([14]))
+                )
+            ).toEqual([14])
         );
 
 
@@ -29,7 +32,7 @@ export function main() {
             expect(
 
                 map(times(2))
-                ([2, 4])
+                    ([2, 4])
 
             ).toEqual(([4, 8]))
         );
@@ -61,34 +64,35 @@ export function main() {
             expect(
 
                 flow(
-                    intersection,
+                    intersection([[1,2],[2,3]]),
                     map(times(2))
-                )([[1,2],[2,3]])
+                )
 
             ).toEqual([4])
-        );
-
-
-        it('uniteWith',() =>
-
-            expect(
-
-                flow(
-                    unite([1,2]),
-                    map(times(2))
-                )([2,4])
-
-            ).toEqual([2,4,8])
         );
 
 
         it('unite',() =>
 
             expect(
+
                 flow(
-                    union,
+                    [2,4],
+                    unite([1,2]),
                     map(times(2))
-                )([[1,2],[3,4],[2,4]])
+                )
+
+            ).toEqual([2,4,8])
+        );
+
+
+        it('union',() =>
+
+            expect(
+                flow(
+                    union([[1,2],[3,4],[2,4]]),
+                    map(times(2))
+                )
 
             ).toEqual([2,4,6,8])
         );
@@ -99,9 +103,10 @@ export function main() {
             expect(
 
                 flow(
+                    [1, 2, 3],
                     subtract([3, 4, 5]),
                     filter(smaller(2))
-                )([1, 2, 3])
+                )
 
             ).toEqual([1])
         );
@@ -112,8 +117,9 @@ export function main() {
             expect(
 
                 flow(
+                    [1,3],
                     reverse
-                )([1,3])
+                )
 
             ).toEqual(([3,1]))
         );
@@ -124,9 +130,10 @@ export function main() {
             expect(
 
                 flow(
+                    [13, 17, 20],
                     takeWhile(smaller(20)),
                     filter(bigger(13))
-                )([13, 17, 20])
+                )
 
             ).toEqual([17])
         );
@@ -137,9 +144,10 @@ export function main() {
             expect(
 
                 flow(
+                    [13, 22, 21],
                     takeRightWhile(bigger(20)),
                     filter(bigger(21))
-                )([13, 22, 21])
+                )
 
             ).toEqual([22])
         );
@@ -150,9 +158,10 @@ export function main() {
             expect(
 
                 flow(
+                    [7, 9, 10, 13, 21, 20],
                     dropWhile(smaller(20)),
                     reverse
-                )([7, 9, 10, 13, 21, 20])
+                )
 
             ).toEqual([20, 21])
         );
