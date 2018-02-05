@@ -1,4 +1,4 @@
-import {filter, flow, map, reverse} from '../src/flow';
+import {filter, flow, map, reverse, reduce} from '../src/flow';
 import {dropWhile, takeRightWhile, takeWhile} from '../src/drop-take';
 import {bigger, differentFrom, includedIn, smaller, times} from '../src/base';
 import {intersection, subtract, union, unite} from '../src/sets';
@@ -117,12 +117,29 @@ export function main() {
             expect(
 
                 flow(
-                    [1,3],
+                    [1, 3],
                     reverse
                 )
 
-            ).toEqual(([3,1]))
+            ).toEqual(([3, 1]))
         );
+
+
+        it('reduce', () =>
+
+            expect(
+
+                flow(
+                    [1, 3],
+                    reduce(
+                        (acc, val: number) => acc.concat([val * 2])
+                    ),
+                    reverse
+                )
+
+            ).toEqual(([6, 2]))
+        );
+
 
 
         it('takeWhile', () =>
