@@ -27,6 +27,18 @@ export function main() {
         );
 
 
+        it('flow - no steps', () =>
+
+            expect(
+
+                flow(
+                    [5,6]
+                )
+
+            ).toEqual([5,6])
+        );
+
+
         it('map', () =>
 
             expect(
