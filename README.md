@@ -1,6 +1,6 @@
 # tsfun
 
-**Functional array processing tools for typescript**
+**Lodash inspired functional array processing tools for a seamless typescript experience**
 
 ## Using tsfun
 
