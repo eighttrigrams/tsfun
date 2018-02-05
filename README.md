@@ -4,6 +4,8 @@
 
 ## Using tsfun
 
+with **npm** and **node**:
+
 ```bash
 npm install --save tsfun
 ```
@@ -24,9 +26,46 @@ $ node hello.js
 
 ## Development
 
-Test with `npm run build && npm test`.
+Install, build, and test with `npm install; npm run build; npm test`.
 
 ## Features
+
+### Take, Drop etc.
+
+Currently the implementations for the following methods are provided
+
+```
+take(predicate)(array)
+takeWhile(predicate)(array)
+takeRightWhile(predicate)(array)
+takeUntil(predicate)(array)
+dropWhile(predicate)(array)
+```
+
+### Predicates
+
+```
+includedIn(n)
+differentFrom(n)
+smaller(n)
+bigger(n)
+isNot(predicate)
+```
+
+These are meant to be used as predicates of the library methods, as for example `takeWhile`,
+
+```
+takeWhile(smaller(4))([1, 2, 4, 5])
+-> [1, 2]
+```
+
+as well as in the native javascript functions.
+
+```
+[1, 2, 4, 2]
+    .filter(smaller(4))
+-> [1, 2, 2]
+```
 
 ### Flow
 
@@ -57,7 +96,7 @@ flow(
     reverse(),
     take(1))
 
--> 8
+-> [8]
 ```
 
 This allows us to stay in the flow in between calls to methods we don't have native javascript
