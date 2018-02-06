@@ -172,6 +172,28 @@ export function main() {
                 unique()([])
 
             ).toEqual([])
-        )
+        );
+
+
+        it('unique - by', () =>
+
+            expect(
+
+                unique(Math.floor)([1.1, 1.2, 7.8, 8.0, 7.7, 1.0])
+
+            ).toEqual([1.0, 7.0, 8.0])
+        );
+
+
+        // TODO implement
+        /*
+        it('unique - objects', () =>
+
+            expect(
+
+                unique('a')([{a: 1}, {a: 2}, {a: 1}])
+
+            ).toEqual([{a: 1}, {a: 2}])
+        );*/
     });
 }
