@@ -1,4 +1,4 @@
-import {isNot} from './base';
+import {isNot} from './predicates';
 
 /**
  * @author Daniel de Oliveira

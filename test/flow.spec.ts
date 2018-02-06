@@ -1,6 +1,7 @@
 import {filter, flow, map, reverse, reduce, flowP} from '../src/flow';
 import {dropWhile, take, takeRightWhile, takeWhile} from '../src/drop-take';
-import {bigger, differentFrom, includedIn, smaller, times} from '../src/base';
+import {times} from '../src/core';
+import {bigger, differentFrom, includedIn, smaller} from '../src/predicates';
 import {intersection, subtract, union, unite} from '../src/sets';
 
 

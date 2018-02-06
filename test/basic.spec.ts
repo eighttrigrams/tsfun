@@ -1,4 +1,4 @@
-import {times} from '../src/base';
+import {times} from '../src/core';
 
 
 /**

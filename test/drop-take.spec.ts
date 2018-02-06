@@ -1,5 +1,5 @@
 import {drop, dropWhile, take, takeRightWhile, takeUntil, takeWhile, dropRight, dropRightWhile} from '../src/drop-take';
-import {smaller, bigger} from '../src/base';
+import {smaller, bigger} from '../src/predicates';
 
 
 /**
