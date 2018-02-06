@@ -37,18 +37,20 @@ Currently the implementations for the following methods are provided
 ```
 take(5)([1, 2])
 -> [1]
-takeWhile(x => x < 3)([1, 2, 3, 1])
+takeWhile(smaller(3))([1, 2, 3, 1])
 -> [1, 2]
-takeRightWhile(x => x < 3)([1, 2, 3, 1])
+takeRightWhile(smaller(3))([1, 2, 3, 1])
 -> [1]
-takeUntil(x => x > 2)([1, 2, 3, 1])
+takeUntil(bigger(2))([1, 2, 3, 1])
 -> [1, 2, 3]
 drop(1)([1, 3])
 -> [3]
 dropRight(1)([1, 3])
 -> [1]
-dropWhile(x => x < 2)([1, 2, 3, 1])
+dropWhile(smaller(2))([1, 2, 3, 1])
 -> [2, 3, 1]
+dropRightWhile(bigger(2))([1, 2, 3])
+-> [1, 2]
 ```
 
 ### Predicates

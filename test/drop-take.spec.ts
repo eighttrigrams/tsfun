@@ -1,4 +1,4 @@
-import {drop, dropWhile, take, takeRightWhile, takeUntil, takeWhile, dropRight} from '../src/drop-take';
+import {drop, dropWhile, take, takeRightWhile, takeUntil, takeWhile, dropRight, dropRightWhile} from '../src/drop-take';
 import {smaller, bigger} from '../src/base';
 
 
@@ -318,6 +318,50 @@ export function main() {
             expect(
 
                 dropWhile(smaller(20))
+                    ([])
+
+            ).toEqual([])
+        );
+
+
+        it('dropRightWhile', () =>
+
+            expect(
+
+                dropRightWhile(bigger(19))
+                    ([13, 21, 20])
+
+            ).toEqual([13])
+        );
+
+
+        it('dropRightWhile - none', () =>
+
+            expect(
+
+                dropRightWhile(smaller(19))
+                    ([13, 21, 20])
+
+            ).toEqual([13, 21, 20])
+        );
+
+
+        it('dropRightWhile - all', () =>
+
+            expect(
+
+                dropRightWhile(bigger(1))
+                ([13, 21, 20])
+
+            ).toEqual([])
+        );
+
+
+        it('dropRightWhile - of empty', () =>
+
+            expect(
+
+                dropRightWhile(bigger(1))
                     ([])
 
             ).toEqual([])

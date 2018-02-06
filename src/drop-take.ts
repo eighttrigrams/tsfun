@@ -57,3 +57,8 @@ export const dropWhile = <A>(predicate: (_: A) => boolean) =>
         return as.reduce((acc: Array<A>, a) =>
             go || !predicate(a) ? (go = true, acc.concat([a])) : acc, []);
     };
+
+
+export const dropRightWhile = <A>(predicate: (_: A) => boolean) =>
+    (as: Array<A>) =>
+        (dropWhile(predicate)(as.reverse())).reverse();
