@@ -1,4 +1,4 @@
-import {intersect, intersection, removeFrom, subtract, union, unite, unique} from '../src/sets';
+import {intersect, intersection, subtract, union, unite, unique, remove} from '../src/sets';
 
 
 /**
@@ -126,8 +126,8 @@ export function main() {
 
             expect(
 
-                removeFrom([1, 2, 13, 13, 4])
-                (13)
+                remove(13)([1, 2, 13, 13, 4])
+
 
             ).toEqual([1, 2, 4])
         );
@@ -137,8 +137,8 @@ export function main() {
 
             expect(
 
-                removeFrom([1, 2, 7, 4])
-                (13)
+                remove(13)([1, 2, 7, 4])
+
 
             ).toEqual([1, 2, 7, 4])
         );
@@ -148,8 +148,8 @@ export function main() {
 
             expect(
 
-                removeFrom([1, 1])
-                (1)
+                remove(1)([1, 1])
+
 
             ).toEqual([])
         );

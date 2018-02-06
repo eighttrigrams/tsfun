@@ -44,9 +44,7 @@ export const unique = <A>(method?: any) => (as: Array<A>) =>
         },[]);
 
 
-
-// TODO write test
-export const removeFrom = <A>(as: Array<A>) => (a: A): Array<A> =>
+export const remove = <A>(a: A) => (as: Array<A>): Array<A> =>
     subtract([a])(as);
 
 

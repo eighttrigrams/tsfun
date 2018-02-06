@@ -10,7 +10,8 @@ export {
     subtract,
     unite,
     addUniqueTo,
-    removeFrom
+    remove,
+    unique
 } from './src/sets';
 
 /**
