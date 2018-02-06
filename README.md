@@ -152,17 +152,21 @@ flow(
 ### Set methods
 
 ```
-union
-intersect
-subtract
-unite
+intersect(3, 4, 5])([1, 2, 3])
+-> [3]
+subtract([3, 4, 5])([1, 2, 3])
+-> [1, 2]
+unite(subtract([3, 4, 5])([1, 2, 3]))
+-> [3, 4, 5, 1, 2]
 ```
 
 as well as
 
 ```
-union
-intersection
+union([[3, 4, 5], [1, 2, 3]])
+-> [3, 4, 5, 1, 2]
+intersection([[3, 4, 5], [1, 2, 3]])
+-> [3]
 ```
 
 Remember, that a flow has to maintain the array type,
@@ -172,7 +176,7 @@ you can combine `union` for example with `takeWhile` like this:
 ```
 flow(
     union([1, 2], [2, 4]),
-    takeWhile(smaller(2))
+    takeWhile(smaller(2)))
     
 -> [1, 2]
 ```
