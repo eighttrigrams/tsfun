@@ -13,6 +13,12 @@ export const take = <A>(n: number) =>
                 , []);
 
 
+export const drop = <A>(n: number) =>
+    (as: Array<A>) =>
+        n < 1 ? as :
+            as.slice(n);
+
+
 export const takeWhile = <A>(predicate: (_: A) => boolean) =>
     (as: Array<A>) => {
         let go = true;

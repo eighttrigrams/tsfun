@@ -1,4 +1,4 @@
-import {dropWhile, take, takeRightWhile, takeUntil, takeWhile} from '../src/drop-take';
+import {drop, dropWhile, take, takeRightWhile, takeUntil, takeWhile} from '../src/drop-take';
 import {smaller, bigger} from '../src/base';
 
 
@@ -8,6 +8,62 @@ import {smaller, bigger} from '../src/base';
 export function main() {
 
     describe('ListUtil/DropTake --', () => {
+
+        it('drop - 2', () =>
+
+            expect(
+
+                drop(2)
+                    ([8,9,11])
+
+            ).toEqual([11])
+        );
+
+
+        it('drop - all', () =>
+
+            expect(
+
+                drop(5)
+                    ([8,9,11])
+
+            ).toEqual([])
+        );
+
+
+        it('drop - none', () =>
+
+            expect(
+
+                drop(0)
+                    ([8, 9, 11])
+
+            ).toEqual([8, 9, 11])
+        );
+
+
+        it('drop - 5 of empty', () =>
+
+            expect(
+
+                drop(5)
+                    ([])
+
+            ).toEqual([])
+        );
+
+
+        it('drop - 0 of empty', () =>
+
+            expect(
+
+                drop(0)
+                    ([])
+
+            ).toEqual([])
+        );
+
+
 
         it('take - 5', () =>
 
