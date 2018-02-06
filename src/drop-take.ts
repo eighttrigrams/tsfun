@@ -19,7 +19,6 @@ export const drop = <A>(n: number) =>
             as.slice(n);
 
 
-
 export const dropRight = <A>(n: number) =>
     (as: Array<A>) =>
         n < 1 ? as :
