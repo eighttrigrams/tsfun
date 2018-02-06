@@ -10,7 +10,7 @@ import {intersection, subtract, union, unite} from '../src/sets';
  */
 export function main() {
 
-    describe('ListUtil/Flow -- ', () => {
+    describe('Flow', () => {
 
         it('flow', () =>
 

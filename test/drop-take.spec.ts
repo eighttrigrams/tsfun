@@ -7,7 +7,7 @@ import {smaller, bigger} from '../src/predicates';
  */
 export function main() {
 
-    describe('ListUtil/DropTake --', () => {
+    describe('DropTake', () => {
 
         it('drop - 2', () =>
 
