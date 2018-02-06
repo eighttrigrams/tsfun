@@ -35,9 +35,18 @@ export const unite = <A>(as1: Array<A>) =>
             as2.filter(isNot(includedIn(as1))));
 
 
+export const unique = <A>() => (as: Array<A>) =>
+    as.reduce((acc: Array<A>, val) =>
+            acc.includes(val) ? acc : acc.concat([val])
+        ,[]);
+
+
+
+// TODO write test
 export const removeFrom = <A>(as: Array<A>) => (a: A): Array<A> =>
     subtract([a])(as);
 
 
+// TODO write test
 export const addUniqueTo = <A>(as: Array<A>) => (a: A): Array<A> =>
     as.includes(a) ? as : as.concat([a]);
