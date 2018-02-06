@@ -35,21 +35,31 @@ Install, build, and test with `npm install; npm run build; npm test`.
 Currently the implementations for the following methods are provided
 
 ```
-take(predicate)(array)
-takeWhile(predicate)(array)
-takeRightWhile(predicate)(array)
-takeUntil(predicate)(array)
-dropWhile(predicate)(array)
+take(5)([1, 2])
+-> [1]
+takeWhile(x => x < 3)([1, 2, 3, 1])
+-> [1, 2]
+takeRightWhile(x => x < 3)([1, 2, 3, 1])
+-> [1]
+takeUntil(x => x > 2)([1, 2, 3, 1])
+-> [1, 2, 3]
+dropWhile(x => x < 2)([1, 2, 3, 1])
+-> [2, 3, 1]
 ```
 
 ### Predicates
 
 ```
-includedIn(n)
-differentFrom(n)
-smaller(n)
-bigger(n)
-isNot(predicate)
+includedIn([1, 2])(1)
+-> true
+differentFrom(3)(2)
+-> true
+smaller(4)(2)
+-> true
+bigger(4)(5)
+-> true
+isNot(bigger(4))(5)
+-> false
 ```
 
 These are meant to be used as predicates of the library methods, as for example `takeWhile`,
@@ -155,14 +165,14 @@ union
 intersection
 ```
 
-which within flows have to be used like that
+Remember, that a flow has to maintain the array type,
+which in the following example is Array of number. In such a case
+you can combine `union` for example with `takeWhile` like this:
 
 ```
 flow(
     union([1, 2], [2, 4]),
-    take(2))
+    takeWhile(smaller(2))
     
 -> [1, 2]
 ```
-
-due to the type difference between the param and the result
