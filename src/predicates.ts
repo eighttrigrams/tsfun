@@ -28,3 +28,9 @@ export const differentFrom = <A>(a:A) =>
 
 export const isNot = <A>(f: (_: A) => boolean) =>
     (a: A) => flip(f(a));
+
+
+export const even = () => (n: number) => n % 2 === 0;
+
+
+export const odd = () => (n: number) => isNot(even())(n);

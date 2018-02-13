@@ -1,23 +1,37 @@
 ## Predicates
 
+General purpose, working with `==` comparisons
+
 ```
 sameAs(3)(3)
--> true
-isNot(sameAs(3))(2)
 -> true
 differentFrom(3)(2)
 -> true
 includedIn([1, 2])(1)
 -> true
+```
+
+A special combinator is `isNot`, which can flip the results boolean value
+
+```
+isNot(sameAs(3))(2) // same as differentFrom(3)(2)
+-> true
+```
+
+To be used with numbers, working with `<`, `>`, `%`
+
+```
 smallerThan(4)(2)
 -> true
 biggerThan(4)(5)
 -> true
-isNot(biggerThan(4))(5)
--> false
+even()(2)
+-> true
+odd()(3)
+-> true
 ```
 
-These are meant to be used as predicates of the library 
+All of these are meant to be used as predicates of the library 
 methods, as for example `takeWhile`,
 
 ```
