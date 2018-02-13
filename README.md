@@ -34,66 +34,42 @@ Install, build, and test with `npm install; npm run build; npm test`.
 
 ## Features
 
-### Take, Drop etc.
+### Predicates
 
-Currently the implementations for the following methods are provided
+```
+sameAs(3)(3)
+-> true
+isNot(includedIn([1, 2]))(1)
+-> false
+```
+
+[more](doc/predicates.md)
+
+### Take, Drop etc.
 
 ```
 take(5)([1, 2])
 -> [1]
 takeWhile(smallerThan(3))([1, 2, 3, 1])
 -> [1, 2]
-takeRightWhile(smallerThan(3))([1, 2, 3, 1])
--> [1]
-takeUntil(biggerThan(2))([1, 2, 3, 1])
--> [1, 2, 3]
-drop(1)([1, 3])
+```
+
+[more](doc/drop-take.md)
+
+### Set methods
+
+```
+intersect(3, 4, 5])([1, 2, 3])
 -> [3]
-dropRight(1)([1, 3])
--> [1]
-dropWhile(smallerThan(2))([1, 2, 3, 1])
--> [2, 3, 1]
-dropRightWhile(biggerThan(2))([1, 2, 3])
+subtract([3, 4, 5])([1, 2, 3])
 -> [1, 2]
 ```
 
-### Predicates
-
-```
-sameAs(3)(3)
--> true
-isNot(sameAs(3))(2)
--> true
-differentFrom(3)(2)
--> true
-includedIn([1, 2])(1)
--> true
-smallerThan(4)(2)
--> true
-biggerThan(4)(5)
--> true
-isNot(biggerThan(4))(5)
--> false
-```
-
-These are meant to be used as predicates of the library methods, as for example `takeWhile`,
-
-```
-takeWhile(smallerThan(4))([1, 2, 4, 5])
--> [1, 2]
-```
-
-as well as in the native javascript functions.
-
-```
-[1, 2, 4, 2]
-    .filter(smallerThan(4))
--> [1, 2, 2]
-```
+[more](doc/sets.md)
 
 ### Flow
 
-A flow is a series of transformations of Array of A to Array of A.
+A flow is a series of transformations of `Array<A>` to `Array<A>`.
 The design goal of a flow is to provide a way to mix javascript functional style
 methods like `map` and `filter`, with other functional style methods like takeWhile` 
 in a way which feels as natural as possible, given that we do not want to mix in new methods
@@ -163,44 +139,4 @@ flow(
 -> true
 ```
 
-### Set methods
 
-Every set method's result is not only `Array<A>` but also consists 
-of unique items (compared with `==`). Where possible, the order of 
-the arguments is kept.
-
-These methods are designed to be part of a flow:
-
-```
-intersect(3, 4, 5])([1, 2, 3])
--> [3]
-subtract([3, 4, 5])([1, 2, 3])
--> [1, 2]
-subtract([3, 4, 5])([1, 2, 3, 3, 1]) // make result a 'set'
--> [1, 2]
-unite([3, 4, 5])([1, 2, 3])
--> [3, 4, 5, 1, 2]
-unique()([1, 1, 7, 8, 7, 1])
--> [1, 7, 8]
-```
-
-These methods are designed to be used at the beginning of a flow:
-
-```
-union([[3, 4, 5], [1, 2, 3]])
--> [3, 4, 5, 1, 2]
-intersection([[3, 4, 5], [1, 2, 3]])
--> [3]
-```
-
-Remember, that a flow has to maintain the array type,
-which in the following example is Array of number. In such a case
-you can combine `union` for example with `takeWhile` like this:
-
-```
-flow(
-    union([1, 2], [2, 4]),
-    takeWhile(smallerThan(2)))
-    
--> [1, 2]
-```
