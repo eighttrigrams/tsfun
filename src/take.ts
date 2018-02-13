@@ -13,16 +13,12 @@ export const take = <A>(n: number) =>
                 , []);
 
 
-export const drop = <A>(n: number) =>
+export const takeNth = <A>(n: number) =>
     (as: Array<A>) =>
-        n < 1 ? as :
-            as.slice(n);
-
-
-export const dropRight = <A>(n: number) =>
-    (as: Array<A>) =>
-        n < 1 ? as :
-            as.reverse().slice(n).reverse();
+        n < 0 ? [] :
+            as.reduce((acc: Array<A>, val, i) =>
+                i % n === 0 ? acc.concat([val]) : acc
+            , []);
 
 
 export const takeWhile = <A>(predicate: (_: A) => boolean) =>
@@ -48,16 +44,3 @@ export const takeUntil = <A>(predicate: (_: A) => boolean) =>
             takeWhile(isNot(predicate))(as).concat([found])
             : as
     };
-
-
-export const dropWhile = <A>(predicate: (_: A) => boolean) =>
-    (as: Array<A>) => {
-        let go = false;
-        return as.reduce((acc: Array<A>, a) =>
-            go || !predicate(a) ? (go = true, acc.concat([a])) : acc, []);
-    };
-
-
-export const dropRightWhile = <A>(predicate: (_: A) => boolean) =>
-    (as: Array<A>) =>
-        (dropWhile(predicate)(as.reverse())).reverse();

@@ -1,4 +1,4 @@
-import {drop, dropWhile, take, takeRightWhile, takeUntil, takeWhile, dropRight, dropRightWhile} from '../src/drop-take';
+import {drop, dropWhile, dropRight, dropRightWhile} from '../src/drop';
 import {smallerThan, biggerThan} from '../src/predicates';
 
 
