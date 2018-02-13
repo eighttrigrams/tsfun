@@ -20,11 +20,11 @@ export const intersect = <A>(as1: Array<A>) =>
 
 
 /**
- * Generate a new list with elements which are contained in l but not in subtrahend
+ * Generate a new list with elements which are contained in as but not in subtrahend
  */
 export const subtract = <A>(subtrahend: Array<A>) =>
     (as: Array<A>): Array<A> =>
-        as.filter(isNot(includedIn(subtrahend)));
+        ((unique<A>()(as)).filter(isNot(includedIn(subtrahend))));
 
 
 /**

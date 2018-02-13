@@ -89,6 +89,17 @@ export function main() {
         );
 
 
+        it('subtract - make unique', () =>
+
+            expect(
+
+                subtract([3, 4, 5])
+                ([1, 2, 3, 3, 4, 4, 1])
+
+            ).toEqual([1, 2])
+        );
+
+
         it('subtract - from empty list', () =>
 
             expect(
@@ -122,7 +133,18 @@ export function main() {
         );
 
 
-        it('removeFrom', () =>
+        it('subtract - no intersection, make unique', () =>
+
+            expect(
+
+                subtract([4, 5, 6])
+                ([1, 2, 3, 3, 2])
+
+            ).toEqual([1, 2, 3])
+        );
+
+
+        it('remove', () =>
 
             expect(
 
@@ -133,7 +155,18 @@ export function main() {
         );
 
 
-        it('removeFrom - nothing', () =>
+        it('remove - thereby make unique', () =>
+
+            expect(
+
+                remove(7)([1, 2, 7, 7, 4, 1])
+
+
+            ).toEqual([1, 2, 4])
+        );
+
+
+        it('remove - nothing', () =>
 
             expect(
 
@@ -144,7 +177,18 @@ export function main() {
         );
 
 
-        it('removeFrom - everything', () =>
+        it('remove - nothing, thereby make unique', () =>
+
+            expect(
+
+                remove(13)([1, 2, 7, 7, 4, 1])
+
+
+            ).toEqual([1, 2, 7, 4])
+        );
+
+
+        it('remove - everything', () =>
 
             expect(
 
