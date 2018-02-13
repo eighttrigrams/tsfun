@@ -125,14 +125,14 @@ It allows a composition of flows.
 
 
 ```
-const evenAndSmaller6 = flowP(
-    filter(smaller(6)),
-    filter((x: number) => x % 2 == 0))
+const evenAndSmallerThan6 = flowP(
+    filter(smallerThan(6)),
+    filter(even())
 
   
 flow(
     [1, 2, 3, 4, 6, 7, 8],
-    evenAndSmaller6,
+    evenAndSmallerThan6,
     take(1))
     .includes(2)
 
