@@ -174,8 +174,6 @@ unite([3, 4, 5])([1, 2, 3])
 -> [3, 4, 5, 1, 2]
 unique()([1, 1, 7, 8, 7, 1])
 -> [1, 7, 8]
-unique(Math.floor)([1.1, 1.8, 7.1])
--> [1, 7]
 ```
 
 These methods are designed to be used at the beginning of a flow:

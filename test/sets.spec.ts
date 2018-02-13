@@ -175,16 +175,6 @@ export function main() {
         );
 
 
-        it('unique - by', () =>
-
-            expect(
-
-                unique(Math.floor)([1.1, 1.2, 7.8, 8.0, 7.7, 1.0])
-
-            ).toEqual([1.0, 7.0, 8.0])
-        );
-
-
         // TODO implement
         /*
         it('unique - objects', () =>

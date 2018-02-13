@@ -3,10 +3,6 @@
  */
 
 
-export const times = (l: number) =>
-    (r: number) => l * r;
-
-
 export const identical = <A>(v: A) => v;
 
 

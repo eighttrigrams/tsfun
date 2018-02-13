@@ -1,6 +1,5 @@
 import {filter, flow, map, reverse, reduce, flowP} from '../src/flow';
 import {dropWhile, take, takeRightWhile, takeWhile} from '../src/drop-take';
-import {times} from '../src/core';
 import {bigger, differentFrom, includedIn, smaller} from '../src/predicates';
 import {intersection, subtract, union, unite} from '../src/sets';
 
@@ -19,7 +18,7 @@ export function main() {
                 flow(
                     [5,6,7,8,4,16,5],
                     takeWhile(bigger(4)),
-                    map(times(2)),
+                    map((x: number) => x * 2),
                     filter(smaller(16)),
                     filter(differentFrom(12)),
                     filter(includedIn([14]))
@@ -73,7 +72,7 @@ export function main() {
 
             expect(
 
-                map(times(2))
+                map((x: number) => x * 2)
                     ([2, 4])
 
             ).toEqual(([4, 8]))
@@ -107,7 +106,7 @@ export function main() {
 
                 flow(
                     intersection([[1,2],[2,3]]),
-                    map(times(2))
+                    map((x: number) => x * 2)
                 )
 
             ).toEqual([4])
@@ -121,7 +120,7 @@ export function main() {
                 flow(
                     [2,4],
                     unite([1,2]),
-                    map(times(2))
+                    map((x: number) => x * 2)
                 )
 
             ).toEqual([2,4,8])
@@ -133,7 +132,7 @@ export function main() {
             expect(
                 flow(
                     union([[1,2],[3,4],[2,4]]),
-                    map(times(2))
+                    map((x: number) => x * 2)
                 )
 
             ).toEqual([2,4,6,8])
