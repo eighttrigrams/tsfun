@@ -60,9 +60,13 @@ dropRightWhile(bigger(2))([1, 2, 3])
 ### Predicates
 
 ```
-includedIn([1, 2])(1)
+sameAs(3)(3)
+-> true
+isNot(sameAs(3))(2)
 -> true
 differentFrom(3)(2)
+-> true
+includedIn([1, 2])(1)
 -> true
 smaller(4)(2)
 -> true
