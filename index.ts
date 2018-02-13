@@ -9,7 +9,6 @@ export {
     intersect,
     subtract,
     unite,
-    addUniqueTo,
     unique
 } from './src/sets';
 
