@@ -42,10 +42,6 @@ export const unique = <A>() => (as: Array<A>) =>
         ,[]);
 
 
-export const remove = <A>(a: A) => (as: Array<A>): Array<A> =>
-    subtract([a])(as);
-
-
 // TODO write test
 export const addUniqueTo = <A>(as: Array<A>) => (a: A): Array<A> =>
     as.includes(a) ? as : as.concat([a]);

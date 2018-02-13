@@ -1,4 +1,4 @@
-import {intersect, intersection, subtract, union, unite, unique, remove} from '../src/sets';
+import {intersect, intersection, subtract, union, unite, unique} from '../src/sets';
 
 
 /**
@@ -141,61 +141,6 @@ export function main() {
                 ([1, 2, 3, 3, 2])
 
             ).toEqual([1, 2, 3])
-        );
-
-
-        it('remove', () =>
-
-            expect(
-
-                remove(13)([1, 2, 13, 13, 4])
-
-
-            ).toEqual([1, 2, 4])
-        );
-
-
-        it('remove - thereby make unique', () =>
-
-            expect(
-
-                remove(7)([1, 2, 7, 7, 4, 1])
-
-
-            ).toEqual([1, 2, 4])
-        );
-
-
-        it('remove - nothing', () =>
-
-            expect(
-
-                remove(13)([1, 2, 7, 4])
-
-
-            ).toEqual([1, 2, 7, 4])
-        );
-
-
-        it('remove - nothing, thereby make unique', () =>
-
-            expect(
-
-                remove(13)([1, 2, 7, 7, 4, 1])
-
-
-            ).toEqual([1, 2, 7, 4])
-        );
-
-
-        it('remove - everything', () =>
-
-            expect(
-
-                remove(1)([1, 1])
-
-
-            ).toEqual([])
         );
 
 
