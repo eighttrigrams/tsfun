@@ -1,6 +1,6 @@
 # tsfun
 
-**Lodash FP inspired functional array processing tools for a seamless typescript experience**
+**Lodash FP inspired functional array processing tools for typescript**
 
 https://www.npmjs.com/package/tsfun
 
