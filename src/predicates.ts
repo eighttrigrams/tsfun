@@ -10,11 +10,11 @@ export const sameAs = <A>(l:A) =>
     (r:A) => l == r;
 
 
-export const smaller = <A>(l:A) =>
+export const smallerThan = <A>(l:A) =>
     (r:A) => l > r;
 
 
-export const bigger = <A>(l:A) =>
+export const biggerThan = <A>(l:A) =>
     (r:A) => l < r;
 
 

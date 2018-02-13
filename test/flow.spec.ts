@@ -1,6 +1,6 @@
 import {filter, flow, map, reverse, reduce, flowP} from '../src/flow';
 import {dropWhile, take, takeRightWhile, takeWhile} from '../src/drop-take';
-import {bigger, differentFrom, includedIn, smaller} from '../src/predicates';
+import {biggerThan, differentFrom, includedIn, smallerThan} from '../src/predicates';
 import {intersection, subtract, union, unite} from '../src/sets';
 
 
@@ -17,9 +17,9 @@ export function main() {
 
                 flow(
                     [5,6,7,8,4,16,5],
-                    takeWhile(bigger(4)),
+                    takeWhile(biggerThan(4)),
                     map((x: number) => x * 2),
-                    filter(smaller(16)),
+                    filter(smallerThan(16)),
                     filter(differentFrom(12)),
                     filter(includedIn([14]))
                 )
@@ -83,7 +83,7 @@ export function main() {
 
             expect(
 
-                filter(smaller(4))
+                filter(smallerThan(4))
                     ([2, 4, 1, 5, 7, 8, 2, 1, 0])
 
             ).toEqual(([2, 1, 2, 1, 0]))
@@ -146,7 +146,7 @@ export function main() {
                 flow(
                     [1, 2, 3],
                     subtract([3, 4, 5]),
-                    filter(smaller(2))
+                    filter(smallerThan(2))
                 )
 
             ).toEqual([1])
@@ -189,8 +189,8 @@ export function main() {
 
                 flow(
                     [13, 17, 20],
-                    takeWhile(smaller(20)),
-                    filter(bigger(13))
+                    takeWhile(smallerThan(20)),
+                    filter(biggerThan(13))
                 )
 
             ).toEqual([17])
@@ -203,8 +203,8 @@ export function main() {
 
                 flow(
                     [13, 22, 21],
-                    takeRightWhile(bigger(20)),
-                    filter(bigger(21))
+                    takeRightWhile(biggerThan(20)),
+                    filter(biggerThan(21))
                 )
 
             ).toEqual([22])
@@ -217,7 +217,7 @@ export function main() {
 
                 flow(
                     [7, 9, 10, 13, 21, 20],
-                    dropWhile(smaller(20)),
+                    dropWhile(smallerThan(20)),
                     reverse()
                 )
 

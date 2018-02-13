@@ -45,7 +45,7 @@ takeWhile(smaller(3))([1, 2, 3, 1])
 -> [1, 2]
 takeRightWhile(smaller(3))([1, 2, 3, 1])
 -> [1]
-takeUntil(bigger(2))([1, 2, 3, 1])
+takeUntil(biggerThan(2))([1, 2, 3, 1])
 -> [1, 2, 3]
 drop(1)([1, 3])
 -> [3]
@@ -53,7 +53,7 @@ dropRight(1)([1, 3])
 -> [1]
 dropWhile(smaller(2))([1, 2, 3, 1])
 -> [2, 3, 1]
-dropRightWhile(bigger(2))([1, 2, 3])
+dropRightWhile(biggerThan(2))([1, 2, 3])
 -> [1, 2]
 ```
 
@@ -68,18 +68,18 @@ differentFrom(3)(2)
 -> true
 includedIn([1, 2])(1)
 -> true
-smaller(4)(2)
+smallerThan(4)(2)
 -> true
-bigger(4)(5)
+biggerThan(4)(5)
 -> true
-isNot(bigger(4))(5)
+isNot(biggerThan(4))(5)
 -> false
 ```
 
 These are meant to be used as predicates of the library methods, as for example `takeWhile`,
 
 ```
-takeWhile(smaller(4))([1, 2, 4, 5])
+takeWhile(smallerThan(4))([1, 2, 4, 5])
 -> [1, 2]
 ```
 
@@ -87,7 +87,7 @@ as well as in the native javascript functions.
 
 ```
 [1, 2, 4, 2]
-    .filter(smaller(4))
+    .filter(smallerThan(4))
 -> [1, 2, 2]
 ```
 
@@ -102,7 +102,7 @@ into the Array prototype.
 ```
 flow(
     [1, 2, 3, 5, 7],
-    takeWhile(smaller(3)))
+    takeWhile(smallerThan(3)))
     .map((x: number) => x * 2)
     .includes(2)
 
@@ -200,7 +200,7 @@ you can combine `union` for example with `takeWhile` like this:
 ```
 flow(
     union([1, 2], [2, 4]),
-    takeWhile(smaller(2)))
+    takeWhile(smallerThan(2)))
     
 -> [1, 2]
 ```
