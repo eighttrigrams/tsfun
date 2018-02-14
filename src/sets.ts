@@ -40,3 +40,29 @@ export const unique = <A>() => (as: Array<A>) =>
     as.reduce((acc: Array<A>, val) =>
              acc.includes(val) ? acc : acc.concat([val])
         ,[]);
+
+
+export const subtractO = (subtrahend: Array<string|number>|any) =>
+    (o: {[prop: string]: any}): {[prop: string]: any} => {
+
+        const result = Array.isArray(subtrahend)
+            ? (subtract(subtrahend.map(_ => _.toString()))(Object.keys(o)))
+                .reduce(reducer(o), {})
+            : (subtract(Object.keys(subtrahend))(Object.keys(o)))
+                .reduce(reducer(o), {});
+
+        return (Array.isArray(o)) ? Object.values(result) : result;
+    };
+
+
+export const uniteO = (addend: Array<string|number>|any) =>
+    (o: {[prop: string]: any}): {[prop: string]: any} =>
+        Object.assign({}, o, addend);
+
+
+export const intersectO = (o1: any) =>
+    (o2: {[prop: string]: any}): {[prop: string]: any} =>
+        intersect(Object.keys(o1))(Object.keys(o2)).reduce(reducer(o1), {});
+
+
+const reducer = (o: any) => (acc: any, val: string) => (acc[val] = o[val], acc);

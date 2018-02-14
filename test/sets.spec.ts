@@ -1,4 +1,4 @@
-import {intersect, intersection, subtract, union, unite, unique} from '../src/sets';
+import {intersect, intersection, subtract, union, unite, unique, subtractO, uniteO, intersectO} from '../src/sets';
 
 
 /**
@@ -174,5 +174,133 @@ export function main() {
 
             ).toEqual([{a: 1}, {a: 2}])
         );*/
+
+
+        it('subtractO - subtract by array of numeric keys', () => {
+
+            expect(
+
+                subtractO([1])({1: 3, 2: 4})
+
+            ).toEqual({2: 4});
+        });
+
+
+        it('subtractO - subtract by array of string keys', () => {
+
+            expect(
+
+                subtractO(['1'])({1: 3, 2: 4})
+
+            ).toEqual({2: 4});
+        });
+
+
+        it('subtractO - subtract objects', () => {
+
+            expect(
+
+                subtractO({1: 7})({1: 3, 2: 4})
+
+            ).toEqual({2: 4});
+        });
+
+
+        it('subtractO - subtract object from array', () => {
+
+            expect(
+
+                subtractO({0: 7})([2, 4])
+
+            ).toEqual([4]);
+        });
+
+
+        it('subtractO - subtract array from array', () => {
+
+            expect(
+
+                subtractO([1, 2])([2, 4, 5])
+
+            ).toEqual([2]);
+        });
+
+
+        it('subtractO - retain instance', () => {
+
+            const instance = { a: 'hey'  };
+
+            expect(
+
+                subtractO({1: 7})({1: 3, 2: instance})['2']
+
+            ).toBe(instance);
+        });
+
+
+        it('subtractO - retain instance in array', () => {
+
+            const instance = { a: 'hey'  };
+
+            expect(
+
+                subtractO([1, 2])([instance, 4, 5])[0]
+
+            ).toBe(instance);
+        });
+
+
+        it('uniteO - overwrite', () => {
+
+            expect(
+
+                uniteO({1: 4})({1: 3, 2: 4})
+
+            ).toEqual({1: 4, 2: 4});
+        });
+
+
+        it('uniteO - unite different', () => {
+
+            expect(
+
+                uniteO({1: 4})({2: 4})
+
+            ).toEqual({1: 4, 2: 4});
+        });
+
+
+        it('uniteO - retain instance', () => {
+
+            const instance = { a: 'hey'  };
+
+            expect(
+
+                uniteO({1: 4})({1: 3, 2: instance})[2]
+
+            ).toBe(instance);
+        });
+
+
+        it('intersectO', () => {
+
+            expect(
+
+                intersectO({1: 4})({1: 3, 2: 4})
+
+            ).toEqual({1: 4});
+        });
+
+
+        it('intersectO - retain instance', () => {
+
+            const instance = { a: 'hey'  };
+
+            expect(
+
+                intersectO({1: instance})({1: instance, 2: 4})[1]
+
+            ).toBe(instance);
+        });
     });
 }

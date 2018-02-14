@@ -9,7 +9,10 @@ export {
     intersect,
     subtract,
     unite,
-    unique
+    unique,
+    subtractO,
+    intersectO,
+    uniteO
 } from './src/sets';
 
 /**

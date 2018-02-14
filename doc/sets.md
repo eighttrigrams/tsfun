@@ -1,5 +1,7 @@
 ## Set methods
 
+### Set-like methods for arrays, usable with flow
+
 Every set method's result is not only `Array<A>` but also consists 
 of unique items (compared with `==`). Where possible, the order of 
 the arguments is kept.
@@ -18,6 +20,8 @@ unite([3, 4, 5])([1, 2, 3])
 unique()([1, 1, 7, 8, 7, 1])
 -> [1, 7, 8]
 ```
+
+### General set like methods for arrays
 
 These methods are designed to be used at the beginning of a flow:
 
@@ -39,3 +43,15 @@ flow(
     
 -> [1, 2]
 ```
+
+### Set-like methods for objects
+
+```
+intersectO({1: 4})({1: 3, 2: 4})
+-> {1: 4}
+uniteO({1: 4})({2: 4})
+-> {1: 4, 2: 4}
+subtractO({1: 7})({1: 3, 2: 4})
+-> {2: 4}
+```
+
