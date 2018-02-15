@@ -8,15 +8,41 @@ the arguments is kept.
 
 These methods are designed to be part of a flow:
 
+
+#### intersect
+
 ```
-intersect(3, 4, 5])([1, 2, 3])
+intersect([3, 4, 5])([1, 2, 3])
 -> [3]
+intersect([3])([4])
+-> []
+intersect([3, 4, 5], [2])([1, 2, 3])        // multiple args
+-> [3, 2]
+```
+
+#### subtract
+
+```
 subtract([3, 4, 5])([1, 2, 3])
 -> [1, 2]
-subtract([3, 4, 5])([1, 2, 3, 3, 1]) // make result a 'set'
+subtract([3, 4, 5])([1, 2, 3, 3, 1])        // make result a 'set'
 -> [1, 2]
+subtract([3, 4, 5], [2])([1, 2, 3, 3, 1])   // multiple args
+-> [1]
+```
+
+#### unite
+
+```
 unite([3, 4, 5])([1, 2, 3])
 -> [3, 4, 5, 1, 2]
+unite([3], [4, 5])([1, 2, 3])               // multiple args
+-> [3, 4, 5, 1, 2]
+```
+
+#### unique
+
+```
 unique()([1, 1, 7, 8, 7, 1])
 -> [1, 7, 8]
 ```

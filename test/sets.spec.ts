@@ -8,7 +8,7 @@ export function main() {
 
     describe('Sets/Arrays', () => {
 
-        it('intersectWith',() =>
+        it('intersect',() =>
 
             expect(
 
@@ -78,7 +78,7 @@ export function main() {
         );
 
 
-        it('uniteWith',() =>
+        it('unite',() =>
 
             expect(
 
@@ -88,7 +88,27 @@ export function main() {
         );
 
 
-        it('unite ',() =>
+        it('unite - variadic ',() =>
+
+            expect(
+
+                unite([1, 2], [3, 4])([2, 4])
+
+            ).toEqual([1, 2, 3, 4])
+        );
+
+
+        it('unite - spread ',() =>
+
+            expect(
+
+                unite(...[[1, 2], [3, 4]])([2, 4])
+
+            ).toEqual([1, 2, 3, 4])
+        );
+
+
+        it('union ',() =>
 
             expect(
 
@@ -102,8 +122,7 @@ export function main() {
 
             expect(
 
-                subtract([3, 4, 5])
-                ([1, 2, 3])
+                subtract([3, 4, 5])([1, 2, 3])
 
             ).toEqual([1, 2])
         );
@@ -113,8 +132,7 @@ export function main() {
 
             expect(
 
-                subtract([3, 4, 5])
-                ([1, 2, 3, 3, 4, 4, 1])
+                subtract([3, 4, 5])([1, 2, 3, 3, 4, 4, 1])
 
             ).toEqual([1, 2])
         );
@@ -124,8 +142,7 @@ export function main() {
 
             expect(
 
-                subtract([3, 4, 5])
-                ([])
+                subtract([3, 4, 5])([])
 
             ).toEqual([])
         );
@@ -135,8 +152,7 @@ export function main() {
 
             expect(
 
-                subtract<number>([])
-                ([1, 2, 3])
+                subtract<number>([])([1, 2, 3])
 
             ).toEqual([1, 2, 3]);
         });
@@ -146,8 +162,7 @@ export function main() {
 
             expect(
 
-                subtract([4, 5, 6])
-                ([1, 2, 3])
+                subtract([4, 5, 6])([1, 2, 3])
 
             ).toEqual([1, 2, 3])
         );
@@ -157,10 +172,29 @@ export function main() {
 
             expect(
 
-                subtract([4, 5, 6])
-                ([1, 2, 3, 3, 2])
+                subtract([4, 5, 6])([1, 2, 3, 3, 2])
 
             ).toEqual([1, 2, 3])
+        );
+
+
+        it('subtract - variadic', () =>
+
+            expect(
+
+                subtract([1], [2, 4])([1, 2, 3, 3, 2, 4])
+
+            ).toEqual([3])
+        );
+
+
+        it('subtract - spread', () =>
+
+            expect(
+
+                subtract(...[[2], [1, 4]])([1, 2, 3, 3, 2, 4])
+
+            ).toEqual([3])
         );
 
 

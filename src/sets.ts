@@ -12,11 +12,11 @@ export const intersection = <A>(aas: NestedArray<A>): Array<A> =>
 
 export const union = <A>(aas: NestedArray<A>): Array<A> =>
     aas.length < 1 ? [] :
-        aas.reduce((acc, val) => val ? unite(acc)(val) : acc);
+        aas.reduce((acc, val) => val ? _unite(acc)(val) : acc);
 
 
-export const intersect = <A>(...nas: NestedArray<A>) =>
-    (as: Array<A>) => intersection<A>(nas.concat([as]));
+export const intersect = <A>(...aas: NestedArray<A>) =>
+    (as: Array<A>) => intersection<A>(aas.concat([as]));
 
 
 const _intersect = <A>(as1: Array<A>) =>
@@ -26,15 +26,18 @@ const _intersect = <A>(as1: Array<A>) =>
 /**
  * Generate a new list with elements which are contained in as but not in subtrahend
  */
-export const subtract = <A>(subtrahend: Array<A>) =>
+export const subtract = <A>(...subtrahends: NestedArray<A>) =>
     (as: Array<A>): Array<A> =>
-        ((unique<A>()(as)).filter(isNot(includedIn(subtrahend))));
+        ((unique<A>()(as)).filter(isNot(includedIn(union(subtrahends)))));
 
+
+export const unite = <A>(...aas: NestedArray<A>) =>
+    (as: Array<A>) => union(aas.concat([as]));
 
 /**
  * @returns the union of a1 and a2
  */
-export const unite = <A>(as1: Array<A>) =>
+const _unite = <A>(as1: Array<A>) =>
     (as2: Array<A>) =>
         as1.concat(
             as2.filter(isNot(includedIn(as1))));
