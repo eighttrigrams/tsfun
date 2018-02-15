@@ -206,23 +206,13 @@ export function main() {
         });
 
 
-        it('subtractO - subtract object from array', () => {
+        it('subtractO - array for o', () => {
 
             expect(
 
-                subtractO({0: 7})([2, 4])
+                () => subtractO({0: 7})([2, 4])
 
-            ).toEqual([4]);
-        });
-
-
-        it('subtractO - subtract array from array', () => {
-
-            expect(
-
-                subtractO([1, 2])([2, 4, 5])
-
-            ).toEqual([2]);
+            ).toThrow(new TypeError('invalid argument'));
         });
 
 
@@ -233,18 +223,6 @@ export function main() {
             expect(
 
                 subtractO({1: 7})({1: 3, 2: instance})['2']
-
-            ).toBe(instance);
-        });
-
-
-        it('subtractO - retain instance in array', () => {
-
-            const instance = { a: 'hey'  };
-
-            expect(
-
-                subtractO([1, 2])([instance, 4, 5])[0]
 
             ).toBe(instance);
         });
@@ -270,6 +248,26 @@ export function main() {
         });
 
 
+        it('uniteO - illegal first arg', () => {
+
+            expect(
+
+                () => uniteO([])({2: 4})
+
+            ).toThrow(new TypeError('invalid argument'));
+        });
+
+
+        it('uniteO - illegal second arg', () => {
+
+            expect(
+
+                () => uniteO({1: 4})([])
+
+            ).toThrow(new TypeError('invalid argument'));
+        });
+
+
         it('uniteO - retain instance', () => {
 
             const instance = { a: 'hey'  };
@@ -289,6 +287,26 @@ export function main() {
                 intersectO({1: 4})({1: 3, 2: 4})
 
             ).toEqual({1: 4});
+        });
+
+
+        it('intersectO - array', () => {
+
+            expect(
+
+                intersectO([1])({1: 3, 2: 4})
+
+            ).toEqual({1: 3});
+        });
+
+
+        it('intersectO - array for o', () => {
+
+            expect(
+
+                () => intersectO({1: 3, 2: 4})([1])
+
+            ).toThrow(new TypeError('invalid argument'));
         });
 
 
