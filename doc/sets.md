@@ -1,13 +1,18 @@
 ## Set methods
 
-### Set-like methods for arrays, usable with flow
+Set methods come in two flavours, array set methods and object set methods.
+Both of these have in common that the respective data structures are treated 
+as if they were sets, hence we also call them set-like methods.
+
+### Set-like methods for arrays
 
 Every set method's result is not only `Array<A>` but also consists 
 of unique items (compared with `==`). Where possible, the order of 
 the arguments is kept.
 
-These methods are designed to be part of a flow:
-
+`intersect`, `subtract`, `unite` and `uniqe` are partials, which can be inserted
+into the body of a `flow`. `intersection` and `union` take a `NestedArray<A>` as
+their argument, so they can be used to begin a `flow` with.
 
 #### intersect
 
@@ -47,36 +52,39 @@ unique()([1, 1, 7, 8, 7, 1])
 -> [1, 7, 8]
 ```
 
-### General set like methods for arrays
-
-These methods are designed to be used at the beginning of a flow:
+#### union
 
 ```
 union([[3, 4, 5], [1, 2, 3]])
 -> [3, 4, 5, 1, 2]
+```
+
+#### intersection
+
+```
 intersection([[3, 4, 5], [1, 2, 3]])
 -> [3]
 ```
 
-Remember, that a flow has to maintain the array type,
-which in the following example is Array of number. In such a case
-you can combine `union` for example with `takeWhile` like this:
-
-```
-flow(
-    union([1, 2], [2, 4]),
-    takeWhile(smallerThan(2)))
-    
--> [1, 2]
-```
-
 ### Set-like methods for objects
+
+#### intersectO
 
 ```
 intersectO({1: 4})({1: 3, 2: 4})
 -> {1: 4}
+```
+
+#### uniteO
+
+```
 uniteO({1: 4})({2: 4})
 -> {1: 4, 2: 4}
+```
+
+#### subtractO
+
+````
 subtractO({1: 7})({1: 3, 2: 4})
 -> {2: 4}
 ```
