@@ -10,6 +10,8 @@ export {
     subtract,
     unite,
     unique,
+} from './src/sets';
+export {
     subtractO,
     intersectO,
     uniteO

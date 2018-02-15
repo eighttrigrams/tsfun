@@ -1,4 +1,4 @@
-import {intersectO, subtractO, uniteO} from '../src/sets';
+import {intersectO, subtractO, uniteO} from '../src/sets-o';
 
 
 /**
