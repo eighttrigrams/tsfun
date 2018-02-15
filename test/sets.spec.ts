@@ -18,6 +18,26 @@ export function main() {
         );
 
 
+        it('intersect - variadic',() =>
+
+            expect(
+
+                intersect([1,2],[2,5])([2,4])
+
+            ).toEqual([2])
+        );
+
+
+        it('intersect - spread',() =>
+
+            expect(
+
+                intersect(...[[1,2],[2,5]])([2,4])
+
+            ).toEqual([2])
+        );
+
+
         it('intersect',() =>
 
             expect(

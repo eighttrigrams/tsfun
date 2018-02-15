@@ -7,7 +7,7 @@ export type NestedArray<A> = Array<Array<A>>;
 
 export const intersection = <A>(aas: NestedArray<A>): Array<A> =>
     aas.length < 1 ? [] :
-        aas.reduce(uncurry2<A>(intersect));
+        aas.reduce(uncurry2<A>(_intersect));
 
 
 export const union = <A>(aas: NestedArray<A>): Array<A> =>
@@ -15,7 +15,11 @@ export const union = <A>(aas: NestedArray<A>): Array<A> =>
         aas.reduce((acc, val) => val ? unite(acc)(val) : acc);
 
 
-export const intersect = <A>(as1: Array<A>) =>
+export const intersect = <A>(...nas: NestedArray<A>) =>
+    (as: Array<A>) => intersection<A>(nas.concat([as]));
+
+
+const _intersect = <A>(as1: Array<A>) =>
     (as2: Array<A>) => as1.filter(includedIn(as2));
 
 
