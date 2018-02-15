@@ -15,7 +15,7 @@ export {
     subtractO,
     intersectO,
     uniteO
-} from './src/sets';
+} from './src/sets-o';
 
 /**
  * @author Daniel de Oliveira
