@@ -1,4 +1,95 @@
-## Set methods
+# Utilities for Collections
+
+## General
+
+#### copy
+
+Creates a shallow copy of an object or an array
+
+```
+copy([1, 2])
+-> [1, 2]
+copy({a: 1, 2: 5})
+-> {a: 1, 2: 5}
+```
+
+## Ordered-List-Like
+
+These methods treat arrays as ordered lists
+
+### Take
+
+Currently the implementations for the following **take** methods are provided
+
+#### take
+
+```
+take(5)([1, 2])
+-> [1]
+```
+
+#### takeWhile
+
+```
+takeWhile(smallerThan(3))([1, 2, 3, 1])
+-> [1, 2]
+```
+
+#### takeRightWhile
+
+```
+takeRightWhile(smallerThan(3))([1, 2, 3, 1])
+-> [1]
+```
+
+#### takeUntil
+
+```
+takeUntil(biggerThan(2))([1, 2, 3, 1])
+-> [1, 2, 3]
+```
+
+#### takeNth
+
+```
+takeNth(2)([1, 2, 3, 7])
+-> [1, 3]
+```
+
+### Drop
+
+Currently the implementations for the following **drop** methods are provided
+
+
+#### drop
+
+```
+drop(1)([1, 3])
+-> [3]
+```
+
+#### dropRight
+
+```
+dropRight(1)([1, 3])
+-> [1]
+```
+
+#### dropWhile
+
+```
+dropWhile(smallerThan(2))([1, 2, 3, 1])
+-> [2, 3, 1]
+```
+
+#### dropRightWhile
+
+```
+dropRightWhile(biggerThan(2))([1, 2, 3])
+-> [1, 2]
+```
+
+## Set-Like
 
 Set methods come in two flavours, array set methods and object set methods.
 Both of these have in common that the respective data structures are treated 

@@ -16,6 +16,7 @@ export {
     intersectO,
     uniteO
 } from './src/sets-o';
+export {copy} from './src/coll';
 
 /**
  * @author Daniel de Oliveira

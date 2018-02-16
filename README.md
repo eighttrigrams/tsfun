@@ -45,27 +45,20 @@ isNot(includedIn([1, 2]))(1)
 
 [more](doc/predicates.md)
 
-### Take, Drop etc.
+### Collection methods
 
 ```
 take(5)([1, 2])
 -> [1]
 takeWhile(smallerThan(3))([1, 2, 3, 1])
 -> [1, 2]
-```
-
-[more](doc/drop-take.md)
-
-### Set methods
-
-```
 intersect(3, 4, 5])([1, 2, 3])
 -> [3]
 subtract([3, 4, 5])([1, 2, 3])
 -> [1, 2]
 ```
 
-[more](doc/sets.md)
+[more](https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/doc/coll.md)
 
 ### Flow
 
