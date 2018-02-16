@@ -34,102 +34,63 @@ Install, build, and test with `npm install; npm run build; npm test`.
 
 ## Features
 
-### Predicates
+Let's start with an example, which combines the different sorts of features `tsfun`
+offers:
 
 ```
-sameAs(3)(3)
+flow(
+    [1, 2, 3, 1],
+    takeWhile(isNot(includedIn([3, 4]))),
+    dropRight(1)))
+    .includes(1)
+    
 -> true
-isNot(includedIn([1, 2]))(1)
--> false
 ```
 
-[more](doc/predicates.md)
+First of all we have the (combined) predicate `isNot(includedIn(x))`.
+More on predicates can be found 
+[here](https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/doc/predicates.md). 
 
-### Collection methods
+Then we have
+array manipulating function like `takeWhile` and `dropRight`. More on these
+and others can be found 
+[here](https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/doc/coll.md).
 
-```
-take(5)([1, 2])
--> [1]
-takeWhile(smallerThan(3))([1, 2, 3, 1])
--> [1, 2]
-intersect(3, 4, 5])([1, 2, 3])
--> [3]
-subtract([3, 4, 5])([1, 2, 3])
--> [1, 2]
-```
-
-[more](https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/doc/coll.md)
+Last but not least, we have `flow`, which is discussed in the next paragraph.
 
 ### Flow
 
-A flow is a series of transformations of `Array<A>` to `Array<A>`.
-The design goal of a flow is to provide a way to mix javascript functional style
-methods like `map` and `filter`, with other functional style methods like takeWhile` 
+A flow is a series of transformations of some object of type `A` to another object 
+of type `A`.
+
+The original design goal of a flow was to provide a way to mix javascript functional style
+methods like `map` and `filter`, with other functional style methods like `takeWhile` 
 in a way which feels as natural as possible, given that we do not want to mix in new methods
 into the Array prototype.
 
 ```
-flow(
-    [1, 2, 3, 5, 7],
-    takeWhile(smallerThan(3)))
-    .map((x: number) => x * 2)
-    .includes(2)
+1. flow(
+2.    [1, 2, 3, 5, 7],
+3.    takeWhile(smallerThan(3)),
+4.    dropRight(1))
+5.    .map((x: number) => x * 2)
+6.    .includes(2)
 
 -> true
 ```
 
-Some of the array methods have corresponding flow compatible implementations.
+In this example we feed the flow with an array, and then transform this array step
+by step, first within the flow, using `takeWhile` and `drop`. The result is an array,
+which then is beeing transformed again with the native `map` function. Finally `includes`
+is called on it to obtain a `boolean` result. As we see, it lets us seemingly 'pipe'
+things across the borders of the flow.
 
-```
-flow(
-    [1, 2, 3, 4],
-    filter((x: number) => x < 3),
-    map(x => x * 2),
-    reduce((acc, val) => acc.concat([val * 2])),
-    reverse(),
-    take(1))
+Just as a reminder, a flow has not necessarily to be of type `Array`, it works on any
+type `A`. It is just that `tsfun` itself provides many array manipulating functions which
+are designed with flow in mind. 
 
--> [8]
-```
-
-This allows us to stay in the flow in between calls to methods we don't have native javascript
-version for, like for example `take`.
-
-**Note** that, as stated earlier, a flow consists of only transformations from Array of A to Array of A,
-thus constraining our versions of the methods somewhat in comparison to the native methods (
-consider for example `map`, which typically maps from A to B, not necessarily from A to A).
-
-Nevertheless, with flow you have the possibility to combine a mapping from A to B with 
-for example `take` like this
-
-```
-flow(
-    [true, false, true]
-    .map((x: boolean) => x ? 1 : 0),
-    take(2))
-
--> [1, 0]
-```
-
-#### Nesting
-
-There is also `flowP`, which is a partially applied flow. 
-It allows a composition of flows.
+[more](https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/doc/flow.md)
 
 
-```
-const evenAndSmallerThan6 = flowP(
-    filter(smallerThan(6)),
-    filter(even())
-
-  
-flow(
-    [1, 2, 3, 4, 6, 7, 8],
-    evenAndSmallerThan6,
-    take(1))
-    .includes(2)
-
--> true
-```
 
 
