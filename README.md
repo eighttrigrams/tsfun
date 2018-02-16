@@ -52,7 +52,7 @@ More on predicates can be found
 [here](https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/doc/predicates.md). 
 
 Then we have
-array manipulating function like `takeWhile` and `dropRight`. More on these
+array manipulating functions like `takeWhile` and `dropRight`. More on these
 and others can be found 
 [here](https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/doc/coll.md).
 
