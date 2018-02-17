@@ -9,9 +9,13 @@ export const subtractO = (subtrahend: Array<string|number>|any) =>
 
         if (Array.isArray(o)) throw new TypeError('invalid argument');
 
-        const keys = Array.isArray(subtrahend)
-            ? (subtract(subtrahend.map(_ => _.toString()))(Object.keys(o)))
-            : (subtract(Object.keys(subtrahend))(Object.keys(o)))
+        const keys =
+            (
+                Array.isArray(subtrahend)
+                    ? subtract(subtrahend.map(_ => _.toString()))
+                    : subtract(Object.keys(subtrahend))
+
+            )(Object.keys(o));
 
         return reduceO(identical)(
             keys,
