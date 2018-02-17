@@ -1,6 +1,6 @@
 # Utilities for Collections
 
-## General
+## general
 
 ### objects and arrays
 
@@ -44,7 +44,7 @@ reverse()([4, 1])
 -> [1, 4]
 ```
 
-### Take
+### take
 
 Currently the implementations for the following **take** methods are provided
 
@@ -83,7 +83,7 @@ takeNth(2)([1, 2, 3, 7])
 -> [1, 3]
 ```
 
-### Drop
+### drop
 
 Currently the implementations for the following **drop** methods are provided
 
@@ -116,13 +116,13 @@ dropRightWhile(biggerThan(2))([1, 2, 3])
 -> [1, 2]
 ```
 
-## Set-Like
+## set-Like
 
 Set methods come in two flavours, array set methods and object set methods.
 Both of these have in common that the respective data structures are treated 
 as if they were sets, hence we also call them set-like methods.
 
-### Set-like methods for arrays
+### set-like methods for arrays
 
 Every set method's result is not only `Array<A>` but also consists 
 of unique items (compared with `==`). Where possible, the order of 
@@ -184,7 +184,7 @@ intersection([[3, 4, 5], [1, 2, 3]])
 -> [3]
 ```
 
-### Set-like methods for objects
+### set-like methods for objects
 
 #### intersectO
 
