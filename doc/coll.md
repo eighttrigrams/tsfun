@@ -17,14 +17,18 @@ copy({a: 1, 2: 5})
 
 ### objects
 
-#### mapO
+```
+import {map, filter} from 'tsfun/objects'
+```
+
+#### map
 
 ```
 map((x: number) => x * 2)({a: 1, b: 2})
 -> {a: 2, b: 4}
 ```
 
-#### filterO
+#### filter
 
 ```
 filter((x: number) => x > 1)({a: 1, b: 2})
@@ -186,21 +190,25 @@ intersection([[3, 4, 5], [1, 2, 3]])
 
 ### objects
 
-#### intersectO
+```
+import {intersect, unite, subtract} from 'tsfun/objects'
+```
+
+#### intersect
 
 ```
 intersect({1: 4})({1: 3, 2: 4})
 -> {1: 4}
 ```
 
-#### uniteO
+#### unite
 
 ```
 unite({1: 4})({2: 4})
 -> {1: 4, 2: 4}
 ```
 
-#### subtractO
+#### subtract
 
 ```
 subtract({1: 7})({1: 3, 2: 4})
