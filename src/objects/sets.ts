@@ -27,7 +27,7 @@ export const subtract = (subtrahend: Array<string | number> | any) =>
 
 export function union([first, ...rest]: obj[]): obj {
 
-    return first && rest && rest.length > 0
+    return first && rest.length > 0
         ? unite(...rest)(first)
         : first
             ? first
