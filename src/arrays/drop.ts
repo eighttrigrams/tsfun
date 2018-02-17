@@ -1,5 +1,3 @@
-import {isNot} from '../predicates';
-
 /**
  * @author Daniel de Oliveira
  */

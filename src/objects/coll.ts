@@ -1,8 +1,8 @@
-import {objT, reduceO} from '../core';
+import {objT, mapProperties} from '../core';
 
 export function map<A, B>(f: (_: A) => B): (_: objT<A>) => objT<B> {
 
-    return (coll: objT<A>) => reduceO(f)(Object.keys(coll), coll);
+    return (coll: objT<A>) => mapProperties(f)(Object.keys(coll), coll);
 }
 
 
