@@ -1,6 +1,6 @@
 import {subtract} from './sets';
 import {subtractO} from './sets-o';
-import {Transformation, reducer, reducer} from "./core";
+import {Transformation, reducer} from "./core";
 /**
  * @author Daniel de Oliveira
  */
