@@ -1,9 +1,9 @@
-import {intersectO, subtractO, uniteO} from '../src/sets-o';
-
-
 /**
  * @author Daniel de Oliveira
  */
+import {subtract, unite, intersect} from '../src/sets-o';
+
+
 export function main() {
 
     describe('Sets/Objects', () => {
@@ -12,7 +12,7 @@ export function main() {
 
             expect(
 
-                subtractO([1])({1: 3, 2: 4})
+                subtract([1])({1: 3, 2: 4})
 
             ).toEqual({2: 4});
         });
@@ -22,7 +22,7 @@ export function main() {
 
             expect(
 
-                subtractO(['1'])({1: 3, 2: 4})
+                subtract(['1'])({1: 3, 2: 4})
 
             ).toEqual({2: 4});
         });
@@ -32,7 +32,7 @@ export function main() {
 
             expect(
 
-                subtractO({1: 7})({1: 3, 2: 4})
+                subtract({1: 7})({1: 3, 2: 4})
 
             ).toEqual({2: 4});
         });
@@ -42,7 +42,7 @@ export function main() {
 
             expect(
 
-                () => subtractO({0: 7})([2, 4])
+                () => subtract({0: 7})([2, 4])
 
             ).toThrow(new TypeError('invalid argument'));
         });
@@ -54,7 +54,7 @@ export function main() {
 
             expect(
 
-                subtractO({1: 7})({1: 3, 2: instance})['2']
+                subtract({1: 7})({1: 3, 2: instance})['2']
 
             ).toBe(instance);
         });
@@ -64,7 +64,7 @@ export function main() {
 
             expect(
 
-                uniteO({1: 4})({1: 3, 2: 4})
+                unite({1: 4})({1: 3, 2: 4})
 
             ).toEqual({1: 4, 2: 4});
         });
@@ -74,7 +74,7 @@ export function main() {
 
             expect(
 
-                uniteO({1: 4})({2: 4})
+                unite({1: 4})({2: 4})
 
             ).toEqual({1: 4, 2: 4});
         });
@@ -84,7 +84,7 @@ export function main() {
 
             expect(
 
-                () => uniteO([])({2: 4})
+                () => unite([])({2: 4})
 
             ).toThrow(new TypeError('invalid argument'));
         });
@@ -94,7 +94,7 @@ export function main() {
 
             expect(
 
-                () => uniteO({1: 4})([])
+                () => unite({1: 4})([])
 
             ).toThrow(new TypeError('invalid argument'));
         });
@@ -106,7 +106,7 @@ export function main() {
 
             expect(
 
-                uniteO({1: 4})({1: 3, 2: instance})[2]
+                unite({1: 4})({1: 3, 2: instance})[2]
 
             ).toBe(instance);
         });
@@ -116,7 +116,7 @@ export function main() {
 
             expect(
 
-                intersectO({1: 4})({1: 3, 2: 4})
+                intersect({1: 4})({1: 3, 2: 4})
 
             ).toEqual({1: 4});
         });
@@ -126,7 +126,7 @@ export function main() {
 
             expect(
 
-                intersectO([1])({1: 3, 2: 4})
+                intersect([1])({1: 3, 2: 4})
 
             ).toEqual({1: 3});
         });
@@ -136,7 +136,7 @@ export function main() {
 
             expect(
 
-                () => intersectO({1: 3, 2: 4})([1])
+                () => intersect({1: 3, 2: 4})([1])
 
             ).toThrow(new TypeError('invalid argument'));
         });
@@ -148,7 +148,7 @@ export function main() {
 
             expect(
 
-                intersectO({1: instance})({1: instance, 2: 4})[1]
+                intersect({1: instance})({1: instance, 2: 4})[1]
 
             ).toBe(instance);
         });

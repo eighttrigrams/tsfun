@@ -2,7 +2,7 @@ export {isNot, sameAs, biggerThan, smallerThan, includedIn, differentFrom, even,
 export {take, takeRightWhile, takeUntil, takeWhile, takeNth} from './src/take';
 export {dropWhile, drop, dropRight, dropRightWhile} from './src/drop';
 export {flow, flowP} from './src/flow';
-export {reverse, mapO, filterO} from './src/coll';
+export {reverse} from './src/coll';
 export {
     NestedArray,
     intersection,
@@ -12,11 +12,6 @@ export {
     unite,
     unique,
 } from './src/sets';
-export {
-    subtractO,
-    intersectO,
-    uniteO
-} from './src/sets-o';
 export {copy} from './src/coll';
 
 /**

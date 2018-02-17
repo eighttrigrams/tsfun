@@ -1,4 +1,5 @@
-import {copy, filterO, mapO} from '../src/coll';
+import {copy, } from '../src/coll';
+import {filter, map} from '../src/coll-o';
 
 /**
  * @author Daniel de Oliveira
@@ -65,7 +66,7 @@ export function main() {
 
             expect(
 
-                mapO<number, number>(x => x * 2)({a: 1, b: 2})
+                map<number, number>(x => x * 2)({a: 1, b: 2})
 
             ).toEqual({a: 2, b: 4})
         });
@@ -75,7 +76,7 @@ export function main() {
 
             expect(
 
-                filterO((x: number) => x > 1)({a: 1, b: 2})
+                filter((x: number) => x > 1)({a: 1, b: 2})
 
             ).toEqual({b: 2})
         });

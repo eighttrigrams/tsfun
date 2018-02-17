@@ -3,8 +3,7 @@ import {reverse} from '../src/coll';
 import {take, takeWhile} from '../src/take';
 import {dropWhile} from '../src/drop';
 import {biggerThan, smallerThan} from '../src/predicates';
-import {intersection, union, unite} from '../src/sets';
-import {uniteO} from '../src/sets-o';
+import {unite} from '../src/sets-o';
 
 
 /**
@@ -97,7 +96,7 @@ export function main() {
 
                 flow(
                     {a: 1, b: 2},
-                    uniteO({c: 3})
+                    unite({c: 3})
                 )
 
             ).toEqual({a: 1, b: 2, c: 3})

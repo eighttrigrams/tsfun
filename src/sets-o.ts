@@ -1,51 +1,52 @@
 /**
  * @author Daniel de Oliveira
  */
-import {intersect, subtract} from "./sets";
+import {intersect as intersectA} from "./sets";
+import {subtract as subtractA} from "./sets";
 import {identical, reduceO, obj} from "./core";
 
-export const subtractO = (subtrahend: Array<string|number>|any) =>
-    (o: obj): obj => {
+    export const subtract = (subtrahend: Array<string | number> | any) =>
+        (o: obj): obj => {
 
-        if (Array.isArray(o)) throw new TypeError('invalid argument');
+            if (Array.isArray(o)) throw new TypeError('invalid argument');
 
-        const keys =
-            (
-                Array.isArray(subtrahend)
-                    ? subtract(subtrahend.map(_ => _.toString()))
-                    : subtract(Object.keys(subtrahend))
+            const keys =
+                (
+                    Array.isArray(subtrahend)
+                        ? subtractA(subtrahend.map(_ => _.toString()))
+                        : subtractA(Object.keys(subtrahend))
 
-            )(Object.keys(o));
+                )(Object.keys(o));
 
-        return reduceO(identical)(
-            keys,
-            o);
-    };
-
-
-export const uniteO = (addend: Array<string|number>|any) =>
-    (o: obj): obj => {
-
-        if (Array.isArray(addend)
-            || Array.isArray(o)) throw new TypeError('invalid argument');
-
-        return Object.assign({}, o, addend);
-    };
+            return reduceO(identical)(
+                keys,
+                o);
+        };
 
 
-export const intersectO = (o1: any) =>
-    (o2: obj): obj => {
+    export const unite = (addend: Array<string | number> | any) =>
+        (o: obj): obj => {
 
-        if (Array.isArray(o2)) throw new TypeError('invalid argument');
+            if (Array.isArray(addend)
+                || Array.isArray(o)) throw new TypeError('invalid argument');
 
-        const keys = intersect(
+            return Object.assign({}, o, addend);
+        };
+
+
+    export const intersect = (o1: any) =>
+        (o2: obj): obj => {
+
+            if (Array.isArray(o2)) throw new TypeError('invalid argument');
+
+            const keys = intersectA(
                 Array.isArray(o1)
                     ? o1.map(x => x.toString())
                     : Object.keys(o1)
             )(Object.keys(o2));
 
-        return reduceO(identical)(
-            keys,
-            (!Array.isArray(o1) ? o1 : o2)
-        );
-    };
+            return reduceO(identical)(
+                keys,
+                (!Array.isArray(o1) ? o1 : o2)
+            );
+        };

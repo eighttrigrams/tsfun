@@ -20,14 +20,14 @@ copy({a: 1, 2: 5})
 #### mapO
 
 ```
-mapO((x: number) => x * 2)({a: 1, b: 2})
+map((x: number) => x * 2)({a: 1, b: 2})
 -> {a: 2, b: 4}
 ```
 
 #### filterO
 
 ```
-filterO((x: number) => x > 1)({a: 1, b: 2})
+filter((x: number) => x > 1)({a: 1, b: 2})
 -> {b: 2}
 ```
 
@@ -189,21 +189,21 @@ intersection([[3, 4, 5], [1, 2, 3]])
 #### intersectO
 
 ```
-intersectO({1: 4})({1: 3, 2: 4})
+intersect({1: 4})({1: 3, 2: 4})
 -> {1: 4}
 ```
 
 #### uniteO
 
 ```
-uniteO({1: 4})({2: 4})
+unite({1: 4})({2: 4})
 -> {1: 4, 2: 4}
 ```
 
 #### subtractO
 
 ```
-subtractO({1: 7})({1: 3, 2: 4})
+subtract({1: 7})({1: 3, 2: 4})
 -> {2: 4}
 ```
 
