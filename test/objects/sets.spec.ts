@@ -1,14 +1,14 @@
 /**
  * @author Daniel de Oliveira
  */
-import {subtract, unite, intersect} from '../src/objects/sets';
+import {subtract, unite, intersect, union} from '../../src/objects/sets';
 
 
 export function main() {
 
     describe('Sets/Objects', () => {
 
-        it('subtractO - subtract by array of numeric keys', () => {
+        it('subtract - subtract by array of numeric keys', () => {
 
             expect(
 
@@ -18,7 +18,7 @@ export function main() {
         });
 
 
-        it('subtractO - subtract by array of string keys', () => {
+        it('subtract - subtract by array of string keys', () => {
 
             expect(
 
@@ -28,7 +28,7 @@ export function main() {
         });
 
 
-        it('subtractO - subtract objects', () => {
+        it('subtract - subtract objects', () => {
 
             expect(
 
@@ -38,7 +38,7 @@ export function main() {
         });
 
 
-        it('subtractO - array for o', () => {
+        it('subtract - array for o', () => {
 
             expect(
 
@@ -48,7 +48,7 @@ export function main() {
         });
 
 
-        it('subtractO - retain instance', () => {
+        it('subtract - retain instance', () => {
 
             const instance = { a: 'hey'  };
 
@@ -60,7 +60,7 @@ export function main() {
         });
 
 
-        it('uniteO - overwrite', () => {
+        it('unite - overwrite', () => {
 
             expect(
 
@@ -70,7 +70,7 @@ export function main() {
         });
 
 
-        it('uniteO - unite different', () => {
+        it('unite - unite different', () => {
 
             expect(
 
@@ -80,7 +80,7 @@ export function main() {
         });
 
 
-        it('uniteO - illegal first arg', () => {
+        it('unite - illegal first arg', () => {
 
             expect(
 
@@ -90,7 +90,7 @@ export function main() {
         });
 
 
-        it('uniteO - illegal second arg', () => {
+        it('unite - illegal second arg', () => {
 
             expect(
 
@@ -100,7 +100,7 @@ export function main() {
         });
 
 
-        it('uniteO - retain instance', () => {
+        it('unite - retain instance', () => {
 
             const instance = { a: 'hey'  };
 
@@ -112,7 +112,57 @@ export function main() {
         });
 
 
-        it('intersectO', () => {
+        it('unite - variadic', () =>
+
+            expect(
+
+                unite(...[{3: 4}, {4: 4}])({1: 2})
+
+            ).toEqual({1: 2, 3: 4, 4: 4})
+        );
+
+
+        it('unite - variadic', () =>
+
+            expect(
+
+                unite(...[{3: 4}, {4: 4}])({1: 2})
+
+            ).toEqual({1: 2, 3: 4, 4: 4})
+        );
+
+
+        it('union', () =>
+
+            expect(
+
+                union([{3: 4}, {4: 4}, {1: 2}])
+
+            ).toEqual({1: 2, 3: 4, 4: 4})
+        );
+
+
+        it('union - one', () =>
+
+            expect(
+
+                union([{3: 4}])
+
+            ).toEqual({3: 4})
+        );
+
+
+        it('union - empty', () =>
+
+            expect(
+
+                union([])
+
+            ).toEqual({})
+        );
+
+
+        it('intersect', () => {
 
             expect(
 
@@ -122,7 +172,7 @@ export function main() {
         });
 
 
-        it('intersectO - array', () => {
+        it('intersect - array', () => {
 
             expect(
 
@@ -132,7 +182,7 @@ export function main() {
         });
 
 
-        it('intersectO - array for o', () => {
+        it('intersect - array for o', () => {
 
             expect(
 
@@ -142,7 +192,7 @@ export function main() {
         });
 
 
-        it('intersectO - retain instance', () => {
+        it('intersect - retain instance', () => {
 
             const instance = { a: 'hey'  };
 

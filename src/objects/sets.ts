@@ -25,13 +25,24 @@ export const subtract = (subtrahend: Array<string | number> | any) =>
     };
 
 
-export const unite = (addend: Array<string | number> | any) =>
+export function union([first, ...rest]: obj[]): obj {
+
+    return first && rest && rest.length > 0
+        ? unite(...rest)(first)
+        : first
+            ? first
+            : {};
+}
+
+
+export const unite = (...addends: obj[]) =>
     (o: obj): obj => {
 
-        if (Array.isArray(addend)
-            || Array.isArray(o)) throw new TypeError('invalid argument');
+        if (Array.isArray(o)) throw new TypeError('invalid argument');
+        for (let addend of addends)
+            if (Array.isArray(addend)) throw new TypeError('invalid argument');
 
-        return Object.assign({}, o, addend);
+        return Object.assign({}, o, ...addends);
     };
 
 
