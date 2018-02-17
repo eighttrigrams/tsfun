@@ -1,6 +1,5 @@
+import {copy, map} from '../src/coll';
 
-
-import {copy} from '../src/coll';
 /**
  * @author Daniel de Oliveira
  */
@@ -60,5 +59,25 @@ export function main() {
 
             ).toEqual({a: 1, 2: undefined})
         );
+
+
+        it('map - array', () =>
+
+            expect(
+
+                map((x: number) => x * 2)([1, 2])
+
+            ).toEqual([2, 4])
+        );
+
+
+        it('map - object', () => {
+
+            expect(
+
+                map<number, number>(x => x * 2)({a: 1, b: 2})
+
+            ).toEqual({a: 2, b: 4})
+        });
     });
 }
