@@ -101,7 +101,7 @@ export function main() {
                 )
 
             ).toEqual({a: 1, b: 2, c: 3})
-
-        )
+        );
     });
 }
+

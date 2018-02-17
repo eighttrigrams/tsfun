@@ -73,7 +73,24 @@ Just as a reminder, a flow has not necessarily to be of type `Array`, it works o
 type `A`. It is just that `tsfun` itself provides many array manipulating functions which
 are designed with flow in mind. 
 
-[more on flow](https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/doc/flow.md)
+There is also `flowP`, which is a partially applied flow. 
+It allows a composition of flows.
+
+
+```
+const evenAndSmallerThan6 = flowP(
+    filter(smallerThan(6)),
+    filter(even())
+
+  
+flow(
+    [1, 2, 3, 4, 6, 7, 8],
+    evenAndSmallerThan6,
+    take(1))
+    .includes(2)
+
+-> true
+```
 
 
 
