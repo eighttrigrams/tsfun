@@ -51,7 +51,7 @@ offers:
 First of all we have the (combined) 
 [predicate](https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/doc/predicates.md) 
 `isNot(includedIn(x))`. Then we have
-[array manipulating functions](https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/doc/coll.md) 
+[collection manipulating functions](https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/doc/coll.md) 
 like `takeWhile` and `dropRight`. 
 
 Last but not least, we have `flow`, which 
