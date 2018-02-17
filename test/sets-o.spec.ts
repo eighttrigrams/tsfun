@@ -1,7 +1,7 @@
 /**
  * @author Daniel de Oliveira
  */
-import {subtract, unite, intersect} from '../src/sets-o';
+import {subtract, unite, intersect} from '../src/objects/sets';
 
 
 export function main() {

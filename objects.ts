@@ -2,7 +2,7 @@ export {
     subtract,
     intersect,
     unite,
-} from './src/sets-o'
+} from './src/objects/sets'
 
 
-export {map, filter} from './src/coll-o';
+export {map, filter} from './src/objects/coll';

@@ -1,5 +1,5 @@
 import {subtract} from './sets';
-import {subtract as subtractO} from './sets-o';
+import {subtract as subtractO} from './objects/sets';
 import {Transformation, obj} from "./core";
 /**
  * @author Daniel de Oliveira
@@ -17,5 +17,4 @@ export function copy<T>(coll: Array<T>|obj): Array<T>|obj {
         : subtractO([])(coll);
 }
 
-export const reverse = <A>(): ArrayTransformation<A> =>
-    (as: Array<A>) => as.reverse();
+export function reverse<A>(as: Array<A>): Array<A> { return as.reverse(); }

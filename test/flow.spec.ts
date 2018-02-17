@@ -3,7 +3,7 @@ import {reverse} from '../src/coll';
 import {take, takeWhile} from '../src/take';
 import {dropWhile} from '../src/drop';
 import {biggerThan, smallerThan} from '../src/predicates';
-import {unite} from '../src/sets-o';
+import {unite} from '../src/objects/sets';
 
 
 /**
@@ -70,7 +70,7 @@ export function main() {
 
             expect(
 
-                reverse()([1, 3])
+                reverse([1, 3])
 
             ).toEqual(([3, 1]))
         );
@@ -83,7 +83,7 @@ export function main() {
                 flow(
                     [7, 9, 10, 13, 21, 20],
                     dropWhile(smallerThan(20)),
-                    reverse()
+                    reverse
                 )
 
             ).toEqual([20, 21])

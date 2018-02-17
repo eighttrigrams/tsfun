@@ -1,5 +1,5 @@
 import {copy, } from '../src/coll';
-import {filter, map} from '../src/coll-o';
+import {filter, map} from '../src/objects/coll';
 
 /**
  * @author Daniel de Oliveira

@@ -1,4 +1,4 @@
-import {objT, reduceO} from './core';
+import {objT, reduceO} from '../core';
 
 export function map<A, B>(f: (_: A) => B): (_: objT<A>) => objT<B> {
 
