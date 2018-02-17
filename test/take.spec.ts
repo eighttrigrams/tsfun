@@ -1,6 +1,6 @@
 import {
     take, takeRightWhile, takeUntil, takeWhile, takeNth
-} from '../src/take';
+} from '../src/arrays/take';
 import {smallerThan, biggerThan} from '../src/predicates';
 
 

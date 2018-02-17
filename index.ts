@@ -1,6 +1,6 @@
 export {isNot, sameAs, biggerThan, smallerThan, includedIn, differentFrom, even, odd} from './src/predicates';
-export {take, takeRightWhile, takeUntil, takeWhile, takeNth} from './src/take';
-export {dropWhile, drop, dropRight, dropRightWhile} from './src/drop';
+export {take, takeRightWhile, takeUntil, takeWhile, takeNth} from './src/arrays/take';
+export {dropWhile, drop, dropRight, dropRightWhile} from './src/arrays/drop';
 export {flow, flowP} from './src/flow';
 export {reverse} from './src/coll';
 export {
@@ -11,7 +11,7 @@ export {
     subtract,
     unite,
     unique,
-} from './src/sets';
+} from './src/arrays/sets';
 export {copy} from './src/coll';
 
 /**

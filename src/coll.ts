@@ -1,4 +1,4 @@
-import {subtract} from './sets';
+import {subtract} from './arrays/sets';
 import {subtract as subtractO} from './objects/sets';
 import {Transformation, obj} from "./core";
 /**

@@ -1,8 +1,8 @@
 /**
  * @author Daniel de Oliveira
  */
-import {intersect as intersectA} from "../sets";
-import {subtract as subtractA} from "../sets";
+import {intersect as intersectA} from "../arrays/sets";
+import {subtract as subtractA} from "../arrays/sets";
 import {identical, reduceO, obj} from "../core";
 
     export const subtract = (subtrahend: Array<string | number> | any) =>

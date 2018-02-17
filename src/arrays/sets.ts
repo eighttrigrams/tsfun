@@ -1,5 +1,5 @@
-import {uncurry2} from './core';
-import {includedIn, isNot} from "./predicates";
+import {uncurry2} from '../core';
+import {includedIn, isNot} from "../predicates";
 
 
 export type NestedArray<A> = Array<Array<A>>;
