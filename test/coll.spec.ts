@@ -1,4 +1,4 @@
-import {copy, mapO} from '../src/coll';
+import {copy, filterO, mapO} from '../src/coll';
 
 /**
  * @author Daniel de Oliveira
@@ -61,13 +61,23 @@ export function main() {
         );
 
 
-        it('map - object', () => {
+        it('mapO', () => {
 
             expect(
 
                 mapO<number, number>(x => x * 2)({a: 1, b: 2})
 
             ).toEqual({a: 2, b: 4})
+        });
+
+
+        it('filterO', () => {
+
+            expect(
+
+                filterO((x: number) => x > 1)({a: 1, b: 2})
+
+            ).toEqual({b: 2})
         });
     });
 }

@@ -17,16 +17,32 @@ copy({a: 1, 2: 5})
 
 ### objects
 
-#### map
+#### mapO
 
 ```
 mapO((x: number) => x * 2)({a: 1, b: 2})
 -> {a: 2, b: 4}
 ```
 
+#### filterO
+
+```
+filterO((x: number) => x > 1)({a: 1, b: 2})
+-> {b: 2}
+```
+
 ## Ordered-List-Like
 
 These methods treat arrays as ordered lists
+
+### general
+
+#### reverse
+
+```
+reverse()([4, 1])
+-> [1, 4]
+```
 
 ### Take
 
