@@ -1,5 +1,5 @@
 import {flow, flowP} from '../src/flow';
-import {reverse} from '../src/coll';
+import {reverse} from '../src/arrays/arrays';
 import {take, takeWhile} from '../src/arrays/take';
 import {dropWhile} from '../src/arrays/drop';
 import {biggerThan, smallerThan} from '../src/predicates';

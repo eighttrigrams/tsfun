@@ -1,4 +1,11 @@
-import {objT, mapProperties} from '../core';
+import {objT} from './objects';
+import {mapProperties} from './objects';
+
+
+/**
+ * @author Daniel de Oliveira
+ */
+
 
 export function map<A, B>(f: (_: A) => B): (_: objT<A>) => objT<B> {
 

@@ -3,7 +3,8 @@
  */
 import {intersect as intersectA} from "../arrays/sets";
 import {subtract as subtractA} from "../arrays/sets";
-import {identical, mapProperties, obj} from "../core";
+import {identical} from "../core";
+import {mapProperties, obj} from './objects';
 
 export const subtract = (subtrahend: Array<string | number> | any) =>
     (o: obj): obj => {

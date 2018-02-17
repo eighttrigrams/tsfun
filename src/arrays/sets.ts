@@ -2,6 +2,10 @@ import {uncurry2} from '../core';
 import {includedIn, isNot} from "../predicates";
 
 
+/**
+ * @author Daniel de Oliveira
+ */
+
 export type NestedArray<A> = Array<Array<A>>;
 
 
