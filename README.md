@@ -38,12 +38,12 @@ Let's start with an example, which combines the different sorts of features `tsf
 offers:
 
 ```
-1. flow(
-2.    [1, 2, 3, 1],
-3.    takeWhile(isNot(includedIn([3, 4]))),
-4.    dropRight(1))
-5.    .map((x: number) => x * 2)
-6.    .includes(2)
+flow(
+   [1, 2, 3, 1],
+   takeWhile(isNot(includedIn([3, 4]))),
+   dropRight(1))
+   .map((x: number) => x * 2)
+   .includes(2)
     
 -> true
 ```

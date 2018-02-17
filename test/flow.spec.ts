@@ -4,6 +4,7 @@ import {take, takeWhile} from '../src/take';
 import {dropWhile} from '../src/drop';
 import {biggerThan, smallerThan} from '../src/predicates';
 import {intersection, union, unite} from '../src/sets';
+import {uniteO} from '../src/sets-o';
 
 
 /**
@@ -76,55 +77,6 @@ export function main() {
         );
 
 
-        it('intersect',() =>
-
-            expect(
-
-                flow(
-                    intersection([[1,2],[2,3]])
-                )
-
-            ).toEqual([2])
-        );
-
-
-        it('unite',() =>
-
-            expect(
-
-                flow(
-                    [2,4],
-                    unite([1,2])
-                )
-
-            ).toEqual([1, 2, 4])
-        );
-
-
-        it('union',() =>
-
-            expect(
-                flow(
-                    union([[1,2],[3,4],[2,4]])
-                )
-
-            ).toEqual([1, 2, 3 ,4])
-        );
-
-
-        it('reverse', () =>
-
-            expect(
-
-                flow(
-                    [1, 3],
-                    reverse()
-                )
-
-            ).toEqual(([3, 1]))
-        );
-
-
         it('dropWhile', () =>
 
             expect(
@@ -137,5 +89,19 @@ export function main() {
 
             ).toEqual([20, 21])
         );
+
+
+        it('with objects', () =>
+
+            expect(
+
+                flow(
+                    {a: 1, b: 2},
+                    uniteO({c: 3})
+                )
+
+            ).toEqual({a: 1, b: 2, c: 3})
+
+        )
     });
 }
