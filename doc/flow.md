@@ -7,11 +7,10 @@ flow(
     [1, 2, 3, 4],
     filter((x: number) => x < 3),
     map(x => x * 2),
-    reduce((acc, val) => acc.concat([val * 2])),
     reverse(),
     take(1))
 
--> [8]
+-> [4]
 ```
 
 This allows us to stay in the flow in between calls to methods we don't have native javascript

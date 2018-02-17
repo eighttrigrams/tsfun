@@ -1,5 +1,5 @@
 import {flow, flowP} from '../src/flow';
-import {filter, map, reverse, reduce} from '../src/coll';
+import {filter, map, reverse} from '../src/coll';
 import {take, takeRightWhile, takeWhile} from '../src/take';
 import {dropWhile} from '../src/drop';
 import {biggerThan, differentFrom, includedIn, smallerThan} from '../src/predicates';
@@ -166,23 +166,6 @@ export function main() {
 
             ).toEqual(([3, 1]))
         );
-
-
-        it('reduce', () =>
-
-            expect(
-
-                flow(
-                    [1, 3],
-                    reduce(
-                        (acc, val: number) => acc.concat([val * 2])
-                    ),
-                    reverse()
-                )
-
-            ).toEqual(([6, 2]))
-        );
-
 
 
         it('takeWhile', () =>

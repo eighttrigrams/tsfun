@@ -28,11 +28,7 @@ export function map<T>(f: (_: any) => any) {
 }
 
 
-// These are special versions of the javascript array methods that work within
-// the core constraint posed by flow: They take as well as return an Array of A.
 
-export const reduce = <A>(f: (acc: Array<A>, val: A) => Array<A>): ArrayTransformation<A> =>
-    (as: Array<A>) => as.reduce(f, []);
 
 
 export const filter = <A>(predicate: (_: A) => boolean): ArrayTransformation<A> =>
