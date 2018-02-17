@@ -122,7 +122,7 @@ Set methods come in two flavours, array set methods and object set methods.
 Both of these have in common that the respective data structures are treated 
 as if they were sets, hence we also call them set-like methods.
 
-### set-like methods for arrays
+### arrays
 
 Every set method's result is not only `Array<A>` but also consists 
 of unique items (compared with `==`). Where possible, the order of 
@@ -184,7 +184,7 @@ intersection([[3, 4, 5], [1, 2, 3]])
 -> [3]
 ```
 
-### set-like methods for objects
+### objects
 
 #### intersectO
 
