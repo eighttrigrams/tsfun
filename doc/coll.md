@@ -31,7 +31,7 @@ filterO((x: number) => x > 1)({a: 1, b: 2})
 -> {b: 2}
 ```
 
-## Ordered-List-Like
+## ordered-list-like
 
 These methods treat arrays as ordered lists
 
@@ -116,7 +116,7 @@ dropRightWhile(biggerThan(2))([1, 2, 3])
 -> [1, 2]
 ```
 
-## set-Like
+## set-like
 
 Set methods come in two flavours, array set methods and object set methods.
 Both of these have in common that the respective data structures are treated 
