@@ -20,15 +20,10 @@ export function copy<T>(coll: Array<T>|obj): Array<T>|obj {
 }
 
 
-export function map<T>(f: (_: T) => T): (as: Array<T>) => Array<T>;
-export function map<A, B>(f: (_: A) => B): (as: objT<A>) => objT<B>;
-export function map<T>(f: (_: any) => any) {
+export function mapO<A, B>(f: (_: A) => B): (as: objT<A>) => objT<B> {
 
-    return (coll: any): any => coll instanceof Array ? coll.map(f) : reduceO(f)(Object.keys(coll), coll)
+    return (coll: objT<A>) => reduceO(f)(Object.keys(coll), coll);
 }
-
-
-
 
 
 export const filter = <A>(predicate: (_: A) => boolean): ArrayTransformation<A> =>

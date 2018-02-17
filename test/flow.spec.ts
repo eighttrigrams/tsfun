@@ -1,5 +1,5 @@
 import {flow, flowP} from '../src/flow';
-import {filter, map, reverse} from '../src/coll';
+import {filter, mapO, reverse} from '../src/coll';
 import {take, takeRightWhile, takeWhile} from '../src/take';
 import {dropWhile} from '../src/drop';
 import {biggerThan, differentFrom, includedIn, smallerThan} from '../src/predicates';
@@ -18,14 +18,10 @@ export function main() {
             expect(
 
                 flow(
-                    [5,6,7,8,4,16,5],
-                    takeWhile(biggerThan(4)),
-                    map((x: number) => x * 2),
-                    filter(smallerThan(16)),
-                    filter(differentFrom(12)),
-                    filter(includedIn([14]))
+                    [5,4],
+                    takeWhile(biggerThan(4))
                 )
-            ).toEqual([14])
+            ).toEqual([5])
         );
 
 
@@ -70,17 +66,6 @@ export function main() {
         );
 
 
-        it('map', () =>
-
-            expect(
-
-                map((x: number) => x * 2)
-                    ([2, 4])
-
-            ).toEqual(([4, 8]))
-        );
-
-
         it('filter', () =>
 
             expect(
@@ -107,11 +92,10 @@ export function main() {
             expect(
 
                 flow(
-                    intersection([[1,2],[2,3]]),
-                    map((x: number) => x * 2)
+                    intersection([[1,2],[2,3]])
                 )
 
-            ).toEqual([4])
+            ).toEqual([2])
         );
 
 
@@ -121,11 +105,10 @@ export function main() {
 
                 flow(
                     [2,4],
-                    unite([1,2]),
-                    map((x: number) => x * 2)
+                    unite([1,2])
                 )
 
-            ).toEqual([2,4,8])
+            ).toEqual([1, 2, 4])
         );
 
 
@@ -133,11 +116,10 @@ export function main() {
 
             expect(
                 flow(
-                    union([[1,2],[3,4],[2,4]]),
-                    map((x: number) => x * 2)
+                    union([[1,2],[3,4],[2,4]])
                 )
 
-            ).toEqual([2,4,6,8])
+            ).toEqual([1, 2, 3 ,4])
         );
 
 

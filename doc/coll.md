@@ -2,6 +2,8 @@
 
 ## General
 
+#### objects and arrays
+
 #### copy
 
 Creates a shallow copy of an object or an array
@@ -13,23 +15,14 @@ copy({a: 1, 2: 5})
 -> {a: 1, 2: 5}
 ```
 
+### objects
+
 #### map
 
-Can be either used with objects or with arrays. When used with arrays,
-it can only map from `A` to `A`, as it is designed for usage with `flow`,
-which then maps from `Array<A>` to `Array<A>`. For mappings from `A` to
-`B` you can always use the native `map` function. Map for objects supports 
-mapping from `A` to `B`. It is useful outside of `flow` since there is no
-native alternative.
-
 ```
-map((x: number) => x * 2)([1, 2])
--> [2, 4]
-map<number, number>(x => x * 2)({a: 1, b: 2})
+mapO((x: number) => x * 2)({a: 1, b: 2})
 -> {a: 2, b: 4}
 ```
-
-Note that in both cases type annotations are required.
 
 ## Ordered-List-Like
 

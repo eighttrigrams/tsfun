@@ -2,7 +2,7 @@ export {isNot, sameAs, biggerThan, smallerThan, includedIn, differentFrom, even,
 export {take, takeRightWhile, takeUntil, takeWhile, takeNth} from './src/take';
 export {dropWhile, drop, dropRight, dropRightWhile} from './src/drop';
 export {flow, flowP} from './src/flow';
-export {reverse, map, filter} from './src/coll';
+export {reverse, mapO, filter} from './src/coll';
 export {
     NestedArray,
     intersection,
