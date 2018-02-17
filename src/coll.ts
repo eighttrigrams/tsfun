@@ -1,6 +1,6 @@
 import {subtract} from './sets';
 import {subtractO} from './sets-o';
-import {Transformation, reducer} from "./core";
+import {Transformation, reduceO, obj, objT} from "./core";
 /**
  * @author Daniel de Oliveira
  */
@@ -8,8 +8,6 @@ import {Transformation, reducer} from "./core";
 
 type ArrayTransformation<T> = Transformation<Array<T>>;
 
-export type obj = {[prop: string]: any|undefined};
-export type objT<T> = {[prop: string]: T};
 
 
 export function copy<T>(as: Array<T>): Array<T>;
@@ -26,12 +24,7 @@ export function map<T>(f: (_: T) => T): (as: Array<T>) => Array<T>;
 export function map<A, B>(f: (_: A) => B): (as: objT<A>) => objT<B>;
 export function map<T>(f: (_: any) => any) {
 
-    return (coll: any): any => {
-
-        return coll instanceof Array
-            ? coll.map(f)
-            : Object.keys(coll).reduce(reducer(f)(coll), {}) as any
-    }
+    return (coll: any): any => coll instanceof Array ? coll.map(f) : reduceO(f)(Object.keys(coll), coll)
 }
 
 

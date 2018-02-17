@@ -2,7 +2,7 @@
  * @author Daniel de Oliveira
  */
 import {intersect, subtract} from "./sets";
-import {reducer, identical} from "./core";
+import {identical, reduceO} from "./core";
 
 export const subtractO = (subtrahend: Array<string|number>|any) =>
     (o: {[prop: string]: any}): {[prop: string]: any} => {
@@ -10,10 +10,8 @@ export const subtractO = (subtrahend: Array<string|number>|any) =>
         if (Array.isArray(o)) throw new TypeError('invalid argument');
 
         const result = Array.isArray(subtrahend)
-            ? (subtract(subtrahend.map(_ => _.toString()))(Object.keys(o)))
-                .reduce(reducer(identical)(o), {})
-            : (subtract(Object.keys(subtrahend))(Object.keys(o)))
-                .reduce(reducer(identical)(o), {});
+            ? reduceO(identical)(subtract(subtrahend.map(_ => _.toString()))(Object.keys(o)), o)
+            : reduceO(identical)(subtract(Object.keys(subtrahend))(Object.keys(o)), o);
 
         return (Array.isArray(o)) ? Object.values(result) : result;
     };
@@ -34,10 +32,12 @@ export const intersectO = (o1: any) =>
 
         if (Array.isArray(o2)) throw new TypeError('invalid argument');
 
-        return intersect(
-            Array.isArray(o1)
-                ? o1.map(x => x.toString())
-                : Object.keys(o1))
-        (Object.keys(o2))
-            .reduce(reducer(identical)(!Array.isArray(o1) ? o1 : o2), {});
+        return reduceO(identical)(
+            intersect(
+                Array.isArray(o1)
+                    ? o1.map(x => x.toString())
+                    : Object.keys(o1)
+            )(Object.keys(o2)),
+            (!Array.isArray(o1) ? o1 : o2)
+        );
     };
