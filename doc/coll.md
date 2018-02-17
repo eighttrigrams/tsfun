@@ -44,7 +44,7 @@ These methods treat arrays as ordered lists
 #### reverse
 
 ```
-reverse()([4, 1])
+reverse([4, 1])
 -> [1, 4]
 ```
 
