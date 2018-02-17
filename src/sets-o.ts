@@ -9,11 +9,13 @@ export const subtractO = (subtrahend: Array<string|number>|any) =>
 
         if (Array.isArray(o)) throw new TypeError('invalid argument');
 
+        const keys = Array.isArray(subtrahend)
+            ? (subtract(subtrahend.map(_ => _.toString()))(Object.keys(o)))
+            : (subtract(Object.keys(subtrahend))(Object.keys(o)))
+
         return reduceO(identical)(
-            Array.isArray(subtrahend)
-                ? (subtract(subtrahend.map(_ => _.toString()))(Object.keys(o)))
-                : (subtract(Object.keys(subtrahend))(Object.keys(o)))
-            , o);
+            keys,
+            o);
     };
 
 
@@ -32,14 +34,14 @@ export const intersectO = (o1: any) =>
 
         if (Array.isArray(o2)) throw new TypeError('invalid argument');
 
-        const intersectingKeys = intersect(
+        const keys = intersect(
                 Array.isArray(o1)
                     ? o1.map(x => x.toString())
                     : Object.keys(o1)
             )(Object.keys(o2));
 
         return reduceO(identical)(
-            intersectingKeys,
+            keys,
             (!Array.isArray(o1) ? o1 : o2)
         );
     };

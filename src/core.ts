@@ -6,6 +6,7 @@
 export type Transformation<T> = (_: T) => T;
 
 export type obj = {[prop: string]: any|undefined};
+
 export type objT<T> = {[prop: string]: T};
 
 export const identical = <A>(v: A) => v;
