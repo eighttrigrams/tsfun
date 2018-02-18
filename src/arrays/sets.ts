@@ -28,14 +28,14 @@ export const intersect = <A>(...aas: NestedArray<A>) =>
  */
 export const subtract = <A>(...subtrahends: NestedArray<A>) =>
     (as: Array<A>): Array<A> =>
-        ((unique<A>()(as)).filter(isNot(includedIn(union(subtrahends)))));
+        ((unique<A>(as)).filter(isNot(includedIn(union(subtrahends)))));
 
 
 export const unite = <A>(...aas: NestedArray<A>) =>
     (as: Array<A>) => union(aas.concat([as]));
 
 
-export const unique = <A>() => (as: Array<A>) =>
+export const unique = <A>(as: Array<A>) =>
     as.reduce((acc: Array<A>, val) =>
              acc.includes(val) ? acc : acc.concat([val])
         ,[]);

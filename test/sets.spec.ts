@@ -202,7 +202,7 @@ export function main() {
 
             expect(
 
-                unique()([1, 1, 7, 8, 7, 1])
+                unique([1, 1, 7, 8, 7, 1])
 
             ).toEqual([1, 7, 8])
         );
@@ -212,7 +212,7 @@ export function main() {
 
             expect(
 
-                unique()([])
+                unique([])
 
             ).toEqual([])
         );
