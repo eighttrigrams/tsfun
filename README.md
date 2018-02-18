@@ -2,9 +2,9 @@
 
 **Lodash FP inspired functional array processing tools for typescript**
 
-https://www.npmjs.com/package/tsfun
+(tsfun on npmjs) Ghttps://www.npmjs.com/package/tsfun
 
-https://github.com/danielmarreirosdeoliveira/tsfun
+[tsfun on GitHub](https://github.com/danielmarreirosdeoliveira/tsfun)
 
 ## Using tsfun
 
