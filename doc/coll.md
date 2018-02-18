@@ -41,6 +41,13 @@ These methods treat arrays as ordered lists
 
 ### general
 
+#### flatMap
+
+```
+flatMap((x: string) => x.split(' '))(['a b', 'c d'])
+-> ['a', 'b', 'c', 'd']
+```
+
 #### reverse
 
 ```
