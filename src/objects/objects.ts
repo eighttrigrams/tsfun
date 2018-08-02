@@ -17,7 +17,7 @@ export const clone = <O>(object: O, postProcess:
     (postProcess)(object, JSON.parse(JSON.stringify(object))) as O;
 
 
-export function isEmpty(object: obj): boolean {
+export function isEmpty(object: obj): boolean { // TODO make it also work for arrays
 
     return Object.keys(object).length === 0;
 }

@@ -58,7 +58,7 @@ const _intersect = (compare: ComparisonFunction = sameAs) => <A>(as1: Array<A>) 
  * @author Thomas Kleinke
  * @author Daniel de Oliveira
  */
-export function equals<A>(as1: A[], as2: A[],
+export function equals<A>(as1: A[], as2: A[], // TODO make it also work for objects
                        compare: ComparisonFunction = sameAs): boolean {
 
     if (as1.length !== as2.length) return false;
