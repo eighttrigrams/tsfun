@@ -11,7 +11,9 @@ export type obj = {[prop: string]: any|undefined};
 export type objT<T> = {[prop: string]: T};
 
 
-export const clone = <O>(object: O, postProcess: Function = identical21): O =>
+export const clone = <O>(object: O, postProcess:
+    Function // TODO make more specific
+    = identical21): O =>
     (postProcess)(object, JSON.parse(JSON.stringify(object))) as O;
 
 
