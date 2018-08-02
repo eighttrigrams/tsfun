@@ -6,3 +6,5 @@ export {
 
 
 export {map, filter} from './src/objects/coll';
+
+export {getElForPathIn, takeOrMake} from './src/objects/objects';
