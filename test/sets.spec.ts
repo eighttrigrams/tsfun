@@ -1,4 +1,5 @@
 import {intersect, intersection, subtract, union, unique, unite} from '../src/arrays/sets';
+import {equalTo} from "../src/predicates";
 
 
 /**
@@ -18,24 +19,24 @@ export function main() {
         );
 
 
-        it('intersect - variadic',() =>
+        // it('intersect - variadic',() =>
+        //
+        //     expect(
+        //
+        //         intersect([1,2],[2,5])([2,4])
+        //
+        //     ).toEqual([2])
+        // );
 
-            expect(
 
-                intersect([1,2],[2,5])([2,4])
-
-            ).toEqual([2])
-        );
-
-
-        it('intersect - spread',() =>
-
-            expect(
-
-                intersect(...[[1,2],[2,5]])([2,4])
-
-            ).toEqual([2])
-        );
+        // it('intersect - spread',() =>
+        //
+        //     expect(
+        //
+        //         intersect(...[[1,2],[2,5]])([2,4])
+        //
+        //     ).toEqual([2])
+        // );
 
 
         it('intersect',() =>
@@ -88,24 +89,24 @@ export function main() {
         );
 
 
-        it('unite - variadic ',() =>
+        // it('unite - variadic ',() =>
+        //
+        //     expect(
+        //
+        //         unite([1, 2], [3, 4])([2, 4])
+        //
+        //     ).toEqual([1, 2, 3, 4])
+        // );
 
-            expect(
 
-                unite([1, 2], [3, 4])([2, 4])
-
-            ).toEqual([1, 2, 3, 4])
-        );
-
-
-        it('unite - spread ',() =>
-
-            expect(
-
-                unite(...[[1, 2], [3, 4]])([2, 4])
-
-            ).toEqual([1, 2, 3, 4])
-        );
+        // it('unite - spread ',() =>
+        //
+        //     expect(
+        //
+        //         unite(...[[1, 2], [3, 4]])([2, 4])
+        //
+        //     ).toEqual([1, 2, 3, 4])
+        // );
 
 
         it('union ',() =>
@@ -178,24 +179,72 @@ export function main() {
         );
 
 
-        it('subtract - variadic', () =>
+        it('subtract - comparator', () => {
 
             expect(
-
-                subtract([1], [2, 4])([1, 2, 3, 3, 2, 4])
-
-            ).toEqual([3])
-        );
+                subtract<any>([{a: 'a'}], equalTo)([{a: 'a'}, {c: 'c'}])
+            ).toEqual([{c: 'c'}])
+        });
 
 
-        it('subtract - spread', () =>
+        it('subtract - comparator', () => {
 
             expect(
+                subtract<any>([{a: 'a'}], equalTo)([{a: 'a'}, {c: 'c'}])
+            ).toEqual([{c: 'c'}])
+        });
 
-                subtract(...[[2], [1, 4]])([1, 2, 3, 3, 2, 4])
 
-            ).toEqual([3])
-        );
+        it('intersection - comparator', () => {
+
+            expect(
+                intersection<any>([[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]], equalTo)
+            ).toEqual([{c: 'c'}])
+        });
+
+
+        it('intersect - comparator', () => {
+
+            expect(
+                intersect<any>([{a: 'a'}, {c: 'c'}], equalTo)([{c: 'c'}, {d: 'd'}])
+            ).toEqual([{c: 'c'}])
+        });
+
+
+        it('union - comparator', () => {
+
+            expect(
+                union<any>([[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]], equalTo)
+            ).toEqual([{a: 'a'}, {c: 'c'}, {d: 'd'}])
+        });
+
+
+        it('unite - comparator', () => {
+
+            expect(
+                unite<any>([{a: 'a'}, {c: 'c'}], equalTo)([{c: 'c'}, {d: 'd'}])
+            ).toEqual([{a: 'a'}, {c: 'c'}, {d: 'd'}])
+        });
+
+
+        // it('subtract - variadic', () =>
+        //
+        //     expect(
+        //
+        //         subtract([1], [2, 4])([1, 2, 3, 3, 2, 4])
+        //
+        //     ).toEqual([3])
+        // );
+
+
+        // it('subtract - spread', () =>
+        //
+        //     expect(
+        //
+        //         subtract(...[[2], [1, 4]])([1, 2, 3, 3, 2, 4])
+        //
+        //     ).toEqual([3])
+        // );
 
 
         it('unique', () =>
@@ -216,6 +265,7 @@ export function main() {
 
             ).toEqual([])
         );
+
 
 
         // TODO implement

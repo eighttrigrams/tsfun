@@ -6,24 +6,31 @@ import {flip} from './core';
  */
 
 
-export const sameAs = <A>(l:A) =>
-    (r:A) => l == r;
+export type ComparisonFunction = <A>(_: A) => (_: A) => boolean;
 
 
-export const smallerThan = <A>(l:A) =>
+export const sameAs: ComparisonFunction = <A>(l:A) =>
+    (r:A) => l === r;
+
+
+export const equalTo: ComparisonFunction = <A>(l:A) =>
+    (r:A) => sameAs(JSON.stringify(l))(JSON.stringify(r));
+
+
+export const smallerThan: ComparisonFunction = <A>(l:A) =>
     (r:A) => l > r;
 
 
-export const biggerThan = <A>(l:A) =>
+export const biggerThan: ComparisonFunction = <A>(l:A) =>
     (r:A) => l < r;
 
 
-export const includedIn =  <A>(as: Array<A>) =>
-    (a: A): boolean => as.includes(a);
+export const includedIn =  <A>(as: Array<A>, compare: ComparisonFunction = sameAs) =>
+    (a: A): boolean => includes(as, a, compare).length > 0;
 
 
-export const differentFrom = <A>(a:A) =>
-    isNot(sameAs(a));
+export const differentFrom = <A>(a:A, compare: ComparisonFunction = sameAs) =>
+    isNot(compare(a)); // TODO unit test compare
 
 
 export const isNot = <A>(f: (_: A) => boolean) =>
@@ -34,3 +41,7 @@ export const even = () => (n: number) => n % 2 === 0;
 
 
 export const odd = () => (n: number) => isNot(even())(n);
+
+
+const includes = <A>(as: Array<A>, a: A, compare: ComparisonFunction) =>
+    as.filter(compare(a));

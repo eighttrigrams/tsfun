@@ -1,4 +1,5 @@
-export {isNot, sameAs, biggerThan, smallerThan, includedIn, differentFrom, even, odd} from './src/predicates';
+export {isNot, sameAs, biggerThan,
+    smallerThan, includedIn, differentFrom, even, odd, equalTo} from './src/predicates';
 export {take, takeRightWhile, takeUntil, takeWhile, takeNth} from './src/arrays/take';
 export {dropWhile, drop, dropRight, dropRightWhile} from './src/arrays/drop';
 export {flow, flowP} from './src/flow';

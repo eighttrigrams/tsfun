@@ -3,6 +3,8 @@
  */
 
 
+import {sameAs} from "./predicates";
+
 export type Transformation<T> = (_: T) => T;
 
 export const identical = <A>(v: A) => v;

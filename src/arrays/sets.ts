@@ -1,5 +1,5 @@
 import {uncurry2} from '../core';
-import {includedIn, isNot} from "../predicates";
+import {ComparisonFunction, includedIn, isNot, sameAs} from "../predicates";
 
 
 /**
@@ -9,30 +9,30 @@ import {includedIn, isNot} from "../predicates";
 export type NestedArray<A> = Array<Array<A>>;
 
 
-export const intersection = <A>(aas: NestedArray<A>): Array<A> =>
+export const intersection = <A>(aas: NestedArray<A>, compare: ComparisonFunction = sameAs): Array<A> =>
     aas.length < 1 ? [] :
-        aas.reduce(uncurry2<A>(_intersect));
+        aas.reduce(uncurry2<A>(_intersect(compare)));
 
 
-export const union = <A>(aas: NestedArray<A>): Array<A> =>
+export const union = <A>(aas: NestedArray<A>, compare: ComparisonFunction = sameAs): Array<A> =>
     aas.length < 1 ? [] :
-        aas.reduce((acc, val) => val ? _unite(acc)(val) : acc);
+        aas.reduce((acc, val) => val ? _unite(compare)(acc)(val) : acc);
 
 
-export const intersect = <A>(...aas: NestedArray<A>) =>
-    (as: Array<A>) => intersection<A>(aas.concat([as]));
+export const intersect = <A>(as: Array<A>, compare: ComparisonFunction = sameAs) =>
+    (as2: Array<A>) => intersection<A>([as, as2], compare);
 
 
 /**
  * Generate a new list with elements which are contained in as but not in subtrahend
  */
-export const subtract = <A>(...subtrahends: NestedArray<A>) =>
+export const subtract = <A>(subtrahend: Array<A>, compare: ComparisonFunction = sameAs) =>
     (as: Array<A>): Array<A> =>
-        ((unique<A>(as)).filter(isNot(includedIn(union(subtrahends)))));
+        ((unique<A>(as)).filter(isNot(includedIn(subtrahend, compare))));
 
 
-export const unite = <A>(...aas: NestedArray<A>) =>
-    (as: Array<A>) => union(aas.concat([as]));
+export const unite = <A>(as1: Array<A>, compare: ComparisonFunction = sameAs) =>
+    (as2: Array<A>) => union([as1, as2], compare);
 
 
 export const unique = <A>(as: Array<A>) =>
@@ -44,11 +44,11 @@ export const unique = <A>(as: Array<A>) =>
 /**
  * @returns the union of a1 and a2
  */
-const _unite = <A>(as1: Array<A>) =>
+const _unite = (compare: ComparisonFunction = sameAs) => <A>(as1: Array<A>) =>
     (as2: Array<A>) =>
         as1.concat(
-            as2.filter(isNot(includedIn(as1))));
+            as2.filter(isNot(includedIn(as1, compare))));
 
 
-const _intersect = <A>(as1: Array<A>) =>
-    (as2: Array<A>) => as1.filter(includedIn(as2));
+const _intersect = (compare: ComparisonFunction = sameAs) => <A>(as1: Array<A>) =>
+    (as2: Array<A>) => as1.filter(includedIn(as2, compare));
