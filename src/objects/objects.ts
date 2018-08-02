@@ -1,4 +1,5 @@
 import {sameAs} from "../predicates";
+import {identical21} from "../core";
 
 export const mapProperties = <A, B>(f: (_: A) => B) => (keys: Array<number|string>, o: objT<A>) =>
     keys.reduce(reducer(f)(o), {});
@@ -10,7 +11,7 @@ export type obj = {[prop: string]: any|undefined};
 export type objT<T> = {[prop: string]: T};
 
 
-export const clone = <O>(object: O, postProcess: Function): O =>
+export const clone = <O>(object: O, postProcess: Function = identical21): O =>
     (postProcess)(object, JSON.parse(JSON.stringify(object))) as O;
 
 
