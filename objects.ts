@@ -7,4 +7,4 @@ export {
 
 export {map, filter} from './src/objects/coll';
 
-export {getElForPathIn, takeOrMake} from './src/objects/objects';
+export {getElForPathIn, takeOrMake, on} from './src/objects/objects';

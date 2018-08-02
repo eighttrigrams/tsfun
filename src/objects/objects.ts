@@ -1,3 +1,5 @@
+import {sameAs} from "../predicates";
+
 export const mapProperties = <A, B>(f: (_: A) => B) => (keys: Array<number|string>, o: objT<A>) =>
     keys.reduce(reducer(f)(o), {});
 
@@ -33,3 +35,12 @@ export function takeOrMake(object: Object, path: string, val: any) {
     }
     return last[lastSegment] = val;
 }
+
+
+// TODO unit test
+export const on = (path: string, compare: Function|any) =>
+    (object: any): boolean =>
+        (typeof compare === 'function')
+            ? compare(getElForPathIn(object, path))
+            : sameAs(getElForPathIn(compare, path))
+            (getElForPathIn(object, path));
