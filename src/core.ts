@@ -9,7 +9,7 @@ export type Transformation<T> = (_: T) => T;
 
 export const identical = <A>(v: A) => v;
 
-export const identical21 = <A>(a: A, _: A) => a;
+export const identical21 = <A>(_: A, a: A) => a;
 
 export const flip = (v: boolean) => !v;
 
