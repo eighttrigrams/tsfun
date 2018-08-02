@@ -52,3 +52,24 @@ const _unite = (compare: ComparisonFunction = sameAs) => <A>(as1: Array<A>) =>
 
 const _intersect = (compare: ComparisonFunction = sameAs) => <A>(as1: Array<A>) =>
     (as2: Array<A>) => as1.filter(includedIn(as2, compare));
+
+
+/**
+ * @author Thomas Kleinke
+ * @author Daniel de Oliveira
+ */
+export function equals<A>(as1: A[], as2: A[],
+                       compare: ComparisonFunction = sameAs): boolean {
+
+    if (as1.length !== as2.length) return false;
+
+    for (let element of as1) { // TODO use HOF
+        if (!includedIn(as2, compare)(element)) return false;
+    }
+
+    for (let element of as2) {
+        if (!includedIn(as1, compare)(element)) return false;
+    }
+
+    return true;
+}

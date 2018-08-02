@@ -1,4 +1,4 @@
-import {intersect, intersection, subtract, union, unique, unite} from '../src/arrays/sets';
+import {equals, intersect, intersection, subtract, union, unique, unite} from '../src/arrays/sets';
 import {equalTo} from "../src/predicates";
 
 
@@ -227,6 +227,18 @@ export function main() {
         });
 
 
+        it('equals - comparator', () => {
+
+            expect(
+                equals([{a: 1}, {b: 2}], [{b: 2}, {a: 1}], equalTo)
+            ).toEqual(true);
+
+            expect(
+                equals([{a: 1}], [{b: 2}, {a: 1}], equalTo)
+            ).toEqual(false);
+        });
+
+
         // it('subtract - variadic', () =>
         //
         //     expect(
@@ -265,6 +277,9 @@ export function main() {
 
             ).toEqual([])
         );
+
+
+
 
 
 

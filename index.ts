@@ -12,6 +12,7 @@ export {
     subtract,
     unite,
     unique,
+    equals
 } from './src/arrays/sets';
 export {copy} from './src/coll';
 
