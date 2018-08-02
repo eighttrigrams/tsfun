@@ -49,6 +49,8 @@ export function takeOrMake(object: Object, path: string, val: any) {
 
 
 // TODO unit test
+// document, also mention the case that find(on(path, any)) can be used
+// as a more specific version of find(equalTo(any))
 export const on = (path: string, compare: Function|any) =>
     (object: any): boolean =>
         (typeof compare === 'function')
