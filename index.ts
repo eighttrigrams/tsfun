@@ -16,7 +16,7 @@ export {
 } from './src/arrays/sets';
 export {copy} from './src/coll';
 
-export {getElForPathIn, takeOrMake, on} from './src/objects/objects';
+export {getElForPathIn, takeOrMake, on, isEmpty} from './src/objects/objects';
 
 /**
  * @author Daniel de Oliveira

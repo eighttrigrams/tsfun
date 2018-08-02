@@ -10,6 +10,12 @@ export type obj = {[prop: string]: any|undefined};
 export type objT<T> = {[prop: string]: T};
 
 
+export function isEmpty(object: obj): boolean {
+
+    return Object.keys(object).length === 0;
+}
+
+
 export function getElForPathIn(object: any, path: string) {
 
     let result = object;
