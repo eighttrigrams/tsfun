@@ -10,6 +10,10 @@ export type obj = {[prop: string]: any|undefined};
 export type objT<T> = {[prop: string]: T};
 
 
+export const clone = <O>(object: O, postProcess: Function): O =>
+    (postProcess)(object, JSON.parse(JSON.stringify(object))) as O;
+
+
 export function isEmpty(object: obj): boolean {
 
     return Object.keys(object).length === 0;
