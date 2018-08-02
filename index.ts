@@ -15,14 +15,14 @@ export {
     equals
 } from './src/arrays/sets';
 
-export {copy} from './src/coll';
+export {copy, isEmpty} from './src/coll';
 export {doWhen} from './src/core';
+export {map, filter} from './src/objects/coll';
 
 export {
     getElForPathIn,
     takeOrMake,
     on,
-    isEmpty,
     clone
 } from './src/objects/objects';
 

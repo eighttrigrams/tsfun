@@ -19,3 +19,11 @@ export function copy<T>(coll: Array<T>|obj): Array<T>|obj {
         ? subtract([])(coll as any) as Array<T>
         : subtractO([])(coll);
 }
+
+
+export function isEmpty(object: any): boolean { // TODO unit test, maybe type param better
+
+    return object instanceof Array
+        ? object.length === 0
+        : Object.keys(object).length === 0;
+}
