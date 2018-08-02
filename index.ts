@@ -14,7 +14,9 @@ export {
     unique,
     equals
 } from './src/arrays/sets';
+
 export {copy} from './src/coll';
+export {doWhen} from './src/core';
 
 export {
     getElForPathIn,

@@ -16,3 +16,7 @@ export const flip = (v: boolean) => !v;
 export const uncurry2 = <A>(f: (_: Array<A>) => (_: Array<A>) => Array<A>) =>
     (as1: Array<A>, as2: Array<A>): Array<A> => f(as1)(as2);
 
+// TODO unit test, maybe find a better place for the function. make when type more specific
+export const doWhen = (when: Function, do_: Function) =>
+    (other: any) => { if (when(other)) do_() };
+
