@@ -3,30 +3,25 @@
 /**
  * @author Daniel de Oliveira
  */
-import {flatMap} from "../../src/arrays/coll";
+import {flatMap, mapTo} from "../../src/arrays/coll";
 
 export function main() {
 
     describe('Arrays/Collection', () => {
 
-        it('flatMap', () => {
-
-            expect(
-
-                flatMap((x: string) => x.split(' '))(['a b', 'c d'])
-
-            ).toEqual(['a', 'b', 'c', 'd'])
-        });
+        it('mapTo', () =>
+            expect(mapTo('a.c')([{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}]))
+                .toEqual([{d: 'e'}]));
 
 
-        it('flatMap - empty', () => {
+        it('flatMap', () =>
+            expect(flatMap((x: string) => x.split(' '))(['a b', 'c d']))
+                .toEqual(['a', 'b', 'c', 'd']));
 
-            expect(
 
-                flatMap((x: string) => x.split(' '))([])
-
-            ).toEqual([])
-        });
+        it('flatMap - empty', () =>
+            expect(flatMap((x: string) => x.split(' '))([]))
+                .toEqual([]));
 
 
         it('flatMap - one - two', () => {

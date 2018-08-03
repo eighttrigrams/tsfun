@@ -9,13 +9,11 @@ export function main() {
 
 
         it('to', () =>
-           expect(to('a.b')({a: {b: {c: 'd'}}})).toEqual({c: 'd'})
-        );
+           expect(to('a.b')({a: {b: {c: 'd'}}})).toEqual({c: 'd'}));
 
 
         it('to with map', () =>
-            expect([{a: {b: {c: 'd'}}}].map(to('a.b'))).toEqual([{c: 'd'}])
-        );
+            expect([{a: {b: {c: 'd'}}}].map(to('a.b'))).toEqual([{c: 'd'}]));
 
 
         it('to - 1 does not exist', () =>
@@ -23,19 +21,13 @@ export function main() {
                 .toEqual([undefined, {d: 'e'}])
         );
 
-        // TODO add mapTo which erases undefined
+
+        it('returns el', () =>
+            expect(getElForPathIn({a:{ b: { c: 'a'}}}, 'a.b.c')).toEqual('a'));
 
 
-        it('returns el', () => {
-
-            expect(getElForPathIn({a:{ b: { c: 'a'}}}, 'a.b.c')).toEqual('a');
-        });
-
-
-        it('returns undefined', () => {
-
-            expect(getElForPathIn({a:{ }}, 'a.b.c')).toEqual(undefined);
-        });
+        it('returns undefined', () =>
+            expect(getElForPathIn({a:{ }}, 'a.b.c')).toEqual(undefined));
 
 
         it('takeOrMake makes', () => {
@@ -46,9 +38,8 @@ export function main() {
         });
 
 
-        it('takeOrMake takes', () => {
-
-            expect(takeOrMake({a:{ b: { c: 'a'}}}, 'a.b.c', [])).toEqual('a');
-        });
+        it('takeOrMake takes', () =>
+            expect(takeOrMake({a:{ b: { c: 'a'}}}, 'a.b.c', []))
+                .toEqual('a'));
     });
 }

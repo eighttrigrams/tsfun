@@ -3,9 +3,13 @@
  */
 
 
-import {sameAs} from "./comparators";
+import {isNot, sameAs} from "./comparators";
 
 export type Transformation<T> = (_: T) => T;
+
+export const isDefined = (_: any) => _ !== undefined;
+
+export const isUndefined = isNot(isDefined);
 
 export const identical = <A>(v: A) => v;
 

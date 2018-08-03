@@ -4,7 +4,7 @@ export {isNot, sameAs, biggerThan,
 export {take, takeRightWhile, takeUntil, takeWhile, takeNth} from './src/arrays/take';
 export {dropWhile, drop, dropRight, dropRightWhile} from './src/arrays/drop';
 export {flow, flowP} from './src/flow';
-export {reverse, flatMap} from './src/arrays/coll';
+export {reverse, flatMap, mapTo} from './src/arrays/coll';
 export {
     NestedArray,
     intersection,
@@ -30,13 +30,14 @@ export {
 
 
 export {copy, isEmpty} from './src/coll';
-export {doWhen} from './src/core';
+export {doWhen, isDefined, isUndefined} from './src/core';
 export {map, filter} from './src/maps/coll';
 
 export {
     getElForPathIn,
     takeOrMake,
-    clone
+    clone,
+    to
 } from './src/objects/objects';
 
 /**
