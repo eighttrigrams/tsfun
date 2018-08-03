@@ -38,11 +38,14 @@ export const includedInBy = (compare: Comparator = sameAs) => <A>(as: Array<A>, 
 export const includedIn =  includedInBy();
 
 
-export const differentFrom = <A>(a:A, compare: Comparator = sameAs) =>
-    isNot(compare(a)); // TODO unit test compare, make differentFromBy and differentFrom
+export const differentFromBy = (compare: Comparator = sameAs) => <A>(a:A) =>
+    isNot(compare(a)); // TODO unit test compare
+
+
+export const differentFrom = differentFromBy();
 
 
 const includesBy =
     (compare: Comparator = sameAs) =>
-        <A>(as: Array<A>, a: A) => // TODO make curried
+        <A>(as: Array<A>, a: A) => // TODO make curried, add includes function, export
             as.filter(compare(a));

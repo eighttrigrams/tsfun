@@ -1,4 +1,4 @@
-export {sameAs, includedIn, differentFrom, equalTo,
+export {sameAs, includedIn, differentFrom, differentFromBy, equalTo,
     onBy, on} from './src/comparators';
 export {isNot, biggerThan, smallerThan,
     even, odd, isDefined, isUndefined} from './src/predicates'
