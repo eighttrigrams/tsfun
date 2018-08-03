@@ -19,9 +19,13 @@ export const equalTo: ComparisonFunction = <A>(l:A) =>
 
 
 export const onBy = (compare: Function = sameAs) => (path: string, secondPath?: string) =>
-    (l: any) => (r: any) => compare(
-        secondPath === '' ? l : getElForPathIn(l, secondPath ? secondPath : path))
-    (getElForPathIn(r, path));
+    (l: any) => (r: any) =>
+        path.length === 0
+            ? undefined
+            : compare(
+                path.charAt(path.length - 1) === '!'
+                ? l : getElForPathIn(l, secondPath ? secondPath : path))
+            (getElForPathIn(r, path.charAt(path.length - 1) === '!' ? path.slice(0, -1) : path));
 
 
 export const on = onBy();
