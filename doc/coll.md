@@ -143,6 +143,22 @@ the arguments is kept.
 into the body of a `flow`. `intersection` and `union` take a `NestedArray<A>` as
 their argument, so they can be used to begin a `flow` with.
 
+
+#### intersection
+
+```
+intersection([[3, 4, 5], [1, 2, 3]])
+-> [3]
+```
+
+
+#### intersectionBy
+
+```
+intersectionBy(equalTo)<any>([[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]]
+-> [{c: 'c'}]
+```
+
 #### intersect
 
 ```
@@ -153,6 +169,58 @@ intersect([3])([4])
 intersect([3, 4, 5], [2])([1, 2, 3])        // multiple args
 -> [3, 2]
 ```
+
+#### intersectBy
+
+```
+intersectBy(equalTo)<any>([{a: 'a'}, {c: 'c'}])([{c: 'c'}, {d: 'd'}])
+-> [{c: 'c'}]
+```
+
+#### union
+
+```
+union([[3, 4, 5], [1, 2, 3]])
+-> [3, 4, 5, 1, 2]
+```
+
+### unionBy
+
+```
+unionBy(equalTo)<any>([[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]])
+-> [{a: 'a'}, {c: 'c'}, {d: 'd'}]
+```
+
+#### unite
+
+```
+unite([3, 4, 5])([1, 2, 3])
+-> [3, 4, 5, 1, 2]
+unite([3], [4, 5])([1, 2, 3])               // multiple args
+-> [3, 4, 5, 1, 2]
+```
+
+### uniteBy
+
+```
+uniteBy(equalTo)<any>([{a: 'a'}, {c: 'c'}])([{c: 'c'}, {d: 'd'}])
+-> [{a: 'a'}, {c: 'c'}, {d: 'd'}]
+```
+
+#### unique
+
+```
+unique([1, 1, 7, 8, 7, 1])
+-> [1, 7, 8]
+```
+
+#### uniqueBy
+
+```
+uniqueBy(equalTo)([{a: 'c'}, {a: 'c'}])
+-> [{a: 'c'}]
+```
+
 
 #### subtract
 
@@ -165,34 +233,11 @@ subtract([3, 4, 5], [2])([1, 2, 3, 3, 1])   // multiple args
 -> [1]
 ```
 
-#### unite
+### subtractBy
 
 ```
-unite([3, 4, 5])([1, 2, 3])
--> [3, 4, 5, 1, 2]
-unite([3], [4, 5])([1, 2, 3])               // multiple args
--> [3, 4, 5, 1, 2]
-```
-
-#### unique
-
-```
-unique([1, 1, 7, 8, 7, 1])
--> [1, 7, 8]
-```
-
-#### union
-
-```
-union([[3, 4, 5], [1, 2, 3]])
--> [3, 4, 5, 1, 2]
-```
-
-#### intersection
-
-```
-intersection([[3, 4, 5], [1, 2, 3]])
--> [3]
+subtractBy(equalTo)<any>([{a: 'a'}])([{a: 'a'}, {c: 'c'}])
+-> [{c: 'c'}]
 ```
 
 ### objects

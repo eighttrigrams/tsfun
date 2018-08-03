@@ -34,7 +34,7 @@ import {equalTo} from "../src/predicates";
  */
 export function main() {
 
-    describe('Sets/Arrays', () => {
+    describe('Set-Like/Arrays', () => {
 
         // intersection
 
