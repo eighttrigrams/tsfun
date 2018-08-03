@@ -47,6 +47,8 @@ export function takeOrMake(object: Object, path: string, val: any) {
 // TODO unit test
 // document, also mention the case that find(on(path, any)) can be used
 // as a more specific version of find(equalTo(any))
+//
+// see also if there is some more abstract patterns in common with sameOn and equalOn
 /**
  * Because of how it reads in context, of for example find
  * (.find(on('a.b', sameAs('cd')) we don't go with the usual curried style with comparison
@@ -57,4 +59,4 @@ export const on = (path: string, compare: Function|any) =>
         (typeof compare === 'function')
             ? compare(getElForPathIn(object, path))
             : sameAs(getElForPathIn(compare, path))
-            (getElForPathIn(object, path));
+                (getElForPathIn(object, path));
