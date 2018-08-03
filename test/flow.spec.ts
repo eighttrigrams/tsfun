@@ -3,7 +3,7 @@ import {reverse} from '../src/arrays/arrays';
 import {take, takeWhile} from '../src/arrays/take';
 import {dropWhile} from '../src/arrays/drop';
 import {biggerThan, smallerThan} from '../src/predicates';
-import {unite} from '../src/objects/sets';
+import {unite} from '../src/maps/sets';
 
 
 /**

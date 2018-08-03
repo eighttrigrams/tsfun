@@ -4,10 +4,10 @@
 import {intersect as intersectA} from "../arrays/sets";
 import {subtract as subtractA} from "../arrays/sets";
 import {identical} from "../core";
-import {mapProperties, obj} from './objects';
+import {mapProperties, UntypedMap} from './maps';
 
 export const subtract = (subtrahend: Array<string | number> | any) =>
-    (o: obj): obj => {
+    (o: UntypedMap): UntypedMap => {
 
         if (Array.isArray(o)) throw new TypeError('invalid argument');
 
@@ -25,7 +25,7 @@ export const subtract = (subtrahend: Array<string | number> | any) =>
     };
 
 
-export function union([first, ...rest]: obj[]): obj {
+export function union([first, ...rest]: UntypedMap[]): UntypedMap {
 
     return first && rest.length > 0
         ? unite(...rest)(first)
@@ -35,8 +35,8 @@ export function union([first, ...rest]: obj[]): obj {
 }
 
 
-export const unite = (...addends: obj[]) =>
-    (o: obj): obj => {
+export const unite = (...addends: UntypedMap[]) =>
+    (o: UntypedMap): UntypedMap => {
 
         if (Array.isArray(o)) throw new TypeError('invalid argument');
         for (let addend of addends)
@@ -47,7 +47,7 @@ export const unite = (...addends: obj[]) =>
 
 
 export const intersect = (o1: any) =>
-    (o2: obj): obj => {
+    (o2: UntypedMap): UntypedMap => {
 
         if (Array.isArray(o2)) throw new TypeError('invalid argument');
 

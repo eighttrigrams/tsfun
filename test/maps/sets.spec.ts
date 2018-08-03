@@ -1,12 +1,12 @@
 /**
  * @author Daniel de Oliveira
  */
-import {subtract, unite, intersect, union} from '../../src/objects/sets';
+import {subtract, unite, intersect, union} from '../../src/maps/sets';
 
 
 export function main() {
 
-    describe('Sets/Objects', () => {
+    describe('Maps/Set-Like-Collection', () => {
 
         it('subtract - subtract by array of numeric keys', () => {
 

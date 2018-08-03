@@ -1,7 +1,7 @@
 import {subtract} from './arrays/sets';
-import {subtract as subtractO} from './objects/sets';
+import {subtract as subtractO} from './maps/sets';
 import {Transformation} from "./core";
-import {obj} from "./objects/objects";
+import {UntypedMap} from "./maps/maps";
 
 
 /**
@@ -12,8 +12,8 @@ import {obj} from "./objects/objects";
 type ArrayTransformation<T> = Transformation<Array<T>>;
 
 export function copy<T>(as: Array<T>): Array<T>;
-export function copy(as: obj): obj;
-export function copy<T>(coll: Array<T>|obj): Array<T>|obj {
+export function copy(as: UntypedMap): UntypedMap;
+export function copy<T>(coll: Array<T>|UntypedMap): Array<T>|UntypedMap {
 
     return coll instanceof Array
         ? subtract([])(coll as any) as Array<T>

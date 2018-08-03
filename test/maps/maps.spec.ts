@@ -6,7 +6,27 @@ import {map, filter} from "../../src/maps/coll";
  */
 export function main() {
 
-    describe('Objects', () => {
+    describe('Maps', () => {
+
+        it('map', () => {
+
+            expect(
+
+                map<number, number>(x => x * 2)({a: 1, b: 2})
+
+            ).toEqual({a: 2, b: 4})
+        });
+
+
+        it('filter', () => {
+
+            expect(
+
+                filter((x: number) => x > 1)({a: 1, b: 2})
+
+            ).toEqual({b: 2})
+        });
+
 
         it('returns el', () => {
 

@@ -7,7 +7,7 @@ import {flatMap} from "../../src/arrays/arrays";
 
 export function main() {
 
-    describe('Collections/Arrays', () => {
+    describe('Arrays/Collection', () => {
 
         it('flatMap', () => {
 

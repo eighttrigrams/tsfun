@@ -9,8 +9,8 @@ import {
     unite,
     uniteBy,
     unionBy, subtractBy, uniqueBy,
-} from '../src/arrays/sets';
-import {equalTo} from "../src/predicates";
+} from '../../src/arrays/sets';
+import {equalTo} from "../../src/predicates";
 
 
 /**
@@ -34,7 +34,7 @@ import {equalTo} from "../src/predicates";
  */
 export function main() {
 
-    describe('Set-Like/Arrays', () => {
+    describe('Arrays/Set-Like-Collection', () => {
 
         // intersection
 

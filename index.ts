@@ -22,9 +22,16 @@ export {
     equals
 } from './src/arrays/sets';
 
+export {
+    subtract as subtractMap,
+    intersect as intersectMap,
+    unite as uniteMap,
+} from './src/maps/sets'
+
+
 export {copy, isEmpty} from './src/coll';
 export {doWhen} from './src/core';
-export {map, filter} from './src/objects/coll';
+export {map, filter} from './src/maps/coll';
 
 export {
     getElForPathIn,
