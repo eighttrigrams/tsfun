@@ -1,4 +1,4 @@
-import {isNot} from '../predicates';
+import {isNot} from '../comparators';
 
 /**
  * @author Daniel de Oliveira

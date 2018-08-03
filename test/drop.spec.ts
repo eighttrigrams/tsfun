@@ -1,5 +1,5 @@
 import {drop, dropWhile, dropRight, dropRightWhile} from '../src/arrays/drop';
-import {smallerThan, biggerThan} from '../src/predicates';
+import {smallerThan, biggerThan} from '../src/comparators';
 
 
 /**

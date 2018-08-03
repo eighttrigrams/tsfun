@@ -5,7 +5,7 @@ import {copy, } from '../src/coll';
  */
 export function main() {
 
-    describe('Collections/General', () => {
+    describe('General/Collection', () => {
 
         it('copy - array',() =>
 

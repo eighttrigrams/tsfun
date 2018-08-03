@@ -7,14 +7,14 @@ import {getElForPathIn} from "./objects/objects";
  */
 
 
-export type ComparisonFunction = <A>(_: A) => (_: A) => boolean;
+export type Comparator = <A>(_: A) => (_: A) => boolean;
 
 
-export const sameAs: ComparisonFunction = <A>(l:A) =>
+export const sameAs: Comparator = <A>(l:A) =>
     (r:A) => l === r;
 
 
-export const equalTo: ComparisonFunction = <A>(l:A) =>
+export const equalTo: Comparator = <A>(l:A) =>
     (r:A) => sameAs(JSON.stringify(l))(JSON.stringify(r));
 
 
@@ -31,22 +31,22 @@ export const onBy = (compare: Function = sameAs) => (path: string, secondPath?: 
 export const on = onBy();
 
 
-export const smallerThan: ComparisonFunction = <A>(l:A) =>
+export const smallerThan: Comparator = <A>(l:A) =>
     (r:A) => l > r;
 
 
-export const biggerThan: ComparisonFunction = <A>(l:A) =>
+export const biggerThan: Comparator = <A>(l:A) =>
     (r:A) => l < r;
 
 
-export const includedInBy = (compare: ComparisonFunction = sameAs) => <A>(as: Array<A>, ) =>
+export const includedInBy = (compare: Comparator = sameAs) => <A>(as: Array<A>, ) =>
     (a: A): boolean => includesBy(compare)(as, a).length > 0;
 
 
 export const includedIn =  includedInBy();
 
 
-export const differentFrom = <A>(a:A, compare: ComparisonFunction = sameAs) =>
+export const differentFrom = <A>(a:A, compare: Comparator = sameAs) =>
     isNot(compare(a)); // TODO unit test compare
 
 
@@ -61,6 +61,6 @@ export const odd = () => (n: number) => isNot(even())(n);
 
 
 const includesBy =
-    (compare: ComparisonFunction = sameAs) =>
+    (compare: Comparator = sameAs) =>
         <A>(as: Array<A>, a: A) => // TODO make curried
             as.filter(compare(a));

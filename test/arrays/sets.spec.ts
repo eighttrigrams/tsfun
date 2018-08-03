@@ -10,7 +10,7 @@ import {
     uniteBy,
     unionBy, subtractBy, uniqueBy,
 } from '../../src/arrays/sets';
-import {equalTo} from "../../src/predicates";
+import {equalTo} from "../../src/comparators";
 
 
 /**

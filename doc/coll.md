@@ -2,7 +2,7 @@
 
 ## general
 
-### objects and arrays
+### maps and arrays
 
 #### copy
 
@@ -15,7 +15,7 @@ copy({a: 1, 2: 5})
 -> {a: 1, 2: 5}
 ```
 
-### objects
+### maps
 
 ```
 import {map, filter} from 'tsfun/objects'
@@ -151,7 +151,6 @@ intersection([[3, 4, 5], [1, 2, 3]])
 -> [3]
 ```
 
-
 #### intersectionBy
 
 ```
@@ -220,7 +219,6 @@ unique([1, 1, 7, 8, 7, 1])
 uniqueBy(equalTo)([{a: 'c'}, {a: 'c'}])
 -> [{a: 'c'}]
 ```
-
 
 #### subtract
 

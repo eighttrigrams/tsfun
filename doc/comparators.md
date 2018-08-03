@@ -1,4 +1,4 @@
-## Predicates
+## Comparators
 
 These are meant to be used as predicates of the library 
 methods, as for example `takeWhile`,
@@ -15,7 +15,6 @@ as well as in the native javascript functions.
     .filter(smallerThan(4))
 -> [1, 2, 2]
 ```
-
 
 ### General purpose
 

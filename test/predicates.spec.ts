@@ -1,4 +1,4 @@
-import {equalTo, even, isNot, odd, on, onBy} from '../src/predicates';
+import {equalTo, even, isNot, odd, on, onBy} from '../src/comparators';
 import {intersectBy} from "../src/arrays/sets";
 /**
  * @author Daniel de Oliveira

@@ -3,7 +3,7 @@
  */
 
 
-import {sameAs} from "./predicates";
+import {sameAs} from "./comparators";
 
 export type Transformation<T> = (_: T) => T;
 

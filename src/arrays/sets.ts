@@ -1,5 +1,5 @@
 import {uncurry2} from '../core';
-import {ComparisonFunction, includedIn, includedInBy, isNot, sameAs} from "../predicates";
+import {Comparator, includedIn, includedInBy, isNot, sameAs} from "../comparators";
 
 
 /**
@@ -10,7 +10,7 @@ export type NestedArray<A> = Array<Array<A>>;
 
 
 export const intersectionBy =
-    (compare: ComparisonFunction = sameAs) =>
+    (compare: Comparator = sameAs) =>
         <A>(aas: NestedArray<A>): Array<A> =>
             aas.length < 1 ? [] :
                 aas.reduce(uncurry2<A>(_intersect(compare)));
@@ -20,7 +20,7 @@ export const intersection = intersectionBy();
 
 
 export const unionBy =
-    (compare: ComparisonFunction = sameAs) =>
+    (compare: Comparator = sameAs) =>
         <A>(aas: NestedArray<A>): Array<A> =>
         aas.length < 1 ? [] :
             aas.reduce((acc, val) => val ? _unite(compare)(acc)(val) : acc);
@@ -30,7 +30,7 @@ export const union = unionBy();
 
 
 export const intersectBy =
-    (compare: ComparisonFunction = sameAs) =>
+    (compare: Comparator = sameAs) =>
         <A>(...aas: NestedArray<A>) =>
             (as: Array<A>) => intersectionBy(compare)<A>(aas.concat([as]));
 
@@ -38,7 +38,7 @@ export const intersectBy =
 export const intersect = intersectBy();
 
 
-export const uniteBy = (compare: ComparisonFunction = sameAs) => <A>(...aas: NestedArray<A>) =>
+export const uniteBy = (compare: Comparator = sameAs) => <A>(...aas: NestedArray<A>) =>
     (as: Array<A>) => unionBy(compare)(aas.concat([as]));
 
 
@@ -49,7 +49,7 @@ export const unite = uniteBy();
  * Generate a new list with elements which are contained in as but not in subtrahend
  */
 export const subtractBy =
-    (compare: ComparisonFunction = sameAs) =>
+    (compare: Comparator = sameAs) =>
         <A>(...subtrahends: NestedArray<A>) =>
             (as: Array<A>): Array<A> =>
                 ((unique<A>(as)).filter(isNot(includedInBy(compare)(union(subtrahends)))));
@@ -61,7 +61,7 @@ export const subtractBy =
 export const subtract = subtractBy();
 
 
-export const uniqueBy = (compare: ComparisonFunction = sameAs) =>
+export const uniqueBy = (compare: Comparator = sameAs) =>
     <A>(as: Array<A>) =>
         as.reduce((acc: Array<A>, val) =>
             includedInBy(compare)(acc)(val)
@@ -75,13 +75,13 @@ export const unique = uniqueBy();
 /**
  * @returns the union of a1 and a2
  */
-const _unite = (compare: ComparisonFunction = sameAs) => <A>(as1: Array<A>) =>
+const _unite = (compare: Comparator = sameAs) => <A>(as1: Array<A>) =>
     (as2: Array<A>) =>
         as1.concat(
             as2.filter(isNot(includedInBy(compare)(as1))));
 
 
-const _intersect = (compare: ComparisonFunction = sameAs) => <A>(as1: Array<A>) =>
+const _intersect = (compare: Comparator = sameAs) => <A>(as1: Array<A>) =>
     (as2: Array<A>) => as1.filter(includedInBy(compare)(as2));
 
 
@@ -90,7 +90,7 @@ const _intersect = (compare: ComparisonFunction = sameAs) => <A>(as1: Array<A>) 
  * @author Daniel de Oliveira
  */
 export function equals<A>(as1: A[], as2: A[], // TODO make it also work for objects
-                       compare: ComparisonFunction = sameAs): boolean {
+                       compare: Comparator = sameAs): boolean {
 
     if (as1.length !== as2.length) return false;
 
