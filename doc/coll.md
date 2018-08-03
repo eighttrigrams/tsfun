@@ -1,8 +1,8 @@
 # Utilities for Collections
 
-## general
+## General collection methods
 
-### maps and arrays
+### For Maps and Arrays
 
 #### copy
 
@@ -15,7 +15,7 @@ copy({a: 1, 2: 5})
 -> {a: 1, 2: 5}
 ```
 
-### maps
+### Maps as collections
 
 ```
 import {map, filter} from 'tsfun/objects'
@@ -35,11 +35,11 @@ filter((x: number) => x > 1)({a: 1, b: 2})
 -> {b: 2}
 ```
 
-## ordered-list-like
+## Ordered-list-like collection methods
 
 These methods treat arrays as ordered lists
 
-### general
+### General methods
 
 #### flatMap
 
@@ -55,9 +55,9 @@ reverse([4, 1])
 -> [1, 4]
 ```
 
-### take
+### Picking methods
 
-Currently the implementations for the following **take** methods are provided
+Currently the implementations for the following **take** and **drop** methods are provided
 
 #### take
 
@@ -94,11 +94,6 @@ takeNth(2)([1, 2, 3, 7])
 -> [1, 3]
 ```
 
-### drop
-
-Currently the implementations for the following **drop** methods are provided
-
-
 #### drop
 
 ```
@@ -127,13 +122,13 @@ dropRightWhile(biggerThan(2))([1, 2, 3])
 -> [1, 2]
 ```
 
-## set-like
+## Set-like collection methods
 
 Set methods come in two flavours, array set methods and object set methods.
 Both of these have in common that the respective data structures are treated 
 as if they were sets, hence we also call them set-like methods.
 
-### arrays
+### For Arrays
 
 Every set method's result is not only `Array<A>` but also consists 
 of unique items (compared with `==`). Where possible, the order of 
@@ -238,23 +233,19 @@ subtractBy(equalTo)<any>([{a: 'a'}])([{a: 'a'}, {c: 'c'}])
 -> [{c: 'c'}]
 ```
 
-### objects
-
-```
-import {intersect, unite, subtract} from 'tsfun/objects'
-```
+### For Maps
 
 #### intersect
 
 ```
-intersect({1: 4})({1: 3, 2: 4})
+intersectMap({1: 4})({1: 3, 2: 4})
 -> {1: 4}
 ```
 
 #### unite
 
 ```
-unite({1: 4})({2: 4})
+uniteMap({1: 4})({2: 4})
 -> {1: 4, 2: 4}
 unite({5: 6}, {1: 4})({2: 4})
 -> {1: 4, 2: 4, 5: 6}
@@ -263,14 +254,14 @@ unite({5: 6}, {1: 4})({2: 4})
 #### subtract
 
 ```
-subtract({1: 7})({1: 3, 2: 4})
+subtractMap({1: 7})({1: 3, 2: 4})
 -> {2: 4}
 ```
 
 #### union
 
 ```
-union([{1: 4}, {2: 4}])
+unionMap([{1: 4}, {2: 4}])
 -> {1: 4, 2: 4}
 ```
 
