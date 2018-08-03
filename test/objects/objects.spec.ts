@@ -1,5 +1,4 @@
 import {getElForPathIn, takeOrMake} from "../../src/objects/objects";
-import {map, filter} from "../../src/maps/coll";
 
 /**
  * @author Daniel de Oliveira

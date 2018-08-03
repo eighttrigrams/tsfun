@@ -235,30 +235,30 @@ subtractBy(equalTo)<any>([{a: 'a'}])([{a: 'a'}, {c: 'c'}])
 
 ### For Maps
 
-#### intersect
+#### intersectMap
 
 ```
 intersectMap({1: 4})({1: 3, 2: 4})
 -> {1: 4}
 ```
 
-#### unite
+#### uniteMap
 
 ```
 uniteMap({1: 4})({2: 4})
 -> {1: 4, 2: 4}
-unite({5: 6}, {1: 4})({2: 4})
+uniteMap({5: 6}, {1: 4})({2: 4})
 -> {1: 4, 2: 4, 5: 6}
 ```
 
-#### subtract
+#### subtractMap
 
 ```
 subtractMap({1: 7})({1: 3, 2: 4})
 -> {2: 4}
 ```
 
-#### union
+#### unionMap
 
 ```
 unionMap([{1: 4}, {2: 4}])

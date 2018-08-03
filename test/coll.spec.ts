@@ -1,4 +1,4 @@
-import {copy, } from '../src/coll';
+import {copy} from '../src/coll';
 
 /**
  * @author Daniel de Oliveira
