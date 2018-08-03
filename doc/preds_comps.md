@@ -1,21 +1,5 @@
 # Predicates and Comparators
 
-These are meant to be used as predicates of the library 
-methods, as for example `takeWhile`,
-
-```
-takeWhile(smallerThan(4))([1, 2, 4, 5])
--> [1, 2]
-```
-
-as well as in the native javascript functions.
-
-```
-[1, 2, 4, 2]
-    .filter(smallerThan(4))
--> [1, 2, 2]
-```
-
 ## Predicates
 
 ### isDefined
@@ -69,11 +53,26 @@ smallerThan(4)(2)
 -> true
 ```
 
+combined with takeWhile
+
+```
+takeWhile(smallerThan(4))([1, 2, 4, 5])
+-> [1, 2]
+```
+
 ### biggerThan
 
 ```
 biggerThan(4)(5)
 -> true
+```
+
+in combination with .filter
+
+```
+[3, 2, 1, 0]
+    .filter(biggerThan(1))
+-> [3, 2]
 ```
 
 ### sameAs
