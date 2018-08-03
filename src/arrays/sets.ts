@@ -44,12 +44,21 @@ export const uniteBy = (compare: ComparisonFunction = sameAs) => <A>(...aas: Nes
 
 export const unite = uniteBy();
 
+
 /**
  * Generate a new list with elements which are contained in as but not in subtrahend
  */
-export const subtract = <A>(subtrahend: Array<A>, compare: ComparisonFunction = sameAs) =>
-    (as: Array<A>): Array<A> =>
-        ((unique<A>(as)).filter(isNot(includedIn(subtrahend, compare))));
+export const subtractBy =
+    (compare: ComparisonFunction = sameAs) =>
+        <A>(...subtrahends: NestedArray<A>) =>
+            (as: Array<A>): Array<A> =>
+                ((unique<A>(as)).filter(isNot(includedIn(union(subtrahends), compare))));
+
+
+/**
+ * Generate a new list with elements which are contained in as but not in subtrahend
+ */
+export const subtract = subtractBy();
 
 
 export const unique = <A>(as: Array<A>) =>
