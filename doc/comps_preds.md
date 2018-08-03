@@ -2,6 +2,8 @@
 
 ## Predicates
 
+### Examples in context
+
 These are meant to be used as predicates of the library 
 methods, as for example `takeWhile`,
 
@@ -18,24 +20,29 @@ as well as in the native javascript functions.
 -> [1, 2, 2]
 ```
 
-### General purpose
+### Basic 
 
-General purpose, working with `==` comparisons
+#### isDefined
 
 ```
-sameAs(3)(3)
--> true
-differentFrom(3)(2)
--> true
-includedIn([1, 2])(1)
+isDefined(1)
 -> true
 ```
 
-### Special purpose
+#### isUndefined
+
+```
+isUndefined(undefined)
+-> true
+```
+
+#### isNot 
 
 A special combinator is `isNot`, which can flip the results boolean value
 
 ```
+isNot(isUndefined)(3) 
+-> true
 isNot(sameAs(3))(2) // same as differentFrom(3)(2)
 -> true
 ```
@@ -44,15 +51,69 @@ isNot(sameAs(3))(2) // same as differentFrom(3)(2)
 
 To be used with numbers, working with `<`, `>`, `%`
 
+#### smallerThan
+
 ```
 smallerThan(4)(2)
 -> true
+```
+
+#### biggerThan
+
+```
 biggerThan(4)(5)
 -> true
+```
+
+#### even
+
+```
 even()(2)
 -> true
+```
+
+#### odd
+
+```
 odd()(3)
 -> true
 ```
 
 ## Comparators
+
+#### sameAs
+
+sameAs uses comparison via `===`.
+
+
+```
+sameAs(3)(3)
+-> true
+[1, 2, 3]
+    .filter(sameAs(3))
+-> [3]    
+```
+
+#### equalTo
+
+equalTo compares to objects by comparing their string representations
+via JSON.parse(Json.stringify(item))
+
+```
+equalTo({a: {b: 'c'})({a: {b: 'c'})
+-> true
+```
+
+#### differentFrom
+
+```
+differentFrom(3)(2)
+-> true
+```
+
+#### includedIn
+
+```
+includedIn([1, 2])(1)
+-> true
+```

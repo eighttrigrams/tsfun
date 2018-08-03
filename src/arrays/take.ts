@@ -1,7 +1,7 @@
 /**
  * @author Daniel de Oliveira
  */
-import {isNot} from '../predicates';
+import {isNot, Predicate} from '../predicates';
 
 
 export const take = <A>(n: number) =>
@@ -20,7 +20,7 @@ export const takeNth = <A>(n: number) =>
             , []);
 
 
-export const takeWhile = <A>(predicate: (_: A) => boolean) =>
+export const takeWhile = <A>(predicate: Predicate<A>) =>
     (as: Array<A>) => {
         let go = true;
         return as.reduce((acc: Array<A>, a) =>
@@ -28,7 +28,7 @@ export const takeWhile = <A>(predicate: (_: A) => boolean) =>
     };
 
 
-export const takeRightWhile = <A>(predicate: (_: A) => boolean) =>
+export const takeRightWhile = <A>(predicate: Predicate<A>) =>
     (as: Array<A>) => {
         let go = true;
         return as.reduceRight((acc: Array<A>, a) =>
@@ -36,7 +36,7 @@ export const takeRightWhile = <A>(predicate: (_: A) => boolean) =>
     };
 
 
-export const takeUntil = <A>(predicate: (_: A) => boolean) =>
+export const takeUntil = <A>(predicate: Predicate<A>) =>
     (as: Array<A>) =>
         (found => found ?
             takeWhile(isNot(predicate))(as).concat([found])
