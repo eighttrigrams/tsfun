@@ -2,7 +2,7 @@
  * @author Daniel de Oliveira
  */
 import {to} from '../objects/objects';
-import {isDefined} from '../core';
+import {isDefined} from '../predicates';
 
 
 export function reverse<A>(as: Array<A>): Array<A> { return as.reverse(); }

@@ -1,5 +1,6 @@
 import {uncurry2} from '../core';
-import {Comparator, includedIn, includedInBy, isNot, sameAs} from "../comparators";
+import {Comparator, includedIn, includedInBy, sameAs} from "../comparators";
+import {isNot} from '../predicates';
 
 
 /**

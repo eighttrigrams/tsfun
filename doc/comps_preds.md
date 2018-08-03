@@ -1,4 +1,6 @@
-## Comparators
+# Comparators and predicates
+
+## Predicates
 
 These are meant to be used as predicates of the library 
 methods, as for example `takeWhile`,
@@ -52,3 +54,5 @@ even()(2)
 odd()(3)
 -> true
 ```
+
+## Comparators

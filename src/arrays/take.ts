@@ -1,8 +1,7 @@
-import {isNot} from '../comparators';
-
 /**
  * @author Daniel de Oliveira
  */
+import {isNot} from '../predicates';
 
 
 export const take = <A>(n: number) =>

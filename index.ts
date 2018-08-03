@@ -1,6 +1,7 @@
-export {isNot, sameAs, biggerThan,
-    smallerThan, includedIn, differentFrom, even, odd, equalTo,
+export {sameAs, includedIn, differentFrom, equalTo,
     onBy, on} from './src/comparators';
+export {isNot, biggerThan, smallerThan,
+    even, odd, isDefined, isUndefined} from './src/predicates'
 export {take, takeRightWhile, takeUntil, takeWhile, takeNth} from './src/arrays/take';
 export {dropWhile, drop, dropRight, dropRightWhile} from './src/arrays/drop';
 export {flow, flowP} from './src/flow';
@@ -30,7 +31,7 @@ export {
 
 
 export {copy, isEmpty} from './src/coll';
-export {doWhen, isDefined, isUndefined} from './src/core';
+export {doWhen} from './src/core';
 export {map, filter} from './src/maps/coll';
 
 export {

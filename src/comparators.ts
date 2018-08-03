@@ -1,5 +1,5 @@
-import {flip} from './core';
 import {getElForPathIn} from "./objects/objects";
+import {isNot} from './predicates';
 
 
 /**
@@ -31,14 +31,6 @@ export const onBy = (compare: Function = sameAs) => (path: string, secondPath?: 
 export const on = onBy();
 
 
-export const smallerThan: Comparator = <A>(l:A) =>
-    (r:A) => l > r;
-
-
-export const biggerThan: Comparator = <A>(l:A) =>
-    (r:A) => l < r;
-
-
 export const includedInBy = (compare: Comparator = sameAs) => <A>(as: Array<A>, ) =>
     (a: A): boolean => includesBy(compare)(as, a).length > 0;
 
@@ -47,17 +39,7 @@ export const includedIn =  includedInBy();
 
 
 export const differentFrom = <A>(a:A, compare: Comparator = sameAs) =>
-    isNot(compare(a)); // TODO unit test compare
-
-
-export const isNot = <A>(f: (_: A) => boolean) =>
-    (a: A) => flip(f(a));
-
-
-export const even = () => (n: number) => n % 2 === 0;
-
-
-export const odd = () => (n: number) => isNot(even())(n);
+    isNot(compare(a)); // TODO unit test compare, make differentFromBy and differentFrom
 
 
 const includesBy =
