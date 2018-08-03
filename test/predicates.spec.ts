@@ -52,12 +52,12 @@ export function main() {
 
         it('find onBy equalTo - exact',() =>
             expect([{a: {b: 4}}, {a: {b: 5}}].find(
-                onBy(equalTo)('a.b!')(5)))
+                onBy(equalTo)('a.b:')(5)))
                 .toEqual({a: {b: 5}} as any));
 
 
         it('find on - exact',() =>
-            expect([{a: {b: 4}}, {a: {b: 5}}].find(on('a.b!')(5)))
+            expect([{a: {b: 4}}, {a: {b: 5}}].find(on('a.b:')(5)))
                 .toEqual({a: {b: 5}} as any));
 
 
@@ -92,7 +92,7 @@ export function main() {
         it('filter - exact', () => {
 
             expect([{a: {b: 4}}, {a: {b: 5}}].filter(
-                isNot(on('a.b!')(5))))
+                isNot(on('a.b:')(5))))
                 .toEqual([{a: {b: 4}} as any]);
         });
     })
