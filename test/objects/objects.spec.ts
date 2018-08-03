@@ -1,4 +1,4 @@
-import {getElForPathIn, takeOrMake} from "../../src/objects/objects";
+import {getElForPathIn, takeOrMake, to} from "../../src/objects/objects";
 
 /**
  * @author Daniel de Oliveira
@@ -6,6 +6,25 @@ import {getElForPathIn, takeOrMake} from "../../src/objects/objects";
 export function main() {
 
     describe('Objects', () => {
+
+
+        it('to', () =>
+           expect(to('a.b')({a: {b: {c: 'd'}}})).toEqual({c: 'd'})
+        );
+
+
+        it('to with map', () =>
+            expect([{a: {b: {c: 'd'}}}].map(to('a.b'))).toEqual([{c: 'd'}])
+        );
+
+
+        it('to - 1 does not exist', () =>
+            expect([{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}].map(to('a.c')))
+                .toEqual([undefined, {d: 'e'}])
+        );
+
+        // TODO add mapTo which erases undefined
+
 
         it('returns el', () => {
 

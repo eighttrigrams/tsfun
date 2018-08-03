@@ -4,7 +4,7 @@ export {isNot, sameAs, biggerThan,
 export {take, takeRightWhile, takeUntil, takeWhile, takeNth} from './src/arrays/take';
 export {dropWhile, drop, dropRight, dropRightWhile} from './src/arrays/drop';
 export {flow, flowP} from './src/flow';
-export {reverse, flatMap} from './src/arrays/arrays';
+export {reverse, flatMap} from './src/arrays/coll';
 export {
     NestedArray,
     intersection,

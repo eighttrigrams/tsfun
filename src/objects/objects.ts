@@ -7,6 +7,12 @@ export const clone = <O>(object: O, postProcess:
     (postProcess)(object, JSON.parse(JSON.stringify(object))) as O;
 
 
+// TODO do it with curry2 and reverse params method of getElForPathIn
+// put to arrays
+export const to = (path: string) => (object: any) =>
+    getElForPathIn(object, path);
+
+
 export function getElForPathIn(object: any, path: string) {
 
     let result = object;
