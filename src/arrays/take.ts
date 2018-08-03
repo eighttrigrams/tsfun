@@ -37,9 +37,8 @@ export const takeRightWhile = <A>(predicate: (_: A) => boolean) =>
 
 
 export const takeUntil = <A>(predicate: (_: A) => boolean) =>
-    (as: Array<A>) => {
-        const found = as.find(predicate);
-        return found ?
+    (as: Array<A>) =>
+        (found => found ?
             takeWhile(isNot(predicate))(as).concat([found])
             : as
-    };
+        )(as.find(predicate));
