@@ -34,8 +34,11 @@ export const biggerThan: ComparisonFunction = <A>(l:A) =>
     (r:A) => l < r;
 
 
-export const includedIn =  <A>(as: Array<A>, compare: ComparisonFunction = sameAs) =>
-    (a: A): boolean => includes(as, a, compare).length > 0;
+export const includedInBy = (compare: ComparisonFunction = sameAs) => <A>(as: Array<A>, ) =>
+    (a: A): boolean => includesBy(compare)(as, a).length > 0;
+
+
+export const includedIn =  includedInBy();
 
 
 export const differentFrom = <A>(a:A, compare: ComparisonFunction = sameAs) =>
@@ -52,5 +55,7 @@ export const even = () => (n: number) => n % 2 === 0;
 export const odd = () => (n: number) => isNot(even())(n);
 
 
-const includes = <A>(as: Array<A>, a: A, compare: ComparisonFunction) =>
-    as.filter(compare(a));
+const includesBy =
+    (compare: ComparisonFunction = sameAs) =>
+        <A>(as: Array<A>, a: A) => // TODO make curried
+            as.filter(compare(a));

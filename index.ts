@@ -1,5 +1,6 @@
 export {isNot, sameAs, biggerThan,
-    smallerThan, includedIn, differentFrom, even, odd, equalTo} from './src/predicates';
+    smallerThan, includedIn, differentFrom, even, odd, equalTo,
+    sameOn, equalOn} from './src/predicates';
 export {take, takeRightWhile, takeUntil, takeWhile, takeNth} from './src/arrays/take';
 export {dropWhile, drop, dropRight, dropRightWhile} from './src/arrays/drop';
 export {flow, flowP} from './src/flow';
@@ -7,11 +8,17 @@ export {reverse, flatMap} from './src/arrays/arrays';
 export {
     NestedArray,
     intersection,
+    intersectionBy,
     union,
+    unionBy,
     intersect,
+    intersectBy,
     subtract,
+    subtractBy,
     unite,
+    uniteBy,
     unique,
+    uniqueBy,
     equals
 } from './src/arrays/sets';
 

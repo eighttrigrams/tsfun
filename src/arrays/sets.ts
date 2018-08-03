@@ -1,5 +1,5 @@
 import {uncurry2} from '../core';
-import {ComparisonFunction, includedIn, isNot, sameAs} from "../predicates";
+import {ComparisonFunction, includedIn, includedInBy, isNot, sameAs} from "../predicates";
 
 
 /**
@@ -52,7 +52,7 @@ export const subtractBy =
     (compare: ComparisonFunction = sameAs) =>
         <A>(...subtrahends: NestedArray<A>) =>
             (as: Array<A>): Array<A> =>
-                ((unique<A>(as)).filter(isNot(includedIn(union(subtrahends), compare))));
+                ((unique<A>(as)).filter(isNot(includedInBy(compare)(union(subtrahends)))));
 
 
 /**
@@ -64,7 +64,7 @@ export const subtract = subtractBy();
 export const uniqueBy = (compare: ComparisonFunction = sameAs) =>
     <A>(as: Array<A>) =>
         as.reduce((acc: Array<A>, val) =>
-            includedIn(acc, compare)(val)
+            includedInBy(compare)(acc)(val)
                 ? acc : acc.concat([val])
         ,[]);
 
@@ -78,11 +78,11 @@ export const unique = uniqueBy();
 const _unite = (compare: ComparisonFunction = sameAs) => <A>(as1: Array<A>) =>
     (as2: Array<A>) =>
         as1.concat(
-            as2.filter(isNot(includedIn(as1, compare))));
+            as2.filter(isNot(includedInBy(compare)(as1))));
 
 
 const _intersect = (compare: ComparisonFunction = sameAs) => <A>(as1: Array<A>) =>
-    (as2: Array<A>) => as1.filter(includedIn(as2, compare));
+    (as2: Array<A>) => as1.filter(includedInBy(compare)(as2));
 
 
 /**
@@ -95,11 +95,11 @@ export function equals<A>(as1: A[], as2: A[], // TODO make it also work for obje
     if (as1.length !== as2.length) return false;
 
     for (let element of as1) { // TODO use HOF
-        if (!includedIn(as2, compare)(element)) return false;
+        if (!includedInBy(compare)(as2)(element)) return false;
     }
 
     for (let element of as2) {
-        if (!includedIn(as1, compare)(element)) return false;
+        if (!includedInBy(compare)(as1)(element)) return false;
     }
 
     return true;

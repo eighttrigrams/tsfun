@@ -128,7 +128,7 @@ export function main() {
                     .toEqual([{a: 'a'}, {c: 'c'}, {d: 'd'}]));
 
 
-        // unique TODO implement uniqueBy
+        // unique
 
         it('unique', () =>
             expect(unique([1, 1, 7, 8, 7, 1]))
@@ -138,6 +138,15 @@ export function main() {
         it('unique - of none', () =>
             expect(unique([]))
                 .toEqual([]));
+
+
+        // TODO implement
+        /*
+        it('unique - objects', () =>
+            expect(
+                unique('a')([{a: 1}, {a: 2}, {a: 1}])
+            ).toEqual([{a: 1}, {a: 2}])
+        );*/
 
 
         // uniqueBy
@@ -200,6 +209,7 @@ export function main() {
 
 
 
+        // -------------------------------------
 
 
         it('equals - comparator', () => {
@@ -212,39 +222,5 @@ export function main() {
                 equals([{a: 1}], [{b: 2}, {a: 1}], equalTo)
             ).toEqual(false);
         });
-
-
-        // TODO implement
-        /*
-        it('unique - objects', () =>
-
-            expect(
-
-                unique('a')([{a: 1}, {a: 2}, {a: 1}])
-
-            ).toEqual([{a: 1}, {a: 2}])
-        );*/
-
-
-        // TODO replace it by a unit test for equalOn
-        it('intersect with equalOn',() =>
-
-            expect(
-
-                intersectBy(equalOn('a.b'))([{a: {b: {c: 'e'}}}, {a: {b: 'c'}}]) ([{a: {b: {c: 'e'}}}])
-
-            ).toEqual([{a: {b: {c: 'e'}}} as any])
-        );
-
-
-        // TODO replace it by a unit test for sameOn
-        it('intersect with sameOn',() =>
-
-            expect(
-
-                intersectBy(sameOn('a.b'))([{a: {b: 4}}, {a: {b: 5}}]) ([{a: {b: 5}}])
-
-            ).toEqual([{a: {b: 5}} as any])
-        );
     });
 }
