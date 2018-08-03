@@ -18,8 +18,7 @@ export function main() {
 
         it('to - 1 does not exist', () =>
             expect([{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}].map(to('a.c')))
-                .toEqual([undefined, {d: 'e'}])
-        );
+                .toEqual([undefined, {d: 'e'}]));
 
 
         it('returns el', () =>
