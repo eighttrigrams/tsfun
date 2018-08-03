@@ -14,16 +14,17 @@ export const sameAs: ComparisonFunction = <A>(l:A) =>
     (r:A) => l === r;
 
 
-export const sameOn = (path: string) =>
-    (l: any) => (r: any) => sameAs(getElForPathIn(l, path))(getElForPathIn(r, path));
-
-
-export const equalOn = (path: string) =>
-    (l: any) => (r: any) => equalTo(getElForPathIn(l, path))(getElForPathIn(r, path));
-
-
 export const equalTo: ComparisonFunction = <A>(l:A) =>
     (r:A) => sameAs(JSON.stringify(l))(JSON.stringify(r));
+
+
+export const onBy = (compare: Function = sameAs) => (path: string, secondPath?: string) =>
+    (l: any) => (r: any) => compare(
+        secondPath === '' ? l : getElForPathIn(l, secondPath ? secondPath : path))
+    (getElForPathIn(r, path));
+
+
+export const on = onBy();
 
 
 export const smallerThan: ComparisonFunction = <A>(l:A) =>

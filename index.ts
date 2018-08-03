@@ -1,6 +1,6 @@
 export {isNot, sameAs, biggerThan,
     smallerThan, includedIn, differentFrom, even, odd, equalTo,
-    sameOn, equalOn} from './src/predicates';
+    onBy, on} from './src/predicates';
 export {take, takeRightWhile, takeUntil, takeWhile, takeNth} from './src/arrays/take';
 export {dropWhile, drop, dropRight, dropRightWhile} from './src/arrays/drop';
 export {flow, flowP} from './src/flow';
@@ -29,7 +29,6 @@ export {map, filter} from './src/objects/coll';
 export {
     getElForPathIn,
     takeOrMake,
-    on,
     clone
 } from './src/objects/objects';
 
