@@ -9,6 +9,7 @@ export const clone = <O>(object: O, postProcess:
 
 // TODO do it with curry2 and reverse params method of getElForPathIn
 // put to arrays
+// write documentation
 export const to = (path: string) => (object: any) =>
     getElForPathIn(object, path);
 
