@@ -1,122 +1,126 @@
-import {equals, intersect, intersection, subtract, union, unique, unite} from '../src/arrays/sets';
-import {equalTo} from "../src/predicates";
+import {
+    equals,
+    intersect,
+    intersectBy,
+    intersection, intersectionBy,
+    subtract,
+    union,
+    unique,
+    unite,
+    uniteBy,
+    unionBy,
+} from '../src/arrays/sets';
+import {equalOn, equalTo, sameOn} from "../src/predicates";
 
 
 /**
+ * intersection
+ * intersectionBy
+ * intersect
+ * intersectBy
+ * union
+ * unionBy
+ * unite
+ * uniteBy
+ * subtract
+ * subtractBy
+ *
  * @author Daniel de Oliveira
  */
 export function main() {
 
     describe('Sets/Arrays', () => {
 
-        it('intersect',() =>
+        // intersection
 
-            expect(
-
-                intersect([1,2])([2,4])
-
-            ).toEqual([2])
-        );
-
-
-        // it('intersect - variadic',() =>
-        //
-        //     expect(
-        //
-        //         intersect([1,2],[2,5])([2,4])
-        //
-        //     ).toEqual([2])
-        // );
-
-
-        // it('intersect - spread',() =>
-        //
-        //     expect(
-        //
-        //         intersect(...[[1,2],[2,5]])([2,4])
-        //
-        //     ).toEqual([2])
-        // );
-
-
-        it('intersect',() =>
-
-            expect(
-
-                intersection([[1,2],[2,3],[2,4]])
-
-            ).toEqual([2])
-        );
+        it('intersection',() =>
+            expect(intersection([[1,2],[2,3],[2,4]]))
+                .toEqual([2]));
 
 
         it('intersect - no intersection',() =>
-
-            expect(
-
-                intersection([[1,2],[3,4],[5,6]])
-
-            ).toEqual([])
-        );
+            expect(intersection([[1,2],[3,4],[5,6]]))
+                .toEqual([]));
 
 
         it('intersect - no intersection where only partial intersection',() =>
-
-            expect(
-
-                intersection([[1,2],[2,3],[3,4]])
-
-            ).toEqual([])
-        );
+            expect(intersection([[1,2],[2,3],[3,4]]))
+                .toEqual([]));
 
 
         it('intersect - empty array',() =>
-
-            expect(
-
-                intersection([])
-
-            ).toEqual([])
-        );
+            expect(intersection([]))
+                .toEqual([]));
 
 
-        it('unite',() =>
+        // intersectionBy
 
-            expect(
-
-                unite([1, 2])([2, 4])
-
-            ).toEqual([1, 2, 4])
-        );
+        it('intersectionBy', () =>
+            expect(intersectionBy(equalTo)<any>([[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]]))
+                .toEqual([{c: 'c'}]));
 
 
-        // it('unite - variadic ',() =>
-        //
-        //     expect(
-        //
-        //         unite([1, 2], [3, 4])([2, 4])
-        //
-        //     ).toEqual([1, 2, 3, 4])
-        // );
+        // intersect
+
+        it('intersect',() =>
+            expect(intersect([1,2])([2,4]))
+                .toEqual([2]));
 
 
-        // it('unite - spread ',() =>
-        //
-        //     expect(
-        //
-        //         unite(...[[1, 2], [3, 4]])([2, 4])
-        //
-        //     ).toEqual([1, 2, 3, 4])
-        // );
+        it('intersect - variadic',() =>
+            expect(intersect([1,2],[2,5])([2,4]))
+                .toEqual([2]));
 
+
+        it('intersect - spread',() =>
+
+            expect(intersect(...[[1,2],[2,5]])([2,4]))
+                .toEqual([2]));
+
+
+        // intersectBy
+
+        it('intersectBy', () =>
+            expect(intersectBy(equalTo)<any>([{a: 'a'}, {c: 'c'}])([{c: 'c'}, {d: 'd'}]))
+                .toEqual([{c: 'c'}]));
+
+
+        // union
 
         it('union ',() =>
+            expect(union([[1, 2],[3, 4],[2, 4]]))
+                .toEqual([1, 2, 3, 4]));
 
-            expect(
 
-                union([[1, 2],[3, 4],[2, 4]])
+        // unionBy
 
-            ).toEqual([1, 2, 3, 4])
-        );
+        it('unionBy', () =>
+            expect(unionBy(equalTo)<any>([[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]]))
+                .toEqual([{a: 'a'}, {c: 'c'}, {d: 'd'}]));
+
+
+        // unite
+
+        it('unite',() =>
+            expect(unite([1, 2])([2, 4]))
+                .toEqual([1, 2, 4]));
+
+
+        it('unite - variadic ',() =>
+            expect(unite([1, 2], [3, 4])([2, 4]))
+                .toEqual([1, 2, 3, 4]));
+
+
+        it('unite - spread ',() =>
+            expect(unite(...[[1, 2], [3, 4]])([2, 4]))
+                .toEqual([1, 2, 3, 4]));
+
+        // uniteBy
+
+        it('uniteBy', () =>
+            expect(uniteBy(equalTo)<any>([{a: 'a'}, {c: 'c'}])([{c: 'c'}, {d: 'd'}]))
+                    .toEqual([{a: 'a'}, {c: 'c'}, {d: 'd'}]));
+
 
 
         it('subtract', () =>
@@ -195,38 +199,6 @@ export function main() {
         });
 
 
-        it('intersection - comparator', () => {
-
-            expect(
-                intersection<any>([[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]], equalTo)
-            ).toEqual([{c: 'c'}])
-        });
-
-
-        it('intersect - comparator', () => {
-
-            expect(
-                intersect<any>([{a: 'a'}, {c: 'c'}], equalTo)([{c: 'c'}, {d: 'd'}])
-            ).toEqual([{c: 'c'}])
-        });
-
-
-        it('union - comparator', () => {
-
-            expect(
-                union<any>([[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]], equalTo)
-            ).toEqual([{a: 'a'}, {c: 'c'}, {d: 'd'}])
-        });
-
-
-        it('unite - comparator', () => {
-
-            expect(
-                unite<any>([{a: 'a'}, {c: 'c'}], equalTo)([{c: 'c'}, {d: 'd'}])
-            ).toEqual([{a: 'a'}, {c: 'c'}, {d: 'd'}])
-        });
-
-
         it('equals - comparator', () => {
 
             expect(
@@ -293,5 +265,27 @@ export function main() {
 
             ).toEqual([{a: 1}, {a: 2}])
         );*/
+
+
+        // TODO replace it by a unit test for equalOn
+        it('intersect with equalOn',() =>
+
+            expect(
+
+                intersectBy(equalOn('a.b'))([{a: {b: {c: 'e'}}}, {a: {b: 'c'}}]) ([{a: {b: {c: 'e'}}}])
+
+            ).toEqual([{a: {b: {c: 'e'}}} as any])
+        );
+
+
+        // TODO replace it by a unit test for sameOn
+        it('intersect with sameOn',() =>
+
+            expect(
+
+                intersectBy(sameOn('a.b'))([{a: {b: 4}}, {a: {b: 5}}]) ([{a: {b: 5}}])
+
+            ).toEqual([{a: {b: 5}} as any])
+        );
     });
 }

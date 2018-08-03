@@ -1,4 +1,5 @@
 import {flip} from './core';
+import {getElForPathIn} from "./objects/objects";
 
 
 /**
@@ -11,6 +12,14 @@ export type ComparisonFunction = <A>(_: A) => (_: A) => boolean;
 
 export const sameAs: ComparisonFunction = <A>(l:A) =>
     (r:A) => l === r;
+
+
+export const sameOn = (path: string) =>
+    (l: any) => (r: any) => sameAs(getElForPathIn(l, path))(getElForPathIn(r, path));
+
+
+export const equalOn = (path: string) =>
+    (l: any) => (r: any) => equalTo(getElForPathIn(l, path))(getElForPathIn(r, path));
 
 
 export const equalTo: ComparisonFunction = <A>(l:A) =>
