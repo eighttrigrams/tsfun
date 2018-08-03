@@ -18,6 +18,14 @@ export const equalTo: Comparator = <A>(l:A) =>
     (r:A) => sameAs(JSON.stringify(l))(JSON.stringify(r));
 
 
+export const smallerThan: Comparator = <A>(l:A) =>
+    (r: A) => l > r;
+
+export const biggerThan: Comparator = <A>(l:A) =>
+    (r: A) => l < r;
+
+
+// TODO take care for cases where undefined === undefined
 export const onBy = (compare: Function = sameAs) => (path: string, secondPath?: string) =>
     (l: any) => (r: any) =>
         path.length === 0

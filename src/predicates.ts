@@ -14,9 +14,3 @@ export const flip = (v: boolean) => !v;
 export const even: () => Predicate<number> = () => (n: number) => n % 2 === 0;
 
 export const odd: () => Predicate<number> = () => (n: number) => isNot(even())(n);
-
-export const smallerThan: Comparator = <A>(l:A) =>
-    (r: A) => l > r;
-
-export const biggerThan: Comparator = <A>(l:A) =>
-    (r: A) => l < r;
