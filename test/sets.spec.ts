@@ -8,7 +8,7 @@ import {
     unique,
     unite,
     uniteBy,
-    unionBy, subtractBy,
+    unionBy, subtractBy, uniqueBy,
 } from '../src/arrays/sets';
 import {equalOn, equalTo, sameOn} from "../src/predicates";
 
@@ -18,10 +18,15 @@ import {equalOn, equalTo, sameOn} from "../src/predicates";
  * intersectionBy
  * intersect
  * intersectBy
+ *
  * union
  * unionBy
  * unite
  * uniteBy
+ *
+ * unique
+ * uniqueBy
+ *
  * subtract
  * subtractBy
  *
@@ -123,6 +128,25 @@ export function main() {
                     .toEqual([{a: 'a'}, {c: 'c'}, {d: 'd'}]));
 
 
+        // unique TODO implement uniqueBy
+
+        it('unique', () =>
+            expect(unique([1, 1, 7, 8, 7, 1]))
+                .toEqual([1, 7, 8]));
+
+
+        it('unique - of none', () =>
+            expect(unique([]))
+                .toEqual([]));
+
+
+        // uniqueBy
+
+        it('uniqueBy', () =>
+            expect(uniqueBy(equalTo)([{a: 'c'}, {a: 'c'}]))
+                .toEqual([{a: 'c'}]));
+
+
         // subtract
 
         it('subtract', () =>
@@ -188,33 +212,6 @@ export function main() {
                 equals([{a: 1}], [{b: 2}, {a: 1}], equalTo)
             ).toEqual(false);
         });
-
-
-
-
-
-        it('unique', () =>
-
-            expect(
-
-                unique([1, 1, 7, 8, 7, 1])
-
-            ).toEqual([1, 7, 8])
-        );
-
-
-        it('unique - of none', () =>
-
-            expect(
-
-                unique([])
-
-            ).toEqual([])
-        );
-
-
-
-
 
 
         // TODO implement

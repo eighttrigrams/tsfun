@@ -61,10 +61,15 @@ export const subtractBy =
 export const subtract = subtractBy();
 
 
-export const unique = <A>(as: Array<A>) =>
-    as.reduce((acc: Array<A>, val) =>
-             acc.includes(val) ? acc : acc.concat([val])
+export const uniqueBy = (compare: ComparisonFunction = sameAs) =>
+    <A>(as: Array<A>) =>
+        as.reduce((acc: Array<A>, val) =>
+            includedIn(acc, compare)(val)
+                ? acc : acc.concat([val])
         ,[]);
+
+
+export const unique = uniqueBy();
 
 
 /**
