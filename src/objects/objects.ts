@@ -1,4 +1,3 @@
-import {sameAs} from "../predicates";
 import {identical21} from "../core";
 
 export const mapProperties = <A, B>(f: (_: A) => B) => (keys: Array<number|string>, o: objT<A>) =>
