@@ -7,6 +7,11 @@ import {isNot, Predicate} from './predicates';
  */
 
 
+// TODO add and comparator to to things like this
+// .filter(_ => _ !== 'hasPeriod' && _!== 'hasPeriodEnd');
+// .filter(and(isNot('hasPeriod'), isNot('hasPeriodEnd'))
+
+
 export type Comparator = <A>(_: A) => Predicate<A>;
 
 
