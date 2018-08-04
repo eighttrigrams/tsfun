@@ -8,6 +8,8 @@ import {mapProperties} from './core';
 
 
 
+// TODO move both functions to src/coll.ts and make them work for both arrays and maps
+
 export function map<A, B>(f: (_: A) => B): (_: TypedMap<A>) => TypedMap<B> {
 
     return (coll: TypedMap<A>) => mapProperties(f)(Object.keys(coll), coll);
