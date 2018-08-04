@@ -169,3 +169,17 @@ combined with isNot
     .filter(onBy(equalTo)('a.b:')({d: '1'}))
 -> {a: {b: {d: '1'}}}
 ```
+
+### sameOn
+
+a standalone version of `on`
+
+```
+sameOn('a.b', {a: {b: 5}}, {a: {b: 5}})
+-> true
+```
+
+```
+sameOn('a.b', {a: {b: 5}}, {a: {c: 5}}, 'a.c')
+-> true
+```

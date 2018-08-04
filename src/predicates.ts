@@ -1,5 +1,3 @@
-import {Comparator} from './comparators';
-
 export type Predicate<A> = (_: A) => boolean;
 
 export const isNot = <A>(f: Predicate<A>) =>

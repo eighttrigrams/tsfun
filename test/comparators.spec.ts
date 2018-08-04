@@ -1,5 +1,5 @@
 import {intersectBy} from "../src/arrays/set_like";
-import {equalTo, on, onBy} from '../src/comparators';
+import {equalTo, on, onBy, sameOn} from '../src/comparators';
 import {isNot} from '../src/predicates';
 
 /**
@@ -65,5 +65,20 @@ export function main() {
             expect([{a: {b: 4}}, {a: {b: 5}}].filter(
                 isNot(on('a.b:')(5))))
                 .toEqual([{a: {b: 4}} as any]));
+
+
+        it('sameOn - same path',() =>
+            expect(sameOn('a.b', {a: {b: 5}}, {a: {b: 5}}))
+                .toEqual(true));
+
+
+        it('sameOn - different path',() =>
+            expect(sameOn('a.b', {a: {b: 5}}, {a: {c: 5}}, 'a.c'))
+                .toEqual(true));
+
+
+        it('sameOn - arrays not allowed',() =>
+            expect(sameOn('a.b', [5], [5], 'a.c'))
+                .toEqual(true));
     })
 }

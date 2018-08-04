@@ -1,5 +1,5 @@
 import {getElForPathIn} from "./objects/core";
-import {isNot} from './predicates';
+import {isNot, Predicate} from './predicates';
 
 
 /**
@@ -7,7 +7,7 @@ import {isNot} from './predicates';
  */
 
 
-export type Comparator = <A>(_: A) => (_: A) => boolean;
+export type Comparator = <A>(_: A) => Predicate<A>;
 
 
 export const sameAs: Comparator = <A>(l:A) =>
@@ -57,3 +57,8 @@ const includesBy =
     (compare: Comparator = sameAs) =>
         <A>(as: Array<A>, a: A) => // TODO make curried, add includes function, export
             as.filter(compare(a));
+
+
+
+export const sameOn = (path: string, l: object, r: object, secondPath?: string) =>
+     on(path, secondPath)(l)(r);
