@@ -19,28 +19,16 @@ import {take} from 'tsfun'
 console.log(take(2)([1,2,3]))
 ```
 
-## Features
+## Wiki
 
-Let's start with an example, which combines the different sorts of features `tsfun`
-offers:
+* [Data structures Overview](doc/structs_colls.md)
+* [Flows](doc/flow.md)
+* [Comparators](doc/preds_comps.md)
+* [Collection functions](doc/coll.md)
+* [List-like collection functions](doc/list_like.md)
+* [Set-like collection functions](doc/set_like.md)
+* [Object functions](doc/objects.md)
 
-```
-flow(
-   [1, 2, 3, 1],
-   takeWhile(isNot(includedIn([3, 4]))),
-   dropRight(1))
-   .map((x: number) => x * 2)
-   .includes(2)
-    
--> true
-```
-
-First of all we have the (combined) 
-[predicate](https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/doc/combs_preds.md) 
-`isNot(includedIn(x))`. Then we have
-[collection manipulating functions](https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/doc/coll.md) 
-like `takeWhile` and `dropRight`. 
-Last but not least, we have [flow](https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/doc/flow.md),
 
 
 
