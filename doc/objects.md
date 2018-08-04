@@ -100,6 +100,12 @@ combined with isNot
 -> {a: {b: {d: '1'}}}
 ```
 
+```
+{a: 2}, {b: 4}, {b: 1}, {a: 1}, {c: 5}]
+    .find(onBy(smallerThan)('a:')(2))
+-> {a: 1}
+```
+
 ### sameOn
 
 a standalone version of `on`
