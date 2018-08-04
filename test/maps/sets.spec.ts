@@ -1,7 +1,7 @@
 /**
  * @author Daniel de Oliveira
  */
-import {subtract, unite, intersect, union} from '../../src/maps/sets';
+import {subtract, unite, intersect, unionMap} from '../../src/maps/set_like';
 
 
 export function main() {
@@ -136,7 +136,7 @@ export function main() {
 
             expect(
 
-                union([{3: 4}, {4: 4}, {1: 2}])
+                unionMap([{3: 4}, {4: 4}, {1: 2}])
 
             ).toEqual({1: 2, 3: 4, 4: 4})
         );
@@ -146,7 +146,7 @@ export function main() {
 
             expect(
 
-                union([{3: 4}])
+                unionMap([{3: 4}])
 
             ).toEqual({3: 4})
         );
@@ -156,7 +156,7 @@ export function main() {
 
             expect(
 
-                union([])
+                unionMap([])
 
             ).toEqual({})
         );

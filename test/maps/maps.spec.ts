@@ -1,4 +1,4 @@
-import {getElForPathIn, takeOrMake} from "../../src/objects/objects";
+import {getElForPathIn, takeOrMake} from "../../src/objects/core";
 import {map, filter} from "../../src/maps/coll";
 
 /**

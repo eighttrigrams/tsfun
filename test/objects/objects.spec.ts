@@ -1,4 +1,4 @@
-import {getElForPathIn, takeOrMake, to} from "../../src/objects/objects";
+import {getElForPathIn, takeOrMake, to} from "../../src/objects/core";
 
 /**
  * @author Daniel de Oliveira

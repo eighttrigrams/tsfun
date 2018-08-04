@@ -3,7 +3,7 @@
 /**
  * @author Daniel de Oliveira
  */
-import {flatMap, mapTo} from "../../src/arrays/coll";
+import {flatMap, mapTo} from "../../src/arrays/list_like";
 
 export function main() {
 

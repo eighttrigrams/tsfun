@@ -1,9 +1,9 @@
 import {flow, flowP} from '../src/flow';
-import {reverse} from '../src/arrays/coll';
-import {take, takeWhile} from '../src/arrays/take';
-import {dropWhile} from '../src/arrays/drop';
+import {reverse} from '../src/arrays/list_like';
+import {take, takeWhile} from '../src/arrays/list_like_take';
+import {dropWhile} from '../src/arrays/list_like_drop';
 import {biggerThan, smallerThan} from '../src/comparators';
-import {unite} from '../src/maps/sets';
+import {unite} from '../src/maps/set_like';
 
 
 /**

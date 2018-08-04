@@ -1,4 +1,4 @@
-import {getElForPathIn} from "./objects/objects";
+import {getElForPathIn} from "./objects/core";
 import {isNot} from './predicates';
 
 

@@ -1,10 +1,11 @@
-import {TypedMap} from './maps';
-import {mapProperties} from './maps';
+import {TypedMap} from './core';
+import {mapProperties} from './core';
 
 
 /**
  * @author Daniel de Oliveira
  */
+
 
 
 export function map<A, B>(f: (_: A) => B): (_: TypedMap<A>) => TypedMap<B> {

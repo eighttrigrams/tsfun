@@ -1,4 +1,4 @@
-import {intersectBy} from "../src/arrays/sets";
+import {intersectBy} from "../src/arrays/set_like";
 import {equalTo, on, onBy} from '../src/comparators';
 import {isNot} from '../src/predicates';
 

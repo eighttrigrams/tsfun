@@ -1,7 +1,7 @@
 /**
  * @author Daniel de Oliveira
  */
-import {to} from '../objects/objects';
+import {to} from '../objects/core';
 import {isDefined} from '../predicates';
 
 

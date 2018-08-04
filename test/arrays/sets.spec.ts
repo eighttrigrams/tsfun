@@ -9,7 +9,7 @@ import {
     unite,
     uniteBy,
     unionBy, subtractBy, uniqueBy,
-} from '../../src/arrays/sets';
+} from '../../src/arrays/set_like';
 import {equalTo} from "../../src/comparators";
 
 

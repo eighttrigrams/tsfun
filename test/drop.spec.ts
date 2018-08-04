@@ -1,4 +1,4 @@
-import {drop, dropWhile, dropRight, dropRightWhile} from '../src/arrays/drop';
+import {drop, dropWhile, dropRight, dropRightWhile} from '../src/arrays/list_like_drop';
 import {smallerThan, biggerThan} from '../src/comparators';
 
 

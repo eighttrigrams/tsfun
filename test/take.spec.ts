@@ -1,6 +1,6 @@
 import {
     take, takeRightWhile, takeUntil, takeWhile, takeNth
-} from '../src/arrays/take';
+} from '../src/arrays/list_like_take';
 import {smallerThan, biggerThan} from '../src/comparators';
 
 

@@ -2,7 +2,13 @@
 
 These methods treat arrays as ordered lists
 
-## General methods
+
+### mapTo
+
+```
+mapTo('a.c')([{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}])
+-> [{d: 'e'}]
+```
 
 ### flatMap
 

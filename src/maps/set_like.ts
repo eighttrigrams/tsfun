@@ -1,10 +1,10 @@
 /**
  * @author Daniel de Oliveira
  */
-import {intersect as intersectA} from "../arrays/sets";
-import {subtract as subtractA} from "../arrays/sets";
+import {intersect as intersectA} from "../arrays/set_like";
+import {subtract as subtractA} from "../arrays/set_like";
 import {identical} from "../core";
-import {mapProperties, UntypedMap} from './maps';
+import {mapProperties, TypedMap, UntypedMap} from './core';
 
 export const subtract = (subtrahend: Array<string | number> | any) =>
     (o: UntypedMap): UntypedMap => {
@@ -25,7 +25,7 @@ export const subtract = (subtrahend: Array<string | number> | any) =>
     };
 
 
-export function union([first, ...rest]: UntypedMap[]): UntypedMap {
+export function unionMap([first, ...rest]: UntypedMap[]): UntypedMap {
 
     return first && rest.length > 0
         ? unite(...rest)(first)

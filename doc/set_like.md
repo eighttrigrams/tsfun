@@ -140,3 +140,17 @@ subtractMap({1: 7})({1: 3, 2: 4})
 unionMap([{1: 4}, {2: 4}])
 -> {1: 4, 2: 4}
 ```
+
+### mapMap
+
+```
+map((x: number) => x * 2)({a: 1, b: 2})
+-> {a: 2, b: 4}
+```
+
+### filterMap
+
+```
+filterMap((x: number) => x > 1)({a: 1, b: 2})
+-> {b: 2}
+```
