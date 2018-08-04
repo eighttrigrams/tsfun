@@ -1,10 +1,28 @@
 # Objects
 
-### getElForPathIn
-
 ### takeOrMake
 
+makes
+
+```
+const obj: any = { }
+takeOrMake(obj, 'a.b.c', [])
+obj['a']['b']['c'] === []
+-> true
+```
+
+takes
+
+```
+takeOrMake({a:{ b: { c: 'a'}}}, 'a.b.c', [])
+-> 'a'
+```
+
 ### clone
+
+```
+const b = clone(a)
+```
 
 ### to
 
@@ -21,3 +39,7 @@ combined with map and filter
     .filter(isDefined)
 -> [{d: 'e'}]
 ```
+
+### getElForPathIn
+
+...
