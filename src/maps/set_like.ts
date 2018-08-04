@@ -6,7 +6,7 @@ import {subtract as subtractA} from "../arrays/set_like";
 import {identical} from "../core";
 import {mapProperties, TypedMap, UntypedMap} from './core';
 
-export const subtract = (subtrahend: Array<string | number> | any) =>
+export const subtractMap = (subtrahend: Array<string | number> | any) =>
     (o: UntypedMap): UntypedMap => {
 
         if (Array.isArray(o)) throw new TypeError('invalid argument');
@@ -28,14 +28,14 @@ export const subtract = (subtrahend: Array<string | number> | any) =>
 export function unionMap([first, ...rest]: UntypedMap[]): UntypedMap {
 
     return first && rest.length > 0
-        ? unite(...rest)(first)
+        ? uniteMap(...rest)(first)
         : first
             ? first
             : {};
 }
 
 
-export const unite = (...addends: UntypedMap[]) =>
+export const uniteMap = (...addends: UntypedMap[]) =>
     (o: UntypedMap): UntypedMap => {
 
         if (Array.isArray(o)) throw new TypeError('invalid argument');
@@ -46,7 +46,7 @@ export const unite = (...addends: UntypedMap[]) =>
     };
 
 
-export const intersect = (o1: any) =>
+export const intersectMap = (o1: any) =>
     (o2: UntypedMap): UntypedMap => {
 
         if (Array.isArray(o2)) throw new TypeError('invalid argument');
@@ -62,3 +62,5 @@ export const intersect = (o1: any) =>
             (!Array.isArray(o1) ? o1 : o2)
         );
     };
+
+

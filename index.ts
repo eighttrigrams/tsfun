@@ -23,15 +23,18 @@ export {
 } from './src/arrays/set_like';
 
 export {
-    subtract as subtractMap,
-    intersect as intersectMap,
-    unite as uniteMap,
+    subtractMap,
+    intersectMap,
+    uniteMap
 } from './src/maps/set_like'
+export {
+    mapMap,
+    filterMap,
+} from './src/maps/list_like'
 
 
 export {copy, isEmpty} from './src/coll';
 export {doWhen} from './src/core';
-export {map, filter} from './src/maps/coll';
 
 export {
     getElForPathIn,

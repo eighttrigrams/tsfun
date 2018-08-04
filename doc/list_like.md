@@ -2,6 +2,7 @@
 
 These methods treat arrays as ordered lists
 
+## Arrays
 
 ### mapTo
 
@@ -92,5 +93,19 @@ dropRightWhile(biggerThan(2))([1, 2, 3])
 ```
 
 
+## Maps
 
+### mapMap
+
+```
+mapMap((x: number) => x * 2)({a: 1, b: 2})
+-> {a: 2, b: 4}
+```
+
+### filterMap
+
+```
+filterMap((x: number) => x > 1)({a: 1, b: 2})
+-> {b: 2}
+```
 

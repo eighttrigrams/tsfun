@@ -19,16 +19,4 @@ copy({a: 1, 2: 5})
 
 ## Maps as collections
 
-### map
 
-```
-map((x: number) => x * 2)({a: 1, b: 2})
--> {a: 2, b: 4}
-```
-
-### filter
-
-```
-filter((x: number) => x > 1)({a: 1, b: 2})
--> {b: 2}
-```

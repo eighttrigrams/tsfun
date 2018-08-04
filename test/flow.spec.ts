@@ -3,7 +3,7 @@ import {reverse} from '../src/arrays/list_like';
 import {take, takeWhile} from '../src/arrays/list_like_take';
 import {dropWhile} from '../src/arrays/list_like_drop';
 import {biggerThan, smallerThan} from '../src/comparators';
-import {unite} from '../src/maps/set_like';
+import {uniteMap} from '../src/maps/set_like';
 
 
 /**
@@ -70,7 +70,7 @@ export function main() {
             expect(
                 flow(
                     {a: 1, b: 2},
-                    unite({c: 3})))
+                    uniteMap({c: 3})))
                 .toEqual({a: 1, b: 2, c: 3}));
     });
 }
