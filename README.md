@@ -1,6 +1,6 @@
 # tsfun
 
-**Combinator Library for TypeScript**
+**Functional Combinator Library for TypeScript**
 
 [tsfun on npmjs](https://www.npmjs.com/package/tsfun)
 
