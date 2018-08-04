@@ -13,6 +13,10 @@ copy({a: 1, 2: 5})
 -> {a: 1, 2: 5}
 ```
 
+### isEmpty
+
+
+
 ## Maps as collections
 
 ### map
