@@ -41,7 +41,7 @@ export {
     takeOrMake,
     clone,
     to,
-    filterObject
+    option
 } from './src/objects/core';
 
 /**

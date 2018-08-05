@@ -40,5 +40,5 @@ export function takeOrMake(object: Object, path: string, val: any) {
 }
 
 
-export const filterObject = <A>(f: (_: A) => boolean) =>
+export const option = <A>(f: (_: A) => boolean) =>
     (a: A) => f(a) ? a : {};
