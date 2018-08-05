@@ -76,68 +76,6 @@ filterMap((x: number) => x > 1)({a: 1, b: 2})
 
 ## Arrays - Picking methods
 
-Currently the implementations for the following **take** and **drop** methods are provided
+See [Picking methods](./list_like_pick.md)
 
-### take
-
-```
-take(5)([1, 2])
--> [1]
-```
-
-### takeWhile
-
-```
-takeWhile(smallerThan(3))([1, 2, 3, 1])
--> [1, 2]
-```
-
-### takeRightWhile
-
-```
-takeRightWhile(smallerThan(3))([1, 2, 3, 1])
--> [1]
-```
-
-### takeUntil
-
-```
-takeUntil(biggerThan(2))([1, 2, 3, 1])
--> [1, 2, 3]
-```
-
-### takeNth
-
-```
-takeNth(2)([1, 2, 3, 7])
--> [1, 3]
-```
-
-### drop
-
-```
-drop(1)([1, 3])
--> [3]
-```
-
-### dropRight
-
-```
-dropRight(1)([1, 3])
--> [1]
-```
-
-### dropWhile
-
-```
-dropWhile(smallerThan(2))([1, 2, 3, 1])
--> [2, 3, 1]
-```
-
-### dropRightWhile
-
-```
-dropRightWhile(biggerThan(2))([1, 2, 3])
--> [1, 2]
-```
 
