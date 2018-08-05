@@ -118,3 +118,61 @@ includedIn([1, 2])(1)
 ```
 
 ### includedInBy
+
+### on
+
+compares elements on path directly with a certain value
+
+```
+[{a: {b: 'c'}}, {a: {b: 'd'}}]
+    .filter(on('a.b:')('c')))
+-> [{a: {b: 'c'}}]                              
+```
+
+compares on the samePath
+
+```
+
+[{a: {b: 'c'}}, {a: {b: 'd'}}]
+    .filter(on('a.b')({a: {b: 'c'}})))          
+-> [{a: {b: 'c'}}]
+```
+
+compares elements on different paths 
+
+```
+
+[{a: {b: '1'}}, {c: {d: '1'}}]                  
+    .filter(on('a.b', 'c.d')({c: {d: '1'}})
+-> [{a: {b: 1}}]
+```
+
+usage with find
+
+```
+{a: {b: {d: '1'}}}, {a: {b: {d: '2'}}}]
+    .find(on('a.b.d:')('1'))
+-> {a: {b: {d: '1'}}}
+```
+
+combined with isNot
+
+```
+[{a: {b: {d: '1'}}}, {a: {b: {d: '2'}}}]
+    .find(isNot(on('a.b.d:')('1')))
+-> {a: {b: {d: '2'}}}
+```
+
+### onBy
+
+```
+[{a: {b: {d: '1'}}}, {a: {b: {d: '2'}}}]
+    .filter(onBy(equalTo)('a.b:')({d: '1'}))
+-> {a: {b: {d: '1'}}}
+```
+
+```
+{a: 2}, {b: 4}, {b: 1}, {a: 1}, {c: 5}]
+    .find(onBy(smallerThan)('a:')(2))
+-> {a: 1}
+```
