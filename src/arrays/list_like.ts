@@ -25,3 +25,5 @@ export const mapTo = (path: string, as: any[]) =>
     as
         .map(to(path))
         .filter(isDefined);
+
+// TODO implement filter
