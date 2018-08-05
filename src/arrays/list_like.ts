@@ -17,7 +17,7 @@ export const flatMap = <A>(f: (_: A) => Array<A>) => (as: Array<A>): Array<A> =>
 export const mapTo = (path: string) => (as: any[]) =>
     as
         .map(to(path))
-        .filter(isDefined); // TODO make defined predicate
+        .filter(isDefined);
 
 
 // TODO make map function which is type overloaded with map function in maps
