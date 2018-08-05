@@ -7,10 +7,9 @@ export const clone = <O>(object: O, postProcess:
     (postProcess)(object, JSON.parse(JSON.stringify(object))) as O;
 
 
-// put to arrays
-// write documentation
-// TODO check if types work in flow
-// TODO check that type works as a standalone transformation in flow
+// TODO write documentation
+// check if types work in flow
+// check that type works as a standalone transformation in flow
 export const to = reverseUncurry2(getElForPathIn);
 
 
