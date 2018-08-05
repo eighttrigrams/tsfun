@@ -1,4 +1,4 @@
-# Objects collection functions
+# Object functions
 
 ### takeOrMake
 
