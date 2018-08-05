@@ -40,7 +40,9 @@ export {
     getElForPathIn,
     takeOrMake,
     clone,
-    to
+    to,
+    mapObject,
+    filterObject
 } from './src/objects/core';
 
 /**

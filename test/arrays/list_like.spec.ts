@@ -1,7 +1,7 @@
 import {filter, flatMap, map, mapTo} from "../../src/arrays/list_like";
 import {flow} from "../../src/flow";
 import {to} from "../../src/objects/core";
-import {smallerThan} from "../../src/comparators";
+import {on, smallerThan} from "../../src/comparators";
 
 
 /**

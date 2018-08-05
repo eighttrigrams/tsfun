@@ -1,4 +1,7 @@
-import {getElForPathIn, takeOrMake, to} from "../../src/objects/core";
+import {filterObject, getElForPathIn, mapObject, takeOrMake, to} from "../../src/objects/core";
+import {equalTo, on, sameAs, sameOn} from "../../src/comparators";
+import {flow} from "../../src/flow";
+import {isEmpty} from "../../src/coll";
 
 /**
  * @author Daniel de Oliveira
@@ -40,5 +43,30 @@ export function main() {
         it('takeOrMake takes', () =>
             expect(takeOrMake({a:{ b: { c: 'a'}}}, 'a.b.c', []))
                 .toEqual('a'));
+
+
+        it('mapObject filterObject equalTo', () =>
+            expect(flow<any>({a:{b:{c: 4}}},
+                    mapObject(to('a.b')),
+                    filterObject(on('c:')(4)),
+                    equalTo({c: 4})))
+                .toEqual(true));
+
+
+        it('mapObject filterObject sameAs', () =>
+            expect(flow<any>({a:{b:{c: 4}}},
+                mapObject(to('a.b')),
+                filterObject(on('c:')(5)),
+                mapObject(to('c')),
+                sameAs(4)))
+                .toEqual(false));
+
+
+        it('mapObject filterObject isEmpty', () =>
+            expect(flow<any>({a:{b:{c: 4}}},
+                    mapObject(to('a.b')),
+                    filterObject(on('c:')(5)),
+                    isEmpty))
+                .toEqual(true));
     });
 }

@@ -1,4 +1,6 @@
 import {identical21, reverseUncurry2} from "../core";
+import {on} from "../comparators";
+import {flow} from "../flow";
 
 
 export const clone = <O>(object: O, postProcess:
@@ -38,3 +40,11 @@ export function takeOrMake(object: Object, path: string, val: any) {
     }
     return last[lastSegment] = val;
 }
+
+
+export const mapObject = <A>(f: (_: A) => A) =>
+    (a: A): A => f(a);
+
+
+export const filterObject = <A>(f: (_: A) => boolean) =>
+    (a: A) => f(a) ? a : {};

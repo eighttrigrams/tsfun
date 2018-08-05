@@ -44,6 +44,13 @@ combined with map and filter
 
 ...
 
+### mapObject
+
+...
+
+### filterObject
+
+...
 
 ### Comparators
 
