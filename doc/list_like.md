@@ -58,7 +58,23 @@ reverse([4, 1])
 -> [1, 4]
 ```
 
-## Picking methods
+## Maps
+
+### mapMap
+
+```
+mapMap((x: number) => x * 2)({a: 1, b: 2})
+-> {a: 2, b: 4}
+```
+
+### filterMap
+
+```
+filterMap((x: number) => x > 1)({a: 1, b: 2})
+-> {b: 2}
+```
+
+## Arrays - Picking methods
 
 Currently the implementations for the following **take** and **drop** methods are provided
 
@@ -123,22 +139,5 @@ dropWhile(smallerThan(2))([1, 2, 3, 1])
 ```
 dropRightWhile(biggerThan(2))([1, 2, 3])
 -> [1, 2]
-```
-
-
-## Maps
-
-### mapMap
-
-```
-mapMap((x: number) => x * 2)({a: 1, b: 2})
--> {a: 2, b: 4}
-```
-
-### filterMap
-
-```
-filterMap((x: number) => x > 1)({a: 1, b: 2})
--> {b: 2}
 ```
 
