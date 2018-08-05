@@ -1,4 +1,4 @@
-import {identical21} from "../core";
+import {identical21, reverseUncurry2} from "../core";
 
 
 export const clone = <O>(object: O, postProcess:
@@ -7,14 +7,11 @@ export const clone = <O>(object: O, postProcess:
     (postProcess)(object, JSON.parse(JSON.stringify(object))) as O;
 
 
-// TODO do it with curry2 and reverse params method of getElForPathIn
 // put to arrays
 // write documentation
-
 // TODO check if types work in flow
 // TODO check that type works as a standalone transformation in flow
-export const to = (path: string) => (object: any) =>
-    getElForPathIn(object, path);
+export const to = reverseUncurry2(getElForPathIn);
 
 
 export function getElForPathIn(object: any, path: string) {
