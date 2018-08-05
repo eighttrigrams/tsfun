@@ -44,7 +44,7 @@ combined with map and filter
 
 ...
 
-### filterObject
+### option
 
 ...
 
