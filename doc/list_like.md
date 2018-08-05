@@ -17,6 +17,17 @@ flow([{a: 1}, {a: 3}],
 
 See also [flow](./flow.md) and [to](objects.md).
 
+### filter
+
+Takes a Predicate<A> and returns a transformation that
+maps from Array\<A> to Array\<A>
+
+```
+flow([2, 4, 3],
+    filter(smallerThan(4)))
+-> [2, 3]
+```
+
 ### mapTo
 
 A standalone combination of map and to which also filters 

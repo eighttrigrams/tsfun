@@ -1,6 +1,7 @@
-import {flatMap, map, mapTo} from "../../src/arrays/list_like";
+import {filter, flatMap, map, mapTo} from "../../src/arrays/list_like";
 import {flow} from "../../src/flow";
 import {to} from "../../src/objects/core";
+import {smallerThan} from "../../src/comparators";
 
 
 /**
@@ -24,6 +25,12 @@ export function main() {
             expect(flow([{a: 1}, {a: 3}],
                     map(to('a'))))
                 .toEqual([1, 3]));
+
+
+        it('filter', () =>
+            expect(flow([2, 4, 3],
+                    filter(smallerThan(4))))
+                .toEqual([2, 3]));
 
 
         it('flatMap', () =>
