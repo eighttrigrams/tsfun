@@ -1,5 +1,5 @@
-import {option, getElForPathIn, takeOrMake, to, mapOption} from "../../src/objects/core";
-import {equalTo, on, sameAs, sameOn} from "../../src/comparators";
+import {getElForPathIn, mapOption, option, takeOrMake, to} from "../../src/objects/core";
+import {equalTo, on, sameAs} from "../../src/comparators";
 import {flow} from "../../src/flow";
 import {isEmpty} from "../../src/coll";
 
