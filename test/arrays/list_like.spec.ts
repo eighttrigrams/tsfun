@@ -10,7 +10,7 @@ export function main() {
     describe('Arrays/Collection', () => {
 
         it('mapTo', () =>
-            expect(mapTo('a.c')([{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}]))
+            expect(mapTo('a.c', [{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}]))
                 .toEqual([{d: 'e'}]));
 
 

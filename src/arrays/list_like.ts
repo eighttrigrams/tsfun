@@ -14,7 +14,7 @@ export const flatMap = <A>(f: (_: A) => Array<A>) => (as: Array<A>): Array<A> =>
         : as.reduce((acc, val: A) => acc.concat(f(val) as any),[]);
 
 
-export const mapTo = (path: string) => (as: any[]) =>
+export const mapTo = (path: string, as: any[]) =>
     as
         .map(to(path))
         .filter(isDefined);
