@@ -1,4 +1,4 @@
-import {filterObject, getElForPathIn, mapObject, takeOrMake, to} from "../../src/objects/core";
+import {filterObject, getElForPathIn, takeOrMake, to} from "../../src/objects/core";
 import {equalTo, on, sameAs, sameOn} from "../../src/comparators";
 import {flow} from "../../src/flow";
 import {isEmpty} from "../../src/coll";
@@ -45,26 +45,26 @@ export function main() {
                 .toEqual('a'));
 
 
-        it('mapObject filterObject equalTo', () =>
+        it('flow to filterObject equalTo', () =>
             expect(flow<any>({a:{b:{c: 4}}},
-                    mapObject(to('a.b')),
+                    to('a.b'),
                     filterObject(on('c:')(4)),
                     equalTo({c: 4})))
                 .toEqual(true));
 
 
-        it('mapObject filterObject sameAs', () =>
+        it('flow to filterObject sameAs', () =>
             expect(flow<any>({a:{b:{c: 4}}},
-                mapObject(to('a.b')),
+                to('a.b'),
                 filterObject(on('c:')(5)),
-                mapObject(to('c')),
+                to('c'),
                 sameAs(4)))
                 .toEqual(false));
 
 
-        it('mapObject filterObject isEmpty', () =>
+        it('flow to filterObject isEmpty', () =>
             expect(flow<any>({a:{b:{c: 4}}},
-                    mapObject(to('a.b')),
+                    to('a.b'),
                     filterObject(on('c:')(5)),
                     isEmpty))
                 .toEqual(true));

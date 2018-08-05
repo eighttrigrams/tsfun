@@ -40,9 +40,5 @@ export function takeOrMake(object: Object, path: string, val: any) {
 }
 
 
-export const mapObject = <A>(f: (_: A) => A) =>
-    (a: A): A => f(a);
-
-
 export const filterObject = <A>(f: (_: A) => boolean) =>
     (a: A) => f(a) ? a : {};
