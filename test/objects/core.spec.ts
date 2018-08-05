@@ -45,7 +45,7 @@ export function main() {
                 .toEqual('a'));
 
 
-        it('flow to option on equalTo', () =>
+        it('option', () =>
             expect(flow<any>({a:{b:{c: 4}}},
                     to('a.b'),
                     option(on('c:')(4)),
@@ -53,18 +53,16 @@ export function main() {
                 .toEqual(true));
 
 
-        it('flow to option on sameAs', () =>
+        it('to after failing option', () =>
             expect(flow<any>({a:{b:{c: 4}}},
-                to('a.b'),
-                option(on('c:')(5)),
+                option(on('a.b.c:')(5)),
                 to('c'),
                 sameAs(4)))
                 .toEqual(false));
 
 
-        it('flow to option on isEmpty', () =>
+        it('option isEmpty', () =>
             expect(flow<any>({a:{b:{c: 4}}},
-                    to('a.b'),
                     option(on('c:')(5)),
                     isEmpty))
                 .toEqual(true));
