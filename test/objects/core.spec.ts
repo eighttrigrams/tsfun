@@ -1,4 +1,4 @@
-import {option, getElForPathIn, takeOrMake, to} from "../../src/objects/core";
+import {option, getElForPathIn, takeOrMake, to, mapOption} from "../../src/objects/core";
 import {equalTo, on, sameAs, sameOn} from "../../src/comparators";
 import {flow} from "../../src/flow";
 import {isEmpty} from "../../src/coll";
@@ -66,5 +66,19 @@ export function main() {
                     option(on('c:')(5)),
                     isEmpty))
                 .toEqual(true));
-    });
+
+
+        it('mapOption', () =>
+            expect(flow<any>({a:{b:4}},
+                option(on('a.b:')(4)),
+                mapOption(to('a.b'))))
+                .toEqual(4));
+
+
+        it('mapOption on empty option', () =>
+            expect(flow<any>({a:{b:4}},
+                option(on('a.b:')(5)),
+                mapOption((_: any) => _ + 2)))
+                .toEqual({}));
+    })
 }

@@ -48,6 +48,8 @@ combined with map and filter
 
 ...
 
+### mapOption
+
 ### Comparators
 
 See section [comparators](./preds_comps.md)

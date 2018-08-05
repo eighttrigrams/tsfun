@@ -1,4 +1,5 @@
 import {identical21, reverseUncurry2} from "../core";
+import {isEmpty} from "../coll";
 
 
 export const clone = <O>(object: O, postProcess:
@@ -42,3 +43,7 @@ export function takeOrMake(object: Object, path: string, val: any) {
 
 export const option = <A>(f: (_: A) => boolean) =>
     (a: A) => f(a) ? a : {};
+
+
+export const mapOption = <A>(f: (a: A) => A) =>
+    (a: A) => isEmpty(a) ? {} : f(a);
