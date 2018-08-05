@@ -1,6 +1,4 @@
 import {identical21, reverseUncurry2} from "../core";
-import {on} from "../comparators";
-import {flow} from "../flow";
 
 
 export const clone = <O>(object: O, postProcess:
