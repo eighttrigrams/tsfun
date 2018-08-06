@@ -76,18 +76,18 @@ export const onBy = (compare: Function = tripleEqual) => (path: string) =>
 export const on = onBy();
 
 
-export const includedInBy = (compare: Comparator = tripleEqual) => <A>(as: Array<A>, ) =>
+export const includedInBy = (compare: Comparator) => <A>(as: Array<A>, ) =>
     (a: A): boolean => includesBy(compare)(as, a).length > 0;
 
 
-export const includedIn =  includedInBy();
+export const includedIn =  includedInBy(tripleEqual);
 
 
-export const differentFromBy = (compare: Comparator = tripleEqual) => <A>(a:A) =>
+export const differentFromBy = (compare: Comparator) => <A>(a:A) =>
     isNot(compare(a)); // TODO unit test compare
 
 
-export const differentFrom = differentFromBy();
+export const differentFrom = differentFromBy(tripleEqual);
 
 
 const includesBy =
