@@ -43,7 +43,8 @@ export const arrayEquivalent: Comparator = arrayEquivalentBy(sameAs);
 
 
 /**
- *
+ * TODO add recursive version
+ * document the order issue as part of objects explanation in structs_colls.md
  */
 export const objectEquivalent: Comparator = (o1: object) =>
     (o2: object) =>
