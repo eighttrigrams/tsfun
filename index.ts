@@ -1,4 +1,7 @@
 export {
+    arrayEquivalent,
+    arrayEquivalentBy,
+    objectEquivalent,
     sameAs,
     includedIn,
     differentFrom,
@@ -8,9 +11,7 @@ export {
     on,
     biggerThan,
     smallerThan,
-    sameOn,
-    arrayEquivalent,
-    objectEquivalent,
+    sameOn
 } from './src/comparators';
 export {isNot, even, odd, isDefined, isUndefined} from './src/predicates'
 export {take, takeRightWhile, takeUntil, takeWhile, takeNth} from './src/arrays/list_like_take';
