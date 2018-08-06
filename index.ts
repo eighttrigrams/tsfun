@@ -1,5 +1,18 @@
-export {sameAs, includedIn, differentFrom, differentFromBy, equalTo,
-    onBy, on, biggerThan, smallerThan, sameOn, arrayEquivalent, objectEquivalent} from './src/comparators';
+export {
+    sameAs,
+    includedIn,
+    differentFrom,
+    differentFromBy,
+    equalTo,
+    onBy,
+    on,
+    biggerThan,
+    smallerThan,
+    sameOn,
+    arrayEquivalent,
+    objectEquivalent,
+    equivalent
+} from './src/comparators';
 export {isNot, even, odd, isDefined, isUndefined} from './src/predicates'
 export {take, takeRightWhile, takeUntil, takeWhile, takeNth} from './src/arrays/list_like_take';
 export {dropWhile, drop, dropRight, dropRightWhile} from './src/arrays/list_like_drop';

@@ -87,6 +87,9 @@ const _intersectBy = (compare: Comparator = sameAs) => <A>(as1: Array<A>) =>
 
 
 /**
+ * TODO get rid of this, replace by a configurable version (order sensitive or not)
+ * of arrayEquivalent.
+ *
  * @author Thomas Kleinke
  * @author Daniel de Oliveira
  */
