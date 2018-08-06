@@ -32,6 +32,7 @@ export {
     uniteBy,
     unique,
     uniqueBy,
+    duplicates
 } from './src/arrays/set_like';
 
 export {

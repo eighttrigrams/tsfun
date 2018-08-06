@@ -14,7 +14,6 @@ the arguments is kept.
 into the body of a `flow`. `intersection` and `union` take a `NestedArray<A>` as
 their argument, so they can be used to begin a `flow` with.
 
-
 ### intersection
 
 ```
@@ -90,6 +89,10 @@ unique([1, 1, 7, 8, 7, 1])
 uniqueBy(equalTo)([{a: 'c'}, {a: 'c'}])
 -> [{a: 'c'}]
 ```
+
+### duplicates
+
+...
 
 ### subtract
 

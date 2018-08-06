@@ -73,6 +73,27 @@ export const uniqueBy = (compare: Comparator = tripleEqual) =>
 export const unique = uniqueBy();
 
 
+// TODO add test
+/**
+ * @author Thomas Kleinke
+ */
+export function duplicates<A>(array: Array<A>): Array<A> {
+
+    const temp: any[] = [];
+    const result: any[] = [];
+
+    for (let value of array) {
+        if (temp.indexOf(value) > -1 && result.indexOf(value) == -1) {
+            result.push(value);
+        } else {
+            temp.push(value);
+        }
+    }
+
+    return result;
+}
+
+
 /**
  * @returns the union of a1 and a2
  */

@@ -26,6 +26,8 @@ import {jsonEqual} from "../../src/comparators";
  * unique
  * uniqueBy
  *
+ * duplicates
+ *
  * subtract
  * subtractBy
  *
@@ -153,6 +155,9 @@ export function main() {
         it('uniqueBy', () =>
             expect(uniqueBy(jsonEqual)([{a: 'c'}, {a: 'c'}]))
                 .toEqual([{a: 'c'}]));
+
+
+        // TODO duplicates
 
 
         // subtract
