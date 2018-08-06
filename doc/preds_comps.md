@@ -129,22 +129,13 @@ compares elements on path directly with a certain value
 -> [{a: {b: 'c'}}]                              
 ```
 
-compares on the samePath
+compares both items on the same path
 
 ```
 
 [{a: {b: 'c'}}, {a: {b: 'd'}}]
     .filter(on('a.b')({a: {b: 'c'}})))          
 -> [{a: {b: 'c'}}]
-```
-
-compares elements on different paths 
-
-```
-
-[{a: {b: '1'}}, {c: {d: '1'}}]                  
-    .filter(on('a.b', 'c.d')({c: {d: '1'}})
--> [{a: {b: 1}}]
 ```
 
 usage with find
