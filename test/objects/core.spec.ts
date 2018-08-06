@@ -1,5 +1,5 @@
 import {getElForPathIn, mapOption, option, takeOrMake, to} from "../../src/objects/core";
-import {jsonEquals, on, sameAs} from "../../src/comparators";
+import {jsonEqual, on, tripleEqual} from "../../src/comparators";
 import {flow} from "../../src/flow";
 import {isEmpty} from "../../src/coll";
 
@@ -49,7 +49,7 @@ export function main() {
             expect(flow<any>({a:{b:{c: 4}}},
                     to('a.b'),
                     option(on('c:')(4)),
-                    jsonEquals({c: 4})))
+                    jsonEqual({c: 4})))
                 .toEqual(true));
 
 
@@ -57,7 +57,7 @@ export function main() {
             expect(flow<any>({a:{b:{c: 4}}},
                 option(on('a.b.c:')(5)),
                 to('c'),
-                sameAs(4)))
+                tripleEqual(4)))
                 .toEqual(false));
 
 

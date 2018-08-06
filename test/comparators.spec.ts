@@ -1,6 +1,6 @@
 import {intersectBy} from "../src/arrays/set_like";
 import {
-    arrayEquivalent, arrayEquivalentBy, jsonEquals, objectEquivalent, on, onBy,
+    arrayEquivalent, arrayEquivalentBy, jsonEqual, objectEquivalent, on, onBy,
     sameOn
 } from '../src/comparators';
 import {isNot} from '../src/predicates';
@@ -57,7 +57,7 @@ export function main() {
         it('array equivalentBy - equivalent in different order', () =>
             expect(
 
-                arrayEquivalentBy(jsonEquals)([{a: 9}, {c: 7}, {b: 4}])([{b: 4}, {a: 9}, {c: 7}])
+                arrayEquivalentBy(jsonEqual)([{a: 9}, {c: 7}, {b: 4}])([{b: 4}, {a: 9}, {c: 7}])
 
             ).toEqual(true));
 
@@ -65,7 +65,7 @@ export function main() {
         it('array equivalentBy - different property value in same order', () =>
             expect(
 
-                arrayEquivalentBy(jsonEquals)([{a: 10}, {c: 7}, {b: 4}])([{a: 9}, {c: 7}, {b: 4}])
+                arrayEquivalentBy(jsonEqual)([{a: 10}, {c: 7}, {b: 4}])([{a: 9}, {c: 7}, {b: 4}])
 
             ).toEqual(false));
 
@@ -73,7 +73,7 @@ export function main() {
         it('array equivalentBy - left list smaller', () =>
             expect(
 
-                arrayEquivalentBy(jsonEquals)<any>([{c: 7}])([{c: 7}, {b: 4}])
+                arrayEquivalentBy(jsonEqual)<any>([{c: 7}])([{c: 7}, {b: 4}])
 
             ).toEqual(false));
 
@@ -81,7 +81,7 @@ export function main() {
         it('array equivalentBy - right list smaller', () =>
             expect(
 
-                arrayEquivalentBy(jsonEquals)<any>([{c: 7}, {b: 4}])([{c: 7}])
+                arrayEquivalentBy(jsonEqual)<any>([{c: 7}, {b: 4}])([{c: 7}])
 
             ).toEqual(false));
 
@@ -143,7 +143,7 @@ export function main() {
         it('intersectBy onBy equalTo - symmetric',() =>
             expect(
 
-                intersectBy(onBy(jsonEquals)('a.b'))([{a: {b: {c: 'e'}}}, {a: {b: 'c'}}])
+                intersectBy(onBy(jsonEqual)('a.b'))([{a: {b: {c: 'e'}}}, {a: {b: 'c'}}])
                 ([{a: {b: {c: 'e'}}}]))
 
                 .toEqual([{a: {b: {c: 'e'}}} as any]));
@@ -171,7 +171,7 @@ export function main() {
             expect(
 
                 [{a: {b: 4}}, {a: {b: 5}}]
-                    .find(onBy(jsonEquals)('a.b:')(5)))
+                    .find(onBy(jsonEqual)('a.b:')(5)))
 
                 .toEqual({a: {b: 5}} as any));
 
@@ -189,7 +189,7 @@ export function main() {
             expect(
 
                 [{a: {b: {c: 4}}}, {a: {b: {d: 5}}}]
-                    .find(onBy(jsonEquals)('a.b')({a: {b: {c: 4}}})))
+                    .find(onBy(jsonEqual)('a.b')({a: {b: {c: 4}}})))
 
                 .toEqual({a: {b: {c: 4}}} as any));
 

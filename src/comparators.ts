@@ -17,12 +17,12 @@ import {isEmpty} from './coll';
 export type Comparator = <A>(_: A) => Predicate<A>;
 
 
-export const sameAs: Comparator = <A>(l:A) =>
+export const tripleEqual: Comparator = <A>(l:A) =>
     (r:A) => l === r;
 
 
-export const jsonEquals: Comparator = <A>(l:A) =>
-    (r:A) => sameAs(JSON.stringify(l))(JSON.stringify(r));
+export const jsonEqual: Comparator = <A>(l:A) =>
+    (r:A) => tripleEqual(JSON.stringify(l))(JSON.stringify(r));
 
 
 
@@ -39,7 +39,7 @@ export const arrayEquivalentBy: (_: Comparator) => Comparator =
 /**
  * Compares 2 arrays where elements order does not matter
  */
-export const arrayEquivalent: Comparator = arrayEquivalentBy(sameAs);
+export const arrayEquivalent: Comparator = arrayEquivalentBy(tripleEqual);
 
 
 /**
@@ -63,7 +63,7 @@ export const biggerThan: Comparator = <A>(l:A) =>
 
 
 // TODO take care for cases where undefined === undefined
-export const onBy = (compare: Function = sameAs) => (path: string) =>
+export const onBy = (compare: Function = tripleEqual) => (path: string) =>
     (l: any) => (r: any) =>
         path.length === 0
             ? undefined
@@ -76,14 +76,14 @@ export const onBy = (compare: Function = sameAs) => (path: string) =>
 export const on = onBy();
 
 
-export const includedInBy = (compare: Comparator = sameAs) => <A>(as: Array<A>, ) =>
+export const includedInBy = (compare: Comparator = tripleEqual) => <A>(as: Array<A>, ) =>
     (a: A): boolean => includesBy(compare)(as, a).length > 0;
 
 
 export const includedIn =  includedInBy();
 
 
-export const differentFromBy = (compare: Comparator = sameAs) => <A>(a:A) =>
+export const differentFromBy = (compare: Comparator = tripleEqual) => <A>(a:A) =>
     isNot(compare(a)); // TODO unit test compare
 
 
@@ -91,7 +91,7 @@ export const differentFrom = differentFromBy();
 
 
 const includesBy =
-    (compare: Comparator = sameAs) =>
+    (compare: Comparator = tripleEqual) =>
         <A>(as: Array<A>, a: A) => // TODO make curried, add includes function, export
             as.filter(compare(a));
 
