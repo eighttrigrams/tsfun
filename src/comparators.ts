@@ -21,7 +21,7 @@ export const sameAs: Comparator = <A>(l:A) =>
     (r:A) => l === r;
 
 
-export const equalTo: Comparator = <A>(l:A) =>
+export const jsonEquals: Comparator = <A>(l:A) =>
     (r:A) => sameAs(JSON.stringify(l))(JSON.stringify(r));
 
 

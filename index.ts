@@ -3,7 +3,7 @@ export {
     includedIn,
     differentFrom,
     differentFromBy,
-    equalTo,
+    jsonEquals,
     onBy,
     on,
     biggerThan,

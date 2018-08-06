@@ -9,7 +9,7 @@ import {
     uniteBy,
     unionBy, subtractBy, uniqueBy,
 } from '../../src/arrays/set_like';
-import {equalTo} from "../../src/comparators";
+import {jsonEquals} from "../../src/comparators";
 
 
 /**
@@ -60,7 +60,7 @@ export function main() {
         // intersectionBy
 
         it('intersectionBy', () =>
-            expect(intersectionBy(equalTo)<any>([[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]]))
+            expect(intersectionBy(jsonEquals)<any>([[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]]))
                 .toEqual([{c: 'c'}]));
 
 
@@ -85,7 +85,7 @@ export function main() {
         // intersectBy
 
         it('intersectBy', () =>
-            expect(intersectBy(equalTo)<any>([{a: 'a'}, {c: 'c'}])([{c: 'c'}, {d: 'd'}]))
+            expect(intersectBy(jsonEquals)<any>([{a: 'a'}, {c: 'c'}])([{c: 'c'}, {d: 'd'}]))
                 .toEqual([{c: 'c'}]));
 
 
@@ -99,7 +99,7 @@ export function main() {
         // unionBy
 
         it('unionBy', () =>
-            expect(unionBy(equalTo)<any>([[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]]))
+            expect(unionBy(jsonEquals)<any>([[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]]))
                 .toEqual([{a: 'a'}, {c: 'c'}, {d: 'd'}]));
 
 
@@ -123,7 +123,7 @@ export function main() {
         // uniteBy
 
         it('uniteBy', () =>
-            expect(uniteBy(equalTo)<any>([{a: 'a'}, {c: 'c'}])([{c: 'c'}, {d: 'd'}]))
+            expect(uniteBy(jsonEquals)<any>([{a: 'a'}, {c: 'c'}])([{c: 'c'}, {d: 'd'}]))
                     .toEqual([{a: 'a'}, {c: 'c'}, {d: 'd'}]));
 
 
@@ -151,7 +151,7 @@ export function main() {
         // uniqueBy
 
         it('uniqueBy', () =>
-            expect(uniqueBy(equalTo)([{a: 'c'}, {a: 'c'}]))
+            expect(uniqueBy(jsonEquals)([{a: 'c'}, {a: 'c'}]))
                 .toEqual([{a: 'c'}]));
 
 
@@ -201,7 +201,7 @@ export function main() {
         // subtractBy
 
         it('subtractBy', () =>
-            expect(subtractBy(equalTo)<any>([{a: 'a'}])([{a: 'a'}, {c: 'c'}]))
+            expect(subtractBy(jsonEquals)<any>([{a: 'a'}])([{a: 'a'}, {c: 'c'}]))
                 .toEqual([{c: 'c'}]));
     });
 }
