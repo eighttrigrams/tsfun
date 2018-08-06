@@ -84,27 +84,3 @@ const _uniteBy = (compare: Comparator = sameAs) => <A>(as1: Array<A>) =>
 
 const _intersectBy = (compare: Comparator = sameAs) => <A>(as1: Array<A>) =>
     (as2: Array<A>) => as1.filter(includedInBy(compare)(as2));
-
-
-/**
- * TODO get rid of this, replace by a configurable version (order sensitive or not)
- * of arrayEquivalent.
- *
- * @author Thomas Kleinke
- * @author Daniel de Oliveira
- */
-export function equals<A>(as1: A[], as2: A[], // TODO make it also work for objects
-                       compare: Comparator = sameAs): boolean {
-
-    if (as1.length !== as2.length) return false;
-
-    for (let element of as1) { // TODO use HOF
-        if (!includedInBy(compare)(as2)(element)) return false;
-    }
-
-    for (let element of as2) {
-        if (!includedInBy(compare)(as1)(element)) return false;
-    }
-
-    return true;
-}

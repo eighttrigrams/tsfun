@@ -1,9 +1,13 @@
 import {intersectBy} from "../src/arrays/set_like";
-import {arrayEquivalent, equalTo, objectEquivalent, on, onBy, sameOn} from '../src/comparators';
+import {
+    arrayEquivalent, arrayEquivalentBy, equalTo, objectEquivalent, on, onBy,
+    sameOn
+} from '../src/comparators';
 import {isNot} from '../src/predicates';
 
 /**
  * arrayEquivalent
+ * arrayEquivalentBy
  * objectEquivalent
  * on
  * onBy
@@ -14,9 +18,9 @@ export function main() {
 
     describe('Comparators', () => {
 
-        // arraySameAs
+        // arrayEquivalent
 
-        it('array equivalence - equivalent', () =>
+        it('array equivalence - equivalent in different order', () =>
             expect(
 
                 arrayEquivalent([1, 4, 7])([7, 4, 1])
@@ -44,6 +48,40 @@ export function main() {
             expect(
 
                 arrayEquivalent([1, 4, 5])([7, 4, 1])
+
+            ).toEqual(false));
+
+
+        // arrayEquivalentBy
+
+        it('array equivalentBy - equivalent in different order', () =>
+            expect(
+
+                arrayEquivalentBy(equalTo)([{a: 9}, {c: 7}, {b: 4}])([{b: 4}, {a: 9}, {c: 7}])
+
+            ).toEqual(true));
+
+
+        it('array equivalentBy - different property value in same order', () =>
+            expect(
+
+                arrayEquivalentBy(equalTo)([{a: 10}, {c: 7}, {b: 4}])([{a: 9}, {c: 7}, {b: 4}])
+
+            ).toEqual(false));
+
+
+        it('array equivalentBy - left list smaller', () =>
+            expect(
+
+                arrayEquivalentBy(equalTo)<any>([{c: 7}])([{c: 7}, {b: 4}])
+
+            ).toEqual(false));
+
+
+        it('array equivalentBy - right list smaller', () =>
+            expect(
+
+                arrayEquivalentBy(equalTo)<any>([{c: 7}, {b: 4}])([{c: 7}])
 
             ).toEqual(false));
 

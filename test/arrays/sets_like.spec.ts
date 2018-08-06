@@ -1,5 +1,4 @@
 import {
-    equals,
     intersect,
     intersectBy,
     intersection, intersectionBy,
@@ -204,23 +203,5 @@ export function main() {
         it('subtractBy', () =>
             expect(subtractBy(equalTo)<any>([{a: 'a'}])([{a: 'a'}, {c: 'c'}]))
                 .toEqual([{c: 'c'}]));
-
-
-
-
-
-        // -------------------------------------
-
-
-        it('equals - comparator', () => {
-
-            expect(
-                equals([{a: 1}, {b: 2}], [{b: 2}, {a: 1}], equalTo)
-            ).toEqual(true);
-
-            expect(
-                equals([{a: 1}], [{b: 2}, {a: 1}], equalTo)
-            ).toEqual(false);
-        });
     });
 }

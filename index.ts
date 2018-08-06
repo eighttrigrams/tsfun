@@ -31,7 +31,6 @@ export {
     uniteBy,
     unique,
     uniqueBy,
-    equals
 } from './src/arrays/set_like';
 
 export {
