@@ -141,7 +141,7 @@ compares both items on the same path
 usage with find
 
 ```
-{a: {b: {d: '1'}}}, {a: {b: {d: '2'}}}]
+[{a: {b: {d: '1'}}}, {a: {b: {d: '2'}}}]
     .find(on('a.b.d:')('1'))
 -> {a: {b: {d: '1'}}}
 ```
