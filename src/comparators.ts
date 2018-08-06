@@ -31,13 +31,13 @@ export const biggerThan: Comparator = <A>(l:A) =>
 
 
 // TODO take care for cases where undefined === undefined
-export const onBy = (compare: Function = sameAs) => (path: string, secondPath?: string) =>
+export const onBy = (compare: Function = sameAs) => (path: string) =>
     (l: any) => (r: any) =>
         path.length === 0
             ? undefined
             : compare(
                 path.charAt(path.length - 1) === ':'
-                ? l : getElForPathIn(l, secondPath ? secondPath : path))
+                ? l : getElForPathIn(l, path))
             (getElForPathIn(r, path.charAt(path.length - 1) === ':' ? path.slice(0, -1) : path));
 
 
@@ -65,5 +65,5 @@ const includesBy =
 
 
 
-export const sameOn = (path: string, l: object, r: object, secondPath?: string) =>
-     on(path, secondPath)(l)(r);
+export const sameOn = <T>(path: string, l: T, r: T) =>
+     on(path)(l)(r);
