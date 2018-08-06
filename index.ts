@@ -46,6 +46,9 @@ export {
     option
 } from './src/objects/core';
 
+// TODO add pipe method
+// TODO add more powerful object comparison
+
 /**
  * @author Daniel de Oliveira
  */
