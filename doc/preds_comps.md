@@ -117,6 +117,14 @@ includedIn([1, 2])(1)
 -> true
 ```
 
+### arrayEquivalent
+
+...
+
+### objectEquivalent
+
+...
+
 ### includedInBy
 
 ### on

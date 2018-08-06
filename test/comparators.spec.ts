@@ -1,13 +1,106 @@
 import {intersectBy} from "../src/arrays/set_like";
-import {equalTo, on, onBy, sameOn} from '../src/comparators';
+import {arrayEquivalent, equalTo, objectEquivalent, on, onBy, sameOn} from '../src/comparators';
 import {isNot} from '../src/predicates';
 
 /**
+ * arrayEquivalent
+ * objectEquivalent
+ * on
+ * onBy
+ *
  * @author Daniel de Oliveira
  */
 export function main() {
 
     describe('Comparators', () => {
+
+        // arraySameAs
+
+        it('array equivalence - equivalent', () =>
+            expect(
+
+                arrayEquivalent([1, 4, 7])([7, 4, 1])
+
+            ).toEqual(true));
+
+
+        it('array equivalence - left list smaller', () =>
+            expect(
+
+                arrayEquivalent([1, 4])([7, 4, 1])
+
+            ).toEqual(false));
+
+
+        it('array equivalence - right list smaller', () =>
+            expect(
+
+                arrayEquivalent([1, 4, 7])([7, 4])
+
+            ).toEqual(false));
+
+
+        it('array equivalence - different elements', () =>
+            expect(
+
+                arrayEquivalent([1, 4, 5])([7, 4, 1])
+
+            ).toEqual(false));
+
+
+        // objectEquivalent
+
+        it('object equivalent - equivalent', () =>
+            expect(
+
+                objectEquivalent({a: 1, b: 2})({b: 2, a: 1})
+
+            ).toEqual(true));
+
+
+        it('object equivalent - left side less keys', () =>
+            expect(
+
+                objectEquivalent<object>({a: 1})({b: 2, a: 1})
+
+            ).toEqual(false));
+
+
+        it('object equivalent - right side less keys', () =>
+            expect(
+
+                objectEquivalent<object>({a: 1, b: 2})({a: 1})
+
+            ).toEqual(false));
+
+
+        it('object equivalent - different keys', () =>
+            expect(
+
+                objectEquivalent<object>({a: 1, b: 2})({a: 1, c:2})
+
+            ).toEqual(false));
+
+
+        it('object equivalent - different values', () =>
+            expect(
+
+                objectEquivalent<object>({a: 1, b: 2})({a: 1, b: 3})
+
+            ).toEqual(false));
+
+
+        it('object equivalent - different values in different order', () =>
+            expect(
+
+                objectEquivalent<object>({a: 1, b: 2})({b: 3, a: 1})
+
+            ).toEqual(false));
+
+
+        // on
+
+        // onBy
 
         it('intersectBy onBy equalTo - symmetric',() =>
             expect(
@@ -79,6 +172,8 @@ export function main() {
 
                 .toEqual([{a: {b: 4}} as any]));
 
+
+        // sameOn
 
         it('sameOn - same path',() =>
             expect(

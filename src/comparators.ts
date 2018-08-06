@@ -1,5 +1,7 @@
 import {getElForPathIn} from "./objects/core";
 import {isNot, Predicate} from './predicates';
+import {subtract, union} from './arrays/set_like';
+import {isEmpty} from './coll';
 
 
 /**
@@ -21,6 +23,26 @@ export const sameAs: Comparator = <A>(l:A) =>
 
 export const equalTo: Comparator = <A>(l:A) =>
     (r:A) => sameAs(JSON.stringify(l))(JSON.stringify(r));
+
+
+/**
+ * Compares 2 arrays where elements order does not matter
+ */
+export const arrayEquivalent: Comparator = <A>(as1: Array<A>) =>
+    (as2: Array<A>) =>
+        isEmpty(subtract(as1)(as2)) && isEmpty(subtract(as2)(as1));
+
+// TODO make overloaded equivalent method instead two methods
+/**
+ *
+ */
+export const objectEquivalent: Comparator = (o1: object) =>
+    (o2: object) =>
+        arrayEquivalent(Object.keys(o1))(Object.keys(o2))
+            && Object
+                .keys(o1)
+                .filter((key: any) => (o1 as any)[key] === (o2 as any)[key])
+                .length === Object.keys(o1).length;
 
 
 export const smallerThan: Comparator = <A>(l:A) =>
