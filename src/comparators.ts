@@ -32,7 +32,7 @@ export const arrayEquivalent: Comparator = <A>(as1: Array<A>) =>
     (as2: Array<A>) =>
         isEmpty(subtract(as1)(as2)) && isEmpty(subtract(as2)(as1));
 
-// TODO make overloaded equivalent method instead two methods
+
 /**
  *
  */
