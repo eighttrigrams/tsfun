@@ -4,7 +4,7 @@
 import {intersect as intersectA} from "../arrays/set_like";
 import {subtract as subtractA} from "../arrays/set_like";
 import {identical} from "../core";
-import {mapProperties, TypedMap, UntypedMap} from './core';
+import {mapProperties, UntypedMap} from './core';
 
 export const subtractMap = (subtrahend: Array<string | number> | any) =>
     (o: UntypedMap): UntypedMap => {

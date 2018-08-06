@@ -25,7 +25,9 @@ export {
 export {
     subtractMap,
     intersectMap,
-    uniteMap
+    uniteMap,
+    unionMap
+    // intersectionMap TODO implement
 } from './src/maps/set_like'
 export {
     mapMap,
