@@ -51,7 +51,10 @@ export const objectEquivalent: Comparator = (o1: object) =>
         arrayEquivalent(Object.keys(o1))(Object.keys(o2))
             && Object
                 .keys(o1)
-                .filter((key: any) => (o1 as any)[key] === (o2 as any)[key])
+                // TODO filter: type of o1 === type of o2
+                .filter((key: any) =>
+                    // TODO compare json on arrays, === on literals, and recursive on objects
+                    (o1 as any)[key] === (o2 as any)[key])
                 .length === Object.keys(o1).length;
 
 

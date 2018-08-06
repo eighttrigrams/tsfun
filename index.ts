@@ -61,7 +61,6 @@ export {
 
 // TODO add pipe method
 // TODO add more powerful object comparison
-// TODO add find duplicates method
 
 /**
  * @author Daniel de Oliveira
