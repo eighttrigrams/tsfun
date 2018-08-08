@@ -9,6 +9,11 @@ import {isEmpty} from './coll';
  */
 
 
+// TODO make: isDefined(on('_rev'))
+
+
+
+
 // TODO add and comparator to to things like this
 // .filter(_ => _ !== 'hasPeriod' && _!== 'hasPeriodEnd');
 // .filter(and(isNot('hasPeriod'), isNot('hasPeriodEnd'))

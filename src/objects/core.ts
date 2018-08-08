@@ -18,7 +18,10 @@ export function getElForPathIn(object: any, path: string) {
 
     let result = object;
     for (let segment of path.split('.')) {
-        if (result[segment] || result[segment] === false) result = result[segment];
+        if (result[segment]
+            || result[segment] === ''
+            || result[segment] === 0
+            || result[segment] === false) result = result[segment];
         else return result = undefined;
     }
     return result;
