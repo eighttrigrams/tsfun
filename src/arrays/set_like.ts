@@ -62,6 +62,9 @@ export const subtractBy =
 export const subtract = subtractBy();
 
 
+// TODO add difference function
+
+
 export const uniqueBy = (compare: Comparator = tripleEqual) =>
     <A>(as: Array<A>) =>
         as.reduce((acc: Array<A>, val) =>
