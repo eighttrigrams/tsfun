@@ -3,10 +3,6 @@
 
 **tsfun - functional combinator library for TypeScript**
 
-[tsfun on npmjs](https://www.npmjs.com/package/tsfun)
-
-[tsfun on GitHub](https://github.com/danielmarreirosdeoliveira/tsfun)
-
 Get started with `npm install; npm run build; npm test`.
 
 Use the library in a project via **npm** and **node**:
