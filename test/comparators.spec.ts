@@ -3,7 +3,7 @@ import {
     arrayEquivalent, arrayEquivalentBy, jsonEqual, objectEquivalent, on, onBy,
     sameOn
 } from '../src/comparators';
-import {isNot, isUndefined} from '../src/predicates';
+import {isDefined, isNot, isUndefined} from '../src/predicates';
 
 /**
  * tripleEqual
@@ -210,6 +210,15 @@ export function main() {
 
                 [{a: {b: 4}}, {a: {c: 5}}]
                     .filter(isNot(on('a.b')(isUndefined)))
+
+            ).toEqual([{a: {b: 4}}] as any));
+
+
+        it('on - with find - isDefined predicate', () =>
+            expect(
+
+                [{a: {b: 4}}, {a: {c: 5}}]
+                    .filter(on('a.b')(isDefined))
 
             ).toEqual([{a: {b: 4}}] as any));
 
