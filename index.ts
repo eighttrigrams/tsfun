@@ -57,7 +57,10 @@ export {
 } from './src/maps/list_like'
 
 
-export {copy, isUndefinedOrEmpty, isEmpty} from './src/coll';
+export {copy,
+    isUndefinedOrEmpty, // TODO move to predicates
+    isEmpty
+} from './src/coll';
 export {doWhen} from './src/core';
 
 export {
