@@ -71,3 +71,14 @@ export {
 
 
 
+// const docsToCorrect = (await this.findAllLiesWithinDocs(document.resource.id))
+// .filter(on('resource.relations.isRecordedIn')(isDefined))
+//     .filter(doc => {
+//         return doc.resource.relations['isRecordedIn'].length > 0
+//     })
+//     .filter(isNot(on('resource.relations.isRecordedIn')(document)));
+
+// TODO make version of flow which works on a certain path
+// using 'on' on every transformation
+
+
