@@ -6,9 +6,23 @@ import {
 import {isNot, isUndefined} from '../src/predicates';
 
 /**
+ * tripleEqual
+ * jsonEqual
+ *
+ * biggerThan
+ * smallerThan
+ *
+ * differentFrom
+ * differentFromBy
+ *
+ * includedIn
+ * includedInBy
+ *
+ *
  * arrayEquivalent
  * arrayEquivalentBy
  * objectEquivalent
+ *
  * on
  * onBy
  *

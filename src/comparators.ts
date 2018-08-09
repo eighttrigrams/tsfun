@@ -30,6 +30,27 @@ export const jsonEqual: Comparator = <A>(l:A) =>
     (r:A) => tripleEqual(JSON.stringify(l))(JSON.stringify(r));
 
 
+export const biggerThan: Comparator = <A>(l:A) =>
+    (r: A) => l < r;
+
+
+export const smallerThan: Comparator = <A>(l:A) =>
+    (r: A) => l > r;
+
+
+export const differentFromBy = (compare: Comparator) => <A>(a:A) =>
+    isNot(compare(a)); // TODO unit test compare
+
+
+export const differentFrom = differentFromBy(tripleEqual);
+
+
+export const includedInBy = (compare: Comparator) => <A>(as: Array<A>, ) =>
+    (a: A): boolean => includesBy(compare)(as, a).length > 0;
+
+
+export const includedIn =  includedInBy(tripleEqual);
+
 
 /**
  * Compares 2 arrays where elements order does not matter
@@ -63,13 +84,6 @@ export const objectEquivalent: Comparator = (o1: object) =>
                 .length === Object.keys(o1).length;
 
 
-export const smallerThan: Comparator = <A>(l:A) =>
-    (r: A) => l > r;
-
-export const biggerThan: Comparator = <A>(l:A) =>
-    (r: A) => l < r;
-
-
 // TODO take care for cases where undefined === undefined
 export const onBy = (compare: Function) => (path: string) =>
     (l: any) => (r: any) =>
@@ -85,20 +99,6 @@ export const on = (path: string) =>
     (l: any|Function) => (r: any) => typeof l === 'function'
         ? l(getElForPathIn(r, path))
         : onBy(tripleEqual)(path)(l)(r);
-
-
-export const includedInBy = (compare: Comparator) => <A>(as: Array<A>, ) =>
-    (a: A): boolean => includesBy(compare)(as, a).length > 0;
-
-
-export const includedIn =  includedInBy(tripleEqual);
-
-
-export const differentFromBy = (compare: Comparator) => <A>(a:A) =>
-    isNot(compare(a)); // TODO unit test compare
-
-
-export const differentFrom = differentFromBy(tripleEqual);
 
 
 const includesBy =
