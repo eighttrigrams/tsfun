@@ -26,8 +26,6 @@ import {isEmpty, isUndefinedOrEmpty} from '../src/coll';
  *
  * on
  * onBy
- *
- * @author Daniel de Oliveira
  */
 export function main() {
 

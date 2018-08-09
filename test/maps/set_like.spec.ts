@@ -1,8 +1,4 @@
-/**
- * @author Daniel de Oliveira
- */
-import {subtractMap, uniteMap, intersectMap, unionMap} from '../../src/maps/set_like';
-import {filterMap, mapMap} from '../../src/maps/list_like';
+import {intersectMap, subtractMap, unionMap, uniteMap} from '../../src/maps/set_like';
 
 
 export function main() {

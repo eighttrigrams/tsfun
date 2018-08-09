@@ -2,9 +2,6 @@ import {drop, dropWhile, dropRight, dropRightWhile} from '../src/arrays/list_lik
 import {smallerThan, biggerThan} from '../src/comparators';
 
 
-/**
- * @author Daniel de Oliveira
- */
 export function main() {
 
     describe('Drop', () => {

@@ -1,8 +1,5 @@
 import {filterMap, mapMap} from "../../src/maps/list_like";
 
-/**
- * @author Daniel de Oliveira
- */
 export function main() {
 
     describe('Maps/List-Like-Collections', () => {

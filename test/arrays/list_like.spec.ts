@@ -4,9 +4,6 @@ import {to} from "../../src/objects/core";
 import {on, smallerThan} from "../../src/comparators";
 
 
-/**
- * @author Daniel de Oliveira
- */
 export function main() {
 
     describe('Arrays/Collection', () => {

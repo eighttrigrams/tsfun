@@ -1,8 +1,5 @@
 import {copy} from '../src/coll';
 
-/**
- * @author Daniel de Oliveira
- */
 export function main() {
 
     describe('General/Collection', () => {

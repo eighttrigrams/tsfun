@@ -6,9 +6,6 @@ import {biggerThan, smallerThan} from '../src/comparators';
 import {uniteMap} from '../src/maps/set_like';
 
 
-/**
- * @author Daniel de Oliveira
- */
 export function main() {
 
     describe('Flow', () => {

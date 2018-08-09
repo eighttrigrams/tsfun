@@ -3,9 +3,6 @@ import {jsonEqual, on, tripleEqual} from "../../src/comparators";
 import {flow} from "../../src/flow";
 import {isEmpty} from "../../src/coll";
 
-/**
- * @author Daniel de Oliveira
- */
 export function main() {
 
     describe('Objects', () => {
