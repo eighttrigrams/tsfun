@@ -81,4 +81,6 @@ export {
 // TODO make version of flow which works on a certain path
 // using 'on' on every transformation
 
+// TODO make not instead of isNot, undefinedOrEmpty instead of isUndefinedOrEmpty, etc.
+
 

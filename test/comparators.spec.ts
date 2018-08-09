@@ -260,7 +260,7 @@ export function main() {
         //     ).toEqual([{a: [1, 2, 4]}] as any));
 
 
-        it('on - with find and isNot - partial arrayEquivalent as predicate', () =>
+        it('on - with find and isNot - partial arrayEquivalent as predicate, without path match', () =>
             expect(
 
                 [{a: {b: [2, 1]}}, {a: {b: [2, 7]}}]
@@ -270,6 +270,15 @@ export function main() {
 
 
         // onBy
+
+        it('on - with find and isNot - user arrayEquivalent with By when you want ot match path', () =>
+            expect(
+
+                [{a: {b: [2, 1]}}, {a: {b: [2, 7]}}]
+                    .filter(onBy(arrayEquivalent)('a.b')({a: {b: [1, 2]}}))
+
+            ).toEqual([{a: {b: [2, 1]}}] as any));
+
 
         it('intersectBy onBy equalTo - symmetric',() =>
             expect(
