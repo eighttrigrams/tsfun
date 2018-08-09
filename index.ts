@@ -61,6 +61,8 @@ export {
 
 // TODO add pipe method
 // TODO add more powerful object comparison
+// TODO add filter(or(on('name:'))('a', 'b'))
+//       or filter(on('name')(or('a','b'))
 
 /**
  * @author Daniel de Oliveira
