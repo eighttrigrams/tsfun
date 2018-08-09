@@ -1,5 +1,8 @@
 # tsfun
 
+![alt](splash.png)                                            
+
+
 **Functional Combinator Library for TypeScript**
 
 [tsfun on npmjs](https://www.npmjs.com/package/tsfun)
@@ -31,6 +34,12 @@ console.log(take(2)([1,2,3]))
 
 
 
+
+
+
+
+
+Ascii Art generated with http://www.patorjk.com/software/taag
 
 
 
