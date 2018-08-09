@@ -1,9 +1,7 @@
-# tsfun
-
 ![alt](splash.png)                                            
 
 
-**Functional Combinator Library for TypeScript**
+**tsfun - functional combinator library for TypeScript**
 
 [tsfun on npmjs](https://www.npmjs.com/package/tsfun)
 
