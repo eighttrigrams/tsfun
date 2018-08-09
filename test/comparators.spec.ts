@@ -138,6 +138,49 @@ export function main() {
 
         // on
 
+        it('on - with find - symmetric',() =>
+            expect(
+
+                [{a: {b: 4}}, {a: {b: 5}}]
+                    .find(on('a.b')({a: {b: 5}})))
+
+                .toEqual({a: {b: 5}} as any));
+
+
+        it('on - with find - exact',() =>
+            expect(
+
+                [{a: {b: 4}}, {a: {b: 5}}]
+                    .find(on('a.b:')(5)))
+
+                .toEqual({a: {b: 5}} as any));
+
+
+        it('on - with filter and isNot - symmetric', () =>
+            expect(
+
+                [{a: {b: 4}}, {a: {b: 5}}]
+                    .filter(isNot(on('a.b')({a: {b: 5}}))))
+
+                .toEqual([{a: {b: 4}} as any]));
+
+
+        it('on - with filter and isNot - exact', () =>
+            expect(
+
+                [{a: {b: 4}}, {a: {b: 5}}].filter(isNot(on('a.b:')(5))))
+
+                .toEqual([{a: {b: 4}} as any]));
+
+
+        it('on - with intersectBy - symmetric',() =>
+            expect(
+
+                intersectBy(on('a.b'))([{a: {b: 4}}, {a: {b: 5}}])
+                ([{a: {b: 5}}]))
+
+                .toEqual([{a: {b: 5}} as any]));
+
         // onBy
 
         it('intersectBy onBy equalTo - symmetric',() =>
@@ -149,38 +192,11 @@ export function main() {
                 .toEqual([{a: {b: {c: 'e'}}} as any]));
 
 
-        it('intersectBy on - symmetric',() =>
-            expect(
-
-                intersectBy(on('a.b'))([{a: {b: 4}}, {a: {b: 5}}])
-                ([{a: {b: 5}}]))
-
-                .toEqual([{a: {b: 5}} as any]));
-
-
-        it('find on - symmetric',() =>
-            expect(
-
-                [{a: {b: 4}}, {a: {b: 5}}]
-                    .find(on('a.b')({a: {b: 5}})))
-
-                .toEqual({a: {b: 5}} as any));
-
-
         it('find onBy equalTo - exact',() =>
             expect(
 
                 [{a: {b: 4}}, {a: {b: 5}}]
                     .find(onBy(jsonEqual)('a.b:')(5)))
-
-                .toEqual({a: {b: 5}} as any));
-
-
-        it('find on - exact',() =>
-            expect(
-
-                [{a: {b: 4}}, {a: {b: 5}}]
-                    .find(on('a.b:')(5)))
 
                 .toEqual({a: {b: 5}} as any));
 
@@ -192,23 +208,6 @@ export function main() {
                     .find(onBy(jsonEqual)('a.b')({a: {b: {c: 4}}})))
 
                 .toEqual({a: {b: {c: 4}}} as any));
-
-
-        it('filter - symmetric', () =>
-            expect(
-
-                [{a: {b: 4}}, {a: {b: 5}}]
-                    .filter(isNot(on('a.b')({a: {b: 5}}))))
-
-                .toEqual([{a: {b: 4}} as any]));
-
-
-        it('filter - exact', () =>
-            expect(
-
-                [{a: {b: 4}}, {a: {b: 5}}].filter(isNot(on('a.b:')(5))))
-
-                .toEqual([{a: {b: 4}} as any]));
 
 
         // sameOn
