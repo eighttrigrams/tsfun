@@ -3,7 +3,7 @@ import {
     arrayEquivalent, arrayEquivalentBy, jsonEqual, objectEquivalent, on, onBy,
     sameOn
 } from '../src/comparators';
-import {isNot} from '../src/predicates';
+import {isNot, isUndefined} from '../src/predicates';
 
 /**
  * arrayEquivalent
@@ -180,6 +180,34 @@ export function main() {
                 ([{a: {b: 5}}]))
 
                 .toEqual([{a: {b: 5}} as any]));
+
+
+        it('on - with find - isUndefined predicate', () =>
+            expect(
+
+                [{a: {b: 4}}, {a: {c: 5}}]
+                    .filter(on('a.b')(isUndefined))
+
+            ).toEqual([{a: {c: 5}}] as any));
+
+
+        it('on - with find and isNot - isUndefined predicate', () =>
+            expect(
+
+                [{a: {b: 4}}, {a: {c: 5}}]
+                    .filter(isNot(on('a.b')(isUndefined)))
+
+            ).toEqual([{a: {b: 4}}] as any));
+
+
+        it('on - with find and isNot - partial arrayEquivalent as predicate', () =>
+            expect(
+
+                [{a: {b: [2, 1]}}, {a: {b: [2, 7]}}]
+                    .filter(on('a.b')(arrayEquivalent([1, 2])))
+
+            ).toEqual([{a: {b: [2, 1]}}] as any));
+
 
         // onBy
 
