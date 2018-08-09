@@ -1,6 +1,3 @@
-/**
- * @author Daniel de Oliveira
- */
 import {isNot, Predicate} from '../predicates';
 
 

@@ -1,7 +1,8 @@
-import {uncurry2} from '../core';
+import {Transformation, uncurry2} from '../core';
 import {Comparator, includedInBy, tripleEqual} from "../comparators";
 import {isNot} from '../predicates';
 
+type ArrayTransformation<T> = Transformation<Array<T>>;
 
 export type NestedArray<A> = Array<Array<A>>;
 

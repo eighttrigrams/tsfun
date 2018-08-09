@@ -68,28 +68,8 @@ export {
     option
 } from './src/objects/core';
 
-// TODO add pipe method
 // TODO add more powerful object comparison
 // TODO add filter(or(on('name:'))('a', 'b'))
 //       or filter(on('name')(or('a','b'))
-
-/**
- * @author Daniel de Oliveira
- */
-
-
-
-
-// const docsToCorrect = (await this.findAllLiesWithinDocs(document.resource.id))
-// .filter(on('resource.relations.isRecordedIn')(isDefined))
-//     .filter(doc => {
-//         return doc.resource.relations['isRecordedIn'].length > 0
-//     })
-//     .filter(isNot(on('resource.relations.isRecordedIn')(document)));
-
-// TODO make version of flow which works on a certain path
-// using 'on' on every transformation
-
-// TODO make not instead of isNot, undefinedOrEmpty instead of isUndefinedOrEmpty, etc.
 
 

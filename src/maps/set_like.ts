@@ -1,6 +1,3 @@
-/**
- * @author Daniel de Oliveira
- */
 import {intersect as intersectA} from "../arrays/set_like";
 import {subtract as subtractA} from "../arrays/set_like";
 import {identical} from "../core";

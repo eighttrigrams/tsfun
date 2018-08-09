@@ -1,10 +1,7 @@
 import {subtract} from './arrays/set_like';
 import {subtractMap} from './maps/set_like';
-import {Transformation} from "./core";
 import {UntypedMap} from "./maps/core";
 
-
-type ArrayTransformation<T> = Transformation<Array<T>>;
 
 export function copy<T>(as: Array<T>): Array<T>;
 export function copy(as: UntypedMap): UntypedMap;
