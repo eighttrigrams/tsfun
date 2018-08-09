@@ -1,6 +1,3 @@
-/**
- * @author Daniel de Oliveira
- */
 import {Transformation} from "./core";
 
 /**

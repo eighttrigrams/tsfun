@@ -4,11 +4,6 @@ import {Transformation} from "./core";
 import {UntypedMap} from "./maps/core";
 
 
-/**
- * @author Daniel de Oliveira
- */
-
-
 type ArrayTransformation<T> = Transformation<Array<T>>;
 
 export function copy<T>(as: Array<T>): Array<T>;

@@ -3,10 +3,6 @@ import {Comparator, includedInBy, tripleEqual} from "../comparators";
 import {isNot} from '../predicates';
 
 
-/**
- * @author Daniel de Oliveira
- */
-
 export type NestedArray<A> = Array<Array<A>>;
 
 

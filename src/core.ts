@@ -1,6 +1,3 @@
-/**
- * @author Daniel de Oliveira
- */
 export type Transformation<T> = (_: T) => T;
 
 export const identical = <A>(v: A) => v;

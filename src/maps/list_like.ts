@@ -2,11 +2,6 @@ import {TypedMap} from './core';
 import {mapProperties} from './core';
 
 
-/**
- * @author Daniel de Oliveira
- */
-
-
 export function mapMap<A, B>(f: (_: A) => B): (_: TypedMap<A>) => TypedMap<B> {
 
     return (coll: TypedMap<A>) => mapProperties(f)(Object.keys(coll), coll);

@@ -1,6 +1,3 @@
-/**
- * @author Daniel de Oliveira
- */
 import {to} from '../objects/core';
 import {isDefined, Predicate} from '../predicates';
 import {Transformation} from "../core";

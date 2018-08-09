@@ -1,8 +1,3 @@
-/**
- * @author Daniel de Oliveira
- */
-
-
 export const drop = <A>(n: number) =>
     (as: Array<A>) =>
         n < 1 ? as :
