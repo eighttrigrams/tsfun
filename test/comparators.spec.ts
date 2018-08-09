@@ -3,7 +3,7 @@ import {
     arrayEquivalent, arrayEquivalentBy, jsonEqual, objectEquivalent, on, onBy,
     sameOn
 } from '../src/comparators';
-import {isDefined, isNot, isUndefined} from '../src/predicates';
+import {isArray, isDefined, isNot, isUndefined} from '../src/predicates';
 import {isEmpty, isUndefinedOrEmpty} from '../src/coll';
 
 /**
@@ -265,6 +265,15 @@ export function main() {
 
                 [{a: {b: [2, 1]}}, {a: {b: [2, 7]}}]
                     .filter(on('a.b')(arrayEquivalent([1, 2])))
+
+            ).toEqual([{a: {b: [2, 1]}}] as any));
+
+
+        it('on - with find and isArray', () =>
+            expect(
+
+                [{a: {b: [2, 1]}}, {c: {a: 1}}, {}]
+                    .filter(on('a.b')(isArray))
 
             ).toEqual([{a: {b: [2, 1]}}] as any));
 

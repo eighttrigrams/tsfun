@@ -13,7 +13,16 @@ export {
     smallerThan,
     sameOn
 } from './src/comparators';
-export {isNot, even, odd, isDefined, isUndefined} from './src/predicates';
+export {
+    isNot,
+    even,
+    odd,
+    isDefined,
+    isUndefined,
+    isArray
+} from './src/predicates';
+
+
 export {take, takeRightWhile, takeUntil, takeWhile, takeNth} from './src/arrays/list_like_take';
 export {dropWhile, drop, dropRight, dropRightWhile} from './src/arrays/list_like_drop';
 export {flow, flowP} from './src/flow';

@@ -12,3 +12,5 @@ export const flip = (v: boolean) => !v;
 export const even: () => Predicate<number> = () => (n: number) => n % 2 === 0;
 
 export const odd: () => Predicate<number> = () => (n: number) => isNot(even())(n);
+
+export const isArray: Predicate<any> = (as: any) => as instanceof Array;
