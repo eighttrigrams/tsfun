@@ -1,22 +1,7 @@
 import {getElForPathIn} from "./objects/core";
 import {isNot, Predicate} from './predicates';
-import {subtract, subtractBy, union} from './arrays/set_like';
+import {subtractBy} from './arrays/set_like';
 import {isEmpty} from './coll';
-
-
-/**
- * @author Daniel de Oliveira
- */
-
-
-// TODO make: isDefined(on('_rev'))
-
-
-
-
-// TODO add and comparator to to things like this
-// .filter(_ => _ !== 'hasPeriod' && _!== 'hasPeriodEnd');
-// .filter(and(isNot('hasPeriod'), isNot('hasPeriodEnd'))
 
 
 export type Comparator = <A>(_: A) => Predicate<A>;
