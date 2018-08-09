@@ -13,7 +13,7 @@ export {
     smallerThan,
     sameOn
 } from './src/comparators';
-export {isNot, even, odd, isDefined, isUndefined} from './src/predicates'
+export {isNot, even, odd, isDefined, isUndefined} from './src/predicates';
 export {take, takeRightWhile, takeUntil, takeWhile, takeNth} from './src/arrays/list_like_take';
 export {dropWhile, drop, dropRight, dropRightWhile} from './src/arrays/list_like_drop';
 export {flow, flowP} from './src/flow';
@@ -48,7 +48,7 @@ export {
 } from './src/maps/list_like'
 
 
-export {copy, isEmpty} from './src/coll';
+export {copy, isUndefinedOrEmpty, isEmpty} from './src/coll';
 export {doWhen} from './src/core';
 
 export {

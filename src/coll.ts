@@ -21,7 +21,17 @@ export function copy<T>(coll: Array<T>|UntypedMap): Array<T>|UntypedMap {
 }
 
 
-export function isEmpty(object: any): boolean { // TODO unit test, maybe type param better
+export function isUndefinedOrEmpty(object: any): boolean { // TODO unit test, maybe type param better, put to predicates
+
+    if (!object) return true;
+
+    return object instanceof Array
+        ? object.length === 0
+        : Object.keys(object).length === 0;
+}
+
+
+export function isEmpty(object: any): boolean { // TODO unit test, maybe type param better, put to predicates
 
     return object instanceof Array
         ? object.length === 0

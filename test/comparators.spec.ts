@@ -4,6 +4,7 @@ import {
     sameOn
 } from '../src/comparators';
 import {isDefined, isNot, isUndefined} from '../src/predicates';
+import {isEmpty, isUndefinedOrEmpty} from '../src/coll';
 
 /**
  * tripleEqual
@@ -221,6 +222,42 @@ export function main() {
                     .filter(on('a.b')(isDefined))
 
             ).toEqual([{a: {b: 4}}] as any));
+
+
+        it('on - with find - isEmpty predicate', () =>
+            expect(
+
+                [{a: [1, 2, 4]}, {a: []}]
+                    .filter(on('a')(isEmpty))
+
+            ).toEqual([{a: []}] as any));
+
+
+        it('on - with find and isNot - isEmpty predicate', () =>
+            expect(
+
+                [{a: [1, 2, 4]}, {a: []}]
+                    .filter(isNot(on('a')(isEmpty)))
+
+            ).toEqual([{a: [1, 2, 4]}] as any));
+
+
+        it('on - with find and isNot - isUndefinedOrEmpty predicate works with undefined', () =>
+            expect(
+
+                [{a: [1, 2, 4]}, {a: undefined}]
+                    .filter(isNot(on('a')(isUndefinedOrEmpty)))
+
+            ).toEqual([{a: [1, 2, 4]}] as any));
+
+
+        // it('on - with find and isNot - isUndefinedOrEmpty predicate works with undefined', () =>
+        //     expect(
+        //
+        //         [{a: [1, 2, 4]}, {b: undefined}] <- make that work with path not matching
+        //             .filter(isNot(on('a')(isUndefinedOrEmpty)))
+        //
+        //     ).toEqual([{a: [1, 2, 4]}] as any));
 
 
         it('on - with find and isNot - partial arrayEquivalent as predicate', () =>
