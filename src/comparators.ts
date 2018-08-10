@@ -56,30 +56,34 @@ export const arrayEquivalentBy: (_: Comparator) => Comparator =
 export const arrayEquivalent: Comparator = arrayEquivalentBy(tripleEqual);
 
 
-export const objectEquivalentBy = (arrayComparator: Comparator) => (o1: object) =>
-    (o2: object) =>
-        arrayEquivalent(Object.keys(o1))(Object.keys(o2))
-        && Object
-            .keys(o1)
-            .filter((key: any ) => typeof (o1 as any)[key] === typeof (o2 as any)[key]) // make isOfSameType predicate
-            .filter((key: any) => {
+export const objectEquivalentBy =
+    (arrayComparator: Comparator) =>
+        (o1: object) =>
+            (o2: object): boolean =>
+                arrayEquivalent(Object.keys(o1))(Object.keys(o2))
+                && Object
+                    .keys(o1)
+                    .filter((key: any) => typeof (o1 as any)[key] === typeof (o2 as any)[key]) // make isOfSameType predicate
+                    .filter((key: any) => {
 
-                if ((o1 as any)[key] instanceof Array) {
-                    return arrayComparator((o1 as any)[key])((o2 as any)[key]);
-                }
-                if (typeof (o1 as any)[key] === 'number') {
-                    return ((o1 as any)[key] === (o2 as any)[key]);
-                }
-                if (typeof (o1 as any)[key] === 'string') {
-                    return ((o1 as any)[key] === (o2 as any)[key]);
-                }
+                        if ((o1 as any)[key] instanceof Array) {
+                            return arrayComparator((o1 as any)[key])((o2 as any)[key]);
+                        }
+                        switch(typeof (o1 as any)[key]) {
+                            case 'number':
+                                return ((o1 as any)[key] === (o2 as any)[key]);
+                            case 'string':
+                                return ((o1 as any)[key] === (o2 as any)[key]);
+                            case 'object':
+                                return objectEquivalentBy(arrayComparator)
+                                    ((o1 as any)[key])((o2 as any)[key]);
+                            default:
+                                // other types like for example Date
+                                return jsonEqual((o1 as any)[key])((o2 as any)[key]);
+                        }
+                    })
+                    .length === Object.keys(o1).length;
 
-                // other types like for example Date
-                return jsonEqual((o1 as any)[key])((o2 as any)[key])
-
-                // make recursive on objects
-            })
-            .length === Object.keys(o1).length;
 
 /**
  * TODO add recursive version

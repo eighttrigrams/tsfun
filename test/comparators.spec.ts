@@ -140,7 +140,7 @@ export function main() {
             ).toEqual(false));
 
 
-        it('object equivalent - different values in different order', () =>
+        it('objectEquivalent - different values in different order', () =>
             expect(
 
                 objectEquivalent<object>({a: 1, b: 2})({b: 3, a: 1})
@@ -148,7 +148,15 @@ export function main() {
             ).toEqual(false));
 
 
-        it('object equivalent - array compared with jsonEqual', () =>
+        it('objectEquivalent - recursive, keys in different order', () =>
+            expect(
+
+                objectEquivalent<any>({e: 0, a: {d: 2, c: 1}})({a: {c: 1, d: 2}, e: 0})
+
+            ).toEqual(true));
+
+
+        it('objectEquivalent - array compared with jsonEqual', () =>
             expect(
 
                 objectEquivalent<object>({a: [2, 1]})({a: [1, 2]})
