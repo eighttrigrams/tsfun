@@ -23,7 +23,9 @@ import {isEmpty, isUndefinedOrEmpty} from '../src/coll';
  *
  * arrayEquivalent
  * arrayEquivalentBy
+ *
  * objectEquivalent
+ * objectEquivalentBy
  *
  * on
  * onBy
