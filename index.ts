@@ -77,3 +77,6 @@ export {
 //       or filter(on('name')(or('a','b'))
 
 
+// document this usage pattern
+// return onBy(objectEquivalentBy(arrayEquivalent))('resource.relations')
+// (documentA)(documentB);
