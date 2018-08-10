@@ -269,6 +269,16 @@ export function main() {
             ).toEqual(true));
 
 
+        it('object equivalent - use with arrayEquivalentBy', () =>
+            expect(
+
+                objectEquivalentBy(arrayEqualBy(objectEquivalent))
+                    ({a: [{e: 5, c: 4}, 2], b: 0})
+                    ({b: 0, a: [{c: 4, e: 5}, 2]})
+
+            ).toEqual(true));
+
+
         // on
 
         it('on - with find - symmetric',() =>

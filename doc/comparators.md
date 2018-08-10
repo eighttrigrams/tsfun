@@ -225,6 +225,21 @@ objectEquivalentBy(arrayEquivalent)({a: [2, 1], b: 0})({b: 0, a: [1, 2]})
 ->
 ```
 
+More advanced combinations can be used to achieve even more control
+
+```
+objectEquivalentBy(arrayEqualBy(objectEquivalent))
+   ({a: [{e: 5, c: 4}, 2], b: 0})
+   ({b: 0, a: [{c: 4, e: 5}, 2]})
+-> true
+```
+
+In this example the key order does not matter, but the order of Arrays does.
+
+Furthermore, the arrays get inspected ...
+
+TODO further work is necessary here. We can only specify 'globally' that all array elements on all levels are of type object.
+
 ### on
 
 compares elements on path directly with a certain value
