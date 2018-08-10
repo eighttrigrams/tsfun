@@ -66,21 +66,17 @@ export const objectEquivalentBy =
                     .filter((key: any) => typeof (o1 as any)[key] === typeof (o2 as any)[key]) // make isOfSameType predicate
                     .filter((key: any) => {
 
-                        if ((o1 as any)[key] instanceof Array) {
+                        if ((o1 as any)[key] instanceof Array && (o2 as any)[key] instanceof Array) {
                             return arrayComparator((o1 as any)[key])((o2 as any)[key]);
                         }
-                        switch(typeof (o1 as any)[key]) {
-                            case 'number':
-                                return ((o1 as any)[key] === (o2 as any)[key]);
-                            case 'string':
-                                return ((o1 as any)[key] === (o2 as any)[key]);
-                            case 'object':
-                                return objectEquivalentBy(arrayComparator)
-                                    ((o1 as any)[key])((o2 as any)[key]);
-                            default:
-                                // other types like for example Date
-                                return jsonEqual((o1 as any)[key])((o2 as any)[key]);
+                        if ((o1 as any)[key] instanceof Date && (o2 as any)[key] instanceof Date) {
+                            return jsonEqual((o1 as any)[key])((o2 as any)[key]);
                         }
+                        if ((o1 as any)[key] instanceof Object && (o2 as any)[key] instanceof Object) {
+                            return objectEquivalentBy((o1 as any)[key])((o2 as any)[key]);
+                        }
+                        // numbers, strings
+                        return ((o1 as any)[key] === (o2 as any)[key]);
                     })
                     .length === Object.keys(o1).length;
 

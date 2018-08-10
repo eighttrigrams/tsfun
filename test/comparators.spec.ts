@@ -156,6 +156,24 @@ export function main() {
             ).toEqual(true));
 
 
+        it('objectEquivalent - work with Date, equal', () =>
+            expect(
+
+                objectEquivalent<any>({a: new Date(2018, 11, 24)})
+                    ({a: new Date(2018, 11, 24)})
+
+            ).toEqual(true));
+
+
+        it('objectEquivalent - work with Date, not equal', () =>
+            expect(
+
+                objectEquivalent<any>({a: new Date(2018, 11, 24)})
+                    ({a: new Date(2018, 11, 25)})
+
+            ).toEqual(false));
+
+
         it('objectEquivalent - array compared with jsonEqual', () =>
             expect(
 
