@@ -90,7 +90,7 @@ smallerThan(4)(2)
 -> true
 ```
 
-combined with takeWhile
+combined with `takeWhile`
 
 ```
 takeWhile(smallerThan(4))([1, 2, 4, 5])
