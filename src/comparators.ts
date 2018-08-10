@@ -24,7 +24,7 @@ export const smallerThan: Comparator = <A>(l:A) =>
 
 
 export const differentFromBy = (compare: Comparator) => <A>(a:A) =>
-    isNot(compare(a)); // TODO unit test compare
+    isNot(compare(a)); // TODO unit test
 
 
 export const differentFrom = differentFromBy(tripleEqual);
@@ -37,7 +37,7 @@ export const includedInBy = (compare: Comparator) => <A>(as: Array<A>, ) =>
 export const includedIn =  includedInBy(tripleEqual);
 
 
-export const arrayEqualBy = (compare: Comparator) =>
+export const arrayEqualBy = (objectComparator: Comparator /*, arrayComparator */) =>
     <A>(as1: Array<A>) => (as2: Array<A>) =>
         as1
             .filter((a, i) => {
@@ -50,9 +50,11 @@ export const arrayEqualBy = (compare: Comparator) =>
                 if (typeof a === 'number' && typeof as2[i] === 'number')
                     return a === as2[i];
 
+                // do only for Object
+                return objectComparator(a)(as2[i])
+
                 // TODO treat Dates and Maps
                 // TODO treat Arrays
-                return compare(a)(as2[i])
             })
             .length === as2.length;
 
@@ -81,7 +83,7 @@ export const arrayEquivalent: Comparator = arrayEquivalentBy(tripleEqual);
 
 
 export const objectEquivalentBy =
-    (arrayComparator: Comparator) =>
+    (arrayComparator: Comparator /*, objectComparator */) =>
         (o1: Object) =>
             (o2: Object): boolean => {
 
