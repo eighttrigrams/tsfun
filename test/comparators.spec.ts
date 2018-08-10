@@ -1,6 +1,8 @@
 import {intersectBy} from "../src/arrays/set_like";
 import {
-    arrayEquivalent, arrayEquivalentBy, jsonEqual, objectEquivalent, objectEquivalentBy, on, onBy,
+    arrayEquivalent, arrayEquivalentBy, differentFrom, differentFromBy, jsonEqual, objectEquivalent,
+    objectEquivalentBy, on,
+    onBy,
     sameOn
 } from '../src/comparators';
 import {isArray, isDefined, isNot, isUndefined} from '../src/predicates';
@@ -29,6 +31,33 @@ import {isEmpty, isUndefinedOrEmpty} from '../src/coll';
 export function main() {
 
     describe('Comparators', () => {
+
+        // tripleEqual
+
+        // jsonEqual
+
+        // biggerThan
+
+        // smallerThan
+
+        // differentFrom
+
+        it('differentFrom', () =>
+            expect(
+
+                differentFrom({a: 1})({a: 1})
+
+            ).toEqual(true));
+
+        // differentFromBy
+
+        it('differentFromBy', () =>
+            expect(
+
+                differentFromBy(jsonEqual)({a: 1})({a: 1})
+
+            ).toEqual(false));
+
 
         // arrayEquivalent
 

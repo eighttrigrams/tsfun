@@ -18,7 +18,7 @@ console.log(take(2)([1,2,3]))
 
 ## Wiki
 
-* [Data structures Overview](doc/structs_colls.md)
+* [Data structures Overview](doc/structures.md)
 * [Flows](doc/flow.md)
 * [Predicates](doc/predicates.md)
 * [Comparators](doc/comparators.md)

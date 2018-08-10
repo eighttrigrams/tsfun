@@ -1,26 +1,65 @@
+# Comparators
 
+A comparator take two arguments of Type A and returns a boolean value 
+`<A>(_: A) => (_: A) => boolean<A>`.
 
-## Comparators
+It is implemented as 
 
-There is a special class of comparators, the `on`-Comparators,
-which are discussed in [objects](./objects.md)
+```
+export type Comparator = <A>(_: A) => Predicate<A>;
+```
 
+which makes total sense, given that the typical usage we aim for with
+comparators looks something like
+
+```
+[3, 2, 1, 0].filter(biggerThan(1))
+```
+
+Here we apply biggerThan partially with its first argument `1`, which effectively
+gives us a predicate, which then gets applied in the filter loop. 
+
+#### Comparator Producers
+
+All functions ending with -By, like for example `includedInBy` are producers of
+Comparators. They get applied partially, taking another comparator, to give as
+a comparator.
+
+If for instance we would want to compare
+
+```
+differentFrom({a: 1})({a: 1})
+-> true
+```
+
+it gives true due to the default default via `===`.
+
+If we wanted to make a value comparison we could instead do like that
+
+```
+differentFromBy(jsonEqual)({a: 1})({a: 1})
+-> false
+```
+
+## Reference
 
 ### tripleEqual
 
-sameAs uses comparison via `===`.
+tripleEqual unsurprisingly uses comparison via `===`.
 
 ```
-sameAs(3)(3)
+tripleEqual(3)(3)
 -> true
+```
 
-[1, 2, 3]
-    .filter(sameAs(3))
+and can for example be used with filter
+
+```
+[1, 2, 3].filter(tripleEqual(3))
 -> [3]    
 ```
 
 ### jsonEqual
-
 
 equalTo compares to objects by comparing their string representations
 via JSON.parse(Json.stringify(item))
@@ -29,7 +68,6 @@ via JSON.parse(Json.stringify(item))
 equalTo({a: {b: 'c'})({a: {b: 'c'})
 -> true
 ```
-
 
 ### biggerThan
 
@@ -77,6 +115,8 @@ includedIn([1, 2])(1)
 ```
 
 ### includedInBy
+
+Meta-Comparator
 
 
 ### arrayEquivalent

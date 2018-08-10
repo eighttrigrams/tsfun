@@ -1,4 +1,4 @@
-# Data Structures and Collections
+# tsfun - Data Structures and Collections
 
 First of all we should begin with a quick clarification on what we mean with the term 
 `object` in tsfun. `tsfun` makes a general distinction between 3 classes of data structures,
