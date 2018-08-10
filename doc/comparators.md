@@ -76,7 +76,7 @@ biggerThan(4)(5)
 -> true
 ```
 
-in combination with .filter
+in combination with `filter`
 
 ```
 [3, 2, 1, 0].filter(biggerThan(1))
