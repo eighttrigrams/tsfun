@@ -21,7 +21,7 @@ gives us a predicate, which then gets applied in the filter loop.
 
 #### Comparator Producers
 
-All functions ending with -By, like for example `includedInBy` are producers of
+All functions ending with -By, like for example `differerntFromBy` are producers of
 Comparators. They get applied partially, taking another comparator, to give as
 a comparator.
 
