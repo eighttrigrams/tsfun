@@ -16,8 +16,8 @@ export {
 } from './src/comparators';
 export {
     isNot,
-    even,
-    odd,
+    isEven,
+    isOdd,
     isDefined,
     isUndefined,
     isArray
