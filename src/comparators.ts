@@ -37,6 +37,8 @@ export const includedInBy = (compare: Comparator) => <A>(as: Array<A>, ) =>
 export const includedIn =  includedInBy(tripleEqual);
 
 
+// TODO make that it makes a distinction on every element if it is a primitive
+// or the comparator should be used.
 export const arrayEqualBy = (compare: Comparator) =>
     <A>(as1: Array<A>) => (as2: Array<A>) =>
         as1
