@@ -37,12 +37,23 @@ export const includedInBy = (compare: Comparator) => <A>(as: Array<A>, ) =>
 export const includedIn =  includedInBy(tripleEqual);
 
 
-// TODO make that it makes a distinction on every element if it is a primitive
-// or the comparator should be used.
 export const arrayEqualBy = (compare: Comparator) =>
     <A>(as1: Array<A>) => (as2: Array<A>) =>
         as1
-            .filter((a, i) => compare(a)(as2[i]))
+            .filter((a, i) => {
+                if ((typeof a === 'number' && typeof as2[i] === 'string'
+                    || (typeof a === 'number' && typeof as2[i] === 'string')))
+                    return false; // TODO document and/or test that
+
+                if (typeof a === 'string' && typeof as2[i] === 'string')
+                    return a === as2[i];
+                if (typeof a === 'number' && typeof as2[i] === 'number')
+                    return a === as2[i];
+
+                // TODO treat Dates and Maps
+                // TODO treat Arrays
+                return compare(a)(as2[i])
+            })
             .length === as2.length;
 
 
@@ -56,7 +67,8 @@ export const arrayEquivalentBy: (_: Comparator) => Comparator =
     (comp: Comparator) =>
         <A>(as1: Array<A>) =>
             (as2: Array<A>) =>
-                isEmpty(subtractBy(comp)(as1)(as2)) && isEmpty(subtractBy(comp)(as2)(as1));
+                isEmpty(subtractBy(comp)(as1)(as2))
+                && isEmpty(subtractBy(comp)(as2)(as1));
 
 
 // TODO maybe arrayContaining (see jasmine) as a more general solution would
@@ -70,10 +82,13 @@ export const arrayEquivalent: Comparator = arrayEquivalentBy(tripleEqual);
 
 export const objectEquivalentBy =
     (arrayComparator: Comparator) =>
-        (o1: Object) => // TODO test if both have Object constructor, then the later constructor check also will not be necessary
-            (o2: Object): boolean =>
-                arrayEquivalent(Object.keys(o1))(Object.keys(o2))
-                && Object
+        (o1: Object) =>
+            (o2: Object): boolean => {
+
+                if (o1.constructor !== Object || o2.constructor !== Object) throw 'e'; // TODO throw TypeError and test it
+                if (!arrayEquivalent(Object.keys(o1))(Object.keys(o2))) return false;
+
+                return Object
                     .keys(o1)
                     .filter((key: any) => {
                         const v1 = (o1 as any)[key];
@@ -97,6 +112,7 @@ export const objectEquivalentBy =
                             : typeof v1 === typeof v2 && v1 === v2;
                     })
                     .length === Object.keys(o1).length;
+            };
 
 
 export const objectEquivalent: Comparator = objectEquivalentBy(arrayEqual);

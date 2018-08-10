@@ -99,6 +99,14 @@ export function main() {
             ).toEqual(false));
 
 
+        it('arrayEqualBy - allow strings and numbers', () =>
+            expect(
+
+                arrayEqualBy(objectEquivalent)([{a: 1}, 3, 't'])([{a: 1}, 3, 't'])
+
+            ).toEqual(true));
+
+
         // arrayEquivalent
 
         it('array equivalence - equivalent in different order', () =>

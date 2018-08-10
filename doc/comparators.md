@@ -235,10 +235,11 @@ objectEquivalentBy(arrayEqualBy(objectEquivalent))
 ```
 
 In this example the key order does not matter, but the order of Arrays does.
+Furthermore, the arrays get inspected and compared with `arrayEqual`.
 
-Furthermore, the arrays get inspected ...
-
-TODO further work is necessary here. We can only specify 'globally' that all array elements on all levels are of type object.
+Note that the mutual nesting between `objectEquivalent(By)` and
+ `arrayEqual(By)` or `arrayEquivalent(By)` reflects at which hierarchiecal level
+ which elements are treated how.
 
 ### on
 
