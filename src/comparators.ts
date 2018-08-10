@@ -58,7 +58,7 @@ export const arrayEquivalent: Comparator = arrayEquivalentBy(tripleEqual);
 
 export const objectEquivalentBy =
     (arrayComparator: Comparator) =>
-        (o1: Object) => // TODO test if both have Object constructor
+        (o1: Object) => // TODO test if both have Object constructor, then the later constructor check also will not be necessary
             (o2: Object): boolean =>
                 arrayEquivalent(Object.keys(o1))(Object.keys(o2))
                 && Object
