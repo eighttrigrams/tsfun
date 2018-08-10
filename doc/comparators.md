@@ -140,8 +140,48 @@ arrayEquivalentBy(jsonEqual)([{a: 9}, {c: 7}, {b: 4}])([{b: 4}, {a: 9}, {c: 7}])
 
 ### objectEquivalent
 
-...
+If we compare Objects with objectEquivalent, we do not care for the order
+of their keys. Thus
 
+```
+objectEquivalent({a: 1, b: 2})({b: 2, a: 1})
+->
+```
+
+As stated in [structures](structures.md), when we talk about Objects in tsfun, 
+we care about nested structures. 
+
+```
+objectEquivalent<any>({e: 0, a: {d: 2, c: 1}})({a: {c: 1, d: 2}, e: 0})
+-> true
+```
+
+So we can nest structures and on any level, if the value is again an Object, 
+the order of the keys does not matter.
+
+On any level, if the value is either a `string` or a `number`, the values
+of the corresponding keys are compared via `===`, provided they are both of 
+the same type.
+
+If the type of a certain key on both Objects is of a descendant of `Object`,
+for instance `Date` or `Map`, the comparison is done via jsonEquals. Thus
+
+```
+objectEquivalent<any>({a: new Date(2018, 11, 24)})
+                     ({a: new Date(2018, 11, 24)})
+-> true
+```
+
+and 
+
+```
+objectEquivalent<any>({a: new Date(2018, 11, 24)})
+                     ({a: new Date(2018, 11, 25)})
+-> false
+```
+
+If the value of a certain key on both Objects is of type `Array`, the default
+comparison is done with `jsonEqual`. See `objectEquivalentBy` to change that.
 
 ### objectEquivalentBy
 

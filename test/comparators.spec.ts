@@ -21,6 +21,9 @@ import {isEmpty, isUndefinedOrEmpty} from '../src/coll';
  * includedIn
  * includedInBy
  *
+ * arrayEqual
+ * arrayEqualBy
+ *
  * arrayEquivalent
  * arrayEquivalentBy
  *
@@ -59,6 +62,10 @@ export function main() {
                 differentFromBy(jsonEqual)({a: 1})({a: 1})
 
             ).toEqual(false));
+
+        // arrayEqual
+
+        // arrayEqualBy
 
 
         // arrayEquivalent
@@ -131,7 +138,7 @@ export function main() {
 
         // objectEquivalent
 
-        it('object equivalent - equivalent', () =>
+        it('object equivalent - order of keys does not matter', () =>
             expect(
 
                 objectEquivalent({a: 1, b: 2})({b: 2, a: 1})
