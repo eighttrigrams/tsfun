@@ -1,6 +1,6 @@
 import {intersectBy} from "../src/arrays/set_like";
 import {
-    arrayEquivalent, arrayEquivalentBy, jsonEqual, objectEquivalent, on, onBy,
+    arrayEquivalent, arrayEquivalentBy, jsonEqual, objectEquivalent, objectEquivalentBy, on, onBy,
     sameOn
 } from '../src/comparators';
 import {isArray, isDefined, isNot, isUndefined} from '../src/predicates';
@@ -18,7 +18,6 @@ import {isEmpty, isUndefinedOrEmpty} from '../src/coll';
  *
  * includedIn
  * includedInBy
- *
  *
  * arrayEquivalent
  * arrayEquivalentBy
@@ -147,6 +146,24 @@ export function main() {
                 objectEquivalent<object>({a: 1, b: 2})({b: 3, a: 1})
 
             ).toEqual(false));
+
+
+        it('object equivalent - array compared with jsonEqual', () =>
+            expect(
+
+                objectEquivalent<object>({a: [2, 1]})({a: [1, 2]})
+
+            ).toEqual(false));
+
+
+        // objectEquivalentBy
+
+        it('object equivalent - arrayEquivalent', () =>
+            expect(
+
+                objectEquivalentBy(arrayEquivalent)({a: [2, 1]})({a: [1, 2]})
+
+            ).toEqual(true));
 
 
         // on

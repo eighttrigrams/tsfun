@@ -2,6 +2,7 @@ export {
     arrayEquivalent,
     arrayEquivalentBy,
     objectEquivalent,
+    objectEquivalentBy,
     tripleEqual,
     includedIn,
     differentFrom,

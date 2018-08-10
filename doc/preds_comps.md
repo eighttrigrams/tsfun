@@ -130,6 +130,10 @@ includedIn([1, 2])(1)
 ...
 
 
+### objectEquivalentBy
+
+...
+
 
 ### on
 

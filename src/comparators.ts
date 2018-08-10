@@ -56,20 +56,36 @@ export const arrayEquivalentBy: (_: Comparator) => Comparator =
 export const arrayEquivalent: Comparator = arrayEquivalentBy(tripleEqual);
 
 
+export const objectEquivalentBy = (arrayComparator: Comparator) => (o1: object) =>
+    (o2: object) =>
+        arrayEquivalent(Object.keys(o1))(Object.keys(o2))
+        && Object
+            .keys(o1)
+            .filter((key: any ) => typeof (o1 as any)[key] === typeof (o2 as any)[key]) // make isOfSameType predicate
+            .filter((key: any) => {
+
+                if ((o1 as any)[key] instanceof Array) {
+                    return arrayComparator((o1 as any)[key])((o2 as any)[key]);
+                }
+                if (typeof (o1 as any)[key] === 'number') {
+                    return ((o1 as any)[key] === (o2 as any)[key]);
+                }
+                if (typeof (o1 as any)[key] === 'string') {
+                    return ((o1 as any)[key] === (o2 as any)[key]);
+                }
+
+                // other types like for example Date
+                return jsonEqual((o1 as any)[key])((o2 as any)[key])
+
+                // make recursive on objects
+            })
+            .length === Object.keys(o1).length;
+
 /**
  * TODO add recursive version
  * document the order issue as part of objects explanation in structs_colls.md
  */
-export const objectEquivalent: Comparator = (o1: object) =>
-    (o2: object) =>
-        arrayEquivalent(Object.keys(o1))(Object.keys(o2))
-            && Object
-                .keys(o1)
-                // TODO filter: type of o1 === type of o2
-                .filter((key: any) =>
-                    // TODO compare json on arrays, === on literals, and recursive on objects
-                    (o1 as any)[key] === (o2 as any)[key])
-                .length === Object.keys(o1).length;
+export const objectEquivalent: Comparator = objectEquivalentBy(jsonEqual);
 
 
 // TODO take care for cases where undefined === undefined
