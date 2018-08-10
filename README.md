@@ -27,14 +27,11 @@ console.log(take(2)([1,2,3]))
 * [Set-like collection functions](doc/set_like.md)
 * [Object functions](doc/objects.md)
 
+## More
 
-
-
-
-
-
-
-Ascii Art generated with http://www.patorjk.com/software/taag
+* [Design Rationale](doc/design.md) 
+ 
+The Ascii Art generated with http://www.patorjk.com/software/taag
 
 
 
