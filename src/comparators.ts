@@ -47,6 +47,9 @@ export const arrayEquivalentBy: (_: Comparator) => Comparator =
                 isEmpty(subtractBy(comp)(as1)(as2)) && isEmpty(subtractBy(comp)(as2)(as1));
 
 
+// TODO maybe arrayContaining (see jasmine) as a more general solution would
+// be better. arrayContaining on same sized arrays is equivalent to arrayEquivalent
+
 /**
  * Compares 2 arrays where elements order does not matter
  */
