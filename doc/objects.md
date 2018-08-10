@@ -52,7 +52,7 @@ combined with map and filter
 
 ### Comparators
 
-See section [comparators](./preds_comps.md)
+See section [comparators](comparators.md)
 
 ### sameOn
 
