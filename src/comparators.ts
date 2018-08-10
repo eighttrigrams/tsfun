@@ -69,19 +69,16 @@ export const objectEquivalentBy =
                             return arrayComparator((o1 as any)[key])((o2 as any)[key]);
                         }
 
-                        // TODO this should not be part of the lib but given as function parameter
-                        // or there should be a dateComparator and the instanceof checks in general should be part of the comparators
-                        // and the first param list should get rest args for any number of comparators to run before the object comparison
-                        if ((o1 as any)[key] instanceof Date && (o2 as any)[key] instanceof Date) {
-                            return jsonEqual((o1 as any)[key])((o2 as any)[key]);
-                        }
+                        return (o1 as any)[key] instanceof Object && (o2 as any)[key] instanceof Object
 
-                        if ((o1 as any)[key] instanceof Object && (o2 as any)[key] instanceof Object) {
-                            return objectEquivalentBy((o1 as any)[key])((o2 as any)[key]);
-                        }
-                        // numbers, strings
-                        return (typeof (o1 as any)[key] === typeof (o2 as any)[key]
-                            && ((o1 as any)[key] === (o2 as any)[key]));
+                            ? ((o1 as any)[key]).constructor === Object && ((o2 as any)[key]).constructor === Object
+
+                                ? objectEquivalentBy((o1 as any)[key])((o2 as any)[key])
+                                : jsonEqual((o1 as any)[key])((o2 as any)[key])
+
+                            // numbers, strings
+                            : (typeof (o1 as any)[key] === typeof (o2 as any)[key]
+                                 && ((o1 as any)[key] === (o2 as any)[key]));
                     })
                     .length === Object.keys(o1).length;
 
