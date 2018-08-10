@@ -1,5 +1,6 @@
 import {intersectBy} from "../src/arrays/set_like";
 import {
+    arrayEqual, arrayEqualBy,
     arrayEquivalent, arrayEquivalentBy, differentFrom, differentFromBy, jsonEqual, objectEquivalent,
     objectEquivalentBy, on,
     onBy,
@@ -65,7 +66,37 @@ export function main() {
 
         // arrayEqual
 
+        it('arrayEqual - equal', () =>
+            expect(
+
+                arrayEqual([1, 2])([1, 2])
+
+            ).toEqual(true));
+
+
+        it('arrayEqual - order does matter', () =>
+            expect(
+
+                arrayEqual([1, 2])([2, 1])
+
+            ).toEqual(false));
+
         // arrayEqualBy
+
+        it('arrayEqualBy - equal', () =>
+            expect(
+
+                arrayEqualBy(jsonEqual)([{a: 1}, {b: 2}])([{a: 1}, {b: 2}])
+
+            ).toEqual(true));
+
+
+        it('arrayEqualBy vs. arrayEqual', () =>
+            expect(
+
+                arrayEqual([{a: 1}, {b: 2}])([{a: 1}, {b: 2}])
+
+            ).toEqual(false));
 
 
         // arrayEquivalent
@@ -226,6 +257,14 @@ export function main() {
             expect(
 
                 objectEquivalentBy(arrayEquivalent)({a: [2, 1]})({a: [1, 2]})
+
+            ).toEqual(true));
+
+
+        it('object equivalent - order on keys and arrays does not matter', () =>
+            expect(
+
+                objectEquivalentBy(arrayEquivalent)({a: [2, 1], b: 0})({b: 0, a: [1, 2]})
 
             ).toEqual(true));
 

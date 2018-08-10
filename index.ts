@@ -1,4 +1,6 @@
 export {
+    arrayEqual,
+    arrayEqualBy,
     arrayEquivalent,
     arrayEquivalentBy,
     objectEquivalent,

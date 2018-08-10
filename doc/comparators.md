@@ -118,8 +118,33 @@ includedIn([1, 2])(1)
 
 ### includedInBy
 
-Meta-Comparator
+...
 
+### arrayEqual
+
+arrayEqual lets one compare Arrays in a way that the elements must be
+equal and the order in which there are stored are equal. Thus
+
+```
+arrayEqual([1, 2])([1, 2])
+-> true
+```
+
+but
+
+```
+arrayEqual([1, 2])([2, 1])
+-> false
+```
+
+The default comparison method is `===` which can be changed using `arrayEqualBy`.
+
+### arrayEqualBy
+
+```
+arrayEqualBy(jsonEqual)([{a: 1}, {b: 2}])([{a: 1}, {b: 2}])
+-> true
+```
 
 ### arrayEquivalent
 
@@ -181,12 +206,24 @@ objectEquivalent<any>({a: new Date(2018, 11, 24)})
 ```
 
 If the value of a certain key on both Objects is of type `Array`, the default
-comparison is done with `jsonEqual`. See `objectEquivalentBy` to change that.
+comparison is done with `arrayEqual`. See `objectEquivalentBy` to change that.
 
 ### objectEquivalentBy
 
-...
+objectEquivalent produces a Comparator by feeding it a method to compare Arrays.
 
+```
+objectEquivalentBy(arrayEquivalent)({a: [2, 1]})({a: [1, 2]})
+-> true
+```
+
+so that neither the order of the array elements nor the order of the keys does
+matter in any way.
+
+```
+objectEquivalentBy(arrayEquivalent)({a: [2, 1], b: 0})({b: 0, a: [1, 2]})
+->
+```
 
 ### on
 

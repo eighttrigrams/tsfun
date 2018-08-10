@@ -37,6 +37,16 @@ export const includedInBy = (compare: Comparator) => <A>(as: Array<A>, ) =>
 export const includedIn =  includedInBy(tripleEqual);
 
 
+export const arrayEqualBy = (compare: Comparator) =>
+    <A>(as1: Array<A>) => (as2: Array<A>) =>
+        as1
+            .filter((a, i) => compare(a)(as2[i]))
+            .length === as2.length;
+
+
+export const arrayEqual = arrayEqualBy(tripleEqual);
+
+
 /**
  * Compares 2 arrays where elements order does not matter
  */
@@ -90,7 +100,7 @@ export const objectEquivalentBy =
 /**
  * TODO document the order issue as part of objects explanation in structs_colls.md
  */
-export const objectEquivalent: Comparator = objectEquivalentBy(jsonEqual);
+export const objectEquivalent: Comparator = objectEquivalentBy(arrayEqual);
 
 
 // TODO take care for cases where undefined === undefined
