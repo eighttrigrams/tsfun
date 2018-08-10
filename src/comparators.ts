@@ -58,8 +58,8 @@ export const arrayEquivalent: Comparator = arrayEquivalentBy(tripleEqual);
 
 export const objectEquivalentBy =
     (arrayComparator: Comparator) =>
-        (o1: object) => // TODO test if both have Object constructor
-            (o2: object): boolean =>
+        (o1: Object) => // TODO test if both have Object constructor
+            (o2: Object): boolean =>
                 arrayEquivalent(Object.keys(o1))(Object.keys(o2))
                 && Object
                     .keys(o1)
@@ -75,7 +75,10 @@ export const objectEquivalentBy =
 
                             ? v1.constructor === Object && v2.constructor === Object
 
+                                // {} or Object
                                 ? objectEquivalentBy(v1)(v2)
+
+                                // for example Date, Map
                                 : jsonEqual(v1)(v2)
 
                             // numbers, strings
