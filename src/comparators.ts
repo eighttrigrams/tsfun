@@ -63,7 +63,6 @@ export const objectEquivalentBy =
                 arrayEquivalent(Object.keys(o1))(Object.keys(o2))
                 && Object
                     .keys(o1)
-                    .filter((key: any) => typeof (o1 as any)[key] === typeof (o2 as any)[key]) // make isOfSameType predicate
                     .filter((key: any) => {
 
                         if ((o1 as any)[key] instanceof Array && (o2 as any)[key] instanceof Array) {
@@ -76,7 +75,8 @@ export const objectEquivalentBy =
                             return objectEquivalentBy((o1 as any)[key])((o2 as any)[key]);
                         }
                         // numbers, strings
-                        return ((o1 as any)[key] === (o2 as any)[key]);
+                        return (typeof (o1 as any)[key] === typeof (o2 as any)[key]
+                            && ((o1 as any)[key] === (o2 as any)[key]));
                     })
                     .length === Object.keys(o1).length;
 
