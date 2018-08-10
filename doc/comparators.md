@@ -62,10 +62,10 @@ and can for example be used with filter
 ### jsonEqual
 
 equalTo compares to objects by comparing their string representations
-via JSON.parse(Json.stringify(item))
+via JSON.parse(JSON.stringify(item))
 
 ```
-equalTo({a: {b: 'c'})({a: {b: 'c'})
+jsonEqual({a: {b: 'c'})({a: {b: 'c'})
 -> true
 ```
 
