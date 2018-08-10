@@ -99,9 +99,6 @@ export const objectEquivalentBy =
                     .length === Object.keys(o1).length;
 
 
-/**
- * TODO document the order issue as part of objects explanation in structs_colls.md
- */
 export const objectEquivalent: Comparator = objectEquivalentBy(arrayEqual);
 
 
