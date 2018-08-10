@@ -1,7 +1,7 @@
 # Comparators
 
-A comparator take two arguments of Type A and returns a boolean value 
-`<A>(_: A) => (_: A) => boolean<A>`.
+A comparator take two arguments of Type A and returns a boolean value: 
+`<A>(_: A) => (_: A) => boolean`.
 
 It is implemented as 
 
