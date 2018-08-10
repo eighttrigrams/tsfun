@@ -58,7 +58,7 @@ export const arrayEquivalent: Comparator = arrayEquivalentBy(tripleEqual);
 
 export const objectEquivalentBy =
     (arrayComparator: Comparator) =>
-        (o1: object) => // TODO test if both instanceof Object
+        (o1: object) => // TODO test if both have Object constructor
             (o2: object): boolean =>
                 arrayEquivalent(Object.keys(o1))(Object.keys(o2))
                 && Object
