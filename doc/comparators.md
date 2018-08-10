@@ -123,7 +123,20 @@ Meta-Comparator
 
 ### arrayEquivalent
 
-...
+arrayEquivalent compares two Arrays in a way that the order of the Arrays
+does not matter. 
+
+```
+arrayEquivalent([1, 4, 7])([7, 4, 1])
+-> true
+```
+
+### arrayEquivalentBy
+
+```
+arrayEquivalentBy(jsonEqual)([{a: 9}, {c: 7}, {b: 4}])([{b: 4}, {a: 9}, {c: 7}])
+-> true
+```
 
 ### objectEquivalent
 
