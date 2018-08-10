@@ -71,6 +71,7 @@ export const objectEquivalentBy =
 
                         // TODO this should not be part of the lib but given as function parameter
                         // or there should be a dateComparator and the instanceof checks in general should be part of the comparators
+                        // and the first param list should get rest args for any number of comparators to run before the object comparison
                         if ((o1 as any)[key] instanceof Date && (o2 as any)[key] instanceof Date) {
                             return jsonEqual((o1 as any)[key])((o2 as any)[key]);
                         }
