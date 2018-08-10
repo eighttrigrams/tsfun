@@ -82,8 +82,7 @@ export const objectEquivalentBy =
 
 
 /**
- * TODO add recursive version
- * document the order issue as part of objects explanation in structs_colls.md
+ * TODO document the order issue as part of objects explanation in structs_colls.md
  */
 export const objectEquivalent: Comparator = objectEquivalentBy(jsonEqual);
 
