@@ -1,4 +1,14 @@
 export {
+    isNot,
+    isEven,
+    isOdd,
+    isDefined,
+    isUndefined,
+    isArray
+} from './src/predicates';
+
+
+export {
     arrayEqual,
     arrayEqualBy,
     arrayEquivalent,
@@ -16,20 +26,36 @@ export {
     smallerThan,
     sameOn
 } from './src/comparators';
+
+
 export {
-    isNot,
-    isEven,
-    isOdd,
-    isDefined,
-    isUndefined,
-    isArray
-} from './src/predicates';
+    take,
+    takeRightWhile,
+    takeUntil,
+    takeWhile,
+    takeNth,
+    dropWhile,
+    drop,
+    dropRight,
+    dropRightWhile
+} from './src/arrays/list_like_pick';
 
 
-export {take, takeRightWhile, takeUntil, takeWhile, takeNth} from './src/arrays/list_like_take';
-export {dropWhile, drop, dropRight, dropRightWhile} from './src/arrays/list_like_drop';
-export {flow, flowP} from './src/flow';
-export {reverse, flatMap, mapTo, filter, map} from './src/arrays/list_like';
+export {
+    flow,
+    flowP
+} from './src/flow';
+
+
+export {
+    reverse,
+    flatMap,
+    mapTo,
+    filter,
+    map
+} from './src/arrays/list_like';
+
+
 export {
     NestedArray,
     intersection,
@@ -47,6 +73,7 @@ export {
     duplicates
 } from './src/arrays/set_like';
 
+
 export {
     subtractMap,
     intersectMap,
@@ -54,6 +81,8 @@ export {
     unionMap
     // intersectionMap TODO implement
 } from './src/maps/set_like'
+
+
 export {
     mapMap,
     filterMap,
@@ -65,6 +94,7 @@ export {copy,
     isEmpty
 } from './src/coll';
 export {doWhen} from './src/core';
+
 
 export {
     getElForPathIn,

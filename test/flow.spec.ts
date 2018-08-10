@@ -1,7 +1,6 @@
 import {flow, flowP} from '../src/flow';
 import {reverse} from '../src/arrays/list_like';
-import {take, takeWhile} from '../src/arrays/list_like_take';
-import {dropWhile} from '../src/arrays/list_like_drop';
+import {take, takeWhile, dropWhile} from '../src/arrays/list_like_pick';
 import {biggerThan, smallerThan} from '../src/comparators';
 import {uniteMap} from '../src/maps/set_like';
 
