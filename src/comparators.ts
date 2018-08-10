@@ -58,27 +58,28 @@ export const arrayEquivalent: Comparator = arrayEquivalentBy(tripleEqual);
 
 export const objectEquivalentBy =
     (arrayComparator: Comparator) =>
-        (o1: object) =>
+        (o1: object) => // TODO test if both instanceof Object
             (o2: object): boolean =>
                 arrayEquivalent(Object.keys(o1))(Object.keys(o2))
                 && Object
                     .keys(o1)
                     .filter((key: any) => {
+                        const v1 = (o1 as any)[key];
+                        const v2 = (o2 as any)[key];
 
-                        if ((o1 as any)[key] instanceof Array && (o2 as any)[key] instanceof Array) {
-                            return arrayComparator((o1 as any)[key])((o2 as any)[key]);
-                        }
+                        if (v1 instanceof Array && v2 instanceof Array)
+                            return arrayComparator(v1)(v2);
 
-                        return (o1 as any)[key] instanceof Object && (o2 as any)[key] instanceof Object
 
-                            ? ((o1 as any)[key]).constructor === Object && ((o2 as any)[key]).constructor === Object
+                        return v1 instanceof Object && v2 instanceof Object
 
-                                ? objectEquivalentBy((o1 as any)[key])((o2 as any)[key])
-                                : jsonEqual((o1 as any)[key])((o2 as any)[key])
+                            ? v1.constructor === Object && v2.constructor === Object
+
+                                ? objectEquivalentBy(v1)(v2)
+                                : jsonEqual(v1)(v2)
 
                             // numbers, strings
-                            : (typeof (o1 as any)[key] === typeof (o2 as any)[key]
-                                 && ((o1 as any)[key] === (o2 as any)[key]));
+                            : typeof v1 === typeof v2 && v1 === v2;
                     })
                     .length === Object.keys(o1).length;
 
