@@ -137,6 +137,13 @@ arrayEqual([1, 2])([1, 2])
 -> true
 ```
 
+This also works for nested structures
+
+```
+arrayEqual([1, [2, [3, 4]]])([1, [2, [3, 4]]])
+-> true
+```
+
 The default comparison method is `jsonEqual`, so
 
 ```

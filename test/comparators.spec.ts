@@ -82,6 +82,14 @@ export function main() {
             ).toEqual(false));
 
 
+        it('arrayEqual - nested', () =>
+            expect(
+
+                arrayEqual([1, [2, [3, 4]]])([1, [2, [3, 4]]])
+
+            ).toEqual(true));
+
+
         // arrayEqualBy
 
         it('arrayEqualBy - allow strings and numbers', () =>
