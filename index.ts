@@ -1,13 +1,18 @@
 export {
     isNot,
     isEven,
+    even,
     isOdd,
+    odd,
     isDefined,
+    defined,
     isUndefined,
     isArray,
     isObject,
     isTrue,
-    isFalse
+    isFalse,
+    isUndefinedOrEmpty,
+    isEmpty
 } from './src/predicates';
 
 
@@ -82,7 +87,6 @@ export {
     intersectMap,
     uniteMap,
     unionMap
-    // intersectionMap TODO implement
 } from './src/maps/set_like'
 
 
@@ -92,12 +96,9 @@ export {
 } from './src/maps/list_like'
 
 
-export {copy,
-    isUndefinedOrEmpty, // TODO move to predicates
-    isEmpty
-} from './src/coll';
-export {doWhen} from './src/core';
+export {copy,} from './src/coll';
 
+export {doWhen} from './src/core';
 
 export {
     getElForPathIn,
@@ -106,12 +107,3 @@ export {
     to,
     option
 } from './src/objects/core';
-
-// TODO add more powerful object comparison
-// TODO add filter(or(on('name:'))('a', 'b'))
-//       or filter(on('name')(or('a','b'))
-
-
-// document this usage pattern
-// return onBy(objectEquivalentBy(arrayEquivalent))('resource.relations')
-// (documentA)(documentB);

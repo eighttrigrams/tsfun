@@ -1,5 +1,5 @@
 import {identical21, reverseUncurry2} from "../core";
-import {isEmpty} from "../coll";
+import {isEmpty} from '../predicates';
 
 
 export const clone = <O>(object: O, postProcess:

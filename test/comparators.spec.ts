@@ -1,14 +1,21 @@
 import {intersectBy} from "../src/arrays/set_like";
 import {
-    arrayEqual, arrayEqualBy,
-    arrayEquivalent, arrayEquivalentBy, differentFrom, differentFromBy, includedIn, includedInBy, jsonEqual,
+    arrayEqual,
+    arrayEqualBy,
+    arrayEquivalent,
+    arrayEquivalentBy,
+    differentFrom,
+    differentFromBy,
+    includedIn,
+    includedInBy,
+    jsonEqual,
     objectEqual,
-    objectEqualBy, on,
+    objectEqualBy,
+    on,
     onBy,
     sameOn
 } from '../src/comparators';
-import {isArray, isDefined, isNot, isUndefined} from '../src/predicates';
-import {isEmpty, isUndefinedOrEmpty} from '../src/coll';
+import {empty, isArray, isDefined, isEmpty, isNot, isUndefined, undefinedOrEmpty} from '../src/predicates';
 
 /**
  * tripleEqual
@@ -511,7 +518,7 @@ export function main() {
             expect(
 
                 [{a: [1, 2, 4]}, {a: []}]
-                    .filter(isNot(on('a')(isEmpty)))
+                    .filter(isNot(on('a')(empty)))
 
             ).toEqual([{a: [1, 2, 4]}] as any));
 
@@ -520,7 +527,7 @@ export function main() {
             expect(
 
                 [{a: [1, 2, 4]}, {a: undefined}]
-                    .filter(isNot(on('a')(isUndefinedOrEmpty)))
+                    .filter(isNot(on('a')(undefinedOrEmpty)))
 
             ).toEqual([{a: [1, 2, 4]}] as any));
 
