@@ -90,6 +90,13 @@ uniqueBy(equalTo)([{a: 'c'}, {a: 'c'}])
 -> [{a: 'c'}]
 ```
 
+`uniqueBy` can also be combined with `on` to allow for constructions like
+
+```
+uniqueBy(on('a'))([{a: 1}, {a: 2}, {a: 1}])
+-> [{a: 1}, {a: 2}]
+```
+
 ### duplicates
 
 ...

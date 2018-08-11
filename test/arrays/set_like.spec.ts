@@ -9,7 +9,7 @@ import {
     uniteBy,
     unionBy, subtractBy, uniqueBy,
 } from '../../src/arrays/set_like';
-import {jsonEqual} from "../../src/comparators";
+import {jsonEqual, on} from "../../src/comparators";
 
 
 /**
@@ -192,16 +192,15 @@ export function main() {
                 .toEqual([]));
 
 
-        // TODO implement
-        /*
-        it('unique - objects', () =>
-            expect(
-                unique('a')([{a: 1}, {a: 2}, {a: 1}])
-            ).toEqual([{a: 1}, {a: 2}])
-        );*/
-
-
         // uniqueBy
+
+
+        it('uniqueBy with on', () =>
+            expect(
+                uniqueBy(on('a'))([{a: 1}, {a: 2}, {a: 1}])
+            ).toEqual([{a: 1}, {a: 2}])
+        );
+
 
         it('uniqueBy', () =>
             expect(
