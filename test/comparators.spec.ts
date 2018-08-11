@@ -66,7 +66,7 @@ export function main() {
 
         // arrayEqual
 
-        it('arrayEqual - equal', () =>
+        it('equal', () =>
             expect(
 
                 arrayEqual([1, 2])([1, 2])
@@ -74,7 +74,7 @@ export function main() {
             ).toEqual(true));
 
 
-        it('arrayEqual - order does matter', () =>
+        it('order does matter', () =>
             expect(
 
                 arrayEqual([1, 2])([2, 1])
@@ -82,7 +82,7 @@ export function main() {
             ).toEqual(false));
 
 
-        it('arrayEqual - nested', () =>
+        it('nested', () =>
             expect(
 
                 arrayEqual([1, [2, [3, 4]]])([1, [2, [3, 4]]])
@@ -90,14 +90,15 @@ export function main() {
             ).toEqual(true));
 
 
-        it('arrayEqualBy default method is objectEquivalent', () =>
+        it('default method is objectEquivalent', () =>
             expect(
 
                 arrayEqual([1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
 
             ).toEqual(true));
 
-        it('arrayEqualBy - allow strings and numbers', () =>
+
+        it('allow strings and numbers', () =>
             expect(
 
                 arrayEqual([{a: 1}, 3, 't'])([{a: 1}, 3, 't'])
@@ -105,7 +106,7 @@ export function main() {
             ).toEqual(true));
 
 
-        it('arrayEqualBy - equal', () =>
+        it('equal', () =>
             expect(
 
                 arrayEqual([1, {b: 2, c: 3}])([1, {b: 2, c: 3}])
