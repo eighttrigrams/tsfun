@@ -41,20 +41,21 @@ export const arrayEqualBy = (objectComparator: Comparator /*, arrayComparator */
     <A>(as1: Array<A>) => (as2: Array<A>) =>
         as1
             .filter((a, i) => {
-                if ((typeof a === 'number' && typeof as2[i] === 'string'
-                    || (typeof a === 'number' && typeof as2[i] === 'string')))
-                    return false; // TODO document and/or test that
 
-                if (typeof a === 'string' && typeof as2[i] === 'string')
-                    return a === as2[i];
-                if (typeof a === 'number' && typeof as2[i] === 'number')
-                    return a === as2[i];
+                // TODO Treat Array, test it
 
-                // do only for Object
-                return objectComparator(a)(as2[i])
+                return a instanceof Object && as2[i] instanceof Object
 
-                // TODO treat Dates and Maps
-                // TODO treat Arrays
+                    ? a.constructor === Object && as2[i].constructor === Object
+
+                        // {} or Object
+                        ? objectComparator(a)(as2[i])
+
+                        // for example Date, Map
+                        : jsonEqual(a)(as2[i]) // TODO test it
+
+                    // numbers, strings
+                    : typeof a === typeof as2[i] && a === as2[i];
             })
             .length === as2.length;
 
