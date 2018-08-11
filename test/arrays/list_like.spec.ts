@@ -1,4 +1,4 @@
-import {filter, flatMap, map, mapTo} from "../../src/arrays/list_like";
+import {filter, flatMap, getAtIndex, getAtIndexOr, map, mapTo} from "../../src/arrays/list_like";
 import {flow} from "../../src/flow";
 import {to} from "../../src/objects/core";
 import {on, smallerThan} from "../../src/comparators";
@@ -6,7 +6,68 @@ import {on, smallerThan} from "../../src/comparators";
 
 export function main() {
 
-    describe('Arrays/Collection', () => {
+    /**
+     * getAtIndex
+     * getAtIndexOr
+     *
+     * map
+     * filter
+     *
+     * flatMap
+     *
+     * mapTo
+     *
+     * reverse
+     */
+    describe('Arrays/List-Like-Collection', () => {
+
+        // getAtIndex
+
+        it('getAtIndex', () =>
+
+            expect(
+
+                getAtIndex([1, 3, 7])(2)
+
+            ).toEqual(7));
+
+
+        it('result undefined', () =>
+
+            expect(
+
+                getAtIndex([1, 3, 7])(8)
+
+            ).toEqual(undefined));
+
+
+        it('with map', () =>
+
+            expect(
+
+                [0, 2].map(getAtIndex([1, 3, 7]))
+
+            ).toEqual([1, 7]));
+
+        // getAtIndexOr
+
+        it('result undefined', () =>
+
+            expect(
+
+                getAtIndexOr([1, 3, 7], 10)(8)
+
+            ).toEqual(10));
+
+        // map
+
+        // filter
+
+        // flatMap
+
+        // mapTo
+
+        // reverse
 
         it('mapTo', () =>
 

@@ -68,7 +68,9 @@ export {
     flatMap,
     mapTo,
     filter,
-    map
+    map,
+    getAtIndex,
+    getAtIndexOr
 } from './src/arrays/list_like';
 
 

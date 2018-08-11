@@ -4,6 +4,34 @@ These methods treat arrays as ordered lists
 
 ## Arrays
 
+### getAtIndex
+
+```
+getAtIndex([1, 3, 7])(2)
+-> 7
+```
+
+```
+getAtIndex([1, 3, 7])(8)
+-> undefined
+```
+
+used with map
+
+```
+[0, 2].map(getAtIndex([1, 3, 7]))
+-> [1, 7]
+```
+
+### getAtIndexOr
+
+providing a fallback value
+
+```
+getAtIndexOr([1, 3, 7], 10)(8)
+-> 10
+```
+
 ### map
 
 Returns a transformation that
