@@ -194,7 +194,6 @@ export function main() {
 
         // uniqueBy
 
-
         it('uniqueBy with on', () =>
             expect(
                 uniqueBy(on('a'))([{a: 1}, {a: 2}, {a: 1}])

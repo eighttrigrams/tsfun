@@ -13,6 +13,5 @@ export const reverseUncurry2 = <A>(f: (_1: A, _2: A) => A) =>
     (as1: A) => (as2: A) => f(as2, as1);
 
 
-export const doWhen = (when: Function, do_: Function) =>
-    (other: any) => { if (when(other)) do_() };
+
 

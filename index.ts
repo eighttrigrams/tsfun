@@ -101,9 +101,9 @@ export {
 } from './src/maps/list_like'
 
 
-export {copy,} from './src/coll';
+export {copy} from './src/coll';
 
-export {doWhen} from './src/core';
+export {doWhen} from './src/utils';
 
 export {
     getElForPathIn,
