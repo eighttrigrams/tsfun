@@ -57,12 +57,6 @@ function compare(acomparator: Comparator, ocomparator: Comparator, l: any, r: an
         : typeof l === typeof r && l === r;
 }
 
-// TODO consider cases where a certain subpath (use 'on'?) is to
-// be compared with a certain comparator, while others are compared
-// with defaults or like configured
-
-// TODO consider cases where Arrays are nested within Arrays,
-// in these cases the same selected comparator is used.
 
 export const arrayEqualBy = (objectComparator?: Comparator) =>
     <A>(as1: Array<A>) => (as2: Array<A>): boolean => {
@@ -70,7 +64,6 @@ export const arrayEqualBy = (objectComparator?: Comparator) =>
         const ocmp = objectComparator ? objectComparator : objectEqual;
 
         return as1
-            // TODO Test Array, Date
             .filter((a, i) => compare(arrayEqual, ocmp, a, as2[i]))
             .length === as2.length;
     };
@@ -93,7 +86,7 @@ export const arrayEquivalentBy: (_: Comparator) => Comparator =
                 const acmp = objectComparator ? arrayEquivalentBy(ocmp): arrayEquivalent;
                                                                                     // TODO add arrayContaining and implement it with as1.length == as2.length && arrayContainingBy()()()
                 return as1
-                    .map(a1 =>                                            // TODO look up fpscala book for this nesting thing here / for comprehension and yield
+                    .map(a1 =>
                         as2.find(a2 => compare(acmp, ocmp, a1, a2)))
                     .filter(isUndefined)
                     .length === 0;
@@ -110,11 +103,13 @@ export const arrayEquivalent: Comparator = arrayEquivalentBy(undefined as any);
 
 
 export const objectEqualBy =
-    (arrayComparator: Comparator /*, objectComparator */) =>
+    (arrayComparator: Comparator) =>
         (o1: Object) =>
             (o2: Object): boolean => {
 
-                if (o1.constructor !== Object || o2.constructor !== Object) throw 'e'; // TODO throw TypeError and test it
+                if (o1.constructor !== Object || o2.constructor !== Object)
+                    throw new TypeError('types do not match objectEqualBy');
+
                 if (!arrayEquivalent(Object.keys(o1))(Object.keys(o2))) return false;
 
                 return Object
@@ -134,7 +129,6 @@ export const objectEqualBy =
 export const objectEqual: Comparator = objectEqualBy(arrayEqual);
 
 
-// TODO take care for cases where undefined === undefined
 export const onBy = (compare: Function) => (path: string) =>
     (l: any) => (r: any) =>
         path.length === 0
@@ -153,7 +147,7 @@ export const on = (path: string) =>
 
 const includesBy =
     (compare: Comparator = tripleEqual) =>
-        <A>(as: Array<A>, a: A) => // TODO make curried, add includes function, export
+        <A>(as: Array<A>, a: A) =>
             as.filter(compare(a));
 
 
