@@ -156,22 +156,41 @@ arrayEqual([1, [2, [3, 4]]])([1, [2, [3, 4]]])
 -> true
 ```
 
-The default object comparison method is `jsonEqual`, so
+because the Array comparison gets done with `arrayEqual` again.
+Strings and numbers get compared with `===`. Descendants of 
+`Object` with `jsonEqual`. The default object 
+comparison method is `objectEquivalent`, so
 
 ```
 arrayEqual([1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
 -> true
 ```
 
-This, as usual, can be changed using `arrayEqualBy`.
+Note that `objectEqual` standard Array Comparator is `arrayEqual`. So
+
+```
+arrayEqual([1, {c: [1, 2], b: 2}])([1, {b: 2, c: [1, 2]}])
+-> true
+```
+
+but
+
+```
+arrayEqual([1, {c: [1, 2], b: 2}])([1, {b: 2, c: [2, 1]}])
+-> false
+```
+
+On any level, order of keys and order in Arrays matters.
+
+This behaviour, as usual, can be changed using `arrayEqualBy`.
 
 ### arrayEqualBy
 
 arrayEqualBy produces a Comparator, taking an Object Comparator
 
 ```
-arrayEqualBy(objectEqual)([1, {b: 2, c: 3}])([1, {b: 2, c: 3}])
--> true
+arrayEqualBy(jsonEqual)([1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
+-> false
 ```
 
 ### arrayEquivalent
@@ -197,6 +216,26 @@ arrayEquivalent([1, [4, 7]])([[7, 4], 1])
 arrayEquivalentBy(jsonEqual)([{a: 9}, {c: 7}, {b: 4}])([{b: 4}, {a: 9}, {c: 7}])
 -> true
 ```
+
+The standard Object Comparator is `objectEqualBy(arrayEquivalent)` such that
+
+```
+arrayEquivalent
+  ([{c: 7}, {c: 5, b: 4}])
+  ([{b: 4, c: 5}, {c: 7}])
+-> true
+```
+
+but also 
+
+```
+arrayEquivalent
+    ([{c: 7}, {c: [{g: [9, 8], d: 5}, 3], b: 4}])
+    ([{b: 4, c: [3, {d: 5, g: [8, 9]}]}, {c: 7}])
+-> true
+```
+
+meaning that the order of Array does not matter on any level.
 
 ### objectEqual
 

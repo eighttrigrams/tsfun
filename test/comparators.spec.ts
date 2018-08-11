@@ -143,6 +143,22 @@ export function main() {
             ).toEqual(true));
 
 
+        it('using objectEqual', () =>
+            expect(
+
+                arrayEqual([1, {c: [1, 2], b: 2}])([1, {b: 2, c: [1, 2]}])
+
+            ).toEqual(true));
++
+
+        it('using objectEqual order matters', () =>
+            expect(
+
+                arrayEqual([1, {c: [1, 2], b: 2}])([1, {b: 2, c: [2, 1]}])
+
+            ).toEqual(false));
+
+
         // arrayEqualBy
 
         it('override objectEquivalent default', () =>
@@ -195,7 +211,7 @@ export function main() {
             ).toEqual(true));
 
 
-        it('array equivalent - default comparator is objectEquivalent', () =>
+        it('array equivalent - default comparator is objectEquivalentBy(arrayEquivalent)', () =>
             expect(
 
                 arrayEquivalent
