@@ -37,7 +37,8 @@ export const includedInBy = (compare: Comparator) => <A>(as: Array<A>, ) =>
 export const includedIn =  includedInBy(tripleEqual);
 
 
-function compare(acomparator: Comparator, ocomparator: Comparator, l: any, r: any): boolean {
+const withComparators = (acomparator: Comparator, ocomparator: Comparator) =>
+    (l: any) => (r: any): boolean => {
 
     // Array
     if (isArray(l) && isArray(r)) return acomparator(l)(r);
@@ -52,7 +53,7 @@ function compare(acomparator: Comparator, ocomparator: Comparator, l: any, r: an
 
         // numbers, strings
         : typeof l === typeof r && l === r;
-}
+};
 
 
 export const arrayEqualBy = (objectComparator?: Comparator) =>
@@ -61,7 +62,7 @@ export const arrayEqualBy = (objectComparator?: Comparator) =>
         const ocmp = objectComparator ? objectComparator : objectEqual;
 
         return as1
-            .filter((a, i) => compare(arrayEqual, ocmp, a, as2[i]))
+            .filter((a, i) => withComparators(arrayEqual, ocmp)(a)(as2[i]))
             .length === as2.length;
     };
 
@@ -84,7 +85,7 @@ export const arrayEquivalentBy: (_: Comparator) => Comparator =
                                                                                     // TODO add arrayContaining and implement it with as1.length == as2.length && arrayContainingBy()()()
                 return as1
                     .map(a1 =>
-                        as2.find(a2 => compare(acmp, ocmp, a1, a2)))
+                        as2.find(withComparators(acmp, ocmp)(a1)))
                     .filter(isUndefined)
                     .length === 0;
             };
@@ -113,11 +114,11 @@ export const objectEqualBy =
                     .keys(o1)
                     .filter(key => {
 
-                        return compare(
+                        return withComparators(
                             arrayComparator,
-                            objectEqualBy(arrayComparator),
-                            (o1 as any)[key],
-                            (o2 as any)[key]);
+                            objectEqualBy(arrayComparator))
+                            ((o1 as any)[key])
+                            ((o2 as any)[key]);
                     })
                     .length === Object.keys(o1).length;
             };
