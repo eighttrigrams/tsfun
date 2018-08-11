@@ -4,7 +4,9 @@ export {
     isOdd,
     isDefined,
     isUndefined,
-    isArray
+    isArray,
+    isTrue,
+    isFalse
 } from './src/predicates';
 
 
