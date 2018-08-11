@@ -57,6 +57,10 @@ function compare(acomparator: Comparator, ocomparator: Comparator, l: any, r: an
         : typeof l === typeof r && l === r;
 }
 
+// TODO consider cases where a certain subpath (use 'on'?) is to
+// be compared with a certain comparator, while others are compared
+// with defaults or like configured
+
 // TODO consider cases where Arrays are nested within Arrays,
 // in these cases the same selected comparator is used.
 
