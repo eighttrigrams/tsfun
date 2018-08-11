@@ -251,7 +251,7 @@ As stated in [structures](structures.md), when we talk about Objects in tsfun,
 we care about nested structures. 
 
 ```
-objectEqualt<any>({e: 0, a: {d: 2, c: 1}})({a: {c: 1, d: 2}, e: 0})
+objectEqual({e: 0, a: {d: 2, c: 1}})({a: {c: 1, d: 2}, e: 0})
 -> true
 ```
 
@@ -280,20 +280,11 @@ objectEqual<any>({a: new Date(2018, 11, 24)})
 ```
 
 If the value of a certain key on both Objects is of type `Array`, the default
-comparison is done with `arrayEqual`. 
-
-Since `arrayEqual` has jsonEqual as default Object Comparator, we have
+comparison is done with `arrayEqual`, which in turn uses `objectEqual`, such that 
 
 ```
 objectEqual({a: [2, {a: 3, b: 4}]})({a: [2, {a: 3, b: 4}]})
 -> true
-```
-
-but because order matters then in Objects found within Arrays, we have
-
-```
-objectEquivalent({a: [2, {b: 4, a: 3}]})({a: [2, {a: 3, b: 4}]})
--> false
 ```
 
 Also, the order of arrays matters by default, so
@@ -321,6 +312,25 @@ matter in any way.
 objectEqualBy(arrayEquivalent)({a: [2, 1], b: 0})({b: 0, a: [1, 2]})
 -> true
 ```
+
+This works also when nesting Objects and Arrays deeply, like this
+
+```
+objectEqualBy(arrayEquivalent)
+    ({a: [{b: 4, a: [2, 1]}, 2], c: 5})({c: 5, a: [2, {a: [1, 2], b: 4}]})
+-> true
+```
+
+whereas 
+
+```
+objectEqual({a: [{b: 4, a: 3}, 2], c: 5})({c: 5, a: [2, {a: 3, b: 4}]})
+-> false
+```
+
+###### advanced combinations
+
+TODO review section
 
 More advanced combinations can be used to achieve even more control
 
