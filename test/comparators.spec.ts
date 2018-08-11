@@ -340,18 +340,22 @@ export function main() {
             ).toEqual(true));
 
 
-        it('object equivalent - arrayEquivalent', () =>
+        it('with arrayEquivalent', () =>
             expect(
 
-                objectEqualBy(arrayEquivalent)({a: [2, 1]})({a: [1, 2]})
+                objectEqualBy(arrayEquivalent)
+                ({a: [2, 1]})
+                ({a: [1, 2]})
 
             ).toEqual(true));
 
 
-        xit('object equivalent - arrayEquivalent2', () =>
+        it('with arrayEquivalent nested', () =>
             expect(
 
-                objectEqualBy(arrayEquivalent)({a: [2, {a: 3, b: 4}]})({a: [{a: 3, b: 4}, 2]})
+                objectEqualBy(arrayEquivalent)
+                ({a: [2, {a: 3, b: [3, 1]}]})
+                ({a: [{a: 3, b: [1, 3]}, 2]})
 
             ).toEqual(true));
 
@@ -359,7 +363,9 @@ export function main() {
         it('object equivalent - order on keys and arrays does not matter', () =>
             expect(
 
-                objectEqualBy(arrayEquivalent)({a: [2, 1], b: 0})({b: 0, a: [1, 2]})
+                objectEqualBy(arrayEquivalent)
+                ({a: [2, 1], b: 0})
+                ({b: 0, a: [1, 2]})
 
             ).toEqual(true));
 
