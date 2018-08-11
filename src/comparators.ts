@@ -66,7 +66,7 @@ export const arrayEqualBy = (objectComparator : Comparator /*, arrayComparator *
             .length === as2.length;
 
 
-export const arrayEqual = arrayEqualBy(tripleEqual); // TODO make jsonEqual the default
+export const arrayEqual = arrayEqualBy(jsonEqual);
 
 
 /**

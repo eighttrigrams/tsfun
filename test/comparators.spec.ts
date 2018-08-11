@@ -84,10 +84,18 @@ export function main() {
 
         // arrayEqualBy
 
+        it('arrayEqualBy - allow strings and numbers', () =>
+            expect(
+
+                arrayEqualBy(objectEquivalent)([{a: 1}, 3, 't'])([{a: 1}, 3, 't'])
+
+            ).toEqual(true));
+
+
         it('arrayEqualBy - equal', () =>
             expect(
 
-                arrayEqualBy(jsonEqual)([{a: 1}, {b: 2}])([{a: 1}, {b: 2}])
+                arrayEqualBy(objectEquivalent)([1, {b: 2, c: 3}])([1, {b: 2, c: 3}])
 
             ).toEqual(true));
 
@@ -95,17 +103,9 @@ export function main() {
         it('arrayEqualBy vs. arrayEqual', () =>
             expect(
 
-                arrayEqual([{a: 1}, {b: 2}])([{a: 1}, {b: 2}])
+                arrayEqual([1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
 
             ).toEqual(false));
-
-
-        it('arrayEqualBy - allow strings and numbers', () =>
-            expect(
-
-                arrayEqualBy(objectEquivalent)([{a: 1}, 3, 't'])([{a: 1}, 3, 't'])
-
-            ).toEqual(true));
 
 
         // arrayEquivalent
@@ -237,7 +237,7 @@ export function main() {
         it('objectEquivalent - work with Date, equal', () =>
             expect(
 
-                objectEquivalent<any>({a: new Date(2018, 11, 24)})
+                objectEquivalent({a: new Date(2018, 11, 24)})
                     ({a: new Date(2018, 11, 24)})
 
             ).toEqual(true));
@@ -246,7 +246,7 @@ export function main() {
         it('objectEquivalent - work with Date, not equal', () =>
             expect(
 
-                objectEquivalent<any>({a: new Date(2018, 11, 24)})
+                objectEquivalent({a: new Date(2018, 11, 24)})
                     ({a: new Date(2018, 11, 25)})
 
             ).toEqual(false));
@@ -255,7 +255,23 @@ export function main() {
         it('objectEquivalent - array compared with jsonEqual', () =>
             expect(
 
-                objectEquivalent<object>({a: [2, 1]})({a: [1, 2]})
+                objectEquivalent({a: [2, 1]})({a: [1, 2]})
+
+            ).toEqual(false));
+
+
+        it('objectEquivalent - mutual default nesting', () =>
+            expect(
+
+                objectEquivalent({a: [2, {a: 3, b: 4}]})({a: [2, {a: 3, b: 4}]})
+
+            ).toEqual(true));
+
+
+        it('objectEquivalent - mutual default nesting, order matters', () =>
+            expect(
+
+                objectEquivalent({a: [2, {b: 4, a: 3}]})({a: [2, {a: 3, b: 4}]})
 
             ).toEqual(false));
 

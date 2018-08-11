@@ -130,19 +130,21 @@ arrayEqual([1, 2])([1, 2])
 -> true
 ```
 
-but
+The default comparison method is `jsonEqual`, so
 
 ```
-arrayEqual([1, 2])([2, 1])
+arrayEqual([1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
 -> false
 ```
 
-The default comparison method is `===` which can be changed using `arrayEqualBy`.
+This, as usual, can be changed using `arrayEqualBy`.
 
 ### arrayEqualBy
 
+arrayEqualBy produces a Comparator, taking an Object Comparator
+
 ```
-arrayEqualBy(jsonEqual)([{a: 1}, {b: 2}])([{a: 1}, {b: 2}])
+arrayEqualBy(objectEquivalent)([1, {b: 2, c: 3}])([1, {b: 2, c: 3}])
 -> true
 ```
 
@@ -206,11 +208,34 @@ objectEquivalent<any>({a: new Date(2018, 11, 24)})
 ```
 
 If the value of a certain key on both Objects is of type `Array`, the default
-comparison is done with `arrayEqual`. See `objectEquivalentBy` to change that.
+comparison is done with `arrayEqual`. 
+
+Since `arrayEqual` has jsonEqual as default Object Comparator, we have
+
+```
+objectEquivalent({a: [2, {a: 3, b: 4}]})({a: [2, {a: 3, b: 4}]})
+-> true
+```
+
+but because order matters then in Objects found within Arrays, we have
+
+```
+objectEquivalent({a: [2, {b: 4, a: 3}]})({a: [2, {a: 3, b: 4}]})
+-> false
+```
+
+Also, the order of arrays matters by default, so
+
+```
+objectEquivalent({a: [2, 1]})({a: [1, 2]})
+-> false
+```
+
+`objectEquivalentBy` is used to override such default behaviour.
 
 ### objectEquivalentBy
 
-objectEquivalent produces a Comparator by feeding it a method to compare Arrays.
+objectEquivalent produces a Comparator by feeding it an Array Comparator.
 
 ```
 objectEquivalentBy(arrayEquivalent)({a: [2, 1]})({a: [1, 2]})
@@ -222,7 +247,7 @@ matter in any way.
 
 ```
 objectEquivalentBy(arrayEquivalent)({a: [2, 1], b: 0})({b: 0, a: [1, 2]})
-->
+-> true
 ```
 
 More advanced combinations can be used to achieve even more control
@@ -235,11 +260,24 @@ objectEquivalentBy(arrayEqualBy(objectEquivalent))
 ```
 
 In this example the key order does not matter, but the order of Arrays does.
-Furthermore, the arrays get inspected and compared with `arrayEqual`.
+Furthermore, the arrays get inspected and compared with `arrayEqualBy(objectEquivalent)`,
+which makes them order insensitive.
 
 Note that the mutual nesting between `objectEquivalent(By)` and
- `arrayEqual(By)` or `arrayEquivalent(By)` reflects at which hierarchiecal level
- which elements are treated how.
+`arrayEqual(By)` or `arrayEquivalent(By)` reflects at which hierarchical level
+which elements are treated how. It could be viewed as some kind of dimensionality
+where on each level (of change between Array and Object) the rules for comparison
+can be redefined explicitely. After that level the defaults kick in, which should
+be sufficient for most situations.
+
+This is useful in situations where the overall structure of your Objects is
+known, in which case you would build your own standard Comparator by composing
+what you need, for example
+
+```
+export class T { ... }
+const myTComparator = objectEquivalentBy(arrayEqualBy(objectEquivalent));
+```
 
 ### on
 
