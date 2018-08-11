@@ -18,6 +18,7 @@ export function main() {
      * isFalse
      *
      * isArray
+     * isObject
      */
     describe('Drop', () => {
 

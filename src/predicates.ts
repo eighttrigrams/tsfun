@@ -24,6 +24,9 @@ export const isOdd: Predicate<number> = (n: number) => isNot(isEven)(n);
 export const isArray: Predicate<any> = (as: any) => as instanceof Array;
 
 
+export const isObject: Predicate<any> = (o: any) => o instanceof Object && o.constructor === Object;
+
+
 export const isTrue: Predicate<boolean> = (b: boolean) => b === true;
 
 
