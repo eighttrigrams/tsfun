@@ -2,15 +2,10 @@ import {identical21, reverseUncurry2} from "../core";
 import {isEmpty} from '../predicates';
 
 
-export const clone = <O>(object: O, postProcess:
-    Function // TODO make more specific
-    = identical21): O =>
+export const clone = <O>(object: O, postProcess: (original: O, copy: O) => O = identical21): O =>
     (postProcess)(object, JSON.parse(JSON.stringify(object))) as O;
 
 
-// TODO write documentation
-// check if types work in flow
-// check that type works as a standalone transformation in flow
 export const to = reverseUncurry2(getElForPathIn);
 
 
