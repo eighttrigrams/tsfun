@@ -90,12 +90,17 @@ export function main() {
             ).toEqual(true));
 
 
-        // arrayEqualBy
+        it('arrayEqualBy default method is objectEquivalent', () =>
+            expect(
+
+                arrayEqual([1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
+
+            ).toEqual(true));
 
         it('arrayEqualBy - allow strings and numbers', () =>
             expect(
 
-                arrayEqualBy(objectEquivalent)([{a: 1}, 3, 't'])([{a: 1}, 3, 't'])
+                arrayEqual([{a: 1}, 3, 't'])([{a: 1}, 3, 't'])
 
             ).toEqual(true));
 
@@ -103,17 +108,20 @@ export function main() {
         it('arrayEqualBy - equal', () =>
             expect(
 
-                arrayEqualBy(objectEquivalent)([1, {b: 2, c: 3}])([1, {b: 2, c: 3}])
+                arrayEqual([1, {b: 2, c: 3}])([1, {b: 2, c: 3}])
 
             ).toEqual(true));
 
 
-        it('arrayEqualBy vs. arrayEqual', () =>
+        // arrayEqualBy
+
+        it('arrayEqualBy default method is objectEquivalent', () =>
             expect(
 
-                arrayEqual([1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
+                arrayEqualBy(jsonEqual)([1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
 
             ).toEqual(false));
+
 
 
         // arrayEquivalent
@@ -284,10 +292,18 @@ export function main() {
             ).toEqual(true));
 
 
-        it('objectEquivalent - mutual default nesting, order matters', () =>
+        it('objectEquivalent - mutual default nesting, order matters in arrays, but not for keys', () =>
             expect(
 
-                objectEquivalent({a: [2, {b: 4, a: 3}]})({a: [2, {a: 3, b: 4}]})
+                objectEquivalent({a: [2, {b: 4, a: 3}], c: 5})({c: 5, a: [2, {a: 3, b: 4}]})
+
+            ).toEqual(true));
+
+
+        it('objectEquivalent - mutual default nesting, order matters in arrays!', () =>
+            expect(
+
+                objectEquivalent({a: [{b: 4, a: 3}, 2], c: 5})({c: 5, a: [2, {a: 3, b: 4}]})
 
             ).toEqual(false));
 

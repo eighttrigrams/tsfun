@@ -144,11 +144,11 @@ arrayEqual([1, [2, [3, 4]]])([1, [2, [3, 4]]])
 -> true
 ```
 
-The default comparison method is `jsonEqual`, so
+The default object comparison method is `jsonEqual`, so
 
 ```
 arrayEqual([1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
--> false
+-> true
 ```
 
 This, as usual, can be changed using `arrayEqualBy`.

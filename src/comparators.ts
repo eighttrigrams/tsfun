@@ -62,15 +62,21 @@ function compare(acomparator: Comparator, ocomparator: Comparator, l: any, r: an
 // TODO consider cases where Arrays are nested within Arrays,
 // in these cases the same selected comparator is used.
 
-export const arrayEqualBy = (objectComparator : Comparator /*, arrayComparator */) =>
-    <A>(as1: Array<A>) => (as2: Array<A>): boolean =>
-        as1
+export const arrayEqualBy = (objectComparator?: Comparator /*, arrayComparator */) =>
+    <A>(as1: Array<A>) => (as2: Array<A>): boolean => {
+
+        const objectComparisonMethod = objectComparator
+            ? objectComparator
+            : objectEquivalent;
+
+        return as1
             // TODO Test Array, Date
-            .filter((a, i) => compare(arrayEqual, objectComparator, a, as2[i]))
+            .filter((a, i) => compare(arrayEqual, objectComparisonMethod, a, as2[i]))
             .length === as2.length;
+    };
 
 
-export const arrayEqual = arrayEqualBy(jsonEqual);
+export const arrayEqual = arrayEqualBy();
 
 
 /**
