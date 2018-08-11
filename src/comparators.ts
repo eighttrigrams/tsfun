@@ -85,11 +85,12 @@ export const arrayEquivalentBy: (_: Comparator) => Comparator =
         <A>(as1: Array<A>) =>
             (as2: Array<A>) => {
 
+                if (as1.length !== as2.length) return false;
+
                 const ocmp = comp ? comp : objectEqualBy(arrayEquivalent);
                 const acmp = comp ? arrayEquivalentBy(ocmp): arrayEquivalent;
-
-                return as1.length === as2.length                                    // TODO add arrayContaining and implement it with as1.length == as2.length && arrayContainingBy()()()
-                && as1
+                                                                                    // TODO add arrayContaining and implement it with as1.length == as2.length && arrayContainingBy()()()
+                return as1
                     .map(a1 =>                                            // TODO look up fpscala book for this nesting thing here / for comprehension and yield
                         as2.find(a2 => compare(acmp, ocmp, a1, a2)))
                     .filter(isUndefined)
