@@ -57,6 +57,8 @@ function compare(acomparator: Comparator, ocomparator: Comparator, l: any, r: an
         : typeof l === typeof r && l === r;
 }
 
+// TODO consider cases where Arrays are nested within Arrays,
+// in these cases the same selected comparator is used.
 
 export const arrayEqualBy = (objectComparator : Comparator /*, arrayComparator */) =>
     <A>(as1: Array<A>) => (as2: Array<A>): boolean =>
