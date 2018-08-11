@@ -8,7 +8,7 @@ import {
     unite,
     uniteBy,
     unionBy, subtractBy, uniqueBy,
-} from '../../src/arrays/set_like';
+} from '../../src/collections/arrays_set_like';
 import {jsonEqual, on} from "../../src/comparators";
 
 

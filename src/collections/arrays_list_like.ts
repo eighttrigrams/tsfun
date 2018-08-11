@@ -1,4 +1,4 @@
-import {to} from '../objects/core';
+import {to} from '../objects';
 import {isDefined} from '../predicates';
 import {Predicate, Transformation} from '../types';
 

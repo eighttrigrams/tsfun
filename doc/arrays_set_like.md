@@ -1,10 +1,11 @@
-# Set-like collection methods
+# Set-like collection methods for Arrays
+
+* See [Sources](../src/collections/arrays_set_like.ts)
+* See [Tests](../test/collections/maps_list_like.spec.ts)
 
 Set methods come in two flavours, array set methods and object set methods.
 Both of these have in common that the respective data structures are treated 
 as if they were sets, hence we also call them set-like methods.
-
-## For Arrays
 
 Every set method's result is not only `Array<A>` but also consists 
 of unique items (compared with `==`). Where possible, the order of 
@@ -13,6 +14,8 @@ the arguments is kept.
 `intersect`, `subtract`, `unite` and `uniqe` are partials, which can be inserted
 into the body of a `flow`. `intersection` and `union` take a `NestedArray<A>` as
 their argument, so they can be used to begin a `flow` with.
+
+## Reference
 
 ### intersection
 
@@ -119,48 +122,3 @@ subtractBy(equalTo)<any>([{a: 'a'}])([{a: 'a'}, {c: 'c'}])
 -> [{c: 'c'}]
 ```
 
-## For Maps
-
-### intersectMap
-
-```
-intersectMap({1: 4})({1: 3, 2: 4})
--> {1: 4}
-```
-
-### uniteMap
-
-```
-uniteMap({1: 4})({2: 4})
--> {1: 4, 2: 4}
-uniteMap({5: 6}, {1: 4})({2: 4})
--> {1: 4, 2: 4, 5: 6}
-```
-
-### subtractMap
-
-```
-subtractMap({1: 7})({1: 3, 2: 4})
--> {2: 4}
-```
-
-### unionMap
-
-```
-unionMap([{1: 4}, {2: 4}])
--> {1: 4, 2: 4}
-```
-
-### mapMap
-
-```
-map((x: number) => x * 2)({a: 1, b: 2})
--> {a: 2, b: 4}
-```
-
-### filterMap
-
-```
-filterMap((x: number) => x > 1)({a: 1, b: 2})
--> {b: 2}
-```

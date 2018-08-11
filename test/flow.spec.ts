@@ -1,8 +1,8 @@
 import {flow, flowP} from '../src/flow';
-import {reverse} from '../src/arrays/list_like';
-import {take, takeWhile, dropWhile} from '../src/arrays/list_like_pick';
+import {reverse} from '../src/collections/arrays_list_like';
+import {take, takeWhile, dropWhile} from '../src/collections/arrays_list_like_pick';
 import {biggerThan, smallerThan} from '../src/comparators';
-import {uniteMap} from '../src/maps/set_like';
+import {uniteMap} from '../src/collections/maps_set_like';
 
 
 export function main() {

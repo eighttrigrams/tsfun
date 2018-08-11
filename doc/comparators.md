@@ -1,5 +1,10 @@
 # Comparators
 
+* See [Sources](../src/comparators.ts)
+* See [Tests](../test/comparators.spec.ts)
+
+#### Overview
+
 A comparator take two arguments of Type A and returns a boolean value: 
 `<A>(_: A) => (_: A) => boolean`.
 

@@ -1,4 +1,4 @@
-import {getElForPathIn} from "./objects/core";
+import {getElForPathIn} from "./objects";
 import {isArray, isNot, isObject, isUndefined} from './predicates';
 import {Comparator, ComparatorProducer} from './types';
 

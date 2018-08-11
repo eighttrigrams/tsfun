@@ -1,4 +1,4 @@
-import {intersectBy} from "../src/arrays/set_like";
+import {intersectBy} from "../src/collections/arrays_set_like";
 import {
     arrayEqual,
     arrayEqualBy,

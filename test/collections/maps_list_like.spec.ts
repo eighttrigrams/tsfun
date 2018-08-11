@@ -1,4 +1,4 @@
-import {filterMap, mapMap} from "../../src/maps/list_like";
+import {filterMap, mapMap} from '../../src/collections/maps_list_like';
 
 export function main() {
 

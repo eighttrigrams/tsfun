@@ -1,5 +1,8 @@
 # Object functions
 
+* See [Sources](../src/objects.ts)
+* See [Tests](../test/objects.spec.ts)
+
 ### takeOrMake
 
 makes

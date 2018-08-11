@@ -1,7 +1,7 @@
-import {getElForPathIn, mapOption, option, takeOrMake, to} from "../../src/objects/core";
-import {jsonEqual, on, tripleEqual} from "../../src/comparators";
-import {flow} from "../../src/flow";
-import {isEmpty} from '../../src/predicates';
+import {getElForPathIn, mapOption, option, takeOrMake, to} from '../src/objects';
+import {jsonEqual, on, tripleEqual} from '../src/comparators';
+import {flow} from '../src/flow';
+import {isEmpty} from '../src/predicates';
 
 export function main() {
 

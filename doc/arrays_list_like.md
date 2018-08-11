@@ -1,8 +1,10 @@
-# Ordered-list-like collection methods
+# Ordered-list-like collection methods for Arrays
 
-These methods treat arrays as ordered lists
+See also
+ 
+* [Picking methods](arrays_list_like_pick.md)
 
-## Arrays
+## Reference
 
 ### getAtIndex
 
@@ -85,25 +87,5 @@ where the order is reversed.
 reverse([4, 1])
 -> [1, 4]
 ```
-
-## Maps
-
-### mapMap
-
-```
-mapMap((x: number) => x * 2)({a: 1, b: 2})
--> {a: 2, b: 4}
-```
-
-### filterMap
-
-```
-filterMap((x: number) => x > 1)({a: 1, b: 2})
--> {b: 2}
-```
-
-## Arrays - Picking methods
-
-See [Picking methods](./list_like_pick.md)
 
 

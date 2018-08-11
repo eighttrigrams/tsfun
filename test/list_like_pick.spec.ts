@@ -8,7 +8,7 @@ import {
     takeRightWhile,
     takeUntil,
     takeWhile
-} from '../src/arrays/list_like_pick';
+} from '../src/collections/arrays_list_like_pick';
 
 import {biggerThan, smallerThan} from '../src/comparators';
 

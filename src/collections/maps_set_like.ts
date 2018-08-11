@@ -1,8 +1,8 @@
-import {intersect as intersectA} from "../arrays/set_like";
-import {subtract as subtractA} from "../arrays/set_like";
+import {intersect as intersectA} from "./arrays_set_like";
+import {subtract as subtractA} from "./arrays_set_like";
 import {identical} from "../core";
 import {UntypedMap} from '../types';
-import {mapProperties} from './core';
+import {mapProperties} from './maps_coll';
 
 
 export const subtractMap = (subtrahend: Array<string | number> | any) =>

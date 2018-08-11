@@ -54,7 +54,7 @@ export {
     drop,
     dropRight,
     dropRightWhile
-} from './src/arrays/list_like_pick';
+} from './src/collections/arrays_list_like_pick';
 
 
 export {
@@ -71,7 +71,7 @@ export {
     map,
     getAtIndex,
     getAtIndexOr
-} from './src/arrays/list_like';
+} from './src/collections/arrays_list_like';
 
 
 export {
@@ -88,7 +88,7 @@ export {
     unique,
     uniqueBy,
     duplicates
-} from './src/arrays/set_like';
+} from './src/collections/arrays_set_like';
 
 
 export {
@@ -96,16 +96,16 @@ export {
     intersectMap,
     uniteMap,
     unionMap
-} from './src/maps/set_like'
+} from './src/collections/maps_set_like'
 
 
 export {
     mapMap,
     filterMap,
-} from './src/maps/list_like'
+} from './src/collections/maps_list_like'
 
 
-export {copy} from './src/coll';
+export {copy} from './src/collections/coll';
 
 export {doWhen} from './src/utils';
 
@@ -115,4 +115,4 @@ export {
     clone,
     to,
     option
-} from './src/objects/core';
+} from './src/objects';

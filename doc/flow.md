@@ -1,5 +1,8 @@
 # Flow
 
+* See [Sources](../src/flow.ts)
+* See [Tests](../test/flow.spec.ts)
+
 ```
 flow(
    [1, 2, 3, 1],
