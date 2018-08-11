@@ -59,7 +59,7 @@ export const arrayEqualBy = (objectComparator: Comparator /*, arrayComparator */
             .length === as2.length;
 
 
-export const arrayEqual = arrayEqualBy(tripleEqual); // TODO make it objectEquivalent
+export const arrayEqual = arrayEqualBy(tripleEqual);
 
 
 /**
