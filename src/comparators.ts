@@ -80,7 +80,7 @@ export const arrayEquivalentBy: (_: Comparator) => Comparator =
     (comp: Comparator) =>
         <A>(as1: Array<A>) =>
             (as2: Array<A>) =>
-                as1.length == as2.length
+                as1.length === as2.length // TODO add arrayContaining and implement it with as1.length == as2.length && arrayContainingBy()()()
                 && as1
                     .map(a1 => // TODO look up fpscala book for this nesting thing here / for comprehension and yield
                         as2
