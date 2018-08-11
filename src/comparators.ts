@@ -119,7 +119,7 @@ export const objectEqualBy =
 
                 return Object
                     .keys(o1)
-                    .filter((key: any) => {
+                    .filter(key => {
 
                         return compare(
                             arrayComparator,
