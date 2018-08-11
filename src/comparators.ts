@@ -83,14 +83,14 @@ export const arrayEqual = arrayEqualBy();
  * Compares 2 arrays where elements order does not matter
  */
 export const arrayEquivalentBy: (_: Comparator) => Comparator =
-    (comp?: Comparator) =>
+    (objectComparator?: Comparator) =>
         <A>(as1: Array<A>) =>
             (as2: Array<A>) => {
 
                 if (as1.length !== as2.length) return false;
 
-                const ocmp = comp ? comp : objectEqualBy(arrayEquivalent);
-                const acmp = comp ? arrayEquivalentBy(ocmp): arrayEquivalent;
+                const ocmp = objectComparator ? objectComparator : objectEqualBy(arrayEquivalent);
+                const acmp = objectComparator ? arrayEquivalentBy(ocmp): arrayEquivalent;
                                                                                     // TODO add arrayContaining and implement it with as1.length == as2.length && arrayContainingBy()()()
                 return as1
                     .map(a1 =>                                            // TODO look up fpscala book for this nesting thing here / for comprehension and yield
