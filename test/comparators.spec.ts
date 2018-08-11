@@ -295,7 +295,7 @@ export function main() {
         it('objectEquivalent - mutual default nesting, order matters in arrays, but not for keys', () =>
             expect(
 
-                objectEquivalent({a: [2, {b: 4, a: 3}], c: 5})({c: 5, a: [2, {a: 3, b: 4}]})
+                objectEquivalent({a: [2, {b: 4, a: [1, 2]}], c: 5})({c: 5, a: [2, {a: [1, 2], b: 4}]})
 
             ).toEqual(true));
 
