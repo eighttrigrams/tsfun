@@ -158,7 +158,7 @@ This, as usual, can be changed using `arrayEqualBy`.
 arrayEqualBy produces a Comparator, taking an Object Comparator
 
 ```
-arrayEqualBy(objectEquivalent)([1, {b: 2, c: 3}])([1, {b: 2, c: 3}])
+arrayEqualBy(objectEqual)([1, {b: 2, c: 3}])([1, {b: 2, c: 3}])
 -> true
 ```
 
@@ -186,13 +186,13 @@ arrayEquivalentBy(jsonEqual)([{a: 9}, {c: 7}, {b: 4}])([{b: 4}, {a: 9}, {c: 7}])
 -> true
 ```
 
-### objectEquivalent
+### objectEqual
 
-If we compare Objects with objectEquivalent, we do not care for the order
+If we compare Objects with `objectEqual`, we do not care for the order
 of their keys. Thus
 
 ```
-objectEquivalent({a: 1, b: 2})({b: 2, a: 1})
+objectEqual({a: 1, b: 2})({b: 2, a: 1})
 ->
 ```
 
@@ -200,7 +200,7 @@ As stated in [structures](structures.md), when we talk about Objects in tsfun,
 we care about nested structures. 
 
 ```
-objectEquivalent<any>({e: 0, a: {d: 2, c: 1}})({a: {c: 1, d: 2}, e: 0})
+objectEqualt<any>({e: 0, a: {d: 2, c: 1}})({a: {c: 1, d: 2}, e: 0})
 -> true
 ```
 
@@ -215,7 +215,7 @@ If the type of a certain key on both Objects is of a descendant of `Object`,
 for instance `Date` or `Map`, the comparison is done via `jsonEqual`. Thus
 
 ```
-objectEquivalent<any>({a: new Date(2018, 11, 24)})
+objectEqual<any>({a: new Date(2018, 11, 24)})
                      ({a: new Date(2018, 11, 24)})
 -> true
 ```
@@ -223,7 +223,7 @@ objectEquivalent<any>({a: new Date(2018, 11, 24)})
 and 
 
 ```
-objectEquivalent<any>({a: new Date(2018, 11, 24)})
+objectEqual<any>({a: new Date(2018, 11, 24)})
                      ({a: new Date(2018, 11, 25)})
 -> false
 ```
@@ -234,7 +234,7 @@ comparison is done with `arrayEqual`.
 Since `arrayEqual` has jsonEqual as default Object Comparator, we have
 
 ```
-objectEquivalent({a: [2, {a: 3, b: 4}]})({a: [2, {a: 3, b: 4}]})
+objectEqual({a: [2, {a: 3, b: 4}]})({a: [2, {a: 3, b: 4}]})
 -> true
 ```
 
@@ -248,18 +248,18 @@ objectEquivalent({a: [2, {b: 4, a: 3}]})({a: [2, {a: 3, b: 4}]})
 Also, the order of arrays matters by default, so
 
 ```
-objectEquivalent({a: [2, 1]})({a: [1, 2]})
+objectEqual({a: [2, 1]})({a: [1, 2]})
 -> false
 ```
 
-`objectEquivalentBy` is used to override such default behaviour.
+`objectEqualBy` is used to override such default behaviour.
 
-### objectEquivalentBy
+### objectEqualBy
 
 objectEquivalent produces a Comparator by feeding it an Array Comparator.
 
 ```
-objectEquivalentBy(arrayEquivalent)({a: [2, 1]})({a: [1, 2]})
+objectEqualBy(arrayEquivalent)({a: [2, 1]})({a: [1, 2]})
 -> true
 ```
 
@@ -267,14 +267,14 @@ so that neither the order of the array elements nor the order of the keys does
 matter in any way.
 
 ```
-objectEquivalentBy(arrayEquivalent)({a: [2, 1], b: 0})({b: 0, a: [1, 2]})
+objectEqualBy(arrayEquivalent)({a: [2, 1], b: 0})({b: 0, a: [1, 2]})
 -> true
 ```
 
 More advanced combinations can be used to achieve even more control
 
 ```
-objectEquivalentBy(arrayEqualBy(objectEquivalent))
+objectEquivalentBy(arrayEqualBy(objectEqual))
    ({a: [{e: 5, c: 4}, 2], b: 0})
    ({b: 0, a: [{c: 4, e: 5}, 2]})
 -> true

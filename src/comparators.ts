@@ -65,7 +65,7 @@ function compare(acomparator: Comparator, ocomparator: Comparator, l: any, r: an
 export const arrayEqualBy = (objectComparator?: Comparator) =>
     <A>(as1: Array<A>) => (as2: Array<A>): boolean => {
 
-        const ocmp = objectComparator ? objectComparator : objectEquivalent;
+        const ocmp = objectComparator ? objectComparator : objectEqual;
 
         return as1
             // TODO Test Array, Date
@@ -85,7 +85,7 @@ export const arrayEquivalentBy: (_: Comparator) => Comparator =
         <A>(as1: Array<A>) =>
             (as2: Array<A>) => {
 
-                const ocmp = comp ? comp : objectEquivalentBy(arrayEquivalent);
+                const ocmp = comp ? comp : objectEqualBy(arrayEquivalent);
                 const acmp = comp ? arrayEquivalentBy(ocmp): arrayEquivalent;
 
                 return as1.length === as2.length                                    // TODO add arrayContaining and implement it with as1.length == as2.length && arrayContainingBy()()()
@@ -106,7 +106,7 @@ export const arrayEquivalentBy: (_: Comparator) => Comparator =
 export const arrayEquivalent: Comparator = arrayEquivalentBy(undefined as any);
 
 
-export const objectEquivalentBy =
+export const objectEqualBy =
     (arrayComparator: Comparator /*, objectComparator */) =>
         (o1: Object) =>
             (o2: Object): boolean => {
@@ -120,7 +120,7 @@ export const objectEquivalentBy =
 
                         return compare(
                             arrayComparator,
-                            objectEquivalentBy(arrayComparator),
+                            objectEqualBy(arrayComparator),
                             (o1 as any)[key],
                             (o2 as any)[key]);
                     })
@@ -128,7 +128,7 @@ export const objectEquivalentBy =
             };
 
 
-export const objectEquivalent: Comparator = objectEquivalentBy(arrayEqual);
+export const objectEqual: Comparator = objectEqualBy(arrayEqual);
 
 
 // TODO take care for cases where undefined === undefined

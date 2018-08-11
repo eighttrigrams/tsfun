@@ -1,8 +1,8 @@
 import {intersectBy} from "../src/arrays/set_like";
 import {
     arrayEqual, arrayEqualBy,
-    arrayEquivalent, arrayEquivalentBy, differentFrom, differentFromBy, jsonEqual, objectEquivalent,
-    objectEquivalentBy, on,
+    arrayEquivalent, arrayEquivalentBy, differentFrom, differentFromBy, jsonEqual, objectEqual,
+    objectEqualBy, on,
     onBy,
     sameOn
 } from '../src/comparators';
@@ -223,7 +223,7 @@ export function main() {
         it('order of keys does not matter', () =>
             expect(
 
-                objectEquivalent({a: 1, b: 2})({b: 2, a: 1})
+                objectEqual({a: 1, b: 2})({b: 2, a: 1})
 
             ).toEqual(true));
 
@@ -231,7 +231,7 @@ export function main() {
         it('left side less keys', () =>
             expect(
 
-                objectEquivalent<object>({a: 1})({b: 2, a: 1})
+                objectEqual<object>({a: 1})({b: 2, a: 1})
 
             ).toEqual(false));
 
@@ -239,7 +239,7 @@ export function main() {
         it('right side less keys', () =>
             expect(
 
-                objectEquivalent<object>({a: 1, b: 2})({a: 1})
+                objectEqual<object>({a: 1, b: 2})({a: 1})
 
             ).toEqual(false));
 
@@ -247,7 +247,7 @@ export function main() {
         it('different keys', () =>
             expect(
 
-                objectEquivalent<object>({a: 1, b: 2})({a: 1, c:2})
+                objectEqual<object>({a: 1, b: 2})({a: 1, c:2})
 
             ).toEqual(false));
 
@@ -255,7 +255,7 @@ export function main() {
         it('different values', () =>
             expect(
 
-                objectEquivalent<object>({a: 1, b: 2})({a: 1, b: 3})
+                objectEqual<object>({a: 1, b: 2})({a: 1, b: 3})
 
             ).toEqual(false));
 
@@ -263,7 +263,7 @@ export function main() {
         it('objectEquivalent - different values in different order', () =>
             expect(
 
-                objectEquivalent<object>({a: 1, b: 2})({b: 3, a: 1})
+                objectEqual<object>({a: 1, b: 2})({b: 3, a: 1})
 
             ).toEqual(false));
 
@@ -271,7 +271,7 @@ export function main() {
         it('objectEquivalent - recursive, keys in different order', () =>
             expect(
 
-                objectEquivalent<any>({e: 0, a: {d: 2, c: 1}})({a: {c: 1, d: 2}, e: 0})
+                objectEqual<any>({e: 0, a: {d: 2, c: 1}})({a: {c: 1, d: 2}, e: 0})
 
             ).toEqual(true));
 
@@ -279,7 +279,7 @@ export function main() {
         it('objectEquivalent - work with Date, equal', () =>
             expect(
 
-                objectEquivalent({a: new Date(2018, 11, 24)})
+                objectEqual({a: new Date(2018, 11, 24)})
                     ({a: new Date(2018, 11, 24)})
 
             ).toEqual(true));
@@ -288,7 +288,7 @@ export function main() {
         it('objectEquivalent - work with Date, not equal', () =>
             expect(
 
-                objectEquivalent({a: new Date(2018, 11, 24)})
+                objectEqual({a: new Date(2018, 11, 24)})
                     ({a: new Date(2018, 11, 25)})
 
             ).toEqual(false));
@@ -297,7 +297,7 @@ export function main() {
         it('objectEquivalent - array compared with arrayEqual', () =>
             expect(
 
-                objectEquivalent({a: [2, 1]})({a: [1, 2]})
+                objectEqual({a: [2, 1]})({a: [1, 2]})
 
             ).toEqual(false));
 
@@ -305,7 +305,7 @@ export function main() {
         it('objectEquivalent - mutual default nesting', () =>
             expect(
 
-                objectEquivalent({a: [2, {a: 3, b: 4}]})({a: [2, {a: 3, b: 4}]})
+                objectEqual({a: [2, {a: 3, b: 4}]})({a: [2, {a: 3, b: 4}]})
 
             ).toEqual(true));
 
@@ -313,7 +313,7 @@ export function main() {
         it('objectEquivalent - mutual default nesting, order matters in arrays, but not for keys', () =>
             expect(
 
-                objectEquivalent
+                objectEqual
                 ({a: [2, {b: 4, a: [1, {f: [1, 2], e: 7}]}], c: 5})
                 ({c: 5, a: [2, {a: [1, {e: 7, f: [1, 2]}], b: 4}]})
 
@@ -323,7 +323,7 @@ export function main() {
         it('mutual default nesting, order matters in arrays!', () =>
             expect(
 
-                objectEquivalent({a: [{b: 4, a: 3}, 2], c: 5})({c: 5, a: [2, {a: 3, b: 4}]})
+                objectEqual({a: [{b: 4, a: 3}, 2], c: 5})({c: 5, a: [2, {a: 3, b: 4}]})
 
             ).toEqual(false));
 
@@ -333,7 +333,7 @@ export function main() {
         it('make that order does not matter in array when nested', () =>
             expect(
 
-                objectEquivalentBy(arrayEquivalent)
+                objectEqualBy(arrayEquivalent)
                 ({a: [{b: 4, a: [2, 1]}, 2], c: 5})({c: 5, a: [2, {a: [1, 2], b: 4}]})
 
             ).toEqual(true));
@@ -342,7 +342,7 @@ export function main() {
         it('object equivalent - arrayEquivalent', () =>
             expect(
 
-                objectEquivalentBy(arrayEquivalent)({a: [2, 1]})({a: [1, 2]})
+                objectEqualBy(arrayEquivalent)({a: [2, 1]})({a: [1, 2]})
 
             ).toEqual(true));
 
@@ -350,7 +350,7 @@ export function main() {
         xit('object equivalent - arrayEquivalent2', () =>
             expect(
 
-                objectEquivalentBy(arrayEquivalent)({a: [2, {a: 3, b: 4}]})({a: [{a: 3, b: 4}, 2]})
+                objectEqualBy(arrayEquivalent)({a: [2, {a: 3, b: 4}]})({a: [{a: 3, b: 4}, 2]})
 
             ).toEqual(true));
 
@@ -358,7 +358,7 @@ export function main() {
         it('object equivalent - order on keys and arrays does not matter', () =>
             expect(
 
-                objectEquivalentBy(arrayEquivalent)({a: [2, 1], b: 0})({b: 0, a: [1, 2]})
+                objectEqualBy(arrayEquivalent)({a: [2, 1], b: 0})({b: 0, a: [1, 2]})
 
             ).toEqual(true));
 
@@ -366,7 +366,7 @@ export function main() {
         it('object equivalent - use with arrayEquivalentBy', () =>
             expect(
 
-                objectEquivalentBy(arrayEqualBy(objectEquivalent))
+                objectEqualBy(arrayEqualBy(objectEqual))
                     ({a: [{e: 5, c: 4}, 2], b: 0})
                     ({b: 0, a: [{c: 4, e: 5}, 2]})
 
