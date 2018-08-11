@@ -1,8 +1,8 @@
+import {Mapping, Predicate, Transformation, TypedMap} from '../types';
 import {mapProperties} from './core';
-import {Predicate, Transformation, TypedMap} from '../types';
 
 
-export const mapMap = <A, B>(f: (_: A) => B) /* this could be a type Mapping */:
+export const mapMap = <A, B>(f: Mapping <A, B>):
     (_: TypedMap<A>) => TypedMap<B> =>
         (coll: TypedMap<A>) => mapProperties(f)(Object.keys(coll), coll);
 

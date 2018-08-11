@@ -10,6 +10,9 @@ export type Predicate<A> = (_: A) => boolean;
 export type PredicateProducer = <A>(_: Predicate<A>) => Predicate<A>;
 
 
+export type Mapping<A, B> = (_: A) => B;
+
+
 export type Transformation<T> = (_: T) => T;
 
 
