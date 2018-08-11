@@ -294,7 +294,7 @@ export function main() {
             ).toEqual(false));
 
 
-        it('objectEquivalent - array compared with jsonEqual', () =>
+        it('objectEquivalent - array compared with arrayEqual', () =>
             expect(
 
                 objectEquivalent({a: [2, 1]})({a: [1, 2]})
@@ -320,7 +320,7 @@ export function main() {
             ).toEqual(true));
 
 
-        it('objectEquivalent - mutual default nesting, order matters in arrays!', () =>
+        it('mutual default nesting, order matters in arrays!', () =>
             expect(
 
                 objectEquivalent({a: [{b: 4, a: 3}, 2], c: 5})({c: 5, a: [2, {a: 3, b: 4}]})
@@ -329,6 +329,15 @@ export function main() {
 
 
         // objectEquivalentBy
+
+        it('make that order does not matter in array when nested', () =>
+            expect(
+
+                objectEquivalentBy(arrayEquivalent)
+                ({a: [{b: 4, a: [2, 1]}, 2], c: 5})({c: 5, a: [2, {a: [1, 2], b: 4}]})
+
+            ).toEqual(true));
+
 
         it('object equivalent - arrayEquivalent', () =>
             expect(
