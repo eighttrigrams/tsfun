@@ -374,7 +374,6 @@ compares elements on path directly with a certain value
 compares both items on the same path
 
 ```
-
 [{a: {b: 'c'}}, {a: {b: 'd'}}]
     .filter(on('a.b')({a: {b: 'c'}})))          
 -> [{a: {b: 'c'}}]
