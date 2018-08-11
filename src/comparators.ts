@@ -22,7 +22,7 @@ export const smallerThan: Comparator = <A>(l:A) =>
 
 
 export const differentFromBy = (compare: Comparator) => <A>(a:A) =>
-    isNot(compare(a)); // TODO unit test
+    isNot(compare(a));
 
 
 export const differentFrom = differentFromBy(tripleEqual);

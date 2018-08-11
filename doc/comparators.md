@@ -115,6 +115,10 @@ differentFrom(3)(2)
 
 ### differentFromBy
 
+```
+differentFromBy(jsonEqual)({a: {b: 2, c: 3}})({a: {b: 2, c: 3}})
+-> false
+```
 
 ### includedIn
 

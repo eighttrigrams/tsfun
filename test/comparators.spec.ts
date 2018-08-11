@@ -60,7 +60,7 @@ export function main() {
         it('differentFromBy', () =>
             expect(
 
-                differentFromBy(jsonEqual)({a: 1})({a: 1})
+                differentFromBy(jsonEqual)({a: {b: 2, c: 3}})({a: {b: 2, c: 3}})
 
             ).toEqual(false));
 
