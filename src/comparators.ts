@@ -37,27 +37,32 @@ export const includedInBy = (compare: Comparator) => <A>(as: Array<A>, ) =>
 export const includedIn =  includedInBy(tripleEqual);
 
 
-export const arrayEqualBy = (objectComparator: Comparator /*, arrayComparator */) =>
-    <A>(as1: Array<A>) => (as2: Array<A>) =>
+function compare(acomparator: Comparator, ocomparator: Comparator, l: any, r: any): boolean {
+
+    if (l instanceof Array && l instanceof Array)
+        return acomparator(l)(r);
+
+
+    return l instanceof Object && r instanceof Object
+
+        ? l.constructor === Object && r.constructor === Object
+
+            // {} or Object
+            ? ocomparator(l)(r)
+
+            // for example Date, Map
+            : jsonEqual(l)(r)
+
+        // numbers, strings
+        : typeof l === typeof r && l === r;
+}
+
+
+export const arrayEqualBy = (objectComparator : Comparator /*, arrayComparator */) =>
+    <A>(as1: Array<A>) => (as2: Array<A>): boolean =>
         as1
-            .filter((a, i) => {
-
-                // TODO Treat Array, test it
-
-                // TODO factor out duplicate code
-                return a instanceof Object && as2[i] instanceof Object
-
-                    ? a.constructor === Object && as2[i].constructor === Object
-
-                        // {} or Object
-                        ? objectComparator(a)(as2[i])
-
-                        // for example Date, Map
-                        : jsonEqual(a)(as2[i]) // TODO test it
-
-                    // numbers, strings
-                    : typeof a === typeof as2[i] && a === as2[i];
-            })
+            // TODO Test Array, Date
+            .filter((a, i) => compare(arrayEqual, objectComparator, a, as2[i]))
             .length === as2.length;
 
 
@@ -98,22 +103,7 @@ export const objectEquivalentBy =
                         const v1 = (o1 as any)[key];
                         const v2 = (o2 as any)[key];
 
-                        if (v1 instanceof Array && v2 instanceof Array)
-                            return arrayComparator(v1)(v2);
-
-
-                        return v1 instanceof Object && v2 instanceof Object
-
-                            ? v1.constructor === Object && v2.constructor === Object
-
-                                // {} or Object
-                                ? objectEquivalentBy(v1)(v2)
-
-                                // for example Date, Map
-                                : jsonEqual(v1)(v2)
-
-                            // numbers, strings
-                            : typeof v1 === typeof v2 && v1 === v2;
+                        return compare(arrayComparator, objectEquivalentBy(arrayComparator), v1, v2);
                     })
                     .length === Object.keys(o1).length;
             };
