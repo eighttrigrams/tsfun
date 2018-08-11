@@ -1,5 +1,5 @@
 import {getElForPathIn} from "./objects/core";
-import {isNot, isUndefined, Predicate} from './predicates';
+import {isArray, isNot, isUndefined, Predicate} from './predicates';
 
 
 export type Comparator = <A>(_: A) => Predicate<A>;
@@ -39,8 +39,7 @@ export const includedIn =  includedInBy(tripleEqual);
 
 function compare(acomparator: Comparator, ocomparator: Comparator, l: any, r: any): boolean {
 
-    if (l instanceof Array && l instanceof Array)
-        return acomparator(l)(r);
+    if (isArray(l) && isArray(r)) return acomparator(l)(r);
 
 
     return l instanceof Object && r instanceof Object
