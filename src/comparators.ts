@@ -27,11 +27,33 @@ export const differentFromBy: ComparatorProducer = (compare: Comparator) => <A>(
 export const differentFrom = differentFromBy(tripleEqual);
 
 
-export const includedInBy = (compare: Comparator) => <A>(as: Array<A>, ) =>
-    (a: A): boolean => includesBy(compare)(as, a).length > 0;
+export const includedInBy = (compare: Comparator) => <A>(as: Array<A>) =>
+    (a: A): boolean => {
+
+        if (!isArray(as)) throw new TypeError('includedInBy: expected an Array');
+
+        return includesBy(compare)(as, a).length > 0;
+    };
 
 
 export const includedIn =  includedInBy(tripleEqual);
+
+
+export const containedInBy = (compare: Comparator) => <A>(superset: Array<A>) =>
+    (subset: Array<A>): boolean => {
+
+        if (!isArray(subset) || !isArray(superset))
+            throw new TypeError('containedInBy: expected Arrays');
+
+        if (subset.length > superset.length) return false;
+
+        return subset
+            .filter(includedInBy(compare)(superset))
+            .length === subset.length;
+    };
+
+
+export const containedIn = containedInBy(tripleEqual);
 
 
 const compare = (acomparator: Comparator, ocomparator: Comparator, l: any) =>
@@ -77,17 +99,12 @@ export const arrayEquivalentBy: (_: Comparator) => Comparator =
 
                 const ocmp = objectComparator ? objectComparator : objectEqualBy(arrayEquivalent);
                 const acmp = objectComparator ? arrayEquivalentBy(ocmp): arrayEquivalent;
-                                                                                    // TODO add arrayContaining and implement it with as1.length == as2.length && arrayContainingBy()()()
                 return as1
                     .map(a1 =>
                         as2.find(compare(acmp, ocmp, a1)))
                     .filter(isUndefined)
                     .length === 0;
             };
-
-
-                                                                                    // TODO maybe arrayContaining (see jasmine) as a more general solution would
-                                                                                    // be better. arrayContaining on same sized arrays is equivalent to arrayEquivalent
 
 
 // Compares 2 arrays where elements order does not matter
@@ -99,7 +116,7 @@ export const objectEqualBy =
         (o1: Object) =>
             (o2: Object): boolean => {
 
-                if (o1.constructor !== Object || o2.constructor !== Object)
+                if (!isObject(o1) || !isObject(o2))
                     throw new TypeError('types do not match objectEqualBy');
 
                 if (!arrayEquivalent(Object.keys(o1))(Object.keys(o2))) return false;

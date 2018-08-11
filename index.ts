@@ -33,6 +33,8 @@ export {
     includedIn,
     differentFrom,
     differentFromBy,
+    containedIn,
+    containedInBy,
     jsonEqual,
     onBy,
     on,

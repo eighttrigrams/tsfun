@@ -139,6 +139,25 @@ includedInBy(jsonEqual)<any>([{a: 1}, {a: 2}])({a: 1})
 -> true
 ```
 
+### containedIn
+
+```
+containedIn([3, 2, 7])([2, 7])
+-> true
+```
+
+```
+containedIn([3, 2, 7])([2, 7, 1])
+-> false
+```
+
+### containedInBy
+
+```
+containedInBy(on('a'))([{a: 3}, {a: 4}])([{a: 4}])
+-> true
+```
+
 ### arrayEqual
 
 arrayEqual lets one compare Arrays in a way that the elements must be
