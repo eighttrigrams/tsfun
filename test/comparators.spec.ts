@@ -142,6 +142,14 @@ export function main() {
             ).toEqual(false));
 
 
+        it('array equivalence - nested arrays', () =>
+            expect(
+
+                arrayEquivalent([1, [4, 7]])([[7, 4], 1])
+
+            ).toEqual(true));
+
+
         // arrayEquivalentBy
 
         it('array equivalentBy - equivalent in different order', () =>

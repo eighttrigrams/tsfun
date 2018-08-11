@@ -14,3 +14,7 @@ export const isEven: Predicate<number> = (n: number) => n % 2 === 0;
 export const isOdd: Predicate<number> = (n: number) => isNot(isEven)(n);
 
 export const isArray: Predicate<any> = (as: any) => as instanceof Array;
+
+// TODO add isTrue
+
+// add isFalse

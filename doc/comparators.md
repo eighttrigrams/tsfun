@@ -165,6 +165,13 @@ arrayEquivalent([1, 4, 7])([7, 4, 1])
 -> true
 ```
 
+The same rules apply on nested structures
+
+```
+arrayEquivalent([1, [4, 7]])([[7, 4], 1])
+-> true
+```
+
 ### arrayEquivalentBy
 
 ```

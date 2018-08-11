@@ -1,7 +1,5 @@
 import {getElForPathIn} from "./objects/core";
-import {isNot, Predicate} from './predicates';
-import {subtractBy} from './arrays/set_like';
-import {isEmpty} from './coll';
+import {isNot, isUndefined, Predicate} from './predicates';
 
 
 export type Comparator = <A>(_: A) => Predicate<A>;
@@ -82,8 +80,20 @@ export const arrayEquivalentBy: (_: Comparator) => Comparator =
     (comp: Comparator) =>
         <A>(as1: Array<A>) =>
             (as2: Array<A>) =>
-                isEmpty(subtractBy(comp)(as1)(as2))
-                && isEmpty(subtractBy(comp)(as2)(as1));
+                as1.length == as2.length
+                && as1
+                    .map(a1 => // TODO look up fpscala book for this nesting thing here / for comprehension and yield
+                        as2
+                            .find(a2 =>
+                                (a1 instanceof Array
+                                    && a2 instanceof Array
+                                    && arrayEquivalentBy(comp)(a1)(a2))
+                                || (comp(a1)(a2)))
+                    )
+                    .filter(isUndefined)
+                    .length === 0;
+            // isEmpty(subtractBy(comp)(as1)(as2))
+            // && isEmpty(subtractBy(comp)(as2)(as1));
 
 
 // TODO maybe arrayContaining (see jasmine) as a more general solution would
