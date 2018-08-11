@@ -209,9 +209,9 @@ export function main() {
 
                 .toEqual([{a: 'c'}]));
 
+        // duplicates
 
-        // TODO duplicates
-
+        // ...
 
         // subtract
 
