@@ -44,6 +44,7 @@ export const arrayEqualBy = (objectComparator: Comparator /*, arrayComparator */
 
                 // TODO Treat Array, test it
 
+                // TODO factor out duplicate code
                 return a instanceof Object && as2[i] instanceof Object
 
                     ? a.constructor === Object && as2[i].constructor === Object
