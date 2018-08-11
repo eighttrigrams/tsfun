@@ -125,9 +125,19 @@ includedIn([1, 2])(1)
 -> true
 ```
 
+Usage with filter
+
+```
+[1, 2, 7].filter(includedIn([2, 5, 1]))
+-> [1, 2]
+```
+
 ### includedInBy
 
-...
+```
+includedInBy(jsonEqual)<any>([{a: 1}, {a: 2}])({a: 1})
+-> true
+```
 
 ### arrayEqual
 

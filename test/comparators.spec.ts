@@ -1,7 +1,8 @@
 import {intersectBy} from "../src/arrays/set_like";
 import {
     arrayEqual, arrayEqualBy,
-    arrayEquivalent, arrayEquivalentBy, differentFrom, differentFromBy, jsonEqual, objectEqual,
+    arrayEquivalent, arrayEquivalentBy, differentFrom, differentFromBy, includedIn, includedInBy, jsonEqual,
+    objectEqual,
     objectEqualBy, on,
     onBy,
     sameOn
@@ -63,6 +64,34 @@ export function main() {
                 differentFromBy(jsonEqual)({a: {b: 2, c: 3}})({a: {b: 2, c: 3}})
 
             ).toEqual(false));
+
+
+        // includedIn
+
+        it('includedIn', () =>
+            expect(
+
+                includedIn([2, 5, 1])(1)
+
+            ).toEqual(true));
+
+
+        it('with filter', () =>
+            expect(
+
+                [1, 2, 7].filter(includedIn([2, 5, 1]))
+
+            ).toEqual([1, 2]));
+
+
+        // includedInBy
+
+        it('includedInBy', () =>
+            expect(
+
+                includedInBy(jsonEqual)<any>([{a: 1}, {a: 2}])({a: 1})
+
+            ).toEqual(true));
 
         // arrayEqual
 
