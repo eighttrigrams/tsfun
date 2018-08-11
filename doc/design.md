@@ -6,3 +6,6 @@
 * Speed was not considered, since most functional HOFs are looping over 
   the input more often than necessary anyway (compared to languages where we would work on collections lazily).
   If you have pieces of code that needs to be fast, better do it with plain js.
+* Using Typescript imports to make short readable forms when using for example `filter(on())` 
+  (without for example underscore notation like `filter(_.on()))`
+* With a somewhat lower priority, supporting proper typing
