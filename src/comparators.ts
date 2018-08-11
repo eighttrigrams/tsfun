@@ -62,16 +62,14 @@ function compare(acomparator: Comparator, ocomparator: Comparator, l: any, r: an
 // TODO consider cases where Arrays are nested within Arrays,
 // in these cases the same selected comparator is used.
 
-export const arrayEqualBy = (objectComparator?: Comparator /*, arrayComparator */) =>
+export const arrayEqualBy = (objectComparator?: Comparator) =>
     <A>(as1: Array<A>) => (as2: Array<A>): boolean => {
 
-        const objectComparisonMethod = objectComparator
-            ? objectComparator
-            : objectEquivalent;
+        const ocmp = objectComparator ? objectComparator : objectEquivalent;
 
         return as1
             // TODO Test Array, Date
-            .filter((a, i) => compare(arrayEqual, objectComparisonMethod, a, as2[i]))
+            .filter((a, i) => compare(arrayEqual, ocmp, a, as2[i]))
             .length === as2.length;
     };
 
@@ -83,32 +81,29 @@ export const arrayEqual = arrayEqualBy();
  * Compares 2 arrays where elements order does not matter
  */
 export const arrayEquivalentBy: (_: Comparator) => Comparator =
-    (comp: Comparator) =>
+    (comp?: Comparator) =>
         <A>(as1: Array<A>) =>
-            (as2: Array<A>) =>
-                as1.length === as2.length // TODO add arrayContaining and implement it with as1.length == as2.length && arrayContainingBy()()()
+            (as2: Array<A>) => {
+
+                const ocmp = comp ? comp : objectEquivalentBy(arrayEquivalent);
+                const acmp = comp ? arrayEquivalentBy(ocmp): arrayEquivalent;
+
+                return as1.length === as2.length                                    // TODO add arrayContaining and implement it with as1.length == as2.length && arrayContainingBy()()()
                 && as1
-                    .map(a1 => // TODO look up fpscala book for this nesting thing here / for comprehension and yield
-                        as2
-                            .find(a2 =>
-                                (a1 instanceof Array
-                                    && a2 instanceof Array
-                                    && arrayEquivalentBy(comp)(a1)(a2))
-                                || (comp(a1)(a2)))
-                    )
+                    .map(a1 =>                                            // TODO look up fpscala book for this nesting thing here / for comprehension and yield
+                        as2.find(a2 => compare(acmp, ocmp, a1, a2)))
                     .filter(isUndefined)
                     .length === 0;
-            // isEmpty(subtractBy(comp)(as1)(as2))
-            // && isEmpty(subtractBy(comp)(as2)(as1));
+            };
 
 
-// TODO maybe arrayContaining (see jasmine) as a more general solution would
-// be better. arrayContaining on same sized arrays is equivalent to arrayEquivalent
+                                                                                    // TODO maybe arrayContaining (see jasmine) as a more general solution would
+                                                                                    // be better. arrayContaining on same sized arrays is equivalent to arrayEquivalent
 
 /**
  * Compares 2 arrays where elements order does not matter
  */
-export const arrayEquivalent: Comparator = arrayEquivalentBy(tripleEqual);
+export const arrayEquivalent: Comparator = arrayEquivalentBy(undefined as any);
 
 
 export const objectEquivalentBy =
@@ -122,10 +117,12 @@ export const objectEquivalentBy =
                 return Object
                     .keys(o1)
                     .filter((key: any) => {
-                        const v1 = (o1 as any)[key];
-                        const v2 = (o2 as any)[key];
 
-                        return compare(arrayComparator, objectEquivalentBy(arrayComparator), v1, v2);
+                        return compare(
+                            arrayComparator,
+                            objectEquivalentBy(arrayComparator),
+                            (o1 as any)[key],
+                            (o2 as any)[key]);
                     })
                     .length === Object.keys(o1).length;
             };

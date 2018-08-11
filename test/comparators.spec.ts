@@ -115,7 +115,7 @@ export function main() {
 
         // arrayEqualBy
 
-        it('arrayEqualBy default method is objectEquivalent', () =>
+        it('override objectEquivalent default', () =>
             expect(
 
                 arrayEqualBy(jsonEqual)([1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
@@ -123,10 +123,9 @@ export function main() {
             ).toEqual(false));
 
 
-
         // arrayEquivalent
 
-        it('array equivalence - equivalent in different order', () =>
+        it('equivalent in different order', () =>
             expect(
 
                 arrayEquivalent([1, 4, 7])([7, 4, 1])
@@ -134,7 +133,7 @@ export function main() {
             ).toEqual(true));
 
 
-        it('array equivalence - left list smaller', () =>
+        it('left list smaller', () =>
             expect(
 
                 arrayEquivalent([1, 4])([7, 4, 1])
@@ -142,7 +141,7 @@ export function main() {
             ).toEqual(false));
 
 
-        it('array equivalence - right list smaller', () =>
+        it('right list smaller', () =>
             expect(
 
                 arrayEquivalent([1, 4, 7])([7, 4])
@@ -150,7 +149,7 @@ export function main() {
             ).toEqual(false));
 
 
-        it('array equivalence - different elements', () =>
+        it('different elements', () =>
             expect(
 
                 arrayEquivalent([1, 4, 5])([7, 4, 1])
@@ -158,7 +157,7 @@ export function main() {
             ).toEqual(false));
 
 
-        it('array equivalence - nested arrays', () =>
+        it('arrayEquivalent - nested arrays', () =>
             expect(
 
                 arrayEquivalent([1, [4, 7]])([[7, 4], 1])
@@ -166,9 +165,28 @@ export function main() {
             ).toEqual(true));
 
 
+        it('array equivalent - default comparator is objectEquivalent', () =>
+            expect(
+
+                arrayEquivalent
+                ([{c: 7}, {c: 5, b: 4}])
+                ([{b: 4, c: 5}, {c: 7}])
+
+            ).toEqual(true));
+
+        it('arrayEquivalent with objectEquivalent - nest to arbitrary depth ', () =>
+            expect(
+
+                arrayEquivalent
+                    ([{c: 7}, {c: [{g: [9, 8], d: 5}, 3], b: 4}])
+                    ([{b: 4, c: [3, {d: 5, g: [8, 9]}]}, {c: 7}])
+
+            ).toEqual(true));
+
+
         // arrayEquivalentBy
 
-        it('array equivalentBy - equivalent in different order', () =>
+        it('arrayEquivalentBy - equivalent in different order', () =>
             expect(
 
                 arrayEquivalentBy(jsonEqual)([{a: 9}, {c: 7}, {b: 4}])([{b: 4}, {a: 9}, {c: 7}])
@@ -176,7 +194,7 @@ export function main() {
             ).toEqual(true));
 
 
-        it('array equivalentBy - different property value in same order', () =>
+        it('arrayEquivalentBy - different property value in same order', () =>
             expect(
 
                 arrayEquivalentBy(jsonEqual)([{a: 10}, {c: 7}, {b: 4}])([{a: 9}, {c: 7}, {b: 4}])
@@ -202,7 +220,7 @@ export function main() {
 
         // objectEquivalent
 
-        it('object equivalent - order of keys does not matter', () =>
+        it('order of keys does not matter', () =>
             expect(
 
                 objectEquivalent({a: 1, b: 2})({b: 2, a: 1})
@@ -210,7 +228,7 @@ export function main() {
             ).toEqual(true));
 
 
-        it('object equivalent - left side less keys', () =>
+        it('left side less keys', () =>
             expect(
 
                 objectEquivalent<object>({a: 1})({b: 2, a: 1})
@@ -218,7 +236,7 @@ export function main() {
             ).toEqual(false));
 
 
-        it('object equivalent - right side less keys', () =>
+        it('right side less keys', () =>
             expect(
 
                 objectEquivalent<object>({a: 1, b: 2})({a: 1})
@@ -226,7 +244,7 @@ export function main() {
             ).toEqual(false));
 
 
-        it('object equivalent - different keys', () =>
+        it('different keys', () =>
             expect(
 
                 objectEquivalent<object>({a: 1, b: 2})({a: 1, c:2})
@@ -234,7 +252,7 @@ export function main() {
             ).toEqual(false));
 
 
-        it('object equivalent - different values', () =>
+        it('different values', () =>
             expect(
 
                 objectEquivalent<object>({a: 1, b: 2})({a: 1, b: 3})
@@ -295,7 +313,9 @@ export function main() {
         it('objectEquivalent - mutual default nesting, order matters in arrays, but not for keys', () =>
             expect(
 
-                objectEquivalent({a: [2, {b: 4, a: [1, 2]}], c: 5})({c: 5, a: [2, {a: [1, 2], b: 4}]})
+                objectEquivalent
+                ({a: [2, {b: 4, a: [1, {f: [1, 2], e: 7}]}], c: 5})
+                ({c: 5, a: [2, {a: [1, {e: 7, f: [1, 2]}], b: 4}]})
 
             ).toEqual(true));
 
@@ -314,6 +334,14 @@ export function main() {
             expect(
 
                 objectEquivalentBy(arrayEquivalent)({a: [2, 1]})({a: [1, 2]})
+
+            ).toEqual(true));
+
+
+        xit('object equivalent - arrayEquivalent2', () =>
+            expect(
+
+                objectEquivalentBy(arrayEquivalent)({a: [2, {a: 3, b: 4}]})({a: [{a: 3, b: 4}, 2]})
 
             ).toEqual(true));
 
