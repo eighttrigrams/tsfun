@@ -64,11 +64,18 @@ and can for example be used with filter
 ### jsonEqual
 
 equalTo compares to objects by comparing their string representations
-via JSON.parse(JSON.stringify(item))
+via `JSON.parse(JSON.stringify(item))`
 
 ```
 jsonEqual({a: {b: 'c'})({a: {b: 'c'})
 -> true
+```
+
+which makes the order of keys matter
+
+```
+jsonEqual({a: 1, b: 2})({b: 2, a: 1})
+-> false
 ```
 
 ### biggerThan
