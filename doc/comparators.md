@@ -198,7 +198,7 @@ of the corresponding keys are compared via `===`, provided they are both of
 the same type.
 
 If the type of a certain key on both Objects is of a descendant of `Object`,
-for instance `Date` or `Map`, the comparison is done via jsonEquals. Thus
+for instance `Date` or `Map`, the comparison is done via `jsonEqual`. Thus
 
 ```
 objectEquivalent<any>({a: new Date(2018, 11, 24)})
@@ -325,7 +325,7 @@ combined with isNot
 
 ```
 [{a: {b: {d: '1'}}}, {a: {b: {d: '2'}}}]
-    .filter(onBy(equalTo)('a.b:')({d: '1'}))
+    .filter(onBy(jsonEqual)('a.b:')({d: '1'}))
 -> {a: {b: {d: '1'}}}
 ```
 
