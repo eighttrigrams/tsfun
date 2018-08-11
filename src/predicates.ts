@@ -1,6 +1,5 @@
-export type Predicate<A> = (_: A) => boolean;
+import {Predicate, PredicateProducer} from './types';
 
-export type PredicateProducer = <A>(_: Predicate<A>) => Predicate<A>;
 
 export const isNot: PredicateProducer = <A>(f: Predicate<A>) =>
     (a: A) => flip(f(a));

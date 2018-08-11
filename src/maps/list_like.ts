@@ -1,5 +1,5 @@
-import {TypedMap} from './core';
 import {mapProperties} from './core';
+import {TypedMap} from '../types';
 
 
 export function mapMap<A, B>(f: (_: A) => B): (_: TypedMap<A>) => TypedMap<B> {

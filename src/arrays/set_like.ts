@@ -1,10 +1,9 @@
-import {Transformation, uncurry2} from '../core';
-import {Comparator, includedInBy, tripleEqual} from "../comparators";
+import {uncurry2} from '../core';
+import {includedInBy, tripleEqual} from "../comparators";
 import {isNot} from '../predicates';
+import {Comparator, NestedArray} from '../types';
 
-type ArrayTransformation<T> = Transformation<Array<T>>;
 
-export type NestedArray<A> = Array<Array<A>>;
 
 
 export const intersectionBy =
@@ -43,9 +42,7 @@ export const uniteBy = (compare: Comparator = tripleEqual) => <A>(...aas: Nested
 export const unite = uniteBy();
 
 
-/**
- * Generate a new list with elements which are contained in as but not in subtrahend
- */
+// Generate a new list with elements which are contained in as but not in subtrahend
 export const subtractBy =
     (compare: Comparator = tripleEqual) =>
         <A>(...subtrahends: NestedArray<A>) =>
@@ -53,13 +50,8 @@ export const subtractBy =
                 ((unique<A>(as)).filter(isNot(includedInBy(compare)(union(subtrahends)))));
 
 
-/**
- * Generate a new list with elements which are contained in as but not in subtrahend
- */
+// Generate a new list with elements which are contained in as but not in subtrahend
 export const subtract = subtractBy();
-
-
-// TODO add difference function
 
 
 export const uniqueBy = (compare: Comparator = tripleEqual) =>
@@ -74,9 +66,7 @@ export const unique = uniqueBy();
 
 
 // TODO add test
-/**
- * @author Thomas Kleinke
- */
+// Contributed by Thomas Kleinke
 export function duplicates<A>(array: Array<A>): Array<A> {
 
     const temp: any[] = [];
@@ -94,9 +84,7 @@ export function duplicates<A>(array: Array<A>): Array<A> {
 }
 
 
-/**
- * @returns the union of a1 and a2
- */
+// @returns the union of a1 and a2
 const _uniteBy = (compare: Comparator = tripleEqual) => <A>(as1: Array<A>) =>
     (as2: Array<A>) =>
         as1.concat(

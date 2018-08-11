@@ -1,4 +1,5 @@
-import {isNot, Predicate} from '../predicates';
+import {isNot} from '../predicates';
+import {Predicate} from '../types';
 
 
 export const drop = <A>(n: number) =>

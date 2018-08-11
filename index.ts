@@ -1,4 +1,8 @@
 export {
+    NestedArray
+} from './src/types';
+
+export {
     isNot,
     isEven,
     even,
@@ -12,7 +16,9 @@ export {
     isTrue,
     isFalse,
     isUndefinedOrEmpty,
-    isEmpty
+    undefinedOrEmpty,
+    isEmpty,
+    empty
 } from './src/predicates';
 
 
@@ -65,7 +71,6 @@ export {
 
 
 export {
-    NestedArray,
     intersection,
     intersectionBy,
     union,

@@ -1,6 +1,6 @@
 import {subtract} from './arrays/set_like';
 import {subtractMap} from './maps/set_like';
-import {UntypedMap} from "./maps/core";
+import {UntypedMap} from './types';
 
 
 export function copy<T>(as: Array<T>): Array<T>;

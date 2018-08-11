@@ -1,10 +1,7 @@
 import {getElForPathIn} from "./objects/core";
-import {isArray, isNot, isObject, isUndefined, Predicate} from './predicates';
+import {isArray, isNot, isObject, isUndefined} from './predicates';
+import {Comparator, ComparatorProducer} from './types';
 
-
-export type Comparator = <A>(_: A) => Predicate<A>;
-
-export type ComparatorProducer = (_: Comparator) => <A>(_: A) => Predicate<A>;
 
 
 export const tripleEqual: Comparator = <A>(l:A) =>
