@@ -5,6 +5,20 @@ import {isEven, isOdd} from '../src/predicates';
 
 export function main() {
 
+    /**
+     * isNot
+     *
+     * isEven
+     * isOdd
+     *
+     * isDefined
+     * isUndefined
+     *
+     * isTrue
+     * isFalse
+     *
+     * isArray
+     */
     describe('Drop', () => {
 
         it('even', () =>

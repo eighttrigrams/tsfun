@@ -4,6 +4,8 @@ import {isNot, isUndefined, Predicate} from './predicates';
 
 export type Comparator = <A>(_: A) => Predicate<A>;
 
+export type ComparatorProducer = (_: Comparator) => <A>(_: A) => Predicate<A>;
+
 
 export const tripleEqual: Comparator = <A>(l:A) =>
     (r:A) => l === r;
@@ -21,7 +23,7 @@ export const smallerThan: Comparator = <A>(l:A) =>
     (r: A) => l > r;
 
 
-export const differentFromBy = (compare: Comparator) => <A>(a:A) =>
+export const differentFromBy: ComparatorProducer = (compare: Comparator) => <A>(a:A) =>
     isNot(compare(a));
 
 

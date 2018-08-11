@@ -41,8 +41,6 @@ differentFromBy(jsonEqual)({a: 1})({a: 1})
 -> false
 ```
 
-Following that kind of logic we could also say Comparators are Predicate Producers
-
 ## Reference
 
 ### tripleEqual
