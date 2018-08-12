@@ -60,10 +60,16 @@ const compare = (acomparator: Comparator, ocomparator: Comparator, l: any) =>
     (r: any): boolean => {
 
     // Array
-    if (isArray(l) && isArray(r)) return acomparator(l)(r);
+    if (isArray(l) && isArray(r)) {
+        if (l.length !== r.length) return false;
+        return acomparator(l)(r);
+    }
 
     // {} or Object
-    if (isObject(l) && isObject(r)) return ocomparator(l)(r);
+    if (isObject(l) && isObject(r)) {
+        if (!arrayEquivalent(Object.keys(l))(Object.keys(r))) return false;
+        return ocomparator(l)(r);
+    }
 
     return l instanceof Object && r instanceof Object
 
