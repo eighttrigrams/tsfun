@@ -2,9 +2,9 @@ import {filterObject, mapObject} from '../../src/collections/objects_list_like';
 
 export function main() {
 
-    describe('Maps/List-Like-Collections', () => {
+    describe('Object/List-Like-Collections', () => {
 
-        it('map', () => {
+        it('mapObject', () => {
 
             expect(
 
@@ -14,7 +14,7 @@ export function main() {
         });
 
 
-        it('filter', () => {
+        it('filterObject', () => {
 
             expect(
 
