@@ -2,13 +2,13 @@ import {Mapping, Predicate, Transformation, TypedMap} from '../types';
 import {mapProperties} from './objects_coll';
 
 
-export const mapMap = <A, B>(f: Mapping <A, B>):
+export const mapObject = <A, B>(f: Mapping <A, B>):
     (_: TypedMap<A>) => TypedMap<B> =>
         (coll: TypedMap<A>) => mapProperties(f)(Object.keys(coll), coll);
 
 
 
-export const filterMap = <T>(predicate: Predicate<T>): Transformation<TypedMap<T>> =>
+export const filterObject = <T>(predicate: Predicate<T>): Transformation<TypedMap<T>> =>
     (o: TypedMap<T>) =>
         Object
             .keys(o)

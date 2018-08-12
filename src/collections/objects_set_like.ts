@@ -5,7 +5,7 @@ import {UntypedMap} from '../types';
 import {mapProperties} from './objects_coll';
 
 
-export const subtractMap = (subtrahend: Array<string | number> | any) =>
+export const subtractObject = (subtrahend: Array<string | number> | any) =>
     (o: UntypedMap): UntypedMap => {
 
         if (Array.isArray(o)) throw new TypeError('invalid argument');
@@ -24,17 +24,17 @@ export const subtractMap = (subtrahend: Array<string | number> | any) =>
     };
 
 
-export function unionMap([first, ...rest]: UntypedMap[]): UntypedMap {
+export function unionObject([first, ...rest]: UntypedMap[]): UntypedMap {
 
     return first && rest.length > 0
-        ? uniteMap(...rest)(first)
+        ? uniteObject(...rest)(first)
         : first
             ? first
             : {};
 }
 
 
-export const uniteMap = (...addends: UntypedMap[]) =>
+export const uniteObject = (...addends: UntypedMap[]) =>
     (o: UntypedMap): UntypedMap => {
 
         if (Array.isArray(o)) throw new TypeError('invalid argument');
@@ -45,7 +45,7 @@ export const uniteMap = (...addends: UntypedMap[]) =>
     };
 
 
-export const intersectMap = (o1: any) =>
+export const intersectObject = (o1: any) =>
     (o2: UntypedMap): UntypedMap => {
 
         if (Array.isArray(o2)) throw new TypeError('invalid argument');

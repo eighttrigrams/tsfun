@@ -1,4 +1,4 @@
-import {intersectMap, subtractMap, unionMap, uniteMap} from '../../src/collections/objects_set_like';
+import {intersectObject, subtractObject, unionObject, uniteObject} from '../../src/collections/objects_set_like';
 
 
 export function main() {
@@ -8,7 +8,7 @@ export function main() {
         it('subtractMap - subtract by array of numeric keys', () =>
             expect(
 
-                subtractMap([1])({1: 3, 2: 4}))
+                subtractObject([1])({1: 3, 2: 4}))
 
                 .toEqual({2: 4}));
 
@@ -16,7 +16,7 @@ export function main() {
         it('subtractMap - subtract by array of string keys', () =>
             expect(
 
-                subtractMap(['1'])({1: 3, 2: 4}))
+                subtractObject(['1'])({1: 3, 2: 4}))
 
                 .toEqual({2: 4}));
 
@@ -24,7 +24,7 @@ export function main() {
         it('subtractMap - subtract objects', () =>
             expect(
 
-                subtractMap({1: 7})({1: 3, 2: 4}))
+                subtractObject({1: 7})({1: 3, 2: 4}))
 
                 .toEqual({2: 4}));
 
@@ -32,7 +32,7 @@ export function main() {
         it('subtractMap - array for o', () =>
             expect(
 
-                () => subtractMap({0: 7})([2, 4]))
+                () => subtractObject({0: 7})([2, 4]))
 
                 .toThrow(new TypeError('invalid argument')));
 
@@ -40,7 +40,7 @@ export function main() {
         it('subtractMap - retain instance', () => {
 
             const instance = { a: 'hey'  };
-            expect(subtractMap({1: 7})({1: 3, 2: instance})['2'])
+            expect(subtractObject({1: 7})({1: 3, 2: instance})['2'])
                 .toBe(instance);
         });
 
@@ -48,7 +48,7 @@ export function main() {
         it('uniteMap - overwrite', () =>
             expect(
 
-                uniteMap({1: 4})({1: 3, 2: 4}))
+                uniteObject({1: 4})({1: 3, 2: 4}))
 
                 .toEqual({1: 4, 2: 4}));
 
@@ -56,7 +56,7 @@ export function main() {
         it('uniteMap - unite different', () =>
             expect(
 
-                uniteMap({1: 4})({2: 4}))
+                uniteObject({1: 4})({2: 4}))
 
                 .toEqual({1: 4, 2: 4}));
 
@@ -64,7 +64,7 @@ export function main() {
         it('uniteMap - illegal first arg', () =>
             expect(
 
-                () => uniteMap([])({2: 4}))
+                () => uniteObject([])({2: 4}))
 
                 .toThrow(new TypeError('invalid argument')));
 
@@ -72,7 +72,7 @@ export function main() {
         it('uniteMap - illegal second arg', () =>
             expect(
 
-                () => uniteMap({1: 4})([]))
+                () => uniteObject({1: 4})([]))
 
                 .toThrow(new TypeError('invalid argument')));
 
@@ -80,7 +80,7 @@ export function main() {
         it('uniteMap - retain instance', () => {
 
             const instance = { a: 'hey'  };
-            expect(uniteMap({1: 4})({1: 3, 2: instance})[2])
+            expect(uniteObject({1: 4})({1: 3, 2: instance})[2])
                 .toBe(instance);
         });
 
@@ -88,7 +88,7 @@ export function main() {
         it('uniteMap - variadic', () =>
             expect(
 
-                uniteMap(...[{3: 4}, {4: 4}])({1: 2}))
+                uniteObject(...[{3: 4}, {4: 4}])({1: 2}))
 
                 .toEqual({1: 2, 3: 4, 4: 4}));
 
@@ -96,7 +96,7 @@ export function main() {
         it('uniteMap - variadic', () =>
             expect(
 
-                uniteMap(...[{3: 4}, {4: 4}])({1: 2}))
+                uniteObject(...[{3: 4}, {4: 4}])({1: 2}))
 
                 .toEqual({1: 2, 3: 4, 4: 4}));
 
@@ -104,7 +104,7 @@ export function main() {
         it('unionMap', () =>
             expect(
 
-                unionMap([{3: 4}, {4: 4}, {1: 2}]))
+                unionObject([{3: 4}, {4: 4}, {1: 2}]))
 
                 .toEqual({1: 2, 3: 4, 4: 4}));
 
@@ -112,7 +112,7 @@ export function main() {
         it('unionMap - one', () =>
             expect(
 
-                unionMap([{3: 4}]))
+                unionObject([{3: 4}]))
 
                 .toEqual({3: 4}));
 
@@ -120,7 +120,7 @@ export function main() {
         it('unionMap - empty', () =>
             expect(
 
-                unionMap([]))
+                unionObject([]))
 
                 .toEqual({}));
 
@@ -128,7 +128,7 @@ export function main() {
         it('intersectMap', () =>
             expect(
 
-                intersectMap({1: 4})({1: 3, 2: 4}))
+                intersectObject({1: 4})({1: 3, 2: 4}))
 
                 .toEqual({1: 4}));
 
@@ -136,7 +136,7 @@ export function main() {
         it('intersectMap - array', () =>
             expect(
 
-                intersectMap([1])({1: 3, 2: 4}))
+                intersectObject([1])({1: 3, 2: 4}))
 
                 .toEqual({1: 3}));
 
@@ -144,7 +144,7 @@ export function main() {
         it('intersect Map- array for o', () =>
             expect(
 
-                () => intersectMap({1: 3, 2: 4})([1]))
+                () => intersectObject({1: 3, 2: 4})([1]))
 
                 .toThrow(new TypeError('invalid argument')));
 
@@ -153,7 +153,7 @@ export function main() {
 
             const instance = { a: 'hey'  };
             expect(
-                intersectMap({1: instance})({1: instance, 2: 4})[1]
+                intersectObject({1: instance})({1: instance, 2: 4})[1]
             ).toBe(instance);
         });
     });

@@ -1,4 +1,4 @@
-import {filterMap, mapMap} from '../../src/collections/objects_list_like';
+import {filterObject, mapObject} from '../../src/collections/objects_list_like';
 
 export function main() {
 
@@ -8,7 +8,7 @@ export function main() {
 
             expect(
 
-                mapMap<number, number>(x => x * 2)({a: 1, b: 2})
+                mapObject<number, number>(x => x * 2)({a: 1, b: 2})
 
             ).toEqual({a: 2, b: 4})
         });
@@ -18,7 +18,7 @@ export function main() {
 
             expect(
 
-                filterMap((x: number) => x > 1)({a: 1, b: 2})
+                filterObject((x: number) => x > 1)({a: 1, b: 2})
 
             ).toEqual({b: 2})
         });

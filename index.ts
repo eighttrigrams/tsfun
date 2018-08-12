@@ -91,16 +91,16 @@ export {
 
 
 export {
-    subtractMap,
-    intersectMap,
-    uniteMap,
-    unionMap
+    subtractObject,
+    intersectObject,
+    uniteObject,
+    unionObject
 } from './src/collections/objects_set_like'
 
 
 export {
-    mapMap,
-    filterMap,
+    mapObject,
+    filterObject,
 } from './src/collections/objects_list_like'
 
 

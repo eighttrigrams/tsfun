@@ -2,7 +2,7 @@ import {compose, flow} from '../src/flow';
 import {reverse} from '../src/collections/arrays_list_like';
 import {take, takeWhile, dropWhile, drop, dropRight} from '../src/collections/arrays_list_like_pick';
 import {biggerThan, smallerThan} from '../src/comparators';
-import {uniteMap} from '../src/collections/objects_set_like';
+import {uniteObject} from '../src/collections/objects_set_like';
 
 
 export function main() {
@@ -19,7 +19,7 @@ export function main() {
         it('compose', () =>
             expect(
 
-                compose(uniteMap({c: 3}))({a: 1, b: 2}))
+                compose(uniteObject({c: 3}))({a: 1, b: 2}))
 
             .toEqual({a: 1, b: 2, c: 3}));
 
@@ -90,7 +90,7 @@ export function main() {
 
                 flow(
                     {a: 1, b: 2},
-                    uniteMap({c: 3})))
+                    uniteObject({c: 3})))
 
                 .toEqual({a: 1, b: 2, c: 3}));
     });
