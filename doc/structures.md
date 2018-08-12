@@ -1,32 +1,55 @@
-# tsfun - Data Structures and Collections
+# tsfun - Data Structures and Functions
 
-First of all we should begin with a quick clarification on some terminology 
-used in **tsfun**. tsfun makes a general distinction between 3 classes of 
-data structures, namely Object, Map and Array. When we are refering to them in the
-docs, it is when they are written like shown, with capital letter and normal font.
+## tsfun data structures
+
+In general, **tsfun** knows and works with only two data structures, namely
+***Array*** and ***Object***, corresponding to the respective javascript data structures.
 Whenever we talk about javascript entities, we highlight the terms as code, like
-for instance, `object`, `{}`, `Object`, `Map` and `Array`.  
+for instance, `object`, `{}`, `Object`, and `Array`. 
 
-#### Arrays
+If an entity is an Array is determined
+by checking
 
-When we talk about Arrays it refers to the usual javascript `Array`. 
-Our typical method to determine an Array is `as instanceof Array`.
+```
+as instanceof Array
+```
+
+Wether an entity is an Object ist checked by
+
+```
+o instanceof Object && o.constructor === Object
+``` 
+
+which accounts for `Object` and `{}`, but not Descendants of `Object`, like for example
+`Date`, which is what we want in the context of ***tsfun's*** functionality.
+
+
+## tsfun functions
+
+### Collections
+
+Furthermore, there are two general contexts in which we use these data structure.
+The first is when we use them as **collections**, the second is when we use them
+as structured entities.
+
+##### Arrays
 
 We have different sets of functions to treat Arrays as either 
 linear vector or list like collections or as set like collections.
 
-#### Maps
+##### Objects
 
-When we talk about Maps, we treat a 
-javascript `{}`, `Object` or a `Map` as a simple collection.
+TODO mention typescript index signatures and -Map suffix
 
-TODO check if we can type this explicitely
-
-#### Objects
+### Structures
 
 We talk about about tsfun Objects in contexts where we 
 care about a composed data structure, like
 for example `{a: {b: [1, 2, 4], c: 'e'}`.
 
-Our method to determine if we have an object is `o.constructor === Object` 
-which allows `{}` or `Object` but excludes for example instances of `Map` or `Date`.
+Arrays can be seen as deep nested structures as well.
+
+TODO talk about equal, arrayEquivalent, objectEquivalent, copies (copy vs clone) etc. 
+
+
+
