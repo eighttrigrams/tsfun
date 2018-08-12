@@ -37,6 +37,9 @@ Just as a reminder, a flow has not necessarily to be of type `Array`, it works o
 type `A`. It is just that `tsfun` itself provides many array manipulating functions which
 are designed with flow in mind. 
 
+
+// TODO flowP has been removed in favor of compose
+
 There is also `flowP`, which is a partially applied flow. 
 It allows a composition of flows.
 

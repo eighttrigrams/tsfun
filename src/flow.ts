@@ -7,11 +7,6 @@ export const flow = <T>(t: T, ...transformations: Array<Transformation<T>>) =>
     compose(...transformations)(t);
 
 
-export const flowP = <T>(...transformations: Array<Transformation<T>>) =>
-    (t: T) =>
-        transformations.reduce((acc, transformation) => transformation(acc), t);
-
-
 export const compose = <T>(...transformations: Array<Transformation<T>>) => (t: T)  =>
     transformations.reduce((acc, transformation) => transformation(acc), t);
 

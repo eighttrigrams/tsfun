@@ -1,6 +1,6 @@
-import {compose, flow, flowP} from '../src/flow';
+import {compose, flow} from '../src/flow';
 import {reverse} from '../src/collections/arrays_list_like';
-import {take, takeWhile, dropWhile} from '../src/collections/arrays_list_like_pick';
+import {take, takeWhile, dropWhile, drop, dropRight} from '../src/collections/arrays_list_like_pick';
 import {biggerThan, smallerThan} from '../src/comparators';
 import {uniteMap} from '../src/collections/maps_set_like';
 
@@ -14,12 +14,38 @@ export function main() {
      */
     describe('Flow', () => {
 
+        // compose
+
         it('compose', () =>
             expect(
 
                 compose(uniteMap({c: 3}))({a: 1, b: 2}))
 
             .toEqual({a: 1, b: 2, c: 3}));
+
+
+        it('compose', () =>
+            expect(
+
+                compose(take(1))([5, 6]))
+
+                .toEqual([5]));
+
+
+        it('compose nest', () =>
+            expect(
+
+                flow(
+                    [5, 6, 8, 9],
+                    compose(
+                        drop(1),
+                        dropRight(1),
+                        compose(
+                            dropRight(1)))))
+
+                .toEqual([6]));
+
+        // flow
 
 
         it('flow', () =>
@@ -38,26 +64,6 @@ export function main() {
                     [5,6]))
 
             .toEqual([5,6]));
-
-
-        it('flowP', () =>
-            expect(
-
-                flowP(take(1))([5, 6]))
-
-            .toEqual([5]));
-
-
-        it('flowP - nest', () =>
-            expect(
-
-                flow(
-                    [5, 6],
-                    flowP(
-                        flowP(
-                            take(1)))))
-
-            .toEqual([5]));
 
 
         it('reverse ', () =>
