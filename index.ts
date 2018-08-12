@@ -57,6 +57,7 @@ export {
 
 
 export {
+    compose,
     flow,
     flowP
 } from './src/flow';

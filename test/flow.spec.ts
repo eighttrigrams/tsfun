@@ -1,4 +1,4 @@
-import {flow, flowP} from '../src/flow';
+import {compose, flow, flowP} from '../src/flow';
 import {reverse} from '../src/collections/arrays_list_like';
 import {take, takeWhile, dropWhile} from '../src/collections/arrays_list_like_pick';
 import {biggerThan, smallerThan} from '../src/comparators';
@@ -7,7 +7,20 @@ import {uniteMap} from '../src/collections/maps_set_like';
 
 export function main() {
 
+    /**
+     * compose
+     *
+     * flow
+     */
     describe('Flow', () => {
+
+        it('compose', () =>
+            expect(
+
+                compose(uniteMap({c: 3}))({a: 1, b: 2}))
+
+            .toEqual({a: 1, b: 2, c: 3}));
+
 
         it('flow', () =>
             expect(

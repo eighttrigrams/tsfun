@@ -3,6 +3,10 @@
 * See [Sources](../src/flow.ts)
 * See [Tests](../test/flow.spec.ts)
 
+
+TODO describe compose
+
+
 ```
 flow(
    [1, 2, 3, 1],
