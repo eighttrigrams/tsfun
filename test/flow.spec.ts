@@ -2,7 +2,7 @@ import {compose, flow} from '../src/flow';
 import {reverse} from '../src/collections/arrays_list_like';
 import {take, takeWhile, dropWhile, drop, dropRight} from '../src/collections/arrays_list_like_pick';
 import {biggerThan, smallerThan} from '../src/comparators';
-import {uniteMap} from '../src/collections/maps_set_like';
+import {uniteMap} from '../src/collections/objects_set_like';
 
 
 export function main() {

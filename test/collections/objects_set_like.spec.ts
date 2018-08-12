@@ -1,4 +1,4 @@
-import {intersectMap, subtractMap, unionMap, uniteMap} from '../../src/collections/maps_set_like';
+import {intersectMap, subtractMap, unionMap, uniteMap} from '../../src/collections/objects_set_like';
 
 
 export function main() {

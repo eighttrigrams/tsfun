@@ -1,7 +1,7 @@
 # Ordered-list-like collection methods for Maps
 
-* See [Sources](../src/collections/maps_list_like.ts)
-* See [Tests](../test/collections/maps_list_like.spec.ts)
+* See [Sources](../src/collections/objects_list_like.ts)
+* See [Tests](../test/collections/objects_list_like.spec.ts)
 
 ## Reference
 

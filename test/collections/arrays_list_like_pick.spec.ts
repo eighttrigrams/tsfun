@@ -8,9 +8,9 @@ import {
     takeRightWhile,
     takeUntil,
     takeWhile
-} from '../src/collections/arrays_list_like_pick';
+} from '../../src/collections/arrays_list_like_pick';
 
-import {biggerThan, smallerThan} from '../src/comparators';
+import {biggerThan, smallerThan} from '../../src/comparators';
 
 
 export function main() {

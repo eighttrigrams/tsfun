@@ -95,13 +95,13 @@ export {
     intersectMap,
     uniteMap,
     unionMap
-} from './src/collections/maps_set_like'
+} from './src/collections/objects_set_like'
 
 
 export {
     mapMap,
     filterMap,
-} from './src/collections/maps_list_like'
+} from './src/collections/objects_list_like'
 
 
 export {copy} from './src/collections/coll';

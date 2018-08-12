@@ -25,8 +25,8 @@ console.log(take(2)([1,2,3]))
 * [Collection functions](doc/coll.md)
 * [List-like collection functions for Arrays](doc/arrays_list_like.md)
 * [Set-like collection functions for Arrays](doc/arrays_set_like.md)
-* [List-like collection functions for Maps](doc/maps_list_like.md)
-* [Set-like collection functions for Maps](doc/maps_set_like.md)
+* [List-like collection functions for Maps](doc/objects_list_like.md)
+* [Set-like collection functions for Maps](doc/objects_set_like.md)
 * [Object functions](doc/objects.md)
 
 ## More

@@ -1,5 +1,5 @@
 import {Mapping, Predicate, Transformation, TypedMap} from '../types';
-import {mapProperties} from './maps_coll';
+import {mapProperties} from './objects_coll';
 
 
 export const mapMap = <A, B>(f: Mapping <A, B>):

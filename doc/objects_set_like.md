@@ -1,7 +1,7 @@
 # Set-like collection methods for Maps
 
-* See [Sources](../src/collections/maps_set_like.ts)
-* See [Tests](../test/collections/maps_set_like.spec.ts)
+* See [Sources](../src/collections/objects_set_like.ts)
+* See [Tests](../test/collections/objects_set_like.spec.ts)
 
 ## Reference
 
