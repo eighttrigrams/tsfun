@@ -106,12 +106,13 @@ export {
 
 export {copy} from './src/collections/coll';
 
+export {jsonClone} from './src/core';
+
 export {doWhen} from './src/utils';
 
 export {
     getElForPathIn,
     takeOrMake,
-    clone,
     to,
     option
 } from './src/objects';

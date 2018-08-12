@@ -1,9 +1,5 @@
-import {identical21, reverseUncurry2} from './core';
+import {reverseUncurry2} from './core';
 import {isEmpty} from './predicates';
-
-
-export const clone = <O>(object: O, postProcess: (original: O, copy: O) => O = identical21): O =>
-    (postProcess)(object, JSON.parse(JSON.stringify(object))) as O;
 
 
 export const to = reverseUncurry2(getElForPathIn);
