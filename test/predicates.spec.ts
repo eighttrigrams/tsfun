@@ -1,7 +1,7 @@
 /**
  * @author Daniel de Oliveira
  */
-import {isEmpty, isEven, isOdd, isUndefinedOrEmpty} from '../src/predicates';
+import {isEmpty, isUndefinedOrEmpty} from '../src/predicates';
 
 export function main() {
 
@@ -32,48 +32,6 @@ export function main() {
     describe('Predicates', () => {
 
         // isNot
-
-        // isEven
-
-        it('even', () =>
-            expect(
-
-                isEven(4))
-
-                .toEqual(true));
-
-
-        it('even - 0', () =>
-            expect(
-
-                isEven(0))
-
-                .toEqual(true));
-
-
-        it('even - -2', () =>
-            expect(
-
-                isEven(0))
-
-                .toEqual(true));
-
-        // isOdd
-
-        it('odd', () =>
-            expect(
-
-                isOdd(7))
-
-                .toEqual(true));
-
-
-        it('odd - -1', () =>
-            expect(
-
-                isOdd(-1))
-
-                .toEqual(true))
 
         // isDefined
 

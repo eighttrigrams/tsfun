@@ -23,30 +23,6 @@ isNot(sameAs(3))(2) // same as differentFrom(3)(2)
 
 Alias for `isNot`
 
-### isEven
-
-```
-isEven()(2)
--> true
-```
-
-### even
-
-Alias for `isEven`
-
-### isOdd
-
-```
-isOdd()(3)
--> true
-```
-
-### odd
-
-Alias for `isOdd`
-
-
-
 ### isDefined
 
 ```

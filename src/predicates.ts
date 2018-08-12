@@ -43,18 +43,6 @@ export const empty = isEmpty;
 export const flip = (v: boolean) => !v;
 
 
-export const isEven: Predicate<number> = (n: number) => n % 2 === 0;
-
-
-export const even = isEven;
-
-
-export const isOdd: Predicate<number> = (n: number) => isNot(isEven)(n);
-
-
-export const odd = isOdd;
-
-
 export const isArray: Predicate<any> = (as: any) => as instanceof Array;
 
 

@@ -4,10 +4,6 @@ export {
 
 export {
     isNot,
-    isEven,
-    even,
-    isOdd,
-    odd,
     isDefined,
     defined,
     isUndefined,
