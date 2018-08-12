@@ -138,6 +138,19 @@ export const objectEqualBy =
 export const objectEqual: Comparator = objectEqualBy(arrayEqual);
 
 
+export const equalBy =
+    (arrayComparator: Comparator) =>
+        (o1: any) =>
+            (o2: any): boolean => compare(arrayComparator,
+                objectEqualBy(arrayComparator), o1)(o2);
+
+
+export const equal = equalBy(arrayEqual);
+
+
+export const equivalent = equalBy(arrayEquivalent);
+
+
 export const onBy = (compare: Function) => (path: string) =>
     (l: any) => (r: any) =>
         path.length === 0

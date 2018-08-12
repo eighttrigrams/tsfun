@@ -385,6 +385,18 @@ export class T { ... }
 const myTComparator = objectEquivalentBy(arrayEqualBy(objectEquivalent));
 ```
 
+### equal
+
+...
+
+### equalBy
+
+...
+
+### equivalent
+
+...
+
 ### on
 
 compares elements on path directly with a certain value
