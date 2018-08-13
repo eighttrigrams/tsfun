@@ -819,7 +819,7 @@ export function main() {
         it('intersectBy onBy equalTo - symmetric',() =>
             expect(
 
-                intersectBy(on('a.b', jsonEqual))([{a: {b: {c: 'e'}}}, {a: {b: 'c'}}])
+                intersectBy(on('a.b', by(jsonEqual)))([{a: {b: {c: 'e'}}}, {a: {b: 'c'}}])
                 ([{a: {b: {c: 'e'}}}]))
 
                 .toEqual([{a: {b: {c: 'e'}}} as any]));
