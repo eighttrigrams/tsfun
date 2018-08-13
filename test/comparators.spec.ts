@@ -189,7 +189,7 @@ export function main() {
                 arrayEqual([1, {c: [1, 2], b: 2}])([1, {b: 2, c: [1, 2]}])
 
             ).toEqual(true));
-+
+
 
         it('using objectEqual order matters', () =>
             expect(
@@ -219,12 +219,20 @@ export function main() {
             ).toEqual(true));
 
 
-        it('left list smaller', () =>
+        it('left side subset', () =>
             expect(
 
                 arrayEquivalent([1, 4])([7, 4, 1])
 
             ).toEqual(false));
+
+
+        it('left list smaller but same set', () =>
+            expect(
+
+                arrayEquivalent([1, 4])([1, 4, 1, 4, 1])
+
+            ).toEqual(true));
 
 
         it('right list smaller', () =>
@@ -235,6 +243,14 @@ export function main() {
             ).toEqual(false));
 
 
+        it('right list smaller but same set', () =>
+            expect(
+
+                arrayEquivalent([1, 4, 1, 4, 1])([1, 4])
+
+            ).toEqual(true));
+
+
         it('different elements', () =>
             expect(
 
@@ -243,7 +259,7 @@ export function main() {
             ).toEqual(false));
 
 
-        it('arrayEquivalent - nested arrays', () =>
+        it('nested arrays', () =>
             expect(
 
                 arrayEquivalent([1, [4, 7]])([[7, 4], 1])
@@ -251,7 +267,17 @@ export function main() {
             ).toEqual(true));
 
 
-        it('array equivalent - default comparator is objectEquivalentBy(arrayEquivalent)', () =>
+        it('nested arrays different sizes', () =>
+            expect(
+
+                arrayEquivalent<any>
+                ([1, [7, [5, 5, 7], 7]])
+                ([[7, 7, [5, 5, 7], [5, 5, 7]], 1])
+
+            ).toEqual(true));
+
+
+        it('default comparator is objectEquivalentBy(arrayEquivalent)', () =>
             expect(
 
                 arrayEquivalent
@@ -260,12 +286,13 @@ export function main() {
 
             ).toEqual(true));
 
+
         it('arrayEquivalent with objectEquivalent - nest to arbitrary depth ', () =>
             expect(
 
                 arrayEquivalent
-                    ([{c: 7}, {c: [{g: [9, 8], d: 5}, 3], b: 4}])
-                    ([{b: 4, c: [3, {d: 5, g: [8, 9]}]}, {c: 7}])
+                    ([{c: 7}, {c: [{g: [[1, 1, {m: 9, n: 10}], 8], d: 5}, 3], b: 4}])
+                    ([{b: 4, c: [3, {d: 5, g: [8, [1, {n: 10, m: 9}, 1]]}]}, {c: 7}])
 
             ).toEqual(true));
 
@@ -632,22 +659,22 @@ export function main() {
             ).toEqual(true));
 
 
-        it('Object - recursive Object Array Nesting - Array order matters!', () =>
+        it('recursive Object Array nesting', () =>
             expect(
 
                 equivalent
                 ({a: [2, {b: 4, a: [1, {f: [1, 2], e: 7}]}], c: 5})
-                ({c: 5, a: [2, {a: [1, {e: 7, f: [2, 1]}], b: 4}]})
+                ({c: 5, a: [2, {a: [1, {e: 7, f: [2, 1, 1, 1]}], b: 4}]})
 
             ).toEqual(true));
 
 
-        it('Array - recursive Object Array Nesting', () =>
+        it('recursive Array Object nesting', () =>
             expect(
 
                 equivalent
                 ([2, {b: 4, a: [1, {f: [2, 1], e: 7}]}])
-                ([2, {a: [1, {e: 7, f: [1, 2]}], b: 4}])
+                ([2, {a: [1, {e: 7, f: [1, 2, 1, 1, 1]}], b: 4}])
 
             ).toEqual(true));
 

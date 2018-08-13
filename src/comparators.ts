@@ -1,6 +1,7 @@
 import {getElForPathIn} from "./objects";
 import {isArray, isNot, isObject, isUndefined} from './predicates';
 import {Comparator, ComparatorProducer} from './types';
+import {subtractBy} from './collections/arrays_set_like';
 
 
 
@@ -56,14 +57,11 @@ export const containedInBy = (compare: Comparator) => <A>(superset: Array<A>) =>
 export const containedIn = containedInBy(tripleEqual);
 
 
-const compare = (acomparator: Comparator, ocomparator: Comparator, l: any) =>
+const compare = (acomparator: Comparator, ocomparator: Comparator) => (l: any) =>
     (r: any): boolean => {
 
     // Array
-    if (isArray(l) && isArray(r)) {
-        if (l.length !== r.length) return false;
-        return acomparator(l)(r);
-    }
+    if (isArray(l) && isArray(r)) return acomparator(l)(r);
 
     // {} or Object
     if (isObject(l) && isObject(r)) {
@@ -81,13 +79,17 @@ const compare = (acomparator: Comparator, ocomparator: Comparator, l: any) =>
 };
 
 
+const c = (acomparator: Comparator, ocomparator: Comparator) => (l: any) =>
+    (r: any): boolean => compare(acomparator, ocomparator)(l)(r);
+
+
 export const arrayEqualBy = (objectComparator?: Comparator) =>
     <A>(as1: Array<A>) => (as2: Array<A>): boolean => {
 
         const ocmp = objectComparator ? objectComparator : objectEqual;
 
         return as1
-            .filter((a, i) => compare(arrayEqual, ocmp, a)(as2[i]))
+            .filter((a, i) => compare(arrayEqual, ocmp)(a)(as2[i]))
             .length === as2.length;
     };
 
@@ -101,15 +103,11 @@ export const arrayEquivalentBy: (_: Comparator) => Comparator =
         <A>(as1: Array<A>) =>
             (as2: Array<A>) => {
 
-                if (as1.length !== as2.length) return false;
-
                 const ocmp = objectComparator ? objectComparator : objectEqualBy(arrayEquivalent);
                 const acmp = objectComparator ? arrayEquivalentBy(ocmp): arrayEquivalent;
-                return as1
-                    .map(a1 =>
-                        as2.find(compare(acmp, ocmp, a1)))
-                    .filter(isUndefined)
-                    .length === 0;
+
+                return subtractBy(c(acmp, ocmp))(as1)(as2).length === 0
+                    && subtractBy(c(acmp, ocmp))(as2)(as1).length === 0;
             };
 
 
@@ -133,8 +131,8 @@ export const objectEqualBy =
 
                         return compare(
                             arrayComparator,
-                            objectEqualBy(arrayComparator),
-                            ((o1 as any)[key]))
+                            objectEqualBy(arrayComparator))
+                            ((o1 as any)[key])
                             ((o2 as any)[key]);
                     })
                     .length === Object.keys(o1).length;
@@ -148,7 +146,7 @@ export const equalBy =
     (arrayComparator: Comparator) =>
         (o1: any) =>
             (o2: any): boolean => compare(arrayComparator,
-                objectEqualBy(arrayComparator), o1)(o2);
+                objectEqualBy(arrayComparator))(o1)(o2);
 
 
 export const equal = equalBy(arrayEqual);
