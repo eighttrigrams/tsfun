@@ -1,6 +1,6 @@
 {
   "name": "tsfun",
-  "version": "1.14.6",
+  "version": "1.14.7",
   "description": "Lodash inspired functional array processing tools for a seamless typescript experience",
   "main": "list-util.js",
   "scripts": {
