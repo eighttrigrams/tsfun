@@ -2,6 +2,7 @@ import {getElForPathIn} from "./objects";
 import {isArray, isNot, isObject, isUndefined} from './predicates';
 import {Comparator, ComparatorProducer} from './types';
 import {subtractBy} from './collections/arrays_set_like';
+import {compose} from './flow';
 
 
 
@@ -152,6 +153,9 @@ export const equalBy =
 export const equal = equalBy(arrayEqual);
 
 
+export const equalTo = equal;
+
+
 export const equivalent = equalBy(arrayEquivalent);
 
 
@@ -181,3 +185,16 @@ const includesBy =
 
 export const sameOn = <T>(path: string, l: T, r: T) =>
      on(path)(l)(r);
+
+
+export const without = (path: string, compare: Function = tripleEqual) =>
+    (l: any): any => {
+
+        const keys = Object
+            .keys(l)
+            .filter(isNot(equalTo(path)));
+
+        return typeof compare(l) === 'function'
+            ? (r: any) => keys.reduce((acc, key) => acc && compare(r[key])(l[key]), true)
+            : keys.reduce((acc, key) => acc && compare(l[key]), true)
+    };

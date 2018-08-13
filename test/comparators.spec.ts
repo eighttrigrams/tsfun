@@ -12,6 +12,7 @@ import {
     objectEqual,
     objectEqualBy,
     on,
+    without,
     sameOn
 } from '../src/comparators';
 import {empty, isArray, isDefined, isEmpty, isNot, isUndefined, undefinedOrEmpty} from '../src/predicates';
@@ -46,7 +47,9 @@ import {by} from '../src/core';
  * equivalent
  *
  * on
- * onBy
+ * without
+ *
+ * sameOn
  */
 export function main() {
 
@@ -841,6 +844,35 @@ export function main() {
                     .find(on('a.b', jsonEqual)({a: {b: {c: 4}}})))
 
                 .toEqual({a: {b: {c: 4}}} as any));
+
+
+        // without
+
+        it('without',() =>
+            expect(
+
+                [{a: 3, b: 4}, {a: 3, b: 5}, {a: 2, b: 1}]
+                    .filter(without('b')({a: 3})))
+
+                .toEqual([{a: 3, b: 4}, {a: 3, b: 5}]));
+
+
+        it('without with comparator',() =>
+            expect(
+
+                [{a: 3, b: 4}, {a: 3, b: 5}, {a: 2, b: 1}]
+                    .filter(without('b', by(jsonEqual))({a: 3})))
+
+                .toEqual([{a: 3, b: 4}, {a: 3, b: 5}]));
+
+
+        it('without with isUndefined',() =>
+            expect(
+
+                [{b: 4}, {a: 3, b: 5}, {a: 2, b: 1}]
+                    .filter(without('b', isUndefined)))
+
+                .toEqual([{b: 4}]));
 
 
         // sameOn

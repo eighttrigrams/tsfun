@@ -25,6 +25,7 @@ export {
     arrayEquivalentBy,
     equal,
     equalBy,
+    equalTo,
     equivalent,
     objectEqual,
     objectEqualBy,
@@ -36,6 +37,7 @@ export {
     containedInBy,
     jsonEqual,
     on,
+    without,
     biggerThan,
     smallerThan,
     sameOn
