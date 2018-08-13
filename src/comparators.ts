@@ -187,12 +187,15 @@ export const sameOn = <T>(path: string, l: T, r: T) =>
      on(path)(l)(r);
 
 
-export const without = (path: string, compare: Function = tripleEqual) =>
+export const without = (path: string|string[], compare: Function = tripleEqual) =>
     (l: any): any => {
 
         const keys = Object
             .keys(l)
-            .filter(isNot(equalTo(path)));
+            .filter(isNot(
+                isArray(path)
+                    ? includedIn(path as string[])
+                    : equalTo(path)));
 
         return typeof compare(l) === 'function'
             ? (r: any) => keys.reduce((acc, key) => acc && compare(r[key])(l[key]), true)

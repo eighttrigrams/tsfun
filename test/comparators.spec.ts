@@ -857,6 +857,15 @@ export function main() {
                 .toEqual([{a: 3, b: 4}, {a: 3, b: 5}]));
 
 
+        it('without, multiple paths',() =>
+            expect(
+
+                [{a: 3, b: 4, c: 5}, {a: 3, b: 5}, {a: 2, b: 1}]
+                    .filter(without(['b', 'c'])({a: 3})))
+
+                .toEqual([{a: 3, b: 4, c: 5}, {a: 3, b: 5}]));
+
+
         it('without with comparator',() =>
             expect(
 
