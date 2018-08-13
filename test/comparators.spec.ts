@@ -270,7 +270,7 @@ export function main() {
         it('nested arrays different sizes', () =>
             expect(
 
-                arrayEquivalent<any>
+                arrayEquivalent
                 ([1, [7, [5, 5, 7], 7]])
                 ([[7, 7, [5, 5, 7], [5, 5, 7]], 1])
 
@@ -318,7 +318,7 @@ export function main() {
         it('array equivalentBy - left list smaller', () =>
             expect(
 
-                arrayEquivalentBy(jsonEqual)<any>([{c: 7}])([{c: 7}, {b: 4}])
+                arrayEquivalentBy(jsonEqual)([{c: 7}])([{c: 7}, {b: 4}])
 
             ).toEqual(false));
 
@@ -326,7 +326,7 @@ export function main() {
         it('array equivalentBy - right list smaller', () =>
             expect(
 
-                arrayEquivalentBy(jsonEqual)<any>([{c: 7}, {b: 4}])([{c: 7}])
+                arrayEquivalentBy(jsonEqual)([{c: 7}, {b: 4}])([{c: 7}])
 
             ).toEqual(false));
 
@@ -344,7 +344,7 @@ export function main() {
         it('left side less keys', () =>
             expect(
 
-                objectEqual<object>({a: 1})({b: 2, a: 1})
+                objectEqual({a: 1})({b: 2, a: 1})
 
             ).toEqual(false));
 
@@ -352,7 +352,7 @@ export function main() {
         it('right side less keys', () =>
             expect(
 
-                objectEqual<object>({a: 1, b: 2})({a: 1})
+                objectEqual({a: 1, b: 2})({a: 1})
 
             ).toEqual(false));
 
@@ -360,7 +360,7 @@ export function main() {
         it('different keys', () =>
             expect(
 
-                objectEqual<object>({a: 1, b: 2})({a: 1, c:2})
+                objectEqual({a: 1, b: 2})({a: 1, c:2})
 
             ).toEqual(false));
 
@@ -368,7 +368,7 @@ export function main() {
         it('different values', () =>
             expect(
 
-                objectEqual<object>({a: 1, b: 2})({a: 1, b: 3})
+                objectEqual({a: 1, b: 2})({a: 1, b: 3})
 
             ).toEqual(false));
 
@@ -376,7 +376,7 @@ export function main() {
         it('objectEquivalent - different values in different order', () =>
             expect(
 
-                objectEqual<object>({a: 1, b: 2})({b: 3, a: 1})
+                objectEqual({a: 1, b: 2})({b: 3, a: 1})
 
             ).toEqual(false));
 
@@ -384,7 +384,7 @@ export function main() {
         it('objectEquivalent - recursive, keys in different order', () =>
             expect(
 
-                objectEqual<any>({e: 0, a: {d: 2, c: 1}})({a: {c: 1, d: 2}, e: 0})
+                objectEqual({e: 0, a: {d: 2, c: 1}})({a: {c: 1, d: 2}, e: 0})
 
             ).toEqual(true));
 

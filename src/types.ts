@@ -1,4 +1,4 @@
-export type Comparator = <A>(_: A) => Predicate<A>;
+export type Comparator = <A, B>(_: A) => Predicate<B>;
 
 
 export type ComparatorProducer = (_: Comparator) => <A>(_: A) => Predicate<A>;
