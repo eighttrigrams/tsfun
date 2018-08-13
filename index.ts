@@ -35,7 +35,6 @@ export {
     containedIn,
     containedInBy,
     jsonEqual,
-    onBy,
     on,
     biggerThan,
     smallerThan,
@@ -106,7 +105,7 @@ export {
 
 export {copy} from './src/collections/coll';
 
-export {jsonClone} from './src/core';
+export {jsonClone, by} from './src/core';
 
 export {doWhen} from './src/utils';
 

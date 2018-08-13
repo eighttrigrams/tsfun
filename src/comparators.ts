@@ -155,7 +155,7 @@ export const equal = equalBy(arrayEqual);
 export const equivalent = equalBy(arrayEquivalent);
 
 
-export const onBy = (compare: Function) => (path: string) =>
+const onBy = (compare: Function) => (path: string) =>
     (l: any) => (r: any) =>
         path.length === 0
             ? undefined
@@ -165,10 +165,11 @@ export const onBy = (compare: Function) => (path: string) =>
             (getElForPathIn(r, path.charAt(path.length - 1) === ':' ? path.slice(0, -1) : path));
 
 
-export const on = (path: string) =>
-    (l: any|Function) => (r: any) => typeof l === 'function'
-        ? l(getElForPathIn(r, path))
-        : onBy(tripleEqual)(path)(l)(r);
+export const on = (path: string, compare: Function = tripleEqual) =>
+    (l: any) =>
+         typeof compare(l) === 'function'
+            ? (r: any) => onBy(compare)(path)(l)(r)
+            : compare(getElForPathIn(l, path));
 
 
 const includesBy =

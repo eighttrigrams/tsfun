@@ -12,10 +12,10 @@ import {
     objectEqual,
     objectEqualBy,
     on,
-    onBy,
     sameOn
 } from '../src/comparators';
 import {empty, isArray, isDefined, isEmpty, isNot, isUndefined, undefinedOrEmpty} from '../src/predicates';
+import {by} from '../src/core';
 
 /**
  * tripleEqual
@@ -728,7 +728,7 @@ export function main() {
             expect(
 
                 [{a: {b: 4}}, {a: {c: 5}}]
-                    .filter(on('a.b')(isUndefined))
+                    .filter(on('a.b', isUndefined))
 
             ).toEqual([{a: {c: 5}}] as any));
 
@@ -737,7 +737,7 @@ export function main() {
             expect(
 
                 [{a: {b: 4}}, {a: {c: 5}}]
-                    .filter(isNot(on('a.b')(isUndefined)))
+                    .filter(isNot(on('a.b', isUndefined)))
 
             ).toEqual([{a: {b: 4}}] as any));
 
@@ -746,7 +746,7 @@ export function main() {
             expect(
 
                 [{a: {b: 4}}, {a: {c: 5}}]
-                    .filter(on('a.b')(isDefined))
+                    .filter(on('a.b', isDefined))
 
             ).toEqual([{a: {b: 4}}] as any));
 
@@ -755,7 +755,7 @@ export function main() {
             expect(
 
                 [{a: [1, 2, 4]}, {a: []}]
-                    .filter(on('a')(isEmpty))
+                    .filter(on('a', isEmpty))
 
             ).toEqual([{a: []}] as any));
 
@@ -764,7 +764,7 @@ export function main() {
             expect(
 
                 [{a: [1, 2, 4]}, {a: []}]
-                    .filter(isNot(on('a')(empty)))
+                    .filter(isNot(on('a', empty)))
 
             ).toEqual([{a: [1, 2, 4]}] as any));
 
@@ -773,7 +773,7 @@ export function main() {
             expect(
 
                 [{a: [1, 2, 4]}, {a: undefined}]
-                    .filter(isNot(on('a')(undefinedOrEmpty)))
+                    .filter(isNot(on('a', undefinedOrEmpty)))
 
             ).toEqual([{a: [1, 2, 4]}] as any));
 
@@ -791,7 +791,7 @@ export function main() {
             expect(
 
                 [{a: {b: [2, 1]}}, {a: {b: [2, 7]}}]
-                    .filter(on('a.b')(arrayEquivalent([1, 2])))
+                    .filter(on('a.b:', arrayEquivalent)([1, 2]))
 
             ).toEqual([{a: {b: [2, 1]}}] as any));
 
@@ -800,7 +800,7 @@ export function main() {
             expect(
 
                 [{a: {b: [2, 1]}}, {c: {a: 1}}, {}]
-                    .filter(on('a.b')(isArray))
+                    .filter(on('a.b', isArray))
 
             ).toEqual([{a: {b: [2, 1]}}] as any));
 
@@ -811,7 +811,7 @@ export function main() {
             expect(
 
                 [{a: {b: [2, 1]}}, {a: {b: [2, 7]}}]
-                    .filter(onBy(arrayEquivalent)('a.b')({a: {b: [1, 2]}}))
+                    .filter(on('a.b', arrayEquivalent)({a: {b: [1, 2]}}))
 
             ).toEqual([{a: {b: [2, 1]}}] as any));
 
@@ -819,7 +819,7 @@ export function main() {
         it('intersectBy onBy equalTo - symmetric',() =>
             expect(
 
-                intersectBy(onBy(jsonEqual)('a.b'))([{a: {b: {c: 'e'}}}, {a: {b: 'c'}}])
+                intersectBy(on('a.b', jsonEqual))([{a: {b: {c: 'e'}}}, {a: {b: 'c'}}])
                 ([{a: {b: {c: 'e'}}}]))
 
                 .toEqual([{a: {b: {c: 'e'}}} as any]));
@@ -829,7 +829,7 @@ export function main() {
             expect(
 
                 [{a: {b: 4}}, {a: {b: 5}}]
-                    .find(onBy(jsonEqual)('a.b:')(5)))
+                    .find(on('a.b:', jsonEqual)(5)))
 
                 .toEqual({a: {b: 5}} as any));
 
@@ -838,7 +838,7 @@ export function main() {
             expect(
 
                 [{a: {b: {c: 4}}}, {a: {b: {d: 5}}}]
-                    .find(onBy(jsonEqual)('a.b')({a: {b: {c: 4}}})))
+                    .find(on('a.b', jsonEqual)({a: {b: {c: 4}}})))
 
                 .toEqual({a: {b: {c: 4}}} as any));
 
