@@ -1,8 +1,8 @@
 import {filter, flatMap, map, mapTo} from "../../src/collections/arrays_list_like";
 import {flow} from "../../src/flow";
-import {on, smallerThan} from "../../src/comparators";
+import {smallerThan} from "../../src/comparators";
 import {getAtIndex, getAtIndexOr} from '../../src/arrays';
-import {to} from '../../src/core';
+import {to} from '../../src/objects';
 
 
 export function main() {

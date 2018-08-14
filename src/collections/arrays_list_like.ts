@@ -1,6 +1,6 @@
 import {isDefined} from '../predicates';
 import {Predicate, Transformation} from '../types';
-import {to} from '../core';
+import {to} from '../objects';
 
 
 export const reverse = <A>(as: Array<A>): Array<A> =>

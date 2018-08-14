@@ -1,6 +1,19 @@
 import {getAtIndex} from './arrays';
-import {getElForPathIn} from './objects';
 
+
+// library internal
+export function getElForPathIn(object: any, path: string) {
+
+    let result = object;
+    for (let segment of path.split('.')) {
+        if (result[segment]
+            || result[segment] === ''
+            || result[segment] === 0
+            || result[segment] === false) result = result[segment];
+        else return result = undefined;
+    }
+    return result;
+}
 
 export const identical = <A>(v: A) => v;
 
@@ -36,8 +49,7 @@ export const get = <T>(ds: Object|Array<T>, alternative?: any) => (path: string|
 };
 
 
-// TODO impl in terms of get and test it
-export const to = reverseUncurry2(getElForPathIn);
+
 
 
 

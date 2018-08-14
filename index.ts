@@ -111,11 +111,12 @@ export {
 
 export {copy} from './src/collections/coll';
 
-export {jsonClone, by, wrap, get, to} from './src/core';
+export {jsonClone, by, wrap, get} from './src/core';
 
 export {doWhen} from './src/utils';
 
 export {
     takeOrMake,
-    option
+    option,
+    to
 } from './src/objects';

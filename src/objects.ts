@@ -1,21 +1,8 @@
 import {isEmpty} from './predicates';
+import {getElForPathIn, reverseUncurry2} from './core';
 
 
 
-
-// library internal
-export function getElForPathIn(object: any, path: string) {
-
-    let result = object;
-    for (let segment of path.split('.')) {
-        if (result[segment]
-            || result[segment] === ''
-            || result[segment] === 0
-            || result[segment] === false) result = result[segment];
-        else return result = undefined;
-    }
-    return result;
-}
 
 
 export function takeOrMake(object: Object, path: string, val: any) {
@@ -40,3 +27,6 @@ export const option = <A>(f: (_: A) => boolean) =>
 
 export const mapOption = <A>(f: (a: A) => A) =>
     (a: A) => isEmpty(a) ? {} : f(a);
+
+
+export const to = reverseUncurry2(getElForPathIn);

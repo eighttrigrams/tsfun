@@ -1,6 +1,5 @@
-import {get, jsonClone, to, wrap} from '../src/core';
+import {get, getElForPathIn, jsonClone, wrap} from '../src/core';
 import {intersect} from '../src/collections/arrays_set_like';
-import {getElForPathIn} from '../src/objects';
 
 export function main() {
 
@@ -9,7 +8,9 @@ export function main() {
      *
      * get
      *
-     * getElForPathIn
+     * to
+     *
+     * getElForPathin
      */
     describe('Core', () => {
 
@@ -91,27 +92,37 @@ export function main() {
                 .toEqual(8));
 
 
-        it('to', () =>
+        // getElForPathIn
+
+        it('getElForPathIn - returns el', () =>
             expect(
 
-                to('a.b')({a: {b: {c: 'd'}}}))
+                getElForPathIn({a:{ b: { c: 'a'}}}, 'a.b.c'))
 
-                .toEqual({c: 'd'}));
+                .toEqual('a'));
 
 
-        it('to with map', () =>
+        it('getElForPathIn - returns undefined', () =>
             expect(
 
-                [{a: {b: {c: 'd'}}}].map(to('a.b')))
+                getElForPathIn({a:{ }}, 'a.b.c'))
 
-                .toEqual([{c: 'd'}]));
+                .toEqual(undefined));
 
 
-        it('to - 1 does not exist', () =>
+        it('getElForPathIn - does not return undefined on empty string', () =>
             expect(
 
-                [{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}].map(to('a.c')))
+                getElForPathIn({a: ''}, 'a'))
 
-                .toEqual([undefined, {d: 'e'}]));
+                .not.toEqual(undefined));
+
+
+        it('getElForPathIn - does not return undfined on 0', () =>
+            expect(
+
+                getElForPathIn({a: 0}, 'a'))
+
+                .not.toEqual(undefined));
     });
 }
