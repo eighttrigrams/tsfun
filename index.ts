@@ -107,7 +107,7 @@ export {
 
 export {copy} from './src/collections/coll';
 
-export {jsonClone, by} from './src/core';
+export {jsonClone, by, wrap} from './src/core';
 
 export {doWhen} from './src/utils';
 

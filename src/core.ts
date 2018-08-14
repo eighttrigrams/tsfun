@@ -3,6 +3,11 @@
 export const identical = <A>(v: A) => v;
 
 
+export const wrap = (cloneMethod: Function) =>
+    (doFunction: Function) => <T>(param: T) =>
+        cloneMethod(doFunction(param)) as T;
+
+
 export const by = identical;
 
 
