@@ -13,7 +13,28 @@ export function main() {
      */
     describe('Core', () => {
 
+        // wrap
+
         it('wrap',() =>
+            expect(
+
+                wrap(jsonClone)(intersect([1, 2]))
+                ([2, 4]))
+
+                .toEqual([2]));
+
+
+        it('wrap get',() =>
+            expect(
+
+                wrap(jsonClone)(get([1, 2]))
+                (1))
+
+                .toEqual(2));
+
+        // get
+
+        it('wrap with get',() =>
             expect(
 
                 wrap(jsonClone)(intersect([1, 2]))

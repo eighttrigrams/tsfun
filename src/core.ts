@@ -36,7 +36,7 @@ export const get = <T>(ds: Object|Array<T>, alternative?: any) => (path: string|
 };
 
 
-
+// TODO impl in terms of get and test it
 export const to = reverseUncurry2(getElForPathIn);
 
 
