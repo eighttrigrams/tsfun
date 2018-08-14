@@ -2,7 +2,7 @@
 
 Designed first and foremost to make compact, readable, functional style code
 
-## Readable 
+### Readable 
 
 I wanted to write something like
 
@@ -22,21 +22,30 @@ this was possible.
 
 Furthermore the function names should be readable in the sense of `fluent interfaces`.
 
-## Functional
+### Functional
 
 Combinators
 
-## Data Structures
+### Data Structures
 
 Provide reusable components which help work on nested, but plain, data structures,
 as such ones gained by parsing JSON.
 
-## Not optimized
+### Not optimized
 
 Speed was not considered, since most functional HOFs are looping over 
 the input more often than necessary anyway (compared to languages where we would work on collections lazily).
 If you have pieces of code that needs to be fast, better do it with plain js.
 
-## Typing  
+### Typing  
 
 With a somewhat lower priority, supporting proper typing
+
+## Tradeoffs
+
+### Non immutable collection functions
+
+* Comparison via tripleEqual
+* Returning shallow copies
+
+### -Object suffixed collection functions 
