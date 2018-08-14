@@ -69,6 +69,8 @@ export {
     mapTo,
     filter,
     map,
+    append,
+    prepend
 } from './src/collections/arrays_list_like';
 
 

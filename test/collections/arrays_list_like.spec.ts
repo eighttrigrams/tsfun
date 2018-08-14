@@ -1,4 +1,4 @@
-import {filter, flatMap, map, mapTo} from "../../src/collections/arrays_list_like";
+import {append, filter, flatMap, map, mapTo, prepend} from "../../src/collections/arrays_list_like";
 import {flow} from "../../src/flow";
 import {smallerThan} from "../../src/comparators";
 import {getAtIndex, getAtIndexOr} from '../../src/arrays';
@@ -19,6 +19,9 @@ export function main() {
      * mapTo
      *
      * reverse
+     *
+     * prepend
+     * append
      */
     describe('Arrays/List-Like-Collection', () => {
 
@@ -62,23 +65,6 @@ export function main() {
 
         // map
 
-        // filter
-
-        // flatMap
-
-        // mapTo
-
-        // reverse
-
-        it('mapTo', () =>
-
-            expect(
-
-                mapTo('a.c', [{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}]))
-
-                .toEqual([{d: 'e'}]));
-
-
         it('map', () =>
             expect(
 
@@ -95,6 +81,7 @@ export function main() {
 
                 .toEqual([1, 3]));
 
+        // filter
 
         it('filter', () =>
             expect(
@@ -104,6 +91,7 @@ export function main() {
 
                 .toEqual([2, 3]));
 
+        // flatMap
 
         it('flatMap', () =>
             expect(
@@ -135,5 +123,37 @@ export function main() {
                 flatMap((x: string) => x.split(' '))(['a']))
 
                 .toEqual(['a']));
+
+        // mapTo
+
+        it('mapTo', () =>
+
+            expect(
+
+                mapTo('a.c', [{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}]))
+
+                .toEqual([{d: 'e'}]));
+
+        // reverse
+
+        // append
+
+        it('append', () =>
+
+            expect(
+
+                append([1, 2])([3, 4]))
+
+                .toEqual([3, 4, 1, 2]));
+
+        // prepend
+
+        it('append', () =>
+
+            expect(
+
+                prepend([1, 2])([3, 4]))
+
+                .toEqual([1, 2, 3, 4]));
     });
 }

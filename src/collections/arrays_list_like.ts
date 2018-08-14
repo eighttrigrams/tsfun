@@ -7,6 +7,14 @@ export const reverse = <A>(as: Array<A>): Array<A> =>
     as.reverse();
 
 
+export const append = <A>(as2: Array<A>) => (as: Array<A>) =>
+    as.concat(as2);
+
+
+export const prepend = <A>(as2: Array<A>) => (as: Array<A>) =>
+    as2.concat(as);
+
+
 export const flatMap = <A>(f: (_: A) => Array<A>): Transformation<Array<A>> =>
     (as: Array<A>) =>
         as.length < 1
