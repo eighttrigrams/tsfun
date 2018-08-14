@@ -19,6 +19,7 @@ console.log(take(2)([1,2,3]))
 ## Wiki
 
 * [Data structures Overview](doc/structures.md)
+* [Core](doc/core.md)
 * [Flows](doc/flow.md)
 * [Predicates](doc/predicates.md)
 * [Comparators](doc/comparators.md)
