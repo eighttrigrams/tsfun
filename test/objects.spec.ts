@@ -1,36 +1,23 @@
-import {getElForPathIn, mapOption, option, takeOrMake, to} from '../src/objects';
+import {getElForPathIn, mapOption, option, takeOrMake} from '../src/objects';
 import {jsonEqual, on, tripleEqual} from '../src/comparators';
 import {flow} from '../src/flow';
 import {isEmpty} from '../src/predicates';
+import {to} from '../src/core';
 
 export function main() {
 
+    /**
+     * getElForPathIn
+     *
+     * takeOrMake
+     *
+     * option
+     *
+     * mapOption
+     */
     describe('Objects', () => {
 
-
-        it('to', () =>
-           expect(
-
-               to('a.b')({a: {b: {c: 'd'}}}))
-
-               .toEqual({c: 'd'}));
-
-
-        it('to with map', () =>
-            expect(
-
-                [{a: {b: {c: 'd'}}}].map(to('a.b')))
-
-                .toEqual([{c: 'd'}]));
-
-
-        it('to - 1 does not exist', () =>
-            expect(
-
-                [{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}].map(to('a.c')))
-
-                .toEqual([undefined, {d: 'e'}]));
-
+        // getElForPathIn
 
         it('getElForPathIn - returns el', () =>
             expect(
@@ -48,7 +35,7 @@ export function main() {
                 .toEqual(undefined));
 
 
-        it('getElForPathIn - does not return undfined on empty string', () =>
+        it('getElForPathIn - does not return undefined on empty string', () =>
             expect(
 
                 getElForPathIn({a: ''}, 'a'))
@@ -63,6 +50,8 @@ export function main() {
 
                 .not.toEqual(undefined));
 
+
+        // takeOrMake
 
         it('takeOrMake makes', () => {
 
@@ -79,6 +68,8 @@ export function main() {
 
                 .toEqual('a'));
 
+
+        // option
 
         it('option', () =>
             expect(
@@ -111,6 +102,8 @@ export function main() {
 
                 .toEqual(true));
 
+
+        // mapOption
 
         it('mapOption', () =>
             expect(

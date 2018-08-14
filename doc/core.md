@@ -11,3 +11,7 @@
 wrap(jsonClone)(intersect([1, 2]))([2, 4]))
 -> [2] // cloned after intersect
 ```
+
+### get
+
+* Both Array and Map are associative

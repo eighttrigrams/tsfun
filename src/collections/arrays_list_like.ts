@@ -1,15 +1,6 @@
-import {to} from '../objects';
 import {isDefined} from '../predicates';
 import {Predicate, Transformation} from '../types';
-
-
-// Written with Thomas Kleinke
-export const getAtIndex = <A>(as: Array<A>) => (i: number): A|undefined => getAtIndexOr(as)(i);
-
-
-// Written with Thomas Kleinke
-export const getAtIndexOr = <A>(as: Array<A>, defaultValue: A|undefined = undefined) => (i: number): A|undefined =>
-    as.length < i ? defaultValue : as[i];
+import {to} from '../core';
 
 
 export const reverse = <A>(as: Array<A>): Array<A> =>

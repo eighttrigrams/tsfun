@@ -69,9 +69,13 @@ export {
     mapTo,
     filter,
     map,
+} from './src/collections/arrays_list_like';
+
+
+export {
     getAtIndex,
     getAtIndexOr
-} from './src/collections/arrays_list_like';
+} from './src/arrays';
 
 
 export {
@@ -107,13 +111,11 @@ export {
 
 export {copy} from './src/collections/coll';
 
-export {jsonClone, by, wrap} from './src/core';
+export {jsonClone, by, wrap, get, to} from './src/core';
 
 export {doWhen} from './src/utils';
 
 export {
-    getElForPathIn,
     takeOrMake,
-    to,
     option
 } from './src/objects';

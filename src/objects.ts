@@ -1,10 +1,9 @@
-import {reverseUncurry2} from './core';
 import {isEmpty} from './predicates';
 
 
-export const to = reverseUncurry2(getElForPathIn);
 
 
+// library internal
 export function getElForPathIn(object: any, path: string) {
 
     let result = object;

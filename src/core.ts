@@ -1,3 +1,5 @@
+import {getAtIndex} from './arrays';
+import {getElForPathIn} from './objects';
 
 
 export const identical = <A>(v: A) => v;
@@ -20,6 +22,22 @@ export const reverseUncurry2 = <A>(f: (_1: A, _2: A) => A) =>
 
 
 export const jsonClone = <O>(object: any) => JSON.parse(JSON.stringify(object)) as O;
+
+
+export const get = <T>(ds: Object|Array<T>, alternative?: any) => (path: string|number) => {
+
+    const result = (typeof path === 'number')
+        ? getAtIndex(ds as Array<T>)(path)
+        : getElForPathIn(ds as Object, path);
+
+    return result
+        ? result
+        : alternative;
+};
+
+
+
+export const to = reverseUncurry2(getElForPathIn);
 
 
 
