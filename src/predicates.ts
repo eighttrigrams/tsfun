@@ -16,8 +16,10 @@ export const isUndefined: Predicate<any> = isNot(defined);
 
 export function isUndefinedOrEmpty<T>(coll: Object|Array<T>|undefined): boolean {
 
-    if (!coll) return true;
-    if (!isObject(coll) && !isArray(coll)) throw new TypeError('neither an Array nor an Object in isUndefinedOrEmpty');
+    if (coll === undefined) return true;
+    if (!isObject(coll)
+        && !isArray(coll)
+        && !isString(coll)) throw new TypeError('arg must be string, object or array');
 
     return coll instanceof Array
         ? coll.length === 0
@@ -29,12 +31,8 @@ export const undefinedOrEmpty = isUndefinedOrEmpty;
 
 export function isEmpty<T>(coll: Object|Array<T>): boolean {
 
-    if (!coll) throw new TypeError('neither an Array nor an Object in isEmpty');
-    if (!isObject(coll) && !isArray(coll)) throw new TypeError('neither an Array nor an Object in isEmpty');
-
-    return coll instanceof Array
-        ? coll.length === 0
-        : Object.keys(coll).length === 0;
+    if (coll === undefined) throw new TypeError('arg must not be undefined');
+    return isUndefinedOrEmpty(coll);
 }
 
 export const empty = isEmpty;
@@ -47,6 +45,9 @@ export const isArray: Predicate<any> = (as: any) => as instanceof Array;
 
 
 export const isObject: Predicate<any> = (o: any) => o instanceof Object && o.constructor === Object;
+
+
+export const isString: Predicate<any> = (as: any) => typeof as === 'string';
 
 
 export const isTrue: Predicate<boolean> = (b: boolean) => b === true;

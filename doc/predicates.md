@@ -61,3 +61,5 @@ Alias for `isEmpty`
 ### isArray
 
 ### isObject
+
+### isString

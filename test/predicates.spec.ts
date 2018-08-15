@@ -39,12 +39,29 @@ export function main() {
 
         // isUndefinedOrEmpty
 
+
+        it('is a non-empty Object', () =>
+            expect(
+
+                isUndefinedOrEmpty({a: 1}))
+
+                .toEqual(false));
+
+
         it('is an Object', () =>
             expect(
 
                 isUndefinedOrEmpty({}))
 
                 .toEqual(true));
+
+
+        it('is an non-empty Array ', () =>
+            expect(
+
+                isUndefinedOrEmpty([1]))
+
+                .toEqual(false));
 
 
         it('is an Array ', () =>
@@ -59,6 +76,21 @@ export function main() {
             expect(
 
                 isUndefinedOrEmpty(undefined as any))
+
+                .toEqual(true));
+
+        it('is a string non-empty string', () =>
+            expect(
+
+                isUndefinedOrEmpty('a'))
+
+                .toEqual(false));
+
+
+        it('is a string ', () =>
+            expect(
+
+                isUndefinedOrEmpty(''))
 
                 .toEqual(true));
 
@@ -81,12 +113,44 @@ export function main() {
                 .toEqual(true));
 
 
+        it('a non-empty Array ', () =>
+            expect(
+
+                isEmpty([1]))
+
+                .toEqual(false));
+
+
         it('an Object', () =>
             expect(
 
                 isEmpty({}))
 
                 .toEqual(true));
+
+
+        it('a non-empty Object', () =>
+            expect(
+
+                isEmpty({a: 1}))
+
+                .toEqual(false));
+
+
+        it('a non-empty string', () =>
+            expect(
+
+                isEmpty(''))
+
+                .toEqual(true));
+
+
+        it('a string', () =>
+            expect(
+
+                isEmpty('1'))
+
+                .toEqual(false));
 
 
         it('is undefined', () =>
