@@ -43,7 +43,7 @@ export const get = <T>(ds: Object|Array<T>, alternative?: any) => (path: string|
         ? getAtIndex(ds as Array<T>)(path)
         : getElForPathIn(ds as Object, path);
 
-    return result
+    return result !== undefined
         ? result
         : alternative;
 };

@@ -92,6 +92,14 @@ export function main() {
                 .toEqual(8));
 
 
+        it('wrap - with getElForPathIn and false',() =>
+            expect(
+
+                get({a: false})('a'))
+
+                .toEqual(false));
+
+
         // getElForPathIn
 
         it('getElForPathIn - returns el', () =>
