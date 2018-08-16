@@ -1,6 +1,5 @@
-import {isDefined} from '../predicates';
 import {Predicate, Transformation} from '../types';
-import {to} from '../objects';
+import {identical} from '../core';
 
 
 export const reverse = <A>(as: Array<A>): Array<A> =>
@@ -19,7 +18,7 @@ export const flatMap = <A>(f: (_: A) => Array<A>): Transformation<Array<A>> =>
     (as: Array<A>) =>
         as.length < 1
             ? []
-            : as.reduce((acc, val: A) => acc.concat(f(val) as any),[]);
+            : as.reduce(intoArrayWith(f),[]);
 
 
 export const map = <A>(f: (_: A) => A): Transformation<Array<A>> =>
@@ -30,6 +29,11 @@ export const filter = <A>(f: Predicate<A>): Transformation<Array<A>> =>
     (as: Array<A>) =>
         as.filter(f);
 
+
+const intoArrayWith = <A>(f: (_: A) => Array<A>) => (acc: Array<A>, val: A) => acc.concat(f(val));
+
+
+const intoArray = intoArrayWith(identical);
 
 
 

@@ -32,7 +32,6 @@ export const mapOption = <A>(f: (a: A) => A) =>
 export const to = reverseUncurry2(getElForPathIn);
 
 
-
 export const intoObject = (result: any, [key, value]: [string, any]) => {
 
     result[key] = value;
