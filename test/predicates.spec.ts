@@ -1,7 +1,7 @@
 /**
  * @author Daniel de Oliveira
  */
-import {has, isEmpty, isUndefinedOrEmpty} from '../src/predicates';
+import {empty, has, isEmpty, isNot, isUndefinedOrEmpty} from '../src/predicates';
 
 export function main() {
 
@@ -180,7 +180,15 @@ export function main() {
 
                 () => isEmpty(1))
 
-                .toThrow())
+                .toThrow());
+
+
+        it('a string - us with is not', () =>
+            expect(
+
+                isNot(empty)('1'))
+
+                .toEqual(true));
 
 
         // isTrue
