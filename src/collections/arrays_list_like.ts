@@ -31,6 +31,9 @@ export const filter = <A>(f: Predicate<A>): Transformation<Array<A>> =>
         as.filter(f);
 
 
+export const addTo = <A>(as: Array<A>) => (a: A) => as.push(a);
+
+
 export const mapTo = (path: string, as: any[]) =>
     as
         .map(to(path))

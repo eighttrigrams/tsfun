@@ -71,7 +71,8 @@ export {
     filter,
     map,
     append,
-    prepend
+    prepend,
+    addTo
 } from './src/collections/arrays_list_like';
 
 
