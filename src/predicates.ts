@@ -1,8 +1,12 @@
 import {Predicate, PredicateProducer} from './types';
+import {on} from './comparators';
 
 
 export const isNot: PredicateProducer = <A>(f: Predicate<A>) =>
     (a: A) => flip(f(a));
+
+
+export const not = isNot;
 
 
 export const isDefined: Predicate<any> = (_: any) => _ !== undefined;
@@ -54,3 +58,6 @@ export const isTrue: Predicate<boolean> = (b: boolean) => b === true;
 
 
 export const isFalse: Predicate<boolean> = (b: boolean) => b === false;
+
+
+export const has = (path: string) => (o: Object) => on(path, isDefined)(o);

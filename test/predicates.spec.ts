@@ -1,7 +1,7 @@
 /**
  * @author Daniel de Oliveira
  */
-import {isEmpty, isUndefinedOrEmpty} from '../src/predicates';
+import {has, isEmpty, isUndefinedOrEmpty} from '../src/predicates';
 
 export function main() {
 
@@ -9,14 +9,11 @@ export function main() {
      * isNot
      * not
      *
-     * isEven
-     * even
-     * isOdd
-     * odd
-     *
      * isDefined
      * defined
      * isUndefined
+     *
+     * has
      *
      * isUndefinedOrEmpty
      * undefinedOrEmpty
@@ -36,6 +33,23 @@ export function main() {
         // isDefined
 
         // isUndefined
+
+        // has
+
+        it('has - true', () =>
+            expect(
+
+                has('a.b')({a: {b: 1}}))
+
+                .toEqual(true));
+
+
+        it('has - false', () =>
+            expect(
+
+                has('a.c')({a: {b: 1}}))
+
+                .toEqual(false));
 
         // isUndefinedOrEmpty
 

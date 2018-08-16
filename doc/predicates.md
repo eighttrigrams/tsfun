@@ -41,6 +41,10 @@ isUndefined(undefined)
 -> true
 ```
 
+### has
+
+
+
 ### isUndefinedOrEmpty
 
 ### undefinedOrEmpty

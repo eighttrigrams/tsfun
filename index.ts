@@ -4,17 +4,19 @@ export {
 
 export {
     isNot,
+    not,
     isDefined,
     defined,
     isUndefined,
-    isArray,
-    isObject,
-    isTrue,
-    isFalse,
+    has,
     isUndefinedOrEmpty,
     undefinedOrEmpty,
     isEmpty,
-    empty
+    empty,
+    isTrue,
+    isFalse,
+    isArray,
+    isObject
 } from './src/predicates';
 
 
