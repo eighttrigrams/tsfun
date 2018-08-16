@@ -69,12 +69,10 @@ export {
 export {
     reverse,
     flatMap,
-    mapTo,
     filter,
     map,
     append,
-    prepend,
-    addTo
+    prepend
 } from './src/collections/arrays_list_like';
 
 
@@ -119,7 +117,7 @@ export {copy} from './src/collections/coll';
 
 export {jsonClone, by, wrap, get} from './src/core';
 
-export {doWhen} from './src/utils';
+export {doWhen, addTo, mapTo} from './src/utils';
 
 export {
     takeOrMake,

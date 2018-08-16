@@ -1,4 +1,4 @@
-import {append, filter, flatMap, map, mapTo, prepend} from "../../src/collections/arrays_list_like";
+import {append, filter, flatMap, map, prepend} from "../../src/collections/arrays_list_like";
 import {flow} from "../../src/flow";
 import {smallerThan} from "../../src/comparators";
 import {getAtIndex, getAtIndexOr} from '../../src/arrays';
@@ -15,8 +15,6 @@ export function main() {
      * filter
      *
      * flatMap
-     *
-     * mapTo
      *
      * reverse
      *
@@ -123,16 +121,6 @@ export function main() {
                 flatMap((x: string) => x.split(' '))(['a']))
 
                 .toEqual(['a']));
-
-        // mapTo
-
-        it('mapTo', () =>
-
-            expect(
-
-                mapTo('a.c', [{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}]))
-
-                .toEqual([{d: 'e'}]));
 
         // reverse
 
