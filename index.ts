@@ -122,5 +122,6 @@ export {doWhen} from './src/utils';
 export {
     takeOrMake,
     option,
-    to
+    to,
+    intoObject
 } from './src/objects';

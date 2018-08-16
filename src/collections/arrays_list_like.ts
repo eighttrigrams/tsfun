@@ -31,6 +31,7 @@ export const filter = <A>(f: Predicate<A>): Transformation<Array<A>> =>
         as.filter(f);
 
 
+// TODO document and test
 export const addTo = <A>(as: Array<A>) => (a: A) => as.push(a);
 
 
