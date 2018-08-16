@@ -31,6 +31,7 @@ export {
     objectEqualBy,
     tripleEqual,
     includedIn,
+    includedInBy,
     differentFrom,
     differentFromBy,
     containedIn,
