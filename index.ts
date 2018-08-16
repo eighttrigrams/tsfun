@@ -125,3 +125,7 @@ export {
     to,
     intoObject
 } from './src/objects';
+
+
+// TODO make
+// .filter(on('pathType')(or(isNot(defined), 'sameRank'))
