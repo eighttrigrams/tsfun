@@ -1,5 +1,6 @@
 import {isDefined, isEmpty} from './predicates';
 import {getElForPathIn, reverseUncurry2} from './core';
+import {TypedMap} from './types';
 
 
 
@@ -32,8 +33,8 @@ export const mapOption = <A>(f: (a: A) => A) =>
 export const to = reverseUncurry2(getElForPathIn);
 
 
-export const intoObject = (f: (_: any) => [string, any]) =>
-    (object: any, item: any) =>
+export const intoObject = <T>(f: (_: any) => [string, T]) =>
+    (object: TypedMap<T>, item: any) =>
         isDefined(f(item)[0])
-            ? (object[f(item)[0] as any] = f(item)[1], object)
+            ? (object[f(item)[0]] = f(item)[1], object)
             : object;
