@@ -1,4 +1,4 @@
-import {isEmpty} from './predicates';
+import {isDefined, isEmpty} from './predicates';
 import {getElForPathIn, reverseUncurry2} from './core';
 
 
@@ -32,8 +32,8 @@ export const mapOption = <A>(f: (a: A) => A) =>
 export const to = reverseUncurry2(getElForPathIn);
 
 
-export const intoObject = (result: any, [key, value]: [string, any]) => {
-
-    result[key] = value;
-    return result;
-};
+export const intoObject = (f: (_: any) => [string, any]) =>
+    (object: any, item: any) =>
+        isDefined(f(item)[0])
+            ? (object[f(item)[0] as any] = f(item)[1], object)
+            : object;
