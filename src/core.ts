@@ -34,7 +34,7 @@ export const reverseUncurry2 = <A>(f: (_1: A, _2: A) => A) =>
     (as1: A) => (as2: A) => f(as2, as1);
 
 
-export const jsonClone = <O>(object: any) => JSON.parse(JSON.stringify(object)) as O;
+export const jsonClone = <O>(object: O) => JSON.parse(JSON.stringify(object)) as O;
 
 
 export const get = <T>(ds: Object|Array<T>, alternative?: any) => (path: string|number) => {
