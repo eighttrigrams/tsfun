@@ -488,7 +488,7 @@ export function main() {
         it('object equivalent - use with arrayEquivalentBy', () =>
             expect(
 
-                objectEqualBy(arrayEqualBy(objectEqual))
+                objectEqualBy(arrayEqualBy(objectEqual) as any)
                     ({a: [{e: 5, c: 4}, 2], b: 0})
                     ({b: 0, a: [{c: 4, e: 5}, 2]})
 

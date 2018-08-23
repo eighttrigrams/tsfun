@@ -33,7 +33,7 @@ export const filter = <A>(f: Predicate<A>): Transformation<Array<A>> =>
 const intoArrayWith = <A>(f: (_: A) => Array<A>) => (acc: Array<A>, val: A) => acc.concat(f(val));
 
 
-const intoArray = intoArrayWith(identical);
+const intoArray = intoArrayWith(identical as any);
 
 
 

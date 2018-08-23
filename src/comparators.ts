@@ -4,19 +4,19 @@ import {subtractBy} from './collections/arrays_set_like';
 import {getElForPathIn} from './core';
 
 
-export const tripleEqual: Comparator = <A>(l:A) =>
+export const tripleEqual: any = <A>(l:A) =>
     (r:A) => l === r;
 
 
-export const jsonEqual: Comparator = <A>(l:A) =>
+export const jsonEqual: any = <A>(l:A) =>
     (r:A) => tripleEqual(JSON.stringify(l))(JSON.stringify(r));
 
 
-export const biggerThan: Comparator = <A>(l:A) =>
+export const biggerThan: any = <A>(l:A) =>
     (r: A) => l < r;
 
 
-export const smallerThan: Comparator = <A>(l:A) =>
+export const smallerThan: any = <A>(l:A) =>
     (r: A) => l > r;
 
 
@@ -88,7 +88,7 @@ export const arrayEqualBy = (objectComparator?: Comparator) =>
         const ocmp = objectComparator ? objectComparator : objectEqual;
 
         return as1
-            .filter((a, i) => compare(arrayEqual, ocmp)(a)(as2[i]))
+            .filter((a, i) => compare(arrayEqual as any, ocmp)(a)(as2[i]))
             .length === as2.length;
     };
 
@@ -97,7 +97,7 @@ export const arrayEqual = arrayEqualBy();
 
 
 // Compares 2 arrays where elements order does not matter
-export const arrayEquivalentBy: (_: Comparator) => Comparator =
+export const arrayEquivalentBy: (_: Comparator) => any =
     (objectComparator?: Comparator) =>
         <A>(as1: Array<A>) =>
             (as2: Array<A>) => {
@@ -138,7 +138,7 @@ export const objectEqualBy =
             };
 
 
-export const objectEqual: Comparator = objectEqualBy(arrayEqual);
+export const objectEqual: Comparator = objectEqualBy(arrayEqual as any);
 
 
 export const equalBy =
@@ -148,7 +148,7 @@ export const equalBy =
                 objectEqualBy(arrayComparator))(o1)(o2);
 
 
-export const equal = equalBy(arrayEqual);
+export const equal = equalBy(arrayEqual as any);
 
 
 export const equalTo = equal;
