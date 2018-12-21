@@ -68,6 +68,17 @@ their argument, so they can be used to begin a `flow` with.
 * [unique/uniqueBy](../test/collections/arrays_set_like/unique.spec.ts)
 
 
+## Set-like collection methods for Objects
+
+* See [Sources](../src/collections/objects_set_like.ts)
+
+### Reference
+
+* [intersectObject](../test/collections/objects_set_like/intersect_object.spec.ts)
+* [uniteObject/unionObject](../test/collections/objects_set_like/unite_object.spec.ts)
+* [subtractObject](../test/collections/objects_set_like/subtract_object.spec.ts)
+
+
 
 
 
