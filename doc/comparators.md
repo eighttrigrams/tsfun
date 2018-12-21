@@ -3,7 +3,25 @@
 * See [Sources](../src/comparators.ts)
 * See [Tests](../test/comparators.spec.ts)
 
-#### Overview
+## Reference
+
+* tripleEqual
+* jsonEqual
+* smallerThan
+* biggerThan
+* [differentFrom/differentFromBy](../test/comparators/different_from.spec.ts)
+* [includedIn/includedInBy](../test/comparators/included_in.spec.ts)
+* [containedIn/containedInBy](../test/comparators/contained_in.spec.ts)
+* [arrayEqual/arrayEqualBy](../test/comparators/array_equal.spec.ts)
+* [arrayEquivalent/arrayEquivalentBy](../test/comparators/array_equivalent.spec.ts)
+* [objectEqual/objectEqualBy](../test/comparators/object_equal.spec.ts)
+* [equal/equalBy](../test/comparators/equal.spec.ts)
+* [equivalent](../test/comparators/equivalent.spec.ts)
+* [on/by](../test/comparators/on.spec.ts)
+* [without](../test/comparators/without.spec.ts)
+* [sameOn](../test/comparators/same_on.spec.ts)
+
+## Overview
 
 A comparator take two arguments of Type A and returns a boolean value: 
 `<A>(_: A) => (_: A) => boolean`.
@@ -46,7 +64,6 @@ differentFromBy(jsonEqual)({a: 1})({a: 1})
 -> false
 ```
 
-## Reference
 
 ### tripleEqual
 
@@ -81,87 +98,6 @@ jsonEqual({a: 1, b: 2})({b: 2, a: 1})
 -> false
 ```
 
-### biggerThan
-
-```
-biggerThan(4)(5)
--> true
-```
-
-in combination with `filter`
-
-```
-[3, 2, 1, 0].filter(biggerThan(1))
--> [3, 2]
-```
-
-### smallerThan
-
-```
-smallerThan(4)(2)
--> true
-```
-
-combined with `takeWhile`
-
-```
-takeWhile(smallerThan(4))([1, 2, 4, 5])
--> [1, 2]
-```
-
-### differentFrom
-
-```
-differentFrom(3)(2)
--> true
-```
-
-### differentFromBy
-
-```
-differentFromBy(jsonEqual)({a: {b: 2, c: 3}})({a: {b: 2, c: 3}})
--> false
-```
-
-### includedIn
-
-```
-includedIn([1, 2])(1)
--> true
-```
-
-Usage with filter
-
-```
-[1, 2, 7].filter(includedIn([2, 5, 1]))
--> [1, 2]
-```
-
-### includedInBy
-
-```
-includedInBy(jsonEqual)<any>([{a: 1}, {a: 2}])({a: 1})
--> true
-```
-
-### containedIn
-
-```
-containedIn([3, 2, 7])([2, 7])
--> true
-```
-
-```
-containedIn([3, 2, 7])([2, 7, 1])
--> false
-```
-
-### containedInBy
-
-```
-containedInBy(on('a'))([{a: 3}, {a: 4}])([{a: 4}])
--> true
-```
 
 ### arrayEqual
 
@@ -384,18 +320,6 @@ what you need, for example
 export class T { ... }
 const myTComparator = objectEquivalentBy(arrayEqualBy(objectEquivalent));
 ```
-
-### equal
-
-...
-
-### equalBy
-
-...
-
-### equivalent
-
-...
 
 ### on
 
