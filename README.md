@@ -31,6 +31,8 @@ console.log(take(2)([1,2,3]))
 * [Data Structures](doc/structures.md)
 * [Rationale](doc/design.md) 
  
+## Credits 
+ 
 The Ascii Art generated with http://www.patorjk.com/software/taag
 
 
