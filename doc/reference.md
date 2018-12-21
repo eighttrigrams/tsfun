@@ -35,11 +35,13 @@
 * [without](../test/comparators/without.spec.ts)
 * [sameOn](../test/comparators/same_on.spec.ts)
 
-`type Comparator = <A, B>(_: A) => Predicate<B>;`.
+`type Comparator = <A, B>(_: A) => Predicate<B>`.
 
 A comparator can be understood as comparing two values to produce a boolean. 
 Applying one partially gives a predicate again, which can then be used to filter,
 for example, like in `[3, 2, 1, 0].filter(biggerThan(1))`.
+
+`type ComparatorProducer = (_: Comparator) => <A>(_: A) => Predicate<A>`
 
 Functions ending with -By, like for example `differentFromBy` are producers of
 Comparators. They get applied partially, taking one comparator, 
