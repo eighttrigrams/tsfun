@@ -22,7 +22,7 @@ for seeing how to return clones.
 
 * [prepend](../test/collections/arrays_list_like/prepend.spec.ts)
 * [append](../test/collections/arrays_list_like/append.spec.ts)
-* [getIth/getIthOr](../test/collections/arrays_list_like/getIth.spec.ts)
+* [getIth/getIthOr](../test/collections/arrays_list_like/get_ith.spec.ts)
 * [flatMap](../test/collections/arrays_list_like/flat_map.spec.ts)
 * [filter](../test/collections/arrays_list_like/filter.spec.ts)
 * [map](../test/collections/arrays_list_like/map.spec.ts)
