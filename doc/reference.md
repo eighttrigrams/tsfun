@@ -52,10 +52,6 @@
 * [compose](../test/core/compose.spec.ts)
 * [wrap](../test/core/wrap.spec.ts)
 
-## Misc
-
-* [get](../test/core/wrap.spec.ts)
-
 ## General collection functions
 
 [Sources](../src/collections/coll.ts)
@@ -108,7 +104,9 @@
 * [mapObject](../test/collections/objects_list_like/map_object.spec.ts)
 * [filterObject](../test/collections/objects_list_like/filter_object.spec.ts)
 
+## Misc
 
+* [get](../test/core/wrap.spec.ts)
 
 
 
