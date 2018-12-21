@@ -1,17 +1,5 @@
 # Function reference
 
-## Object functions
-
-[Sources](../src/objects.ts)  
-
-* [getElForPathIn](../test/objects/get_el_for_path_in.spec.ts)
-* [takeOrMake](../test/objects/take_or_make.spec.ts)
-* [option](../test/objects/option.spec.ts)
-* [mapOption](../test/objects/map_option.spec.ts)
-* [to](../test/objects/to.spec.ts)
-* [intoObject](../test/objects/into_object.spec.ts)
-* [clone](../test/objects/clone.spec.ts)
-
 ## Predicates
 
 [Sources](../test/predicates.spec.ts)
@@ -51,6 +39,18 @@
 * [flow](../test/core/flow.spec.ts)
 * [compose](../test/core/compose.spec.ts)
 * [wrap](../test/core/wrap.spec.ts)
+
+## Object functions
+
+[Sources](../src/objects.ts)  
+
+* [getElForPathIn](../test/objects/get_el_for_path_in.spec.ts)
+* [takeOrMake](../test/objects/take_or_make.spec.ts)
+* [option](../test/objects/option.spec.ts)
+* [mapOption](../test/objects/map_option.spec.ts)
+* [to](../test/objects/to.spec.ts)
+* [intoObject](../test/objects/into_object.spec.ts)
+* [clone](../test/objects/clone.spec.ts)
 
 ## General collection functions
 
