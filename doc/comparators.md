@@ -1,36 +1,4 @@
-# Comparators
-
-
-### arrayEquivalentBy
-
-```
-arrayEquivalentBy(jsonEqual)([{a: 9}, {c: 7}, {b: 4}])([{b: 4}, {a: 9}, {c: 7}])
--> true
-```
-
-The standard Object Comparator is `objectEqualBy(arrayEquivalent)` such that
-
-```
-arrayEquivalent
-  ([{c: 7}, {c: 5, b: 4}])
-  ([{b: 4, c: 5}, {c: 7}])
--> true
-```
-
-but also 
-
-```
-arrayEquivalent
-    ([{c: 7}, {c: [{g: [9, 8], d: 5}, 3], b: 4}])
-    ([{b: 4, c: [3, {d: 5, g: [8, 9]}]}, {c: 7}])
--> true
-```
-
-meaning that the order of Array does not matter on any level.
-
-###### advanced combinations
-
-TODO review section
+# Comparators, advanced combinations
 
 More advanced combinations can be used to achieve even more control
 
