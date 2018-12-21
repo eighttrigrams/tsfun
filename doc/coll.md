@@ -41,5 +41,34 @@ for seeing how to return clones.
 * [dropWhile/dropRightWhile](../test/collections/arrays_list_like/drop_while.spec.ts)
 
 
+## Set-like collection methods for Arrays
+
+* [Sources](../src/collections/arrays_set_like.ts)
+
+Set methods come in two flavours, array set methods and object set methods.
+Both of these have in common that the respective data structures are treated 
+as if they were sets, hence we also call them set-like methods.
+
+Every set method's result is not only `Array<A>` but also consists 
+of unique items (compared with `==`). Where possible, the order of 
+the arguments is kept.
+
+`intersect`, `subtract`, `unite` and `uniqe` are partials, which can be inserted
+into the body of a `flow`. `intersection` and `union` take a `NestedArray<A>` as
+their argument, so they can be used to begin a `flow` with.
+
+### Reference
+
+* [intersection/intersect/intersectBy](../test/collections/arrays_set_like/intersect.spec.ts)
+* [subtract/subtractBy](../test/collections/arrays_set_like/subtract.spec.ts)
+* [union/unite/uniteBy](../test/collections/arrays_set_like/union.spec.ts)
+* [unique/uniqueBy](../test/collections/arrays_set_like/unique.spec.ts)
+
+
+
+
+
+
+
 
 
