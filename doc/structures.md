@@ -31,18 +31,14 @@ TODO talk about equal, arrayEquivalent, objectEquivalent, copies (copy vs clone)
 Arrays can be seen as deep nested structures as well.
 
 
-### Collections
+## Collections
 
 Furthermore, there are two general contexts in which we use these data structure.
 The first is when we use them as **collections**, the second is when we use them
 as structured entities.
 
-##### Arrays
-
 We have different sets of functions to treat Arrays as either 
 linear vector or list like collections or as set like collections.
-
-## Utilities for Collections
 
 Note that all collection functions return shallow copies.
 In the same spirit, all collection functions compare in their basic versions
