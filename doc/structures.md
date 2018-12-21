@@ -1,7 +1,7 @@
 # tsfun - Data Structures and Functions
 
 In general, **tsfun** functions are mainly designed to 
-work with ***Array***'s and ***Object***'s. Whether a data 
+work with ***Arrays*** and ***Objects***. Whether a data 
 structure is an Array or an Object in our sense is 
 determined by
 [isArray](../test/predicates/is_array.spec.ts) and
