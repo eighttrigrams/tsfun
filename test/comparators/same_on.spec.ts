@@ -2,11 +2,6 @@ import {sameOn} from '../../src/comparators';
 
 describe('sameOn', () => {
 
-
-
-
-
-
     // sameOn
 
     it('sameOn - same path',() =>
