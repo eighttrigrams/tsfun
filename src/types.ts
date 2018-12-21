@@ -26,3 +26,6 @@ export interface UntypedMap {[prop: string]: any|undefined}
 
 
 export interface TypedMap<T> {[prop: string]: T}
+
+
+export type Pair<A> = [A, A];

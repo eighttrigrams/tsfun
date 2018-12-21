@@ -1,5 +1,6 @@
 export {
-    NestedArray
+    NestedArray,
+    Pair
 } from './src/types';
 
 export {
