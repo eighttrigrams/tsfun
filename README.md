@@ -33,7 +33,7 @@ console.log(take(2)([1,2,3]))
  
 ## Credits 
  
-The Ascii Art generated with http://www.patorjk.com/software/taag
+The Ascii Art has been generated with http://www.patorjk.com/software/taag
 
 
 
