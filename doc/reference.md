@@ -19,13 +19,10 @@
 * [has](../test/predicates/has.spec.ts)
 * [empty / isEmpty](../test/predicates/is_empty.spec.ts)
 * [undefinedOrEmpty / isUndefinedOrEmpty](../test/predicates/is_undefined_or_empty.spec.ts)
+* [isTrue / isFalse](../test/predicates/is_true.spec.ts)
+* [isDefined / defined / isUndefined](../test/predicates/is_defined.spec.ts)
 * isNot
 * not
-* isDefined
-* defined
-* isUndefined
-* isTrue
-* isFalse
 * isArray
 * isObject
 * isString
