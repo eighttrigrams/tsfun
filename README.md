@@ -1,7 +1,8 @@
 ![alt](splash.png)                                            
 
-
 **tsfun - functional combinator library for TypeScript**
+
+## Run
 
 Get started with `npm install; npm run build; npm test`.
 
