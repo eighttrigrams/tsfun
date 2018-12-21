@@ -19,11 +19,10 @@ console.log(take(2)([1,2,3]))
 
 ## Docs
 
+* [Basic functions](doc/core.md)
 * [Predicates](doc/predicates.md)
 * [Comparators](doc/comparators.md)
 * [Collection functions](doc/coll.md)
-* [Core](doc/core.md)
-* [Object functions](doc/objects.md)
 
 ## Design
 
@@ -32,7 +31,7 @@ console.log(take(2)([1,2,3]))
  
 ## Credits 
  
-The Ascii Art has been generated with http://www.patorjk.com/software/taag
+Ascii Art generated with http://www.patorjk.com/software/taag
 
 
 
