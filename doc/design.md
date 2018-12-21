@@ -48,3 +48,10 @@ With a somewhat lower priority, supporting proper typing
 * Comparison via tripleEqual
 * Returning shallow copies
 
+## Collections mutability
+
+Note that all collection functions return shallow copies.
+In the same spirit, all collection functions compare in their basic versions
+with `tripleEqual` a.k.a. `===`. For the most functions there is a -By suffixed 
+version where one can choose the Comparator however. See `wrap` [here](./core.md) 
+for seeing how to return clones. 
