@@ -1,5 +1,12 @@
 import {Predicate, Transformation} from '../types';
 import {identical} from '../core';
+import {isNot} from '../predicates';
+
+
+
+export const separate = <A>(p: Predicate<A>) =>
+    (as: Array<A>): [Array<A>, Array<A>] =>
+        [as.filter(p), as.filter(isNot(p))];
 
 
 export const reverse = <A>(as: Array<A>): Array<A> =>

@@ -26,6 +26,7 @@ for seeing how to return clones.
 * [flatMap](../test/collections/arrays_list_like/flat_map.spec.ts)
 * [filter](../test/collections/arrays_list_like/filter.spec.ts)
 * [map](../test/collections/arrays_list_like/map.spec.ts)
+* [separate](../test/collections/arrays_list_like/separate.spec.ts)
 
 
 ## Ordered-list-like collection methods - Picking methods for Arrays
