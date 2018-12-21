@@ -4,7 +4,19 @@ import {arrayEqual, arrayEqualBy, jsonEqual} from '../../src/comparators';
 
 describe('arrayEqual / arrayEqualBy', () => {
 
-
+    // Note that `objectEqual` standard Array Comparator is `arrayEqual`. So
+    //
+    // arrayEqual([1, {c: [1, 2], b: 2}])([1, {b: 2, c: [1, 2]}])
+    // -> true
+    //
+    // but
+    //
+    // arrayEqual([1, {c: [1, 2], b: 2}])([1, {b: 2, c: [2, 1]}])
+    // -> false
+    //
+    // On any level, order of keys and order in Arrays matters.
+    //     This behaviour, as usual, can be changed using `arrayEqualBy`.
+    //
     // arrayEqual lets one compare Arrays in a way that the elements must be
     // equal
 

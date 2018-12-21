@@ -1,68 +1,5 @@
 # Comparators
 
-## Overview
-
-A comparator take two arguments of Type A and returns a boolean value: 
-`<A>(_: A) => (_: A) => boolean`.
-
-It is implemented as 
-
-```
-export type Comparator = <A>(_: A) => Predicate<A>;
-```
-
-which makes total sense, given that the typical usage we aim for with
-comparators looks something like
-
-```
-[3, 2, 1, 0].filter(biggerThan(1))
-```
-
-Here we apply biggerThan partially with its first argument `1`, which effectively
-gives us a predicate, which then gets applied in the filter loop. 
-
-#### Comparator Producers
-
-All functions ending with -By, like for example `differentFromBy` are producers of
-Comparators. They get applied partially, taking another comparator, to give as
-a comparator.
-
-If for instance we would want to compare
-
-```
-differentFrom({a: 1})({a: 1})
--> true
-```
-
-it gives true due to the default default via `===`.
-
-If we wanted to make a value comparison we could instead do like that
-
-```
-differentFromBy(jsonEqual)({a: 1})({a: 1})
--> false
-```
-
-### arrayEqual
-
-
-Note that `objectEqual` standard Array Comparator is `arrayEqual`. So
-
-```
-arrayEqual([1, {c: [1, 2], b: 2}])([1, {b: 2, c: [1, 2]}])
--> true
-```
-
-but
-
-```
-arrayEqual([1, {c: [1, 2], b: 2}])([1, {b: 2, c: [2, 1]}])
--> false
-```
-
-On any level, order of keys and order in Arrays matters.
-This behaviour, as usual, can be changed using `arrayEqualBy`.
-
 
 ### arrayEquivalentBy
 
@@ -90,55 +27,6 @@ arrayEquivalent
 ```
 
 meaning that the order of Array does not matter on any level.
-
-### objectEqual
-
-As stated in [structures](structures.md), when we talk about Objects in tsfun, 
-we care about nested structures. 
-
-```
-objectEqual({e: 0, a: {d: 2, c: 1}})({a: {c: 1, d: 2}, e: 0})
--> true
-```
-
-So we can nest structures and on any level, if the value is again an Object, 
-the order of the keys does not matter.
-
-On any level, if the value is either a `string` or a `number`, the values
-of the corresponding keys are compared via `===`, provided they are both of 
-the same type.
-
-If the type of a certain key on both Objects is of a descendant of `Object`,
-for instance `Date` or `Map`, the comparison is done via `jsonEqual`. Thus
-
-```
-objectEqual<any>({a: new Date(2018, 11, 24)})
-                     ({a: new Date(2018, 11, 24)})
--> true
-```
-
-and 
-
-```
-objectEqual<any>({a: new Date(2018, 11, 24)})
-                     ({a: new Date(2018, 11, 25)})
--> false
-```
-
-If the value of a certain key on both Objects is of type `Array`, the default
-comparison is done with `arrayEqual`, which in turn uses `objectEqual`, such that 
-
-```
-objectEqual({a: [2, {a: 3, b: 4}]})({a: [2, {a: 3, b: 4}]})
--> true
-```
-
-Also, the order of arrays matters by default, so
-
-```
-objectEqual({a: [2, 1]})({a: [1, 2]})
--> false
-```
 
 ###### advanced combinations
 

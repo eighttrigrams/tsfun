@@ -21,7 +21,6 @@ console.log(take(2)([1,2,3]))
 
 * [Data structures](doc/structures.md)
 * [Function reference](doc/reference.md)
-* [Comparators](doc/comparators.md)
 * [Design rationale](doc/design.md) 
  
 ## Credits 

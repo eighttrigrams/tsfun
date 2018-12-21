@@ -3,7 +3,46 @@ import {arrayEqualBy, arrayEquivalent, objectEqual, objectEqualBy} from '../../s
 
 describe('objectEqual / objectEqualBy', () => {
 
+    // As stated in [structures](structures.md), when we talk about Objects in tsfun,
+    // we care about nested structures.
+    //
+    // objectEqual({e: 0, a: {d: 2, c: 1}})({a: {c: 1, d: 2}, e: 0})
+    // -> true
+    //
+    // So we can nest structures and on any level, if the value is again an Object,
+    // the order of the keys does not matter.
+    //
+    // On any level, if the value is either a `string` or a `number`, the values
+    // of the corresponding keys are compared via `===`, provided they are both of
+    // the same type.
+    //
+    // If the type of a certain key on both Objects is of a descendant of `Object`,
+    // for instance `Date` or `Map`, the comparison is done via `jsonEqual`. Thus
+    //
+    // objectEqual<any>({a: new Date(2018, 11, 24)})
+    //                      ({a: new Date(2018, 11, 24)})
+    // -> true
+    //
+    // and
+    //
+    // objectEqual<any>({a: new Date(2018, 11, 24)})
+    //                      ({a: new Date(2018, 11, 25)})
+    // -> false
+    //
+    // If the value of a certain key on both Objects is of type `Array`, the default
+    // comparison is done with `arrayEqual`, which in turn uses `objectEqual`, such that
+    //
+    // objectEqual({a: [2, {a: 3, b: 4}]})({a: [2, {a: 3, b: 4}]})
+    // -> true
+    //
+    // Also, the order of arrays matters by default, so
+    //
+    // objectEqual({a: [2, 1]})({a: [1, 2]})
+    // -> false
+
+
     // objectEqual
+
     // If we compare Objects with `objectEqual`, we do not care for the order
     // of their keys. Thus
 

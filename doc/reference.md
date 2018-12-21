@@ -14,6 +14,8 @@
 * [isString / isBoolean](../test/predicates/is_string.spec.ts)
 * [isNot / not](../test/predicates/is_not.spec.ts)
 
+`type Predicate<A> = (_: A) => boolean`
+
 ## Comparators
 
 [Sources](../src/comparators.ts)
@@ -32,6 +34,24 @@
 * [on/by](../test/comparators/on.spec.ts)
 * [without](../test/comparators/without.spec.ts)
 * [sameOn](../test/comparators/same_on.spec.ts)
+
+`type Comparator = <A, B>(_: A) => Predicate<B>;`.
+
+A comparator can be understood as comparing to values to produce a boolean. 
+Applying one partially gives a predicate again.
+
+```
+[3, 2, 1, 0].filter(biggerThan(1))
+```
+
+Functions ending with -By, like for example `differentFromBy` are producers of
+Comparators. They get applied partially, taking one comparator, 
+giving another comparator.
+
+Due to the standard comparison with `===`, 
+`differentFrom({a: 1})({a: 1})` gives us `true`. We can change that
+behaviour easily.
+`differentFromBy(jsonEqual)({a: 1})({a: 1})` gives `false`.
 
 ## Compositions
 
