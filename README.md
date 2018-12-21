@@ -25,7 +25,7 @@ console.log(take(2)([1,2,3]))
 * [Object functions](doc/objects.md)
 * [Other](doc/core.md)
 
-## Rationale
+## Design
 
 * [Data Structures](doc/structures.md)
 * [Rationale](doc/design.md) 
