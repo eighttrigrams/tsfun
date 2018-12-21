@@ -5,6 +5,30 @@ import {by} from '../../src/core';
 
 describe('on/by', () => {
 
+    // compares elements on path directly with a certain value
+    //
+    // [{a: {b: 'c'}}, {a: {b: 'd'}}]
+    //     .filter(on('a.b:')('c')))
+    // -> [{a: {b: 'c'}}]
+    //
+    // compares both items on the same path
+    //
+    // [{a: {b: 'c'}}, {a: {b: 'd'}}]
+    //     .filter(on('a.b')({a: {b: 'c'}})))
+    // -> [{a: {b: 'c'}}]
+    //
+    // usage with find
+    //
+    // [{a: {b: {d: '1'}}}, {a: {b: {d: '2'}}}]
+    //     .find(on('a.b.d:')('1'))
+    // -> {a: {b: {d: '1'}}}
+    //
+    // combined with isNot
+    //
+    // [{a: {b: {d: '1'}}}, {a: {b: {d: '2'}}}]
+    //     .find(isNot(on('a.b.d:')('1')))
+    // -> {a: {b: {d: '2'}}}
+
 
     // on
 
