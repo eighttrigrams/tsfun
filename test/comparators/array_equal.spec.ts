@@ -2,18 +2,20 @@ import {arrayEqual, arrayEqualBy, jsonEqual} from '../../src/comparators';
 
 
 
-describe('arrayEqual/arrayEqualBy', () => {
+describe('arrayEqual / arrayEqualBy', () => {
 
 
-    // arrayEqual
+    // arrayEqual lets one compare Arrays in a way that the elements must be
+    // equal
 
-    it('equal', () =>
+    it('arrayEqual', () =>
         expect(
 
             arrayEqual([1, 2])([1, 2])
 
         ).toEqual(true));
 
+    // and the order in which there are stored are equal. Thus
 
     it('order does matter', () =>
         expect(
@@ -43,6 +45,9 @@ describe('arrayEqual/arrayEqualBy', () => {
         ).toEqual(false));
 
 
+    // arrayEqual also works for nested structures
+    // going deeper, embedded arrays get compared with arrayEqual again
+
     it('nested', () =>
         expect(
 
@@ -50,27 +55,30 @@ describe('arrayEqual/arrayEqualBy', () => {
 
         ).toEqual(true));
 
+    // the default object comparison method is objectEqual
 
-    it('default method is objectEquivalent', () =>
+    it('default method is objectEqual', () =>
+        expect(
+
+            arrayEqual([1, {b: 2, c: 3}])([1, {b: 2, c: 3}])
+
+        ).toEqual(true));
+
+    // this also means the order of keys does not matter
+
+    it('objectEqual - order of keys does not matter', () =>
         expect(
 
             arrayEqual([1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
 
         ).toEqual(true));
 
+    // strings and numbers get compared with ===
 
     it('allow strings and numbers', () =>
         expect(
 
             arrayEqual([{a: 1}, 3, 't'])([{a: 1}, 3, 't'])
-
-        ).toEqual(true));
-
-
-    it('equal', () =>
-        expect(
-
-            arrayEqual([1, {b: 2, c: 3}])([1, {b: 2, c: 3}])
 
         ).toEqual(true));
 
@@ -91,9 +99,9 @@ describe('arrayEqual/arrayEqualBy', () => {
         ).toEqual(false));
 
 
-    // arrayEqualBy
+    // the default object comparison method can be overridden using the producer version
 
-    it('override objectEquivalent default', () =>
+    it('override objectEquivalent default - key order matters', () =>
         expect(
 
             arrayEqualBy(jsonEqual)([1, {b: 2, c: 3}])([1, {c: 3, b: 2}])

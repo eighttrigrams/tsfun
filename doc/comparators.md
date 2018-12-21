@@ -1,6 +1,5 @@
 # Comparators
 
-
 ## Overview
 
 A comparator take two arguments of Type A and returns a boolean value: 
@@ -46,30 +45,6 @@ differentFromBy(jsonEqual)({a: 1})({a: 1})
 
 ### arrayEqual
 
-arrayEqual lets one compare Arrays in a way that the elements must be
-equal and the order in which there are stored are equal. Thus
-
-```
-arrayEqual([1, 2])([1, 2])
--> true
-```
-
-This also works for nested structures
-
-```
-arrayEqual([1, [2, [3, 4]]])([1, [2, [3, 4]]])
--> true
-```
-
-because the Array comparison gets done with `arrayEqual` again.
-Strings and numbers get compared with `===`. Descendants of 
-`Object` with `jsonEqual`. The default object 
-comparison method is `objectEquivalent`, so
-
-```
-arrayEqual([1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
--> true
-```
 
 Note that `objectEqual` standard Array Comparator is `arrayEqual`. So
 
@@ -86,34 +61,8 @@ arrayEqual([1, {c: [1, 2], b: 2}])([1, {b: 2, c: [2, 1]}])
 ```
 
 On any level, order of keys and order in Arrays matters.
-
 This behaviour, as usual, can be changed using `arrayEqualBy`.
 
-### arrayEqualBy
-
-arrayEqualBy produces a Comparator, taking an Object Comparator
-
-```
-arrayEqualBy(jsonEqual)([1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
--> false
-```
-
-### arrayEquivalent
-
-arrayEquivalent compares two Arrays in a way that the order of the Arrays
-does not matter. 
-
-```
-arrayEquivalent([1, 4, 7])([7, 4, 1])
--> true
-```
-
-The same rules apply on nested structures
-
-```
-arrayEquivalent([1, [4, 7]])([[7, 4], 1])
--> true
-```
 
 ### arrayEquivalentBy
 
@@ -143,14 +92,6 @@ arrayEquivalent
 meaning that the order of Array does not matter on any level.
 
 ### objectEqual
-
-If we compare Objects with `objectEqual`, we do not care for the order
-of their keys. Thus
-
-```
-objectEqual({a: 1, b: 2})({b: 2, a: 1})
-->
-```
 
 As stated in [structures](structures.md), when we talk about Objects in tsfun, 
 we care about nested structures. 
@@ -196,40 +137,6 @@ Also, the order of arrays matters by default, so
 
 ```
 objectEqual({a: [2, 1]})({a: [1, 2]})
--> false
-```
-
-`objectEqualBy` is used to override such default behaviour.
-
-### objectEqualBy
-
-objectEquivalent produces a Comparator by feeding it an Array Comparator.
-
-```
-objectEqualBy(arrayEquivalent)({a: [2, 1]})({a: [1, 2]})
--> true
-```
-
-so that neither the order of the array elements nor the order of the keys does
-matter in any way.
-
-```
-objectEqualBy(arrayEquivalent)({a: [2, 1], b: 0})({b: 0, a: [1, 2]})
--> true
-```
-
-This works also when nesting Objects and Arrays deeply, like this
-
-```
-objectEqualBy(arrayEquivalent)
-    ({a: [{b: 4, a: [2, 1]}, 2], c: 5})({c: 5, a: [2, {a: [1, 2], b: 4}]})
--> true
-```
-
-whereas 
-
-```
-objectEqual({a: [{b: 4, a: 3}, 2], c: 5})({c: 5, a: [2, {a: 3, b: 4}]})
 -> false
 ```
 

@@ -1,8 +1,11 @@
 import {arrayEqualBy, arrayEquivalent, objectEqual, objectEqualBy} from '../../src/comparators';
 
-describe('objectEqual/objectEqualBy', () => {
+
+describe('objectEqual / objectEqualBy', () => {
 
     // objectEqual
+    // If we compare Objects with `objectEqual`, we do not care for the order
+    // of their keys. Thus
 
     it('order of keys does not matter', () =>
         expect(
@@ -112,7 +115,11 @@ describe('objectEqual/objectEqualBy', () => {
         ).toEqual(false));
 
 
-    // objectEqualBy
+    // objectEqualBy is used to override the default behaviour of objectEqual
+    // objectEqualBy produces a Comparator by feeding it an Array Comparator.
+    // so that neither the order of the array elements nor the order of the keys does
+    // matter in any way.
+    // This works also when nesting Objects and Arrays deeply, like this
 
     it('make that order does not matter in array when nested', () =>
         expect(

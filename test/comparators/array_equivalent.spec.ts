@@ -1,9 +1,10 @@
 import {arrayEquivalent, arrayEquivalentBy, jsonEqual} from '../../src/comparators';
 
-describe('arrayEquivalent/arrayEquivalentBy', () => {
+describe('arrayEquivalent / arrayEquivalentBy', () => {
 
 
-    // arrayEquivalent
+    // arrayEquivalent compares two Arrays in a way that the order of the Arrays
+    // does not matter.
 
     it('equivalent in different order', () =>
         expect(
@@ -52,6 +53,7 @@ describe('arrayEquivalent/arrayEquivalentBy', () => {
 
         ).toEqual(false));
 
+    // The same rules apply on nested structures
 
     it('nested arrays', () =>
         expect(
