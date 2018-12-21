@@ -1,7 +1,8 @@
 # Flow
 
 * See [Sources](../src/flow.ts)
-* See [Tests](../test/flow.spec.ts)
+* [flow](../test/flow/flow.spec.ts)
+* [compose](../test/flow/compose.spec.ts)
 
 
 TODO describe compose
