@@ -1,3 +1,4 @@
+# Comparators
 
 
 ## Overview
@@ -42,41 +43,6 @@ If we wanted to make a value comparison we could instead do like that
 differentFromBy(jsonEqual)({a: 1})({a: 1})
 -> false
 ```
-
-
-### tripleEqual
-
-tripleEqual unsurprisingly uses comparison via `===`.
-
-```
-tripleEqual(3)(3)
--> true
-```
-
-and can for example be used with filter
-
-```
-[1, 2, 3].filter(tripleEqual(3))
--> [3]    
-```
-
-### jsonEqual
-
-equalTo compares to objects by comparing their string representations
-via `JSON.parse(JSON.stringify(item))`
-
-```
-jsonEqual({a: {b: 'c'})({a: {b: 'c'})
--> true
-```
-
-which makes the order of keys matter
-
-```
-jsonEqual({a: 1, b: 2})({b: 2, a: 1})
--> false
-```
-
 
 ### arrayEqual
 
