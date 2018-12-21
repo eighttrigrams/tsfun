@@ -1,30 +1,35 @@
 # tsfun - Data Structures and Functions
 
-## tsfun data structures
+In general, **tsfun** functions are mainly designed to 
+work with ***Array***s and ***Object***s. Whether a data 
+structure is an Array or an Object in our sense is 
+determined by
+[isArray](../test/predicates/is_array.spec.ts) and
+[isObject](../test/predicates/is_object.spec.ts).
 
-In general, **tsfun** knows and works with only two data structures, namely
-***Array*** and ***Object***, corresponding to the respective javascript data structures.
-Whenever we talk about javascript entities, we highlight the terms as code, like
-for instance, `object`, `{}`, `Object`, and `Array`. 
+Arrays are treated as list-like data structures or 
+as set-like data structures.
 
-If an entity is an Array is determined
-by checking
+Objects are treated as list-like data structures or 
+as set-like data structures or as structured objects. 
 
-```
-as instanceof Array
-```
+If we say list-like data structure, we mean that if a 
+function operates on an array or object, we retain order
+and allow duplicates.
 
-Wether an entity is an Object ist checked by
+If we say set-like data structure, we mean that if a 
+function operates on an array or object, we assume that 
+or explicitely take care that the data structure has
+no duplicates.
 
-```
-o instanceof Object && o.constructor === Object
-``` 
+We talk about about tsfun Objects in contexts where we 
+care about a composed data structure, like
+for example `{a: {b: [1, 2, 4], c: 'e'}`, whereas the list- 
+and set-like data structures are concerned with the top level of the data structure.
 
-which accounts for `Object` and `{}`, but not Descendants of `Object`, like for example
-`Date`, which is what we want in the context of ***tsfun's*** functionality.
+TODO talk about equal, arrayEquivalent, objectEquivalent, copies (copy vs clone) etc.
+Arrays can be seen as deep nested structures as well.
 
-
-## tsfun functions
 
 ### Collections
 
@@ -36,22 +41,6 @@ as structured entities.
 
 We have different sets of functions to treat Arrays as either 
 linear vector or list like collections or as set like collections.
-
-##### Objects
-
-TODO mention typescript index signatures and -Map suffix
-
-### Structures
-
-We talk about about tsfun Objects in contexts where we 
-care about a composed data structure, like
-for example `{a: {b: [1, 2, 4], c: 'e'}`.
-
-Arrays can be seen as deep nested structures as well.
-
-TODO talk about equal, arrayEquivalent, objectEquivalent, copies (copy vs clone) etc. 
-
-### -Object suffixed collection functions 
 
 ## Utilities for Collections
 
@@ -76,3 +65,5 @@ into the body of a `flow`. `intersection` and `union` take a `NestedArray<A>` as
 their argument, so they can be used to begin a `flow` with.
 
 
+TODO -Object suffixed collection functions 
+TODO mention typescript index signatures and -Map suffix

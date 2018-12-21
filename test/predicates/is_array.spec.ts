@@ -1,9 +1,10 @@
-import {tripleEqual} from '../../src/comparators';
 import {isArray} from '../../src/predicates';
 
-describe('isArray / isObject / isString / isBoolean', () => {
+describe('isArray', () => {
 
-    // isArray
+    // If an entity is an Array is determined
+    // by checking
+    // as instanceof Array
 
     it('isArray',() =>
         expect(
@@ -11,8 +12,4 @@ describe('isArray / isObject / isString / isBoolean', () => {
             isArray([]))
 
             .toEqual(true));
-
-
-
-    // TODO implement isBoolean
 });

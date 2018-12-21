@@ -9,7 +9,9 @@
 * [undefinedOrEmpty / isUndefinedOrEmpty](../test/predicates/is_undefined_or_empty.spec.ts)
 * [isTrue / isFalse](../test/predicates/is_true.spec.ts)
 * [isDefined / defined / isUndefined](../test/predicates/is_defined.spec.ts)
-* [isArray / isObject / isString / isBoolean](../test/predicates/is_array.spec.ts)
+* [isArray](../test/predicates/is_array.spec.ts)
+* [isObject](../test/predicates/is_object.spec.ts)
+* [isString / isBoolean](../test/predicates/is_string.spec.ts)
 * [isNot / not](../test/predicates/is_not.spec.ts)
 
 ## Comparators
