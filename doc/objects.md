@@ -1,7 +1,6 @@
 # Object functions
 
 * See [Sources](../src/objects.ts)
-* See [Tests](../test/objects.spec.ts)
 
 ## Reference
 
@@ -11,24 +10,6 @@
 * [mapOption](../test/objects/map_option.spec.ts)
 * [to](../test/objects/to.spec.ts)
 * [intoObject](../test/objects/into_object.spec.ts)
-
-### takeOrMake
-
-makes
-
-```
-const obj: any = { }
-takeOrMake(obj, 'a.b.c', [])
-obj['a']['b']['c'] === []
--> true
-```
-
-takes
-
-```
-takeOrMake({a:{ b: { c: 'a'}}}, 'a.b.c', [])
--> 'a'
-```
 
 ### clone
 
@@ -72,28 +53,4 @@ combined with map and filter
     .map(to('a.c'))
     .filter(isDefined)
 -> [{d: 'e'}]
-```
-
-### option
-
-...
-
-### mapOption
-
-### Comparators
-
-See section [comparators](comparators.md)
-
-### sameOn
-
-a standalone version of `on`
-
-```
-sameOn('a.b', {a: {b: 5}}, {a: {b: 5}})
--> true
-```
-
-```
-sameOn('a.b', {a: {b: 5}}, {a: {c: 5}}, 'a.c')
--> true
 ```
