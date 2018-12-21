@@ -1,16 +1,8 @@
-import {getElForPathIn} from '../src/core';
+
+import {getElForPathIn} from '../../src/core';
 
 
-/**
- * wrap
- *
- * get
- *
- * to
- *
- * getElForPathin
- */
-describe('Core', () => {
+describe('getElForPathIn', () => {
 
 
     // getElForPathIn

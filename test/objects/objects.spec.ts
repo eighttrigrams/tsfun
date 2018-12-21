@@ -1,9 +1,3 @@
-import {intoObject, mapOption, option, takeOrMake, to} from '../src/objects';
-import {jsonEqual, on, tripleEqual} from '../src/comparators';
-import {flow} from '../src/flow';
-import {isEmpty} from '../src/predicates';
-
-
 /**
  * takeOrMake
  *
@@ -15,6 +9,12 @@ import {isEmpty} from '../src/predicates';
  *
  * intoObject
  */
+import {intoObject, mapOption, option, takeOrMake, to} from '../../src/objects';
+import {flow} from '../../src/flow';
+import {jsonEqual, on, tripleEqual} from '../../src/comparators';
+import {isEmpty} from '../../src/predicates';
+
+
 describe('Objects', () => {
 
 
