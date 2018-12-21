@@ -104,7 +104,7 @@
 [Sources](../src/collections/objects_set_like.ts)
 
 * [intersectObject](../test/collections/objects_set_like/intersect_object.spec.ts)
-* [uniteObject/unionObject](../test/collections/objects_set_like/unite_object.spec.ts)
+* [uniteObject / unionObject](../test/collections/objects_set_like/unite_object.spec.ts)
 * [subtractObject](../test/collections/objects_set_like/subtract_object.spec.ts)
 
 ## Ordered-list-like collection functions for Object-Maps
