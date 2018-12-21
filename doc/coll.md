@@ -1,7 +1,6 @@
 # Utilities for Collections
 
 * See [Sources](../src/collections/coll.ts)
-* See [Tests](../test/collections/coll.spec.ts)
 
 ## Overview
 
@@ -11,18 +10,36 @@ with `tripleEqual` a.k.a. `===`. For the most functions there is a -By suffixed
 version where one can choose the Comparator however. See `wrap` [here](./core.md) 
 for seeing how to return clones. 
 
-## Reference
+### Reference
 
-### copy
+* [copy](../test/collections/coll.spec.ts)
 
-Creates a shallow copy of an object or an array
+## Ordered-list-like collection methods for Arrays
 
-```
-copy([1, 2])
--> [1, 2]
-copy({a: 1, 2: 5})
--> {a: 1, 2: 5}
-```
+* [Sources](../src/collections/arrays_list_like.ts)
+
+### Reference
+
+* [prepend](../test/collections/arrays_list_like/prepend.spec.ts)
+* [append](../test/collections/arrays_list_like/append.spec.ts)
+* [getIth/getIthOr](../test/collections/arrays_list_like/getIth.spec.ts)
+* [flatMap](../test/collections/arrays_list_like/flat_map.spec.ts)
+* [filter](../test/collections/arrays_list_like/filter.spec.ts)
+* [map](../test/collections/arrays_list_like/map.spec.ts)
+
+
+## Ordered-list-like collection methods - Picking methods for Arrays
+
+* [Sources](../src/collections/arrays_list_like_pick.ts)
+
+### Reference
+
+* [take](../test/collections/arrays_list_like/take.spec.ts)
+* [take_nth](../test/collections/arrays_list_like/take_nth.spec.ts)
+* [takeWhile/takeRightWhile](../test/collections/arrays_list_like/take_while.spec.ts)
+* [drop/dropRight](../test/collections/arrays_list_like/drop.spec.ts)
+* [dropWhile/dropRightWhile](../test/collections/arrays_list_like/drop_while.spec.ts)
+
 
 
 
