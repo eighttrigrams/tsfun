@@ -36,7 +36,7 @@ for seeing how to return clones.
 ### Reference
 
 * [take](../test/collections/arrays_list_like/take.spec.ts)
-* [take_nth](../test/collections/arrays_list_like/take_nth.spec.ts)
+* [takeNth](../test/collections/arrays_list_like/take_nth.spec.ts)
 * [takeWhile/takeRightWhile](../test/collections/arrays_list_like/take_while.spec.ts)
 * [drop/dropRight](../test/collections/arrays_list_like/drop.spec.ts)
 * [dropWhile/dropRightWhile](../test/collections/arrays_list_like/drop_while.spec.ts)
