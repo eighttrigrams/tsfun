@@ -77,8 +77,8 @@ export {
 
 
 export {
-    getAtIndex,
-    getAtIndexOr
+    getIth,
+    getIthOr
 } from './src/arrays';
 
 

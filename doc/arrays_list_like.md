@@ -6,31 +6,31 @@ See also
 
 ## Reference
 
-### getAtIndex
+### getIth
 
 ```
-getAtIndex([1, 3, 7])(2)
+getIth([1, 3, 7])(2)
 -> 7
 ```
 
 ```
-getAtIndex([1, 3, 7])(8)
+getIth([1, 3, 7])(8)
 -> undefined
 ```
 
 used with map
 
 ```
-[0, 2].map(getAtIndex([1, 3, 7]))
+[0, 2].map(getIth([1, 3, 7]))
 -> [1, 7]
 ```
 
-### getAtIndexOr
+### getIthOr
 
 providing a fallback value
 
 ```
-getAtIndexOr([1, 3, 7], 10)(8)
+getIthOr([1, 3, 7], 10)(8)
 -> 10
 ```
 

@@ -1,7 +1,7 @@
 import {append, filter, flatMap, map, prepend} from "../../src/collections/arrays_list_like";
 import {flow} from "../../src/flow";
 import {smallerThan} from "../../src/comparators";
-import {getAtIndex, getAtIndexOr} from '../../src/arrays';
+import {getIth, getIthOr} from '../../src/arrays';
 import {to} from '../../src/objects';
 
 
@@ -27,7 +27,7 @@ describe('Arrays/List-Like-Collection', () => {
 
         expect(
 
-            getAtIndex([1, 3, 7])(2)
+            getIth([1, 3, 7])(2)
 
         ).toEqual(7));
 
@@ -36,7 +36,7 @@ describe('Arrays/List-Like-Collection', () => {
 
         expect(
 
-            getAtIndex([1, 3, 7])(8)
+            getIth([1, 3, 7])(8)
 
         ).toEqual(undefined));
 
@@ -45,7 +45,7 @@ describe('Arrays/List-Like-Collection', () => {
 
         expect(
 
-            [0, 2].map(getAtIndex([1, 3, 7]))
+            [0, 2].map(getIth([1, 3, 7]))
 
         ).toEqual([1, 7]));
 
@@ -55,7 +55,7 @@ describe('Arrays/List-Like-Collection', () => {
 
         expect(
 
-            getAtIndexOr([1, 3, 7], 10)(8)
+            getIthOr([1, 3, 7], 10)(8)
 
         ).toEqual(10));
 

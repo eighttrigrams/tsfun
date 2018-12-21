@@ -1,4 +1,4 @@
-import {getAtIndex} from './arrays';
+import {getIth} from './arrays';
 
 
 // library internal
@@ -40,7 +40,7 @@ export const jsonClone = <O>(object: O) => JSON.parse(JSON.stringify(object)) as
 export const get = <T>(ds: Object|Array<T>, alternative?: any) => (path: string|number) => {
 
     const result = (typeof path === 'number')
-        ? getAtIndex(ds as Array<T>)(path)
+        ? getIth(ds as Array<T>)(path)
         : getElForPathIn(ds as Object, path);
 
     return result !== undefined
