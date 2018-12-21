@@ -49,3 +49,25 @@ With a somewhat lower priority, supporting proper typing
 * Returning shallow copies
 
 ### -Object suffixed collection functions 
+
+## Utilities for Collections
+
+Note that all collection functions return shallow copies.
+In the same spirit, all collection functions compare in their basic versions
+with `tripleEqual` a.k.a. `===`. For the most functions there is a -By suffixed 
+version where one can choose the Comparator however. See `wrap` [here](./core.md) 
+for seeing how to return clones. 
+
+## Set Methods
+
+Set methods come in two flavours, array set methods and object set methods.
+Both of these have in common that the respective data structures are treated 
+as if they were sets, hence we also call them set-like methods.
+
+Every set method's result is not only `Array<A>` but also consists 
+of unique items (compared with `==`). Where possible, the order of 
+the arguments is kept.
+
+`intersect`, `subtract`, `unite` and `uniqe` are partials, which can be inserted
+into the body of a `flow`. `intersection` and `union` take a `NestedArray<A>` as
+their argument, so they can be used to begin a `flow` with.
