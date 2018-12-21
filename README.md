@@ -18,12 +18,12 @@ console.log(take(2)([1,2,3]))
 
 ## Docs
 
-* [Core](doc/core.md)
-* [Flows](doc/flow.md)
 * [Predicates](doc/predicates.md)
 * [Comparators](doc/comparators.md)
 * [Collection functions](doc/coll.md)
+* [Flows](doc/flow.md)
 * [Object functions](doc/objects.md)
+* [Other](doc/core.md)
 
 ## Rationale
 
