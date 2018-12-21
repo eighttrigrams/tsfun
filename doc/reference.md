@@ -37,7 +37,7 @@
 
 `type Comparator = <A, B>(_: A) => Predicate<B>;`.
 
-A comparator can be understood as comparing to values to produce a boolean. 
+A comparator can be understood as comparing two values to produce a boolean. 
 Applying one partially gives a predicate again, which can then be used to filter,
 for example, like in `[3, 2, 1, 0].filter(biggerThan(1))`.
 
