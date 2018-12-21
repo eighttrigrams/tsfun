@@ -3,6 +3,8 @@
 See also
  
 * [Picking methods](arrays_list_like_pick.md)
+* [Sources](../src/collections/arrays_list_like.ts)
+* [Tests](../test/collections/arrays_list_like.spec.ts)
 
 ## Reference
 

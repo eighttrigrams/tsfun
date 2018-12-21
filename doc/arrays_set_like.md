@@ -1,7 +1,8 @@
 # Set-like collection methods for Arrays
 
 * See [Sources](../src/collections/arrays_set_like.ts)
-* See [Tests](../test/collections/objects_list_like.spec.ts)
+* See [Tests](../test/collections/arrays_set_like.spec.ts)
+
 
 Set methods come in two flavours, array set methods and object set methods.
 Both of these have in common that the respective data structures are treated 

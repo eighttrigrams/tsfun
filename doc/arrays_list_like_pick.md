@@ -2,6 +2,9 @@
 
 Currently the implementations for the following **take** and **drop** methods are provided
 
+* [Sources](../src/collections/arrays_list_like_pick.ts)
+* [Tests](../test/collections/arrays_list_like_pick.spec.ts)
+
 ### take
 
 ```

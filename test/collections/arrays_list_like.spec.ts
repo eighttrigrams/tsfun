@@ -6,8 +6,8 @@ import {to} from '../../src/objects';
 
 
 /**
- * getAtIndex
- * getAtIndexOr
+ * getIth
+ * getIthOr
  *
  * map
  * filter
@@ -21,9 +21,9 @@ import {to} from '../../src/objects';
  */
 describe('Arrays/List-Like-Collection', () => {
 
-    // getAtIndex
+    // getIth
 
-    it('getAtIndex', () =>
+    it('getIth', () =>
 
         expect(
 
@@ -49,7 +49,7 @@ describe('Arrays/List-Like-Collection', () => {
 
         ).toEqual([1, 7]));
 
-    // getAtIndexOr
+    // getIthOr
 
     it('result undefined', () =>
 
