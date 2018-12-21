@@ -22,9 +22,8 @@ console.log(take(2)([1,2,3]))
 * [Predicates](doc/predicates.md)
 * [Comparators](doc/comparators.md)
 * [Collection functions](doc/coll.md)
-* [Flows](doc/flow.md)
+* [Core](doc/core.md)
 * [Object functions](doc/objects.md)
-* [Other](doc/core.md)
 
 ## Design
 
