@@ -3,6 +3,15 @@
 * See [Sources](../src/objects.ts)
 * See [Tests](../test/objects.spec.ts)
 
+## Reference
+
+* [getElForPathin](../test/objects/get_el_for_path_in.spec.ts)
+* [takeOrMake](../test/objects/take_or_make.spec.ts)
+* [option](../test/objects/option.spec.ts)
+* [mapOption](../test/objects/map_option.spec.ts)
+* [to](../test/objects/to.spec.ts)
+* [intoObject](../test/objects/into_object.spec.ts)
+
 ### takeOrMake
 
 makes
@@ -64,10 +73,6 @@ combined with map and filter
     .filter(isDefined)
 -> [{d: 'e'}]
 ```
-
-### getElForPathIn
-
-...
 
 ### option
 
