@@ -1,69 +1,21 @@
 # Predicates
 
-* See [Sources](../src/predicates.ts)
-* See [Tests](../test/predicates.spec.ts)
+## Overview
 
-##### Overview
+* [Source](../test/predicates.spec.ts)
 
-## Reference
+### Reference
 
-### isNot 
-
-A special combinator is `isNot`, which can flip the results boolean value
-
-```
-isNot(isUndefined)(3) 
--> true
-
-isNot(sameAs(3))(2) // same as differentFrom(3)(2)
--> true
-```
-
-### not
-
-Alias for `isNot`
-
-### isDefined
-
-```
-isDefined(1)
--> true
-```
-
-### defined
-
-Alias for `isDefined`
-
-### isUndefined
-
-```
-isUndefined(undefined)
--> true
-```
-
-### has
-
-
-
-### isUndefinedOrEmpty
-
-### undefinedOrEmpty
-
-Alias for `isUndefinedOrEmpty`
-
-
-### isEmpty
-
-### empty
-
-Alias for `isEmpty`
-
-### isTrue
-
-### isFalse
-
-### isArray
-
-### isObject
-
-### isString
+* [has](../test/predicates/has.spec.ts)
+* [empty/isEmpty](../test/predicates/is_empty.spec.ts)
+* [undefinedOrEmpty/isUndefinedOrEmpty](../test/predicates/is_undefined_or_empty.spec.ts)
+* isNot
+* not
+* isDefined
+* defined
+* isUndefined
+* isTrue
+* isFalse
+* isArray
+* isObject
+* isString

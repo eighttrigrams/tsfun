@@ -16,7 +16,7 @@ import {take} from 'tsfun'
 console.log(take(2)([1,2,3]))
 ```
 
-## Wiki
+## Docs
 
 * [Data structures Overview](doc/structures.md)
 * [Core](doc/core.md)
@@ -24,10 +24,6 @@ console.log(take(2)([1,2,3]))
 * [Predicates](doc/predicates.md)
 * [Comparators](doc/comparators.md)
 * [Collection functions](doc/coll.md)
-* [List-like collection functions for Arrays](doc/arrays_list_like.md)
-* [Set-like collection functions for Arrays](doc/arrays_set_like.md)
-* [List-like collection functions for Maps](doc/objects_list_like.md)
-* [Set-like collection functions for Maps](doc/objects_set_like.md)
 * [Object functions](doc/objects.md)
 
 ## More

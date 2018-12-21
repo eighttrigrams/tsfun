@@ -1,5 +1,7 @@
 # Utilities for Collections
 
+* See [List-like collection functions for Maps](./objects_list_like.md)
+* See [Set-like collection functions for Maps](./objects_set_like.md)
 * See [Sources](../src/collections/coll.ts)
 
 ## Overview
