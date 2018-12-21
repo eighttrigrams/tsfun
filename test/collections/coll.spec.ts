@@ -1,49 +1,47 @@
 import {copy} from '../../src/collections/coll';
 
-export function main() {
 
-    describe('General/Collection', () => {
-
-
-        it('copy - array',() =>
-            expect(
-
-                copy([2,4]))
-
-                .toEqual([2, 4]));
+describe('General/Collection', () => {
 
 
-        it('copy - object, keys mixed numbers and strings',() =>
-            expect(
+    it('copy - array',() =>
+        expect(
 
-                copy({a: 1, 2: 2}))
+            copy([2,4]))
 
-                .toEqual({a: 1, 2: 2}));
-
-
-        it('copy - object, retain instance',() => {
-
-            const instance = {a: 'hey'};
-            expect(
-                copy({a: 1, 2: instance})[2])
-                .toBe(instance)
-        });
+            .toEqual([2, 4]));
 
 
-        it('copy - retain existent keys with undefined properties',() =>
+    it('copy - object, keys mixed numbers and strings',() =>
+        expect(
 
-            expect(
+            copy({a: 1, 2: 2}))
 
-                copy({a: 1, 2: undefined}))
-
-                .toEqual({a: 1, 2: undefined}));
+            .toEqual({a: 1, 2: 2}));
 
 
-        it('copy - array, retain instance',() => {
+    it('copy - object, retain instance',() => {
 
-            const instance = {a: 'hey'};
-            expect(copy([instance, 4])[0])
-                .toBe(instance)
-        });
+        const instance = {a: 'hey'};
+        expect(
+            copy({a: 1, 2: instance})[2])
+            .toBe(instance)
     });
-}
+
+
+    it('copy - retain existent keys with undefined properties',() =>
+
+        expect(
+
+            copy({a: 1, 2: undefined}))
+
+            .toEqual({a: 1, 2: undefined}));
+
+
+    it('copy - array, retain instance',() => {
+
+        const instance = {a: 'hey'};
+        expect(copy([instance, 4])[0])
+            .toBe(instance)
+    });
+});

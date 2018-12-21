@@ -3,148 +3,146 @@ import {jsonEqual, on, tripleEqual} from '../src/comparators';
 import {flow} from '../src/flow';
 import {isEmpty} from '../src/predicates';
 
-export function main() {
 
-    /**
-     * takeOrMake
-     *
-     * option
-     *
-     * mapOption
-     *
-     * to
-     *
-     * intoObject
-     */
-    describe('Objects', () => {
-
-
-        // takeOrMake
-
-        it('takeOrMake makes', () => {
-
-            const obj: any = { };
-            expect(takeOrMake(obj, 'a.b.c', [])).toEqual([]);
-            expect(obj['a']['b']['c']).toEqual([]);
-        });
+/**
+ * takeOrMake
+ *
+ * option
+ *
+ * mapOption
+ *
+ * to
+ *
+ * intoObject
+ */
+describe('Objects', () => {
 
 
-        it('takeOrMake takes', () =>
-            expect(
+    // takeOrMake
 
-                takeOrMake({a:{ b: { c: 'a'}}}, 'a.b.c', []))
+    it('takeOrMake makes', () => {
 
-                .toEqual('a'));
-
-
-        // option
-
-        it('option', () =>
-            expect(
-
-                flow<any>({a:{b:{c: 4}}},
-                    to('a.b'),
-                    option(on('c:')(4)),
-                    jsonEqual({c: 4})))
-
-                .toEqual(true));
+        const obj: any = { };
+        expect(takeOrMake(obj, 'a.b.c', [])).toEqual([]);
+        expect(obj['a']['b']['c']).toEqual([]);
+    });
 
 
-        it('to after failing option', () =>
-            expect(
+    it('takeOrMake takes', () =>
+        expect(
 
-                flow<any>({a:{b:{c: 4}}},
-                option(on('a.b.c:')(5)),
-                to('c'),
-                tripleEqual(4)))
+            takeOrMake({a:{ b: { c: 'a'}}}, 'a.b.c', []))
 
-                .toEqual(false));
+            .toEqual('a'));
 
 
-        it('option isEmpty', () =>
-            expect(
+    // option
 
-                flow<any>({a:{b:{c: 4}}},
-                    option(on('c:')(5)),
-                    isEmpty))
+    it('option', () =>
+        expect(
 
-                .toEqual(true));
+            flow<any>({a:{b:{c: 4}}},
+                to('a.b'),
+                option(on('c:')(4)),
+                jsonEqual({c: 4})))
 
-
-        // mapOption
-
-        it('mapOption', () =>
-            expect(
-
-                flow<any>({a:{b:4}},
-                    option(on('a.b:')(4)),
-                    mapOption(to('a.b'))))
-
-                .toEqual(4));
+            .toEqual(true));
 
 
-        it('mapOption on empty option', () =>
-            expect(
+    it('to after failing option', () =>
+        expect(
 
-                flow<any>({a:{b:4}},
-                    option(on('a.b:')(5)),
-                    mapOption((_: any) => _ + 2)))
+            flow<any>({a:{b:{c: 4}}},
+            option(on('a.b.c:')(5)),
+            to('c'),
+            tripleEqual(4)))
 
-                .toEqual({}));
-
-
-        // to
-
-        it('to', () =>
-            expect(
-
-                to('a.b')({a: {b: {c: 'd'}}}))
-
-                .toEqual({c: 'd'}));
+            .toEqual(false));
 
 
-        it('to with map', () =>
-            expect(
+    it('option isEmpty', () =>
+        expect(
 
-                [{a: {b: {c: 'd'}}}].map(to('a.b')))
+            flow<any>({a:{b:{c: 4}}},
+                option(on('c:')(5)),
+                isEmpty))
 
-                .toEqual([{c: 'd'}]));
-
-
-        it('to - 1 does not exist', () =>
-            expect(
-
-                [{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}].map(to('a.c')))
-
-                .toEqual([undefined, {d: 'e'}]));
+            .toEqual(true));
 
 
-        // intoObject
+    // mapOption
 
-        it('intoObject', () =>
-            expect(
+    it('mapOption', () =>
+        expect(
 
-                intoObject(_ => [_.key, _.val])
-                    ({}, {key: 2, val: 7}))
+            flow<any>({a:{b:4}},
+                option(on('a.b:')(4)),
+                mapOption(to('a.b'))))
 
-                .toEqual({2: 7} as any));
-
-
-        it('intoObject - with reduce', () =>
-            expect(
-
-                [{key: 2, val: 7}, {key: 3, val: 8}]
-                    .reduce(intoObject(_ => [_.key, _.val]), {}))
-
-                .toEqual({2: 7, 3: 8} as any));
+            .toEqual(4));
 
 
-        it('intoObject - missing key', () =>
-            expect(
+    it('mapOption on empty option', () =>
+        expect(
 
-                [{key: 2, val: 7}, {val: 8}]
-                    .reduce(intoObject(_ => [_.key, _.val]), {}))
+            flow<any>({a:{b:4}},
+                option(on('a.b:')(5)),
+                mapOption((_: any) => _ + 2)))
 
-                .toEqual({2: 7} as any));
-    })
-}
+            .toEqual({}));
+
+
+    // to
+
+    it('to', () =>
+        expect(
+
+            to('a.b')({a: {b: {c: 'd'}}}))
+
+            .toEqual({c: 'd'}));
+
+
+    it('to with map', () =>
+        expect(
+
+            [{a: {b: {c: 'd'}}}].map(to('a.b')))
+
+            .toEqual([{c: 'd'}]));
+
+
+    it('to - 1 does not exist', () =>
+        expect(
+
+            [{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}].map(to('a.c')))
+
+            .toEqual([undefined, {d: 'e'}]));
+
+
+    // intoObject
+
+    it('intoObject', () =>
+        expect(
+
+            intoObject(_ => [_.key, _.val])
+                ({}, {key: 2, val: 7}))
+
+            .toEqual({2: 7} as any));
+
+
+    it('intoObject - with reduce', () =>
+        expect(
+
+            [{key: 2, val: 7}, {key: 3, val: 8}]
+                .reduce(intoObject(_ => [_.key, _.val]), {}))
+
+            .toEqual({2: 7, 3: 8} as any));
+
+
+    it('intoObject - missing key', () =>
+        expect(
+
+            [{key: 2, val: 7}, {val: 8}]
+                .reduce(intoObject(_ => [_.key, _.val]), {}))
+
+            .toEqual({2: 7} as any));
+});

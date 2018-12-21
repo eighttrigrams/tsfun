@@ -1,291 +1,292 @@
 import {
     intersect,
     intersectBy,
-    intersection, intersectionBy,
+    intersection,
+    intersectionBy,
     subtract,
+    subtractBy,
     union,
+    unionBy,
     unique,
+    uniqueBy,
     unite,
     uniteBy,
-    unionBy, subtractBy, uniqueBy,
 } from '../../src/collections/arrays_set_like';
 import {jsonEqual, on} from "../../src/comparators";
 
 
 /**
- * intersection
- * intersectionBy
- * intersect
- * intersectBy
- *
- * union
- * unionBy
- * unite
- * uniteBy
- *
- * unique
- * uniqueBy
- *
- * duplicates
- *
- * subtract
- * subtractBy
- *
- * @author Daniel de Oliveira
- */
-export function main() {
+* intersection
+* intersectionBy
+* intersect
+* intersectBy
+*
+* union
+* unionBy
+* unite
+* uniteBy
+*
+* unique
+* uniqueBy
+*
+* duplicates
+*
+* subtract
+* subtractBy
+*
+* @author Daniel de Oliveira
+*/
 
-    describe('Arrays/Set-Like-Collection', () => {
+describe('Arrays/Set-Like-Collection', () => {
 
-        // intersection
+    // intersection
 
-        it('intersection',() =>
-            expect(
+    it('intersection',() =>
+        expect(
 
-                intersection([[1,2],[2,3],[2,4]]))
+            intersection([[1,2],[2,3],[2,4]]))
 
-                .toEqual([2]));
+            .toEqual([2]));
 
 
-        it('intersect - no intersection',() =>
-            expect(
+    it('intersect - no intersection',() =>
+        expect(
 
-                intersection([[1,2],[3,4],[5,6]]))
+            intersection([[1,2],[3,4],[5,6]]))
 
-                .toEqual([]));
+            .toEqual([]));
 
 
-        it('intersect - no intersection where only partial intersection',() =>
-            expect(
+    it('intersect - no intersection where only partial intersection',() =>
+        expect(
 
-                intersection([[1,2],[2,3],[3,4]]))
+            intersection([[1,2],[2,3],[3,4]]))
 
-                .toEqual([]));
+            .toEqual([]));
 
 
-        it('intersect - empty array',() =>
-            expect(
+    it('intersect - empty array',() =>
+        expect(
 
-                intersection([]))
+            intersection([]))
 
-                .toEqual([]));
+            .toEqual([]));
 
 
-        // intersectionBy
+    // intersectionBy
 
-        it('intersectionBy', () =>
-            expect(
+    it('intersectionBy', () =>
+        expect(
 
-                intersectionBy(jsonEqual)<any>([[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]]))
+            intersectionBy(jsonEqual)<any>([[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]]))
 
-                .toEqual([{c: 'c'}]));
+            .toEqual([{c: 'c'}]));
 
 
-        // intersect
+    // intersect
 
-        it('intersect',() =>
-            expect(
+    it('intersect',() =>
+        expect(
 
-                intersect([1,2])([2,4]))
+            intersect([1,2])([2,4]))
 
-                .toEqual([2]));
+            .toEqual([2]));
 
 
-        it('intersect - variadic',() =>
-            expect(
+    it('intersect - variadic',() =>
+        expect(
 
-                intersect([1,2],[2,5])([2,4]))
+            intersect([1,2],[2,5])([2,4]))
 
-                .toEqual([2]));
+            .toEqual([2]));
 
 
-        it('intersect - spread',() =>
+    it('intersect - spread',() =>
 
-            expect(
+        expect(
 
-                intersect(...[[1,2],[2,5]])([2,4]))
+            intersect(...[[1,2],[2,5]])([2,4]))
 
-                .toEqual([2]));
+            .toEqual([2]));
 
 
-        // intersectBy
+    // intersectBy
 
-        it('intersectBy', () =>
-            expect(
+    it('intersectBy', () =>
+        expect(
 
-                intersectBy(jsonEqual)<any>([{a: 'a'}, {c: 'c'}])([{c: 'c'}, {d: 'd'}]))
+            intersectBy(jsonEqual)<any>([{a: 'a'}, {c: 'c'}])([{c: 'c'}, {d: 'd'}]))
 
-                .toEqual([{c: 'c'}]));
+            .toEqual([{c: 'c'}]));
 
 
-        // union
+    // union
 
-        it('union ',() =>
-            expect(
+    it('union ',() =>
+        expect(
 
-                union([[1, 2],[3, 4],[2, 4]]))
+            union([[1, 2],[3, 4],[2, 4]]))
 
-                .toEqual([1, 2, 3, 4]));
+            .toEqual([1, 2, 3, 4]));
 
 
-        // unionBy
+    // unionBy
 
-        it('unionBy', () =>
-            expect(
+    it('unionBy', () =>
+        expect(
 
-                unionBy(jsonEqual)<any>([[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]]))
+            unionBy(jsonEqual)<any>([[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]]))
 
-                .toEqual([{a: 'a'}, {c: 'c'}, {d: 'd'}]));
+            .toEqual([{a: 'a'}, {c: 'c'}, {d: 'd'}]));
 
 
-        // unite
+    // unite
 
-        it('unite',() =>
-            expect(
+    it('unite',() =>
+        expect(
 
-                unite([1, 2])([2, 4]))
+            unite([1, 2])([2, 4]))
 
-                .toEqual([1, 2, 4]));
+            .toEqual([1, 2, 4]));
 
 
-        it('unite - variadic ',() =>
-            expect(
+    it('unite - variadic ',() =>
+        expect(
 
-                unite([1, 2], [3, 4])([2, 4]))
+            unite([1, 2], [3, 4])([2, 4]))
 
-                .toEqual([1, 2, 3, 4]));
+            .toEqual([1, 2, 3, 4]));
 
 
-        it('unite - spread ',() =>
-            expect(
+    it('unite - spread ',() =>
+        expect(
 
-                unite(...[[1, 2], [3, 4]])([2, 4]))
+            unite(...[[1, 2], [3, 4]])([2, 4]))
 
-                .toEqual([1, 2, 3, 4]));
+            .toEqual([1, 2, 3, 4]));
 
 
-        // uniteBy
+    // uniteBy
 
-        it('uniteBy', () =>
-            expect(
+    it('uniteBy', () =>
+        expect(
 
-                uniteBy(jsonEqual)<any>([{a: 'a'}, {c: 'c'}])([{c: 'c'}, {d: 'd'}]))
+            uniteBy(jsonEqual)<any>([{a: 'a'}, {c: 'c'}])([{c: 'c'}, {d: 'd'}]))
 
-                .toEqual([{a: 'a'}, {c: 'c'}, {d: 'd'}]));
+            .toEqual([{a: 'a'}, {c: 'c'}, {d: 'd'}]));
 
 
-        // unique
+    // unique
 
-        it('unique', () =>
-            expect(
+    it('unique', () =>
+        expect(
 
-                unique([1, 1, 7, 8, 7, 1]))
+            unique([1, 1, 7, 8, 7, 1]))
 
-                .toEqual([1, 7, 8]));
+            .toEqual([1, 7, 8]));
 
 
-        it('unique - of none', () =>
-            expect(
+    it('unique - of none', () =>
+        expect(
 
-                unique([]))
+            unique([]))
 
-                .toEqual([]));
+            .toEqual([]));
 
 
-        // uniqueBy
+    // uniqueBy
 
-        it('uniqueBy with on', () =>
-            expect(
-                uniqueBy(on('a'))([{a: 1}, {a: 2}, {a: 1}])
-            ).toEqual([{a: 1}, {a: 2}])
-        );
+    it('uniqueBy with on', () =>
+        expect(
+            uniqueBy(on('a'))([{a: 1}, {a: 2}, {a: 1}])
+        ).toEqual([{a: 1}, {a: 2}])
+    );
 
 
-        it('uniqueBy', () =>
-            expect(
+    it('uniqueBy', () =>
+        expect(
 
-                uniqueBy(jsonEqual)([{a: 'c'}, {a: 'c'}]))
+            uniqueBy(jsonEqual)([{a: 'c'}, {a: 'c'}]))
 
-                .toEqual([{a: 'c'}]));
+            .toEqual([{a: 'c'}]));
 
-        // duplicates
+    // duplicates
 
-        // ...
+    // ...
 
-        // subtract
+    // subtract
 
-        it('subtract', () =>
-            expect(
+    it('subtract', () =>
+        expect(
 
-                subtract([3, 4, 5])([1, 2, 3]))
+            subtract([3, 4, 5])([1, 2, 3]))
 
-                .toEqual([1, 2]));
+            .toEqual([1, 2]));
 
 
-        it('subtract - make unique', () =>
-            expect(
+    it('subtract - make unique', () =>
+        expect(
 
-                subtract([3, 4, 5])([1, 2, 3, 3, 4, 4, 1]))
+            subtract([3, 4, 5])([1, 2, 3, 3, 4, 4, 1]))
 
-                .toEqual([1, 2]));
+            .toEqual([1, 2]));
 
 
-        it('subtract - from empty list', () =>
-            expect(
+    it('subtract - from empty list', () =>
+        expect(
 
-                subtract([3, 4, 5])([]))
+            subtract([3, 4, 5])([]))
 
-                .toEqual([]));
+            .toEqual([]));
 
 
-        it('subtract - empty list', () =>
-            expect(
+    it('subtract - empty list', () =>
+        expect(
 
-                subtract<number>([])([1, 2, 3]))
+            subtract<number>([])([1, 2, 3]))
 
-                .toEqual([1, 2, 3]));
+            .toEqual([1, 2, 3]));
 
 
-        it('subtract - no intersection', () =>
+    it('subtract - no intersection', () =>
 
-            expect(
+        expect(
 
-                subtract([4, 5, 6])([1, 2, 3]))
+            subtract([4, 5, 6])([1, 2, 3]))
 
-                .toEqual([1, 2, 3]));
+            .toEqual([1, 2, 3]));
 
 
-        it('subtract - no intersection, make unique', () =>
-            expect(
+    it('subtract - no intersection, make unique', () =>
+        expect(
 
-                subtract([4, 5, 6])([1, 2, 3, 3, 2]))
+            subtract([4, 5, 6])([1, 2, 3, 3, 2]))
 
-                .toEqual([1, 2, 3]));
+            .toEqual([1, 2, 3]));
 
 
-        it('subtract - variadic', () =>
-            expect(
+    it('subtract - variadic', () =>
+        expect(
 
-                subtract([1], [2, 4])([1, 2, 3, 3, 2, 4]))
+            subtract([1], [2, 4])([1, 2, 3, 3, 2, 4]))
 
-                .toEqual([3]));
+            .toEqual([3]));
 
 
-        it('subtract - spread', () =>
-            expect(
+    it('subtract - spread', () =>
+        expect(
 
-                subtract(...[[2], [1, 4]])([1, 2, 3, 3, 2, 4]))
+            subtract(...[[2], [1, 4]])([1, 2, 3, 3, 2, 4]))
 
-                .toEqual([3]));
+            .toEqual([3]));
 
 
-        // subtractBy
+    // subtractBy
 
-        it('subtractBy', () =>
-            expect(
+    it('subtractBy', () =>
+        expect(
 
-                subtractBy(jsonEqual)<any>([{a: 'a'}])([{a: 'a'}, {c: 'c'}]))
+            subtractBy(jsonEqual)<any>([{a: 'a'}])([{a: 'a'}, {c: 'c'}]))
 
-                .toEqual([{c: 'c'}]));
-    });
-}
+            .toEqual([{c: 'c'}]));
+});

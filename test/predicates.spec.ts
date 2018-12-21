@@ -3,196 +3,193 @@
  */
 import {empty, has, isEmpty, isNot, isUndefinedOrEmpty} from '../src/predicates';
 
-export function main() {
+/**
+ * isNot
+ * not
+ *
+ * isDefined
+ * defined
+ * isUndefined
+ *
+ * has
+ *
+ * isUndefinedOrEmpty
+ * undefinedOrEmpty
+ * isEmpty
+ * empty
+ *
+ * isTrue
+ * isFalse
+ *
+ * isArray
+ * isObject
+ */
+describe('Predicates', () => {
 
-    /**
-     * isNot
-     * not
-     *
-     * isDefined
-     * defined
-     * isUndefined
-     *
-     * has
-     *
-     * isUndefinedOrEmpty
-     * undefinedOrEmpty
-     * isEmpty
-     * empty
-     *
-     * isTrue
-     * isFalse
-     *
-     * isArray
-     * isObject
-     */
-    describe('Predicates', () => {
+    // isNot
 
-        // isNot
+    // isDefined
 
-        // isDefined
+    // isUndefined
 
-        // isUndefined
+    // has
 
-        // has
+    it('has - true', () =>
+        expect(
 
-        it('has - true', () =>
-            expect(
+            has('a.b')({a: {b: 1}}))
 
-                has('a.b')({a: {b: 1}}))
+            .toEqual(true));
 
-                .toEqual(true));
 
+    it('has - false', () =>
+        expect(
 
-        it('has - false', () =>
-            expect(
+            has('a.c')({a: {b: 1}}))
 
-                has('a.c')({a: {b: 1}}))
+            .toEqual(false));
 
-                .toEqual(false));
+    // isUndefinedOrEmpty
 
-        // isUndefinedOrEmpty
 
+    it('is a non-empty Object', () =>
+        expect(
 
-        it('is a non-empty Object', () =>
-            expect(
+            isUndefinedOrEmpty({a: 1}))
 
-                isUndefinedOrEmpty({a: 1}))
+            .toEqual(false));
 
-                .toEqual(false));
 
+    it('is an Object', () =>
+        expect(
 
-        it('is an Object', () =>
-            expect(
+            isUndefinedOrEmpty({}))
 
-                isUndefinedOrEmpty({}))
+            .toEqual(true));
 
-                .toEqual(true));
 
+    it('is an non-empty Array ', () =>
+        expect(
 
-        it('is an non-empty Array ', () =>
-            expect(
+            isUndefinedOrEmpty([1]))
 
-                isUndefinedOrEmpty([1]))
+            .toEqual(false));
 
-                .toEqual(false));
 
+    it('is an Array ', () =>
+        expect(
 
-        it('is an Array ', () =>
-            expect(
+            isUndefinedOrEmpty([]))
 
-                isUndefinedOrEmpty([]))
+            .toEqual(true));
 
-                .toEqual(true));
 
+    it('is undefined ', () =>
+        expect(
 
-        it('is undefined ', () =>
-            expect(
+            isUndefinedOrEmpty(undefined as any))
 
-                isUndefinedOrEmpty(undefined as any))
+            .toEqual(true));
 
-                .toEqual(true));
+    it('is a string non-empty string', () =>
+        expect(
 
-        it('is a string non-empty string', () =>
-            expect(
+            isUndefinedOrEmpty('a'))
 
-                isUndefinedOrEmpty('a'))
+            .toEqual(false));
 
-                .toEqual(false));
 
+    it('is a string ', () =>
+        expect(
 
-        it('is a string ', () =>
-            expect(
+            isUndefinedOrEmpty(''))
 
-                isUndefinedOrEmpty(''))
+            .toEqual(true));
 
-                .toEqual(true));
 
+    it('a number', () =>
+        expect(
 
-        it('a number', () =>
-            expect(
+            () => isUndefinedOrEmpty(1))
 
-                () => isUndefinedOrEmpty(1))
+            .toThrow());
 
-                .toThrow());
 
+    // isEmpty
 
-        // isEmpty
+    it('an Array ', () =>
+        expect(
 
-        it('an Array ', () =>
-            expect(
+            isEmpty([]))
 
-                isEmpty([]))
+            .toEqual(true));
 
-                .toEqual(true));
 
+    it('a non-empty Array ', () =>
+        expect(
 
-        it('a non-empty Array ', () =>
-            expect(
+            isEmpty([1]))
 
-                isEmpty([1]))
+            .toEqual(false));
 
-                .toEqual(false));
 
+    it('an Object', () =>
+        expect(
 
-        it('an Object', () =>
-            expect(
+            isEmpty({}))
 
-                isEmpty({}))
+            .toEqual(true));
 
-                .toEqual(true));
 
+    it('a non-empty Object', () =>
+        expect(
 
-        it('a non-empty Object', () =>
-            expect(
+            isEmpty({a: 1}))
 
-                isEmpty({a: 1}))
+            .toEqual(false));
 
-                .toEqual(false));
 
+    it('a non-empty string', () =>
+        expect(
 
-        it('a non-empty string', () =>
-            expect(
+            isEmpty(''))
 
-                isEmpty(''))
+            .toEqual(true));
 
-                .toEqual(true));
 
+    it('a string', () =>
+        expect(
 
-        it('a string', () =>
-            expect(
+            isEmpty('1'))
 
-                isEmpty('1'))
+            .toEqual(false));
 
-                .toEqual(false));
 
+    it('is undefined', () =>
+        expect(
 
-        it('is undefined', () =>
-            expect(
+            () => isEmpty(undefined as any))
 
-                () => isEmpty(undefined as any))
+            .toThrow());
 
-                .toThrow());
 
+    it('a number', () =>
+        expect(
 
-        it('a number', () =>
-            expect(
+            () => isEmpty(1))
 
-                () => isEmpty(1))
+            .toThrow());
 
-                .toThrow());
 
+    it('a string - us with is not', () =>
+        expect(
 
-        it('a string - us with is not', () =>
-            expect(
+            isNot(empty)('1'))
 
-                isNot(empty)('1'))
+            .toEqual(true));
 
-                .toEqual(true));
 
+    // isTrue
 
-        // isTrue
-
-        // isFalse
-    })
-}
+    // isFalse
+});

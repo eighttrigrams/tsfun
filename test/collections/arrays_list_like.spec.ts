@@ -5,143 +5,140 @@ import {getAtIndex, getAtIndexOr} from '../../src/arrays';
 import {to} from '../../src/objects';
 
 
-export function main() {
+/**
+ * getAtIndex
+ * getAtIndexOr
+ *
+ * map
+ * filter
+ *
+ * flatMap
+ *
+ * reverse
+ *
+ * prepend
+ * append
+ */
+describe('Arrays/List-Like-Collection', () => {
 
-    /**
-     * getAtIndex
-     * getAtIndexOr
-     *
-     * map
-     * filter
-     *
-     * flatMap
-     *
-     * reverse
-     *
-     * prepend
-     * append
-     */
-    describe('Arrays/List-Like-Collection', () => {
+    // getAtIndex
 
-        // getAtIndex
+    it('getAtIndex', () =>
 
-        it('getAtIndex', () =>
+        expect(
 
-            expect(
+            getAtIndex([1, 3, 7])(2)
 
-                getAtIndex([1, 3, 7])(2)
-
-            ).toEqual(7));
+        ).toEqual(7));
 
 
-        it('result undefined', () =>
+    it('result undefined', () =>
 
-            expect(
+        expect(
 
-                getAtIndex([1, 3, 7])(8)
+            getAtIndex([1, 3, 7])(8)
 
-            ).toEqual(undefined));
-
-
-        it('with map', () =>
-
-            expect(
-
-                [0, 2].map(getAtIndex([1, 3, 7]))
-
-            ).toEqual([1, 7]));
-
-        // getAtIndexOr
-
-        it('result undefined', () =>
-
-            expect(
-
-                getAtIndexOr([1, 3, 7], 10)(8)
-
-            ).toEqual(10));
-
-        // map
-
-        it('map', () =>
-            expect(
-
-                map((_: number) => 2 * _)([1, 2]))
-
-                .toEqual([2, 4]));
+        ).toEqual(undefined));
 
 
-        it('map - with to and flow', () =>
-            expect(
+    it('with map', () =>
 
-                flow([{a: 1}, {a: 3}],
-                    map(to('a'))))
+        expect(
 
-                .toEqual([1, 3]));
+            [0, 2].map(getAtIndex([1, 3, 7]))
 
-        // filter
+        ).toEqual([1, 7]));
 
-        it('filter', () =>
-            expect(
+    // getAtIndexOr
 
-                flow([2, 4, 3],
-                    filter(smallerThan(4))))
+    it('result undefined', () =>
 
-                .toEqual([2, 3]));
+        expect(
 
-        // flatMap
+            getAtIndexOr([1, 3, 7], 10)(8)
 
-        it('flatMap', () =>
-            expect(
+        ).toEqual(10));
 
-                flatMap((x: string) => x.split(' '))(['a b', 'c d']))
+    // map
 
-                .toEqual(['a', 'b', 'c', 'd']));
+    it('map', () =>
+        expect(
 
+            map((_: number) => 2 * _)([1, 2]))
 
-        it('flatMap - empty', () =>
-            expect(
-
-                flatMap((x: string) => x.split(' '))([]))
-
-                .toEqual([]));
+            .toEqual([2, 4]));
 
 
-        it('flatMap - one - two', () =>
-            expect(
+    it('map - with to and flow', () =>
+        expect(
 
-                flatMap((x: string) => x.split(' '))(['a b']))
+            flow([{a: 1}, {a: 3}],
+                map(to('a'))))
 
-                .toEqual(['a', 'b']));
+            .toEqual([1, 3]));
+
+    // filter
+
+    it('filter', () =>
+        expect(
+
+            flow([2, 4, 3],
+                filter(smallerThan(4))))
+
+            .toEqual([2, 3]));
+
+    // flatMap
+
+    it('flatMap', () =>
+        expect(
+
+            flatMap((x: string) => x.split(' '))(['a b', 'c d']))
+
+            .toEqual(['a', 'b', 'c', 'd']));
 
 
-        it('flatMap - one - one', () =>
-            expect(
+    it('flatMap - empty', () =>
+        expect(
 
-                flatMap((x: string) => x.split(' '))(['a']))
+            flatMap((x: string) => x.split(' '))([]))
 
-                .toEqual(['a']));
+            .toEqual([]));
 
-        // reverse
 
-        // append
+    it('flatMap - one - two', () =>
+        expect(
 
-        it('append', () =>
+            flatMap((x: string) => x.split(' '))(['a b']))
 
-            expect(
+            .toEqual(['a', 'b']));
 
-                append([1, 2])([3, 4]))
 
-                .toEqual([3, 4, 1, 2]));
+    it('flatMap - one - one', () =>
+        expect(
 
-        // prepend
+            flatMap((x: string) => x.split(' '))(['a']))
 
-        it('append', () =>
+            .toEqual(['a']));
 
-            expect(
+    // reverse
 
-                prepend([1, 2])([3, 4]))
+    // append
 
-                .toEqual([1, 2, 3, 4]));
-    });
-}
+    it('append', () =>
+
+        expect(
+
+            append([1, 2])([3, 4]))
+
+            .toEqual([3, 4, 1, 2]));
+
+    // prepend
+
+    it('append', () =>
+
+        expect(
+
+            prepend([1, 2])([3, 4]))
+
+            .toEqual([1, 2, 3, 4]));
+});
