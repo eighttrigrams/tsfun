@@ -19,11 +19,10 @@ console.log(take(2)([1,2,3]))
 
 ## Docs
 
-* General functions [reference](doc/reference.md)
-* Collection functions [reference](doc/coll.md)
+* [Functions reference](doc/reference.md)
 * [Comparators](doc/comparators.md)
-* Data [structures](doc/structures.md)
-* Design [Rationale](doc/design.md) 
+* [Data structures](doc/structures.md)
+* [Design rationale](doc/design.md) 
  
 ## Credits 
  
