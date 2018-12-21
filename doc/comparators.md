@@ -1,24 +1,4 @@
-# Comparators
 
-* [Sources](../src/comparators.ts)
-
-## Reference
-
-* tripleEqual
-* jsonEqual
-* smallerThan
-* biggerThan
-* [differentFrom/differentFromBy](../test/comparators/different_from.spec.ts)
-* [includedIn/includedInBy](../test/comparators/included_in.spec.ts)
-* [containedIn/containedInBy](../test/comparators/contained_in.spec.ts)
-* [arrayEqual/arrayEqualBy](../test/comparators/array_equal.spec.ts)
-* [arrayEquivalent/arrayEquivalentBy](../test/comparators/array_equivalent.spec.ts)
-* [objectEqual/objectEqualBy](../test/comparators/object_equal.spec.ts)
-* [equal/equalBy](../test/comparators/equal.spec.ts)
-* [equivalent](../test/comparators/equivalent.spec.ts)
-* [on/by](../test/comparators/on.spec.ts)
-* [without](../test/comparators/without.spec.ts)
-* [sameOn](../test/comparators/same_on.spec.ts)
 
 ## Overview
 
