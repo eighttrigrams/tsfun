@@ -2,7 +2,7 @@
 import {append, prepend} from '../../../src/collections/arrays_list_like';
 
 
-describe('Arrays/List-Like-Collection/append', () => {
+describe('append', () => {
 
     it('append', () =>
 

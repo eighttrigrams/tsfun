@@ -2,7 +2,7 @@ import {takeUntil} from '../../../src/collections/arrays_list_like_pick';
 import {biggerThan} from '../../../src/comparators';
 
 
-describe('Take/takeUntil', () => {
+describe('takeUntil', () => {
 
 
 

@@ -1,7 +1,7 @@
 import {takeRightWhile, takeWhile} from '../../../src/collections/arrays_list_like_pick';
 import {biggerThan, smallerThan} from '../../../src/comparators';
 
-describe('Take/takeWhile', () => {
+describe('takeWhile', () => {
 
     it('takeWhile - take five', () =>
 

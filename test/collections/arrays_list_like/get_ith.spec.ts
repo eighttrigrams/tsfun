@@ -1,7 +1,7 @@
 import {getIth, getIthOr} from '../../../src/arrays';
 
 
-describe('Arrays/List-Like-Collection/getIth', () => {
+describe('getIth/getIthOr', () => {
 
     // getIth
 

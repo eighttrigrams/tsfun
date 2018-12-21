@@ -1,7 +1,7 @@
 import {prepend} from '../../../src/collections/arrays_list_like';
 
 
-describe('Arrays/List-Like-Collection/prepend', () => {
+describe('prepend', () => {
 
     // prepend
 

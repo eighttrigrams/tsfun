@@ -3,7 +3,7 @@ import {map} from '../../../src/collections/arrays_list_like';
 import {to} from '../../../src/objects';
 
 
-describe('Arrays/List-Like-Collection/map', () => {
+describe('map', () => {
 
     // map
 

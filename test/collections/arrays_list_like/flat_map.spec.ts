@@ -1,7 +1,7 @@
 import {flatMap} from '../../../src/collections/arrays_list_like';
 
 
-describe('Arrays/List-Like-Collection/flatMap', () => {
+describe('flatMap', () => {
 
 
 

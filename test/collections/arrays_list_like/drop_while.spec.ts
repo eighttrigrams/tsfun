@@ -2,7 +2,7 @@ import {dropRightWhile, dropWhile} from '../../../src/collections/arrays_list_li
 import {biggerThan, smallerThan} from '../../../src/comparators';
 
 
-describe('Take/dropWhile', () => {
+describe('drop/dropRightWhile', () => {
 
 
     it('dropWhile - drop five', () =>

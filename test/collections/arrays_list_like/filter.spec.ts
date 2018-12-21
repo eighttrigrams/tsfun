@@ -3,7 +3,7 @@ import {smallerThan} from '../../../src/comparators';
 import {filter} from '../../../src/collections/arrays_list_like';
 
 
-describe('Arrays/List-Like-Collection/filter', () => {
+describe('filter', () => {
 
 
     // filter

@@ -1,7 +1,7 @@
 import {take} from '../../../src/collections/arrays_list_like_pick';
 
 
-describe('Take', () => {
+describe('take', () => {
 
     it('take - 5', () =>
 

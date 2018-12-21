@@ -1,7 +1,7 @@
 import {takeNth} from '../../../src/collections/arrays_list_like_pick';
 
 
-describe('Take/takeNth', () => {
+describe('takeNth', () => {
 
     it('takeNth - 2', () =>
 
