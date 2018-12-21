@@ -152,12 +152,22 @@ describe('Comparators', () => {
         ).toEqual(false));
 
 
-    it('size does matter', () =>
+    it('size does matter - first bigger (first elem same)', () =>
         expect(
 
             arrayEqual
             ([1, 2])
             ([1])
+
+        ).toEqual(false));
+
+
+    it('size does matter - second bigger (first elem same)', () =>
+        expect(
+
+            arrayEqual
+            ([1])
+            ([1, 2])
 
         ).toEqual(false));
 
