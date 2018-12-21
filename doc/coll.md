@@ -78,7 +78,7 @@ their argument, so they can be used to begin a `flow` with.
 * [subtractObject](../test/collections/objects_set_like/subtract_object.spec.ts)
 
 
-## Ordered-list-like collection methods for Objects
+## Ordered-list-like collection methods for Object-Maps
 
 * [Sources](../src/collections/objects_list_like.ts)
 
