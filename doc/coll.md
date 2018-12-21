@@ -1,7 +1,6 @@
 # Utilities for Collections
 
 * See [List-like collection functions for Maps](./objects_list_like.md)
-* See [Set-like collection functions for Maps](./objects_set_like.md)
 * See [Sources](../src/collections/coll.ts)
 
 ## Overview
@@ -68,15 +67,26 @@ their argument, so they can be used to begin a `flow` with.
 * [unique/uniqueBy](../test/collections/arrays_set_like/unique.spec.ts)
 
 
-## Set-like collection methods for Objects
+## Set-like collection methods for Object-Maps
 
-* See [Sources](../src/collections/objects_set_like.ts)
+* [Sources](../src/collections/objects_set_like.ts)
 
 ### Reference
 
 * [intersectObject](../test/collections/objects_set_like/intersect_object.spec.ts)
 * [uniteObject/unionObject](../test/collections/objects_set_like/unite_object.spec.ts)
 * [subtractObject](../test/collections/objects_set_like/subtract_object.spec.ts)
+
+
+## Ordered-list-like collection methods for Objects
+
+* [Sources](../src/collections/objects_list_like.ts)
+
+### Reference
+
+* [mapObject](../test/collections/objects_list_like/map_object.spec.ts)
+* [filterObject](../test/collections/objects_list_like/filter_object.spec.ts)
+
 
 
 
