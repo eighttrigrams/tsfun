@@ -18,7 +18,6 @@ console.log(take(2)([1,2,3]))
 
 ## Docs
 
-* [Data structures Overview](doc/structures.md)
 * [Core](doc/core.md)
 * [Flows](doc/flow.md)
 * [Predicates](doc/predicates.md)
@@ -26,9 +25,10 @@ console.log(take(2)([1,2,3]))
 * [Collection functions](doc/coll.md)
 * [Object functions](doc/objects.md)
 
-## More
+## Rationale
 
-* [Design Rationale](doc/design.md) 
+* [Data Structures](doc/structures.md)
+* [Rationale](doc/design.md) 
  
 The Ascii Art generated with http://www.patorjk.com/software/taag
 
