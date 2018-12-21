@@ -4,7 +4,7 @@
 
 [Sources](../src/objects.ts)  
 
-* [getElForPathin](../test/objects/get_el_for_path_in.spec.ts)
+* [getElForPathIn](../test/objects/get_el_for_path_in.spec.ts)
 * [takeOrMake](../test/objects/take_or_make.spec.ts)
 * [option](../test/objects/option.spec.ts)
 * [mapOption](../test/objects/map_option.spec.ts)
