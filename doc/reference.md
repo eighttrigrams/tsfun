@@ -17,8 +17,8 @@
 [Sources](../test/predicates.spec.ts)
 
 * [has](../test/predicates/has.spec.ts)
-* [empty/isEmpty](../test/predicates/is_empty.spec.ts)
-* [undefinedOrEmpty/isUndefinedOrEmpty](../test/predicates/is_undefined_or_empty.spec.ts)
+* [empty / isEmpty](../test/predicates/is_empty.spec.ts)
+* [undefinedOrEmpty / isUndefinedOrEmpty](../test/predicates/is_undefined_or_empty.spec.ts)
 * isNot
 * not
 * isDefined
@@ -94,10 +94,10 @@
 
 [Sources](../src/collections/arrays_set_like.ts)
 
-* [intersection/intersect/intersectBy](../test/collections/arrays_set_like/intersect.spec.ts)
-* [subtract/subtractBy](../test/collections/arrays_set_like/subtract.spec.ts)
-* [union/unite/uniteBy](../test/collections/arrays_set_like/union.spec.ts)
-* [unique/uniqueBy](../test/collections/arrays_set_like/unique.spec.ts)
+* [intersection / intersect/intersectBy](../test/collections/arrays_set_like/intersect.spec.ts)
+* [subtract / subtractBy](../test/collections/arrays_set_like/subtract.spec.ts)
+* [union / unite / uniteBy](../test/collections/arrays_set_like/union.spec.ts)
+* [unique / uniqueBy](../test/collections/arrays_set_like/unique.spec.ts)
 
 ## Set-like collection functions for Object-Maps
 
