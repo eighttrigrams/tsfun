@@ -864,7 +864,7 @@ describe('Comparators', () => {
             .toEqual({a: {b: {c: 4}}} as any));
 
 
-    // without
+    // without TODO remove to hasNot, according to how has is used currently. however we have to review has semantics anyway
 
     it('without',() =>
         expect(
