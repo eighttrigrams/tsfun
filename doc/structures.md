@@ -7,11 +7,13 @@ specified by
 [isArray](../test/predicates/is_array.spec.ts) and
 [isObject](../test/predicates/is_object.spec.ts).
 
-Arrays are treated as list-like data structures or 
-as set-like data structures.
+tsfun provides sets of functions which treat
 
-Objects are treated as list-like data structures or 
-as set-like data structures or as structured objects. 
+* Arrays as list-like collections
+* Array as set-like collections
+* Objects as list-like collections
+* Objects as set-like collections
+* Objects as structured entites 
 
 ## List-like
 
