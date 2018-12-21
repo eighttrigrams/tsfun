@@ -1,13 +1,13 @@
 import {
-drop,
-dropRight,
-dropRightWhile,
-dropWhile,
-take,
-takeNth,
-takeRightWhile,
-takeUntil,
-takeWhile
+    drop,
+    dropRight,
+    dropRightWhile,
+    dropWhile,
+    take,
+    takeNth,
+    takeRightWhile,
+    takeUntil,
+    takeWhile
 } from '../../src/collections/arrays_list_like_pick';
 
 import {biggerThan, smallerThan} from '../../src/comparators';
