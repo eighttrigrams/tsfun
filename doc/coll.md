@@ -1,9 +1,5 @@
 # Utilities for Collections
 
-* See [List-like collection functions for Maps](./objects_list_like.md)
-* See [Sources](../src/collections/coll.ts)
-
-## Overview
 
 Note that all collection functions return shallow copies.
 In the same spirit, all collection functions compare in their basic versions
@@ -11,11 +7,15 @@ with `tripleEqual` a.k.a. `===`. For the most functions there is a -By suffixed
 version where one can choose the Comparator however. See `wrap` [here](./core.md) 
 for seeing how to return clones. 
 
+## General collection functions
+
+* [Sources](../src/collections/coll.ts)
+
 ### Reference
 
-* [copy](../test/collections/coll.spec.ts)
+* [copy](../test/collections/copy.spec.ts)
 
-## Ordered-list-like collection methods for Arrays
+## Ordered-list-like collection functions for Arrays
 
 * [Sources](../src/collections/arrays_list_like.ts)
 
@@ -30,7 +30,7 @@ for seeing how to return clones.
 * [separate](../test/collections/arrays_list_like/separate.spec.ts)
 
 
-## Ordered-list-like collection methods - Picking methods for Arrays
+## Ordered-list-like collection functions - Picking methods for Arrays
 
 * [Sources](../src/collections/arrays_list_like_pick.ts)
 
@@ -43,7 +43,7 @@ for seeing how to return clones.
 * [dropWhile/dropRightWhile](../test/collections/arrays_list_like/drop_while.spec.ts)
 
 
-## Set-like collection methods for Arrays
+## Set-like collection functions for Arrays
 
 * [Sources](../src/collections/arrays_set_like.ts)
 
@@ -67,7 +67,7 @@ their argument, so they can be used to begin a `flow` with.
 * [unique/uniqueBy](../test/collections/arrays_set_like/unique.spec.ts)
 
 
-## Set-like collection methods for Object-Maps
+## Set-like collection functions for Object-Maps
 
 * [Sources](../src/collections/objects_set_like.ts)
 
@@ -78,7 +78,7 @@ their argument, so they can be used to begin a `flow` with.
 * [subtractObject](../test/collections/objects_set_like/subtract_object.spec.ts)
 
 
-## Ordered-list-like collection methods for Object-Maps
+## Ordered-list-like collection functions for Object-Maps
 
 * [Sources](../src/collections/objects_list_like.ts)
 

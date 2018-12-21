@@ -1,7 +1,7 @@
 import {copy} from '../../src/collections/coll';
 
 
-describe('General/Collection', () => {
+describe('copy', () => {
 
 
     it('copy - array',() =>
