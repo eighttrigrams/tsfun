@@ -154,6 +154,16 @@ export function main() {
             ).toEqual(false));
 
 
+        it('size does matter', () =>
+            expect(
+
+                arrayEqual
+                ([1, 2])
+                ([1])
+
+            ).toEqual(false));
+
+
         it('nested', () =>
             expect(
 

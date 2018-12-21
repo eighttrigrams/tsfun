@@ -87,9 +87,11 @@ export const arrayEqualBy = (objectComparator?: Comparator) =>
 
         const ocmp = objectComparator ? objectComparator : objectEqual;
 
-        return as1
-            .filter((a, i) => compare(arrayEqual as any, ocmp)(a)(as2[i]))
-            .length === as2.length;
+        return as1.length !== as2.length
+            ? false
+            : as1
+                .filter((a, i) => compare(arrayEqual as any, ocmp)(a)(as2[i]))
+                .length === as2.length;
     };
 
 
