@@ -86,9 +86,9 @@
 
 * [take](../test/collections/arrays_list_like/take.spec.ts)
 * [takeNth](../test/collections/arrays_list_like/take_nth.spec.ts)
-* [takeWhile/takeRightWhile](../test/collections/arrays_list_like/take_while.spec.ts)
-* [drop/dropRight](../test/collections/arrays_list_like/drop.spec.ts)
-* [dropWhile/dropRightWhile](../test/collections/arrays_list_like/drop_while.spec.ts)
+* [takeWhile / takeRightWhile](../test/collections/arrays_list_like/take_while.spec.ts)
+* [drop / dropRight](../test/collections/arrays_list_like/drop.spec.ts)
+* [dropWhile / dropRightWhile](../test/collections/arrays_list_like/drop_while.spec.ts)
 
 ## Set-like collection functions for Arrays
 
