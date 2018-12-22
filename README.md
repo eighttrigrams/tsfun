@@ -162,7 +162,7 @@ and allow duplicates. The operation is linear an vector like.
 
 [Sources](src/collections/arrays_set_like.ts)
 
-* [intersection / intersect/ intersectBy](test/collections/arrays_set_like/intersect.spec.ts)
+* [intersection / intersect / intersectBy](test/collections/arrays_set_like/intersect.spec.ts)
 * [subtract / subtractBy](test/collections/arrays_set_like/subtract.spec.ts)
 * [union / unite / uniteBy](test/collections/arrays_set_like/union.spec.ts)
 * [unique / uniqueBy](test/collections/arrays_set_like/unique.spec.ts)
