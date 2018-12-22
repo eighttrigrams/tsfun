@@ -73,7 +73,7 @@ Due to the standard comparison with `===`,
 behaviour easily.
 `differentFromBy(jsonEqual)({a: 1})({a: 1})` gives `false`.
 
-#### Compositions
+#### Composition
 
 [Sources](../src/core.ts) Core<br>
 [Sources](../src/flow.ts) Flow
