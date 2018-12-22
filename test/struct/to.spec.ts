@@ -1,15 +1,4 @@
-/**
- * takeOrMake
- *
- * option
- *
- * mapOption
- *
- * to
- *
- * intoObject
- */
-import {to} from '../../src/objects';
+import {to} from '../../src/struct';
 
 
 describe('to', () => {
@@ -49,5 +38,4 @@ describe('to', () => {
             [{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}].map(to('a.c')))
 
             .toEqual([undefined, {d: 'e'}]));
-
 });

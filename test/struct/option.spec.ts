@@ -1,18 +1,7 @@
-/**
- * takeOrMake
- *
- * option
- *
- * mapOption
- *
- * to
- *
- * intoObject
- */
-import {option, to} from '../../src/objects';
 import {flow} from '../../src/flow';
 import {jsonEqual, on, tripleEqual} from '../../src/comparators';
 import {isEmpty} from '../../src/predicates';
+import {option, to} from '../../src/struct';
 
 
 describe('Objects', () => {

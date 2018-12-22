@@ -1,6 +1,6 @@
 import {flow} from '../../../src/flow';
 import {map} from '../../../src/collections/arrays_list_like';
-import {to} from '../../../src/objects';
+import {to} from '../../../src/struct';
 
 
 describe('map', () => {

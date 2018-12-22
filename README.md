@@ -82,11 +82,11 @@ behaviour easily.
 * [compose](test/core/compose.spec.ts)
 * [wrap](test/core/wrap.spec.ts)
 
-#### Misc
+### Structures and Collections
+
+[Sources](src/core.ts)
 
 * [get](test/core/get.spec.ts)
-
-### Structures and Collections
 
 In general, **tsfun** functions are mainly designed to 
 work with ***Arrays*** and ***Objects***, whose 
@@ -97,28 +97,30 @@ specified by
 
 tsfun provides sets of functions which treat
 
-* Arrays as list-like collections
-* Arrays as set-like collections
-* Objects as list-like collections
-* Objects as set-like collections
-* Objects as structured entites 
+* Arrays as list-like collections, ArrayList
+* Arrays as set-like collections, ArraySet
+* Objects as list-like collections, ObjectList
+* Objects as set-like collections, ObjectSet
+* Objects as structured entites, Struct
 
-#### Object functions
+#### Struct functions
 
-[Sources](src/objects.ts)  
+[Sources](src/struct.ts)  
 
-* [getElForPathIn](test/objects/get_el_for_path_in.spec.ts)
-* [takeOrMake](test/objects/take_or_make.spec.ts)
-* [option](test/objects/option.spec.ts)
-* [mapOption](test/objects/map_option.spec.ts)
-* [to](test/objects/to.spec.ts)
-* [intoObject](test/objects/into_object.spec.ts)
-* [clone](test/objects/clone.spec.ts)
+* [getElForPathIn](test/struct/get_el_for_path_in.spec.ts)
+* [takeOrMake](test/struct/take_or_make.spec.ts)
+* [option](test/struct/option.spec.ts)
+* [mapOption](test/struct/map_option.spec.ts)
+* [to](test/struct/to.spec.ts)
+* [intoObject](test/struct/into_object.spec.ts)
+* [clone](test/struct/clone.spec.ts)
 
-We talk about about tsfun Objects in contexts where we 
+We talk about about tsfun Structs in contexts where we 
 care about a composed data structure, like
 for example `{a: {b: [1, 2, 4], c: 'e'}`, whereas the list- 
 and set-like data structures are concerned with the top level of the data structure.
+
+TODO define Struct as type
 
 TODO talk about equal, arrayEquivalent, objectEquivalent, copies (copy vs clone) etc.
 Arrays can be seen as deep nested structures as well.

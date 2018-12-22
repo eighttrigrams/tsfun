@@ -127,7 +127,7 @@ export {
     option,
     to,
     intoObject
-} from './src/objects';
+} from './src/struct';
 
 
 // TODO make

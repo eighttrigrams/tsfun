@@ -1,15 +1,4 @@
-/**
- * takeOrMake
- *
- * option
- *
- * mapOption
- *
- * to
- *
- * intoObject
- */
-import {intoObject} from '../../src/objects';
+import {intoObject} from '../../src/struct';
 
 
 describe('intoObject', () => {

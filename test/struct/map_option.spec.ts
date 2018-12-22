@@ -1,17 +1,6 @@
-/**
- * takeOrMake
- *
- * option
- *
- * mapOption
- *
- * to
- *
- * intoObject
- */
-import {mapOption, option, to} from '../../src/objects';
 import {flow} from '../../src/flow';
 import {on} from '../../src/comparators';
+import {mapOption, option, to} from '../../src/struct';
 
 
 describe('Objects', () => {
