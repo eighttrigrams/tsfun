@@ -19,7 +19,6 @@ console.log(take(2)([1,2,3]))
 
 ## Docs
 
-* [Data structures](doc/structures.md)
 * [Function reference](doc/reference.md)
 * [Design rationale](doc/design.md) 
  

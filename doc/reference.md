@@ -1,6 +1,8 @@
 # Function reference
 
-## Predicates
+## Basic functionality
+
+### Predicates
 
 [Sources](../test/predicates.spec.ts)
 
@@ -16,7 +18,7 @@
 
 `type Predicate<A> = (_: A) => boolean`
 
-## Comparators
+### Comparators
 
 [Sources](../src/comparators.ts)
 
@@ -52,7 +54,7 @@ Due to the standard comparison with `===`,
 behaviour easily.
 `differentFromBy(jsonEqual)({a: 1})({a: 1})` gives `false`.
 
-## Compositions
+### Compositions
 
 [Sources](../src/core.ts) Core<br>
 [Sources](../src/flow.ts) Flow
@@ -61,7 +63,28 @@ behaviour easily.
 * [compose](../test/core/compose.spec.ts)
 * [wrap](../test/core/wrap.spec.ts)
 
-## Object functions
+### Misc
+
+* [get](../test/core/wrap.spec.ts)
+
+## Structures and Collections
+
+In general, **tsfun** functions are mainly designed to 
+work with ***Arrays*** and ***Objects***, whose 
+meaning in our context is  
+specified by
+[isArray](../test/predicates/is_array.spec.ts) and
+[isObject](../test/predicates/is_object.spec.ts).
+
+tsfun provides sets of functions which treat
+
+* Arrays as list-like collections
+* Array as set-like collections
+* Objects as list-like collections
+* Objects as set-like collections
+* Objects as structured entites 
+
+### Object functions
 
 [Sources](../src/objects.ts)  
 
@@ -73,13 +96,24 @@ behaviour easily.
 * [intoObject](../test/objects/into_object.spec.ts)
 * [clone](../test/objects/clone.spec.ts)
 
-## General collection functions
+We talk about about tsfun Objects in contexts where we 
+care about a composed data structure, like
+for example `{a: {b: [1, 2, 4], c: 'e'}`, whereas the list- 
+and set-like data structures are concerned with the top level of the data structure.
+
+TODO talk about equal, arrayEquivalent, objectEquivalent, copies (copy vs clone) etc.
+Arrays can be seen as deep nested structures as well.
+
+TODO -Object suffixed collection functions 
+TODO mention typescript index signatures and -Map suffix
+
+### General collection functions
 
 [Sources](../src/collections/coll.ts)
 
 * [copy](../test/collections/copy.spec.ts)
 
-## Ordered-list-like collection functions for Arrays
+### Ordered-list-like collection functions for Arrays
 
 [Sources](../src/collections/arrays_list_like.ts)
 
@@ -91,7 +125,11 @@ behaviour easily.
 * [map](../test/collections/arrays_list_like/map.spec.ts)
 * [separate](../test/collections/arrays_list_like/separate.spec.ts)
 
-## Ordered-list-like collection functions - Picking methods for Arrays
+If we say list-like data structure, we mean that if a 
+function operates on an array or object, we retain order
+and allow duplicates. The operation is linear an vector like.
+
+### Ordered-list-like collection functions - Picking methods for Arrays
 
 [Sources](../src/collections/arrays_list_like_pick.ts)
 
@@ -101,7 +139,7 @@ behaviour easily.
 * [drop / dropRight](../test/collections/arrays_list_like/drop.spec.ts)
 * [dropWhile / dropRightWhile](../test/collections/arrays_list_like/drop_while.spec.ts)
 
-## Set-like collection functions for Arrays
+### Set-like collection functions for Arrays
 
 [Sources](../src/collections/arrays_set_like.ts)
 
@@ -110,7 +148,24 @@ behaviour easily.
 * [union / unite / uniteBy](../test/collections/arrays_set_like/union.spec.ts)
 * [unique / uniqueBy](../test/collections/arrays_set_like/unique.spec.ts)
 
-## Set-like collection functions for Object-Maps
+If we say set-like data structure, we mean that if a 
+function operates on an array or object, we assume that 
+or explicitely take care that the data structure has
+no duplicates.
+
+Set methods come in two flavours, array set methods and object set methods.
+Both of these have in common that the respective data structures are treated 
+as if they were sets, hence we also call them set-like methods.
+
+Every set method's result is not only `Array<A>` but also consists 
+of unique items (compared with `==`). Where possible, the order of 
+the arguments is kept.
+
+`intersect`, `subtract`, `unite` and `uniqe` are partials, which can be inserted
+into the body of a `flow`. `intersection` and `union` take a `NestedArray<A>` as
+their argument, so they can be used to begin a `flow` with.
+
+### Set-like collection functions for Object-Maps
 
 [Sources](../src/collections/objects_set_like.ts)
 
@@ -118,16 +173,12 @@ behaviour easily.
 * [uniteObject / unionObject](../test/collections/objects_set_like/unite_object.spec.ts)
 * [subtractObject](../test/collections/objects_set_like/subtract_object.spec.ts)
 
-## Ordered-list-like collection functions for Object-Maps
+### Ordered-list-like collection functions for Object-Maps
 
 [Sources](../src/collections/objects_list_like.ts)
 
 * [mapObject](../test/collections/objects_list_like/map_object.spec.ts)
 * [filterObject](../test/collections/objects_list_like/filter_object.spec.ts)
-
-## Misc
-
-* [get](../test/core/wrap.spec.ts)
 
 
 
