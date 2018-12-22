@@ -25,7 +25,7 @@ console.log(take(2)([1,2,3]))
 
 [Sources](test/predicates.spec.ts)
 
-* [has / hasNot](test/predicates/has.spec.ts) test if struct defined of path
+* [has / hasNot](test/predicates/has.spec.ts) 
 * [empty / isEmpty](test/predicates/is_empty.spec.ts)
 * [undefinedOrEmpty / isUndefinedOrEmpty](test/predicates/is_undefined_or_empty.spec.ts)
 * [isTrue / isFalse](test/predicates/is_true.spec.ts)
@@ -140,13 +140,13 @@ elements. So there is no automatic cloning.
 
 [Sources](src/collections/arrays_list_like.ts)
 
-* [prepend](test/collections/arrays_list_like/prepend.spec.ts) prepends one list before the other 
-* [append](test/collections/arrays_list_like/append.spec.ts) appends one list to the other
-* [getIth / getIthOr](test/collections/arrays_list_like/get_ith.spec.ts) get ith element
-* [filter](test/collections/arrays_list_like/filter.spec.ts) filters one list
-* [map](test/collections/arrays_list_like/map.spec.ts) maps one list to a new one
+* [prepend](test/collections/arrays_list_like/prepend.spec.ts)  
+* [append](test/collections/arrays_list_like/append.spec.ts) 
+* [getIth / getIthOr](test/collections/arrays_list_like/get_ith.spec.ts) 
+* [filter](test/collections/arrays_list_like/filter.spec.ts) 
+* [map](test/collections/arrays_list_like/map.spec.ts) 
 * [flatMap](test/collections/arrays_list_like/flat_map.spec.ts)
-* [separate](test/collections/arrays_list_like/separate.spec.ts) separates one list into two
+* [separate](test/collections/arrays_list_like/separate.spec.ts) 
 
 If we say list-like data structure, we mean that if a 
 function operates on an array or object, we retain order
