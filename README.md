@@ -126,7 +126,7 @@ Arrays can be seen as deep nested structures as well.
 TODO -Object suffixed collection functions 
 TODO mention typescript index signatures and -Map suffix
 
-#### General collection functions
+#### Collection functions
 
 [Sources](src/collections/coll.ts)
 
