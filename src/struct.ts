@@ -45,8 +45,8 @@ export const mapOption = <A>(f: (a: A) => A) =>
 export const to = reverseUncurry2(getElForPathIn);
 
 
-export const intoObject = <T>(f: (_: any) => [string, T]) =>
-    (object: TypedMap<T>, item: any) =>
-        isDefined(f(item)[0])
-            ? (object[f(item)[0]] = f(item)[1], object)
+export const intoObject = <T>(keyName: string, valName: string) =>
+    (object: TypedMap<T>, item: TypedMap<T>) =>
+        isDefined(item[keyName])
+            ? (object[(item[keyName]).toString()] = item[valName], object)
             : object;

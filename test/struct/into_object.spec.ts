@@ -3,33 +3,52 @@ import {intoObject} from '../../src/struct';
 
 describe('intoObject', () => {
 
-
-
-    // intoObject
-
-    it('intoObject', () =>
+    it('number key', () =>
         expect(
 
-            intoObject(_ => [_.key, _.val])
+            intoObject('key', 'val')
                 ({}, {key: 2, val: 7}))
 
-            .toEqual({2: 7} as any));
+            .toEqual({2: 7}));
 
 
-    it('intoObject - with reduce', () =>
+    it('string key', () =>
+        expect(
+
+            intoObject('key', 'val')
+            ({}, {key: '2', val: 7}))
+
+            .toEqual({2: 7}));
+
+
+    it(' with reduce', () =>
         expect(
 
             [{key: 2, val: 7}, {key: 3, val: 8}]
-                .reduce(intoObject(_ => [_.key, _.val]), {}))
+                .reduce(intoObject('key', 'val'), {}))
 
-            .toEqual({2: 7, 3: 8} as any));
+            .toEqual({2: 7, 3: 8}));
 
 
-    it('intoObject - missing key', () =>
+    it('missing key', () =>
         expect(
 
             [{key: 2, val: 7}, {val: 8}]
-                .reduce(intoObject(_ => [_.key, _.val]), {}))
+                .reduce(intoObject('key', 'val'), {}))
 
-            .toEqual({2: 7} as any));
+            .toEqual({2: 7}));
+
+
+    it('missing val', () =>
+        expect(
+
+            [{key: 2, val: 7}, {key: 8}]
+                .reduce(intoObject('key', 'val'), {}))
+
+            .toEqual({2: 7, 8: undefined}));
+
+
+    // to see if typing works
+
+
 });
