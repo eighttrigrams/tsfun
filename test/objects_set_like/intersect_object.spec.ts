@@ -1,4 +1,4 @@
-import {intersectObject} from '../../../src/collections/objects_set_like';
+import {intersectObject} from '../../src/collections/objects_set_like';
 
 
 describe('intersectObject', () => {

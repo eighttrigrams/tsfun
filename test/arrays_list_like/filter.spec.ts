@@ -1,10 +1,9 @@
-import {flow} from '../../../src/flow';
-import {smallerThan} from '../../../src/comparators';
-import {filter} from '../../../src/collections/arrays_list_like';
+import {filter} from '../../src/collections/arrays_list_like';
+import {flow} from '../../src/flow';
+import {smallerThan} from '../../src/comparators';
 
 
 describe('filter', () => {
-
 
     // filter
 
@@ -15,6 +14,4 @@ describe('filter', () => {
                 filter(smallerThan(4))))
 
             .toEqual([2, 3]));
-
-
 });

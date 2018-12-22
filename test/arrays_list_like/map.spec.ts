@@ -1,11 +1,9 @@
-import {flow} from '../../../src/flow';
-import {map} from '../../../src/collections/arrays_list_like';
-import {to} from '../../../src/struct';
+import {flow} from '../../src/flow';
+import {to} from '../../src/struct';
+import {map} from '../../src/collections/arrays_list_like';
 
 
 describe('map', () => {
-
-    // map
 
     it('map', () =>
         expect(

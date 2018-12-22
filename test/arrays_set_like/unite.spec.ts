@@ -1,8 +1,8 @@
 /**
  * @author Daniel de Oliveira
  */
-import {union, unionBy, unite, uniteBy} from '../../../src/collections/arrays_set_like';
-import {jsonEqual} from '../../../src/comparators';
+import {union, unionBy, unite, uniteBy} from '../../src/collections/arrays_set_like';
+import {jsonEqual} from '../../src/comparators';
 
 
 describe('union/unite/unityBy', () => {

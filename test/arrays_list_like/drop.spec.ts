@@ -1,6 +1,6 @@
-import {drop, dropRight} from '../../../src/collections/arrays_list_like_pick';
+import {drop, dropRight} from '../../src/collections/arrays_list_like_pick';
 
-describe('drop/dropRight', () => {
+describe('drop / dropRight', () => {
 
 
 

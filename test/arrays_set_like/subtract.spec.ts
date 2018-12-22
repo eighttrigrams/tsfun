@@ -1,8 +1,8 @@
 /**
 * @author Daniel de Oliveira
 */
-import {subtract, subtractBy} from '../../../src/collections/arrays_set_like';
-import {jsonEqual} from '../../../src/comparators';
+import {subtract, subtractBy} from '../../src/collections/arrays_set_like';
+import {jsonEqual} from '../../src/comparators';
 
 
 describe('Arrays/Set-Like-Collection', () => {

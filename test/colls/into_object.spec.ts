@@ -1,4 +1,4 @@
-import {intoObject} from '../../src/struct';
+import {intoObject} from '../../src/collections/coll';
 
 
 describe('intoObject', () => {

@@ -1,5 +1,5 @@
-import {intersect, intersectBy, intersection, intersectionBy} from '../../../src/collections/arrays_set_like';
-import {jsonEqual} from '../../../src/comparators';
+import {intersect, intersectBy, intersection, intersectionBy} from '../../src/collections/arrays_set_like';
+import {jsonEqual} from '../../src/comparators';
 
 describe('intersection/intersect/intersectBy', () => {
 

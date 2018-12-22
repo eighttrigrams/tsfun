@@ -1,8 +1,8 @@
 /**
  * @author Daniel de Oliveira
  */
-import {unique, uniqueBy} from '../../../src/collections/arrays_set_like';
-import {jsonEqual, on} from '../../../src/comparators';
+import {unique, uniqueBy} from '../../src/collections/arrays_set_like';
+import {jsonEqual, on} from '../../src/comparators';
 
 
 describe('unique/uniqueBy', () => {

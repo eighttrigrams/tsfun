@@ -1,11 +1,8 @@
-import {flatMap} from '../../../src/collections/arrays_list_like';
+import {flatMap} from '../../src/collections/arrays_list_like';
 
 
 describe('flatMap', () => {
 
-
-
-    // flatMap
 
     it('flatMap', () =>
         expect(

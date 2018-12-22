@@ -1,4 +1,4 @@
-import {take} from '../../../src/collections/arrays_list_like_pick';
+import {take} from '../../src/collections/arrays_list_like_pick';
 
 
 describe('take', () => {

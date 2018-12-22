@@ -116,7 +116,7 @@ export {
 } from './src/collections/objects_list_like'
 
 
-export {copy} from './src/collections/coll';
+export {copy, intoObject} from './src/collections/coll';
 
 export {jsonClone, by, wrap} from './src/core';
 
@@ -127,8 +127,7 @@ export {doWhen, addTo, mapTo} from './src/utils';
 export {
     takeOrMake,
     option,
-    to,
-    intoObject
+    to
 } from './src/struct';
 
 
