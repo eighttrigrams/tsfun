@@ -61,3 +61,6 @@ export const isFalse: Predicate<boolean> = (b: boolean) => b === false;
 
 
 export const has = (path: string) => (o: Object) => on(path, isDefined)(o);
+
+
+export const hasNot = (path: string) => (o: Object) => not(on(path, isDefined))(o);

@@ -25,7 +25,7 @@ console.log(take(2)([1,2,3]))
 
 [Sources](test/predicates.spec.ts)
 
-* [has](test/predicates/has.spec.ts)
+* [has / hasNot](test/predicates/has.spec.ts)
 * [empty / isEmpty](test/predicates/is_empty.spec.ts)
 * [undefinedOrEmpty / isUndefinedOrEmpty](test/predicates/is_undefined_or_empty.spec.ts)
 * [isTrue / isFalse](test/predicates/is_true.spec.ts)

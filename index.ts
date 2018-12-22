@@ -10,6 +10,7 @@ export {
     defined,
     isUndefined,
     has,
+    hasNot,
     isUndefinedOrEmpty,
     undefinedOrEmpty,
     isEmpty,
