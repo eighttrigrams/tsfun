@@ -98,7 +98,7 @@ specified by
 tsfun provides sets of functions which treat
 
 * Arrays as list-like collections
-* Array as set-like collections
+* Arrays as set-like collections
 * Objects as list-like collections
 * Objects as set-like collections
 * Objects as structured entites 
@@ -132,23 +132,27 @@ TODO mention typescript index signatures and -Map suffix
 
 * [copy](test/collections/copy.spec.ts)
 
-#### Ordered-list-like collection functions for Arrays
+Like copy, all of the following collections methods always return
+new Arrays or Objects, but their elements are pointers to the old
+elements. So there is no automatic cloning.
+
+##### Ordered-list-like collection functions for Arrays
 
 [Sources](src/collections/arrays_list_like.ts)
 
-* [prepend](test/collections/arrays_list_like/prepend.spec.ts)
-* [append](test/collections/arrays_list_like/append.spec.ts)
-* [getIth / getIthOr](test/collections/arrays_list_like/get_ith.spec.ts)
+* [prepend](test/collections/arrays_list_like/prepend.spec.ts) prepends one list before the other 
+* [append](test/collections/arrays_list_like/append.spec.ts) appends one list to the other
+* [getIth / getIthOr](test/collections/arrays_list_like/get_ith.spec.ts) get ith element
+* [filter](test/collections/arrays_list_like/filter.spec.ts) filters one list
+* [map](test/collections/arrays_list_like/map.spec.ts) maps one list to a new one
 * [flatMap](test/collections/arrays_list_like/flat_map.spec.ts)
-* [filter](test/collections/arrays_list_like/filter.spec.ts)
-* [map](test/collections/arrays_list_like/map.spec.ts)
-* [separate](test/collections/arrays_list_like/separate.spec.ts)
+* [separate](test/collections/arrays_list_like/separate.spec.ts) separates one list into two
 
 If we say list-like data structure, we mean that if a 
 function operates on an array or object, we retain order
 and allow duplicates. The operation is linear an vector like.
 
-#### Ordered-list-like collection functions - Picking methods for Arrays
+##### Ordered-list-like collection functions - Picking methods for Arrays
 
 [Sources](src/collections/arrays_list_like_pick.ts)
 
@@ -158,7 +162,7 @@ and allow duplicates. The operation is linear an vector like.
 * [drop / dropRight](test/collections/arrays_list_like/drop.spec.ts)
 * [dropWhile / dropRightWhile](test/collections/arrays_list_like/drop_while.spec.ts)
 
-#### Set-like collection functions for Arrays
+##### Set-like collection functions for Arrays
 
 [Sources](src/collections/arrays_set_like.ts)
 
@@ -184,7 +188,7 @@ the arguments is kept.
 into the body of a `flow`. `intersection` and `union` take a `NestedArray<A>` as
 their argument, so they can be used to begin a `flow` with.
 
-#### Set-like collection functions for Object-Maps
+##### Set-like collection functions for Object-Maps
 
 [Sources](src/collections/objects_set_like.ts)
 
@@ -192,7 +196,7 @@ their argument, so they can be used to begin a `flow` with.
 * [uniteObject / unionObject](test/collections/objects_set_like/unite_object.spec.ts)
 * [subtractObject](test/collections/objects_set_like/subtract_object.spec.ts)
 
-#### Ordered-list-like collection functions for Object-Maps
+##### Ordered-list-like collection functions for Object-Maps
 
 [Sources](src/collections/objects_list_like.ts)
 
