@@ -1,4 +1,4 @@
-import {get} from '../../src/core';
+import {get} from '../../src/colls_struct';
 
 describe('get', () => {
 

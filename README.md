@@ -68,7 +68,7 @@ functions to accompany these.
 * [objectEqual / objectEqualBy](test/comparators/object_equal.spec.ts)
 * [equal / equalBy](test/comparators/equal.spec.ts)
 * [equivalent](test/comparators/equivalent.spec.ts)
-* [on/by](test/comparators/on.spec.ts)
+* [on / by](test/comparators/on.spec.ts)
 * [without](test/comparators/without.spec.ts)
 * [sameOn](test/comparators/same_on.spec.ts)
 
@@ -100,7 +100,7 @@ behaviour easily.
 
 #### Structures and Collections
 
-[Sources](src/core.ts)
+[Sources](src/colls_struct.ts)
 
 * [get](test/core/get.spec.ts)
 

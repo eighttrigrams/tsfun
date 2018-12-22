@@ -5,6 +5,8 @@ import {by} from '../../src/core';
 
 describe('on/by', () => {
 
+    // used for structs within arrays
+
     // compares elements on path directly with a certain value
     //
     // [{a: {b: 'c'}}, {a: {b: 'd'}}]

@@ -1,9 +1,21 @@
 import {isDefined, isEmpty} from './predicates';
-import {getElForPathIn, reverseUncurry2} from './core';
+import {reverseUncurry2} from './core';
 import {TypedMap} from './types';
 
 
+// library internal
+export function getElForPathIn(object: any, path: string) {
 
+    let result = object;
+    for (let segment of path.split('.')) {
+        if (result[segment]
+            || result[segment] === ''
+            || result[segment] === 0
+            || result[segment] === false) result = result[segment];
+        else return result = undefined;
+    }
+    return result;
+}
 
 
 export function takeOrMake(object: Object, path: string, val: any) {

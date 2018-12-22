@@ -1,5 +1,4 @@
-
-import {getElForPathIn} from '../../src/core';
+import {getElForPathIn} from '../../src/struct';
 
 
 describe('getElForPathIn', () => {

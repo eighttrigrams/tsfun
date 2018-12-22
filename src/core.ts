@@ -1,19 +1,8 @@
 import {getIth} from './arrays';
+import {getElForPathIn} from './struct';
 
 
-// library internal
-export function getElForPathIn(object: any, path: string) {
 
-    let result = object;
-    for (let segment of path.split('.')) {
-        if (result[segment]
-            || result[segment] === ''
-            || result[segment] === 0
-            || result[segment] === false) result = result[segment];
-        else return result = undefined;
-    }
-    return result;
-}
 
 export const identical = <A>(v: A) => v;
 
@@ -37,16 +26,7 @@ export const reverseUncurry2 = <A>(f: (_1: A, _2: A) => A) =>
 export const jsonClone = <O>(object: O) => JSON.parse(JSON.stringify(object)) as O;
 
 
-export const get = <T>(ds: Object|Array<T>, alternative?: any) => (path: string|number) => {
 
-    const result = (typeof path === 'number')
-        ? getIth(ds as Array<T>)(path)
-        : getElForPathIn(ds as Object, path);
-
-    return result !== undefined
-        ? result
-        : alternative;
-};
 
 
 

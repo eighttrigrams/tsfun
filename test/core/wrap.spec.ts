@@ -1,5 +1,6 @@
-import {get, jsonClone, wrap} from '../../src/core';
+import {jsonClone, wrap} from '../../src/core';
 import {intersect} from '../../src/collections/arrays_set_like';
+import {get} from '../../src/colls_struct';
 
 describe('wrap', () => {
 

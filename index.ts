@@ -118,7 +118,9 @@ export {
 
 export {copy} from './src/collections/coll';
 
-export {jsonClone, by, wrap, get} from './src/core';
+export {jsonClone, by, wrap} from './src/core';
+
+export {get} from './src/colls_struct';
 
 export {doWhen, addTo, mapTo} from './src/utils';
 
