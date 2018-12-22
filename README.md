@@ -84,7 +84,7 @@ behaviour easily.
 
 #### Misc
 
-* [get](test/core/wrap.spec.ts)
+* [get](test/core/get.spec.ts)
 
 ### Structures and Collections
 
