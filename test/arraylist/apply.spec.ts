@@ -1,9 +1,9 @@
-/**
- * @author Daniel de Oliveira
- */
 import {apply} from '../../src/arraylist';
 
 
+/**
+ * @author Daniel de Oliveira
+ */
 describe('apply', () => {
 
     it('apply',() =>

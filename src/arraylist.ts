@@ -44,10 +44,10 @@ export const filter = <A>(f: Predicate<A>): Transformation<Array<A>> =>
         as.filter(f);
 
 
-const intoArrayWith = <A>(f: (_: A) => Array<A>) => (acc: Array<A>, val: A) => acc.concat(f(val));
+export const intoArrayWith = <A>(f: (_: A) => Array<A>) => (acc: Array<A>, val: A) => acc.concat(f(val));
 
 
-const intoArray = intoArrayWith(identical as any);
+export const intoArray = intoArrayWith(identical as any);
 
 
 export const drop = <A>(n: number) =>
