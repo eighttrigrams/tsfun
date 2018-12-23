@@ -219,6 +219,8 @@ their argument, so they can be used to begin a `flow` with.
 * [mapObject](test/objects_list_like/map_object.spec.ts)
 * [filterObject](test/objects_list_like/filter_object.spec.ts)
 
+`type TypedObjectList<T> = TypedMap<T>;`
+
 ## Docs
 
 * [Design rationale](doc/design.md) 

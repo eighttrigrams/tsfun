@@ -28,4 +28,13 @@ export interface UntypedMap {[prop: string]: any|undefined}
 export interface TypedMap<T> {[prop: string]: T}
 
 
+export type TypedObjectList<T> = TypedMap<T>;
+
+
 export type Pair<A> = [A, A];
+
+
+export type ArrayList<T> = Array<T>;
+
+
+export type ArraySet<T> = Array<T>;

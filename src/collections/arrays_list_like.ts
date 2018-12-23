@@ -1,4 +1,4 @@
-import {Pair, Predicate, Transformation} from '../types';
+import {ArrayList, Pair, Predicate, Transformation} from '../types';
 import {identical} from '../core';
 import {isNot} from '../predicates';
 
@@ -9,19 +9,19 @@ export const separate = <A>(p: Predicate<A>) =>
         [as.filter(p), as.filter(isNot(p))];
 
 
-export const reverse = <A>(as: Array<A>): Array<A> =>
+export const reverse = <A>(as: ArrayList<A>): ArrayList<A> =>
     as.reverse();
 
 
-export const append = <A>(as2: Array<A>) => (as: Array<A>) =>
+export const append = <A>(as2: ArrayList<A>) => (as: ArrayList<A>) =>
     as.concat(as2);
 
 
-export const prepend = <A>(as2: Array<A>) => (as: Array<A>) =>
+export const prepend = <A>(as2: ArrayList<A>) => (as: ArrayList<A>) =>
     as2.concat(as);
 
 
-export const flatMap = <A>(f: (_: A) => Array<A>): Transformation<Array<A>> =>
+export const flatMap = <A>(f: (_: A) => ArrayList<A>): Transformation<ArrayList<A>> =>
     (as: Array<A>) =>
         as.length < 1
             ? []
