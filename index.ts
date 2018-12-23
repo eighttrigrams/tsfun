@@ -118,7 +118,7 @@ export {
 
 export {copy} from './src/arraylist_objectcoll';
 
-export {by} from './src/core';
+export {identity, identical, by} from './src/core';
 
 export {get} from './src/arraylist_objectstruct';
 

@@ -1,10 +1,13 @@
 // ------------ @author Daniel de Oliveira -----------------
 
 
-export const identical = <A>(v: A) => v;
+export const identity = <A>(v: A) => v;
 
 
-export const by = identical;
+export const by = identity;
+
+
+export const identical = identity;
 
 
 export const uncurry2 = <A>(f: (_: Array<A>) => (_: Array<A>) => Array<A>) =>
