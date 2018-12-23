@@ -21,11 +21,10 @@ console.log(take(2)([1,2,3]))
 
 ### General
 
-* is
-* by
-* identical
-* curry2
-* reverseUncurry2
+* is / by / identical
+* curry2 / reverseUncurry2
+* partial 
+* apply
 
 ### Predicate
 
