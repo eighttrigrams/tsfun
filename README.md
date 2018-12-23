@@ -121,12 +121,6 @@ behaviour easily.
 * [compose](test/core/compose.spec.ts)
 * [wrap](test/core/wrap.spec.ts)
 
-### Struct and ObjectCollection
-
-[Sources](src/colls_struct.ts)
-
-* [get](test/core/get.spec.ts)
-
 ### Struct
 
 [Sources](src/struct.ts)  
@@ -151,7 +145,7 @@ Arrays can be seen as deep nested structures as well.
 TODO -Object suffixed collection functions 
 TODO mention typescript index signatures and -Map suffix
 
-### ArrayCollection / ObjectCollection
+### ArrayCollection and ObjectCollection
 
 [Sources](src/collections/coll.ts)
 
@@ -169,6 +163,12 @@ elements. So there is no automatic cloning.
 
 If object collections are not treated as structs, 
 we use the following definitions:
+
+### Struct and ArrayList
+
+[Sources](src/colls_struct.ts)
+
+* [get](test/core/get.spec.ts)
 
 ### ArrayList
 
