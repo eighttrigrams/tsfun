@@ -1,6 +1,9 @@
 import {isDefined} from './predicate';
 import {to} from './objectstruct';
 
+
+// ------------ @author Daniel de Oliveira -----------------
+
 export const doWhen = (when: Function, do_: Function) =>
     (other: any) => { if (when(other)) do_() };
 

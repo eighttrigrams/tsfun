@@ -3,6 +3,8 @@ import {includedInBy, tripleEqual} from './comparator';
 import {uncurry2} from './core';
 import {isNot} from './predicate';
 
+// ------------ @author Daniel de Oliveira -----------------
+
 
 export const intersectionBy =
     (compare: Comparator = tripleEqual) =>

@@ -2,6 +2,9 @@ import {Mapping, ObjectCollection, Predicate, Transformation} from './types';
 import {isDefined} from './predicate';
 
 
+
+// ------------ @author Daniel de Oliveira -----------------
+
 export const mapProperties = <A, B>(f: (_: A) => B) =>
     (keys: Array<number|string>, o: ObjectCollection<A>): ObjectCollection<B> =>
         keys.reduce(mapPropertiesReducer(f)(o), {});

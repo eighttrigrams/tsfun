@@ -1,3 +1,6 @@
+// ------------ @author Daniel de Oliveira -----------------
+
+
 export type Comparator = <A, B>(_: A) => Predicate<B>;
 
 

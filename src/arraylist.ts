@@ -3,6 +3,14 @@ import {ArrayList, Pair, Predicate, Transformation} from './types';
 import {identical} from './core';
 
 
+
+// ------------ @author Daniel de Oliveira -----------------
+
+
+export const apply = <T>(f: (_: T, __: T) => T) => (...coll: ArrayList<T>) =>
+    coll.reduce((acc: T, val: T) => f(acc, val));
+
+
 export const separate = <A>(p: Predicate<A>) =>
     (as: Array<A>): Pair<Array<A>> =>
         [as.filter(p), as.filter(isNot(p))];

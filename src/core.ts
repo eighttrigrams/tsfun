@@ -1,3 +1,6 @@
+// ------------ @author Daniel de Oliveira -----------------
+
+
 export const identical = <A>(v: A) => v;
 
 

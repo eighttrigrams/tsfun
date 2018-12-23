@@ -1,6 +1,9 @@
 import {Transformation} from './types';
 
 
+// ------------ @author Daniel de Oliveira -----------------
+
+
 
 export const flow = <T>(t: T, ...transformations: Array<Transformation<T>>) =>
     compose(...transformations)(t);

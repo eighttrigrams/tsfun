@@ -3,6 +3,8 @@ import {Comparator, ComparatorProducer} from './types';
 import {subtractBy} from './arrayset';
 import {getElForPathIn} from './objectstruct';
 
+// ------------ @author Daniel de Oliveira -----------------
+
 
 export const tripleEqual: any = <A>(l:A) =>
     (r:A) => l === r;

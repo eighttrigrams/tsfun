@@ -73,7 +73,8 @@ export {
     dropRight,
     dropRightWhile,
     getIth,
-    getIthOr
+    getIthOr,
+    apply
 } from './src/arraylist';
 
 

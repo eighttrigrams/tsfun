@@ -3,6 +3,11 @@ import {subtract} from './arrayset';
 import {subtractObject} from './objectset';
 
 
+// ------------ @author Daniel de Oliveira -----------------
+
+
+
+
 export function copy<T>(as: ArrayList<T>): ArrayList<T>;
 export function copy(as: UntypedObjectCollection): UntypedObjectCollection;
 export function copy<T>(coll: ArrayList<T>|UntypedObjectCollection): ArrayList<T>|UntypedObjectCollection {
@@ -11,6 +16,8 @@ export function copy<T>(coll: ArrayList<T>|UntypedObjectCollection): ArrayList<T
         ? subtract([])(coll as any) as ArrayList<T>
         : subtractObject([])(coll);
 }
+
+
 
 
 

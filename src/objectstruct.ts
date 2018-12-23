@@ -3,6 +3,8 @@ import {reverseUncurry2} from './core';
 import {ObjectStruct} from './types';
 
 
+// ------------ @author Daniel de Oliveira -----------------
+
 export const jsonClone = <O>(object: O) => JSON.parse(JSON.stringify(object)) as O;
 
 

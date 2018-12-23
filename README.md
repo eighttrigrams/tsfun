@@ -24,7 +24,6 @@ console.log(take(2)([1,2,3]))
 * is / by / identical
 * curry2 / reverseUncurry2
 * partial 
-* apply
 
 ### Predicate
 
@@ -110,6 +109,7 @@ console.log(take(2)([1,2,3]))
 * [getIth / getIthOr](test/arraylist/get_ith.spec.ts) 
 * [filter](test/arraylist/filter.spec.ts) 
 * [map](test/arraylist/map.spec.ts) 
+* [apply](test/arraylist/apply.spec.ts) 
 * [flatMap](test/arraylist/flat_map.spec.ts)
 * [separate](test/arraylist/separate.spec.ts) 
 * [take](test/arraylist/take.spec.ts)

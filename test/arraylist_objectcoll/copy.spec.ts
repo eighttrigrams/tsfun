@@ -1,6 +1,9 @@
 import {copy} from '../../src/arraylist_objectcoll';
 
 
+/**
+ * @author Daniel de Oliveira
+ */
 describe('copy', () => {
 
 

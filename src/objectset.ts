@@ -4,6 +4,8 @@ import {identical} from './core';
 import {mapProperties} from './objectcoll';
 
 
+// ------------ @author Daniel de Oliveira -----------------
+
 export const subtractObject = (subtrahend: Array<string | number> | any) =>
     (o: ObjectSet): ObjectSet => {
 

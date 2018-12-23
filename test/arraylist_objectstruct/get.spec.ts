@@ -1,5 +1,9 @@
 import {get} from '../../src/arraylist_objectstruct';
 
+
+/**
+ * @author Daniel de Oliveira
+ */
 describe('get', () => {
 
     // Both Array and Map are associative
