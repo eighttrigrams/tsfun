@@ -54,9 +54,7 @@ tsfun provides sets of functions which treat
 In addition to that there are Predicates, Comparators and Compositional
 functions to make these yet more powerful.
 
-### Basic functionality
-
-#### Predicates
+### Predicates
 
 [Sources](test/predicates.spec.ts)
 
@@ -72,7 +70,7 @@ functions to make these yet more powerful.
 
 `type Predicate<A> = (_: A) => boolean`
 
-#### Comparators
+### Comparators
 
 [Sources](src/comparators.ts)
 
@@ -108,7 +106,7 @@ Due to the standard comparison with `===`,
 behaviour easily.
 `differentFromBy(jsonEqual)({a: 1})({a: 1})` gives `false`.
 
-#### Composition
+### Composition
 
 [Sources](src/composition.ts)
 
@@ -116,13 +114,13 @@ behaviour easily.
 * [compose](test/core/compose.spec.ts)
 * [wrap](test/core/wrap.spec.ts)
 
-#### Structures and Collections
+### Structures and Collections
 
 [Sources](src/colls_struct.ts)
 
 * [get](test/core/get.spec.ts)
 
-#### Struct functions
+### Struct functions
 
 [Sources](src/struct.ts)  
 
@@ -146,7 +144,7 @@ Arrays can be seen as deep nested structures as well.
 TODO -Object suffixed collection functions 
 TODO mention typescript index signatures and -Map suffix
 
-#### Collection functions for Arrays and Objects
+### Collection functions for Arrays and Objects
 
 [Sources](src/collections/coll.ts)
 
@@ -156,7 +154,7 @@ Like copy, all of the following collections methods always return
 new Arrays or Objects, but their elements are pointers to the old
 elements. So there is no automatic cloning.
 
-#### Collection Functions for Objects
+### Collection Functions for Objects
 
 [Sources](src/collections/coll.ts)
 
@@ -165,7 +163,7 @@ elements. So there is no automatic cloning.
 If object collections are not treated as structs, 
 we use the following definitions:
 
-#### Ordered-list-like collection functions for Arrays
+### Ordered-list-like collection functions for Arrays
 
 [Sources](src/collections/arrays_list_like.ts)
 
@@ -181,7 +179,7 @@ If we say list-like data structure, we mean that if a
 function operates on an array or object, we retain order
 and allow duplicates. The operation is linear an vector like.
 
-#### Ordered-list-like collection functions for Arrays - Picking methods
+### Ordered-list-like collection functions for Arrays - Picking methods
 
 [Sources](src/collections/arrays_list_like_pick.ts)
 
@@ -191,7 +189,7 @@ and allow duplicates. The operation is linear an vector like.
 * [drop / dropRight](test/arrays_list_like/drop.spec.ts)
 * [dropWhile / dropRightWhile](test/arrays_list_like/drop_while.spec.ts)
 
-#### Set-like collection functions for Arrays
+### Set-like collection functions for Arrays
 
 [Sources](src/collections/arrays_set_like.ts)
 
@@ -217,7 +215,7 @@ the arguments is kept.
 into the body of a `flow`. `intersection` and `union` take a `NestedArray<A>` as
 their argument, so they can be used to begin a `flow` with.
 
-#### Set-like collection functions for Object-Maps
+### Set-like collection functions for Object-Maps
 
 [Sources](src/collections/objects_set_like.ts)
 
@@ -225,7 +223,7 @@ their argument, so they can be used to begin a `flow` with.
 * [uniteObject / unionObject](test/objects_set_like/unite_object.spec.ts)
 * [subtractObject](test/objects_set_like/subtract_object.spec.ts)
 
-#### Ordered-list-like collection functions for Object-Maps
+### Ordered-list-like collection functions for Object-Maps
 
 [Sources](src/collections/objects_list_like.ts)
 
