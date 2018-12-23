@@ -24,13 +24,14 @@ work with ***Arrays*** and ***Objects***, specified by
 [isArray](test/predicates/is_array.spec.ts) and
 [isObject](test/predicates/is_object.spec.ts).
 
-tsfun provides sets of functions which treat
+Depending on the context, tsfun provides sets of functions which treat
 
-* Arrays as list-like collections, ArrayList
-* Arrays as set-like collections, ArraySet
-* Objects as list-like collections, ObjectList
-* Objects as set-like collections, ObjectSet
-* Objects as structured entites, Struct
+* Arrays as list-like collections, which we call *ArrayList*
+* Arrays as set-like collections, which we call *ArraySet*
+* Objects as collections, which we call *(Unt|T)ypedMap*
+* Objects as list-like collections, which we call *ObjectList*
+* Objects as set-like collections, *ObjectSet*
+* Objects as structured entites, which we call *Struct*
 
 Then there are Predicates, Comparators and Compositional
 functions to accompany these.
@@ -219,7 +220,7 @@ their argument, so they can be used to begin a `flow` with.
 * [mapObject](test/objects_list_like/map_object.spec.ts)
 * [filterObject](test/objects_list_like/filter_object.spec.ts)
 
-`type TypedObjectList<T> = TypedMap<T>;`
+`type ObjectList<T> = TypedMap<T>;`
 
 ## Docs
 
