@@ -230,7 +230,7 @@ care about a composed data structure, like
 for example `{a: {b: [1, 2, 4], c: 'e'}`, as opposed
 to *Collections*.
 
-At least, here is some background on tsfun's [design rationale](doc/design.md). 
+At least, here is some background on tsfun's [design rationale](README_design.md). 
  
 ## Credits 
  
