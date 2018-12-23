@@ -4,7 +4,7 @@
 export type Comparator = <A, B>(_: A) => Predicate<B>;
 
 
-export type ComparatorProducer = (_: Comparator) => <A>(_: A) => Predicate<A>;
+export type ComparatorProducer = (_: Comparator) => Comparator;
 
 
 export type Predicate<A> = (_: A) => boolean;
