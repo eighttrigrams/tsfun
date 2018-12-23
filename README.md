@@ -161,7 +161,7 @@ Like copy, all of the following collections methods always return
 new Arrays or Objects, but their elements are pointers to the old
 elements. So there is no automatic cloning.
 
-### ObjectMap
+### ObjectCollection
 
 [Sources](src/collections/coll.ts)
 
