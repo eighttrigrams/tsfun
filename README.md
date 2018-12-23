@@ -24,7 +24,6 @@ console.log(take(2)([1,2,3]))
 [Source](src/core.ts)
 
 * [identity / identical / by](test/core/identity.spec.ts) 
-* curry2 / reverseUncurry2 
 
 ### Predicate
 
