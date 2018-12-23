@@ -1,8 +1,12 @@
-import {arrayEquivalent, jsonEqual, on} from '../../src/comparators';
-import {empty, isArray, isDefined, isEmpty, isNot, isUndefined, undefinedOrEmpty} from '../../src/predicates';
+import {arrayEquivalent, jsonEqual, on} from '../../src/comparator';
+import {empty, isArray, isDefined, isEmpty, isNot, isUndefined, undefinedOrEmpty} from '../../src/predicate';
 import {by} from '../../src/core';
 import {intersectBy} from '../../src/arrayset';
 
+
+/**
+ * @author Daniel de Oliveira
+ */
 describe('on/by', () => {
 
     // used for structs within arrays

@@ -1,8 +1,10 @@
-import {sameOn} from '../../src/comparators';
+import {sameOn} from '../../src/comparator';
 
+
+/**
+ * @author Daniel de Oliveira
+ */
 describe('sameOn', () => {
-
-    // sameOn
 
     it('sameOn - same path',() =>
         expect(

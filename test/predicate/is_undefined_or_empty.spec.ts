@@ -1,10 +1,13 @@
-import {isUndefinedOrEmpty} from '../../src/predicates';
+/**
+ * @author Daniel de Oliveira
+ */
+import {isUndefinedOrEmpty} from '../../src/predicate';
 
 
 /**
  * @author Daniel de Oliveira
  */
-describe('undefinedOrEmpty/isUndefinedOrEmpty', () => {
+describe('undefinedOrEmpty / isUndefinedOrEmpty', () => {
 
 
     it('is a non-empty Object', () =>

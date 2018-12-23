@@ -1,7 +1,9 @@
-import {arrayEqual, arrayEqualBy, jsonEqual} from '../../src/comparators';
+import {arrayEqual, arrayEqualBy, jsonEqual} from '../../src/comparator';
 
 
-
+/**
+ * @author Daniel de Oliveira
+ */
 describe('arrayEqual / arrayEqualBy', () => {
 
     // Note that `objectEqual` standard Array Comparator is `arrayEqual`. So

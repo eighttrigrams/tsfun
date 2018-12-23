@@ -1,4 +1,4 @@
-import {isArray, isNot, isObject} from './predicates';
+import {isArray, isNot, isObject} from './predicate';
 import {Comparator, ComparatorProducer} from './types';
 import {subtractBy} from './arrayset';
 import {getElForPathIn} from './objectstruct';

@@ -1,5 +1,5 @@
-import {tripleEqual} from '../../src/comparators';
-import {isNot} from '../../src/predicates';
+import {isNot} from '../../src/predicate';
+import {tripleEqual} from '../../src/comparator';
 
 describe('isNot / not', () => {
 

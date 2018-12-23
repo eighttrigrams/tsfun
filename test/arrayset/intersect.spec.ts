@@ -1,6 +1,10 @@
-import {jsonEqual} from '../../src/comparators';
+import {jsonEqual} from '../../src/comparator';
 import {intersect, intersectBy, intersection, intersectionBy} from '../../src/arrayset';
 
+
+/**
+ * @author Daniel de Oliveira
+ */
 describe('intersection/intersect/intersectBy', () => {
 
     // intersection

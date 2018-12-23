@@ -1,11 +1,11 @@
-/**
- * @author Daniel de Oliveira
- */
-import {jsonEqual} from '../../src/comparators';
+import {jsonEqual} from '../../src/comparator';
 import {union, unionBy, unite, uniteBy} from '../../src/arrayset';
 
 
-describe('union/unite/unityBy', () => {
+/**
+ * @author Daniel de Oliveira
+ */
+describe('union / unite / unityBy', () => {
 
     // union
 

@@ -1,5 +1,9 @@
-import {isFalse, isTrue} from '../../src/predicates';
+import {isFalse, isTrue} from '../../src/predicate';
 
+
+/**
+ * @author Daniel de Oliveira
+ */
 describe('isTrue / isFalse', () => {
 
     it('isTrue',() =>

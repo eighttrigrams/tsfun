@@ -19,7 +19,7 @@ export {
     isFalse,
     isArray,
     isObject
-} from './src/predicates';
+} from './src/predicate';
 
 
 export {
@@ -46,7 +46,7 @@ export {
     biggerThan,
     smallerThan,
     sameOn
-} from './src/comparators';
+} from './src/comparator';
 
 export {
     compose,

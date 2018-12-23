@@ -1,10 +1,13 @@
-import {jsonEqual, on, tripleEqual} from '../../src/comparators';
-import {isEmpty} from '../../src/predicates';
+import {jsonEqual, on, tripleEqual} from '../../src/comparator';
+import {isEmpty} from '../../src/predicate';
 import {flow} from '../../src/composition';
 import {option, to} from '../../src/objectstruct';
 
 
-describe('Objects', () => {
+/**
+ * @author Daniel de Oliveira
+ */
+describe('option', () => {
 
 
     // option

@@ -1,5 +1,9 @@
-import {arrayEquivalent, arrayEquivalentBy, jsonEqual} from '../../src/comparators';
+import {arrayEquivalent, arrayEquivalentBy, jsonEqual} from '../../src/comparator';
 
+
+/**
+ * @author Daniel de Oliveira
+ */
 describe('arrayEquivalent / arrayEquivalentBy', () => {
 
     // arrayEquivalentBy(jsonEqual)([{a: 9}, {c: 7}, {b: 4}])([{b: 4}, {a: 9}, {c: 7}])

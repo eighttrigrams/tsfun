@@ -1,5 +1,9 @@
-import {tripleEqual} from '../../src/comparators';
+import {tripleEqual} from '../../src/comparator';
 
+
+/**
+ * @author Daniel de Oliveira
+ */
 describe('tripleEqual', () => {
 
     // tripleEqual unsurprisingly uses comparison via `===`.

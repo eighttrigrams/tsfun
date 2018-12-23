@@ -1,7 +1,11 @@
-import {jsonEqual, without} from '../../src/comparators';
+import {jsonEqual, without} from '../../src/comparator';
 import {by} from '../../src/core';
-import {isUndefined} from '../../src/predicates';
+import {isUndefined} from '../../src/predicate';
 
+
+/**
+ * @author Daniel de Oliveira
+ */
 describe('without', () => {
 
 

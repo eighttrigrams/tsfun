@@ -1,4 +1,4 @@
-import {isNot} from './predicates';
+import {isNot} from './predicate';
 import {ArrayList, Pair, Predicate, Transformation} from './types';
 import {identical} from './core';
 

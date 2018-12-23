@@ -1,4 +1,5 @@
-import {isArray} from '../../src/predicates';
+import {isArray} from '../../src/predicate';
+
 
 describe('isArray', () => {
 

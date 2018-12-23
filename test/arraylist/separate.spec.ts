@@ -1,4 +1,4 @@
-import {smallerThan} from '../../src/comparators';
+import {smallerThan} from '../../src/comparator';
 import {separate} from '../../src/arraylist';
 
 

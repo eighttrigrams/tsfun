@@ -1,5 +1,9 @@
-import {jsonEqual} from '../../src/comparators';
+import {jsonEqual} from '../../src/comparator';
 
+
+/**
+ * @author Daniel de Oliveira
+ */
 describe('jsonEqual', () => {
 
     // jsonEqual compares to objects by comparing their string representations

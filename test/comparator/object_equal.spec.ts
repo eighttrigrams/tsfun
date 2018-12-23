@@ -1,6 +1,8 @@
-import {arrayEqualBy, arrayEquivalent, objectEqual, objectEqualBy} from '../../src/comparators';
+import {arrayEqualBy, arrayEquivalent, objectEqual, objectEqualBy} from '../../src/comparator';
 
-
+/**
+ * @author Daniel de Oliveira
+ */
 describe('objectEqual / objectEqualBy', () => {
 
     // As stated in [structures](structures.md), when we talk about Objects in tsfun,

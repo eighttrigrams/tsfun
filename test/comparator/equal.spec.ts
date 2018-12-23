@@ -1,6 +1,10 @@
-import {arrayEquivalent, equal, equalBy} from '../../src/comparators';
+import {arrayEquivalent, equal, equalBy} from '../../src/comparator';
 
-describe('equal/equalBy', () => {
+
+/**
+ * @author Daniel de Oliveira
+ */
+describe('equal / equalBy', () => {
 
     // equal
 

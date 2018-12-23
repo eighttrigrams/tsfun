@@ -1,4 +1,4 @@
-import {biggerThan, smallerThan} from '../../src/comparators';
+import {biggerThan, smallerThan} from '../../src/comparator';
 import {takeRightWhile, takeWhile} from '../../src/arraylist';
 
 describe('takeWhile', () => {

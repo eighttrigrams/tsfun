@@ -1,10 +1,10 @@
-/**
-* @author Daniel de Oliveira
-*/
-import {jsonEqual} from '../../src/comparators';
+import {jsonEqual} from '../../src/comparator';
 import {subtract, subtractBy} from '../../src/arrayset';
 
 
+/**
+ * @author Daniel de Oliveira
+ */
 describe('Arrays/Set-Like-Collection', () => {
 
 

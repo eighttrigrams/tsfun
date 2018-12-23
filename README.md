@@ -29,37 +29,37 @@ console.log(take(2)([1,2,3]))
 
 ### Predicate
 
-[Sources](src/predicates.ts)
+[Sources](src/predicate.ts)
 
 * is
-* [has / hasNot](test/predicates/has.spec.ts) 
-* [empty / isEmpty](test/predicates/is_empty.spec.ts)
-* [undefinedOrEmpty / isUndefinedOrEmpty](test/predicates/is_undefined_or_empty.spec.ts)
-* [isTrue / isFalse](test/predicates/is_true.spec.ts)
-* [isDefined / defined / isUndefined](test/predicates/is_defined.spec.ts)
-* [isArray](test/predicates/is_array.spec.ts)
-* [isObject](test/predicates/is_object.spec.ts)
-* [isString / isBoolean](test/predicates/is_string.spec.ts)
-* [isNot / not](test/predicates/is_not.spec.ts)
+* [has / hasNot](test/predicate/has.spec.ts) 
+* [empty / isEmpty](test/predicate/is_empty.spec.ts)
+* [undefinedOrEmpty / isUndefinedOrEmpty](test/predicate/is_undefined_or_empty.spec.ts)
+* [isTrue / isFalse](test/predicate/is_true.spec.ts)
+* [isDefined / defined / isUndefined](test/predicate/is_defined.spec.ts)
+* [isArray](test/predicate/is_array.spec.ts)
+* [isObject](test/predicate/is_object.spec.ts)
+* [isString / isBoolean](test/predicate/is_string.spec.ts)
+* [isNot / not](test/predicate/is_not.spec.ts)
 
 ### Comparator
 
-[Sources](src/comparators.ts)
+[Sources](src/comparator.ts)
 
-* [tripleEqual](test/comparators/triple_equal.spec.ts)
-* [jsonEqual](test/comparators/json_equal.spec.ts)
-* [smallerThan / biggerThan](test/comparators/smaller_than.spec.ts)
-* [differentFrom / differentFromBy](test/comparators/different_from.spec.ts)
-* [includedIn / includedInBy](test/comparators/included_in.spec.ts)
-* [containedIn / containedInBy](test/comparators/contained_in.spec.ts)
-* [arrayEqual / arrayEqualBy](test/comparators/array_equal.spec.ts)
-* [arrayEquivalent / arrayEquivalentBy](test/comparators/array_equivalent.spec.ts)
-* [objectEqual / objectEqualBy](test/comparators/object_equal.spec.ts)
-* [equal / equalBy](test/comparators/equal.spec.ts)
-* [equivalent](test/comparators/equivalent.spec.ts)
-* [on / by](test/comparators/on.spec.ts)
-* [without](test/comparators/without.spec.ts)
-* [sameOn](test/comparators/same_on.spec.ts)
+* [tripleEqual](test/comparator/triple_equal.spec.ts)
+* [jsonEqual](test/comparator/json_equal.spec.ts)
+* [smallerThan / biggerThan](test/comparator/smaller_than.spec.ts)
+* [differentFrom / differentFromBy](test/comparator/different_from.spec.ts)
+* [includedIn / includedInBy](test/comparator/included_in.spec.ts)
+* [containedIn / containedInBy](test/comparator/contained_in.spec.ts)
+* [arrayEqual / arrayEqualBy](test/comparator/array_equal.spec.ts)
+* [arrayEquivalent / arrayEquivalentBy](test/comparator/array_equivalent.spec.ts)
+* [objectEqual / objectEqualBy](test/comparator/object_equal.spec.ts)
+* [equal / equalBy](test/comparator/equal.spec.ts)
+* [equivalent](test/comparator/equivalent.spec.ts)
+* [on / by](test/comparator/on.spec.ts)
+* [without](test/comparator/without.spec.ts)
+* [sameOn](test/comparator/same_on.spec.ts)
 
 ### Composition
 
@@ -140,8 +140,8 @@ console.log(take(2)([1,2,3]))
 
 **tsfun** functions are mainly designed to 
 work with ***Arrays*** and ***Objects***, specified by
-[isArray](test/predicates/is_array.spec.ts) and
-[isObject](test/predicates/is_object.spec.ts).
+[isArray](test/predicate/is_array.spec.ts) and
+[isObject](test/predicate/is_object.spec.ts).
 These two basic data structures can be found 
 nested arbitrarily deep and mutually. 
 For different treatments in different contexts, 

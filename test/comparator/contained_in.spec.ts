@@ -1,5 +1,9 @@
-import {containedIn, containedInBy, on} from '../../src/comparators';
+import {containedIn, containedInBy, on} from '../../src/comparator';
 
+
+/**
+ * @author Daniel de Oliveira
+ */
 describe('containedIn/containedInBy', () => {
 
 

@@ -1,8 +1,10 @@
-import {biggerThan, smallerThan} from '../../src/comparators';
+import {biggerThan, smallerThan} from '../../src/comparator';
 
+
+/**
+ * @author Daniel de Oliveira
+ */
 describe('smallerThan / biggerThan', () => {
-
-    // sameOn
 
     it('biggerThan',() =>
         expect(

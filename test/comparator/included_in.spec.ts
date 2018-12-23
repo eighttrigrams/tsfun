@@ -1,6 +1,8 @@
-import {includedIn, includedInBy, jsonEqual} from '../../src/comparators';
+import {includedIn, includedInBy, jsonEqual} from '../../src/comparator';
 
-
+/**
+ * @author Daniel de Oliveira
+ */
 describe('includedIn/includedInBy', () => {
 
     // includedIn

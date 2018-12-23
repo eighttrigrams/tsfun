@@ -1,4 +1,5 @@
-import {defined, isDefined, isFalse, isUndefined} from '../../src/predicates';
+import {defined, isDefined, isUndefined} from '../../src/predicate';
+
 
 describe('isDefined / defined / isUndefined', () => {
 

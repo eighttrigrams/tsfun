@@ -1,4 +1,4 @@
-import {biggerThan} from '../../src/comparators';
+import {biggerThan} from '../../src/comparator';
 import {takeUntil} from '../../src/arraylist';
 
 

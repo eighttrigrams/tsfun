@@ -1,5 +1,5 @@
 import {Predicate, PredicateProducer} from './types';
-import {on} from './comparators';
+import {on} from './comparator';
 
 
 export const isNot: PredicateProducer = <A>(f: Predicate<A>) =>

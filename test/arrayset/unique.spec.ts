@@ -1,10 +1,10 @@
-/**
- * @author Daniel de Oliveira
- */
-import {jsonEqual, on} from '../../src/comparators';
+import {jsonEqual, on} from '../../src/comparator';
 import {unique, uniqueBy} from '../../src/arrayset';
 
 
+/**
+ * @author Daniel de Oliveira
+ */
 describe('unique/uniqueBy', () => {
 
 

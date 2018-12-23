@@ -1,7 +1,7 @@
 import {Comparator, NestedArray} from './types';
-import {includedInBy, tripleEqual} from './comparators';
+import {includedInBy, tripleEqual} from './comparator';
 import {uncurry2} from './core';
-import {isNot} from './predicates';
+import {isNot} from './predicate';
 
 
 export const intersectionBy =

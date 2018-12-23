@@ -1,5 +1,9 @@
-import {equivalent} from '../../src/comparators';
+import {equivalent} from '../../src/comparator';
 
+
+/**
+ * @author Daniel de Oliveira
+ */
 describe('equivalent', () => {
 
 

@@ -1,4 +1,4 @@
-import {smallerThan} from '../../src/comparators';
+import {smallerThan} from '../../src/comparator';
 import {flow} from '../../src/composition';
 import {filter} from '../../src/arraylist';
 

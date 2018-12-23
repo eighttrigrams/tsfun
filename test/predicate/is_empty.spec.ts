@@ -1,30 +1,9 @@
 /**
  * @author Daniel de Oliveira
  */
-import {empty, isEmpty, isNot} from '../../src/predicates';
+import {empty, isEmpty, isNot} from '../../src/predicate';
 
-/**
- * isNot
- * not
- *
- * isDefined
- * defined
- * isUndefined
- *
- * has
- *
- * isUndefinedOrEmpty
- * undefinedOrEmpty
- * isEmpty
- * empty
- *
- * isTrue
- * isFalse
- *
- * isArray
- * isObject
- */
-describe('empty/isEmpty', () => {
+describe('empty / isEmpty', () => {
 
     // isEmpty
 
@@ -98,9 +77,4 @@ describe('empty/isEmpty', () => {
             isNot(empty)('1'))
 
             .toEqual(true));
-
-
-    // isTrue
-
-    // isFalse
 });

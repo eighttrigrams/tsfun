@@ -1,4 +1,4 @@
-import {isEmpty} from './predicates';
+import {isEmpty} from './predicate';
 import {reverseUncurry2} from './core';
 import {ObjectStruct} from './types';
 

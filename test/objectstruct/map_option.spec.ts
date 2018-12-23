@@ -1,9 +1,12 @@
-import {on} from '../../src/comparators';
+import {on} from '../../src/comparator';
 import {flow} from '../../src/composition';
 import {mapOption, option, to} from '../../src/objectstruct';
 
 
-describe('Objects', () => {
+/**
+ * @author Daniel de Oliveira
+ */
+describe('mapOption', () => {
 
     // mapOption
 
