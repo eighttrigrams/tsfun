@@ -29,7 +29,7 @@ console.log(take(2)([1,2,3]))
 
 ### Predicate
 
-[Sources](test/predicates.spec.ts)
+[Sources](src/predicates.ts)
 
 * is
 * [has / hasNot](test/predicates/has.spec.ts) 
