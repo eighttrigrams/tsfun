@@ -61,10 +61,19 @@ tsfun provides sets of functions which treat
 In addition to that there are Predicates, Comparators and Compositional
 functions to make these yet more powerful.
 
+### General
+
+* is
+* by
+* identical
+* curry2
+* reverseUncurry2
+
 ### Predicate
 
 [Sources](test/predicates.spec.ts)
 
+* is
 * [has / hasNot](test/predicates/has.spec.ts) 
 * [empty / isEmpty](test/predicates/is_empty.spec.ts)
 * [undefinedOrEmpty / isUndefinedOrEmpty](test/predicates/is_undefined_or_empty.spec.ts)
