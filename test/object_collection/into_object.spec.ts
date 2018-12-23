@@ -1,4 +1,4 @@
-import {intoObject} from '../../src/collections/coll';
+import {intoObject} from '../../src/collections/objects_coll';
 
 
 describe('intoObject', () => {

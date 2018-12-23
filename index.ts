@@ -109,10 +109,11 @@ export {
 export {
     mapObject,
     filterObject,
-} from './src/collections/objects_list_like'
+    intoObject
+} from './src/collections/objects_coll'
 
 
-export {copy, intoObject} from './src/collections/coll';
+export {copy} from './src/collections/coll';
 
 export {by} from './src/core';
 

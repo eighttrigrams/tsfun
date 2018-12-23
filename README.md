@@ -88,9 +88,11 @@ console.log(take(2)([1,2,3]))
 
 ### ObjectCollection
 
-[Sources](src/collections/coll.ts)
+[Sources](src/collections/object_coll.ts)
 
 * [intoObject](test/colls/into_object.spec.ts)
+* [mapObject](test/object_collection/map_object.spec.ts)
+* [filterObject](test/object_collection/filter_object.spec.ts)
 
 ### Struct and ArrayList
 
@@ -137,8 +139,6 @@ console.log(take(2)([1,2,3]))
 
 [Sources](src/collections/objects_list_like.ts)
 
-* [mapObject](test/objects_list_like/map_object.spec.ts)
-* [filterObject](test/objects_list_like/filter_object.spec.ts)
 
 ## Concepts
 
@@ -198,10 +198,6 @@ tsfun provides sets of functions which treat
 
 `interface ObjectCollection<T> {[prop: string]: T}`
 
-* Objects as ordered list-like collections, which we call *ObjectList*
-
-`type ObjectList<T> = TypedMap<T>`
-
 * Objects as structured entites, which we call *Struct*
 
 `export type Struct = Object`
@@ -210,12 +206,18 @@ tsfun provides sets of functions which treat
 
 `type ObjectSet = UntypedObjectCollection`
 
-If we say list-like data structure, we mean that if a 
-function operates on an Array or Object, we retain order
+If we call something a *Collection*, functions operating 
+on it are concerned with the top level a structure, though
+its elements can be structered in any way. Comparators
+help to exploit this structure in the context of collection
+functions. For example `filter` can be extended with ´on´, which can be extended,
+with `arrayEquivalent`. *Sets* and *Lists* are 
+descendants of *Collection*.
+
+If we call something *List*, functions retain order
 of items (or keys) and do not remove duplicates.
 
-If we say set-like data structure, we mean that if a 
-function operates on an Array or Object, we assume that 
+If we call something *Set*, we assume that 
 or explicitely take care that the data structure has
 no duplicates after function application. For example, every Arrays 
 set method's result is not only `Array<A>` but also consists 
@@ -231,15 +233,10 @@ Many collection methods are designed to work within a composition.
 into the body of a `flow`. Sometimes though there are standalone version of 
 them, like `intersection` and `union` take a `NestedArray<A>`,
 
-We talk about about tsfun Structs in contexts where we 
+We talk about about *tsfun* *Structs* in contexts where we 
 care about a composed data structure, like
-for example `{a: {b: [1, 2, 4], c: 'e'}`, whereas the list- 
-and set-like data structures are concerned with the top level 
-of the data structure. Elements of Lists or Sets can be Structs
-of course, but in the context of Collection functions this does 
-play a role only for the Comparators used in the Collection function.
-For example `filter` can be extended with ´on´, which can be extended,
-with `arrayEquivalent`.
+for example `{a: {b: [1, 2, 4], c: 'e'}`, as opposed
+to *Collections*.
 
 At least, here is some background on tsfun's [design rationale](doc/design.md). 
  

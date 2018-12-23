@@ -14,9 +14,5 @@ export function copy<T>(coll: ArrayCollection<T>|UntypedObjectCollection): Array
 }
 
 
-export const intoObject = <T>(keyName: string, valName: string) =>
-    (object: ObjectCollection<T>, item: ObjectCollection<T>) =>
-        isDefined(item[keyName])
-            ? (object[(item[keyName]).toString()] = item[valName], object)
-            : object;
+
 
