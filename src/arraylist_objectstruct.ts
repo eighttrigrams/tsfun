@@ -1,6 +1,6 @@
-import {getElForPathIn} from './struct';
 import {ArrayList, ObjectStruct} from './types';
 import {getIth} from './arraylist';
+import {getElForPathIn} from './objectstruct';
 
 export const get = <T>(ds: ObjectStruct|ArrayList<T>, alternative?: any) => (path: string|number) => {
 

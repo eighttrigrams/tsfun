@@ -1,6 +1,6 @@
-import {to} from '../../src/struct';
 import {map} from '../../src/arraylist';
 import {flow} from '../../src/composition';
+import {to} from '../../src/objectstruct';
 
 
 describe('map', () => {

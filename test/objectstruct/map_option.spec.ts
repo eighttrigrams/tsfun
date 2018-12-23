@@ -1,6 +1,6 @@
 import {on} from '../../src/comparators';
-import {mapOption, option, to} from '../../src/struct';
 import {flow} from '../../src/composition';
+import {mapOption, option, to} from '../../src/objectstruct';
 
 
 describe('Objects', () => {

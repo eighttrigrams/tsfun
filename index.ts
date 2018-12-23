@@ -124,7 +124,7 @@ export {
     option,
     to,
     jsonClone
-} from './src/struct';
+} from './src/objectstruct';
 
 
 // TODO make

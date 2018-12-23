@@ -1,7 +1,7 @@
 import {jsonEqual, on, tripleEqual} from '../../src/comparators';
 import {isEmpty} from '../../src/predicates';
-import {option, to} from '../../src/struct';
 import {flow} from '../../src/composition';
+import {option, to} from '../../src/objectstruct';
 
 
 describe('Objects', () => {

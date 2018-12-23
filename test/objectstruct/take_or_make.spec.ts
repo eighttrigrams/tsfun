@@ -1,4 +1,4 @@
-import {takeOrMake} from '../../src/struct';
+import {takeOrMake} from '../../src/objectstruct';
 
 describe('takeOrMake', () => {
 
