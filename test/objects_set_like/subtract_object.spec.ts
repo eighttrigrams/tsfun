@@ -1,4 +1,4 @@
-import {subtractObject} from '../../src/collections/objects_set_like';
+import {subtractObject} from '../../src/objectset';
 
 describe('subtractObject', () => {
 

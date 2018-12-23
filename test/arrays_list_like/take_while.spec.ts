@@ -1,5 +1,5 @@
 import {biggerThan, smallerThan} from '../../src/comparators';
-import {takeRightWhile, takeWhile} from '../../src/collections/arrays_list_like';
+import {takeRightWhile, takeWhile} from '../../src/arraylist';
 
 describe('takeWhile', () => {
 

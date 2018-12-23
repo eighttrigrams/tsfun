@@ -1,4 +1,4 @@
-import {mapObject} from '../../src/collections/objects_coll';
+import {mapObject} from '../../src/objects_coll';
 
 
 describe('mapObject', () => {

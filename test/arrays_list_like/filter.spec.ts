@@ -1,6 +1,6 @@
-import {filter} from '../../src/collections/arrays_list_like';
 import {smallerThan} from '../../src/comparators';
 import {flow} from '../../src/composition';
+import {filter} from '../../src/arraylist';
 
 
 describe('filter', () => {

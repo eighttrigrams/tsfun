@@ -71,14 +71,12 @@ export {
     dropWhile,
     drop,
     dropRight,
-    dropRightWhile
-} from './src/collections/arrays_list_like';
-
-
-export {
+    dropRightWhile,
     getIth,
     getIthOr
-} from './src/arrays';
+} from './src/arraylist';
+
+
 
 
 export {
@@ -95,7 +93,7 @@ export {
     unique,
     uniqueBy,
     duplicates
-} from './src/collections/arrays_set_like';
+} from './src/arrayset';
 
 
 export {
@@ -103,21 +101,21 @@ export {
     intersectObject,
     uniteObject,
     unionObject
-} from './src/collections/objects_set_like'
+} from './src/objectset'
 
 
 export {
     mapObject,
     filterObject,
     intoObject
-} from './src/collections/objects_coll'
+} from './src/objects_coll'
 
 
-export {copy} from './src/collections/arraylist_objectcoll';
+export {copy} from './src/arraylist_objectcoll';
 
 export {by} from './src/core';
 
-export {get} from './src/colls_struct';
+export {get} from './src/arraylist_struct';
 
 export {doWhen, addTo, mapTo} from './src/utils';
 

@@ -1,6 +1,6 @@
-import {uniteObject} from '../../src/collections/objects_set_like';
 import {compose, flow} from '../../src/composition';
-import {drop, dropRight, take} from '../../src/collections/arrays_list_like';
+import {uniteObject} from '../../src/objectset';
+import {drop, dropRight, take} from '../../src/arraylist';
 
 
 describe('compose', () => {

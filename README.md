@@ -82,29 +82,30 @@ console.log(take(2)([1,2,3]))
 
 ### ArrayList and ObjectCollection
 
-[Sources](src/collections/arraylist_objectcoll.ts)
+[Sources](src/arraylist_objectcoll.ts)
 
 * [copy](test/arraylist_objectcoll/copy.spec.ts)
 
 ### ObjectCollection
 
-[Sources](src/collections/object_coll.ts)
+[Sources](src/objects_coll.ts)
 
 * [intoObject](test/arraylist_objectcoll/into_object.spec.ts)
 * [mapObject](test/object_collection/map_object.spec.ts)
 * [filterObject](test/object_collection/filter_object.spec.ts)
 
-### Struct and ArrayList
+### ArrayList and Struct
 
-[Sources](src/colls_struct.ts)
+[Sources](src/arraylist_struct.ts)
 
 * [get](test/core/get.spec.ts)
 
 ### ArrayList
 
-[Sources](src/collections/arrays_list_like.ts)
+[Sources](src/arraylist.ts)
 
 * intoArray
+* intoArrayWith
 * [prepend](test/arrays_list_like/prepend.spec.ts)  
 * [append](test/arrays_list_like/append.spec.ts) 
 * [getIth / getIthOr](test/arrays_list_like/get_ith.spec.ts) 
@@ -120,7 +121,7 @@ console.log(take(2)([1,2,3]))
 
 ### ArraySet
 
-[Sources](src/collections/arrays_set_like.ts)
+[Sources](src/arrayset.ts)
 
 * [intersection / intersect / intersectBy](test/arrays_set_like/intersect.spec.ts)
 * [subtract / subtractBy](test/arrays_set_like/subtract.spec.ts)
@@ -129,7 +130,7 @@ console.log(take(2)([1,2,3]))
 
 ### ObjectSet
 
-[Sources](src/collections/objects_set_like.ts)
+[Sources](src/objectset.ts)
 
 * [intersectObject](test/objects_set_like/intersect_object.spec.ts)
 * [uniteObject / unionObject](test/objects_set_like/unite_object.spec.ts)

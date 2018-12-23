@@ -1,7 +1,7 @@
-import {intersect} from '../../src/collections/arrays_set_like';
-import {get} from '../../src/colls_struct';
 import {jsonClone} from '../../src/struct';
 import {wrap} from '../../src/composition';
+import {get} from '../../src/arraylist_struct';
+import {intersect} from '../../src/arrayset';
 
 describe('wrap', () => {
 

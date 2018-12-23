@@ -1,4 +1,4 @@
-import {get} from '../../src/colls_struct';
+import {get} from '../../src/arraylist_struct';
 
 describe('get', () => {
 

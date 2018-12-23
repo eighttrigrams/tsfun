@@ -1,6 +1,6 @@
-import {ArrayList, UntypedObjectCollection} from '../types';
-import {subtract} from './arrays_set_like';
-import {subtractObject} from './objects_set_like';
+import {ArrayList, UntypedObjectCollection} from './types';
+import {subtract} from './arrayset';
+import {subtractObject} from './objectset';
 
 
 export function copy<T>(as: ArrayList<T>): ArrayList<T>;

@@ -1,5 +1,5 @@
 import {biggerThan, smallerThan} from '../../src/comparators';
-import {dropRightWhile, dropWhile} from '../../src/collections/arrays_list_like';
+import {dropRightWhile, dropWhile} from '../../src/arraylist';
 
 
 describe('drop/dropRightWhile', () => {

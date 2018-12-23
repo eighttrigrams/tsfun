@@ -1,5 +1,5 @@
 import {to} from '../../src/struct';
-import {map} from '../../src/collections/arrays_list_like';
+import {map} from '../../src/arraylist';
 import {flow} from '../../src/composition';
 
 

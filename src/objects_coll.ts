@@ -1,6 +1,5 @@
-import {ObjectCollection} from '../types';
-import {Mapping, Predicate, Transformation} from '../types';
-import {isDefined} from '../predicates';
+import {Mapping, ObjectCollection, Predicate, Transformation} from './types';
+import {isDefined} from './predicates';
 
 
 export const mapProperties = <A, B>(f: (_: A) => B) =>

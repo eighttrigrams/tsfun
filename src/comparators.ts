@@ -1,7 +1,7 @@
 import {isArray, isNot, isObject} from './predicates';
 import {Comparator, ComparatorProducer} from './types';
-import {subtractBy} from './collections/arrays_set_like';
 import {getElForPathIn} from './struct';
+import {subtractBy} from './arrayset';
 
 
 export const tripleEqual: any = <A>(l:A) =>

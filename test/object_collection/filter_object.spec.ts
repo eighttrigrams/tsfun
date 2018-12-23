@@ -1,4 +1,4 @@
-import {filterObject} from '../../src/collections/objects_coll';
+import {filterObject} from '../../src/objects_coll';
 
 
 describe('filterObject', () => {

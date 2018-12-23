@@ -1,4 +1,4 @@
-import {flatMap} from '../../src/collections/arrays_list_like';
+import {flatMap} from '../../src/arraylist';
 
 
 describe('flatMap', () => {

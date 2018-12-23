@@ -1,5 +1,5 @@
-import {separate} from '../../src/collections/arrays_list_like';
 import {smallerThan} from '../../src/comparators';
+import {separate} from '../../src/arraylist';
 
 
 describe('separate', () => {

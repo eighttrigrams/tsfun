@@ -1,7 +1,6 @@
-import {ArrayList, Pair, Predicate, Transformation} from '../types';
-import {identical} from '../core';
-import {isNot} from '../predicates';
-
+import {isNot} from './predicates';
+import {ArrayList, Pair, Predicate, Transformation} from './types';
+import {identical} from './core';
 
 
 export const separate = <A>(p: Predicate<A>) =>
@@ -108,5 +107,14 @@ export const takeUntil = <A>(predicate: Predicate<A>) =>
                 takeWhile(isNot(predicate))(as).concat([found])
                 : as
         )(as.find(predicate));
+
+
+// Written with Thomas Kleinke
+export const getIth = <A>(as: Array<A>) => (i: number): A|undefined => getIthOr(as)(i);
+
+
+// Written with Thomas Kleinke
+export const getIthOr = <A>(as: Array<A>, defaultValue: A|undefined = undefined) => (i: number): A|undefined =>
+    as.length < i ? defaultValue : as[i];
 
 

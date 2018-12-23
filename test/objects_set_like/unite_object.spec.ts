@@ -1,4 +1,4 @@
-import {unionObject, uniteObject} from '../../src/collections/objects_set_like';
+import {unionObject, uniteObject} from '../../src/objectset';
 
 
 describe('unionObject/uniteObject', () => {

@@ -1,4 +1,4 @@
-import {append} from '../../src/collections/arrays_list_like';
+import {append} from '../../src/arraylist';
 
 
 describe('append', () => {

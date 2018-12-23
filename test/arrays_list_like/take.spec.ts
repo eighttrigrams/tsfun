@@ -1,4 +1,4 @@
-import {take} from '../../src/collections/arrays_list_like';
+import {take} from '../../src/arraylist';
 
 
 describe('take', () => {

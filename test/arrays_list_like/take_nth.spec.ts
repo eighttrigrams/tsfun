@@ -1,4 +1,4 @@
-import {takeNth} from '../../src/collections/arrays_list_like';
+import {takeNth} from '../../src/arraylist';
 
 
 describe('takeNth', () => {

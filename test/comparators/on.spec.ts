@@ -1,7 +1,7 @@
 import {arrayEquivalent, jsonEqual, on} from '../../src/comparators';
 import {empty, isArray, isDefined, isEmpty, isNot, isUndefined, undefinedOrEmpty} from '../../src/predicates';
-import {intersectBy} from '../../src/collections/arrays_set_like';
 import {by} from '../../src/core';
+import {intersectBy} from '../../src/arrayset';
 
 describe('on/by', () => {
 

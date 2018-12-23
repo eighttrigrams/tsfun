@@ -1,4 +1,4 @@
-import {prepend} from '../../src/collections/arrays_list_like';
+import {prepend} from '../../src/arraylist';
 
 
 describe('prepend', () => {

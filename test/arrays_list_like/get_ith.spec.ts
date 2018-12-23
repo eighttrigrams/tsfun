@@ -1,4 +1,4 @@
-import {getIth, getIthOr} from '../../src/arrays';
+import {getIth, getIthOr} from '../../src/arraylist';
 
 
 describe('getIth/getIthOr', () => {

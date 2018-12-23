@@ -1,11 +1,9 @@
 import {biggerThan, smallerThan} from '../../src/comparators';
-import {dropWhile, reverse, takeWhile} from '../../src/collections/arrays_list_like';
-import {uniteObject} from '../../src/collections/objects_set_like';
 import {composition, flow} from '../../src/composition';
+import {dropWhile, reverse, takeWhile} from '../../src/arraylist';
+import {uniteObject} from '../../src/objectset';
 
 describe('flow / composition', () => {
-
-    // TODO rethink renaming it to composition
 
     // A flow is a transformation from Array of A to Array of A, consisting
     // of n transformation steps, where n >= 0.
