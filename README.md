@@ -211,37 +211,35 @@ tsfun provides sets of functions which treat
 `type ObjectSet = UntypedObjectCollection`
 
 If we say list-like data structure, we mean that if a 
-function operates on an array or object, we retain order
-and allow duplicates. The operation is linear an vector like.
+function operates on an Array or Object, we retain order
+of items (or keys) and do not remove duplicates.
+
+If we say set-like data structure, we mean that if a 
+function operates on an Array or Object, we assume that 
+or explicitely take care that the data structure has
+no duplicates after function application. For example, every Arrays 
+set method's result is not only `Array<A>` but also consists 
+of unique items (compared with `===` in the basic case). 
+Usually the order of the arguments is kept, but this is not guaranteed.
+
+All of the collections methods always return
+new Arrays or Objects, but their elements are pointers to the old
+elements. So there is no automatic cloning.
+
+Many collection methods are designed to work within a composition.
+`intersect`, `subtract`, `unite` and `uniqe` are partials, which can be inserted
+into the body of a `flow`. Sometimes though there are standalone version of 
+them, like `intersection` and `union` take a `NestedArray<A>`,
 
 We talk about about tsfun Structs in contexts where we 
 care about a composed data structure, like
 for example `{a: {b: [1, 2, 4], c: 'e'}`, whereas the list- 
-and set-like data structures are concerned with the top level of the data structure.
-
-If we say set-like data structure, we mean that if a 
-function operates on an array or object, we assume that 
-or explicitely take care that the data structure has
-no duplicates.
-
-Set methods come in two flavours, array set methods and object set methods.
-Both of these have in common that the respective data structures are treated 
-as if they were sets, hence we also call them set-like methods.
-
-Every set method's result is not only `Array<A>` but also consists 
-of unique items (compared with `===`). Where possible, the order of 
-the arguments is kept.
-
-`intersect`, `subtract`, `unite` and `uniqe` are partials, which can be inserted
-into the body of a `flow`. `intersection` and `union` take a `NestedArray<A>` as
-their argument, so they can be used to begin a `flow` with.
-
-TODO talk about equal, arrayEquivalent, objectEquivalent, copies (copy vs clone) etc.
-Arrays can be seen as deep nested structures as well.
-
-Like copy, all of the following collections methods always return
-new Arrays or Objects, but their elements are pointers to the old
-elements. So there is no automatic cloning.
+and set-like data structures are concerned with the top level 
+of the data structure. Elements of Lists or Sets can be Structs
+of course, but in the context of Collection functions this does 
+play a role only for the Comparators used in the Collection function.
+For example `filter` can be extended with ´on´, which can be extended,
+with `arrayEquivalent`.
 
 At least, here is some background on tsfun's [design rationale](doc/design.md). 
  
