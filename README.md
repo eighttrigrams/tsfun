@@ -143,7 +143,7 @@ console.log(take(2)([1,2,3]))
 * [addTo](test/util/add_to.spec.ts)
 * [doWhen](test/util/do_when.spec.ts)
 * [doWhile](test/util/do_while.spec.ts)
-* [doWhile](test/util/do_times.spec.ts)
+* [doTimes](test/util/do_times.spec.ts)
 * [doNothing / nop](test/util/do_nothing.spec.ts)
 
 ## Concepts
