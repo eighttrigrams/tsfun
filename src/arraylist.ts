@@ -50,8 +50,6 @@ const intoArrayWith = <A>(f: (_: A) => Array<A>) => (acc: Array<A>, val: A) => a
 const intoArray = intoArrayWith(identical as any);
 
 
-
-
 export const drop = <A>(n: number) =>
     (as: ArrayList<A>) =>
         n < 1 ? as :
@@ -118,11 +116,15 @@ export const takeUntil = <A>(predicate: Predicate<A>) =>
 
 
 // Written with Thomas Kleinke
-export const getIth = <A>(as: ArrayList<A>) => (i: number): A|undefined => getIthOr(as)(i);
+export const getIth =
+    <A>(as: ArrayList<A>) =>
+        (i: number): A|undefined => getIthOr(as)(i);
 
 
 // Written with Thomas Kleinke
-export const getIthOr = <A>(as: ArrayList<A>, defaultValue: A|undefined = undefined) => (i: number): A|undefined =>
-    as.length < i ? defaultValue : as[i];
+export const getIthOr =
+    <A>(as: ArrayList<A>, defaultValue: A|undefined = undefined) =>
+        (i: number): A|undefined =>
+            as.length < i ? defaultValue : as[i];
 
 
