@@ -24,16 +24,35 @@ work with ***Arrays*** and ***Objects***, specified by
 [isArray](test/predicates/is_array.spec.ts) and
 [isObject](test/predicates/is_object.spec.ts).
 
-Depending on the context, tsfun provides sets of functions which treat
+These two basic data structures can be found nested arbitrarily.
+
+Depending on the context and intended treatment, 
+tsfun provides sets of functions which treat
 
 * Arrays as list-like collections, which we call *ArrayList*
+
+`type ArrayList<T> = Array<T>`
+
 * Arrays as set-like collections, which we call *ArraySet*
+
+`type ArraySet<T> = Array<T>`
+
 * Objects as collections, which we call *(Unt|T)ypedMap*
+
+`interface UntypedMap {[prop: string]: any|undefined}`
+`interface TypedMap<T> {[prop: string]: T}`
+
 * Objects as list-like collections, which we call *ObjectList*
-* Objects as set-like collections, *ObjectSet*
+
+`type ObjectList<T> = TypedMap<T>`
+
 * Objects as structured entites, which we call *Struct*
 
-Then there are Predicates, Comparators and Compositional
+`export type Struct = Object`
+
+* Objects as set-like collections, *ObjectSet*
+
+In addition to that there are Predicates, Comparators and Compositional
 functions to make these yet more powerful.
 
 ### Basic functionality
@@ -148,11 +167,6 @@ elements. So there is no automatic cloning.
 If object collections are not treated as structs, 
 we use the following definitions:
 
-`interface UntypedMap {[prop: string]: any|undefined}`
-
-`interface TypedMap<T> {[prop: string]: T}`
-
-
 #### Ordered-list-like collection functions for Arrays
 
 [Sources](src/collections/arrays_list_like.ts)
@@ -219,8 +233,6 @@ their argument, so they can be used to begin a `flow` with.
 
 * [mapObject](test/objects_list_like/map_object.spec.ts)
 * [filterObject](test/objects_list_like/filter_object.spec.ts)
-
-`type ObjectList<T> = TypedMap<T>;`
 
 ## Docs
 
