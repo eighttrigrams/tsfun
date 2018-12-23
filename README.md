@@ -19,48 +19,6 @@ console.log(take(2)([1,2,3]))
 
 ## Function reference
 
-**tsfun** functions are mainly designed to 
-work with ***Arrays*** and ***Objects***, specified by
-[isArray](test/predicates/is_array.spec.ts) and
-[isObject](test/predicates/is_object.spec.ts).
-These two basic data structures can be found nested arbitrarily. 
-Depending on the context and intended treatment, 
-tsfun provides sets of functions which treat
-
-
-* Arrays as collections, which we call *ArrayCollection* 
-
-`type ArrayCollection<T> = Array<T>`
-
-* Arrays as ordered list-like collections, which we call *ArrayList*
-
-`type ArrayList<T> = Array<T>`
-
-* Arrays as set-like collections, which we call *ArraySet*
-
-`type ArraySet<T> = Array<T>`
-
-* Objects as collections, which we call *(Untyped)ObjectCollection*
-
-`interface UntypedObjectCollection {[prop: string]: any|undefined}`
-
-`interface ObjectCollection<T> {[prop: string]: T}`
-
-* Objects as ordered list-like collections, which we call *ObjectList*
-
-`type ObjectList<T> = TypedMap<T>`
-
-* Objects as structured entites, which we call *Struct*
-
-`export type Struct = Object`
-
-* Objects as set-like collections, *ObjectSet*
-
-`type ObjectSet = UntypedObjectCollection`
-
-In addition to that there are Predicates, Comparators and Compositional
-functions to make these yet more powerful.
-
 ### General
 
 * is
@@ -105,23 +63,6 @@ functions to make these yet more powerful.
 * [without](test/comparators/without.spec.ts)
 * [sameOn](test/comparators/same_on.spec.ts)
 
-`type Comparator = <A, B>(_: A) => Predicate<B>`.
-
-A comparator can be understood as comparing two values to produce a boolean. 
-Applying one partially gives a predicate again, which can then be used to filter,
-for example, like in `[3, 2, 1, 0].filter(biggerThan(1))`.
-
-`type ComparatorProducer = (_: Comparator) => <A>(_: A) => Predicate<A>`
-
-Functions ending with -By, like for example `differentFromBy` are producers of
-Comparators. They get applied partially, taking one comparator, 
-giving another comparator.
-
-Due to the standard comparison with `===`, 
-`differentFrom({a: 1})({a: 1})` gives us `true`. We can change that
-behaviour easily.
-`differentFromBy(jsonEqual)({a: 1})({a: 1})` gives `false`.
-
 ### Composition
 
 [Sources](src/composition.ts)
@@ -141,37 +82,17 @@ behaviour easily.
 * [to](test/struct/to.spec.ts)
 * [jsonClone](test/struct/clone.spec.ts)
 
-We talk about about tsfun Structs in contexts where we 
-care about a composed data structure, like
-for example `{a: {b: [1, 2, 4], c: 'e'}`, whereas the list- 
-and set-like data structures are concerned with the top level of the data structure.
-
-TODO define Struct as type
-
-TODO talk about equal, arrayEquivalent, objectEquivalent, copies (copy vs clone) etc.
-Arrays can be seen as deep nested structures as well.
-
-TODO -Object suffixed collection functions 
-TODO mention typescript index signatures and -Map suffix
-
 ### ArrayCollection and ObjectCollection
 
 [Sources](src/collections/coll.ts)
 
 * [copy](test/colls/copy.spec.ts)
 
-Like copy, all of the following collections methods always return
-new Arrays or Objects, but their elements are pointers to the old
-elements. So there is no automatic cloning.
-
 ### ObjectCollection
 
 [Sources](src/collections/coll.ts)
 
 * [intoObject](test/colls/into_object.spec.ts)
-
-If object collections are not treated as structs, 
-we use the following definitions:
 
 ### Struct and ArrayList
 
@@ -197,10 +118,6 @@ we use the following definitions:
 * [drop / dropRight](test/arrays_list_like/drop.spec.ts)
 * [dropWhile / dropRightWhile](test/arrays_list_like/drop_while.spec.ts)
 
-If we say list-like data structure, we mean that if a 
-function operates on an array or object, we retain order
-and allow duplicates. The operation is linear an vector like.
-
 ### ArraySet
 
 [Sources](src/collections/arrays_set_like.ts)
@@ -209,23 +126,6 @@ and allow duplicates. The operation is linear an vector like.
 * [subtract / subtractBy](test/arrays_set_like/subtract.spec.ts)
 * [union / unite / uniteBy](test/arrays_set_like/union.spec.ts)
 * [unique / uniqueBy](test/arrays_set_like/unique.spec.ts)
-
-If we say set-like data structure, we mean that if a 
-function operates on an array or object, we assume that 
-or explicitely take care that the data structure has
-no duplicates.
-
-Set methods come in two flavours, array set methods and object set methods.
-Both of these have in common that the respective data structures are treated 
-as if they were sets, hence we also call them set-like methods.
-
-Every set method's result is not only `Array<A>` but also consists 
-of unique items (compared with `==`). Where possible, the order of 
-the arguments is kept.
-
-`intersect`, `subtract`, `unite` and `uniqe` are partials, which can be inserted
-into the body of a `flow`. `intersection` and `union` take a `NestedArray<A>` as
-their argument, so they can be used to begin a `flow` with.
 
 ### ObjectSet
 
@@ -242,9 +142,108 @@ their argument, so they can be used to begin a `flow` with.
 * [mapObject](test/objects_list_like/map_object.spec.ts)
 * [filterObject](test/objects_list_like/filter_object.spec.ts)
 
-## Docs
+## Concepts
 
-* [Design rationale](doc/design.md) 
+**tsfun** functions are mainly designed to 
+work with ***Arrays*** and ***Objects***, specified by
+[isArray](test/predicates/is_array.spec.ts) and
+[isObject](test/predicates/is_object.spec.ts).
+These two basic data structures can be found 
+nested arbitrarily deep and mutually. 
+For different treatments in different contexts, 
+tsfun provides different sets of functions.
+
+In addition to that there are Predicates, Comparators and Compositional
+functions to make these yet more powerful. 
+
+### Predicates and Generators
+
+`type Comparator = <A, B>(_: A) => Predicate<B>`.
+
+A comparator can be understood as comparing two values to produce a boolean. 
+Applying one partially gives a predicate again, which can then be used to filter,
+for example, like in `[3, 2, 1, 0].filter(biggerThan(1))`.
+
+`type ComparatorProducer = (_: Comparator) => <A>(_: A) => Predicate<A>`
+
+Functions ending with -By, like for example `differentFromBy` are producers of
+Comparators. They get applied partially, taking one comparator, 
+giving another comparator.
+
+Due to the standard comparison with `===`, 
+`differentFrom({a: 1})({a: 1})` gives us `true`. We can change that
+behaviour easily.
+`differentFromBy(jsonEqual)({a: 1})({a: 1})` gives `false`.
+
+### Collection and Struct Functions
+
+Depending on the context and intended treatment, 
+tsfun provides sets of functions which treat
+
+* Arrays as collections, which we call *ArrayCollection* 
+
+`type ArrayCollection<T> = Array<T>`
+
+* Arrays as ordered list-like collections, which we call *ArrayList*
+
+`type ArrayList<T> = Array<T>`
+
+* Arrays as set-like collections, which we call *ArraySet*
+
+`type ArraySet<T> = Array<T>`
+
+* Objects as collections, which we call *(Untyped)ObjectCollection*
+
+`interface UntypedObjectCollection {[prop: string]: any|undefined}`
+
+`interface ObjectCollection<T> {[prop: string]: T}`
+
+* Objects as ordered list-like collections, which we call *ObjectList*
+
+`type ObjectList<T> = TypedMap<T>`
+
+* Objects as structured entites, which we call *Struct*
+
+`export type Struct = Object`
+
+* Objects as set-like collections, *ObjectSet*
+
+`type ObjectSet = UntypedObjectCollection`
+
+If we say list-like data structure, we mean that if a 
+function operates on an array or object, we retain order
+and allow duplicates. The operation is linear an vector like.
+
+We talk about about tsfun Structs in contexts where we 
+care about a composed data structure, like
+for example `{a: {b: [1, 2, 4], c: 'e'}`, whereas the list- 
+and set-like data structures are concerned with the top level of the data structure.
+
+If we say set-like data structure, we mean that if a 
+function operates on an array or object, we assume that 
+or explicitely take care that the data structure has
+no duplicates.
+
+Set methods come in two flavours, array set methods and object set methods.
+Both of these have in common that the respective data structures are treated 
+as if they were sets, hence we also call them set-like methods.
+
+Every set method's result is not only `Array<A>` but also consists 
+of unique items (compared with `===`). Where possible, the order of 
+the arguments is kept.
+
+`intersect`, `subtract`, `unite` and `uniqe` are partials, which can be inserted
+into the body of a `flow`. `intersection` and `union` take a `NestedArray<A>` as
+their argument, so they can be used to begin a `flow` with.
+
+TODO talk about equal, arrayEquivalent, objectEquivalent, copies (copy vs clone) etc.
+Arrays can be seen as deep nested structures as well.
+
+Like copy, all of the following collections methods always return
+new Arrays or Objects, but their elements are pointers to the old
+elements. So there is no automatic cloning.
+
+At least, here is some background on tsfun's [design rationale](doc/design.md). 
  
 ## Credits 
  
