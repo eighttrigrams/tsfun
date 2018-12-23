@@ -42,8 +42,6 @@ console.log(take(2)([1,2,3]))
 * [isString / isBoolean](test/predicates/is_string.spec.ts)
 * [isNot / not](test/predicates/is_not.spec.ts)
 
-`type Predicate<A> = (_: A) => boolean`
-
 ### Comparator
 
 [Sources](src/comparators.ts)
@@ -157,6 +155,8 @@ In addition to that there are Predicates, Comparators and Compositional
 functions to make these yet more powerful. 
 
 ### Predicates and Generators
+
+`type Predicate<A> = (_: A) => boolean`
 
 `type Comparator = <A, B>(_: A) => Predicate<B>`.
 
