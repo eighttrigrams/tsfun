@@ -56,6 +56,8 @@ tsfun provides sets of functions which treat
 
 * Objects as set-like collections, *ObjectSet*
 
+`type ObjectSet = UntypedObjectCollection`
+
 In addition to that there are Predicates, Comparators and Compositional
 functions to make these yet more powerful.
 
