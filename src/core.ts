@@ -4,7 +4,7 @@
 export const identity = <A>(v: A) => v;
 
 
-export const by = identity;
+export const by = identity; // TODO type by to work only for functions or comparators
 
 
 export const identical = identity;
