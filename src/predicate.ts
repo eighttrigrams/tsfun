@@ -1,4 +1,4 @@
-import {Predicate, PredicateProducer} from './types';
+import {Predicate, PredicateProducer} from './type';
 import {on} from './comparator';
 
 

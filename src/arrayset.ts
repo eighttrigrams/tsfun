@@ -1,4 +1,4 @@
-import {Comparator, NestedArray} from './types';
+import {Comparator, NestedArray} from './type';
 import {includedInBy, tripleEqual} from './comparator';
 import {uncurry2} from './core';
 import {isNot} from './predicate';

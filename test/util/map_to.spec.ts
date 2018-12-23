@@ -1,16 +1,10 @@
-import {mapTo} from '../src/utils';
+import {mapTo} from '../../src/util';
 
 
 /**
- * addTo
- *
- * mapTo
- *
- * doWhen
+ * @author Daniel de Oliveira
  */
-describe('Arrays/List-Like-Collection', () => {
-
-    // mapTo
+describe('mapTo', () => {
 
     it('mapTo', () =>
 

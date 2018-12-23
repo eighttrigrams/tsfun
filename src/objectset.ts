@@ -1,5 +1,5 @@
 import {intersect as intersectA, subtract as subtractA} from "./arrayset";
-import {ObjectSet} from './types';
+import {ObjectSet} from './type';
 import {identical} from './core';
 import {mapProperties} from './objectcoll';
 

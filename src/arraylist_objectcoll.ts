@@ -1,4 +1,4 @@
-import {ArrayList, UntypedObjectCollection} from './types';
+import {ArrayList, UntypedObjectCollection} from './type';
 import {subtract} from './arrayset';
 import {subtractObject} from './objectset';
 

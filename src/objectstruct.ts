@@ -1,6 +1,6 @@
 import {isEmpty} from './predicate';
 import {reverseUncurry2} from './core';
-import {ObjectStruct} from './types';
+import {ObjectStruct} from './type';
 
 
 // ------------ @author Daniel de Oliveira -----------------

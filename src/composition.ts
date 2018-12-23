@@ -1,4 +1,4 @@
-import {Transformation} from './types';
+import {Transformation} from './type';
 
 
 // ------------ @author Daniel de Oliveira -----------------

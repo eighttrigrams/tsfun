@@ -1,4 +1,4 @@
-import {ArrayList, ObjectStruct} from './types';
+import {ArrayList, ObjectStruct} from './type';
 import {getIth} from './arraylist';
 import {getElForPathIn} from './objectstruct';
 

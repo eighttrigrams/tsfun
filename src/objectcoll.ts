@@ -1,4 +1,4 @@
-import {Mapping, ObjectCollection, Predicate, Transformation} from './types';
+import {Mapping, ObjectCollection, Predicate, Transformation} from './type';
 import {isDefined} from './predicate';
 
 

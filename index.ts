@@ -1,7 +1,7 @@
 export {
     NestedArray,
     Pair
-} from './src/types';
+} from './src/type';
 
 export {
     isNot,
@@ -122,7 +122,15 @@ export {identity, identical, by} from './src/core';
 
 export {get} from './src/arraylist_objectstruct';
 
-export {doWhen, addTo, mapTo} from './src/utils';
+export {
+    doWhen,
+    addTo,
+    mapTo,
+    doWhile,
+    doTimes,
+    doNothing,
+    nop
+} from './src/util';
 
 export {
     takeOrMake,
