@@ -34,7 +34,7 @@ Depending on the context, tsfun provides sets of functions which treat
 * Objects as structured entites, which we call *Struct*
 
 Then there are Predicates, Comparators and Compositional
-functions to accompany these.
+functions to make these yet more powerful.
 
 ### Basic functionality
 
