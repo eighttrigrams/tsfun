@@ -230,7 +230,7 @@ their argument, so they can be used to begin a `flow` with.
 * [uniteObject / unionObject](test/objects_set_like/unite_object.spec.ts)
 * [subtractObject](test/objects_set_like/subtract_object.spec.ts)
 
-### ObjectList
+### ObjectList TODO merge into ObjectCollection
 
 [Sources](src/collections/objects_list_like.ts)
 
