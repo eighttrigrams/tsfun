@@ -24,8 +24,7 @@ work with ***Arrays*** and ***Objects***, specified by
 [isArray](test/predicates/is_array.spec.ts) and
 [isObject](test/predicates/is_object.spec.ts).
 
-These two basic data structures can be found nested arbitrarily.
-
+These two basic data structures can be found nested arbitrarily. 
 Depending on the context and intended treatment, 
 tsfun provides sets of functions which treat
 
