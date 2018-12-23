@@ -1,6 +1,5 @@
-import {dropWhile, takeWhile} from '../../src/collections/arrays_list_like_pick';
 import {biggerThan, smallerThan} from '../../src/comparators';
-import {reverse} from '../../src/collections/arrays_list_like';
+import {dropWhile, reverse, takeWhile} from '../../src/collections/arrays_list_like';
 import {uniteObject} from '../../src/collections/objects_set_like';
 import {composition, flow} from '../../src/composition';
 

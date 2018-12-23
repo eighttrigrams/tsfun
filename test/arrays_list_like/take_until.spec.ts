@@ -1,5 +1,5 @@
-import {takeUntil} from '../../src/collections/arrays_list_like_pick';
 import {biggerThan} from '../../src/comparators';
+import {takeUntil} from '../../src/collections/arrays_list_like';
 
 
 describe('takeUntil', () => {

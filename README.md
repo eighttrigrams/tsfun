@@ -174,6 +174,7 @@ we use the following definitions:
 
 [Sources](src/collections/arrays_list_like.ts)
 
+* intoArray
 * [prepend](test/arrays_list_like/prepend.spec.ts)  
 * [append](test/arrays_list_like/append.spec.ts) 
 * [getIth / getIthOr](test/arrays_list_like/get_ith.spec.ts) 
@@ -181,20 +182,15 @@ we use the following definitions:
 * [map](test/arrays_list_like/map.spec.ts) 
 * [flatMap](test/arrays_list_like/flat_map.spec.ts)
 * [separate](test/arrays_list_like/separate.spec.ts) 
-
-If we say list-like data structure, we mean that if a 
-function operates on an array or object, we retain order
-and allow duplicates. The operation is linear an vector like.
-
-### ArrayList - Picking methods
-
-[Sources](src/collections/arrays_list_like_pick.ts)
-
 * [take](test/arrays_list_like/take.spec.ts)
 * [takeNth](test/arrays_list_like/take_nth.spec.ts)
 * [takeWhile / takeRightWhile](test/arrays_list_like/take_while.spec.ts)
 * [drop / dropRight](test/arrays_list_like/drop.spec.ts)
 * [dropWhile / dropRightWhile](test/arrays_list_like/drop_while.spec.ts)
+
+If we say list-like data structure, we mean that if a 
+function operates on an array or object, we retain order
+and allow duplicates. The operation is linear an vector like.
 
 ### ArraySet
 

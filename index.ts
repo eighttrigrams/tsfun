@@ -48,20 +48,6 @@ export {
     sameOn
 } from './src/comparators';
 
-
-export {
-    take,
-    takeRightWhile,
-    takeUntil,
-    takeWhile,
-    takeNth,
-    dropWhile,
-    drop,
-    dropRight,
-    dropRightWhile
-} from './src/collections/arrays_list_like_pick';
-
-
 export {
     compose,
     flow,
@@ -76,7 +62,16 @@ export {
     map,
     append,
     prepend,
-    separate
+    separate,
+    take,
+    takeRightWhile,
+    takeUntil,
+    takeWhile,
+    takeNth,
+    dropWhile,
+    drop,
+    dropRight,
+    dropRightWhile
 } from './src/collections/arrays_list_like';
 
 
