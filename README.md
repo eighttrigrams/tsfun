@@ -87,7 +87,7 @@ console.log(take(2)([1,2,3]))
 
 ### ObjectCollection
 
-[Source](src/objects_coll.ts)
+[Source](src/objectcoll.ts)
 
 * [intoObject](test/objectcoll/into_object.spec.ts)
 * [mapObject](test/objectcoll/map_object.spec.ts)
