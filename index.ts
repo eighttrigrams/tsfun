@@ -108,14 +108,14 @@ export {
     mapObject,
     filterObject,
     intoObject
-} from './src/objects_coll'
+} from './src/objectcoll'
 
 
 export {copy} from './src/arraylist_objectcoll';
 
 export {by} from './src/core';
 
-export {get} from './src/arraylist_struct';
+export {get} from './src/arraylist_objectstruct';
 
 export {doWhen, addTo, mapTo} from './src/utils';
 

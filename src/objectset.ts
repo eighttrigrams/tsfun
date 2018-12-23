@@ -1,7 +1,7 @@
 import {intersect as intersectA, subtract as subtractA} from "./arrayset";
-import {mapProperties} from './objects_coll';
 import {ObjectSet} from './types';
 import {identical} from './core';
+import {mapProperties} from './objectcoll';
 
 
 export const subtractObject = (subtrahend: Array<string | number> | any) =>

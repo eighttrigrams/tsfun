@@ -69,16 +69,16 @@ console.log(take(2)([1,2,3]))
 * [compose](test/core/compose.spec.ts)
 * [wrap](test/core/wrap.spec.ts)
 
-### Struct
+### ObjectStruct
 
-[Sources](src/struct.ts)  
+[Sources](src/objectstruct.ts)  
 
-* [getElForPathIn](test/struct/get_el_for_path_in.spec.ts)
-* [takeOrMake](test/struct/take_or_make.spec.ts)
-* [option](test/struct/option.spec.ts)
-* [mapOption](test/struct/map_option.spec.ts)
-* [to](test/struct/to.spec.ts)
-* [jsonClone](test/struct/clone.spec.ts)
+* [getElForPathIn](test/objectstruct/get_el_for_path_in.spec.ts)
+* [takeOrMake](test/objectstruct/take_or_make.spec.ts)
+* [option](test/objectstruct/option.spec.ts)
+* [mapOption](test/objectstruct/map_option.spec.ts)
+* [to](test/objectstruct/to.spec.ts)
+* [jsonClone](test/objectstruct/clone.spec.ts)
 
 ### ArrayList and ObjectCollection
 
@@ -91,10 +91,10 @@ console.log(take(2)([1,2,3]))
 [Sources](src/objects_coll.ts)
 
 * [intoObject](test/arraylist_objectcoll/into_object.spec.ts)
-* [mapObject](test/object_collection/map_object.spec.ts)
-* [filterObject](test/object_collection/filter_object.spec.ts)
+* [mapObject](test/objectcoll/map_object.spec.ts)
+* [filterObject](test/objectcoll/filter_object.spec.ts)
 
-### ArrayList and Struct
+### ArrayList and ObjectStruct
 
 [Sources](src/arraylist_struct.ts)
 
@@ -106,35 +106,35 @@ console.log(take(2)([1,2,3]))
 
 * intoArray
 * intoArrayWith
-* [prepend](test/arrays_list_like/prepend.spec.ts)  
-* [append](test/arrays_list_like/append.spec.ts) 
-* [getIth / getIthOr](test/arrays_list_like/get_ith.spec.ts) 
-* [filter](test/arrays_list_like/filter.spec.ts) 
-* [map](test/arrays_list_like/map.spec.ts) 
-* [flatMap](test/arrays_list_like/flat_map.spec.ts)
-* [separate](test/arrays_list_like/separate.spec.ts) 
-* [take](test/arrays_list_like/take.spec.ts)
-* [takeNth](test/arrays_list_like/take_nth.spec.ts)
-* [takeWhile / takeRightWhile](test/arrays_list_like/take_while.spec.ts)
-* [drop / dropRight](test/arrays_list_like/drop.spec.ts)
-* [dropWhile / dropRightWhile](test/arrays_list_like/drop_while.spec.ts)
+* [prepend](test/arraylist/prepend.spec.ts)  
+* [append](test/arraylist/append.spec.ts) 
+* [getIth / getIthOr](test/arraylist/get_ith.spec.ts) 
+* [filter](test/arraylist/filter.spec.ts) 
+* [map](test/arraylist/map.spec.ts) 
+* [flatMap](test/arraylist/flat_map.spec.ts)
+* [separate](test/arraylist/separate.spec.ts) 
+* [take](test/arraylist/take.spec.ts)
+* [takeNth](test/arraylist/take_nth.spec.ts)
+* [takeWhile / takeRightWhile](test/arraylist/take_while.spec.ts)
+* [drop / dropRight](test/arraylist/drop.spec.ts)
+* [dropWhile / dropRightWhile](test/arraylist/drop_while.spec.ts)
 
 ### ArraySet
 
 [Sources](src/arrayset.ts)
 
-* [intersection / intersect / intersectBy](test/arrays_set_like/intersect.spec.ts)
-* [subtract / subtractBy](test/arrays_set_like/subtract.spec.ts)
-* [union / unite / uniteBy](test/arrays_set_like/union.spec.ts)
-* [unique / uniqueBy](test/arrays_set_like/unique.spec.ts)
+* [intersection / intersect / intersectBy](test/arrayset/intersect.spec.ts)
+* [subtract / subtractBy](test/arrayset/subtract.spec.ts)
+* [union / unite / uniteBy](test/arrayset/union.spec.ts)
+* [unique / uniqueBy](test/arrayset/unique.spec.ts)
 
 ### ObjectSet
 
 [Sources](src/objectset.ts)
 
-* [intersectObject](test/objects_set_like/intersect_object.spec.ts)
-* [uniteObject / unionObject](test/objects_set_like/unite_object.spec.ts)
-* [subtractObject](test/objects_set_like/subtract_object.spec.ts)
+* [intersectObject](test/objectset/intersect_object.spec.ts)
+* [uniteObject / unionObject](test/objectset/unite_object.spec.ts)
+* [subtractObject](test/objectset/subtract_object.spec.ts)
 
 ## Concepts
 
@@ -190,9 +190,9 @@ tsfun provides sets of functions which treat
 
 `interface ObjectCollection<T> {[prop: string]: T}`
 
-* Objects as structured entites, which we call *Struct*
+* Objects as structured entites, which we call *ObjectStruct*
 
-`export type Struct = Object`
+`export type ObjectStruct = Object`
 
 * Objects as set-like collections, *ObjectSet*
 
@@ -225,7 +225,7 @@ Many collection methods are designed to work within a composition.
 into the body of a `flow`. Sometimes though there are standalone version of 
 them, like `intersection` and `union` take a `NestedArray<A>`,
 
-We talk about about *tsfun* *Structs* in contexts where we 
+We talk about about *tsfun* *ObjectStructs* in contexts where we 
 care about a composed data structure, like
 for example `{a: {b: [1, 2, 4], c: 'e'}`, as opposed
 to *Collections*.
