@@ -1,9 +1,8 @@
+import {is, isnt} from '../../src/comparator';
+
 /**
  * @author Daniel de Oliveira
  */
-import {is, isnt} from '../../src/comparator';
-
-
 describe('is / isnt', () => {
 
     it('is', () =>

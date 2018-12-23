@@ -2,6 +2,8 @@ import {Predicate, PredicateProducer} from './type';
 import {on} from './comparator';
 
 
+// ------------ @author Daniel de Oliveira -----------------
+
 export const isNot: PredicateProducer = <A>(f: Predicate<A>) =>
     (a: A) => flip(f(a));
 
@@ -16,6 +18,9 @@ export const defined = isDefined;
 
 
 export const isUndefined: Predicate<any> = isNot(defined);
+
+
+export const Undefined = isUndefined;
 
 
 export function isUndefinedOrEmpty<T>(coll: Object|Array<T>|undefined): boolean {

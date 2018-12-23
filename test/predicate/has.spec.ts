@@ -1,9 +1,8 @@
+import {has, hasNot} from '../../src/predicate';
+
 /**
  * @author Daniel de Oliveira
  */
-import {has, hasNot} from '../../src/predicate';
-
-
 describe('has / hasNot', () => {
 
     it('has - true', () =>

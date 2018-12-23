@@ -1,7 +1,7 @@
-import {defined, isDefined, isUndefined} from '../../src/predicate';
+import {defined, isDefined, isUndefined, Undefined} from '../../src/predicate';
 
 
-describe('isDefined / defined / isUndefined', () => {
+describe('isDefined / defined / isUndefined / Undefined', () => {
 
     it('isDefined',() =>
         expect(
@@ -23,6 +23,14 @@ describe('isDefined / defined / isUndefined', () => {
         expect(
 
             isUndefined(undefined))
+
+            .toEqual(true));
+
+
+    it('isFalse',() =>
+        expect(
+
+            Undefined(undefined))
 
             .toEqual(true));
 });
