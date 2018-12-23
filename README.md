@@ -27,7 +27,7 @@ These two basic data structures can be found nested arbitrarily.
 Depending on the context and intended treatment, 
 tsfun provides sets of functions which treat
 
-* Arrays as list-like collections, which we call *ArrayList*
+* Arrays as ordered list-like collections, which we call *ArrayList*
 
 `type ArrayList<T> = Array<T>`
 
@@ -41,7 +41,7 @@ tsfun provides sets of functions which treat
 
 `interface TypedMap<T> {[prop: string]: T}`
 
-* Objects as list-like collections, which we call *ObjectList*
+* Objects as ordered list-like collections, which we call *ObjectList*
 
 `type ObjectList<T> = TypedMap<T>`
 
@@ -54,7 +54,7 @@ tsfun provides sets of functions which treat
 In addition to that there are Predicates, Comparators and Compositional
 functions to make these yet more powerful.
 
-### Predicates
+### Predicate
 
 [Sources](test/predicates.spec.ts)
 
@@ -70,7 +70,7 @@ functions to make these yet more powerful.
 
 `type Predicate<A> = (_: A) => boolean`
 
-### Comparators
+### Comparator
 
 [Sources](src/comparators.ts)
 
@@ -114,13 +114,13 @@ behaviour easily.
 * [compose](test/core/compose.spec.ts)
 * [wrap](test/core/wrap.spec.ts)
 
-### Structures and Collections
+### Struct and Collection
 
 [Sources](src/colls_struct.ts)
 
 * [get](test/core/get.spec.ts)
 
-### Struct functions
+### Struct
 
 [Sources](src/struct.ts)  
 
@@ -144,7 +144,7 @@ Arrays can be seen as deep nested structures as well.
 TODO -Object suffixed collection functions 
 TODO mention typescript index signatures and -Map suffix
 
-### Collection functions for Arrays and Objects
+### Collection - Arrays / ObjectMaps
 
 [Sources](src/collections/coll.ts)
 
@@ -154,7 +154,7 @@ Like copy, all of the following collections methods always return
 new Arrays or Objects, but their elements are pointers to the old
 elements. So there is no automatic cloning.
 
-### Collection Functions for Objects
+### ObjectMap
 
 [Sources](src/collections/coll.ts)
 
@@ -163,7 +163,7 @@ elements. So there is no automatic cloning.
 If object collections are not treated as structs, 
 we use the following definitions:
 
-### Ordered-list-like collection functions for Arrays
+### ArrayList
 
 [Sources](src/collections/arrays_list_like.ts)
 
@@ -179,7 +179,7 @@ If we say list-like data structure, we mean that if a
 function operates on an array or object, we retain order
 and allow duplicates. The operation is linear an vector like.
 
-### Ordered-list-like collection functions for Arrays - Picking methods
+### ArrayList - Picking methods
 
 [Sources](src/collections/arrays_list_like_pick.ts)
 
@@ -189,7 +189,7 @@ and allow duplicates. The operation is linear an vector like.
 * [drop / dropRight](test/arrays_list_like/drop.spec.ts)
 * [dropWhile / dropRightWhile](test/arrays_list_like/drop_while.spec.ts)
 
-### Set-like collection functions for Arrays
+### ArraySet
 
 [Sources](src/collections/arrays_set_like.ts)
 
@@ -215,7 +215,7 @@ the arguments is kept.
 into the body of a `flow`. `intersection` and `union` take a `NestedArray<A>` as
 their argument, so they can be used to begin a `flow` with.
 
-### Set-like collection functions for Object-Maps
+### ObjectSet
 
 [Sources](src/collections/objects_set_like.ts)
 
@@ -223,7 +223,7 @@ their argument, so they can be used to begin a `flow` with.
 * [uniteObject / unionObject](test/objects_set_like/unite_object.spec.ts)
 * [subtractObject](test/objects_set_like/subtract_object.spec.ts)
 
-### Ordered-list-like collection functions for Object-Maps
+### ObjectList
 
 [Sources](src/collections/objects_list_like.ts)
 

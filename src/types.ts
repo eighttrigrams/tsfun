@@ -25,7 +25,7 @@ export type NestedArray<A> = Array<Array<A>>;
 export interface UntypedMap {[prop: string]: any|undefined}
 
 
-export interface TypedMap<T> {[prop: string]: T}
+export interface TypedMap<T> {[prop: string]: T} // TODO rename to ObjectMap then
 
 
 export type ObjectList<T> = TypedMap<T>;
