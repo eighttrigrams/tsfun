@@ -1,4 +1,4 @@
-import {copy} from '../../src/collections/coll';
+import {copy} from '../../src/collections/arraylist_objectcoll';
 
 
 describe('copy', () => {

@@ -40,7 +40,4 @@ export type ArrayList<T> = Array<T>;
 export type ArraySet<T> = Array<T>;
 
 
-export type ArrayCollection<T> = Array<T>;
-
-
 export type Struct = Object;

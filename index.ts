@@ -113,7 +113,7 @@ export {
 } from './src/collections/objects_coll'
 
 
-export {copy} from './src/collections/coll';
+export {copy} from './src/collections/arraylist_objectcoll';
 
 export {by} from './src/core';
 

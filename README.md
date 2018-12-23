@@ -80,17 +80,17 @@ console.log(take(2)([1,2,3]))
 * [to](test/struct/to.spec.ts)
 * [jsonClone](test/struct/clone.spec.ts)
 
-### ArrayCollection and ObjectCollection
+### ArrayList and ObjectCollection
 
-[Sources](src/collections/coll.ts)
+[Sources](src/collections/arraylist_objectcoll.ts)
 
-* [copy](test/colls/copy.spec.ts)
+* [copy](test/arraylist_objectcoll/copy.spec.ts)
 
 ### ObjectCollection
 
 [Sources](src/collections/object_coll.ts)
 
-* [intoObject](test/colls/into_object.spec.ts)
+* [intoObject](test/arraylist_objectcoll/into_object.spec.ts)
 * [mapObject](test/object_collection/map_object.spec.ts)
 * [filterObject](test/object_collection/filter_object.spec.ts)
 
@@ -135,11 +135,6 @@ console.log(take(2)([1,2,3]))
 * [uniteObject / unionObject](test/objects_set_like/unite_object.spec.ts)
 * [subtractObject](test/objects_set_like/subtract_object.spec.ts)
 
-### ObjectList TODO merge into ObjectCollection
-
-[Sources](src/collections/objects_list_like.ts)
-
-
 ## Concepts
 
 **tsfun** functions are mainly designed to 
@@ -179,10 +174,6 @@ behaviour easily.
 
 Depending on the context and intended treatment, 
 tsfun provides sets of functions which treat
-
-* Arrays as collections, which we call *ArrayCollection* 
-
-`type ArrayCollection<T> = Array<T>`
 
 * Arrays as ordered list-like collections, which we call *ArrayList*
 
