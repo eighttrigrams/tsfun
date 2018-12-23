@@ -1,6 +1,9 @@
 import {flatMap} from '../../src/arraylist';
 
 
+/**
+ * @author Daniel de Oliveira
+ */
 describe('flatMap', () => {
 
 

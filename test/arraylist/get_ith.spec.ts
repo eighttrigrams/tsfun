@@ -1,6 +1,9 @@
 import {getIth, getIthOr} from '../../src/arraylist';
 
 
+/**
+ * @author Daniel de Oliveira
+ */
 describe('getIth/getIthOr', () => {
 
     // getIth

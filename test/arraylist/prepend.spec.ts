@@ -1,9 +1,10 @@
 import {prepend} from '../../src/arraylist';
 
 
+/**
+ * @author Daniel de Oliveira
+ */
 describe('prepend', () => {
-
-    // prepend
 
     it('prepend', () =>
 
