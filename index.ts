@@ -65,7 +65,8 @@ export {
 export {
     compose,
     flow,
-} from './src/flow';
+    composition
+} from './src/composition';
 
 
 export {
@@ -118,7 +119,7 @@ export {
 
 export {copy, intoObject} from './src/collections/coll';
 
-export {jsonClone, by, wrap} from './src/core';
+export {by} from './src/core';
 
 export {get} from './src/colls_struct';
 
@@ -127,7 +128,8 @@ export {doWhen, addTo, mapTo} from './src/utils';
 export {
     takeOrMake,
     option,
-    to
+    to,
+    jsonClone
 } from './src/struct';
 
 

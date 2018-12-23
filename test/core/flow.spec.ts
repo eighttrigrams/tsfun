@@ -1,10 +1,15 @@
-import {flow} from '../../src/flow';
 import {dropWhile, takeWhile} from '../../src/collections/arrays_list_like_pick';
 import {biggerThan, smallerThan} from '../../src/comparators';
 import {reverse} from '../../src/collections/arrays_list_like';
 import {uniteObject} from '../../src/collections/objects_set_like';
+import {composition, flow} from '../../src/composition';
 
-describe('flow', () => {
+describe('flow / composition', () => {
+
+    // TODO rethink renaming it to composition
+
+    // A flow is a transformation from Array of A to Array of A, consisting
+    // of n transformation steps, where n >= 0.
 
     // A `flow`
     // is a series of transformations of some object of type `A` to another object
@@ -54,6 +59,15 @@ describe('flow', () => {
                 takeWhile(biggerThan(4))))
 
         .toEqual([5]));
+
+
+    it('composition', () =>
+        expect(
+
+            composition([5,4],
+                takeWhile(biggerThan(4))))
+
+            .toEqual([5]));
 
 
     it('flow - no steps', () =>

@@ -3,6 +3,9 @@ import {reverseUncurry2} from './core';
 import {Struct} from './types';
 
 
+export const jsonClone = <O>(object: O) => JSON.parse(JSON.stringify(object)) as O;
+
+
 // library internal
 export function getElForPathIn(object: Struct, path: string) {
 

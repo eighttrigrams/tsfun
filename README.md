@@ -110,10 +110,9 @@ behaviour easily.
 
 #### Composition
 
-[Sources](src/core.ts) Core<br>
-[Sources](src/flow.ts) Flow
+[Sources](src/composition.ts)
 
-* [flow](test/core/flow.spec.ts)
+* [flow / composition](test/core/flow.spec.ts)
 * [compose](test/core/compose.spec.ts)
 * [wrap](test/core/wrap.spec.ts)
 
