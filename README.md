@@ -65,9 +65,9 @@ console.log(take(2)([1,2,3]))
 
 [Sources](src/composition.ts)
 
-* [flow / composition](test/core/flow.spec.ts)
-* [compose](test/core/compose.spec.ts)
-* [wrap](test/core/wrap.spec.ts)
+* [flow / composition](test/composition/flow.spec.ts)
+* [compose](test/composition/compose.spec.ts)
+* [wrap](test/composition/wrap.spec.ts)
 
 ### ObjectStruct
 
@@ -90,15 +90,15 @@ console.log(take(2)([1,2,3]))
 
 [Sources](src/objects_coll.ts)
 
-* [intoObject](test/arraylist_objectcoll/into_object.spec.ts)
+* [intoObject](test/objectcoll/into_object.spec.ts)
 * [mapObject](test/objectcoll/map_object.spec.ts)
 * [filterObject](test/objectcoll/filter_object.spec.ts)
 
 ### ArrayList and ObjectStruct
 
-[Sources](src/arraylist_struct.ts)
+[Sources](src/arraylist_objectstruct.ts)
 
-* [get](test/core/get.spec.ts)
+* [get](test/arraylist_objectstruct/get.spec.ts)
 
 ### ArrayList
 
