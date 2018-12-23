@@ -136,7 +136,7 @@ behaviour easily.
 * [option](test/struct/option.spec.ts)
 * [mapOption](test/struct/map_option.spec.ts)
 * [to](test/struct/to.spec.ts)
-* [clone](test/struct/clone.spec.ts)
+* [jsonClone](test/struct/clone.spec.ts)
 
 We talk about about tsfun Structs in contexts where we 
 care about a composed data structure, like
