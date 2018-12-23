@@ -37,10 +37,9 @@ tsfun provides sets of functions which treat
 
 * Objects as collections, which we call *(Unt|T)ypedMap*
 
-```
-interface UntypedMap {[prop: string]: any|undefined}
-interface TypedMap<T> {[prop: string]: T}
-```
+`interface UntypedMap {[prop: string]: any|undefined}`
+
+`interface TypedMap<T> {[prop: string]: T}`
 
 * Objects as list-like collections, which we call *ObjectList*
 
