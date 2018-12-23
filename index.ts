@@ -23,6 +23,8 @@ export {
 
 
 export {
+    is,
+    isnt,
     arrayEqual,
     arrayEqualBy,
     arrayEquivalent,

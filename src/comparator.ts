@@ -10,6 +10,12 @@ export const tripleEqual: any = <A>(l:A) =>
     (r:A) => l === r;
 
 
+export const is = tripleEqual;
+
+
+export const isnt = <A>(l: A) => isNot(tripleEqual(l));
+
+
 export const jsonEqual: any = <A>(l:A) =>
     (r:A) => tripleEqual(JSON.stringify(l))(JSON.stringify(r));
 

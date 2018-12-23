@@ -30,7 +30,6 @@ console.log(take(2)([1,2,3]))
 
 [Source](src/predicate.ts)
 
-* is
 * [has / hasNot](test/predicate/has.spec.ts) 
 * [empty / isEmpty](test/predicate/is_empty.spec.ts)
 * [undefinedOrEmpty / isUndefinedOrEmpty](test/predicate/is_undefined_or_empty.spec.ts)
@@ -46,6 +45,7 @@ console.log(take(2)([1,2,3]))
 [Source](src/comparator.ts)
 
 * [tripleEqual](test/comparator/triple_equal.spec.ts)
+* [is / isnt](test/comparator/is.spec.ts)
 * [jsonEqual](test/comparator/json_equal.spec.ts)
 * [smallerThan / biggerThan](test/comparator/smaller_than.spec.ts)
 * [differentFrom / differentFromBy](test/comparator/different_from.spec.ts)
