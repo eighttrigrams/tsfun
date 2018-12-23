@@ -21,13 +21,14 @@ console.log(take(2)([1,2,3]))
 
 ### General
 
+[Source](src/core.ts)
+
 * is / by / identical
-* curry2 / reverseUncurry2
-* partial 
+* curry2 / reverseUncurry2 
 
 ### Predicate
 
-[Sources](src/predicate.ts)
+[Source](src/predicate.ts)
 
 * is
 * [has / hasNot](test/predicate/has.spec.ts) 
@@ -42,7 +43,7 @@ console.log(take(2)([1,2,3]))
 
 ### Comparator
 
-[Sources](src/comparator.ts)
+[Source](src/comparator.ts)
 
 * [tripleEqual](test/comparator/triple_equal.spec.ts)
 * [jsonEqual](test/comparator/json_equal.spec.ts)
@@ -61,7 +62,7 @@ console.log(take(2)([1,2,3]))
 
 ### Composition
 
-[Sources](src/composition.ts)
+[Source](src/composition.ts)
 
 * [flow / composition](test/composition/flow.spec.ts)
 * [compose](test/composition/compose.spec.ts)
@@ -69,7 +70,7 @@ console.log(take(2)([1,2,3]))
 
 ### ObjectStruct
 
-[Sources](src/objectstruct.ts)  
+[Source](src/objectstruct.ts)  
 
 * [getElForPathIn](test/objectstruct/get_el_for_path_in.spec.ts)
 * [takeOrMake](test/objectstruct/take_or_make.spec.ts)
@@ -80,13 +81,13 @@ console.log(take(2)([1,2,3]))
 
 ### ArrayList and ObjectCollection
 
-[Sources](src/arraylist_objectcoll.ts)
+[Source](src/arraylist_objectcoll.ts)
 
 * [copy](test/arraylist_objectcoll/copy.spec.ts)
 
 ### ObjectCollection
 
-[Sources](src/objects_coll.ts)
+[Source](src/objects_coll.ts)
 
 * [intoObject](test/objectcoll/into_object.spec.ts)
 * [mapObject](test/objectcoll/map_object.spec.ts)
@@ -94,13 +95,13 @@ console.log(take(2)([1,2,3]))
 
 ### ArrayList and ObjectStruct
 
-[Sources](src/arraylist_objectstruct.ts)
+[Source](src/arraylist_objectstruct.ts)
 
 * [get](test/arraylist_objectstruct/get.spec.ts) / getOrElse
 
 ### ArrayList
 
-[Sources](src/arraylist.ts)
+[Source](src/arraylist.ts)
 
 * [prepend](test/arraylist/prepend.spec.ts)  
 * [append](test/arraylist/append.spec.ts) 
@@ -119,7 +120,7 @@ console.log(take(2)([1,2,3]))
 
 ### ArraySet
 
-[Sources](src/arrayset.ts)
+[Source](src/arrayset.ts)
 
 * [intersection / intersect / intersectBy](test/arrayset/intersect.spec.ts)
 * [subtract / subtractBy](test/arrayset/subtract.spec.ts)
@@ -128,11 +129,21 @@ console.log(take(2)([1,2,3]))
 
 ### ObjectSet
 
-[Sources](src/objectset.ts)
+[Source](src/objectset.ts)
 
 * [intersectObject](test/objectset/intersect_object.spec.ts)
 * [uniteObject / unionObject](test/objectset/unite_object.spec.ts)
 * [subtractObject](test/objectset/subtract_object.spec.ts)
+
+### Utils
+
+[Source](src/utils.ts)
+
+* mapTo
+* addTo
+* doWhen
+* doWhile
+* doTimes
 
 ## Concepts
 
