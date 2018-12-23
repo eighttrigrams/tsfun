@@ -27,6 +27,11 @@ These two basic data structures can be found nested arbitrarily.
 Depending on the context and intended treatment, 
 tsfun provides sets of functions which treat
 
+
+* Arrays as collections, which we call *ArrayCollection* 
+
+`type ArrayCollection<T> = Array<T>`
+
 * Arrays as ordered list-like collections, which we call *ArrayList*
 
 `type ArrayList<T> = Array<T>`
@@ -35,11 +40,11 @@ tsfun provides sets of functions which treat
 
 `type ArraySet<T> = Array<T>`
 
-* Objects as collections, which we call *(Unt|T)ypedMap*
+* Objects as collections, which we call *(Untyped)ObjectCollection*
 
-`interface UntypedMap {[prop: string]: any|undefined}`
+`interface UntypedObjectCollection {[prop: string]: any|undefined}`
 
-`interface TypedMap<T> {[prop: string]: T}`
+`interface ObjectCollection<T> {[prop: string]: T}`
 
 * Objects as ordered list-like collections, which we call *ObjectList*
 
@@ -114,7 +119,7 @@ behaviour easily.
 * [compose](test/core/compose.spec.ts)
 * [wrap](test/core/wrap.spec.ts)
 
-### Struct and Collection
+### Struct and ObjectCollection
 
 [Sources](src/colls_struct.ts)
 
@@ -144,7 +149,7 @@ Arrays can be seen as deep nested structures as well.
 TODO -Object suffixed collection functions 
 TODO mention typescript index signatures and -Map suffix
 
-### Collection - Arrays / ObjectMaps
+### ArrayCollection / ObjectCollection
 
 [Sources](src/collections/coll.ts)
 

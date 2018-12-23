@@ -1,12 +1,12 @@
 import {intersect as intersectA} from "./arrays_set_like";
 import {subtract as subtractA} from "./arrays_set_like";
 import {identical} from "../core";
-import {UntypedMap} from '../types';
+import {UntypedObjectCollection} from '../types';
 import {mapProperties} from './objects_coll';
 
 
 export const subtractObject = (subtrahend: Array<string | number> | any) =>
-    (o: UntypedMap): UntypedMap => {
+    (o: UntypedObjectCollection): UntypedObjectCollection => {
 
         if (Array.isArray(o)) throw new TypeError('invalid argument');
 
@@ -24,7 +24,7 @@ export const subtractObject = (subtrahend: Array<string | number> | any) =>
     };
 
 
-export function unionObject([first, ...rest]: UntypedMap[]): UntypedMap {
+export function unionObject([first, ...rest]: UntypedObjectCollection[]): UntypedObjectCollection {
 
     return first && rest.length > 0
         ? uniteObject(...rest)(first)
@@ -34,8 +34,8 @@ export function unionObject([first, ...rest]: UntypedMap[]): UntypedMap {
 }
 
 
-export const uniteObject = (...addends: UntypedMap[]) =>
-    (o: UntypedMap): UntypedMap => {
+export const uniteObject = (...addends: UntypedObjectCollection[]) =>
+    (o: UntypedObjectCollection): UntypedObjectCollection => {
 
         if (Array.isArray(o)) throw new TypeError('invalid argument');
         for (let addend of addends)
@@ -46,7 +46,7 @@ export const uniteObject = (...addends: UntypedMap[]) =>
 
 
 export const intersectObject = (o1: any) =>
-    (o2: UntypedMap): UntypedMap => {
+    (o2: UntypedObjectCollection): UntypedObjectCollection => {
 
         if (Array.isArray(o2)) throw new TypeError('invalid argument');
 

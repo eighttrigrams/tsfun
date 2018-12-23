@@ -1,21 +1,21 @@
-import {TypedMap, UntypedMap} from '../types';
+import {ArrayCollection, ObjectCollection, UntypedObjectCollection} from '../types';
 import {subtract} from './arrays_set_like';
 import {subtractObject} from './objects_set_like';
 import {isDefined} from '../predicates';
 
 
-export function copy<T>(as: Array<T>): Array<T>;
-export function copy(as: UntypedMap): UntypedMap;
-export function copy<T>(coll: Array<T>|UntypedMap): Array<T>|UntypedMap {
+export function copy<T>(as: ArrayCollection<T>): ArrayCollection<T>;
+export function copy(as: UntypedObjectCollection): UntypedObjectCollection;
+export function copy<T>(coll: ArrayCollection<T>|UntypedObjectCollection): ArrayCollection<T>|UntypedObjectCollection {
 
-    return coll instanceof Array
-        ? subtract([])(coll as any) as Array<T>
+    return coll instanceof Array // TODO test with isArray
+        ? subtract([])(coll as any) as ArrayCollection<T>
         : subtractObject([])(coll);
 }
 
 
 export const intoObject = <T>(keyName: string, valName: string) =>
-    (object: TypedMap<T>, item: TypedMap<T>) =>
+    (object: ObjectCollection<T>, item: ObjectCollection<T>) =>
         isDefined(item[keyName])
             ? (object[(item[keyName]).toString()] = item[valName], object)
             : object;

@@ -1,4 +1,4 @@
-import {Mapping, Predicate, Transformation, TypedMap, ObjectList} from '../types';
+import {Mapping, Predicate, Transformation, ObjectCollection, ObjectList} from '../types';
 import {mapProperties} from './objects_coll';
 
 
@@ -12,7 +12,7 @@ export const filterObject = <T>(predicate: Predicate<T>): Transformation<ObjectL
     (o: ObjectList<T>) =>
         Object
             .keys(o)
-            .reduce((acc: TypedMap<T>, key: string|number) => {
+            .reduce((acc: ObjectCollection<T>, key: string|number) => {
                 if (predicate(o[key])) acc[key] = o[key];
                 return acc;
             }, {});

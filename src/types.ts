@@ -22,13 +22,13 @@ export type ArrayTransformation<T> = Transformation<Array<T>>;
 export type NestedArray<A> = Array<Array<A>>;
 
 
-export interface UntypedMap {[prop: string]: any|undefined}
+export interface UntypedObjectCollection {[prop: string]: any|undefined}
 
 
-export interface TypedMap<T> {[prop: string]: T} // TODO rename to ObjectMap then
+export interface ObjectCollection<T> {[prop: string]: T}
 
 
-export type ObjectList<T> = TypedMap<T>;
+export type ObjectList<T> = ObjectCollection<T>;
 
 
 export type Pair<A> = [A, A];
@@ -38,6 +38,9 @@ export type ArrayList<T> = Array<T>;
 
 
 export type ArraySet<T> = Array<T>;
+
+
+export type ArrayCollection<T> = Array<T>;
 
 
 export type Struct = Object;
