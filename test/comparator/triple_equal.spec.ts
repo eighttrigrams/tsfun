@@ -1,10 +1,10 @@
-import {tripleEqual} from '../../src/comparator';
+import {is, isnt, tripleEqual} from '../../src/comparator';
 
 
 /**
  * @author Daniel de Oliveira
  */
-describe('tripleEqual', () => {
+describe('tripleEqual / is / isnt', () => {
 
     // tripleEqual unsurprisingly uses comparison via `===`.
     // and can for example be used with filter
@@ -21,6 +21,22 @@ describe('tripleEqual', () => {
         expect(
 
             tripleEqual('a')('b'))
+
+            .toEqual(false));
+
+
+    it('is', () =>
+        expect(
+
+            is('a')('a'))
+
+            .toEqual(true));
+
+
+    it('isnt', () =>
+        expect(
+
+            isnt('a')('a'))
 
             .toEqual(false));
 });

@@ -43,8 +43,7 @@ console.log(take(2)([1,2,3]))
 
 [Source](src/comparator.ts)
 
-* [tripleEqual](test/comparator/triple_equal.spec.ts)
-* [is / isnt](test/comparator/is.spec.ts)
+* [tripleEqual / is / isnt](test/comparator/triple_equal.spec.ts)
 * [jsonEqual](test/comparator/json_equal.spec.ts)
 * [smallerThan / biggerThan](test/comparator/smaller_than.spec.ts)
 * [differentFrom / differentFromBy](test/comparator/different_from.spec.ts)
