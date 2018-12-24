@@ -60,12 +60,12 @@ console.log(take(2)([1,2,3]))
 
 [Source](src/objectstruct.ts)  
 
+* [to](test/objectstruct/to.spec.ts)
 * [getElForPathIn](test/objectstruct/get_el_for_path_in.spec.ts)
 * [takeOrMake](test/objectstruct/take_or_make.spec.ts)
+* [jsonClone](test/objectstruct/clone.spec.ts)
 * [option](test/objectstruct/option.spec.ts)
 * [mapOption](test/objectstruct/map_option.spec.ts)
-* [to](test/objectstruct/to.spec.ts)
-* [jsonClone](test/objectstruct/clone.spec.ts)
 
 ### ArrayList and ObjectCollection
 
@@ -93,13 +93,13 @@ console.log(take(2)([1,2,3]))
 
 * [prepend](test/arraylist/prepend.spec.ts)  
 * [append](test/arraylist/append.spec.ts) 
-* [getIth / getIthOr](test/arraylist/get_ith.spec.ts) 
+* [separate](test/arraylist/separate.spec.ts) 
 * [filter / asyncFilter](test/arraylist/filter.spec.ts) 
 * [map / asyncMap](test/arraylist/map.spec.ts) 
-* [apply](test/arraylist/apply.spec.ts) 
-* [intoArray / intoArrayWith](test/adrraylist/into_array.spec.ts)
 * [flatMap](test/adrraylist/flat_map.spec.ts)
-* [separate](test/arraylist/separate.spec.ts) 
+* [apply](test/arraylist/apply.spec.ts) 
+* [getIth / getIthOr](test/arraylist/get_ith.spec.ts) 
+* [intoArray / intoArrayWith](test/adrraylist/into_array.spec.ts)
 * [take](test/arraylist/take.spec.ts)
 * [takeNth](test/arraylist/take_nth.spec.ts)
 * [takeWhile / takeRightWhile](test/arraylist/take_while.spec.ts)

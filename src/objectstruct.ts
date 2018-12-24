@@ -1,6 +1,6 @@
 import {isEmpty} from './predicate';
 import {reverseUncurry2} from './core';
-import {ObjectStruct} from './type';
+import {ObjectStruct, Predicate} from './type';
 import {on} from './comparator';
 
 
@@ -40,7 +40,7 @@ export function takeOrMake(object: ObjectStruct, path: string, val: any) {
 }
 
 
-export const option = <A>(f: (_: A) => boolean) =>
+export const option = <A>(f: Predicate<A>) =>
     (a: A) => f(a) ? a : {};
 
 
