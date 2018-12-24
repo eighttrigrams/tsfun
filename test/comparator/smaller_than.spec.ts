@@ -4,7 +4,7 @@ import {biggerThan, smallerThan} from '../../src/comparator';
 /**
  * @author Daniel de Oliveira
  */
-describe('smallerThan / biggerThan', () => {
+describe('smallerThan / biggerThan', () => { // TODO rename to greaterThan
 
     it('biggerThan',() =>
         expect(
