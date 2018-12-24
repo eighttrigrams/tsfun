@@ -7,7 +7,7 @@ import {option, to} from '../../src/objectstruct';
 /**
  * @author Daniel de Oliveira
  */
-describe('option', () => {
+describe('option - experimental', () => {
 
 
     // option

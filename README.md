@@ -64,8 +64,6 @@ console.log(take(2)([1,2,3]))
 * [getElForPathIn](test/objectstruct/get_el_for_path_in.spec.ts)
 * [takeOrMake](test/objectstruct/take_or_make.spec.ts)
 * [jsonClone](test/objectstruct/clone.spec.ts)
-* [option](test/objectstruct/option.spec.ts)
-* [mapOption](test/objectstruct/map_option.spec.ts)
 
 ### ArrayList and ObjectCollection
 

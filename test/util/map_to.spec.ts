@@ -3,7 +3,7 @@ import {mapTo} from '../../src/util';
  * @author Daniel de Oliveira
  */
 
-describe('mapTo', () => {
+describe('mapTo - experimental', () => {
 
     it('mapTo', () =>
 

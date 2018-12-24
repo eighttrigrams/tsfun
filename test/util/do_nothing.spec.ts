@@ -4,7 +4,7 @@ import {doNothing} from '../../src/util';
 /**
  * @author Daniel de Oliveira
  */
-describe('doNothing', () => {
+describe('doNothing - experimental', () => {
 
     it('doNothing', () => {
 

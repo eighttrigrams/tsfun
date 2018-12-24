@@ -40,16 +40,16 @@ export function takeOrMake(object: ObjectStruct, path: string, val: any) {
 }
 
 
-export const option = <A>(f: Predicate<A>) =>
-    (a: A) => f(a) ? a : {};
-
-
-export const mapOption = <A>(f: (a: A) => A) =>
-    (a: A) => isEmpty(a) ? {} : f(a);
-
-
 export const to = reverseUncurry2(getElForPathIn);
 
 
-export const sameOn = <T>(path: string, l: T, r: T) =>
+/* experimental */ export const sameOn = <T>(path: string, l: T, r: T) =>
     on(path)(l)(r);
+
+
+/* experimental */ export const option = <A>(f: Predicate<A>) =>
+    (a: A) => f(a) ? a : {};
+
+
+/* experimental */ export const mapOption = <A>(f: (a: A) => A) =>
+    (a: A) => isEmpty(a) ? {} : f(a);

@@ -4,7 +4,7 @@
 import {sameOn} from '../../src/objectstruct';
 import {is, on} from '../../src/comparator';
 
-describe('sameOn', () => {
+describe('sameOn - experimental', () => {
 
     it('sameOn - same path',() =>
         expect(

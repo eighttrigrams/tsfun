@@ -1,11 +1,11 @@
-import {doWhen, doWhile} from '../../src/util';
+import {doWhile} from '../../src/util';
 import {biggerThan} from '../../src/comparator';
 
 
 /**
  * @author Daniel de Oliveira
  */
-describe('doWhile', () => {
+describe('doWhile - experimental', () => {
 
     it('doWhile', () => {
 

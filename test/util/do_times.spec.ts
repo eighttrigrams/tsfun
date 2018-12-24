@@ -4,7 +4,7 @@ import {doTimes} from '../../src/util';
 /**
  * @author Daniel de Oliveira
  */
-describe('doTimes', () => {
+describe('doTimes - experimental', () => {
 
     it('doTimes', () => {
 

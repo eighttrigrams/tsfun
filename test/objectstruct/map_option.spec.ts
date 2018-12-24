@@ -6,7 +6,7 @@ import {mapOption, option, to} from '../../src/objectstruct';
 /**
  * @author Daniel de Oliveira
  */
-describe('mapOption', () => {
+describe('mapOption - experimental', () => {
 
     // mapOption
 

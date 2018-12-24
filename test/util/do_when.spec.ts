@@ -5,7 +5,7 @@ import {biggerThan} from '../../src/comparator';
 /**
  * @author Daniel de Oliveira
  */
-describe('doWhen', () => {
+describe('doWhen - experimental', () => {
 
     it('doWhen', () => {
 
