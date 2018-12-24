@@ -9,7 +9,6 @@ export {
     isDefined,
     defined,
     isUndefined,
-    Undefined,
     has,
     hasNot,
     isUndefinedOrEmpty,
