@@ -61,10 +61,10 @@ export const asyncFilter = <A>(f: (_: A) => Promise<boolean>) /* TODO add async 
     };
 
 
-export const intoArrayWith = <A>(f: (_: A) => Array<A>) => (acc: Array<A>, val: A) => acc.concat(f(val));
+/* experimental */ export const intoArrayWith = <A>(f: (_: A) => Array<A>) => (acc: Array<A>, val: A) => acc.concat(f(val));
 
 
-export const intoArray = intoArrayWith(identical as any);
+/* experimental */ export const intoArray = intoArrayWith(identical as any);
 
 
 export const drop = <A>(n: number) =>

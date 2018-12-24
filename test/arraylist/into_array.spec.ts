@@ -4,7 +4,7 @@ import {intoArray, intoArrayWith} from '../../src/arraylist';
 /**
  * @author Daniel de Oliveira
  */
-describe('intoArray / intoArrayWith', () => {
+describe('intoArray / intoArrayWith - experimental', () => {
 
     it('intoArray',() =>
         expect(
