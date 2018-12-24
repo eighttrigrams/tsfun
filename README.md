@@ -26,11 +26,9 @@ console.log(take(2)([1,2,3]))
 * [has / hasNot](test/predicate/has.spec.ts) 
 * [empty / isEmpty](test/predicate/is_empty.spec.ts)
 * [undefinedOrEmpty / isUndefinedOrEmpty](test/predicate/is_undefined_or_empty.spec.ts)
-* [isTrue / isFalse](test/predicate/is_true.spec.ts)
 * [isDefined / defined / isUndefined / Undefined](test/predicate/is_defined.spec.ts)
 * [isArray](test/predicate/is_array.spec.ts)
 * [isObject](test/predicate/is_object.spec.ts)
-* [isString / isBoolean](test/predicate/is_string.spec.ts)
 * [isNot / not](test/predicate/is_not.spec.ts)
 
 ### Comparator

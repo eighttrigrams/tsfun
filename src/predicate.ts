@@ -59,12 +59,6 @@ export const isObject: Predicate<any> = (o: any) => o instanceof Object && o.con
 export const isString: Predicate<any> = (as: any) => typeof as === 'string';
 
 
-export const isTrue: Predicate<boolean> = (b: boolean) => b === true;
-
-
-export const isFalse: Predicate<boolean> = (b: boolean) => b === false;
-
-
 export const has = (path: string) => (o: Object) => on(path, isDefined)(o);
 
 

@@ -16,8 +16,6 @@ export {
     undefinedOrEmpty,
     isEmpty,
     empty,
-    isTrue,
-    isFalse,
     isArray,
     isObject
 } from './src/predicate';
