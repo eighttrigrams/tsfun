@@ -131,7 +131,6 @@ export {
     doWhile,
     doTimes,
     doNothing,
-    nop,
     sameOn
 } from './src/util';
 

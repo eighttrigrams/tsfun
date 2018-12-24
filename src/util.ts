@@ -29,7 +29,7 @@ export const mapTo = (path: string, as: any[]) =>
         .filter(isDefined);
 
 
-export const nop = () => {};
+const nop = () => {};
 
 
 export const doNothing = nop;

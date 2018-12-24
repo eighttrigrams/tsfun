@@ -1,19 +1,13 @@
-import {doNothing, doTimes, nop} from '../../src/util';
+import {doNothing} from '../../src/util';
 
 
 /**
  * @author Daniel de Oliveira
  */
-describe('doTimes', () => {
+describe('doNothing', () => {
 
     it('doNothing', () => {
 
         doNothing();
-    });
-
-
-    it('nop', () => {
-
-        nop();
     });
 });

@@ -141,7 +141,7 @@ console.log(take(2)([1,2,3]))
 * [doWhen](test/util/do_when.spec.ts)
 * [doWhile](test/util/do_while.spec.ts)
 * [doTimes](test/util/do_times.spec.ts)
-* [doNothing / nop](test/util/do_nothing.spec.ts)
+* [doNothing](test/util/do_nothing.spec.ts)
 * [sameOn](test/comparator/same_on.spec.ts)
 
 ## Concepts
