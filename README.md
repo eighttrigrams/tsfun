@@ -56,7 +56,6 @@ console.log(take(2)([1,2,3]))
 * [equivalent](test/comparator/equivalent.spec.ts)
 * [on / by](test/comparator/on.spec.ts)
 * [without](test/comparator/without.spec.ts)
-* [sameOn](test/comparator/same_on.spec.ts)
 
 ### Composition
 
@@ -143,6 +142,7 @@ console.log(take(2)([1,2,3]))
 * [doWhile](test/util/do_while.spec.ts)
 * [doTimes](test/util/do_times.spec.ts)
 * [doNothing / nop](test/util/do_nothing.spec.ts)
+* [sameOn](test/comparator/same_on.spec.ts)
 
 ## Concepts
 

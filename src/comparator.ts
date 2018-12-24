@@ -190,11 +190,6 @@ const includesBy =
             as.filter(compare(a));
 
 
-
-export const sameOn = <T>(path: string, l: T, r: T) =>
-     on(path)(l)(r);
-
-
 export const without = (path: string|string[], compare: Function = tripleEqual) =>
     (l: any): any => {
 

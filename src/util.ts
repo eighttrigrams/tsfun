@@ -1,5 +1,6 @@
 import {isDefined} from './predicate';
 import {to} from './objectstruct';
+import {on} from './comparator';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -32,4 +33,8 @@ export const nop = () => {};
 
 
 export const doNothing = nop;
+
+
+export const sameOn = <T>(path: string, l: T, r: T) =>
+    on(path)(l)(r);
 

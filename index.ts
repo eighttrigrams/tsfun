@@ -47,8 +47,7 @@ export {
     on,
     without,
     biggerThan,
-    smallerThan,
-    sameOn
+    smallerThan
 } from './src/comparator';
 
 export {
@@ -132,7 +131,8 @@ export {
     doWhile,
     doTimes,
     doNothing,
-    nop
+    nop,
+    sameOn
 } from './src/util';
 
 export {

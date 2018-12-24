@@ -1,5 +1,4 @@
-import {sameOn} from '../../src/comparator';
-
+import {sameOn} from '../../src/util';
 
 /**
  * @author Daniel de Oliveira
