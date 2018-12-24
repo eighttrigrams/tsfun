@@ -34,7 +34,3 @@ const nop = () => {};
 
 export const doNothing = nop;
 
-
-export const sameOn = <T>(path: string, l: T, r: T) =>
-    on(path)(l)(r);
-

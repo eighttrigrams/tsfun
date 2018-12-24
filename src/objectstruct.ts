@@ -1,6 +1,7 @@
 import {isEmpty} from './predicate';
 import {reverseUncurry2} from './core';
 import {ObjectStruct} from './type';
+import {on} from './comparator';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -48,3 +49,7 @@ export const mapOption = <A>(f: (a: A) => A) =>
 
 
 export const to = reverseUncurry2(getElForPathIn);
+
+
+export const sameOn = <T>(path: string, l: T, r: T) =>
+    on(path)(l)(r);

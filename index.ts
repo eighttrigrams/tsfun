@@ -128,15 +128,15 @@ export {
     mapTo,
     doWhile,
     doTimes,
-    doNothing,
-    sameOn
+    doNothing
 } from './src/util';
 
 export {
     takeOrMake,
     option,
     to,
-    jsonClone
+    jsonClone,
+    sameOn
 } from './src/objectstruct';
 
 

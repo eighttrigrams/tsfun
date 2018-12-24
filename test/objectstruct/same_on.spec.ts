@@ -1,8 +1,8 @@
-import {sameOn} from '../../src/util';
-
 /**
  * @author Daniel de Oliveira
  */
+import {sameOn} from '../../src/objectstruct';
+
 describe('sameOn', () => { // TODO rename to isOn, but also could be done with on( ... , is( ... )
 
     it('sameOn - same path',() =>
