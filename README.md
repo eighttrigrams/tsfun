@@ -37,7 +37,6 @@ console.log(take(2)([1,2,3]))
 
 * [tripleEqual / is / isnt](test/comparator/triple_equal.spec.ts)
 * [jsonEqual](test/comparator/json_equal.spec.ts)
-* [smallerThan / biggerThan](test/comparator/smaller_than.spec.ts)
 * [differentFrom / differentFromBy](test/comparator/different_from.spec.ts)
 * [includedIn / includedInBy](test/comparator/included_in.spec.ts)
 * [containedIn / containedInBy](test/comparator/contained_in.spec.ts)
