@@ -45,7 +45,8 @@ export {
     containedInBy,
     jsonEqual,
     on,
-    without
+    without,
+    by
 } from './src/comparator';
 
 export {
@@ -118,17 +119,10 @@ export {
 
 export {copy} from './src/arraylist_objectcoll';
 
-export {by} from './src/core';
-
 export {get} from './src/arraylist_objectstruct';
 
 export {
-    doWhen,
     addTo,
-    mapTo,
-    doWhile,
-    doTimes,
-    doNothing
 } from './src/util';
 
 export {

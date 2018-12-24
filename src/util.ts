@@ -1,6 +1,7 @@
 import {isDefined} from './predicate';
 import {to} from './objectstruct';
 import {on} from './comparator';
+import {identity} from './core';
 
 
 // ------------ @author Daniel de Oliveira -----------------

@@ -2,6 +2,7 @@ import {isArray, isNot, isObject} from './predicate';
 import {Comparator, ComparatorProducer} from './type';
 import {subtractBy} from './arrayset';
 import {getElForPathIn} from './objectstruct';
+import {identity} from './core';
 
 // ------------ @author Daniel de Oliveira -----------------
 
@@ -206,3 +207,6 @@ export const without = (path: string|string[], compare: Function = tripleEqual) 
             ? (r: any) => keys.reduce((acc, key) => acc && compare(r[key])(l[key]), true)
             : keys.reduce((acc, key) => acc && compare(l[key]), true)
     };
+
+
+export const by = identity; // TODO type by to work only for functions or comparators

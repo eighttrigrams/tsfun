@@ -19,12 +19,6 @@ console.log(take(2)([1,2,3]))
 
 ## Function reference
 
-### General
-
-[Source](src/core.ts)
-
-* [by](test/core/identity.spec.ts) 
-
 ### Predicate
 
 [Source](src/predicate.ts)
@@ -54,8 +48,8 @@ console.log(take(2)([1,2,3]))
 * [objectEqual / objectEqualBy](test/comparator/object_equal.spec.ts)
 * [equal / equalBy](test/comparator/equal.spec.ts)
 * [equivalent](test/comparator/equivalent.spec.ts)
-* [on / by](test/comparator/on.spec.ts)
-* [without](test/comparator/without.spec.ts)
+* [on (by)](test/comparator/on.spec.ts)
+* [without (by)](test/comparator/without.spec.ts)
 
 ### Composition
 
@@ -137,12 +131,7 @@ console.log(take(2)([1,2,3]))
 
 [Source](src/util.ts)
 
-* [mapTo](test/util/map_to.spec.ts)
 * [addTo](test/util/add_to.spec.ts)
-* [doWhen](test/util/do_when.spec.ts)
-* [doWhile](test/util/do_while.spec.ts)
-* [doTimes](test/util/do_times.spec.ts)
-* [doNothing](test/util/do_nothing.spec.ts)
 
 ## Concepts
 

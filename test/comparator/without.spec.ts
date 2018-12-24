@@ -1,5 +1,4 @@
-import {jsonEqual, without} from '../../src/comparator';
-import {by} from '../../src/core';
+import {by, jsonEqual, without} from '../../src/comparator';
 import {isUndefined} from '../../src/predicate';
 
 

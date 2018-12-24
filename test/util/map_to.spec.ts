@@ -1,9 +1,8 @@
 import {mapTo} from '../../src/util';
-
-
 /**
  * @author Daniel de Oliveira
  */
+
 describe('mapTo', () => {
 
     it('mapTo', () =>
