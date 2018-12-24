@@ -16,9 +16,6 @@ export const compose = <T>(...transformations: Array<Transformation<T>>) => (t: 
     transformations.reduce((acc, transformation) => transformation(acc), t);
 
 
-export const wrap = (cloneMethod: Function) =>
+/* experimental */ export const wrap = (cloneMethod: Function) =>
     (doFunction: Function) => <T>(param: T) =>
         cloneMethod(doFunction(param)) as T;
-
-
-// TODO add 'partial' function

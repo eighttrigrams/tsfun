@@ -3,7 +3,7 @@ import {intersect} from '../../src/arrayset';
 import {getOrElse} from '../../src/arraylist_objectstruct';
 import {jsonClone} from '../../src/objectstruct';
 
-describe('wrap', () => {
+describe('wrap - experimental', () => {
 
     // wrap
 
