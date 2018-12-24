@@ -118,8 +118,7 @@ export {getOrElse} from './src/arraylist_objectstruct';
 export {
     takeOrMake,
     to,
-    jsonClone,
-    getElForPathIn
+    jsonClone
 } from './src/objectstruct';
 
 

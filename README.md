@@ -61,7 +61,6 @@ console.log(take(2)([1,2,3]))
 [Source](src/objectstruct.ts)  
 
 * [to](test/objectstruct/to.spec.ts)
-* [getElForPathIn](test/objectstruct/get_el_for_path_in.spec.ts)
 * [takeOrMake](test/objectstruct/take_or_make.spec.ts)
 * [jsonClone](test/objectstruct/clone.spec.ts)
 

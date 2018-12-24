@@ -1,10 +1,7 @@
 import {getElForPathIn} from '../../src/objectstruct';
 
 
-describe('getElForPathIn', () => {
-
-
-    // getElForPathIn
+describe('getElForPathIn - internal', () => {
 
     it('getElForPathIn - returns el', () =>
         expect(
@@ -30,7 +27,7 @@ describe('getElForPathIn', () => {
             .not.toEqual(undefined));
 
 
-    it('getElForPathIn - does not return undfined on 0', () =>
+    it('getElForPathIn - does not return undefined on 0', () =>
         expect(
 
             getElForPathIn({a: 0}, 'a'))
