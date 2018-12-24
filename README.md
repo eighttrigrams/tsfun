@@ -127,12 +127,6 @@ console.log(take(2)([1,2,3]))
 * [uniteObject / unionObject](test/objectset/unite_object.spec.ts)
 * [subtractObject](test/objectset/subtract_object.spec.ts)
 
-### Utils
-
-[Source](src/util.ts)
-
-* [addTo](test/util/add_to.spec.ts)
-
 ## Concepts
 
 **tsfun** functions are mainly designed to 
