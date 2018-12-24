@@ -66,7 +66,6 @@ console.log(take(2)([1,2,3]))
 * [mapOption](test/objectstruct/map_option.spec.ts)
 * [to](test/objectstruct/to.spec.ts)
 * [jsonClone](test/objectstruct/clone.spec.ts)
-* [sameOn](test/comparator/same_on.spec.ts)
 
 ### ArrayList and ObjectCollection
 

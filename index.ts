@@ -121,8 +121,7 @@ export {
     takeOrMake,
     option,
     to,
-    jsonClone,
-    sameOn
+    jsonClone
 } from './src/objectstruct';
 
 
