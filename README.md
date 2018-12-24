@@ -23,7 +23,7 @@ console.log(take(2)([1,2,3]))
 
 [Source](src/core.ts)
 
-* [identity / identical / by](test/core/identity.spec.ts) 
+* [by](test/core/identity.spec.ts) 
 
 ### Predicate
 
@@ -136,13 +136,13 @@ console.log(take(2)([1,2,3]))
 
 [Source](src/util.ts)
 
+* [sameOn](test/comparator/same_on.spec.ts)
 * [mapTo](test/util/map_to.spec.ts)
 * [addTo](test/util/add_to.spec.ts)
 * [doWhen](test/util/do_when.spec.ts)
 * [doWhile](test/util/do_while.spec.ts)
 * [doTimes](test/util/do_times.spec.ts)
 * [doNothing](test/util/do_nothing.spec.ts)
-* [sameOn](test/comparator/same_on.spec.ts)
 
 ## Concepts
 

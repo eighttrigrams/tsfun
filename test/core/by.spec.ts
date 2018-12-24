@@ -1,31 +1,11 @@
-import {by, identical, identity} from '../../src/core';
+import {by} from '../../src/core';
 import {intersectBy} from '../../src/arrayset';
 import {jsonEqual, on} from '../../src/comparator';
 
 /**
  * @author Daniel de Oliveira
  */
-describe('identity / identical / by', () => {
-
-    // identity
-
-    it('identity',() =>
-        expect(
-
-            identity(3))
-
-            .toEqual(3));
-
-    // identical
-
-    it('identical',() =>
-        expect(
-
-            identical(3))
-
-            .toEqual(3));
-
-    // by
+describe('by', () => {
 
     it('by',() =>
         expect(
