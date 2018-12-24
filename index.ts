@@ -48,8 +48,7 @@ export {
 
 export {
     compose,
-    flow,
-    composition
+    flow
 } from './src/composition';
 
 

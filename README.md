@@ -52,7 +52,7 @@ console.log(take(2)([1,2,3]))
 
 [Source](src/composition.ts)
 
-* [flow / composition](test/composition/flow.spec.ts)
+* [flow](test/composition/flow.spec.ts)
 * [compose](test/composition/compose.spec.ts)
 * [wrap](test/composition/wrap.spec.ts)
 

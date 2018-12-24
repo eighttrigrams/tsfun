@@ -22,7 +22,7 @@ describe('wrap', () => {
     it('wrap get',() =>
         expect(
 
-            wrap(jsonClone)(getOrElse([1, 2]))
+            wrap(jsonClone)(getOrElse([1, 2], undefined))
             (1))
 
             .toEqual(2));
