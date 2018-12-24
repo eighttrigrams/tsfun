@@ -2,13 +2,14 @@ import {jsonEqual} from '../../src/comparator';
 
 
 /**
+ * jsonEqual compares to objects by comparing their string representations
+ * via `JSON.parse(JSON.stringify(item))`
+ * which makes the order of keys matter
+ *
  * @author Daniel de Oliveira
  */
 describe('jsonEqual', () => {
 
-    // jsonEqual compares to objects by comparing their string representations
-    // via `JSON.parse(JSON.stringify(item))`
-    // which makes the order of keys matter
 
     it('jsonEqual',() =>
         expect(

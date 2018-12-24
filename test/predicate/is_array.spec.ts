@@ -1,11 +1,14 @@
 import {isArray} from '../../src/predicate';
 
-
+/**
+ * If an entity is an Array is determined
+ * by checking
+ * as instanceof Array
+ *
+ * @author Daniel de Oliveira
+ */
 describe('isArray', () => {
 
-    // If an entity is an Array is determined
-    // by checking
-    // as instanceof Array
 
     it('isArray',() =>
         expect(
