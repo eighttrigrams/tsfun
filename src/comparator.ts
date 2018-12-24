@@ -1,8 +1,7 @@
 import {isArray, isNot, isObject} from './predicate';
-import {Comparator, ComparatorProducer} from './type';
+import {Comparator, ComparatorProducer, Predicate} from './type';
 import {subtractBy} from './arrayset';
 import {getElForPathIn} from './objectstruct';
-import {identity} from './core';
 
 // ------------ @author Daniel de Oliveira -----------------
 
@@ -209,4 +208,4 @@ export const without = (path: string|string[], compare: Function = tripleEqual) 
     };
 
 
-export const by = identity; // TODO type by to work only for functions or comparators
+export const by = <A>(p: Predicate<A>) => p;
