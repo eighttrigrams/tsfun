@@ -166,7 +166,7 @@ functions to make these yet more powerful.
 
 A comparator can be understood as comparing two values to produce a boolean. 
 Applying one partially gives a predicate again, which can then be used to filter,
-for example, like in `[3, 2, 1, 0].filter(biggerThan(1))`.
+for example, like in `[3, 2, 1, 0].filter(isnt(2))`.
 
 `type ComparatorProducer = (_: Comparator) => <A>(_: A) => Predicate<A>`
 

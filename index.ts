@@ -45,9 +45,7 @@ export {
     containedInBy,
     jsonEqual,
     on,
-    without,
-    biggerThan,
-    smallerThan
+    without
 } from './src/comparator';
 
 export {
