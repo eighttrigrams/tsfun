@@ -4,7 +4,7 @@ import {sameOn} from '../../src/comparator';
 /**
  * @author Daniel de Oliveira
  */
-describe('sameOn', () => {
+describe('sameOn', () => { // TODO rename to isOn, but also could be done with on( ... , is( ... )
 
     it('sameOn - same path',() =>
         expect(
