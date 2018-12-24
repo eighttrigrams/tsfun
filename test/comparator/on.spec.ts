@@ -6,7 +6,7 @@ import {intersectBy} from '../../src/arrayset';
 /**
  * @author Daniel de Oliveira
  */
-describe('on / by', () => {
+describe('on (by)', () => {
 
     // used for structs within arrays
 

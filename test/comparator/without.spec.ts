@@ -5,7 +5,7 @@ import {isUndefined} from '../../src/predicate';
 /**
  * @author Daniel de Oliveira
  */
-describe('without', () => {
+describe('without (by)', () => {
 
 
     // without TODO remove to hasNot, according to how has is used currently. however we have to review has semantics anyway
