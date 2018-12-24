@@ -1,6 +1,6 @@
 import {wrap} from '../../src/composition';
 import {intersect} from '../../src/arrayset';
-import {get} from '../../src/arraylist_objectstruct';
+import {getOrElse} from '../../src/arraylist_objectstruct';
 import {jsonClone} from '../../src/objectstruct';
 
 describe('wrap', () => {
@@ -22,7 +22,7 @@ describe('wrap', () => {
     it('wrap get',() =>
         expect(
 
-            wrap(jsonClone)(get([1, 2]))
+            wrap(jsonClone)(getOrElse([1, 2]))
             (1))
 
             .toEqual(2));

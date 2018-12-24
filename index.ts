@@ -116,7 +116,7 @@ export {
 
 export {copy} from './src/arraylist_objectcoll';
 
-export {get} from './src/arraylist_objectstruct';
+export {getOrElse} from './src/arraylist_objectstruct';
 
 export {
     takeOrMake,

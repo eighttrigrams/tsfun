@@ -1,10 +1,10 @@
-import {get} from '../../src/arraylist_objectstruct';
+import {getOrElse} from '../../src/arraylist_objectstruct';
 
 
 /**
  * @author Daniel de Oliveira
  */
-describe('get', () => {
+describe('get / getOrElse', () => {
 
     // Both Array and Map are associative
 
@@ -13,7 +13,7 @@ describe('get', () => {
     it('get array',() =>
         expect(
 
-            get([1, 2])(0))
+            getOrElse([1, 2], undefined)(0))
 
             .toEqual(1));
 
@@ -21,7 +21,7 @@ describe('get', () => {
     it('get array - undefined',() =>
         expect(
 
-            get([1, 2])(3))
+            getOrElse([1, 2], undefined)(3))
 
             .toEqual(undefined));
 
@@ -29,7 +29,7 @@ describe('get', () => {
     it('get array - alternative',() =>
         expect(
 
-            get([1, 2], 7)(3))
+            getOrElse([1, 2], 7)(3))
 
             .toEqual(7));
 
@@ -37,7 +37,7 @@ describe('get', () => {
     it('get object',() =>
         expect(
 
-            get({a: {b: 4}})('a.b'))
+            getOrElse({a: {b: 4}}, undefined)('a.b'))
 
             .toEqual(4));
 
@@ -45,7 +45,7 @@ describe('get', () => {
     it('get object - undefined',() =>
         expect(
 
-            get({a: {b: 4}})('c.d'))
+            getOrElse({a: {b: 4}}, undefined)('c.d'))
 
             .toEqual(undefined));
 
@@ -53,7 +53,7 @@ describe('get', () => {
     it('get object - alternative',() =>
         expect(
 
-            get({a: {b: 4}}, 8)('c.d'))
+            getOrElse({a: {b: 4}}, 8)('c.d'))
 
             .toEqual(8));
 
@@ -61,7 +61,7 @@ describe('get', () => {
     it('wrap - with getElForPathIn and false',() =>
         expect(
 
-            get({a: false})('a'))
+            getOrElse({a: false}, undefined)('a'))
 
             .toEqual(false));
 });
