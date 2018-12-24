@@ -3,14 +3,19 @@ import {isUndefined} from '../../src/predicate';
 
 
 /**
+ * without lets one compare ObjectStruct items of a list to
+ * to a given ObjectStruct, ignoring the specified path(s)
+ *
  * @author Daniel de Oliveira
  */
 describe('without (by)', () => {
 
 
-    // without TODO remove to hasNot, according to how has is used currently. however we have to review has semantics anyway
-
-    it('without',() =>
+    /**
+     * The same-named keys, without b, get
+     * compared to each other, using tripleEqual
+     */
+    it('ignore one path',() =>
         expect(
 
             [{a: 3, b: 4}, {a: 3, b: 5}, {a: 2, b: 1}]
@@ -19,7 +24,11 @@ describe('without (by)', () => {
             .toEqual([{a: 3, b: 4}, {a: 3, b: 5}]));
 
 
-    it('without, multiple paths',() =>
+    /**
+     * The same-named keys, without b and c, get
+     * compared to each other, using tripleEqual
+     */
+    it('ignore multiple paths',() =>
         expect(
 
             [{a: 3, b: 4, c: 5}, {a: 3, b: 5}, {a: 2, b: 1}]
@@ -28,7 +37,22 @@ describe('without (by)', () => {
             .toEqual([{a: 3, b: 4, c: 5}, {a: 3, b: 5}]));
 
 
-    it('without with comparator',() =>
+    /**
+     * Other comparators can be used too of course
+     */
+    it('another comparator',() =>
+        expect(
+
+            [{a: 3, b: 4}, {a: 3, b: 5}, {a: 2, b: 1}]
+                .filter(without('b', jsonEqual)({a: 3})))
+
+            .toEqual([{a: 3, b: 4}, {a: 3, b: 5}]));
+
+
+    /**
+     * Use by to make it more readable
+     */
+    it('another comparator using by',() =>
         expect(
 
             [{a: 3, b: 4}, {a: 3, b: 5}, {a: 2, b: 1}]

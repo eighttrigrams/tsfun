@@ -42,5 +42,4 @@ describe('option', () => {
                 isEmpty))
 
             .toEqual(true));
-
 });
