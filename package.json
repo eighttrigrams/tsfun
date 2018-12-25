@@ -13,6 +13,6 @@
     "@types/jasmine": "~2.5.41",
     "jasmine": "2.5.2",
     "jasmine-core": "2.5.2",
-    "typescript": "3.0.1"
+    "typescript": "3.1.4"
   }
 }
