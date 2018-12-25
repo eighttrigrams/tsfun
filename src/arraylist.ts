@@ -1,5 +1,5 @@
 import {isNot} from './predicate';
-import {ArrayList, Pair, Predicate, Transformation} from './type';
+import {ArrayList, AsyncPredicate, Pair, Predicate, Transformation} from './type';
 import {identical} from './core';
 
 
@@ -53,7 +53,7 @@ export const filter = <A>(f: Predicate<A>): Transformation<Array<A>> =>
         as.filter(f);
 
 
-export const asyncFilter = <A>(f: (_: A) => Promise<boolean>) /* TODO add async predicate, async transformation and async composition */ =>
+export const asyncFilter = <A>(f: AsyncPredicate<A>) =>
     async (as: Array<A>) => {
         const newAs: Array<A> = [];
         for (let a of as) if (await f(a)) newAs.push(a as never);
