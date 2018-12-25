@@ -190,6 +190,7 @@ const includesBy =
             as.filter(compare(a));
 
 
+// TODO implement that arbitrary subtrees can get excluded
 export const without = (path: string|string[], compare: Function = tripleEqual) =>
     (l: any): any => {
 
