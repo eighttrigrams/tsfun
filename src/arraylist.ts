@@ -42,8 +42,8 @@ export const map = <A>(f: (_: A) => A): Transformation<Array<A>> =>
 export const asyncMap = <A>(f: (_: A) => Promise<A>) =>
     async (as: Array<A>): Promise<Array<A>> => {
 
-        const newAs = [];
-        for (let a of as) newAs.push(await f(a) as any);
+        const newAs: Array<A> = [];
+        for (let a of as) newAs.push(await f(a) as never);
         return newAs;
     };
 
@@ -55,8 +55,8 @@ export const filter = <A>(f: Predicate<A>): Transformation<Array<A>> =>
 
 export const asyncFilter = <A>(f: (_: A) => Promise<boolean>) /* TODO add async predicate, async transformation and async composition */ =>
     async (as: Array<A>) => {
-        const newAs = [];
-        for (let a of as) if (await f(a)) newAs.push(a as any);
+        const newAs: Array<A> = [];
+        for (let a of as) if (await f(a)) newAs.push(a as never);
         return newAs;
     };
 
