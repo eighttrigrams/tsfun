@@ -1,4 +1,4 @@
-import {smallerThan} from '../../src/comparator';
+import {lessThan} from '../../src/comparator';
 import {flow} from '../../src/composition';
 import {asyncFilter, filter} from '../../src/arraylist';
 
@@ -11,7 +11,7 @@ describe('filter', () => {
         expect(
 
             flow([2, 4, 3],
-                filter(smallerThan(4))))
+                filter(lessThan(4))))
 
             .toEqual([2, 3]));
 

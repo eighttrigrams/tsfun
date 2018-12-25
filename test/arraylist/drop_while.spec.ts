@@ -1,4 +1,4 @@
-import {biggerThan, smallerThan} from '../../src/comparator';
+import {greaterThan, lessThan} from '../../src/comparator';
 import {dropRightWhile, dropWhile} from '../../src/arraylist';
 
 
@@ -9,7 +9,7 @@ describe('drop/dropRightWhile', () => {
 
         expect(
 
-            dropWhile(smallerThan(20))
+            dropWhile(lessThan(20))
             ([7, 9, 10, 13, 21, 20])
 
         ).toEqual([21, 20])
@@ -20,7 +20,7 @@ describe('drop/dropRightWhile', () => {
 
         expect(
 
-            dropWhile(smallerThan(5))
+            dropWhile(lessThan(5))
             ([7, 9, 10, 13, 21, 20])
 
         ).toEqual([7, 9, 10, 13, 21, 20])
@@ -31,7 +31,7 @@ describe('drop/dropRightWhile', () => {
 
         expect(
 
-            dropWhile(smallerThan(20))
+            dropWhile(lessThan(20))
             ([])
 
         ).toEqual([])
@@ -42,7 +42,7 @@ describe('drop/dropRightWhile', () => {
 
         expect(
 
-            dropRightWhile(biggerThan(19))
+            dropRightWhile(greaterThan(19))
             ([13, 21, 20])
 
         ).toEqual([13])
@@ -53,7 +53,7 @@ describe('drop/dropRightWhile', () => {
 
         expect(
 
-            dropRightWhile(smallerThan(19))
+            dropRightWhile(lessThan(19))
             ([13, 21, 20])
 
         ).toEqual([13, 21, 20])
@@ -64,7 +64,7 @@ describe('drop/dropRightWhile', () => {
 
         expect(
 
-            dropRightWhile(biggerThan(1))
+            dropRightWhile(greaterThan(1))
             ([13, 21, 20])
 
         ).toEqual([])
@@ -75,7 +75,7 @@ describe('drop/dropRightWhile', () => {
 
         expect(
 
-            dropRightWhile(biggerThan(1))
+            dropRightWhile(greaterThan(1))
             ([])
 
         ).toEqual([])

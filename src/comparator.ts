@@ -20,13 +20,11 @@ export const jsonEqual: any = <A>(l:A) =>
     (r:A) => tripleEqual(JSON.stringify(l))(JSON.stringify(r));
 
 
-// library internal, for tests
-export const biggerThan: any = <A>(l:A) =>
+/* internal */ export const greaterThan: any = <A>(l:A) =>
     (r: A) => l < r;
 
 
-// library internal, for tests
-export const smallerThan: any = <A>(l:A) =>
+/* internal */ export const lessThan: any = <A>(l:A) =>
     (r: A) => l > r;
 
 

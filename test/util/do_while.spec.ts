@@ -1,5 +1,5 @@
 import {doWhile} from '../../src/util';
-import {biggerThan} from '../../src/comparator';
+import {greaterThan} from '../../src/comparator';
 
 
 /**
@@ -10,7 +10,7 @@ describe('doWhile - experimental', () => {
     it('doWhile', () => {
 
         let x = 0;
-        doWhile(biggerThan(3), (y: number) => (x++, y-1))(6);
+        doWhile(greaterThan(3), (y: number) => (x++, y-1))(6);
         expect(x).toBe(3);
     });
 });

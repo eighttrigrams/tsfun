@@ -1,4 +1,4 @@
-import {biggerThan, smallerThan} from '../../src/comparator';
+import {greaterThan, lessThan} from '../../src/comparator';
 import {composition, flow} from '../../src/composition';
 import {dropWhile, reverse, takeWhile} from '../../src/arraylist';
 import {uniteObject} from '../../src/objectset';
@@ -57,7 +57,7 @@ describe('flow / composition', () => {
         expect(
 
             flow([5,4],
-                takeWhile(biggerThan(4))))
+                takeWhile(greaterThan(4))))
 
         .toEqual([5]));
 
@@ -66,7 +66,7 @@ describe('flow / composition', () => {
         expect(
 
             composition([5,4],
-                takeWhile(biggerThan(4))))
+                takeWhile(greaterThan(4))))
 
             .toEqual([5]));
 
@@ -93,7 +93,7 @@ describe('flow / composition', () => {
 
             flow(
                 [7, 9, 10, 13, 21, 20],
-                dropWhile(smallerThan(20)),
+                dropWhile(lessThan(20)),
                 reverse))
 
             .toEqual([20, 21]));

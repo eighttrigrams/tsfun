@@ -1,4 +1,4 @@
-import {biggerThan} from '../../src/comparator';
+import {greaterThan} from '../../src/comparator';
 import {takeUntil} from '../../src/arraylist';
 
 
@@ -10,7 +10,7 @@ describe('takeUntil', () => {
 
         expect(
 
-            takeUntil(biggerThan(7))
+            takeUntil(greaterThan(7))
             ([7, 9, 11])
 
         ).toEqual([7, 9]);
@@ -21,7 +21,7 @@ describe('takeUntil', () => {
 
         expect(
 
-            takeUntil(biggerThan(13))
+            takeUntil(greaterThan(13))
             ([7, 9, 11])
 
         ).toEqual([7, 9, 11])
@@ -32,7 +32,7 @@ describe('takeUntil', () => {
 
         expect(
 
-            takeUntil(biggerThan(13))
+            takeUntil(greaterThan(13))
             ([])
 
         ).toEqual([])

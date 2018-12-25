@@ -1,4 +1,4 @@
-import {biggerThan, smallerThan} from '../../src/comparator';
+import {greaterThan, lessThan} from '../../src/comparator';
 import {takeRightWhile, takeWhile} from '../../src/arraylist';
 
 describe('takeWhile', () => {
@@ -7,7 +7,7 @@ describe('takeWhile', () => {
 
         expect(
 
-            takeWhile(smallerThan(20))
+            takeWhile(lessThan(20))
             ([7, 9, 10, 13, 17, 20])
 
         ).toEqual([7, 9, 10, 13, 17])
@@ -18,7 +18,7 @@ describe('takeWhile', () => {
 
         expect(
 
-            takeWhile(biggerThan(23))
+            takeWhile(greaterThan(23))
             ([7, 9, 10, 13, 17, 20])
 
         ).toEqual([])
@@ -29,7 +29,7 @@ describe('takeWhile', () => {
 
         expect(
 
-            takeWhile(biggerThan(1))
+            takeWhile(greaterThan(1))
             ([7, 9])
 
         ).toEqual([7, 9])
@@ -38,7 +38,7 @@ describe('takeWhile', () => {
 
     it('takeWhile - empty', () =>
 
-        expect(takeWhile(biggerThan(23))
+        expect(takeWhile(greaterThan(23))
         ([])).toEqual([])
     );
 
@@ -47,7 +47,7 @@ describe('takeWhile', () => {
 
         expect(
 
-            takeRightWhile(biggerThan(13))
+            takeRightWhile(greaterThan(13))
             ([7, 9, 10, 13, 17, 20])
 
         ).toEqual([17, 20])
@@ -58,7 +58,7 @@ describe('takeWhile', () => {
 
         expect(
 
-            takeRightWhile(biggerThan(23))
+            takeRightWhile(greaterThan(23))
             ([7, 9, 10, 13, 17, 20])
 
         ).toEqual([])
@@ -69,7 +69,7 @@ describe('takeWhile', () => {
 
         expect(
 
-            takeRightWhile(biggerThan(1))
+            takeRightWhile(greaterThan(1))
             ([7, 9])
 
         ).toEqual([7, 9])
@@ -80,7 +80,7 @@ describe('takeWhile', () => {
 
         expect(
 
-            takeRightWhile(biggerThan(23))
+            takeRightWhile(greaterThan(23))
             ([])
 
         ).toEqual([])
