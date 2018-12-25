@@ -5,12 +5,13 @@ import {isDefined} from './predicate';
 
 // ------------ @author Daniel de Oliveira -----------------
 
-export const mapProperties = <A, B>(f: (_: A) => B) =>
+/* internal */ export const mapProperties = <A, B>(f: (_: A) => B) =>
     (keys: Array<number|string>, o: ObjectCollection<A>): ObjectCollection<B> =>
         keys.reduce(mapPropertiesReducer(f)(o), {});
 
 
-const mapPropertiesReducer = <A, B>(f: (_: A) => B) => (o: any) => (acc: any, val: string) => (acc[val] = f(o[val]), acc);
+const mapPropertiesReducer = <A, B>(f: (_: A) => B) =>
+    (o: any) => (acc: any, val: string) => (acc[val] = f(o[val]), acc);
 
 
 export const mapObject = <A, B>(f: Mapping <A, B>):
