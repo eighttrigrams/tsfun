@@ -5,11 +5,11 @@ import {Transformation} from './type';
 
 
 
-export const flow = <T>(t: T, ...transformations: Array<Transformation<T>>) =>
+const composition = <T>(t: T, ...transformations: Array<Transformation<T>>) =>
     compose(...transformations)(t);
 
 
-export const composition = flow;
+export const flow = composition;
 
 
 export const compose = <T>(...transformations: Array<Transformation<T>>) => (t: T)  =>

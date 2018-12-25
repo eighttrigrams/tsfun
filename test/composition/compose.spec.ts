@@ -3,9 +3,10 @@ import {uniteObject} from '../../src/objectset';
 import {drop, dropRight, take} from '../../src/arraylist';
 
 
+/**
+ * @author Daniel de Oliveira
+ */
 describe('compose', () => {
-
-    // compose
 
     it('compose', () =>
         expect(
@@ -35,6 +36,20 @@ describe('compose', () => {
                         dropRight(1)))))
 
             .toEqual([6]));
+
+
+    // intended use case
+    //
+    // const evenAndSmallerThan6 = flowP(
+    //     filter(smallerThan(6)),
+    //     filter(even())
+    // flow(
+    //     [1, 2, 3, 4, 6, 7, 8],
+    //     evenAndSmallerThan6,
+    //     take(1))
+    //     .includes(2)
+    //
+    // -> true
 });
 
 

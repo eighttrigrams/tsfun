@@ -1,8 +1,9 @@
+import {empty, isEmpty, isNot} from '../../src/predicate';
+
+
 /**
  * @author Daniel de Oliveira
  */
-import {empty, isEmpty, isNot} from '../../src/predicate';
-
 describe('empty / isEmpty', () => {
 
     // isEmpty

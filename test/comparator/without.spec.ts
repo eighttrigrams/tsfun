@@ -3,7 +3,7 @@ import {isUndefined} from '../../src/predicate';
 
 
 /**
- * without lets one compare ObjectStruct items of a list to
+ * Without lets one compare ObjectStruct items of a list to
  * to a given ObjectStruct, ignoring the specified path(s)
  *
  * @author Daniel de Oliveira
