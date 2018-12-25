@@ -109,6 +109,7 @@ console.log(take(2)([1,2,3]))
 * [subtract / subtractBy](test/arrayset/subtract.spec.ts)
 * [union / unite / uniteBy](test/arrayset/union.spec.ts)
 * [unique / uniqueBy](test/arrayset/unique.spec.ts)
+* duplicates
 
 ### ObjectSet
 
