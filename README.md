@@ -81,7 +81,7 @@ console.log(take(2)([1,2,3]))
 
 [Source](src/arraylist_objectstruct.ts)
 
-* get / [getOrElse](test/arraylist_objectstruct/get.spec.ts)
+* [get / getOrElse](test/arraylist_objectstruct/get.spec.ts)
 
 ### ArrayList
 

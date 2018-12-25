@@ -1,4 +1,4 @@
-import {getOrElse} from '../../src/arraylist_objectstruct';
+import {getOrElse, get} from '../../src/arraylist_objectstruct';
 
 
 /**
@@ -8,9 +8,9 @@ describe('get / getOrElse', () => {
 
     // Both Array and Map are associative
 
-    // get
+    // getOrElse
 
-    it('get array',() =>
+    it('getOrElse array',() =>
         expect(
 
             getOrElse([1, 2], undefined)(0))
@@ -18,7 +18,7 @@ describe('get / getOrElse', () => {
             .toEqual(1));
 
 
-    it('get array - undefined',() =>
+    it('getOrElse array - undefined',() =>
         expect(
 
             getOrElse([1, 2], undefined)(3))
@@ -26,7 +26,7 @@ describe('get / getOrElse', () => {
             .toEqual(undefined));
 
 
-    it('get array - alternative',() =>
+    it('getOrElse array - alternative',() =>
         expect(
 
             getOrElse([1, 2], 7)(3))
@@ -34,7 +34,7 @@ describe('get / getOrElse', () => {
             .toEqual(7));
 
 
-    it('get object',() =>
+    it('getOrElse object',() =>
         expect(
 
             getOrElse({a: {b: 4}}, undefined)('a.b'))
@@ -42,7 +42,7 @@ describe('get / getOrElse', () => {
             .toEqual(4));
 
 
-    it('get object - undefined',() =>
+    it('getOrElse object - undefined',() =>
         expect(
 
             getOrElse({a: {b: 4}}, undefined)('c.d'))
@@ -50,7 +50,7 @@ describe('get / getOrElse', () => {
             .toEqual(undefined));
 
 
-    it('get object - alternative',() =>
+    it('getOrElse object - alternative',() =>
         expect(
 
             getOrElse({a: {b: 4}}, 8)('c.d'))
@@ -64,4 +64,30 @@ describe('get / getOrElse', () => {
             getOrElse({a: false}, undefined)('a'))
 
             .toEqual(false));
+
+
+    // get
+
+    it('get array',() =>
+        expect(
+
+            get([1, 2])(0))
+
+            .toEqual(1));
+
+
+    it('get nothing array',() =>
+        expect(
+
+            () => get([1, 2])(3))
+
+            .toThrow(Error('get, got nothing')));
+
+
+    it('get nothing object',() =>
+        expect(
+
+            () => get({a: {b: 4}})('c.d'))
+
+            .toThrow(Error('get, got nothing')));
 });

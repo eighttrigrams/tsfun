@@ -15,3 +15,11 @@ export const getOrElse = <T>(ds: ObjectStruct|ArrayList<T>, alternative: any) =>
         ? result
         : alternative;
 };
+
+
+export const get = <T>(ds: ObjectStruct|ArrayList<T>) => (path: string|number) => {
+
+    const result = getOrElse(ds, undefined)(path);
+    if (result === undefined) throw Error('get, got nothing');
+    return result;
+};
