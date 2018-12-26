@@ -61,7 +61,8 @@ export const asyncFilter = <A>(f: AsyncPredicate<A>) =>
     };
 
 
-/* experimental */ export const intoArrayWith = <A>(f: (_: A) => Array<A>) => (acc: Array<A>, val: A) => acc.concat(f(val));
+/* experimental */ export const intoArrayWith = <A>(f: (_: A) => Array<A>) =>
+    (acc: Array<A>, val: A) => acc.concat(f(val));
 
 
 /* experimental */ export const intoArray = intoArrayWith(identical as any);
@@ -79,7 +80,7 @@ export const dropRight = <A>(n: number) =>
             as.reverse().slice(n).reverse();
 
 
-export const dropWhile = <A>(predicate: (_: A) => boolean) =>
+export const dropWhile = <A>(predicate: Predicate<A>) =>
     (as: ArrayList<A>) => {
         let go = false;
         return as.reduce((acc: Array<A>, a) =>
@@ -87,7 +88,7 @@ export const dropWhile = <A>(predicate: (_: A) => boolean) =>
     };
 
 
-export const dropRightWhile = <A>(predicate: (_: A) => boolean) =>
+export const dropRightWhile = <A>(predicate: Predicate<A>) =>
     (as: ArrayList<A>) =>
         (dropWhile(predicate)(as.reverse())).reverse();
 
