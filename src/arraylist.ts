@@ -7,8 +7,8 @@ import {identical} from './core';
 // ------------ @author Daniel de Oliveira -----------------
 
 
-export const apply = <T>(f: (_: T, __: T) => T) => (...coll: ArrayList<T>) =>
-    coll.reduce((acc: T, val: T) => f(acc, val));
+export const apply = <T>(f: (_: T, __: T) => T) =>
+    (...coll: ArrayList<T>) => coll.reduce(f);
 
 
 export const separate = <A>(p: Predicate<A>) =>
