@@ -6,21 +6,7 @@ import {arrayEqual, arrayEqualBy, jsonEqual} from '../../src/comparator';
  */
 describe('arrayEqual / arrayEqualBy', () => {
 
-    // Note that `objectEqual` standard Array Comparator is `arrayEqual`. So
-    //
-    // arrayEqual([1, {c: [1, 2], b: 2}])([1, {b: 2, c: [1, 2]}])
-    // -> true
-    //
-    // but
-    //
-    // arrayEqual([1, {c: [1, 2], b: 2}])([1, {b: 2, c: [2, 1]}])
-    // -> false
-    //
-    // On any level, order of keys and order in Arrays matters.
-    //     This behaviour, as usual, can be changed using `arrayEqualBy`.
-    //
-    // arrayEqual lets one compare Arrays in a way that the elements must be
-    // equal
+    // arrayEqual compares Arrays
 
     it('arrayEqual', () =>
         expect(
@@ -37,27 +23,6 @@ describe('arrayEqual / arrayEqualBy', () => {
             arrayEqual([1, 2])([2, 1])
 
         ).toEqual(false));
-
-
-    it('size does matter - first bigger (first elem equal)', () =>
-        expect(
-
-            arrayEqual
-            ([1, 2])
-            ([1])
-
-        ).toEqual(false));
-
-
-    it('size does matter - second bigger (first elem equal)', () =>
-        expect(
-
-            arrayEqual
-            ([1])
-            ([1, 2])
-
-        ).toEqual(false));
-
 
     // arrayEqual also works for nested structures
     // going deeper, embedded arrays get compared with arrayEqual again
@@ -119,6 +84,28 @@ describe('arrayEqual / arrayEqualBy', () => {
         expect(
 
             arrayEqualBy(jsonEqual)([1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
+
+        ).toEqual(false));
+
+
+    // edge cases
+
+    it('size does matter - first bigger (first elem equal)', () =>
+        expect(
+
+            arrayEqual
+            ([1, 2])
+            ([1])
+
+        ).toEqual(false));
+
+
+    it('size does matter - second bigger (first elem equal)', () =>
+        expect(
+
+            arrayEqual
+            ([1])
+            ([1, 2])
 
         ).toEqual(false));
 });
