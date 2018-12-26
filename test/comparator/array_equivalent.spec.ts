@@ -6,26 +6,6 @@ import {arrayEquivalent, arrayEquivalentBy, jsonEqual} from '../../src/comparato
  */
 describe('arrayEquivalent / arrayEquivalentBy', () => {
 
-    // arrayEquivalentBy(jsonEqual)([{a: 9}, {c: 7}, {b: 4}])([{b: 4}, {a: 9}, {c: 7}])
-    // -> true
-    //
-    // The standard Object Comparator is `objectEqualBy(arrayEquivalent)` such that
-    //
-    // arrayEquivalent
-    // ([{c: 7}, {c: 5, b: 4}])
-    // ([{b: 4, c: 5}, {c: 7}])
-    // -> true
-    //
-    // but also
-    //
-    // arrayEquivalent
-    // ([{c: 7}, {c: [{g: [9, 8], d: 5}, 3], b: 4}])
-    // ([{b: 4, c: [3, {d: 5, g: [8, 9]}]}, {c: 7}])
-    // -> true
-    //
-    // meaning that the order of Array does not matter on any level.
-
-
     // arrayEquivalent compares two Arrays in a way that the order of the Arrays
     // does not matter.
 
@@ -96,6 +76,8 @@ describe('arrayEquivalent / arrayEquivalentBy', () => {
         ).toEqual(true));
 
 
+    // using the default comparator, the order of keys does not matter
+
     it('default comparator is objectEquivalentBy(arrayEquivalent)', () =>
         expect(
 
@@ -105,6 +87,7 @@ describe('arrayEquivalent / arrayEquivalentBy', () => {
 
         ).toEqual(true));
 
+    // at any level
 
     it('arrayEquivalent with objectEquivalent - nest to arbitrary depth ', () =>
         expect(
