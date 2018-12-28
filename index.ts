@@ -71,8 +71,6 @@ export {
     drop,
     dropRight,
     dropRightWhile,
-    getIth,
-    getIthOr,
     apply
 } from './src/arraylist';
 

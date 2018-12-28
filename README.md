@@ -69,37 +69,33 @@ console.log(take(2)([1,2,3]))
 
 * [copy](test/arraylist_objectcoll/copy.spec.ts)
 
-### ObjectCollection
-
-[Source](src/objectcoll.ts)
-
-* [intoObject](test/objectcoll/into_object.spec.ts)
-* [mapObject](test/objectcoll/map_object.spec.ts)
-* [filterObject](test/objectcoll/filter_object.spec.ts)
-
 ### ArrayList and ObjectStruct
 
 [Source](src/arraylist_objectstruct.ts)
 
 * [get / getOrElse](test/arraylist_objectstruct/get.spec.ts)
 
-### ArrayList
+### ArrayList (composable)
 
 [Source](src/arraylist.ts)
 
 * [prepend](test/arraylist/prepend.spec.ts)  
 * [append](test/arraylist/append.spec.ts) 
-* [separate](test/arraylist/separate.spec.ts) 
-* [filter / asyncFilter](test/arraylist/filter.spec.ts) 
-* [map / asyncMap](test/arraylist/map.spec.ts) 
+* [filter](test/arraylist/filter.spec.ts) 
+* [map](test/arraylist/map.spec.ts) 
 * [flatMap](test/arraylist/flat_map.spec.ts)
-* [apply](test/arraylist/apply.spec.ts) 
-* [getIth / getIthOr](test/arraylist/get_ith.spec.ts) 
 * [take](test/arraylist/take.spec.ts)
 * [takeNth](test/arraylist/take_nth.spec.ts)
 * [takeWhile / takeRightWhile](test/arraylist/take_while.spec.ts)
 * [drop / dropRight](test/arraylist/drop.spec.ts)
 * [dropWhile / dropRightWhile](test/arraylist/drop_while.spec.ts)
+
+### ArrayList (not composable) 
+
+* [apply](test/arraylist/apply.spec.ts) 
+* [separate](test/arraylist/separate.spec.ts) 
+* [asyncFilter](test/arraylist/filter.spec.ts) 
+* [asyncMap](test/arraylist/map.spec.ts)
 
 ### ArraySet
 
@@ -110,6 +106,14 @@ console.log(take(2)([1,2,3]))
 * [union / unite / uniteBy](test/arrayset/union.spec.ts)
 * [unique / uniqueBy](test/arrayset/unique.spec.ts)
 * [duplicates](test/arrayset/duplicates.spec.ts)
+
+### ObjectCollection
+
+[Source](src/objectcoll.ts)
+
+* [intoObject](test/objectcoll/into_object.spec.ts)
+* [mapObject](test/objectcoll/map_object.spec.ts)
+* [filterObject](test/objectcoll/filter_object.spec.ts)
 
 ### ObjectSet
 

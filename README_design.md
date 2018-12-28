@@ -37,6 +37,13 @@ Speed was not considered, since most functional HOFs are looping over
 the input more often than necessary anyway (compared to languages where we would work on collections lazily).
 If you have pieces of code that needs to be fast, better do it with plain js.
 
+### Composability
+
+The ArrayList functions have been designed to work within a flow composition such that
+the typing as Array still retains and functions like .includes can be used at the end of the composition.
+That one reason why we did not make filter and map taking both ObjectCollection and ArrayList like copy, but
+instead created mapObject and filterObject.
+
 ### Typing  
 
 With a somewhat lower priority, supporting proper typing

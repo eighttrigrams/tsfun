@@ -133,16 +133,3 @@ export const takeUntil = <A>(predicate: Predicate<A>) =>
         )(as.find(predicate));
 
 
-// Written with Thomas Kleinke
-export const getIth =
-    <A>(as: ArrayList<A>) =>
-        (i: number): A|undefined => getIthOr(as)(i);
-
-
-// Written with Thomas Kleinke
-export const getIthOr =
-    <A>(as: ArrayList<A>, defaultValue: A|undefined = undefined) =>
-        (i: number): A|undefined =>
-            as.length < i ? defaultValue : as[i];
-
-
