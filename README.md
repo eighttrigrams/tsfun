@@ -96,6 +96,7 @@ console.log(take(2)([1,2,3]))
 * [separate](test/arraylist/separate.spec.ts) 
 * [asyncFilter](test/arraylist/filter.spec.ts) 
 * [asyncMap](test/arraylist/map.spec.ts)
+* [asyncForEach](test/arraylist/for_each.spec.ts)
 
 ### ArraySet
 

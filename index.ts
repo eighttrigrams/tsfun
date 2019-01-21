@@ -59,6 +59,7 @@ export {
     asyncFilter,
     map,
     asyncMap,
+    asyncForEach,
     append,
     prepend,
     separate,

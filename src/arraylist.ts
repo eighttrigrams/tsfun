@@ -61,6 +61,18 @@ export const asyncFilter = <A>(f: AsyncPredicate<A>) =>
     };
 
 
+export const asyncForEach = <A>(
+    f: ((_: A, i: number) => Promise<void>)|((_: A) => Promise<void>)) =>
+    async (c: Array<A>) => {
+
+        let i = 0;
+        for (let item of c) {
+            await (f as any)(item, i);
+            i++;
+        }
+    };
+
+
 /* experimental */ export const intoArrayWith = <A>(f: (_: A) => Array<A>) =>
     (acc: Array<A>, val: A) => acc.concat(f(val));
 
