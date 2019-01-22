@@ -5,8 +5,6 @@ import {asyncFilter, filter} from '../../src/arraylist';
 
 describe('filter', () => {
 
-    // filter
-
     it('filter', () =>
         expect(
 

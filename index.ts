@@ -59,6 +59,7 @@ export {
     asyncFilter,
     map,
     asyncMap,
+    forEach,
     asyncForEach,
     append,
     prepend,
@@ -74,7 +75,6 @@ export {
     dropRightWhile,
     apply
 } from './src/arraylist';
-
 
 
 

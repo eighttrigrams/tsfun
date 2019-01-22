@@ -61,15 +61,28 @@ export const asyncFilter = <A>(f: AsyncPredicate<A>) =>
     };
 
 
+export const forEach = <A>(
+    f: ((_: A, i: number) => void)|((_: A) => void)) =>
+    (as: Array<A>) => {
+        let i = 0;
+        for (let item of as) {
+            (f as any)(item, i);
+            i++;
+        }
+        return as;
+    };
+
+
 export const asyncForEach = <A>(
     f: ((_: A, i: number) => Promise<void>)|((_: A) => Promise<void>)) =>
-    async (c: Array<A>) => {
+    async (as: Array<A>) => {
 
         let i = 0;
-        for (let item of c) {
+        for (let item of as) {
             await (f as any)(item, i);
             i++;
         }
+        return as;
     };
 
 

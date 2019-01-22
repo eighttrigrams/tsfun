@@ -82,7 +82,8 @@ console.log(take(2)([1,2,3]))
 * [prepend](test/arraylist/prepend.spec.ts)  
 * [append](test/arraylist/append.spec.ts) 
 * [filter](test/arraylist/filter.spec.ts) 
-* [map](test/arraylist/map.spec.ts) 
+* [map](test/arraylist/map.spec.ts)
+* [forEach](test/arraylist/for_each.spec.ts) 
 * [flatMap](test/arraylist/flat_map.spec.ts)
 * [take](test/arraylist/take.spec.ts)
 * [takeNth](test/arraylist/take_nth.spec.ts)
@@ -91,6 +92,8 @@ console.log(take(2)([1,2,3]))
 * [dropWhile / dropRightWhile](test/arraylist/drop_while.spec.ts)
 
 ### ArrayList (not composable) 
+
+[Source](src/arraylist.ts)
 
 * [apply](test/arraylist/apply.spec.ts) 
 * [separate](test/arraylist/separate.spec.ts) 
