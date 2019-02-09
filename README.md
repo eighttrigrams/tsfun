@@ -75,7 +75,7 @@ console.log(take(2)([1,2,3]))
 
 * [get / getOrElse](test/arraylist_objectstruct/get.spec.ts)
 
-### ArrayList (composable)
+### ArrayList
 
 [Source](src/arraylist.ts)
 
