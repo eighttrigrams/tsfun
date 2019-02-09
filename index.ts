@@ -76,7 +76,9 @@ export {
     dropRight,
     dropRightWhile,
     apply,
-    copy
+    copy,
+    nth,
+    nthOr
 } from './src/arraylist';
 
 
@@ -114,12 +116,12 @@ export {
 } from './src/objectcoll'
 
 
-export {get, getOrElse} from './src/arraylist_objectstruct';
-
 export {
     takeOrMake,
     to,
-    jsonClone
+    jsonClone,
+    getOn,
+    getOnOr
 } from './src/objectstruct';
 
 

@@ -1,12 +1,29 @@
 import {isEmpty} from './predicate';
 import {reverseUncurry2} from './core';
-import {ObjectStruct, Predicate} from './type';
+import {ArrayList, ObjectStruct, Predicate} from './type';
 import {on} from './comparator';
 
 
 // ------------ @author Daniel de Oliveira -----------------
 
 export const jsonClone = <O>(object: O) => JSON.parse(JSON.stringify(object)) as O;
+
+
+export const getOnOr = <T>(ds: ObjectStruct|ArrayList<T>, alternative: any) => (path: string) => {
+
+    const result = getElForPathIn(ds as Object, path);
+    return result !== undefined
+        ? result
+        : alternative;
+};
+
+
+export const getOn = <T>(ds: ObjectStruct|ArrayList<T>) => (path: string) => {
+
+    const result = getOnOr(ds, undefined)(path);
+    if (result === undefined) throw Error('getOn, got nothing');
+    return result;
+};
 
 
 // library internal

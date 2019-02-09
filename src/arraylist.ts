@@ -175,3 +175,19 @@ export const takeUntil = <A>(predicate: Predicate<A>) =>
         )(as.find(predicate));
 
 
+// Written with Thomas Kleinke, Daniel de Oliveira
+export const nth =
+    <A>(as: ArrayList<A>) =>
+        (i: number): A => {
+            const result = nthOr(as)(i);
+            if (result === undefined) throw Error('nth, got nothing');
+            return result;
+        };
+
+
+// Written with Thomas Kleinke
+export const nthOr =
+    <A>(as: ArrayList<A>, defaultValue: A|undefined = undefined) =>
+        (i: number): A|undefined =>
+            as.length < i ? defaultValue : as[i];
+

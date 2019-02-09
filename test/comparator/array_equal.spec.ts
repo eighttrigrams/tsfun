@@ -25,7 +25,7 @@ describe('arrayEqual / arrayEqualBy', () => {
         ).toEqual(false));
 
     // arrayEqual also works for nested structures
-    // going deeper, embedded arrays get compared with arrayEqual again
+    // going deeper, embedded arrays getOn compared with arrayEqual again
 
     it('nested', () =>
         expect(
@@ -52,7 +52,7 @@ describe('arrayEqual / arrayEqualBy', () => {
 
         ).toEqual(true));
 
-    // strings and numbers get compared with ===
+    // strings and numbers getOn compared with ===
 
     it('allow strings and numbers', () =>
         expect(
