@@ -187,7 +187,7 @@ export const takeUntil = <A>(predicate: Predicate<A>) =>
         )(as.find(predicate));
 
 
-// Written with Thomas Kleinke, Daniel de Oliveira
+// Written with Thomas Kleinke
 export const nth =
     <A>(as: ArrayList<A>) =>
         (i: number): A => {
