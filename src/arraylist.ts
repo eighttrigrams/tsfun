@@ -1,6 +1,8 @@
 import {isNot} from './predicate';
-import {ArrayList, AsyncPredicate, Pair, Predicate, Transformation} from './type';
+import {ArrayList, AsyncPredicate, Pair, Predicate, Transformation, UntypedObjectCollection} from './type';
 import {identical} from './core';
+import {subtract} from "./arrayset";
+import {subtractObject} from "./objectset";
 
 
 
@@ -14,6 +16,10 @@ export const apply = <T>(f: (_: T, __: T) => T) =>
 export const separate = <A>(p: Predicate<A>) =>
     (as: Array<A>): Pair<Array<A>> =>
         [as.filter(p), as.filter(isNot(p))];
+
+
+export const copy = <T>(as: ArrayList<T>): ArrayList<T> =>
+        subtract([])(as as any) as ArrayList<T>;
 
 
 export const reverse = <A>(as: ArrayList<A>): ArrayList<A> =>

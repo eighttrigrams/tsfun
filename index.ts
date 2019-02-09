@@ -75,7 +75,8 @@ export {
     drop,
     dropRight,
     dropRightWhile,
-    apply
+    apply,
+    copy
 } from './src/arraylist';
 
 
@@ -108,11 +109,10 @@ export {
 export {
     mapObject,
     filterObject,
-    intoObject
+    intoObject,
+    copyObj
 } from './src/objectcoll'
 
-
-export {copy} from './src/arraylist_objectcoll';
 
 export {get, getOrElse} from './src/arraylist_objectstruct';
 

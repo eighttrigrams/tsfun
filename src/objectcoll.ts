@@ -1,5 +1,7 @@
-import {Mapping, ObjectCollection, Predicate, Transformation} from './type';
+import {ArrayList, Mapping, ObjectCollection, Predicate, Transformation, UntypedObjectCollection} from './type';
 import {isDefined} from './predicate';
+import {subtract} from "./arrayset";
+import {subtractObject} from "./objectset";
 
 
 
@@ -35,3 +37,7 @@ export const intoObject = <T>(keyName: string, valName: string) =>
         isDefined(item[keyName])
             ? (object[(item[keyName]).toString()] = item[valName], object)
             : object;
+
+
+export const copyObj = (o: UntypedObjectCollection): UntypedObjectCollection =>
+    subtractObject([])(o);

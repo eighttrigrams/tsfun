@@ -63,12 +63,6 @@ console.log(take(2)([1,2,3]))
 * [takeOrMake](test/objectstruct/take_or_make.spec.ts)
 * [jsonClone](test/objectstruct/clone.spec.ts)
 
-### ArrayList and ObjectCollection
-
-[Source](src/arraylist_objectcoll.ts)
-
-* [copy](test/arraylist_objectcoll/copy.spec.ts)
-
 ### ArrayList and ObjectStruct
 
 [Source](src/arraylist_objectstruct.ts)
@@ -79,6 +73,7 @@ console.log(take(2)([1,2,3]))
 
 [Source](src/arraylist.ts)
 
+* [copy](test/arraylist/copy.spec.ts)
 * [append / prepend](test/arraylist/append.spec.ts) 
 * [filter / remove / asyncFilter](test/arraylist/filter.spec.ts) 
 * [map / asyncMap](test/arraylist/map.spec.ts)
@@ -106,6 +101,7 @@ console.log(take(2)([1,2,3]))
 
 [Source](src/objectcoll.ts)
 
+* [copyObj](test/objectcoll/copy_obj.spec.ts)
 * [intoObject](test/objectcoll/into_object.spec.ts)
 * [mapObject](test/objectcoll/map_object.spec.ts)
 * [filterObject](test/objectcoll/filter_object.spec.ts)
