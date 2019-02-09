@@ -61,6 +61,7 @@ export {
     map,
     asyncMap,
     forEach,
+    forEachRight,
     asyncForEach,
     append,
     prepend,

@@ -82,6 +82,18 @@ export const forEach = <A>(
     };
 
 
+export const forEachRight = <A>(
+    f: ((_: A, i: number) => void)|((_: A) => void)) =>
+    (as: Array<A>) => {
+        let i = as.length - 1;
+        for (let item of as.reverse()) {
+            (f as any)(item, i);
+            i--;
+        }
+        return as;
+    };
+
+
 export const asyncForEach = <A>(
     f: ((_: A, i: number) => Promise<void>)|((_: A) => Promise<void>)) =>
     async (as: Array<A>) => {
