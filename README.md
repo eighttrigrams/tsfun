@@ -55,15 +55,6 @@ console.log(take(2)([1,2,3]))
 * [flow](test/composition/flow.spec.ts)
 * [compose](test/composition/compose.spec.ts)
 
-### ObjectStruct
-
-[Source](src/objectstruct.ts)  
-
-* [to](test/objectstruct/to.spec.ts)
-* [takeOrMake](test/objectstruct/take_or_make.spec.ts)
-* [jsonClone](test/objectstruct/clone.spec.ts)
-* [getOn / getOnOr](test/objectstruct/get_on.spec.ts)
-
 ### ArrayList
 
 [Source](src/arraylist.ts)
@@ -92,6 +83,15 @@ console.log(take(2)([1,2,3]))
 * [union / unite / uniteBy](test/arrayset/union.spec.ts)
 * [unique / uniqueBy](test/arrayset/unique.spec.ts)
 * [duplicates](test/arrayset/duplicates.spec.ts)
+
+### ObjectStruct
+
+[Source](src/objectstruct.ts)  
+
+* [to](test/objectstruct/to.spec.ts)
+* [takeOrMake](test/objectstruct/take_or_make.spec.ts)
+* [jsonClone](test/objectstruct/clone.spec.ts)
+* [getOn / getOnOr](test/objectstruct/get_on.spec.ts)
 
 ### ObjectCollection
 
