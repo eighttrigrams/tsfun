@@ -1,7 +1,7 @@
 import {asyncForEach, forEach} from '../../src/arraylist';
 
 
-describe('forEach', () => {
+describe('forEach / asyncForEach', () => {
 
 
     it('forEach', async done => {

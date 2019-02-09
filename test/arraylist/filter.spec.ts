@@ -3,7 +3,7 @@ import {flow} from '../../src/composition';
 import {asyncFilter, filter, remove} from '../../src/arraylist';
 
 
-describe('filter / remove', () => {
+describe('filter / remove / asyncFilter', () => {
 
     it('filter', () =>
         expect(

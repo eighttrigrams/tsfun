@@ -6,7 +6,7 @@ import {to} from '../../src/objectstruct';
 /**
  * @author Daniel de Oliveira
  */
-describe('map', () => {
+describe('map / asyncMap', () => {
 
     // map
 
