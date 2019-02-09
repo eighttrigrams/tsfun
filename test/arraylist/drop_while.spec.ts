@@ -2,7 +2,7 @@ import {greaterThan, lessThan} from '../../src/comparator';
 import {dropRightWhile, dropWhile} from '../../src/arraylist';
 
 
-describe('drop/dropRightWhile', () => {
+describe('drop / dropRightWhile', () => {
 
 
     it('dropWhile - drop five', () =>

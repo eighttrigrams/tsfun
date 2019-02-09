@@ -126,6 +126,14 @@ export const take = <A>(n: number) =>
                 , []);
 
 
+export const takeRight = <A>(n: number) =>
+    (as: ArrayList<A>) =>
+        n < 0 ? [] :
+            as.reduceRight((acc: ArrayList<A>, val, i) =>
+                (as.length - i) <= n ? [val].concat(acc) : acc
+                , []);
+
+
 export const takeNth = <A>(n: number) =>
     (as: ArrayList<A>) =>
         n < 0 ? [] :

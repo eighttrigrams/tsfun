@@ -65,6 +65,7 @@ export {
     prepend,
     separate,
     take,
+    takeRight,
     takeRightWhile,
     takeUntil,
     takeWhile,
