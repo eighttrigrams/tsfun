@@ -53,6 +53,9 @@ export const filter = <A>(f: Predicate<A>): Transformation<Array<A>> =>
         as.filter(f);
 
 
+export const remove = <A>(f: Predicate<A>): Transformation<Array<A>> => filter(isNot(f));
+
+
 export const asyncFilter = <A>(f: AsyncPredicate<A>) =>
     async (as: Array<A>) => {
         const newAs: Array<A> = [];

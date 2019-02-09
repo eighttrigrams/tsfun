@@ -56,6 +56,7 @@ export {
     reverse,
     flatMap,
     filter,
+    remove,
     asyncFilter,
     map,
     asyncMap,

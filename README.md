@@ -80,7 +80,7 @@ console.log(take(2)([1,2,3]))
 [Source](src/arraylist.ts)
 
 * [append / prepend](test/arraylist/append.spec.ts) 
-* [filter](test/arraylist/filter.spec.ts) 
+* [filter / remove](test/arraylist/filter.spec.ts) 
 * [map](test/arraylist/map.spec.ts)
 * [forEach](test/arraylist/for_each.spec.ts) 
 * [flatMap](test/arraylist/flat_map.spec.ts)

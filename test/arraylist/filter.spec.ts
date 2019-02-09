@@ -1,9 +1,9 @@
 import {lessThan} from '../../src/comparator';
 import {flow} from '../../src/composition';
-import {asyncFilter, filter} from '../../src/arraylist';
+import {asyncFilter, filter, remove} from '../../src/arraylist';
 
 
-describe('filter', () => {
+describe('filter / remove', () => {
 
     it('filter', () =>
         expect(
@@ -24,4 +24,13 @@ describe('filter', () => {
 
         done();
     });
+
+
+    it('remove', () =>
+        expect(
+
+            flow([2, 4, 3],
+                remove(lessThan(4))))
+
+            .toEqual([4]));
 });
