@@ -1,12 +1,12 @@
-import {intoObject} from '../../src/objectcoll';
+import {intoObj} from '../../src/objectcoll';
 
 
-describe('intoObject', () => {
+describe('intoObj', () => {
 
     it('number key', () =>
         expect(
 
-            intoObject('key', 'val')
+            intoObj('key', 'val')
                 ({}, {key: 2, val: 7}))
 
             .toEqual({2: 7}));
@@ -15,7 +15,7 @@ describe('intoObject', () => {
     it('string key', () =>
         expect(
 
-            intoObject('key', 'val')
+            intoObj('key', 'val')
             ({}, {key: '2', val: 7}))
 
             .toEqual({2: 7}));
@@ -25,7 +25,7 @@ describe('intoObject', () => {
         expect(
 
             [{key: 2, val: 7}, {key: 3, val: 8}]
-                .reduce(intoObject('key', 'val'), {}))
+                .reduce(intoObj('key', 'val'), {}))
 
             .toEqual({2: 7, 3: 8}));
 
@@ -34,7 +34,7 @@ describe('intoObject', () => {
         expect(
 
             [{key: 2, val: 7}, {val: 8}]
-                .reduce(intoObject('key', 'val'), {}))
+                .reduce(intoObj('key', 'val'), {}))
 
             .toEqual({2: 7}));
 
@@ -43,7 +43,7 @@ describe('intoObject', () => {
         expect(
 
             [{key: 2, val: 7}, {key: 8}]
-                .reduce(intoObject('key', 'val'), {}))
+                .reduce(intoObj('key', 'val'), {}))
 
             .toEqual({2: 7, 8: undefined}));
 

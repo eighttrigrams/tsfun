@@ -1,5 +1,5 @@
 import {compose, flow} from '../../src/composition';
-import {uniteObject} from '../../src/objectset';
+import {uniteObj} from '../../src/objectset';
 import {drop, dropRight, take} from '../../src/arraylist';
 
 
@@ -11,7 +11,7 @@ describe('compose', () => {
     it('compose', () =>
         expect(
 
-            compose(uniteObject({c: 3}))({a: 1, b: 2}))
+            compose(uniteObj({c: 3}))({a: 1, b: 2}))
 
             .toEqual({a: 1, b: 2, c: 3}));
 

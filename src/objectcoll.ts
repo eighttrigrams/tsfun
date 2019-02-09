@@ -1,7 +1,7 @@
 import {ArrayList, Mapping, ObjectCollection, Predicate, Transformation, UntypedObjectCollection} from './type';
 import {isDefined} from './predicate';
 import {subtract} from "./arrayset";
-import {subtractObject} from "./objectset";
+import {subtractObj} from "./objectset";
 
 
 
@@ -16,13 +16,13 @@ const mapPropertiesReducer = <A, B>(f: (_: A) => B) =>
     (o: any) => (acc: any, val: string) => (acc[val] = f(o[val]), acc);
 
 
-export const mapObject = <A, B>(f: Mapping <A, B>):
+export const mapObj = <A, B>(f: Mapping <A, B>):
     (_: ObjectCollection<A>) => ObjectCollection<B> =>
     (coll: ObjectCollection<A>) => mapProperties(f)(Object.keys(coll), coll);
 
 
 
-export const filterObject = <T>(predicate: Predicate<T>): Transformation<ObjectCollection<T>> =>
+export const filterObj = <T>(predicate: Predicate<T>): Transformation<ObjectCollection<T>> =>
     (o: ObjectCollection<T>) =>
         Object
             .keys(o)
@@ -32,7 +32,7 @@ export const filterObject = <T>(predicate: Predicate<T>): Transformation<ObjectC
             }, {});
 
 
-export const intoObject = <T>(keyName: string, valName: string) =>
+export const intoObj = <T>(keyName: string, valName: string) =>
     (object: ObjectCollection<T>, item: ObjectCollection<T>) =>
         isDefined(item[keyName])
             ? (object[(item[keyName]).toString()] = item[valName], object)
@@ -40,4 +40,4 @@ export const intoObject = <T>(keyName: string, valName: string) =>
 
 
 export const copyObj = (o: UntypedObjectCollection): UntypedObjectCollection =>
-    subtractObject([])(o);
+    subtractObj([])(o);

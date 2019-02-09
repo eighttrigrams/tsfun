@@ -1,11 +1,11 @@
-import {subtractObject} from '../../src/objectset';
+import {subtractObj} from '../../src/objectset';
 
-describe('subtractObject', () => {
+describe('subtractObj', () => {
 
     it('subtract by array of numeric keys', () =>
         expect(
 
-            subtractObject([1])({1: 3, 2: 4}))
+            subtractObj([1])({1: 3, 2: 4}))
 
             .toEqual({2: 4}));
 
@@ -13,7 +13,7 @@ describe('subtractObject', () => {
     it('subtract by array of string keys', () =>
         expect(
 
-            subtractObject(['1'])({1: 3, 2: 4}))
+            subtractObj(['1'])({1: 3, 2: 4}))
 
             .toEqual({2: 4}));
 
@@ -21,7 +21,7 @@ describe('subtractObject', () => {
     it('subtract objects', () =>
         expect(
 
-            subtractObject({1: 7})({1: 3, 2: 4}))
+            subtractObj({1: 7})({1: 3, 2: 4}))
 
             .toEqual({2: 4}));
 
@@ -29,7 +29,7 @@ describe('subtractObject', () => {
     it('array for o', () =>
         expect(
 
-            () => subtractObject({0: 7})([2, 4]))
+            () => subtractObj({0: 7})([2, 4]))
 
             .toThrow(new TypeError('invalid argument')));
 
@@ -37,7 +37,7 @@ describe('subtractObject', () => {
     it('retain instance', () => {
 
         const instance = { a: 'hey'  };
-        expect(subtractObject({1: 7})({1: 3, 2: instance})['2'])
+        expect(subtractObj({1: 7})({1: 3, 2: instance})['2'])
             .toBe(instance);
     });
 });

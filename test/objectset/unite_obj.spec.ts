@@ -1,7 +1,7 @@
-import {unionObject, uniteObject} from '../../src/objectset';
+import {unionObject, uniteObj} from '../../src/objectset';
 
 
-describe('unionObject/uniteObject', () => {
+describe('unionObj / uniteObj', () => {
 
 
 
@@ -9,7 +9,7 @@ describe('unionObject/uniteObject', () => {
     it('overwrite', () =>
         expect(
 
-            uniteObject({1: 4})({1: 3, 2: 4}))
+            uniteObj({1: 4})({1: 3, 2: 4}))
 
             .toEqual({1: 4, 2: 4}));
 
@@ -17,7 +17,7 @@ describe('unionObject/uniteObject', () => {
     it('unite different', () =>
         expect(
 
-            uniteObject({1: 4})({2: 4}))
+            uniteObj({1: 4})({2: 4}))
 
             .toEqual({1: 4, 2: 4}));
 
@@ -25,7 +25,7 @@ describe('unionObject/uniteObject', () => {
     it('illegal first arg', () =>
         expect(
 
-            () => uniteObject([])({2: 4}))
+            () => uniteObj([])({2: 4}))
 
             .toThrow(new TypeError('invalid argument')));
 
@@ -33,7 +33,7 @@ describe('unionObject/uniteObject', () => {
     it('illegal second arg', () =>
         expect(
 
-            () => uniteObject({1: 4})([]))
+            () => uniteObj({1: 4})([]))
 
             .toThrow(new TypeError('invalid argument')));
 
@@ -41,7 +41,7 @@ describe('unionObject/uniteObject', () => {
     it('retain instance', () => {
 
         const instance = { a: 'hey'  };
-        expect(uniteObject({1: 4})({1: 3, 2: instance})[2])
+        expect(uniteObj({1: 4})({1: 3, 2: instance})[2])
             .toBe(instance);
     });
 
@@ -49,7 +49,7 @@ describe('unionObject/uniteObject', () => {
     it('variadic', () =>
         expect(
 
-            uniteObject(...[{3: 4}, {4: 4}])({1: 2}))
+            uniteObj(...[{3: 4}, {4: 4}])({1: 2}))
 
             .toEqual({1: 2, 3: 4, 4: 4}));
 
@@ -57,7 +57,7 @@ describe('unionObject/uniteObject', () => {
     it('variadic', () =>
         expect(
 
-            uniteObject(...[{3: 4}, {4: 4}])({1: 2}))
+            uniteObj(...[{3: 4}, {4: 4}])({1: 2}))
 
             .toEqual({1: 2, 3: 4, 4: 4}));
 

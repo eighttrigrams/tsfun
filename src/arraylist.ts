@@ -2,7 +2,7 @@ import {isNot} from './predicate';
 import {ArrayList, AsyncPredicate, Pair, Predicate, Transformation, UntypedObjectCollection} from './type';
 import {identical} from './core';
 import {subtract} from "./arrayset";
-import {subtractObject} from "./objectset";
+import {subtractObj} from "./objectset";
 
 
 

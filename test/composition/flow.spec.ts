@@ -1,7 +1,7 @@
 import {greaterThan, includedIn, lessThan} from '../../src/comparator';
 import {flow} from '../../src/composition';
 import {dropRight, dropWhile, reverse, takeWhile} from '../../src/arraylist';
-import {uniteObject} from '../../src/objectset';
+import {uniteObj} from '../../src/objectset';
 import {isNot} from '../../src/predicate';
 
 
@@ -71,7 +71,7 @@ describe('flow', () => {
 
             flow(
                 {a: 1, b: 2},
-                uniteObject({c: 3})))
+                uniteObj({c: 3})))
 
             .toEqual({a: 1, b: 2, c: 3}));
 

@@ -99,17 +99,17 @@ export {
 
 
 export {
-    subtractObject,
-    intersectObject,
-    uniteObject,
+    subtractObj,
+    intersectObj,
+    uniteObj,
     unionObject
 } from './src/objectset'
 
 
 export {
-    mapObject,
-    filterObject,
-    intoObject,
+    mapObj,
+    filterObj,
+    intoObj,
     copyObj
 } from './src/objectcoll'
 

@@ -102,17 +102,17 @@ console.log(take(2)([1,2,3]))
 [Source](src/objectcoll.ts)
 
 * [copyObj](test/objectcoll/copy_obj.spec.ts)
-* [intoObject](test/objectcoll/into_object.spec.ts)
-* [mapObject](test/objectcoll/map_object.spec.ts)
-* [filterObject](test/objectcoll/filter_object.spec.ts)
+* [intoObj](test/objectcoll/into_obj.spec.ts)
+* [mapObj](test/objectcoll/map_obj.spec.ts)
+* [filterObj](test/objectcoll/filter_obj.spec.ts)
 
 ### ObjectSet
 
 [Source](src/objectset.ts)
 
-* [intersectObject](test/objectset/intersect_object.spec.ts)
-* [uniteObject / unionObject](test/objectset/unite_object.spec.ts)
-* [subtractObject](test/objectset/subtract_object.spec.ts)
+* [intersectObj](test/objectset/intersect_obj.spec.ts)
+* [uniteObject / unionObj](test/objectset/unite_obj.spec.ts)
+* [subtractObj](test/objectset/subtract_obj.spec.ts)
 
 ## Concepts
 

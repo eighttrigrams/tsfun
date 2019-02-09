@@ -6,7 +6,7 @@ import {mapProperties} from './objectcoll';
 
 // ------------ @author Daniel de Oliveira -----------------
 
-export const subtractObject = (subtrahend: Array<string | number> | any) =>
+export const subtractObj = (subtrahend: Array<string | number> | any) =>
     (o: ObjectSet): ObjectSet => {
 
         if (Array.isArray(o)) throw new TypeError('invalid argument');
@@ -28,14 +28,14 @@ export const subtractObject = (subtrahend: Array<string | number> | any) =>
 export function unionObject([first, ...rest]: ObjectSet[]): ObjectSet {
 
     return first && rest.length > 0
-        ? uniteObject(...rest)(first)
+        ? uniteObj(...rest)(first)
         : first
             ? first
             : {};
 }
 
 
-export const uniteObject = (...addends: ObjectSet[]) =>
+export const uniteObj = (...addends: ObjectSet[]) =>
     (o: ObjectSet): ObjectSet => {
 
         if (Array.isArray(o)) throw new TypeError('invalid argument');
@@ -46,7 +46,7 @@ export const uniteObject = (...addends: ObjectSet[]) =>
     };
 
 
-export const intersectObject = (o1: any) =>
+export const intersectObj = (o1: any) =>
     (o2: ObjectSet): ObjectSet => {
 
         if (Array.isArray(o2)) throw new TypeError('invalid argument');
