@@ -107,7 +107,7 @@ console.log(take(2)([1,2,3]))
 [Source](src/objectset.ts)
 
 * [intersectObj](test/objectset/intersect_obj.spec.ts)
-* [uniteObject / unionObj](test/objectset/unite_obj.spec.ts)
+* [uniteObj / unionObj](test/objectset/unite_obj.spec.ts)
 * [subtractObj](test/objectset/subtract_obj.spec.ts)
 
 ## Concepts
