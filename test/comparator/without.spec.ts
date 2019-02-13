@@ -12,7 +12,7 @@ describe('without (by)', () => {
 
 
     /**
-     * The same-named keys, without b, getOn
+     * The same-named keys, without b, get
      * compared to each other, using tripleEqual
      */
     it('ignore one path',() =>
@@ -25,7 +25,7 @@ describe('without (by)', () => {
 
 
     /**
-     * The same-named keys, without b and c, getOn
+     * The same-named keys, without b and c, get
      * compared to each other, using tripleEqual
      */
     it('ignore multiple paths',() =>
