@@ -23,7 +23,7 @@ export const isUndefined: Predicate<any> = isNot(defined);
 const Undefined = isUndefined;
 
 
-export function isUndefinedOrEmpty<T>(coll: Object|Array<T>|undefined): boolean {
+export function isUndefinedOrEmpty<T>(coll: Object|Array<T>|string|undefined): boolean {
 
     if (coll === undefined) return true;
     if (!isObject(coll)
