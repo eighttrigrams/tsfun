@@ -1,4 +1,4 @@
-import {isEmpty} from './predicate';
+import {isArray, isEmpty, isObject} from './predicate';
 import {reverseUncurry2} from './core';
 import {ArrayList, ObjectStruct, Predicate} from './type';
 import {on} from './comparator';
@@ -6,10 +6,50 @@ import {on} from './comparator';
 
 // ------------ @author Daniel de Oliveira -----------------
 
-export const jsonClone = <O>(object: O) => JSON.parse(JSON.stringify(object)) as O;
+export const jsonClone = <T>(object: T) => JSON.parse(JSON.stringify(object)) as T;
 
 
-export const getOnOr = <T>(ds: ObjectStruct|ArrayList<T>, alternative: any) => (path: string) => {
+export const clone = <T>(struct: T, f?: Function): T => {
+
+    if (isArray(struct)) {
+
+        return (struct as unknown as Array<any>).reduce((acc: Array<any>, val: any) => {
+
+            if (typeof val === 'string') {
+                acc.push(val);
+            }
+            else if (typeof val === 'number') {
+                acc.push(val);
+            } else acc.push(clone(val, f));
+            return acc;
+        }, []) as T
+
+    } else if (isObject(struct)) {
+
+        const klone: ObjectStruct = {};
+        for (let k of (Object.keys(struct as any))) {
+
+            if (typeof (struct as any)[k] === 'string') {
+                (klone as any)[k] = (struct as any)[k]
+            }
+            else if (typeof (struct as any)[k] === 'number') {
+                (klone as any)[k] = (struct as any)[k]
+            } else {
+                (klone as any)[k] = clone((struct as any)[k], f)
+            }
+        }
+        return klone as T;
+
+    } else {
+
+        return (f !== undefined
+            ? f(struct)
+            : jsonClone(struct)) as T;
+    }
+};
+
+
+export const getOnOr = <T>(ds: ObjectStruct, alternative: any) => (path: string) => {
 
     const result = getElForPathIn(ds as Object, path);
     return result !== undefined
@@ -18,7 +58,7 @@ export const getOnOr = <T>(ds: ObjectStruct|ArrayList<T>, alternative: any) => (
 };
 
 
-export const getOn = <T>(ds: ObjectStruct|ArrayList<T>) => (path: string) => {
+export const getOn = <T>(ds: ObjectStruct) => (path: string) => {
 
     const result = getOnOr(ds, undefined)(path);
     if (result === undefined) throw Error('getOn, got nothing');

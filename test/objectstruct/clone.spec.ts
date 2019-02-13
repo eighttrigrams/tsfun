@@ -1,21 +1,62 @@
+import {clone, jsonClone} from "../../src/objectstruct";
+
 describe('clone', () => {
 
 
-    // const b = clone(a)
+    it('clone shallow Object', () => {
 
-    // const b = clone(a, function convertDates<O>(original: any, plain: any) {
-    //
-    //     if (original) {
-    //         for (let key of Object.keys(original)) {
-    //
-    //             if (original[key] instanceof Date) {
-    //                 plain[key] = new Date(original[key]);
-    //             } else if (typeof original[key] === 'object') {
-    //                 convertDates(original[key], plain[key])
-    //             }
-    //
-    //         }
-    //     }
-    //     return plain;
-    // });
+        const k = clone({a: '1', b: 2});
+        expect(k['a']).toBe('1'); // string
+        expect(k['b']).toBe(2); // number
+    });
+
+
+    it('clone shallow Array', () => {
+
+        const k = clone(['1', 2]);
+        expect(k[0]).toBe('1'); // string
+        expect(k[1]).toBe(2); // number
+    });
+
+
+    it('clone nested Object', () => {
+
+        const nested = {c: 3};
+        const k = clone({a: '1', b: nested});
+        expect(k['b']['c']).toBe(3);
+        expect(k['b']).not.toBe(nested);
+    });
+
+
+    it('clone nested Array', () => {
+
+        const nested = [3];
+        const k = clone([nested]);
+        expect(k[0][0]).toBe(3);
+        expect(k[0]).not.toBe(nested);
+    });
+
+
+    it('clone date with jsonClone', () => {
+
+        const d = new Date();
+        const dJsonCloned = jsonClone(d);
+
+        const k = clone([d]);
+        expect(k[0]).toEqual(dJsonCloned);
+    });
+
+
+    it('clone date with helper', () => {
+
+        const d = new Date();
+
+        const k = clone([d], (item: any) => {
+            expect(item).toBe(d);
+            return new Date(d);
+        });
+        expect(k[0].toString()).toEqual(d.toString());
+        expect(k[0] instanceof Date).toBe(true);
+        expect(k[0]).not.toBe(d);
+    });
 });

@@ -122,7 +122,8 @@ export {
     to,
     jsonClone,
     getOn,
-    getOnOr
+    getOnOr,
+    clone
 } from './src/objectstruct';
 
 
