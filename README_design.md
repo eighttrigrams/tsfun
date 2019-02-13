@@ -31,6 +31,16 @@ Combinators
 Provide reusable components which help work on nested, but plain, data structures,
 as such ones gained by parsing JSON.
 
+We have 2 literals in javascript for structured entities, Array ([]) and Object ({}).
+Note that I call the latter Object rather than Map here. Calling it Map would be helpful
+in cases where I see it as a collection, but not when I see it as struct. When I talk about
+Object in tsfun, I mean {} and not for example an instance of Date. There are isArray and
+isObject functions which determine the meaning exactly.
+
+A couple of collection "views" are available on top of these structures. We call these
+ArrayList, ArraySet, ObjectStruct, ObjectCollection, ObjectSet. The first part refers to 
+the aforementioned types and the later part to the data structure which is modelled.
+
 ### Not optimized
 
 Speed was not considered, since most functional HOFs are looping over 
