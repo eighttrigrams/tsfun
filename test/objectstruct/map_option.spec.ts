@@ -1,4 +1,4 @@
-import {on} from '../../src/comparator';
+import {is, on} from '../../src/comparator';
 import {flow} from '../../src/composition';
 import {mapOption, option, to} from '../../src/objectstruct';
 
@@ -14,7 +14,7 @@ describe('mapOption - experimental', () => {
         expect(
 
             flow<any>({a:{b:4}},
-                option(on('a.b:')(4)),
+                option(on('a.b', is(4))),
                 mapOption(to('a.b'))))
 
             .toEqual(4));
@@ -24,7 +24,7 @@ describe('mapOption - experimental', () => {
         expect(
 
             flow<any>({a:{b:4}},
-                option(on('a.b:')(5)),
+                option(on('a.b', is(5))),
                 mapOption((_: any) => _ + 2)))
 
             .toEqual({}));

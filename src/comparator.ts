@@ -171,10 +171,7 @@ const onBy = (compare: Function) => (path: string) =>
     (l: any) => (r: any) =>
         path.length === 0
             ? undefined
-            : compare(
-                path.charAt(path.length - 1) === ':'
-                ? l : getElForPathIn(l, path))
-            (getElForPathIn(r, path.charAt(path.length - 1) === ':' ? path.slice(0, -1) : path));
+            : compare(getElForPathIn(l, path))(getElForPathIn(r, path));
 
 
 export const on = (path: string, compare: Function = tripleEqual) =>

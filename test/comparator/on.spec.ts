@@ -21,13 +21,13 @@ describe('on (by)', () => {
             .toEqual({a: {b: 5}} as any));
 
 
-    it('on - with find - exact',() =>
-        expect(
-
-            [{a: {b: 4}}, {a: {b: 5}}]
-                .find(on('a.b:')(5)))
-
-            .toEqual({a: {b: 5}} as any));
+    // it('on - with find - exact',() =>
+    //     expect(
+    //
+    //         [{a: {b: 4}}, {a: {b: 5}}]
+    //             .find(on('a.b:')(5)))
+    //
+    //         .toEqual({a: {b: 5}} as any));
 
 
     it('on - with filter and isNot - symmetric', () =>
@@ -39,12 +39,12 @@ describe('on (by)', () => {
             .toEqual([{a: {b: 4}} as any]));
 
 
-    it('on - with filter and isNot - exact', () =>
-        expect(
-
-            [{a: {b: 4}}, {a: {b: 5}}].filter(isNot(on('a.b:')(5))))
-
-            .toEqual([{a: {b: 4}} as any]));
+    // it('on - with filter and isNot - exact', () =>
+    //     expect(
+    //
+    //         [{a: {b: 4}}, {a: {b: 5}}].filter(isNot(on('a.b:')(5))))
+    //
+    //         .toEqual([{a: {b: 4}} as any]));
 
 
     it('on - with intersectBy - symmetric',() =>
@@ -119,13 +119,13 @@ describe('on (by)', () => {
     //     ).toEqual([{a: [1, 2, 4]}] as any));
 
 
-    it('on - with find and isNot - partial arrayEquivalent as predicate, without path match', () =>
-        expect(
-
-            [{a: {b: [2, 1]}}, {a: {b: [2, 7]}}]
-                .filter(on('a.b:', arrayEquivalent)([1, 2]))
-
-        ).toEqual([{a: {b: [2, 1]}}] as any));
+    // it('on - with find and isNot - partial arrayEquivalent as predicate, without path match', () =>
+    //     expect(
+    //
+    //         [{a: {b: [2, 1]}}, {a: {b: [2, 7]}}]
+    //             .filter(on('a.b:', arrayEquivalent)([1, 2]))
+    //
+    //     ).toEqual([{a: {b: [2, 1]}}] as any));
 
 
     it('on - with find and isArray', () =>
@@ -157,13 +157,13 @@ describe('on (by)', () => {
             .toEqual([{a: {b: {c: 'e'}}} as any]));
 
 
-    it('find onBy equalTo - exact',() =>
-        expect(
-
-            [{a: {b: 4}}, {a: {b: 5}}]
-                .find(on('a.b:', jsonEqual)(5)))
-
-            .toEqual({a: {b: 5}} as any));
+    // it('find onBy equalTo - exact',() =>
+    //     expect(
+    //
+    //         [{a: {b: 4}}, {a: {b: 5}}]
+    //             .find(on('a.b:', jsonEqual)(5)))
+    //
+    //         .toEqual({a: {b: 5}} as any));
 
 
     it('find onBy equalTo - symmetric',() =>
