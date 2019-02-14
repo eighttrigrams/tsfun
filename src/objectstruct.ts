@@ -77,7 +77,7 @@ export function getElForPathIn(object: ObjectStruct, path: string) {
 
 export function setOn(object: any, path: string) {
 
-    return (val: any): any => {
+    return (val: any): void => {
 
         let currentLevel: any = object;
 
@@ -91,8 +91,6 @@ export function setOn(object: any, path: string) {
                 currentLevel = currentLevel[segment];
             }
         });
-
-        return object;
     }
 }
 
