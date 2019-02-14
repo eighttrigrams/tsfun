@@ -37,6 +37,24 @@ describe('clone', () => {
     });
 
 
+    it('clone mutually nested Array', () => {
+
+        const nested = [3];
+        const k = clone([{a: nested}]);
+        expect(k[0]['a'][0]).toBe(3);
+        expect(k[0]['a']).not.toBe(nested);
+    });
+
+
+    it('clone mutually nested Object', () => {
+
+        const nested = {c: 3};
+        const k = clone({a: [nested]});
+        expect(k['a'][0]['c']).toBe(3);
+        expect(k['a'][0]).not.toBe(nested);
+    });
+
+
     it('clone date with jsonClone', () => {
 
         const d = new Date();
