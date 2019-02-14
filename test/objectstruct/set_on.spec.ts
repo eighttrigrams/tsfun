@@ -56,7 +56,7 @@ describe('setOn', () => {
         const o1: any = {a: {b: {c: 'd'}}};
 
         const takeOrMake = (path: string, alternative: any) => <T>(o: T) =>
-            compose(clone, getOnOr(path , alternative), setOn(clone(o), path))(o);
+            compose(getOnOr(path , alternative), setOn(clone(o), path))(o);
 
         const r1 = takeOrMake('a.b.c', undefined)(o1); // take
         expect(r1['a']['b']['c']).toBe('d');
