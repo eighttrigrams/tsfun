@@ -89,7 +89,7 @@ console.log(take(2)([1,2,3]))
 [Source](src/objectstruct.ts)  
 
 * [to](test/objectstruct/to.spec.ts)
-* [takeOrMake](test/objectstruct/take_or_make.spec.ts)
+* [setOn](test/objectstruct/set_on.spec.ts)
 * [clone / jsonClone](test/objectstruct/clone.spec.ts)
 * [getOn / getOnOr](test/objectstruct/get_on.spec.ts)
 

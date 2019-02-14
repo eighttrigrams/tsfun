@@ -42,7 +42,7 @@ export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function
 }
 
 
-export const getOnOr = <T>(ds: ObjectStruct, alternative: any) => (path: string) => {
+export const getOnOr = <T>(path: string, alternative: any) => (ds: ObjectStruct) => {
 
     const result = getElForPathIn(ds as Object, path);
     return result !== undefined
@@ -53,7 +53,7 @@ export const getOnOr = <T>(ds: ObjectStruct, alternative: any) => (path: string)
 
 export const getOn = <T>(ds: ObjectStruct) => (path: string) => {
 
-    const result = getOnOr(ds, undefined)(path);
+    const result = getOnOr(path, undefined)(ds);
     if (result === undefined) throw Error('getOn, got nothing');
     return result;
 };
@@ -74,19 +74,27 @@ export function getElForPathIn(object: ObjectStruct, path: string) {
 }
 
 
-export function takeOrMake(object: ObjectStruct, path: string, val: any) {
 
-    if (getElForPathIn(object, path)) return getElForPathIn(object, path);
-    let result: any = object;
-    let last;
-    let lastSegment: any;
-    for (let segment of path.split('.')) {
-        if (!result[segment]) result[segment] = { };
-        last = result;
-        lastSegment = segment;
-        result = result[segment];
+export function setOn(object: any, path: string) {
+
+    return (val: any): any => {
+
+        let currentLevel: any = object;
+
+        const segments = path.split('.');
+        let i = 0;
+        segments.forEach((segment, i) => {
+            if (i === segments.length - 1) { // last segment
+                currentLevel[segment] = val;
+            } else {
+                if (!currentLevel[segment]) currentLevel[segment] = {};
+                currentLevel = currentLevel[segment];
+            }
+        });
+
+        return object;
+        // return takeOrMake(object, path, val);
     }
-    return last[lastSegment] = val;
 }
 
 

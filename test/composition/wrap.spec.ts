@@ -22,10 +22,10 @@ describe('wrap - experimental', () => {
     it('wrap getOn',() =>
         expect(
 
-            wrap(jsonClone)(nthOr([1, 2], undefined))
-            (1))
+            wrap(jsonClone)(nthOr(1, undefined as any))
+            ([1, 2]))
 
-            .toEqual(2));
+            .toEqual(2 as any));
 
 
     it('wrap with getOn',() =>

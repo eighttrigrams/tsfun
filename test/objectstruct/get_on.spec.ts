@@ -9,7 +9,7 @@ describe('getOn / getOnOr', () => {
     it('getOnOr',() =>
         expect(
 
-            getOnOr({a: {b: 4}}, undefined)('a.b'))
+            getOnOr('a.b', undefined)({a: {b: 4}}))
 
             .toEqual(4));
 
@@ -17,7 +17,7 @@ describe('getOn / getOnOr', () => {
     it('getOnOr - undefined',() =>
         expect(
 
-            getOnOr({a: {b: 4}}, undefined)('c.d'))
+            getOnOr('c.d', undefined)({a: {b: 4}}))
 
             .toEqual(undefined));
 
@@ -25,7 +25,7 @@ describe('getOn / getOnOr', () => {
     it('getOnOr - alternative',() =>
         expect(
 
-            getOnOr({a: {b: 4}}, 8)('c.d'))
+            getOnOr('c.d', 8)({a: {b: 4}}))
 
             .toEqual(8));
 
@@ -33,7 +33,7 @@ describe('getOn / getOnOr', () => {
     it('wrap - with getElForPathIn and false',() =>
         expect(
 
-            getOnOr({a: false}, undefined)('a'))
+            getOnOr('a', undefined)({a: false}))
 
             .toEqual(false));
 

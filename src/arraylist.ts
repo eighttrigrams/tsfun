@@ -189,9 +189,9 @@ export const takeUntil = <A>(predicate: Predicate<A>) =>
 
 // Written with Thomas Kleinke
 export const nth =
-    <A>(as: ArrayList<A>) =>
-        (i: number): A => {
-            const result = nthOr(as)(i);
+    <A>(i: number) =>
+        (as: ArrayList<A>): A => {
+            const result = nthOr(i, undefined as unknown as A)(as as any);
             if (result === undefined) throw Error('nth, got nothing');
             return result;
         };
@@ -199,7 +199,7 @@ export const nth =
 
 // Written with Thomas Kleinke
 export const nthOr =
-    <A>(as: ArrayList<A>, defaultValue: A|undefined = undefined) =>
-        (i: number): A|undefined =>
+    <A>(i: number, defaultValue?: A) =>
+        (as: ArrayList<A>): A|undefined =>
             as.length < i ? defaultValue : as[i];
 

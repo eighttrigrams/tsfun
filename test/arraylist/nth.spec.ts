@@ -11,7 +11,7 @@ describe('nth / nthOr', () => {
     it('nthOr',() =>
         expect(
 
-            nthOr([1, 2], undefined)(0))
+            nthOr(0, undefined as any)([1, 2]))
 
             .toEqual(1));
 
@@ -19,7 +19,7 @@ describe('nth / nthOr', () => {
     it('nthOr - undefined',() =>
         expect(
 
-            nthOr([1, 2], undefined)(3))
+            nthOr(3, undefined as any)([1, 2]))
 
             .toEqual(undefined));
 
@@ -27,7 +27,7 @@ describe('nth / nthOr', () => {
     it('nthOr - alternative',() =>
         expect(
 
-            nthOr([1, 2], 7)(3))
+            nthOr(7, 7)([1, 2]))
 
             .toEqual(7));
 
@@ -36,7 +36,7 @@ describe('nth / nthOr', () => {
     it('get',() =>
         expect(
 
-            nth([1, 2])(0))
+            nth(0)([1, 2]))
 
             .toEqual(1));
 
@@ -44,7 +44,7 @@ describe('nth / nthOr', () => {
     it('getOn nothing',() =>
         expect(
 
-            () => nth([1, 2])(3))
+            () => nth(3)([1, 2]))
 
             .toThrow(Error('nth, got nothing')));
 });

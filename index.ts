@@ -118,8 +118,8 @@ export {
 
 
 export {
-    takeOrMake,
     to,
+    setOn,
     jsonClone,
     getOn,
     getOnOr,
