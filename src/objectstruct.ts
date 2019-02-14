@@ -15,12 +15,10 @@ export const clone = <T>(struct: T, f?: Function): T => {
 
         return (struct as unknown as Array<any>).reduce((acc: Array<any>, val: any) => {
 
-            if (typeof val === 'string') {
-                acc.push(val);
-            }
-            else if (typeof val === 'number') {
-                acc.push(val);
-            } else acc.push(clone(val, f));
+            if (typeof val === 'string') acc.push(val);
+            else if (typeof val === 'number') acc.push(val);
+            else if (val === undefined) acc.push(undefined);
+            else acc.push(clone(val, f));
             return acc;
         }, []) as T
 
@@ -29,22 +27,16 @@ export const clone = <T>(struct: T, f?: Function): T => {
         const klone: ObjectStruct = {};
         for (let k of (Object.keys(struct as any))) {
 
-            if (typeof (struct as any)[k] === 'string') {
-                (klone as any)[k] = (struct as any)[k]
-            }
-            else if (typeof (struct as any)[k] === 'number') {
-                (klone as any)[k] = (struct as any)[k]
-            } else {
-                (klone as any)[k] = clone((struct as any)[k], f)
-            }
+            if (typeof (struct as any)[k] === 'string') (klone as any)[k] = (struct as any)[k];
+            else if (typeof (struct as any)[k] === 'number') (klone as any)[k] = (struct as any)[k];
+            else if ((struct as any)[k] === undefined) (klone as any)[k] = undefined;
+            else (klone as any)[k] = clone((struct as any)[k], f)
         }
         return klone as T;
 
     } else {
 
-        return (f !== undefined
-            ? f(struct)
-            : jsonClone(struct)) as T;
+        return (f ? f(struct) : jsonClone(struct)) as T;
     }
 };
 

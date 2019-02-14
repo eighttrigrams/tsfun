@@ -36,6 +36,22 @@ describe('clone / jsonClone', () => {
     });
 
 
+    it('undefined Array item', () => {
+
+        const k = clone([undefined]);
+        expect(k.length).toBe(1);
+        expect(k[0]).toBe(undefined);
+    });
+
+
+    it('undefined Object item', () => {
+
+        const k = clone({a: undefined});
+        expect(Object.keys(k).length).toBe(1);
+        expect(k['a']).toBe(undefined);
+    });
+
+
     it('clone nested Object', () => {
 
         const nested = {c: 3};
