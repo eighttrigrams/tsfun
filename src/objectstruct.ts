@@ -9,14 +9,16 @@ import {on} from './comparator';
 export const jsonClone = <T>(object: T) => JSON.parse(JSON.stringify(object)) as T;
 
 
+export function clone<T>(struct: boolean, f?: Function): boolean;
 export function clone<T>(struct: string, f?: Function): string;
 export function clone<T>(struct: number, f?: Function): number;
 export function clone<T>(struct: undefined, f?: Function): undefined;
 export function clone<T>(struct: T, f?: Function): T;
-export function clone<T>(struct: T|undefined|number|string, f?: Function): T|undefined|number|string {
+export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function): T|undefined|number|string|boolean {
 
     if (struct === undefined) return undefined;
-    if (typeof struct === 'string') return struct as string; // TODO make predicates isString, isNumber for internal use
+    if (typeof struct === 'boolean') return struct as boolean;
+    if (typeof struct === 'string') return struct as string; // TODO make predicates isString, isBoolean, isNumber for internal use
     if (typeof struct === 'number') return struct as number;
 
     if (isArray(struct)) {

@@ -27,6 +27,16 @@ describe('clone / jsonClone', () => {
     });
 
 
+    it('clone boolean', () => {
+
+        const t = clone(true, fail);
+        expect(t).toBe(true);
+
+        const f = clone(false, fail);
+        expect(f).toBe(false);
+    });
+
+
     it('clone number', () => {
 
         const k = clone(1, fail);
