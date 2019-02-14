@@ -1,4 +1,4 @@
-import {getOn, getOnOr, setOn} from '../../src/objectstruct';
+import {clone, getOn, getOnOr, setOn} from '../../src/objectstruct';
 import {compose} from "../../src/composition";
 
 describe('setOn', () => {
@@ -55,10 +55,12 @@ describe('setOn', () => {
 
         const o1: any = {a: {b: {c: 'd'}}};
 
-        const takeOrMake = (path: string, alternative: any) => <T>(o: T) => compose(getOnOr(path , alternative), setOn(o, path))(o);
+        const takeOrMake = (path: string, alternative: any) => <T>(o: T) =>
+            compose(clone, getOnOr(path , alternative), setOn(clone(o), path))(o);
 
         const r1 = takeOrMake('a.b.c', undefined)(o1); // take
         expect(r1['a']['b']['c']).toBe('d');
+        expect(r1).not.toBe(o1);
 
         const o2: any = {a: {b: {c: undefined}}};
 
