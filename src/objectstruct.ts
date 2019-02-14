@@ -11,6 +11,9 @@ export const jsonClone = <T>(object: T) => JSON.parse(JSON.stringify(object)) as
 
 export const clone = <T>(struct: T, f?: Function): T => {
 
+    if (typeof struct === 'string') return struct; // TODO make predicates isString, isNumber for internal use
+    if (typeof struct === 'number') return struct; // TODO make predicates isString, isNumber for internal use
+
     if (isArray(struct)) {
 
         return (struct as unknown as Array<any>).reduce((acc: Array<any>, val: any) => {

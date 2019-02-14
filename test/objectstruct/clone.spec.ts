@@ -20,6 +20,20 @@ describe('clone / jsonClone', () => {
     });
 
 
+    it('clone string', () => {
+
+        const k = clone('1', fail);
+        expect(k).toBe('1');
+    });
+
+
+    it('clone number', () => {
+
+        const k = clone(1, fail);
+        expect(k).toBe(1);
+    });
+
+
     it('clone empty Array', () => {
 
         const k = clone([]);
