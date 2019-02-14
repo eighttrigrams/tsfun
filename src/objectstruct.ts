@@ -79,18 +79,17 @@ export function setOn(object: any, path: string) {
 
     return (val: any): void => {
 
-        let currentLevel: any = object;
-
         const segments = path.split('.');
-        let i = 0;
-        segments.forEach((segment, i) => {
+
+        segments.reduce((currentLevel, segment, i) => {
             if (i === segments.length - 1) { // last segment
                 currentLevel[segment] = val;
+                return currentLevel; // does not matter
             } else {
                 if (!currentLevel[segment]) currentLevel[segment] = {};
-                currentLevel = currentLevel[segment];
+                return currentLevel[segment];
             }
-        });
+        }, object);
     }
 }
 
