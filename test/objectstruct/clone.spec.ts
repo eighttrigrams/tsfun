@@ -1,6 +1,6 @@
 import {clone, jsonClone} from "../../src/objectstruct";
 
-describe('clone', () => {
+describe('clone / jsonClone', () => {
 
 
     it('clone shallow Object', () => {
