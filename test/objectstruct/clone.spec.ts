@@ -1,4 +1,5 @@
 import {clone, jsonClone} from "../../src/objectstruct";
+import {isArray, isObject} from "../../src/predicate";
 
 describe('clone / jsonClone', () => {
 
@@ -16,6 +17,22 @@ describe('clone / jsonClone', () => {
         const k = clone(['1', 2]);
         expect(k[0]).toBe('1'); // string
         expect(k[1]).toBe(2); // number
+    });
+
+
+    it('clone empty Array', () => {
+
+        const k = clone([]);
+        expect(k.length).toBe(0);
+        expect(isArray(k)).toBe(true);
+    });
+
+
+    it('clone empty Object', () => {
+
+        const k = clone({});
+        expect(Object.keys(k).length).toBe(0);
+        expect(isObject(k)).toBe(true);
     });
 
 
