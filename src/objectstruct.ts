@@ -9,39 +9,35 @@ import {on} from './comparator';
 export const jsonClone = <T>(object: T) => JSON.parse(JSON.stringify(object)) as T;
 
 
-export const clone = <T>(struct: T, f?: Function): T => {
+export function clone<T>(struct: string, f?: Function): string;
+export function clone<T>(struct: number, f?: Function): number;
+export function clone<T>(struct: undefined, f?: Function): undefined;
+export function clone<T>(struct: T, f?: Function): T;
+export function clone<T>(struct: T|undefined|number|string, f?: Function): T|undefined|number|string {
 
-    if (typeof struct === 'string') return struct; // TODO make predicates isString, isNumber for internal use
-    if (typeof struct === 'number') return struct; // TODO make predicates isString, isNumber for internal use
+    if (struct === undefined) return undefined;
+    if (typeof struct === 'string') return struct as string; // TODO make predicates isString, isNumber for internal use
+    if (typeof struct === 'number') return struct as number;
 
     if (isArray(struct)) {
 
-        return (struct as unknown as Array<any>).reduce((acc: Array<any>, val: any) => {
-
-            if (typeof val === 'string') acc.push(val); // TODO replace by call to clone since we handle this at the beginning now
-            else if (typeof val === 'number') acc.push(val);
-            else if (val === undefined) acc.push(undefined);
-            else acc.push(clone(val, f));
-            return acc;
+        return (struct as unknown as Array<any>).reduce((klone: Array<any>, val: any) => {
+            klone.push(clone(val, f));
+            return klone;
         }, []) as T
 
     } else if (isObject(struct)) {
 
-        const klone: ObjectStruct = {};
-        for (let k of (Object.keys(struct as any))) {
-
-            if (typeof (struct as any)[k] === 'string') (klone as any)[k] = (struct as any)[k];
-            else if (typeof (struct as any)[k] === 'number') (klone as any)[k] = (struct as any)[k];
-            else if ((struct as any)[k] === undefined) (klone as any)[k] = undefined;
-            else (klone as any)[k] = clone((struct as any)[k], f)
-        }
-        return klone as T;
+        return (Object.keys(struct as any)).reduce((klone, k: any) =>{
+            (klone as any)[k] = clone((struct as any)[k], f);
+            return klone;
+        }, {} as ObjectStruct) as T;
 
     } else {
 
         return (f ? f(struct) : jsonClone(struct)) as T;
     }
-};
+}
 
 
 export const getOnOr = <T>(ds: ObjectStruct, alternative: any) => (path: string) => {
