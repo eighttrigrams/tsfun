@@ -93,7 +93,6 @@ export function setOn(object: any, path: string) {
         });
 
         return object;
-        // return takeOrMake(object, path, val);
     }
 }
 
