@@ -18,7 +18,7 @@ export const clone = <T>(struct: T, f?: Function): T => {
 
         return (struct as unknown as Array<any>).reduce((acc: Array<any>, val: any) => {
 
-            if (typeof val === 'string') acc.push(val);
+            if (typeof val === 'string') acc.push(val); // TODO replace by call to clone since we handle this at the beginning now
             else if (typeof val === 'number') acc.push(val);
             else if (val === undefined) acc.push(undefined);
             else acc.push(clone(val, f));
