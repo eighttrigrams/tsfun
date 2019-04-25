@@ -96,4 +96,29 @@ describe('intersection/intersect/intersectBy', () => {
             intersectBy(jsonEqual)<any>([{a: 'a'}, {c: 'c'}])([{c: 'c'}, {d: 'd'}]))
 
             .toEqual([{c: 'c'}]));
+
+
+    /**
+     * x_max = 30, y_max = 10000
+     * -> ~25ms
+     *
+     * Should be in the order of magnitude of 10 to 100,
+     */
+    it('intersection performance', () => {
+
+        const aas = [];
+
+        for (let x = 0; x < 30; x ++) {
+            const as = [];
+            for (let y = 0; y < 10000; y++) {
+                as.push({id: (x + y).toString()})
+            }
+            aas.push(as);
+        }
+
+        const begin = new Date();
+        intersection(aas);
+        const elapsed = (new Date() as any) - (begin as any);
+        if (elapsed > 100) fail();
+    });
 });
