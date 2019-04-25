@@ -19,9 +19,7 @@ export const intersectionBy =
                 // see https://stackoverflow.com/questions/1885557/simplest-code-for-array-intersection-in-javascript, answer of le_m
                 aas[i+1] = aas[i].filter(Set.prototype.has, new Set(aas[i + 1]));
             }
-            return Array.from(new Set( // remove duplicates
-                aas[aas.length - 1])
-            );
+            return unique(aas[aas.length - 1]);
 };
 
 
@@ -69,8 +67,7 @@ export const subtractBy =
                         return (x: A) => !unionSubtrahendsSet.has(x);
                     })();
 
-                const uniqueAs: ArraySet<A> = Array.from(new Set(as));
-                return uniqueAs.filter(filterFun);
+                return unique(as).filter(filterFun);
             };
 
 
@@ -78,12 +75,16 @@ export const subtractBy =
 export const subtract = subtractBy();
 
 
-export const uniqueBy = (compare: Comparator = tripleEqual) =>
-    <A>(as: ArrayList<A>): ArraySet<A> =>
-        as.reduce((acc: Array<A>, val) =>
-            includedInBy(compare)(acc)(val)
-                ? acc : acc.concat([val])
-        ,[]);
+export const uniqueBy = (compare?: Comparator) =>
+    <A>(as: ArrayList<A>): ArraySet<A> => {
+
+        return compare
+            ? as.reduce((acc: Array<A>, val) =>
+                includedInBy(compare)(acc)(val)
+                    ? acc : acc.concat([val])
+            ,[])
+            : Array.from(new Set(as));
+    };
 
 
 export const unique = uniqueBy();
