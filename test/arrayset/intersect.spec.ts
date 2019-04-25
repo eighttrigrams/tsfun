@@ -111,7 +111,7 @@ describe('intersection/intersect/intersectBy', () => {
         for (let x = 0; x < 30; x ++) {
             const as = [];
             for (let y = 0; y < 10000; y++) {
-                as.push({id: (x + y).toString()})
+                as.push((x + y).toString())
             }
             aas.push(as);
         }
