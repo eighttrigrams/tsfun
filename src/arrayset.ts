@@ -103,5 +103,5 @@ const _uniteBy = (compare: Comparator = tripleEqual) => <A>(as1: Array<A>) =>
             as2.filter(isNot(includedInBy(compare)(as1))));
 
 
-const _intersectBy = (compare: Comparator = tripleEqual) => <A>(as1: Array<A>) =>
+const _intersectBy = (compare: Comparator) => <A>(as1: Array<A>) =>
     (as2: Array<A>) => as1.filter(includedInBy(compare)(as2));
