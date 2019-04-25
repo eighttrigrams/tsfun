@@ -3,11 +3,21 @@ import {intersect, intersectBy, intersection, intersectionBy} from '../../src/ar
 
 
 /**
+ * intersect and intersection are fast if used without specifying a comparator
+ *
  * @author Daniel de Oliveira
  */
 describe('intersection/intersect/intersectBy', () => {
 
     // intersection
+
+    it('intersection - what remove duplicates',() =>
+        expect(
+
+            intersection([[1,2,2,3],[2,3,4,5]]))
+
+            .toEqual([2,3]));
+
 
     it('intersection',() =>
         expect(

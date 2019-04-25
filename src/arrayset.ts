@@ -7,10 +7,22 @@ import {isNot} from './predicate';
 
 
 export const intersectionBy =
-    (compare: Comparator = tripleEqual) =>
-        <A>(aas: NestedArray<A>): ArraySet<A> =>
-            aas.length < 1 ? [] :
-                aas.reduce(uncurry2<A>(_intersectBy(compare)));
+    (compare?: Comparator) =>
+        <A>(aas: NestedArray<A>): ArraySet<A> => {
+
+            if (aas.length < 1) return [];
+            if (aas.length === 1) return aas[0];
+
+            if (compare) return aas.reduce(uncurry2<A>(_intersectBy(compare)));
+
+            for (let i = 0; i < aas.length - 1; i++) {
+                // see https://stackoverflow.com/questions/1885557/simplest-code-for-array-intersection-in-javascript, answer of le_m
+                aas[i+1] = aas[i].filter(Set.prototype.has, new Set(aas[i + 1]));
+            }
+            return Array.from(new Set( // remove duplicates
+                aas[aas.length - 1])
+            );
+};
 
 
 export const intersection = intersectionBy();
@@ -27,7 +39,7 @@ export const union = unionBy();
 
 
 export const intersectBy =
-    (compare: Comparator = tripleEqual) =>
+    (compare?: Comparator) =>
         <A>(...aas: NestedArray<A>) =>
             (as: ArrayList<A>): ArraySet<A> => intersectionBy(compare)<A>(aas.concat([as]));
 
