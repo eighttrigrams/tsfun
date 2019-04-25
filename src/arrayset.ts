@@ -1,5 +1,5 @@
 import {ArrayList, ArraySet, Comparator, NestedArray} from './type';
-import {includedInBy, tripleEqual} from './comparator';
+import {includedIn, includedInBy, tripleEqual} from './comparator';
 import {uncurry2} from './core';
 import {isNot} from './predicate';
 
@@ -56,10 +56,22 @@ export const unite = uniteBy();
 
 // Generate a new list with elements which are contained in as but not in subtrahend
 export const subtractBy =
-    (compare: Comparator = tripleEqual) =>
+    (compare?: Comparator) =>
         <A>(...subtrahends: NestedArray<A>) =>
-            (as: ArrayList<A>): ArraySet<A> =>
-                ((unique<A>(as)).filter(isNot(includedInBy(compare)(union(subtrahends)))));
+            (as: ArrayList<A>): ArraySet<A> => {
+
+                const unionSubtrahends = subtrahends.length === 1 ? subtrahends[0] : union(subtrahends);
+
+                const filterFun = compare
+                    ? isNot(includedInBy(compare)(unionSubtrahends))
+                    : (() => {
+                        const unionSubtrahendsSet = new Set(unionSubtrahends);
+                        return (x: A) => !unionSubtrahendsSet.has(x);
+                    })();
+
+                const uniqueAs: ArraySet<A> = Array.from(new Set(as));
+                return uniqueAs.filter(filterFun);
+            };
 
 
 // Generate a new list with elements which are contained in as but not in subtrahend
