@@ -27,10 +27,17 @@ export const intersection = intersectionBy();
 
 
 export const unionBy =
-    (compare: Comparator = tripleEqual) =>
-        <A>(aas: NestedArray<A>): ArraySet<A> =>
-        aas.length < 1 ? [] :
-            aas.reduce((acc, val) => val ? _uniteBy(compare)(acc)(val) : acc);
+    (compare?: Comparator) =>
+        <A>(aas: NestedArray<A>): ArraySet<A> => {
+
+            if (aas.length < 1) return [];
+            if (compare) return aas.reduce(
+                (acc, val) => val ? _uniteBy(compare)(acc)(val) : acc);
+
+            // https://stackoverflow.com/questions/10865025/merge-flatten-an-array-of-arrays, answer of Gumbo and Mark Amery
+            return unique([].concat.apply([], aas));
+        };
+
 
 
 export const union = unionBy();
@@ -45,7 +52,7 @@ export const intersectBy =
 export const intersect = intersectBy();
 
 
-export const uniteBy = (compare: Comparator = tripleEqual) => <A>(...aas: NestedArray<A>) =>
+export const uniteBy = (compare?: Comparator) => <A>(...aas: NestedArray<A>) =>
     (as: Array<A>): ArraySet<A> => unionBy(compare)(aas.concat([as]));
 
 
@@ -110,7 +117,7 @@ export function duplicates<A>(array: ArrayList<A>): ArraySet<A> {
 
 
 // @returns the union of a1 and a2
-const _uniteBy = (compare: Comparator = tripleEqual) => <A>(as1: Array<A>) =>
+const _uniteBy = (compare: Comparator) => <A>(as1: Array<A>) =>
     (as2: Array<A>) =>
         as1.concat(
             as2.filter(isNot(includedInBy(compare)(as1))));
