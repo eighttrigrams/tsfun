@@ -4,6 +4,10 @@ export {
 } from './src/type';
 
 export {
+    identity
+} from './src/core';
+
+export {
     isNot,
     not,
     isDefined,

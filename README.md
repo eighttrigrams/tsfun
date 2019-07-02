@@ -54,6 +54,7 @@ console.log(take(2)([1,2,3]))
 
 * [flow](test/composition/flow.spec.ts)
 * [compose](test/composition/compose.spec.ts)
+* identity
 
 ### ArrayList
 
