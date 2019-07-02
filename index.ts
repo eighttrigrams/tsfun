@@ -67,6 +67,7 @@ export {
     forEach,
     forEachRight,
     asyncForEach,
+    asyncReduce,
     append,
     prepend,
     separate,

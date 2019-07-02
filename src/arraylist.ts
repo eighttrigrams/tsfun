@@ -52,6 +52,17 @@ export const asyncMap = <A>(f: (_: A) => Promise<A>) =>
     };
 
 
+export const asyncReduce = <A, B>(f: (b: B, a: A) => Promise<B>, init: B) =>
+    async (as: Array<A>): Promise<B> => {
+
+        let acc = init;
+        for (let a of as) {
+            acc = await f(acc, a);
+        }
+        return acc;
+    };
+
+
 export const filter = <A>(f: Predicate<A>): SimpleTransformation<Array<A>> =>
     (as: Array<A>) =>
         as.filter(f);
