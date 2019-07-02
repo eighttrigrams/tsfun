@@ -1,18 +1,18 @@
-import {Transformation} from './type';
+import {SimpleTransformation} from './type';
 
 
 // ------------ @author Daniel de Oliveira -----------------
 
 
 
-const composition = <T>(t: T, ...transformations: Array<Transformation<T>>) =>
+const composition = <T>(t: T, ...transformations: Array<SimpleTransformation<T>>) =>
     compose(...transformations)(t);
 
 
 export const flow = composition;
 
 
-export const compose = <T>(...transformations: Array<Transformation<T>>) => (t: T)  =>
+export const compose = <T>(...transformations: Array<SimpleTransformation<T>>) => (t: T)  =>
     transformations.reduce((acc, transformation) => transformation(acc), t);
 
 

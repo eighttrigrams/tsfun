@@ -1,8 +1,6 @@
-import {ArrayList, Mapping, ObjectCollection, Predicate, Transformation, UntypedObjectCollection} from './type';
+import {Mapping, ObjectCollection, Predicate, SimpleTransformation, UntypedObjectCollection} from './type';
 import {isDefined} from './predicate';
-import {subtract} from "./arrayset";
 import {subtractObj} from "./objectset";
-
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -22,7 +20,7 @@ export const mapObj = <A, B>(f: Mapping <A, B>):
 
 
 
-export const filterObj = <T>(predicate: Predicate<T>): Transformation<ObjectCollection<T>> =>
+export const filterObj = <T>(predicate: Predicate<T>): SimpleTransformation<ObjectCollection<T>> =>
     (o: ObjectCollection<T>) =>
         Object
             .keys(o)

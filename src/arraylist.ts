@@ -1,9 +1,7 @@
 import {isNot} from './predicate';
-import {ArrayList, AsyncPredicate, Pair, Predicate, Transformation, UntypedObjectCollection} from './type';
+import {ArrayList, AsyncPredicate, Pair, Predicate, SimpleTransformation} from './type';
 import {identical} from './core';
 import {subtract} from "./arrayset";
-import {subtractObj} from "./objectset";
-
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -34,15 +32,15 @@ export const prepend = <A>(as2: ArrayList<A>) => (as: ArrayList<A>) =>
     as2.concat(as);
 
 
-export const flatMap = <A>(f: (_: A) => ArrayList<A>): Transformation<ArrayList<A>> =>
+export const flatMap = <A>(f: (_: A) => ArrayList<A>): SimpleTransformation<ArrayList<A>> =>
     (as: Array<A>) =>
         as.length < 1
             ? []
             : as.reduce(intoArrayWith(f),[]);
 
 
-export const map = <A>(f: (_: A) => A): Transformation<Array<A>> =>
-    (as: Array<A>): Array<A> => as.map(f);
+export const map = <A, B>(f: (_: A) => B) =>
+    (as: Array<A>): Array<B> => as.map(f);
 
 
 export const asyncMap = <A>(f: (_: A) => Promise<A>) =>
@@ -54,12 +52,12 @@ export const asyncMap = <A>(f: (_: A) => Promise<A>) =>
     };
 
 
-export const filter = <A>(f: Predicate<A>): Transformation<Array<A>> =>
+export const filter = <A>(f: Predicate<A>): SimpleTransformation<Array<A>> =>
     (as: Array<A>) =>
         as.filter(f);
 
 
-export const remove = <A>(f: Predicate<A>): Transformation<Array<A>> => filter(isNot(f));
+export const remove = <A>(f: Predicate<A>): SimpleTransformation<Array<A>> => filter(isNot(f));
 
 
 export const asyncFilter = <A>(f: AsyncPredicate<A>) =>

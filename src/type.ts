@@ -19,10 +19,13 @@ export type AsyncPredicate<A> = (_: A) => Promise<boolean>;
 export type Mapping<A, B> = (_: A) => B;
 
 
-export type Transformation<T> = (_: T) => T;
+export type SimpleTransformation<T> = (_: T) => T;
 
 
-export type ArrayTransformation<T> = Transformation<Array<T>>;
+export type Transformation<T1, T2> = (_: T1) => T2;
+
+
+export type ArrayTransformation<T1, T2> = Transformation<Array<T1>, Array<T2>>;
 
 
 export type NestedArray<A> = Array<Array<A>>;
