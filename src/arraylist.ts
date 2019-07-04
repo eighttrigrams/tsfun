@@ -63,6 +63,19 @@ export const asyncReduce = <A, B>(f: (b: B, a: A) => Promise<B>, init: B) =>
     };
 
 
+export const reduce = <A, B>(f: (b: B, a: A, i?: number) => B, init: B) =>
+    (as: Array<A>): B => {
+
+        let acc = init;
+        let i = 0;
+        for (let a of as) {
+            acc = f(acc, a, i);
+            i++;
+        }
+        return acc;
+    };
+
+
 export const filter = <A>(f: Predicate<A>): SimpleTransformation<Array<A>> =>
     (as: Array<A>) =>
         as.filter(f);

@@ -1,7 +1,17 @@
-import {asyncReduce} from '../../src/arraylist';
+import {asyncReduce, reduce} from '../../src/arraylist';
 
 
-describe('asyncReduce', () => {
+describe('reduce / asyncReduce', () => {
+
+
+    it('reduce', () =>
+        expect(
+
+            reduce((b: number, a: number) => b + a, 0)([1, 5, 6]))
+
+            .toBe(12));
+
+
 
     it('asyncReduce', async done => {
 
