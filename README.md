@@ -75,6 +75,7 @@ console.log(take(2)([1,2,3]))
 * [separate](test/arraylist/separate.spec.ts) 
 * [nth / nthOr](test/arraylist/nth.spec.ts)
 * [reduce / asyncReduce](test/arraylist/reduce.spec.ts)
+* [indices](test/arraylist/indices.spec.ts)
 
 ### ArraySet
 

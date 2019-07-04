@@ -85,7 +85,8 @@ export {
     apply,
     copy,
     nth,
-    nthOr
+    nthOr,
+    indices
 } from './src/arraylist';
 
 

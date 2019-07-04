@@ -76,6 +76,16 @@ export const reduce = <A, B>(f: (b: B, a: A, i?: number) => B, init: B) =>
     };
 
 
+export const indices = <A>(f: (a: A) => boolean) =>
+    (as: Array<A>): number[] =>
+        as.reduce((indices: number[], a: A, i: number) =>
+                f(a)
+                    ? indices.concat([i])
+                    : indices
+        , []);
+
+
+
 export const filter = <A>(f: Predicate<A>): SimpleTransformation<Array<A>> =>
     (as: Array<A>) =>
         as.filter(f);
