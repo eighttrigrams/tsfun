@@ -238,6 +238,10 @@ export const nthOr =
             as.length < i ? defaultValue : as[i];
 
 
+// TODO add test
+export const flatReduce = <A, B>(f: (a: A) => B) => reduce((bs: Array<B>, a: A) => bs.concat(f(a)), []);
+
+
 /**
  * see https://mail.mozilla.org/pipermail/es-discuss/2012-April/022273.html
  * TODO maybe change so that it takes an existing array or map and returns something of the same type
@@ -247,4 +251,8 @@ export function arrayList(size: number) {
 
     return Array.apply(null, Array(size))
 }
+
+
+// from https://stackoverflow.com/questions/3895478/does-javascript-have-a-method-like-range-to-generate-a-range-within-the-supp
+export function range(n: number) { return Array.apply(null, Array(n)).map(function (_: any, i: number) {return i;});}
 

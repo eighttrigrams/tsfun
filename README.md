@@ -61,13 +61,13 @@ console.log(take(2)([1,2,3]))
 
 [Source](src/arraylist.ts)
 
-* [copy](test/arraylist/copy.spec.ts) / arrayList
+* [copy](test/arraylist/copy.spec.ts) / arrayList / range
 * [append / prepend](test/arraylist/append.spec.ts) 
 * [map / asyncMap](test/arraylist/map.spec.ts)
 * [filter / remove / asyncFilter](test/arraylist/filter.spec.ts) 
 * [forEach / forEachRight / asyncForEach](test/arraylist/for_each.spec.ts) 
 * [reduce / asyncReduce](test/arraylist/reduce.spec.ts)
-* [flatMap / flatten](test/arraylist/flat_map.spec.ts)
+* [flatMap / flatten / flatReduce](test/arraylist/flat_map.spec.ts)
 * [take / takeRight](test/arraylist/take.spec.ts)
 * [takeNth](test/arraylist/take_nth.spec.ts)
 * [takeWhile / takeRightWhile](test/arraylist/take_while.spec.ts)
