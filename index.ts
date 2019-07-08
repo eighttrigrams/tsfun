@@ -4,7 +4,7 @@ export {
 } from './src/type';
 
 export {
-    identity
+    identity // TODO review if putting to composition package
 } from './src/core';
 
 export {
@@ -52,13 +52,15 @@ export {
 
 export {
     compose,
-    flow
+    flow,
+    when
 } from './src/composition';
 
 
 export {
     reverse,
     flatMap,
+    flatten,
     filter,
     remove,
     asyncFilter,
@@ -86,7 +88,8 @@ export {
     copy,
     nth,
     nthOr,
-    indices
+    indices,
+    arrayList
 } from './src/arraylist';
 
 

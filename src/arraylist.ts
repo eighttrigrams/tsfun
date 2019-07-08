@@ -32,13 +32,6 @@ export const prepend = <A>(as2: ArrayList<A>) => (as: ArrayList<A>) =>
     as2.concat(as);
 
 
-export const flatMap = <A>(f: (_: A) => ArrayList<A>): SimpleTransformation<ArrayList<A>> =>
-    (as: Array<A>) =>
-        as.length < 1
-            ? []
-            : as.reduce(intoArrayWith(f),[]);
-
-
 export const map = <A, B>(f: (_: A) => B) =>
     (as: Array<A>): Array<B> => as.map(f);
 
@@ -76,6 +69,16 @@ export const reduce = <A, B>(f: (b: B, a: A, i?: number) => B, init: B) =>
     };
 
 
+export const flatMap = <A>(f: (_: A) => ArrayList<A>): SimpleTransformation<ArrayList<A>> =>
+    (as: Array<A>) =>
+        as.length < 1
+            ? []
+            : as.reduce(intoArrayWith(f),[]); // TODO or use flatten?
+
+
+export const flatten = reduce((acc: any, val: any) => acc.concat(val), [] as any); // TODO review, see flatMap, review (missing) typing
+
+
 export const indices = <A>(f: (a: A) => boolean) =>
     (as: Array<A>): number[] =>
         as.reduce((indices: number[], a: A, i: number) =>
@@ -83,7 +86,6 @@ export const indices = <A>(f: (a: A) => boolean) =>
                     ? indices.concat([i])
                     : indices
         , []);
-
 
 
 export const filter = <A>(f: Predicate<A>): SimpleTransformation<Array<A>> =>
@@ -234,4 +236,15 @@ export const nthOr =
     <A>(i: number, defaultValue?: A) =>
         (as: ArrayList<A>): A|undefined =>
             as.length < i ? defaultValue : as[i];
+
+
+/**
+ * see https://mail.mozilla.org/pipermail/es-discuss/2012-April/022273.html
+ * TODO maybe change so that it takes an existing array or map and returns something of the same type
+ * TODO test
+ */
+export function arrayList(size: number) {
+
+    return Array.apply(null, Array(size))
+}
 

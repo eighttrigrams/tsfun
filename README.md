@@ -55,17 +55,19 @@ console.log(take(2)([1,2,3]))
 * [flow](test/composition/flow.spec.ts)
 * [compose](test/composition/compose.spec.ts)
 * identity
+* when
 
 ### ArrayList
 
 [Source](src/arraylist.ts)
 
-* [copy](test/arraylist/copy.spec.ts)
+* [copy](test/arraylist/copy.spec.ts) / arrayList
 * [append / prepend](test/arraylist/append.spec.ts) 
-* [filter / remove / asyncFilter](test/arraylist/filter.spec.ts) 
 * [map / asyncMap](test/arraylist/map.spec.ts)
+* [filter / remove / asyncFilter](test/arraylist/filter.spec.ts) 
 * [forEach / forEachRight / asyncForEach](test/arraylist/for_each.spec.ts) 
-* [flatMap](test/arraylist/flat_map.spec.ts)
+* [reduce / asyncReduce](test/arraylist/reduce.spec.ts)
+* [flatMap / flatten](test/arraylist/flat_map.spec.ts)
 * [take / takeRight](test/arraylist/take.spec.ts)
 * [takeNth](test/arraylist/take_nth.spec.ts)
 * [takeWhile / takeRightWhile](test/arraylist/take_while.spec.ts)
@@ -74,7 +76,6 @@ console.log(take(2)([1,2,3]))
 * [apply](test/arraylist/apply.spec.ts) 
 * [separate](test/arraylist/separate.spec.ts) 
 * [nth / nthOr](test/arraylist/nth.spec.ts)
-* [reduce / asyncReduce](test/arraylist/reduce.spec.ts)
 * [indices](test/arraylist/indices.spec.ts)
 
 ### ArraySet
