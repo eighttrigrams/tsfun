@@ -1,6 +1,13 @@
 export {
     NestedArray,
-    Pair
+    Pair,
+    Either,
+    ArrayList,
+    ArraySet,
+    ObjectCollection,
+    ObjectSet,
+    ObjectStruct,
+    UntypedObjectCollection
 } from './src/type';
 
 export {
