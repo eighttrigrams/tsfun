@@ -238,10 +238,6 @@ export const nthOr =
             as.length < i ? defaultValue : as[i];
 
 
-// TODO add test
-export const flatReduce = <A, B>(f: (a: A) => B) => reduce((bs: Array<B>, a: A) => bs.concat(f(a)), []);
-
-
 /**
  * see https://mail.mozilla.org/pipermail/es-discuss/2012-April/022273.html
  * TODO maybe change so that it takes an existing array or map and returns something of the same type

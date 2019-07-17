@@ -97,10 +97,8 @@ export {
     nthOr,
     indices,
     arrayList,
-    flatReduce,
     range
 } from './src/arraylist';
-
 
 
 export {
