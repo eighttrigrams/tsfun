@@ -96,6 +96,7 @@ console.log(take(2)([1,2,3]))
 * [setOn](test/objectstruct/set_on.spec.ts)
 * [clone / jsonClone](test/objectstruct/clone.spec.ts)
 * [getOn / getOnOr](test/objectstruct/get_on.spec.ts)
+* [assoc / update](test/objectstruct/assoc_update.spec.ts)
 
 ### ObjectCollection
 

@@ -142,7 +142,9 @@ export {
     jsonClone,
     getOn,
     getOnOr,
-    clone
+    clone,
+    assoc,
+    update
 } from './src/objectstruct';
 
 

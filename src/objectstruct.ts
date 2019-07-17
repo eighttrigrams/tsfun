@@ -2,6 +2,7 @@ import {isArray, isEmpty, isObject} from './predicate';
 import {reverseUncurry2} from './core';
 import {ArrayList, ObjectStruct, Predicate} from './type';
 import {on} from './comparator';
+import {copyObj} from './objectcoll';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -75,7 +76,7 @@ export function getElForPathIn(object: ObjectStruct, path: string) {
 
 
 
-export function setOn(object: any, path: string) {
+export function setOn(object: any /* TODO ObjectStruct */, path: string) {
 
     return (val: any): void => {
 
@@ -92,6 +93,28 @@ export function setOn(object: any, path: string) {
         }, object);
     }
 }
+
+
+export function update(path: string, update_fun: (val: any) => any) { return (object: ObjectStruct) => { // TODO make generic typing
+
+    if (!path.includes('.')) {
+
+        const copied = copyObj(object);
+        copied[path] = update_fun((object as any)[path]);
+        return copied;
+    }
+
+    const splittedPath = path.split('.');
+    const copied = copyObj(object);
+
+    const firstElem = splittedPath[0];
+    splittedPath.shift();
+    copied[firstElem] = update(splittedPath.join('.'), update_fun)((object as any)[firstElem]);
+    return copied;
+}}
+
+
+export const assoc = (path: string, val: any) => update(path, () => val);
 
 
 export const to = reverseUncurry2(getElForPathIn);
