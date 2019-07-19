@@ -1,4 +1,5 @@
 import {SimpleTransformation} from './type';
+import {identity} from './core';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -21,6 +22,10 @@ export const compose = <T>(...transformations: Array<SimpleTransformation<T>>) =
         cloneMethod(doFunction(param)) as T;
 
 
-// TODO review, see if we can find other package where it fits in better
-// TODO write test
-export const when = <A, B>(p: (_: A) => boolean, f: (_: A) => B, otherwise: B) => (v: A): B => p(v) ? f(v) : otherwise;
+export const conditionally = <A, B>(
+    p: (_: A) => boolean,
+    f: (_: A) => B,
+    g: (_: A) => B = identity as any) => (v: A): B => p(v) ? f(v) : g(v);
+
+
+export const value = <A>(v: A) => () => v;
