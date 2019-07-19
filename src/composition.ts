@@ -22,10 +22,10 @@ export const compose = <T>(...transformations: Array<SimpleTransformation<T>>) =
         cloneMethod(doFunction(param)) as T;
 
 
-export const conditionally = <A, B>(
+export const cond = <A, B>(
     p: (_: A) => boolean,
     f: (_: A) => B,
     g: (_: A) => B = identity as any) => (v: A): B => p(v) ? f(v) : g(v);
 
 
-export const value = <A>(v: A) => () => v;
+export const val = <A>(v: A) => () => v;

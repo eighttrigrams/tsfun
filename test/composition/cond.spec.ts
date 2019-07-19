@@ -1,17 +1,17 @@
 import {map} from '../../src/arraylist';
-import {conditionally, value} from '../../src/composition';
+import {cond, val} from '../../src/composition';
 
 
-describe('conditionally', () => {
+describe('cond', () => {
 
 
-   it('conditionally', () =>
+   it('cond', () =>
        expect(
 
-           map(conditionally(
+           map(cond(
                _ => _ > 3,
                (_: number) => _ * 2,
-               value(18)))
+               val(18)))
            ([3, 4, 5])
 
        ).toEqual([18, 8, 10]));
@@ -20,7 +20,7 @@ describe('conditionally', () => {
    it('pass through', () =>
        expect(
 
-           map(conditionally(
+           map(cond(
                _ => _ > 3,
                (_: number) => _ * 2))
            ([3, 4, 5])
