@@ -55,5 +55,10 @@
 
 ## Review subtract
 
-** make it work so that single (non-array) items can get subtracted (+ prepend and append)
+* make it work so that single (non-array) items can get subtracted (+ prepend and append)
+
+## Implement duplicates
+
+## Implement interleave
+
 
