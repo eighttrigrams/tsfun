@@ -37,6 +37,9 @@ export interface UntypedObjectCollection {[prop: string]: any|undefined}
 export interface ObjectCollection<T> {[prop: string]: T}
 
 
+export interface ObjectMap<T> {[prop: string]: T} // same as ObjectCollection
+
+
 export type ObjectSet = UntypedObjectCollection;
 
 

@@ -107,6 +107,10 @@ console.log(take(2)([1,2,3]))
 * [mapObj](test/objectcoll/map_obj.spec.ts)
 * [filterObj](test/objectcoll/filter_obj.spec.ts)
 
+### ObjectMap
+
+* [lookup](test/objectmap/lookup.spec.ts)
+
 ### ObjectSet
 
 [Source](src/objectset.ts)

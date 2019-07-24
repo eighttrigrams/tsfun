@@ -7,7 +7,8 @@ export {
     ObjectCollection,
     ObjectSet,
     ObjectStruct,
-    UntypedObjectCollection
+    UntypedObjectCollection,
+    ObjectMap
 } from './src/type';
 
 export {
@@ -130,8 +131,13 @@ export {
     mapObj,
     filterObj,
     intoObj,
-    copyObj
+    copyObj,
 } from './src/objectcoll'
+
+
+export {
+    lookup
+} from './src/objectmap'
 
 
 export {

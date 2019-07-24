@@ -39,3 +39,6 @@ export const intoObj = <T>(keyName: string, valName: string) =>
 
 export const copyObj = (o: UntypedObjectCollection): UntypedObjectCollection =>
     subtractObj([])(o);
+
+
+
