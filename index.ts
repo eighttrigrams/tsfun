@@ -61,7 +61,8 @@ export {
 export {
     compose,
     flow,
-    when
+    cond,
+    val
 } from './src/composition';
 
 
