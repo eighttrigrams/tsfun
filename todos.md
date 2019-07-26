@@ -15,12 +15,14 @@
 * count occurences in list
 * with predicate and by comparison
 
+## Document Naming schema of data structures in design doc
+
 ## Implement predicates for sets
 
 * isSuperset
 * isSubset
 
-## Implement Drop recursively
+## Add zip function
 
 ## Review possibilities to implement typesafe variadic compose
 
@@ -41,8 +43,6 @@
 
 ## Add splitAt function
 
-## Compare unique with rmdups from haskell book p.86
-
 ## Review: can getOnOr work with array paths (or should it?) 
 
 * like arfield.0.anotherfield
@@ -58,6 +58,8 @@
 * make it work so that single (non-array) items can get subtracted (+ prepend and append)
 
 ## Implement duplicates
+
+## Compare unique with rmdups from haskell book p.86
 
 ## Implement interleave
 
