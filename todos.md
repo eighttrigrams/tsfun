@@ -22,7 +22,11 @@
 * isSuperset
 * isSubset
 
-## Add zip function
+## Add zip, zipWith functions
+
+## Add transpose function
+
+* new "package" with flatMap and flatten?
 
 ## Review possibilities to implement typesafe variadic compose
 
