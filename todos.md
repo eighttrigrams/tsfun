@@ -2,6 +2,8 @@
 
 ## Make keys function to replace Object.keys in flow
 
+## fix typing of lookup, which may also return undefined
+
 ## Add use cases to range function
 
 * also add repeat function
