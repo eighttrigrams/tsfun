@@ -1,5 +1,7 @@
 # TODOs
 
+## Make keys function to replace Object.keys in flow
+
 ## Add use cases to range function
 
 * also add repeat function
