@@ -22,6 +22,8 @@
 * isSuperset
 * isSubset
 
+## Improve typing, asyncMap should map from A to B
+
 ## Add zip, zipWith functions
 
 ## Add transpose function
