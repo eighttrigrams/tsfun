@@ -8,6 +8,8 @@
 
 * also add repeat function
 
+## Introduce splitwith function to simplify insert function in csv-export in idai-field
+
 ## Add predicate typing to indices function
 
 * review for comparison function
