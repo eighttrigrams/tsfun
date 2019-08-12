@@ -4,6 +4,8 @@
 
 ## fix typing of lookup, which may also return undefined
 
+## move lookup to arraylist
+
 ## Add use cases to range function
 
 * also add repeat function
