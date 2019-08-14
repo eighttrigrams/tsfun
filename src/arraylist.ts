@@ -252,3 +252,53 @@ export function arrayList(size: number) {
 // from https://stackoverflow.com/questions/3895478/does-javascript-have-a-method-like-range-to-generate-a-range-within-the-supp
 export function range(n: number) { return Array.apply(null, Array(n)).map(function (_: any, i: number) {return i;});}
 
+
+
+
+
+// ------------------------ Lazy list functions ---------------------------------------
+
+// see https://codewords.recurse.com/issues/four/lazy-composable-and-modular-javascript
+
+export function lMap(f: Function) {
+    return function*(a: any) {
+        for (let x of a) {
+            // console.log("map x of a", x);
+            yield f(x)
+        }
+    }
+}
+
+
+export function lTake(n: number) {
+    return function*(a: any) {
+        let i = 0;
+        for (let x of a) {
+            if (i === n) return;
+            // console.log("take x of a", x);
+            yield x;
+            i++;
+        }
+    }
+}
+
+
+export function lFilter(f: Function) {
+    return function*(a: any) {
+        for (let x of a) {
+            // console.log("filter x of a", x);
+            if (f(x)) yield x;
+        }
+    }
+}
+
+
+export function materialize(lAs: any) {
+    const as = [];
+    for (let x of lAs) {
+        // console.log("filter x of a", x);
+        as.push(x);
+    }
+    return as;
+}
+
