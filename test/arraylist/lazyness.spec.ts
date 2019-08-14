@@ -15,8 +15,7 @@ describe('lMap / lFilter / lTake / materialize', () => {
                 lMap((_: number) => 2 * _),
                 lFilter((_: number) => _ > 5),
                 lTake(1),
-                materialize)
-            )
+                materialize))
 
             .toEqual([6]));
 });
