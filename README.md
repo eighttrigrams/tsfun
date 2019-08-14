@@ -79,7 +79,7 @@ console.log(take(2)([1,2,3]))
 * [nth / nthOr](test/arraylist/nth.spec.ts)
 * [indices](test/arraylist/indices.spec.ts)
 
-[Lazy list functions](test/arraylist/lazyness.spec.md)
+[Lazy list functions](test/arraylist/lazyness.spec.ts)
 
 ### ArraySet
 
