@@ -113,7 +113,10 @@ console.log(take(2)([1,2,3]))
 
 [Source](src/arrayset.ts)
 
-* [intersection / intersect / intersectBy](test/arrayset/intersect.spec.ts)
+* [intersection](test/arrayset/intersect.spec.ts)
+* [intersectionBy](test/arrayset/intersection_by.spec.ts)
+* [intersect](test/arrayset/intersect.spec.ts)
+* [intersectBy](test/arrayset/intersect_by.spec.ts)
 * [subtract / subtractBy](test/arrayset/subtract.spec.ts)
 * [union / unite / uniteBy](test/arrayset/union.spec.ts)
 * [unique / uniqueBy](test/arrayset/unique.spec.ts)
