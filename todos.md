@@ -1,14 +1,17 @@
 # TODOs
 
-## Make keys function to replace Object.keys in flow
+## Add transpose function
 
 ## fix typing of lookup, which may also return undefined
 
-## move lookup to arraylist
+## review if lookup should be moved to arraylist
 
 ## Add use cases to range function
 
 * also add repeat function
+* range function should have start and end
+* should not have stepwidth, because can be made with filter(divisibleBy)
+* lRange with open ends
 
 ## Introduce splitwith function to simplify insert function in csv-export in idai-field
 
@@ -32,9 +35,7 @@
 
 ## Improve typing, asyncMap should map from A to B
 
-## Add zip, zipWith functions
-
-## Add transpose function
+## Review impls of zip, zipWith functions
 
 * new "package" with flatMap and flatten?
 
