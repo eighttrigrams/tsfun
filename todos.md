@@ -1,5 +1,7 @@
 # TODOs
 
+## publish new version
+
 ## Add use cases to range function
 
 * also add repeat function
