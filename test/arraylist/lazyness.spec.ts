@@ -1,4 +1,4 @@
-import {lFilter, lMap, lRange, lTake, lZip, materialize} from '../../src/arraylist_lazy';
+import {lFilter, lMap, lTake, materialize} from '../../src/arraylist_lazy';
 import {flow} from '../../src/composition';
 
 
@@ -17,11 +17,4 @@ describe('lMap / lFilter / lTake / materialize', () => {
                 materialize))
 
             .toEqual([6]));
-
-
-
-    it('lRange and lZip', () => {
-
-        materialize(lZip(lRange(10), ['a', 'b', 'c']));
-    });
 });

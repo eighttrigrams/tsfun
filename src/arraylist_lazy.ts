@@ -11,7 +11,7 @@ export function* lRange(n: number) {
 }
 
 
-export function* lZip(as: any, bs: any) {
+export function lZip(as: any) { return function* (bs: any) {
 
     const aIterator = as[Symbol.iterator]();
     const bIterator = bs[Symbol.iterator]();
@@ -23,7 +23,22 @@ export function* lZip(as: any, bs: any) {
         if (bNext.done) break;
         yield [aNext.value, bNext.value];
     }
-}
+}}
+
+
+export function lZipWith(f: Function, as: any) { return function* (bs: any) {
+
+    const aIterator = as[Symbol.iterator]();
+    const bIterator = bs[Symbol.iterator]();
+
+    while (true) {
+        const aNext = aIterator.next();
+        if (aNext.done) break;
+        const bNext = bIterator.next();
+        if (bNext.done) break;
+        yield f(aNext.value, bNext.value);
+    }
+}}
 
 
 export function lMap(f: Function) {

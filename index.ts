@@ -103,6 +103,7 @@ export {
 export {
     lRange,
     lZip,
+    lZipWith,
     lTake,
     lMap,
     lFilter

@@ -96,6 +96,9 @@ console.log(take(2)([1,2,3]))
 
 * [Lazy list functions](test/arraylist/lazyness.spec.ts)
 * [materialize](test/arraylist/materialize.spec.ts)
+* [lZip](test/arraylist/l_zip.spec.ts)
+* [lZipWith](test/arraylist/l_zip_with.spec.ts)
+* [lRange](test/arraylist/l_range.spec.ts)
 
 #### async 
 
