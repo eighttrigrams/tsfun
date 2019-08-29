@@ -1,4 +1,4 @@
-import {asyncMap} from '../../src/arraylist';
+import {asyncMap} from '../../src/arraylist_async';
 
 
 /**

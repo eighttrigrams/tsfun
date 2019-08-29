@@ -1,4 +1,4 @@
-import {asyncMap, map} from '../../src/arraylist';
+import {map} from '../../src/arraylist';
 import {flow} from '../../src/composition';
 import {to} from '../../src/objectstruct';
 

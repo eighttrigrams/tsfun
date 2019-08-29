@@ -72,14 +72,10 @@ export {
     flatten,
     filter,
     remove,
-    asyncFilter,
     map,
-    asyncMap,
     forEach,
     forEachRight,
-    asyncForEach,
     reduce,
-    asyncReduce,
     append,
     prepend,
     separate,
@@ -100,12 +96,26 @@ export {
     indices,
     arrayList,
     range,
+
+} from './src/arraylist';
+
+
+export {
     lRange,
     lZip,
     lTake,
     lMap,
     lFilter
-} from './src/arraylist';
+} from './src/arraylist_lazy';
+
+
+export {
+    asyncFilter,
+    asyncForEach,
+    asyncMap,
+    asyncReduce
+} from './src/arraylist_async';
+
 
 
 export {

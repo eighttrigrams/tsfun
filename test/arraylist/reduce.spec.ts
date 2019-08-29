@@ -1,4 +1,4 @@
-import {asyncReduce, reduce} from '../../src/arraylist';
+import {reduce} from '../../src/arraylist';
 
 
 describe('reduce', () => {

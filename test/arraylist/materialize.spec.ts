@@ -1,5 +1,5 @@
 import {flow} from '../../src/composition';
-import {lFilter, lMap, lTake, materialize} from '../../src/arraylist';
+import {lFilter, lMap, lTake, materialize} from '../../src/arraylist_lazy';
 
 
 

@@ -1,4 +1,4 @@
-import {asyncFilter} from '../../src/arraylist';
+import {asyncFilter} from '../../src/arraylist_async';
 
 
 describe('asyncFilter', () => {

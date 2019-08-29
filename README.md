@@ -92,10 +92,14 @@ console.log(take(2)([1,2,3]))
 
 #### lazy
 
+[Source](src/arraylist_lazy.ts)
+
 * [Lazy list functions](test/arraylist/lazyness.spec.ts)
 * [materialize](test/arraylist/materialize.spec.ts)
 
 #### async 
+
+[Source](src/arraylist_async.ts)
 
 * [asyncMap](test/arraylist/async_map.spec.ts)
 * [asyncFilter](test/arraylist/async_filter.spec.ts)

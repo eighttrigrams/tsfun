@@ -36,26 +36,6 @@ export const map = <A, B>(f: (_: A) => B) =>
     (as: Array<A>): Array<B> => as.map(f);
 
 
-export const asyncMap = <A>(f: (_: A) => Promise<A>) =>
-    async (as: Array<A>): Promise<Array<A>> => {
-
-        const newAs: Array<A> = [];
-        for (let a of as) newAs.push(await f(a) as never);
-        return newAs;
-    };
-
-
-export const asyncReduce = <A, B>(f: (b: B, a: A) => Promise<B>, init: B) =>
-    async (as: Array<A>): Promise<B> => {
-
-        let acc = init;
-        for (let a of as) {
-            acc = await f(acc, a);
-        }
-        return acc;
-    };
-
-
 export const reduce = <A, B>(f: (b: B, a: A, i?: number) => B, init: B) =>
     (as: Array<A>): B => {
 
@@ -96,14 +76,6 @@ export const filter = <A>(f: Predicate<A>): SimpleTransformation<Array<A>> =>
 export const remove = <A>(f: Predicate<A>): SimpleTransformation<Array<A>> => filter(isNot(f));
 
 
-export const asyncFilter = <A>(f: AsyncPredicate<A>) =>
-    async (as: Array<A>) => {
-        const newAs: Array<A> = [];
-        for (let a of as) if (await f(a)) newAs.push(a as never);
-        return newAs;
-    };
-
-
 export const forEach = <A>(
     f: ((_: A, i: number) => void)|((_: A) => void)) =>
     (as: Array<A>) => {
@@ -123,19 +95,6 @@ export const forEachRight = <A>(
         for (let item of as.reverse()) {
             (f as any)(item, i);
             i--;
-        }
-        return as;
-    };
-
-
-export const asyncForEach = <A>(
-    f: ((_: A, i: number) => Promise<void>)|((_: A) => Promise<void>)) =>
-    async (as: Array<A>) => {
-
-        let i = 0;
-        for (let item of as) {
-            await (f as any)(item, i);
-            i++;
         }
         return as;
     };
@@ -251,78 +210,4 @@ export function arrayList(size: number) {
 
 // from https://stackoverflow.com/questions/3895478/does-javascript-have-a-method-like-range-to-generate-a-range-within-the-supp
 export function range(n: number) { return Array.apply(null, Array(n)).map(function (_: any, i: number) {return i;});}
-
-
-
-
-
-// ------------------------ Lazy list functions ---------------------------------------
-
-// see https://codewords.recurse.com/issues/four/lazy-composable-and-modular-javascript
-
-
-export function* lRange(n: number) {
-
-    for (let i = 0; i < n; i++) {
-        yield i;
-    }
-}
-
-
-export function* lZip(as: any, bs: any) {
-
-    const aIterator = as[Symbol.iterator]();
-    const bIterator = bs[Symbol.iterator]();
-
-    while (true) {
-        const aNext = aIterator.next();
-        if (aNext.done) break;
-        const bNext = bIterator.next();
-        if (bNext.done) break;
-        yield [aNext.value, bNext.value];
-    }
-}
-
-
-export function lMap(f: Function) {
-    return function*(a: any) {
-        for (let x of a) {
-            // console.log("map x of a", x);
-            yield f(x)
-        }
-    }
-}
-
-
-export function lTake(n: number) {
-    return function*(a: any) {
-        let i = 0;
-        for (let x of a) {
-            if (i === n) return;
-            // console.log("take x of a", x);
-            yield x;
-            i++;
-        }
-    }
-}
-
-
-export function lFilter(f: Function) {
-    return function*(a: any) {
-        for (let x of a) {
-            // console.log("filter x of a", x);
-            if (f(x)) yield x;
-        }
-    }
-}
-
-
-export function materialize(lAs: any) {
-    const as = [];
-    for (let x of lAs) {
-        // console.log("filter x of a", x);
-        as.push(x);
-    }
-    return as;
-}
 
