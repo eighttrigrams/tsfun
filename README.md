@@ -104,6 +104,8 @@ console.log(take(2)([1,2,3]))
 * [nth](test/arraylist/nth.spec.ts)
 * [nthOr](test/arraylist/nth_or.spec.ts)
 * [indices](test/arraylist/indices.spec.ts)
+* [zip](test/arraylist/zip.spec.ts)
+* [zipWith](test/arraylist/zip_with.spec.ts)
 
 #### lazy
 

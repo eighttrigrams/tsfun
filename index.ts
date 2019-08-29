@@ -96,7 +96,8 @@ export {
     indices,
     arrayList,
     range,
-
+    zip,
+    zipWith
 } from './src/arraylist';
 
 
