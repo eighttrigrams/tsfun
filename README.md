@@ -62,7 +62,9 @@ console.log(take(2)([1,2,3]))
 
 [Source](src/arraylist.ts)
 
-* [copy](test/arraylist/copy.spec.ts) / arrayList / range
+* [copy](test/arraylist/copy.spec.ts)
+* arrayList
+* [range](test/arraylist/range.spec.ts)
 * [append / prepend](test/arraylist/append.spec.ts) 
 * [map / asyncMap](test/arraylist/map.spec.ts)
 * [filter / remove / asyncFilter](test/arraylist/filter.spec.ts) 
@@ -79,7 +81,10 @@ console.log(take(2)([1,2,3]))
 * [nth / nthOr](test/arraylist/nth.spec.ts)
 * [indices](test/arraylist/indices.spec.ts)
 
-[Lazy list functions](test/arraylist/lazyness.spec.ts)
+#### ArrayList - lazy list functions
+
+* [Lazy list functions](test/arraylist/lazyness.spec.ts)
+* [materialize](test/arraylist/materialize.spec.ts)
 
 ### ArraySet
 

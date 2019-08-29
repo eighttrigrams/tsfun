@@ -99,7 +99,12 @@ export {
     nthOr,
     indices,
     arrayList,
-    range
+    range,
+    lRange,
+    lZip,
+    lTake,
+    lMap,
+    lFilter
 } from './src/arraylist';
 
 

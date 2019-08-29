@@ -260,6 +260,30 @@ export function range(n: number) { return Array.apply(null, Array(n)).map(functi
 
 // see https://codewords.recurse.com/issues/four/lazy-composable-and-modular-javascript
 
+
+export function* lRange(n: number) {
+
+    for (let i = 0; i < n; i++) {
+        yield i;
+    }
+}
+
+
+export function* lZip(as: any, bs: any) {
+
+    const aIterator = as[Symbol.iterator]();
+    const bIterator = bs[Symbol.iterator]();
+
+    while (true) {
+        const aNext = aIterator.next();
+        if (aNext.done) break;
+        const bNext = bIterator.next();
+        if (bNext.done) break;
+        yield [aNext.value, bNext.value];
+    }
+}
+
+
 export function lMap(f: Function) {
     return function*(a: any) {
         for (let x of a) {
