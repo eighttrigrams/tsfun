@@ -1,19 +1,31 @@
 # TODOs
 
-## Add transpose function
-
-* perhaps make _nested subpackage, with flatten and zip, and other functions, maybe tensors
-
-## fix typing of lookup, which may also return undefined
-
-## review if lookup should be moved to arraylist
-
 ## Add use cases to range function
 
 * also add repeat function
 * range function should have start and end
 * should not have stepwidth, because can be made with filter(divisibleBy)
 * lRange with open ends
+
+## Review impls of zip, zipWith functions
+
+* new "package" with flatMap and flatten?
+
+## Add transpose function
+
+* perhaps make _nested subpackage, with flatten and zip, and other functions, maybe tensors
+
+## Implement interleave, interpose
+
+* and: what was the name of the function where you split it into segments of equal lengths
+
+## Implement groupBy, juxt, partition-by, separate
+
+* see clojure
+
+## fix typing of lookup, which may also return undefined
+
+## review if lookup should be moved to arraylist
 
 ## Introduce splitwith function to simplify insert function in csv-export in idai-field
 
@@ -37,10 +49,6 @@
 
 ## Improve typing, asyncMap should map from A to B
 
-## Review impls of zip, zipWith functions
-
-* new "package" with flatMap and flatten?
-
 ## Review possibilities to implement typesafe variadic compose
 
 * maybe see haskell book
@@ -48,10 +56,6 @@
 ## Review cond typing
 
 * maybe unsion of A|B
-
-## Implement groupBy, juxt, partition-by, separate
-
-* see clojure
 
 ## Typesafe id function 
 
@@ -77,7 +81,5 @@
 ## Implement duplicates
 
 ## Compare unique with rmdups from haskell book p.86
-
-## Implement interleave
 
 
