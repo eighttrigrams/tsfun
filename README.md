@@ -34,7 +34,8 @@ console.log(take(2)([1,2,3]))
 * [isUndefined](test/predicate/is_undefined.spec.ts)
 * [isArray](test/predicate/is_array.spec.ts)
 * [isObject](test/predicate/is_object.spec.ts)
-* [isNot / not](test/predicate/is_not.spec.ts)
+* [isNot](test/predicate/is_not.spec.ts)
+* [not](test/predicate/not.spec.ts)
 
 ### Comparator
 
