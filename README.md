@@ -65,26 +65,42 @@ console.log(take(2)([1,2,3]))
 * [copy](test/arraylist/copy.spec.ts)
 * arrayList
 * [range](test/arraylist/range.spec.ts)
-* [append / prepend](test/arraylist/append.spec.ts) 
-* [map / asyncMap](test/arraylist/map.spec.ts)
-* [filter / remove / asyncFilter](test/arraylist/filter.spec.ts) 
-* [forEach / forEachRight / asyncForEach](test/arraylist/for_each.spec.ts) 
-* [reduce / asyncReduce](test/arraylist/reduce.spec.ts)
-* [flatMap / flatten](test/arraylist/flat_map.spec.ts)
-* [take / takeRight](test/arraylist/take.spec.ts)
+* [append](test/arraylist/append.spec.ts) 
+* [prepend](test/arraylist/prepend.spec.ts) 
+* [map](test/arraylist/map.spec.ts)
+* [filter](test/arraylist/filter.spec.ts) 
+* [remove](test/arraylist/remove.spec.ts)
+* [forEach](test/arraylist/for_each.spec.ts)
+* [forEachRight](test/arraylist/for_each_right.spec.ts) 
+* [reduce](test/arraylist/reduce.spec.ts)
+* [flatMap](test/arraylist/flat_map.spec.ts)
+* [flatten](test/arraylist/flatten.spec.ts)
+* [take](test/arraylist/take.spec.ts)
+* [takeRight](test/arraylist/take_right.spec.ts)
 * [takeNth](test/arraylist/take_nth.spec.ts)
-* [takeWhile / takeRightWhile](test/arraylist/take_while.spec.ts)
-* [drop / dropRight](test/arraylist/drop.spec.ts)
-* [dropWhile / dropRightWhile](test/arraylist/drop_while.spec.ts)
+* [takeWhile](test/arraylist/take_while.spec.ts)
+* [takeRightWhile](test/arraylist/take_right_while.spec.ts)
+* [drop](test/arraylist/drop.spec.ts)
+* [dropRight](test/arraylist/drop_right.spec.ts)
+* [dropWhile](test/arraylist/drop_while.spec.ts)
+* [dropRightWhile](test/arraylist/drop_right_while.spec.ts)
 * [apply](test/arraylist/apply.spec.ts) 
 * [separate](test/arraylist/separate.spec.ts) 
-* [nth / nthOr](test/arraylist/nth.spec.ts)
+* [nth](test/arraylist/nth.spec.ts)
+* [nthOr](test/arraylist/nth_or.spec.ts)
 * [indices](test/arraylist/indices.spec.ts)
 
-#### ArrayList - lazy list functions
+#### lazy list functions
 
 * [Lazy list functions](test/arraylist/lazyness.spec.ts)
 * [materialize](test/arraylist/materialize.spec.ts)
+
+#### async function
+
+* [asyncMap](test/arraylist/async_map.spec.ts)
+* [asyncFilter](test/arraylist/async_filter.spec.ts)
+* [asyncForEach](test/arraylist/async_for_each.spec.ts)
+* [asyncReduce](test/arraylist/async_reduce.spec.ts)
 
 ### ArraySet
 

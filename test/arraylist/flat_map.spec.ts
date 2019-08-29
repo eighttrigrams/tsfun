@@ -1,10 +1,10 @@
-import {flatMap, flatten} from '../../src/arraylist';
+import {flatMap} from '../../src/arraylist';
 
 
 /**
  * @author Daniel de Oliveira
  */
-describe('flatMap / flatten', () => {
+describe('flatMap', () => {
 
 
     it('flatMap', () =>
@@ -37,12 +37,4 @@ describe('flatMap / flatten', () => {
             flatMap((x: string) => x.split(' '))(['a']))
 
             .toEqual(['a']));
-
-
-    it('flatten', () =>
-        expect(
-
-            flatten([[1, 2], [3, 4]])
-
-        ).toEqual([1, 2, 3, 4]));
 });

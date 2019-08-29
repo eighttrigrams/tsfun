@@ -1,13 +1,13 @@
-import {forEach} from '../../src/arraylist';
+import {asyncForEach} from '../../src/arraylist';
 
 
-describe('forEach', () => {
+describe('asyncForEach', () => {
 
 
-    it('forEach', async done => {
+    it('asyncForEach', async done => {
 
         let acc = 1;
-        const items = await forEach((item: number) => {
+        const items = await asyncForEach(async (item: number) => {
             acc += item
         })([2, 4, 3]);
         expect(items).toEqual([2, 4, 3]);
@@ -16,10 +16,10 @@ describe('forEach', () => {
     });
 
 
-    it('forEach with i', async done => {
+    it('asyncForEach with i', async done => {
 
         let acc = 1;
-        forEach(async (item, i) => {
+        await asyncForEach(async (item, i) => {
             acc += i
         })([2, 4, 3]);
         expect(acc).toEqual(4);
