@@ -1,9 +1,7 @@
-import {unionObject, uniteObj} from '../../src/objectset';
+import {uniteObj} from '../../src/objectset';
 
 
-describe('unionObj / uniteObj', () => {
-
-
+describe('uniteObj', () => {
 
 
     it('overwrite', () =>
@@ -60,28 +58,4 @@ describe('unionObj / uniteObj', () => {
             uniteObj(...[{3: 4}, {4: 4}])({1: 2}))
 
             .toEqual({1: 2, 3: 4, 4: 4}));
-
-
-    it('unionObject', () =>
-        expect(
-
-            unionObject([{3: 4}, {4: 4}, {1: 2}]))
-
-            .toEqual({1: 2, 3: 4, 4: 4}));
-
-
-    it('one', () =>
-        expect(
-
-            unionObject([{3: 4}]))
-
-            .toEqual({3: 4}));
-
-
-    it('empty', () =>
-        expect(
-
-            unionObject([]))
-
-            .toEqual({}));
 });

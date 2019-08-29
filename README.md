@@ -143,7 +143,8 @@ console.log(take(2)([1,2,3]))
 
 * [to](test/objectstruct/to.spec.ts)
 * [setOn](test/objectstruct/set_on.spec.ts)
-* [clone / jsonClone](test/objectstruct/clone.spec.ts)
+* [clone](test/objectstruct/clone.spec.ts)
+* [jsonClone](test/objectstruct/json_clone.spec.ts)
 * [getOn / getOnOr](test/objectstruct/get_on.spec.ts)
 * [assoc / update](test/objectstruct/assoc_update.spec.ts)
 
@@ -165,7 +166,8 @@ console.log(take(2)([1,2,3]))
 [Source](src/objectset.ts)
 
 * [intersectObj](test/objectset/intersect_obj.spec.ts)
-* [uniteObj / unionObj](test/objectset/unite_obj.spec.ts)
+* [uniteObj](test/objectset/unite_obj.spec.ts)
+* [unionObj](test/objectset/union_obj.spec.ts)
 * [subtractObj](test/objectset/subtract_obj.spec.ts)
 
 
