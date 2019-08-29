@@ -2,6 +2,8 @@
 
 ## Add transpose function
 
+* perhaps make _nested subpackage, with flatten and zip, and other functions, maybe tensors
+
 ## fix typing of lookup, which may also return undefined
 
 ## review if lookup should be moved to arraylist
