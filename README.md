@@ -90,12 +90,12 @@ console.log(take(2)([1,2,3]))
 * [nthOr](test/arraylist/nth_or.spec.ts)
 * [indices](test/arraylist/indices.spec.ts)
 
-#### lazy list functions
+#### lazy
 
 * [Lazy list functions](test/arraylist/lazyness.spec.ts)
 * [materialize](test/arraylist/materialize.spec.ts)
 
-#### async function
+#### async 
 
 * [asyncMap](test/arraylist/async_map.spec.ts)
 * [asyncFilter](test/arraylist/async_filter.spec.ts)
