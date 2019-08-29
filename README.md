@@ -23,8 +23,10 @@ console.log(take(2)([1,2,3]))
 
 [Source](src/predicate.ts)
 
-* [has / hasNot](test/predicate/has.spec.ts) 
-* [empty / isEmpty](test/predicate/is_empty.spec.ts)
+* [has](test/predicate/has.spec.ts) 
+* [hasNot](test/predicate/has_not.spec.ts) 
+* [isEmpty](test/predicate/is_empty.spec.ts)
+* [empty](test/predicate/empty.spec.ts)
 * [undefinedOrEmpty / isUndefinedOrEmpty](test/predicate/is_undefined_or_empty.spec.ts)
 * [isDefined / defined / isUndefined](test/predicate/is_defined.spec.ts)
 * [isArray](test/predicate/is_array.spec.ts)
