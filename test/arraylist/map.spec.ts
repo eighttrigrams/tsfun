@@ -1,4 +1,4 @@
-import {asyncMap, map} from '../../src/arraylist';
+import {map} from '../../src/arraylist';
 import {flow} from '../../src/composition';
 import {to} from '../../src/objectstruct';
 
@@ -6,9 +6,7 @@ import {to} from '../../src/objectstruct';
 /**
  * @author Daniel de Oliveira
  */
-describe('map / asyncMap', () => {
-
-    // map
+describe('map', () => {
 
 
     it('map', () =>
@@ -26,18 +24,4 @@ describe('map / asyncMap', () => {
                 map(to('a'))))
 
             .toEqual([1, 3]));
-
-
-    // asyncMap
-
-    it('asyncMap', async done => {
-
-        expect(
-
-            await asyncMap((_: number) => Promise.resolve(_ * 2))([1, 2]))
-
-            .toEqual([2, 4]);
-
-        done();
-    });
 });

@@ -1,12 +1,37 @@
 # TODOs
 
-## Make keys function to replace Object.keys in flow
+## experiment with immutability, with type system + maybe proxy objects or something similar
 
-## fix typing of lookup, which may also return undefined
+## publish new version
 
 ## Add use cases to range function
 
 * also add repeat function
+* range function should have start and end
+* should not have stepwidth, because can be made with filter(divisibleBy)
+* lRange with open ends
+
+## Review impls of zip, zipWith functions
+
+* new "package" with flatMap and flatten?
+
+## Add transpose function
+
+* perhaps make _nested subpackage, with flatten and zip, and other functions, maybe tensors
+
+## Implement interleave, interpose
+
+* and: what was the name of the function where you split it into segments of equal lengths
+
+## Implement groupBy, juxt, partition-by, separate
+
+* see clojure
+
+## fix typing of lookup, which may also return undefined
+
+## review if lookup should be moved to arraylist
+
+## Introduce splitwith function to simplify insert function in csv-export in idai-field
 
 ## Add predicate typing to indices function
 
@@ -28,12 +53,6 @@
 
 ## Improve typing, asyncMap should map from A to B
 
-## Add zip, zipWith functions
-
-## Add transpose function
-
-* new "package" with flatMap and flatten?
-
 ## Review possibilities to implement typesafe variadic compose
 
 * maybe see haskell book
@@ -41,10 +60,6 @@
 ## Review cond typing
 
 * maybe unsion of A|B
-
-## Implement groupBy, juxt, partition-by, separate
-
-* see clojure
 
 ## Typesafe id function 
 
@@ -70,7 +85,5 @@
 ## Implement duplicates
 
 ## Compare unique with rmdups from haskell book p.86
-
-## Implement interleave
 
 

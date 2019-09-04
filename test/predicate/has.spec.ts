@@ -1,9 +1,9 @@
-import {has, hasNot} from '../../src/predicate';
+import {has} from '../../src/predicate';
 
 /**
  * @author Daniel de Oliveira
  */
-describe('has / hasNot', () => {
+describe('has', () => {
 
     it('has - true', () =>
         expect(
@@ -17,22 +17,6 @@ describe('has / hasNot', () => {
         expect(
 
             has('a.c')({a: {b: 1}}))
-
-            .toEqual(false));
-
-
-    it('hasNot - true', () =>
-        expect(
-
-            hasNot('a.c')({a: {b: 1}}))
-
-            .toEqual(true));
-
-
-    it('hasNot - false', () =>
-        expect(
-
-            hasNot('a.b')({a: {b: 1}}))
 
             .toEqual(false));
 });

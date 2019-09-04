@@ -1,10 +1,10 @@
-import {arrayEqual, arrayEqualBy, jsonEqual} from '../../src/comparator';
+import {arrayEqual} from '../../src/comparator';
 
 
 /**
  * @author Daniel de Oliveira
  */
-describe('arrayEqual / arrayEqualBy', () => {
+describe('arrayEqual', () => {
 
     // arrayEqual compares Arrays
 
@@ -74,16 +74,6 @@ describe('arrayEqual / arrayEqualBy', () => {
         expect(
 
             arrayEqual([1, {c: [1, 2], b: 2}])([1, {b: 2, c: [2, 1]}])
-
-        ).toEqual(false));
-
-
-    // the default object comparison method can be overridden using the producer version
-
-    it('override objectEquivalent default - key order matters', () =>
-        expect(
-
-            arrayEqualBy(jsonEqual)([1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
 
         ).toEqual(false));
 

@@ -1,7 +1,7 @@
-import {append, prepend} from '../../src/arraylist';
+import {append} from '../../src/arraylist';
 
 
-describe('append / prepend', () => {
+describe('append', () => {
 
     it('append', () =>
 
@@ -10,13 +10,4 @@ describe('append / prepend', () => {
             append([1, 2])([3, 4]))
 
             .toEqual([3, 4, 1, 2]));
-
-
-    it('prepend', () =>
-
-        expect(
-
-            prepend([1, 2])([3, 4]))
-
-            .toEqual([1, 2, 3, 4]));
 });

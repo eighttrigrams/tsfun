@@ -1,10 +1,10 @@
-import {empty, isEmpty, isNot} from '../../src/predicate';
+import {isEmpty} from '../../src/predicate';
 
 
 /**
  * @author Daniel de Oliveira
  */
-describe('empty / isEmpty', () => {
+describe('isEmpty', () => {
 
     // isEmpty
 
@@ -70,12 +70,4 @@ describe('empty / isEmpty', () => {
             () => isEmpty(1))
 
             .toThrow());
-
-
-    it('a string - us with is not', () =>
-        expect(
-
-            isNot(empty)('1'))
-
-            .toEqual(true));
 });

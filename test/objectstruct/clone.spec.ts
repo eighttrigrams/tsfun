@@ -1,7 +1,7 @@
-import {clone, jsonClone} from "../../src/objectstruct";
+import {clone} from "../../src/objectstruct";
 import {isArray, isObject} from "../../src/predicate";
 
-describe('clone / jsonClone', () => {
+describe('clone', () => {
 
 
     it('clone shallow Object', () => {
@@ -109,16 +109,6 @@ describe('clone / jsonClone', () => {
         const k = clone({a: [nested]});
         expect(k['a'][0]['c']).toBe(3);
         expect(k['a'][0]).not.toBe(nested);
-    });
-
-
-    it('clone date with jsonClone', () => {
-
-        const d = new Date();
-        const dJsonCloned = jsonClone(d);
-
-        const k = clone([d]);
-        expect(k[0]).toEqual(dJsonCloned);
     });
 
 

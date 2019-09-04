@@ -36,26 +36,6 @@ export const map = <A, B>(f: (_: A) => B) =>
     (as: Array<A>): Array<B> => as.map(f);
 
 
-export const asyncMap = <A>(f: (_: A) => Promise<A>) =>
-    async (as: Array<A>): Promise<Array<A>> => {
-
-        const newAs: Array<A> = [];
-        for (let a of as) newAs.push(await f(a) as never);
-        return newAs;
-    };
-
-
-export const asyncReduce = <A, B>(f: (b: B, a: A) => Promise<B>, init: B) =>
-    async (as: Array<A>): Promise<B> => {
-
-        let acc = init;
-        for (let a of as) {
-            acc = await f(acc, a);
-        }
-        return acc;
-    };
-
-
 export const reduce = <A, B>(f: (b: B, a: A, i?: number) => B, init: B) =>
     (as: Array<A>): B => {
 
@@ -96,14 +76,6 @@ export const filter = <A>(f: Predicate<A>): SimpleTransformation<Array<A>> =>
 export const remove = <A>(f: Predicate<A>): SimpleTransformation<Array<A>> => filter(isNot(f));
 
 
-export const asyncFilter = <A>(f: AsyncPredicate<A>) =>
-    async (as: Array<A>) => {
-        const newAs: Array<A> = [];
-        for (let a of as) if (await f(a)) newAs.push(a as never);
-        return newAs;
-    };
-
-
 export const forEach = <A>(
     f: ((_: A, i: number) => void)|((_: A) => void)) =>
     (as: Array<A>) => {
@@ -123,19 +95,6 @@ export const forEachRight = <A>(
         for (let item of as.reverse()) {
             (f as any)(item, i);
             i--;
-        }
-        return as;
-    };
-
-
-export const asyncForEach = <A>(
-    f: ((_: A, i: number) => Promise<void>)|((_: A) => Promise<void>)) =>
-    async (as: Array<A>) => {
-
-        let i = 0;
-        for (let item of as) {
-            await (f as any)(item, i);
-            i++;
         }
         return as;
     };
@@ -252,3 +211,36 @@ export function arrayList(size: number) {
 // from https://stackoverflow.com/questions/3895478/does-javascript-have-a-method-like-range-to-generate-a-range-within-the-supp
 export function range(n: number) { return Array.apply(null, Array(n)).map(function (_: any, i: number) {return i;});}
 
+
+export function zip<A,B> (as: ArrayList<A>) {
+
+    return (bs: ArrayList<B>) => {
+
+        const minimumLength = Math.min(as.length, bs.length);
+        const _as = take(minimumLength)(as);
+        const _bs = take(minimumLength)(bs);
+
+        const zipped = [];
+        for (let i = 0; i < minimumLength; i++) {
+            zipped.push([_as[i], _bs[i]]);
+        }
+        return zipped;
+    }
+}
+
+
+export function zipWith<A,B,C> (f: (a: A, b: B) => C, as: ArrayList<A>) {
+
+    return (bs: ArrayList<B>) => {
+
+        const minimumLength = Math.min(as.length, bs.length);
+        const _as = take(minimumLength)(as);
+        const _bs = take(minimumLength)(bs);
+
+        const zipped = [];
+        for (let i = 0; i < minimumLength; i++) {
+            zipped.push(f((_as as any)[i], (_bs as any)[i]));
+        }
+        return zipped;
+    }
+}

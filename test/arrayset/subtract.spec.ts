@@ -1,11 +1,10 @@
-import {jsonEqual} from '../../src/comparator';
-import {subtract, subtractBy} from '../../src/arrayset';
+import {subtract} from '../../src/arrayset';
 
 
 /**
  * @author Daniel de Oliveira
  */
-describe('Arrays/Set-Like-Collection', () => {
+describe('subtract', () => {
 
 
     it('subtract', () =>
@@ -71,16 +70,6 @@ describe('Arrays/Set-Like-Collection', () => {
             subtract(...[[2], [1, 4]])([1, 2, 3, 3, 2, 4]))
 
             .toEqual([3]));
-
-
-    // subtractBy
-
-    it('subtractBy', () =>
-        expect(
-
-            subtractBy(jsonEqual)<any>([{a: 'a'}])([{a: 'a'}, {c: 'c'}]))
-
-            .toEqual([{c: 'c'}]));
 
 
     /**

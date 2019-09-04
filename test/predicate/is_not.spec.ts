@@ -1,9 +1,9 @@
 import {isNot} from '../../src/predicate';
 import {tripleEqual} from '../../src/comparator';
 
-describe('isNot / not', () => {
 
-    // isNot
+describe('isNot', () => {
+
 
     it('isNot',() =>
         expect(
