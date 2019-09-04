@@ -18,7 +18,7 @@ describe('filter / remove / asyncFilter', () => {
 
         expect(
 
-            await asyncFilter(_ => Promise.resolve(_ < 4))([2, 4, 3]))
+            await asyncFilter((_: number) => Promise.resolve(_ < 4))([2, 4, 3]))
 
             .toEqual([2, 3]);
 

@@ -33,7 +33,7 @@ export const filterObj = <T>(predicate: Predicate<T>): SimpleTransformation<Obje
 export const intoObj = <T>(keyName: string, valName: string) =>
     (object: ObjectCollection<T>, item: ObjectCollection<T>) =>
         isDefined(item[keyName])
-            ? (object[(item[keyName]).toString()] = item[valName], object)
+            ? (object[((item[keyName]) as any).toString()] = item[valName], object)
             : object;
 
 
