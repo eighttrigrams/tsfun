@@ -7,10 +7,10 @@
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "strictNullChecks": true,
     "removeComments": false,
     "noImplicitAny": true,
     "declaration" : true,
-    "strictNullChecks": true,
     "types": ["jasmine"],
     "lib": [
       "es2017",

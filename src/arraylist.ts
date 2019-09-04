@@ -220,9 +220,9 @@ export function zip<A,B> (as: ArrayList<A>) {
         const _as = take(minimumLength)(as);
         const _bs = take(minimumLength)(bs);
 
-        const zipped = [];
+        const zipped: ArrayList<[A, B]> = [];
         for (let i = 0; i < minimumLength; i++) {
-            zipped.push([_as[i], _bs[i]]);
+            zipped.push([_as[i] as A, _bs[i] as B]);
         }
         return zipped;
     }
@@ -237,9 +237,9 @@ export function zipWith<A,B,C> (f: (a: A, b: B) => C, as: ArrayList<A>) {
         const _as = take(minimumLength)(as);
         const _bs = take(minimumLength)(bs);
 
-        const zipped = [];
+        const zipped: ArrayList<C> = [];
         for (let i = 0; i < minimumLength; i++) {
-            zipped.push(f((_as as any)[i], (_bs as any)[i]));
+            zipped.push(f((_as as any)[i] as A, (_bs as any)[i] as B));
         }
         return zipped;
     }
