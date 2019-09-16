@@ -1,6 +1,7 @@
 import {Mapping, ObjectCollection, Predicate, SimpleTransformation, UntypedObjectCollection} from './type';
 import {isDefined} from './predicate';
 import {subtractObj} from "./objectset";
+import {zip} from './arraylist';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -39,6 +40,12 @@ export const intoObj = <T>(keyName: string, valName: string) =>
 
 export const copyObj = (o: UntypedObjectCollection): UntypedObjectCollection =>
     subtractObj([])(o);
+
+
+export function keysAndValues<T>(o: ObjectCollection<T>) {
+
+    return zip(Object.keys(o))(Object.values(o));
+}
 
 
 

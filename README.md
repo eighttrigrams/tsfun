@@ -161,6 +161,7 @@ console.log(take(2)([1,2,3]))
 
 [Source](src/objectcoll.ts)
 
+* keysAndValues (list of pairs)
 * [copyObj](test/objectcoll/copy_obj.spec.ts)
 * [intoObj](test/objectcoll/into_obj.spec.ts)
 * [mapObj](test/objectcoll/map_obj.spec.ts)
@@ -178,7 +179,6 @@ console.log(take(2)([1,2,3]))
 * [uniteObj](test/objectset/unite_obj.spec.ts)
 * [unionObj](test/objectset/union_obj.spec.ts)
 * [subtractObj](test/objectset/subtract_obj.spec.ts)
-
 
 ## Concepts
 
