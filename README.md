@@ -2,6 +2,8 @@
 
 **tsfun - functional combinator library for TypeScript**
 
+see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra) 
+
 ## Run
 
 Get started with `npm install; npm run build; npm test`.
