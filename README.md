@@ -107,7 +107,7 @@ console.log(take(2)([1,2,3]))
 * [zip](test/arraylist/zip.spec.ts)
 * [zipWith](test/arraylist/zip_with.spec.ts)
 
-#### lazy
+### ArrayList (lazy)
 
 [Source](src/arraylist_lazy.ts)
 
