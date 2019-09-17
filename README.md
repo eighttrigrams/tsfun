@@ -117,15 +117,6 @@ console.log(take(2)([1,2,3]))
 * [lZipWith](test/arraylist/l_zip_with.spec.ts)
 * [lRange](test/arraylist/l_range.spec.ts)
 
-#### async 
-
-[Source](src/arraylist_async.ts)
-
-* [asyncMap](test/arraylist/async_map.spec.ts)
-* [asyncFilter](test/arraylist/async_filter.spec.ts)
-* [asyncForEach](test/arraylist/async_for_each.spec.ts)
-* [asyncReduce](test/arraylist/async_reduce.spec.ts)
-
 ### ArraySet
 
 [Source](src/arrayset.ts)
@@ -162,7 +153,6 @@ console.log(take(2)([1,2,3]))
 [Source](src/objectcoll.ts)
 
 * keysAndValues (list of pairs)
-* [intoObj](test/objectcoll/into_obj.spec.ts)
 
 ### ObjectMap
 

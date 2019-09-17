@@ -112,15 +112,6 @@ export {
 
 
 export {
-    asyncFilter,
-    asyncForEach,
-    asyncMap,
-    asyncReduce
-} from './src/arraylist_async';
-
-
-
-export {
     intersection,
     intersectionBy,
     union,
@@ -139,7 +130,6 @@ export {
 
 export {
     keysAndValues,
-    intoObj,
 } from './src/objectcoll'
 
 

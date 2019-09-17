@@ -1,5 +1,5 @@
 import {isNot} from './predicate';
-import {ArrayList, AsyncPredicate, Pair, Predicate, SimpleTransformation} from './type';
+import {ArrayList, Pair, Predicate, SimpleTransformation} from './type';
 import {identical} from './core';
 import {subtract} from "./arrayset";
 

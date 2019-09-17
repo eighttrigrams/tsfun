@@ -13,9 +13,6 @@ export type Predicate<A> = (_: A) => boolean;
 export type PredicateProducer = <A>(_: Predicate<A>) => Predicate<A>;
 
 
-export type AsyncPredicate<A> = (_: A) => Promise<boolean>;
-
-
 export type Mapping<A, B> = (_: A) => B;
 
 
