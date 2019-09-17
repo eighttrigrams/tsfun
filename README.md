@@ -109,16 +109,6 @@ console.log(take(2)([1,2,3]))
 * [zip](test/arraylist/zip.spec.ts)
 * [zipWith](test/arraylist/zip_with.spec.ts)
 
-### ArrayList (lazy)
-
-[Source](src/arraylist_lazy.ts)
-
-* [Lazy list functions](test/arraylist/lazyness.spec.ts)
-* [materialize](test/arraylist/materialize.spec.ts)
-* [lZip](test/arraylist/l_zip.spec.ts)
-* [lZipWith](test/arraylist/l_zip_with.spec.ts)
-* [lRange](test/arraylist/l_range.spec.ts)
-
 ### ArraySet
 
 [Source](src/arrayset.ts)
@@ -156,6 +146,16 @@ console.log(take(2)([1,2,3]))
 
 * keysAndValues (list of pairs)
 * [lookup](test/objectmap/lookup.spec.ts)
+
+### ArrayList (lazy)
+
+[Source](src/arraylist_lazy.ts)
+
+* [Lazy list functions](test/arraylist/lazyness.spec.ts)
+* [materialize](test/arraylist/materialize.spec.ts)
+* [lZip](test/arraylist/l_zip.spec.ts)
+* [lZipWith](test/arraylist/l_zip_with.spec.ts)
+* [lRange](test/arraylist/l_range.spec.ts)
 
 ## Concepts
 
