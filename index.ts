@@ -129,12 +129,8 @@ export {
 
 
 export {
-    keysAndValues,
-} from './src/objectcoll'
-
-
-export {
-    lookup
+    lookup,
+    keysAndValues
 } from './src/objectmap'
 
 

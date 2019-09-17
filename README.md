@@ -146,16 +146,13 @@ console.log(take(2)([1,2,3]))
 * [getOn](test/objectstruct/get_on.spec.ts)
 * [getOnOr](test/objectstruct/get_on_or.spec.ts)
 * [assoc](test/objectstruct/assoc.spec.ts)
-* [pdate](test/objectstruct/update.spec.ts)
-
-### ObjectCollection
-
-[Source](src/objectcoll.ts)
-
-* keysAndValues (list of pairs)
+* [update](test/objectstruct/update.spec.ts)
 
 ### ObjectMap
 
+[Source](src/objectmap.ts)
+
+* keysAndValues (list of pairs)
 * [lookup](test/objectmap/lookup.spec.ts)
 
 ## Concepts
