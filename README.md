@@ -162,23 +162,11 @@ console.log(take(2)([1,2,3]))
 [Source](src/objectcoll.ts)
 
 * keysAndValues (list of pairs)
-* [copyObj](test/objectcoll/copy_obj.spec.ts)
 * [intoObj](test/objectcoll/into_obj.spec.ts)
-* [mapObj](test/objectcoll/map_obj.spec.ts)
-* [filterObj](test/objectcoll/filter_obj.spec.ts)
 
 ### ObjectMap
 
 * [lookup](test/objectmap/lookup.spec.ts)
-
-### ObjectSet
-
-[Source](src/objectset.ts)
-
-* [intersectObj](test/objectset/intersect_obj.spec.ts)
-* [uniteObj](test/objectset/unite_obj.spec.ts)
-* [unionObj](test/objectset/union_obj.spec.ts)
-* [subtractObj](test/objectset/subtract_obj.spec.ts)
 
 ## Concepts
 

@@ -1,7 +1,6 @@
 import {greaterThan, includedIn, lessThan} from '../../src/comparator';
 import {flow} from '../../src/composition';
 import {dropRight, dropWhile, reverse, takeWhile} from '../../src/arraylist';
-import {uniteObj} from '../../src/objectset';
 import {isNot} from '../../src/predicate';
 
 
@@ -66,14 +65,15 @@ describe('flow', () => {
             .toEqual([20, 21]));
 
 
-    it('with objects', () =>
-        expect(
-
-            flow(
-                {a: 1, b: 2},
-                uniteObj({c: 3})))
-
-            .toEqual({a: 1, b: 2, c: 3}));
+    // TODO move to tsfun-extra
+    // it('with objects', () =>
+    //     expect(
+    //
+    //         flow(
+    //             {a: 1, b: 2},
+    //             uniteObj({c: 3})))
+    //
+    //         .toEqual({a: 1, b: 2, c: 3}));
 
 
     // intended use case

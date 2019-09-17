@@ -138,19 +138,8 @@ export {
 
 
 export {
-    subtractObj,
-    intersectObj,
-    uniteObj,
-    unionObject
-} from './src/objectset'
-
-
-export {
     keysAndValues,
-    mapObj,
-    filterObj,
     intoObj,
-    copyObj,
 } from './src/objectcoll'
 
 

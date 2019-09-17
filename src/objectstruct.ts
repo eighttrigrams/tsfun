@@ -1,8 +1,7 @@
 import {isArray, isEmpty, isObject} from './predicate';
 import {reverseUncurry2} from './core';
-import {ArrayList, ObjectStruct, Predicate} from './type';
+import {ArrayList, ObjectStruct, Predicate, UntypedObjectCollection} from './type';
 import {on} from './comparator';
-import {copyObj} from './objectcoll';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -99,13 +98,13 @@ export function update(path: string, update_fun: (val: any) => any) { return (ob
 
     if (!path.includes('.')) {
 
-        const copied = copyObj(object);
+        const copied = Object.assign({}, object) as UntypedObjectCollection; // TODO review if we should take this or the original copyObj impl
         copied[path] = update_fun((object as any)[path]);
         return copied;
     }
 
     const splittedPath = path.split('.');
-    const copied = copyObj(object);
+    const copied = Object.assign({}, object) as UntypedObjectCollection;
 
     const firstElem = splittedPath[0];
     splittedPath.shift();
