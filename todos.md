@@ -1,5 +1,7 @@
 # TODOs
 
+## add notEmpty
+
 ## experiment with immutability, with type system + maybe proxy objects or something similar
 
 ## publish new version
