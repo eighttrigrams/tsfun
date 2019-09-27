@@ -130,7 +130,9 @@ export {
 
 export {
     lookup,
-    keysAndValues
+    keysAndValues,
+    keys,
+    values
 } from './src/objectmap'
 
 
@@ -142,5 +144,6 @@ export {
     getOnOr,
     clone,
     assoc,
+    dissoc,
     update
 } from './src/objectstruct';
