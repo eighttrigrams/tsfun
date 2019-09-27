@@ -1,7 +1,8 @@
 import {isArray, isEmpty, isObject} from './predicate';
 import {reverseUncurry2} from './core';
-import {ArrayList, ObjectStruct, Predicate, UntypedObjectCollection} from './type';
+import {ObjectStruct, Predicate, UntypedObjectCollection} from './type';
 import {on} from './comparator';
+import {val} from "./composition";
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -75,7 +76,7 @@ export function getElForPathIn(object: ObjectStruct, path: string) {
 
 
 
-export function setOn(object: any /* TODO ObjectStruct */, path: string) {
+export function setOn(object: any, path: string) {
 
     return (val: any): void => {
 
@@ -94,45 +95,33 @@ export function setOn(object: any /* TODO ObjectStruct */, path: string) {
 }
 
 
-export function update(path: string, update_fun: (val: any) => any) { return (object: ObjectStruct) => { // TODO make generic typing
+export function update(path: string, update_fun?: (val: any) => any) {
 
-    if (!path.includes('.')) {
+    return (object: ObjectStruct) => {
 
+        if (!path.includes('.')) {
+
+            const copied = Object.assign({}, object) as UntypedObjectCollection;
+            if (update_fun) copied[path] = update_fun((object as any)[path]);
+            else delete copied[path];
+            return copied;
+        }
+
+        const splittedPath = path.split('.');
         const copied = Object.assign({}, object) as UntypedObjectCollection;
-        copied[path] = update_fun((object as any)[path]);
+
+        const firstElem = splittedPath[0];
+        splittedPath.shift();
+        copied[firstElem] = update(splittedPath.join('.'), update_fun)((object as any)[firstElem]);
         return copied;
     }
-
-    const splittedPath = path.split('.');
-    const copied = Object.assign({}, object) as UntypedObjectCollection;
-
-    const firstElem = splittedPath[0];
-    splittedPath.shift();
-    copied[firstElem] = update(splittedPath.join('.'), update_fun)((object as any)[firstElem]);
-    return copied;
-}}
+}
 
 
-export const assoc = (path: string, val: any) => update(path, () => val); // TODO use val function to set val
+export const assoc = (path: string, v: any) => update(path, val(v));
 
 
-export function dissoc(path: string) { return (object: ObjectStruct) => { // TODO refactor to also use update function
-
-    if (!path.includes('.')) {
-
-        const copied = Object.assign({}, object) as UntypedObjectCollection;
-        delete copied[path];
-        return copied;
-    }
-
-    const splittedPath = path.split('.');
-    const copied = Object.assign({}, object) as UntypedObjectCollection;
-
-    const firstElem = splittedPath[0];
-    splittedPath.shift();
-    copied[firstElem] = dissoc(splittedPath.join('.'))((object as any)[firstElem]);
-    return copied;
-}}
+export const dissoc = (path: string) => update(path);
 
 
 export const to = reverseUncurry2(getElForPathIn);
