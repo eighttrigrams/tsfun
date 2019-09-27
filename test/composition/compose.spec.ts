@@ -7,16 +7,7 @@ import {drop, dropRight, take} from '../../src/arraylist';
  */
 describe('compose', () => {
 
-    // TODO
-    // it('compose', () =>
-    //     expect(
-    //
-    //         compose(uniteObj({c: 3}))({a: 1, b: 2}))
-    //
-    //         .toEqual({a: 1, b: 2, c: 3}));
-
-
-    it('compose', () =>
+    it('basic case', () =>
         expect(
 
             compose(take(1))([5, 6]))
@@ -24,7 +15,7 @@ describe('compose', () => {
             .toEqual([5]));
 
 
-    it('compose nest', () =>
+    it('nest', () =>
         expect(
 
             flow(

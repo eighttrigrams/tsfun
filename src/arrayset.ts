@@ -97,7 +97,6 @@ export const uniqueBy = (compare?: Comparator) =>
 export const unique = uniqueBy();
 
 
-// TODO add test
 // Contributed by Thomas Kleinke
 export function duplicates<A>(array: ArrayList<A>): ArraySet<A> {
 

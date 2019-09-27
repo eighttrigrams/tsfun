@@ -18,7 +18,7 @@ export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function
 
     if (struct === undefined) return undefined;
     if (typeof struct === 'boolean') return struct as boolean;
-    if (typeof struct === 'string') return struct as string; // TODO make predicates isString, isBoolean, isNumber for internal use
+    if (typeof struct === 'string') return struct as string;
     if (typeof struct === 'number') return struct as number;
 
     if (isArray(struct)) {

@@ -65,17 +65,6 @@ describe('flow', () => {
             .toEqual([20, 21]));
 
 
-    // TODO move to tsfun-extra
-    // it('with objects', () =>
-    //     expect(
-    //
-    //         flow(
-    //             {a: 1, b: 2},
-    //             uniteObj({c: 3})))
-    //
-    //         .toEqual({a: 1, b: 2, c: 3}));
-
-
     // intended use case
 
     // In the example above we feed the flow with an array, and then transform this array step

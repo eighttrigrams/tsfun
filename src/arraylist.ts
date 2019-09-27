@@ -53,10 +53,10 @@ export const flatMap = <A>(f: (_: A) => ArrayList<A>): SimpleTransformation<Arra
     (as: Array<A>) =>
         as.length < 1
             ? []
-            : as.reduce(intoArrayWith(f),[]); // TODO or use flatten?
+            : as.reduce(intoArrayWith(f),[]);
 
 
-export const flatten = reduce((acc: any, val: any) => acc.concat(val), [] as any); // TODO review, see flatMap, review (missing) typing
+export const flatten = reduce((acc: any, val: any) => acc.concat(val), [] as any);
 
 
 export const indices = <A>(f: (a: A) => boolean) =>
@@ -200,7 +200,6 @@ export const nthOr =
 /**
  * see https://mail.mozilla.org/pipermail/es-discuss/2012-April/022273.html
  * TODO maybe change so that it takes an existing array or map and returns something of the same type
- * TODO test
  */
 export function arrayList(size: number) {
 
