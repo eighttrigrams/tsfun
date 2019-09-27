@@ -199,7 +199,6 @@ export const nthOr =
 
 /**
  * see https://mail.mozilla.org/pipermail/es-discuss/2012-April/022273.html
- * TODO maybe change so that it takes an existing array or map and returns something of the same type
  */
 export function arrayList(size: number) {
 

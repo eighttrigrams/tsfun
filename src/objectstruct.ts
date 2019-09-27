@@ -98,7 +98,7 @@ export function update(path: string, update_fun: (val: any) => any) { return (ob
 
     if (!path.includes('.')) {
 
-        const copied = Object.assign({}, object) as UntypedObjectCollection; // TODO review if we should take this or the original copyObj impl
+        const copied = Object.assign({}, object) as UntypedObjectCollection;
         copied[path] = update_fun((object as any)[path]);
         return copied;
     }
@@ -120,7 +120,7 @@ export function dissoc(path: string) { return (object: ObjectStruct) => { // TOD
 
     if (!path.includes('.')) {
 
-        const copied = Object.assign({}, object) as UntypedObjectCollection; // TODO review if we should take this or the original copyObj impl
+        const copied = Object.assign({}, object) as UntypedObjectCollection;
         delete copied[path];
         return copied;
     }
