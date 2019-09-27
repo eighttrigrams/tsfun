@@ -142,6 +142,7 @@ export {
     getOnOr,
     clone,
     assoc,
+    dissoc,
     update
 } from './src/objectstruct';
 

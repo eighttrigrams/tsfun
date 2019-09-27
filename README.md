@@ -138,6 +138,7 @@ console.log(take(2)([1,2,3]))
 * [getOn](test/objectstruct/get_on.spec.ts)
 * [getOnOr](test/objectstruct/get_on_or.spec.ts)
 * [assoc](test/objectstruct/assoc.spec.ts)
+* [dissoc](test/objectstruct/dissoc.spec.ts)
 * [update](test/objectstruct/update.spec.ts)
 
 ### ObjectMap
