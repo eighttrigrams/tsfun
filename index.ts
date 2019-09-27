@@ -12,7 +12,7 @@ export {
 } from './src/type';
 
 export {
-    identity // TODO review if putting to composition package
+    identity
 } from './src/core';
 
 export {
@@ -144,7 +144,3 @@ export {
     assoc,
     update
 } from './src/objectstruct';
-
-
-// TODO make
-// .filter(on('pathType')(or(isNot(defined), 'sameRank'))
