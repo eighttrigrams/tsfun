@@ -130,7 +130,9 @@ export {
 
 export {
     lookup,
-    keysAndValues
+    keysAndValues,
+    keys,
+    values
 } from './src/objectmap'
 
 
