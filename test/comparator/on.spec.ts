@@ -1,6 +1,6 @@
-import {arrayEquivalent, by, is, jsonEqual, on} from '../../src/comparator';
+import {arrayEquivalent, by, is, jsonEqual} from '../../src/comparator';
 import {empty, isArray, isDefined, isEmpty, isNot, isUndefined, undefinedOrEmpty} from '../../src/predicate';
-import {intersectBy} from '../../src/arrayset';
+import {intersectBy, on} from 'tsfun-core';
 
 
 /**

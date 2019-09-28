@@ -1,6 +1,5 @@
 import {Predicate, PredicateProducer} from './type';
-import {on} from './comparator';
-
+import {on} from 'tsfun-core';
 
 // ------------ @author Daniel de Oliveira -----------------
 

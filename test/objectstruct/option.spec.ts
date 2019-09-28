@@ -1,7 +1,8 @@
-import {is, jsonEqual, on, tripleEqual} from '../../src/comparator';
+import {is, jsonEqual, tripleEqual} from '../../src/comparator';
 import {isEmpty} from '../../src/predicate';
 import {flow} from '../../src/composition';
 import {option, to} from '../../src/objectstruct';
+import {on} from 'tsfun-core';
 
 
 /**

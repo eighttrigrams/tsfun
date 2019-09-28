@@ -2,7 +2,7 @@
 
 **tsfun - functional combinator library for TypeScript**
 
-see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra) 
+see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra), [tsfun-core](https://github.com/danielmarreirosdeoliveira/tsfun-core)
 
 ## Run
 
@@ -48,19 +48,12 @@ console.log(take(2)([1,2,3]))
 * [isnt](test/comparator/isnt.spec.ts)
 * [jsonEqual](test/comparator/json_equal.spec.ts)
 * [differentFrom](test/comparator/different_from.spec.ts)
-* [differentFromBy](test/comparator/different_from_by.spec.ts)
 * [includedIn](test/comparator/included_in.spec.ts)
-* [includedInBy](test/comparator/included_in_by.spec.ts)
 * [containedIn](test/comparator/contained_in.spec.ts)
-* [containedInBy](test/comparator/contained_in_by.spec.ts)
 * [arrayEqual](test/comparator/array_equal.spec.ts)
-* [arrayEqualBy](test/comparator/array_equal_by.spec.ts)
 * [arrayEquivalent](test/comparator/array_equivalent.spec.ts)
-* [arrayEquivalentBy](test/comparator/array_equivalent_by.spec.ts)
 * [objectEqual](test/comparator/object_equal.spec.ts)
-* [objectEqualBy](test/comparator/object_equal_by.spec.ts)
 * [equal](test/comparator/equal.spec.ts)
-* [equalBy](test/comparator/equal_by.spec.ts)
 * [equivalent](test/comparator/equivalent.spec.ts)
 * [on (by)](test/comparator/on.spec.ts)
 * [without (by)](test/comparator/without.spec.ts)
@@ -114,17 +107,11 @@ console.log(take(2)([1,2,3]))
 [Source](src/arrayset.ts)
 
 * [intersection](test/arrayset/intersect.spec.ts)
-* [intersectionBy](test/arrayset/intersection_by.spec.ts)
 * [intersect](test/arrayset/intersect.spec.ts)
-* [intersectBy](test/arrayset/intersect_by.spec.ts)
 * [subtract](test/arrayset/subtract.spec.ts)
-* [subtractBy](test/arrayset/subtract_by.spec.ts)
 * [union](test/arrayset/union.spec.ts)
-* [unionBy](test/arrayset/union_by.spec.ts)
 * [unite](test/arrayset/unite.spec.ts)
-* [uniteBy](test/arrayset/unite_by.spec.ts)
 * [unique](test/arrayset/unique.spec.ts)
-* [uniqueBy](test/arrayset/unique_by.spec.ts)
 * [duplicates](test/arrayset/duplicates.spec.ts)
 
 ### ObjectStruct

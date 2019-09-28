@@ -1,5 +1,4 @@
-import {jsonEqual, on} from '../../src/comparator';
-import {unique, uniqueBy} from '../../src/arrayset';
+import {unique} from '../../src/arrayset';
 
 
 /**

@@ -1,6 +1,7 @@
-import {is, on} from '../../src/comparator';
+import {is} from '../../src/comparator';
 import {flow} from '../../src/composition';
 import {mapOption, option, to} from '../../src/objectstruct';
+import {on} from 'tsfun-core';
 
 
 /**

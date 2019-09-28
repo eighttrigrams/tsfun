@@ -36,27 +36,22 @@ export {
     is,
     isnt,
     arrayEqual,
-    arrayEqualBy,
     arrayEquivalent,
-    arrayEquivalentBy,
     equal,
-    equalBy,
     equalTo,
     equivalent,
     objectEqual,
-    objectEqualBy,
     tripleEqual,
     includedIn,
-    includedInBy,
     differentFrom,
-    differentFromBy,
     containedIn,
-    containedInBy,
     jsonEqual,
-    on,
     without,
     by
 } from './src/comparator';
+
+
+export {on} from 'tsfun-core';
 
 export {
     compose,
@@ -113,17 +108,11 @@ export {
 
 export {
     intersection,
-    intersectionBy,
     union,
-    unionBy,
     intersect,
-    intersectBy,
     subtract,
-    subtractBy,
     unite,
-    uniteBy,
     unique,
-    uniqueBy,
     duplicates
 } from './src/arrayset';
 

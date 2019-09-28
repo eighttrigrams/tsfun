@@ -1,5 +1,4 @@
-import {jsonEqual} from '../../src/comparator';
-import {union, unionBy, unite, uniteBy} from '../../src/arrayset';
+import {union} from '../../src/arrayset';
 
 
 /**

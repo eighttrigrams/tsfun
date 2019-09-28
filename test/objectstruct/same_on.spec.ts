@@ -2,7 +2,8 @@
  * @author Daniel de Oliveira
  */
 import {sameOn} from '../../src/objectstruct';
-import {is, on} from '../../src/comparator';
+import {is} from '../../src/comparator';
+import {on} from 'tsfun-core';
 
 describe('sameOn - experimental', () => {
 
