@@ -93,7 +93,7 @@ export function getElForPathIn(object: any, path: string): any {
 
     if (dot === -1 && leftBracket === -1) {
 
-        if (isObject(object)) return makeResult(object[newPath]);
+        if (object instanceof Object /* TODO should be isObject */) return makeResult(object[newPath]);
         else return undefined;
     }
 
