@@ -23,8 +23,6 @@ console.log(take(2)([1,2,3]))
 
 ### Predicate
 
-[Source](src/predicate.ts)
-
 * [has](test/predicate/has.spec.ts) 
 * [hasNot](test/predicate/has_not.spec.ts) 
 * [isEmpty](test/predicate/is_empty.spec.ts)
@@ -40,8 +38,6 @@ console.log(take(2)([1,2,3]))
 * [not](test/predicate/not.spec.ts)
 
 ### Comparator
-
-[Source](src/comparator.ts)
 
 * [tripleEqual](test/comparator/triple_equal.spec.ts)
 * [is](test/comparator/is.spec.ts)
@@ -60,8 +56,6 @@ console.log(take(2)([1,2,3]))
 
 ### Composition
 
-[Source](src/composition.ts)
-
 * [flow](test/composition/flow.spec.ts)
 * [compose](test/composition/compose.spec.ts)
 * [cond](test/composition/cond.spec.ts)
@@ -69,8 +63,6 @@ console.log(take(2)([1,2,3]))
 * val
 
 ### ArrayList
-
-[Source](src/arraylist.ts)
 
 * [copy](test/arraylist/copy.spec.ts)
 * arrayList
@@ -104,8 +96,6 @@ console.log(take(2)([1,2,3]))
 
 ### ArraySet
 
-[Source](src/arrayset.ts)
-
 * [intersection](test/arrayset/intersect.spec.ts)
 * [intersect](test/arrayset/intersect.spec.ts)
 * [subtract](test/arrayset/subtract.spec.ts)
@@ -115,8 +105,6 @@ console.log(take(2)([1,2,3]))
 * [duplicates](test/arrayset/duplicates.spec.ts)
 
 ### ObjectStruct
-
-[Source](src/objectstruct.ts)  
 
 * [to](test/objectstruct/to.spec.ts)
 * [setOn](test/objectstruct/set_on.spec.ts)
@@ -130,16 +118,12 @@ console.log(take(2)([1,2,3]))
 
 ### ObjectMap
 
-[Source](src/objectmap.ts)
-
 * keysAndValues (list of pairs)
 * keys
 * values
 * [lookup](test/objectmap/lookup.spec.ts)
 
 ### ArrayList (lazy)
-
-[Source](src/arraylist_lazy.ts)
 
 * [Lazy list functions](test/arraylist/lazyness.spec.ts)
 * [materialize](test/arraylist/materialize.spec.ts)
