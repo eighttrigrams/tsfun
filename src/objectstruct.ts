@@ -176,8 +176,8 @@ export function update(path: string, update_fun?: (val: any) => any) {
             return copied;
         }
 
-        let key = undefined;
-        let remainingPath = undefined;
+        let key: string|number = -1;
+        let remainingPath: string = '';
         let copied = undefined;
 
         if (leftBracket === 0) {
