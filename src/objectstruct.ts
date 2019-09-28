@@ -119,9 +119,10 @@ export function getElForPathIn(object: any, path: string): any {
 
     const isObject_ = (o: any) => o instanceof Object;
 
-    const {dot, leftBracket, rightBracket, newPath} = calcProps(path);
+    const props = calcProps(path);
+    const {dot, leftBracket, rightBracket, newPath} = props;
 
-    if (dot === -1 && leftBracket === -1) {
+    if (pathIsSimple(props)) {
         if (isObject_(object)) return makeValueForCurrentKey(object[newPath]);
         else return undefined;
     }
@@ -136,7 +137,7 @@ export function getElForPathIn(object: any, path: string): any {
 
     if (!isObject_(object)) return undefined;
 
-    const splitPos = splitPosition(leftBracket, rightBracket, dot);
+    const splitPos = splitPosition(props);
 
     return evaulateKeyAndPath(
         makeValueForCurrentKey(object[newPath.substring(0, splitPos)]),
@@ -144,7 +145,7 @@ export function getElForPathIn(object: any, path: string): any {
 }
 
 
-function splitPosition(leftBracket: number, rightBracket: number, dot: number) {
+function splitPosition({leftBracket, dot}: any) {
 
     return dot === -1 && leftBracket > -1
         ? leftBracket
@@ -163,13 +164,20 @@ function applyUpdate(copied: any, key: string|number, update_fun?: (val: any) =>
 }
 
 
+function pathIsSimple({dot, leftBracket}: any) {
+
+    return dot === -1 && leftBracket === -1;
+}
+
+
 export function update(path: string, update_fun?: (val: any) => any) {
 
     return (struct: ObjectStruct): any => {
 
-        const {dot, leftBracket, rightBracket, newPath} = calcProps(path);
+        const props = calcProps(path);
+        const {dot, leftBracket, rightBracket, newPath} = props;
 
-        if (dot === -1 && leftBracket === -1) { // must be object
+        if (pathIsSimple(props)) { // must be object
 
             const copied = Object.assign({}, struct) as UntypedObjectCollection;
             applyUpdate(copied, newPath, update_fun);
@@ -193,7 +201,7 @@ export function update(path: string, update_fun?: (val: any) => any) {
 
         } else {
 
-            const splitPos = splitPosition(leftBracket, rightBracket, dot);
+            const splitPos = splitPosition(props);
 
             key = newPath.substring(0, splitPos);
             remainingPath = newPath.substring(splitPos);
