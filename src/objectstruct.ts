@@ -1,4 +1,4 @@
-import {isArray, isEmpty, isObject} from './predicate';
+import {isArray, isEmpty, isObject, isString} from './predicate';
 import {reverseUncurry2} from './core';
 import {ObjectStruct, Predicate, UntypedObjectCollection} from './type';
 import {on} from './comparator';
@@ -171,47 +171,54 @@ function pathIsSimple({dot, leftBracket}: any) {
 }
 
 
+function convertPath(path: string) {
+
+    const segments = [];
+    let current = '';
+    for (let i = 0; i < path.length; i++) {
+        if (path[i] !== '[' && path[i] !== '.' && path[i] !== ']') {
+            current += path[i];
+        } else {
+            if (path[i] === ']') {
+                segments.push(parseInt(current));
+            } else {
+                if (current) segments.push(current);
+            }
+            current = '';
+        }
+    }
+    if (current) segments.push(current);
+    return segments;
+}
+
+
 export function update(path: string, update_fun?: (val: any) => any) {
 
-    return (struct: ObjectStruct): any => {
+    return (struct: ObjectStruct): any => _update(convertPath(path), struct, update_fun)
+}
 
-        const props = calcProps(path);
-        const {leftBracket, rightBracket, newPath} = props;
 
-        if (pathIsSimple(props)) { // must be object
+function _update(path: Array<string|number>, struct: ObjectStruct, update_fun?: (val: any) => any, ) {
 
-            const copied = Object.assign({}, struct) as UntypedObjectCollection;
-            applyUpdate(copied, newPath, update_fun);
-            return copied;
-        }
+    const key = path[0];
+    let copied = undefined;
 
-        let key: string|number = -1;
-        let remainingPath: string = '';
-        let copied = undefined;
+    if (path.length === 1) { // last segment
+        copied = isString(key)
+            ? Object.assign({}, struct) as UntypedObjectCollection
+            : copy(struct as any) as UntypedObjectCollection;
 
-        if (leftBracket === 0) {
+        applyUpdate(copied, key, update_fun);
 
-            key = parseInt(newPath.substring(1, rightBracket));
-            remainingPath = newPath.substring(rightBracket + 1);
-            copied = copy(struct as any) as UntypedObjectCollection;
+    } else {
+        copied = isString(key)
+            ? Object.assign({}, struct) as UntypedObjectCollection
+            : copy(struct as any) as UntypedObjectCollection;
 
-            if (remainingPath.length < 1) {
-                applyUpdate(copied, key, update_fun);
-                return copied;
-            }
-
-        } else {
-
-            const splitPos = splitPosition(props);
-
-            key = newPath.substring(0, splitPos);
-            remainingPath = newPath.substring(splitPos);
-            copied = Object.assign({}, struct) as UntypedObjectCollection;
-        }
-
-        copied[key] = update(remainingPath, update_fun)(copied[key]);
-        return copied;
+        path.shift();
+        copied[key] = _update(path, copied[key], update_fun);
     }
+    return copied;
 }
 
 
