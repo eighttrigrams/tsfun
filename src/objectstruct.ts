@@ -101,6 +101,7 @@ const isObject_ = (o: any) => o instanceof Object;
 // library internal
 export function getElForPathIn(object: any, path: string): any {
 
+    if (!path || path.length < 1) return undefined;
     return _getElForPathIn(object, convertPath(path));
 }
 
