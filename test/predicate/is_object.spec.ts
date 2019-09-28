@@ -1,4 +1,4 @@
-import {isObject} from '../../src/predicate';
+import {isObject} from 'tsfun-core';
 
 
 /**

@@ -1,11 +1,7 @@
-import {Predicate, PredicateProducer} from './type';
-import {on} from 'tsfun-core';
+import {Predicate} from './type';
+import {isArray, isNot, isObject, on} from 'tsfun-core';
 
 // ------------ @author Daniel de Oliveira -----------------
-
-export const isNot: PredicateProducer = <A>(f: Predicate<A>) =>
-    (a: A) => flip(f(a));
-
 
 export const not = isNot;
 
@@ -44,15 +40,6 @@ export function isEmpty<T>(coll: Object|Array<T>): boolean {
 }
 
 export const empty = isEmpty;
-
-
-export const flip = (v: boolean) => !v;
-
-
-export const isArray: Predicate<any> = (as: any) => as instanceof Array;
-
-
-export const isObject: Predicate<any> = (o: any) => o instanceof Object && o.constructor === Object;
 
 
 export const isString: Predicate<any> = (as: any) => typeof as === 'string';

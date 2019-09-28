@@ -1,4 +1,4 @@
-import {isArray} from '../../src/predicate';
+import {isArray} from 'tsfun-core';
 
 /**
  * If an entity is an Array is determined

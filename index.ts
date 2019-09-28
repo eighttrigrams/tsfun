@@ -16,7 +16,6 @@ export {
 } from './src/core';
 
 export {
-    isNot,
     not,
     isDefined,
     defined,
@@ -27,9 +26,10 @@ export {
     undefinedOrEmpty,
     isEmpty,
     empty,
-    isArray,
-    isObject
 } from './src/predicate';
+
+
+export {isArray, isObject, isNot} from 'tsfun-core';
 
 
 export {

@@ -1,4 +1,4 @@
-import {isNot} from './predicate';
+import {isNot} from 'tsfun-core';
 import {ArrayList, Pair, Predicate, SimpleTransformation} from './type';
 import {identical} from './core';
 import {subtract} from "./arrayset";

@@ -1,4 +1,4 @@
-import {isNot} from '../../src/predicate';
+import {isNot} from 'tsfun-core';
 import {tripleEqual} from '../../src/comparator';
 
 

@@ -1,9 +1,9 @@
-import {isArray, isEmpty, isObject, isString} from './predicate';
+import {on, isArray, isObject} from 'tsfun-core';
+import {isEmpty, isString} from './predicate';
 import {reverseUncurry2} from './core';
 import {ObjectStruct, Predicate, UntypedObjectCollection} from './type';
 import {val} from "./composition";
 import {copy} from './arraylist';
-import {on} from 'tsfun-core';
 
 
 // ------------ @author Daniel de Oliveira -----------------

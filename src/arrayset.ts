@@ -1,5 +1,5 @@
 import {ArrayList, ArraySet, Comparator} from './type';
-import {isNot} from './predicate';
+import {isNot} from 'tsfun-core';
 import {includedInBy, uniqueBy, intersectionBy, unionBy,
     intersectBy, uniteBy, subtractBy} from 'tsfun-core'
 

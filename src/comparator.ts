@@ -1,4 +1,4 @@
-import {isArray, isNot} from './predicate';
+import {isArray, isNot} from 'tsfun-core';
 import {Comparator, Predicate} from './type';
 import {getElForPathIn} from './objectstruct';
 import {objectEqualBy, arrayEqualBy, includedInBy,
