@@ -103,19 +103,21 @@ export function getElForPathIn(object: any, path: string): any {
     if (leftBracket === 0 && ((dot !== -1 && leftBracket < dot) || dot === -1)) {
         const relevantSegment = newPath.substring(leftBracket + 1, rightBracket);
         let i = parseInt(relevantSegment);
-        if (!isArray(object)) throw 'expected array in getElForPathIn, [' + relevantSegment + '], ' + JSON.stringify(object);
+        if (!isArray(object)) return undefined;
         object = makeResult(object[i]);
         newPath_ = newPath.substring(rightBracket + 1, newPath.length);
     }
 
     // object access later, object access now
     if (dot !== -1 && ((leftBracket !== -1 && dot < leftBracket) || leftBracket === -1)) {
+        if (!isObject(object)) return undefined;
         object = makeResult(object[newPath.substr(0, dot)]);
         newPath_ = newPath.substring(dot + 1, newPath.length);
     }
 
     // array access later, that is we have object access
     if (leftBracket > 0 && (leftBracket < dot || dot === -1)) {
+        if (!isObject(object)) return undefined;
         let partial = newPath.substring(0, leftBracket);
         object = makeResult(object[partial]);
         newPath_ = newPath.substring(leftBracket, newPath.length);
