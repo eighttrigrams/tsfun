@@ -3,6 +3,7 @@ import {reverseUncurry2} from './core';
 import {ObjectStruct, Predicate, UntypedObjectCollection} from './type';
 import {on} from './comparator';
 import {val} from "./composition";
+import {copy} from './arraylist';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -94,6 +95,25 @@ function evaulateKeyAndPath(valueForCurrentKey: any, remainingPath: string) {
 }
 
 
+export function setOn(object: any, path: string) {
+
+    return (val: any): void => {
+
+        const segments = path.split('.');
+
+        segments.reduce((currentLevel, segment, i) => {
+            if (i === segments.length - 1) { // last segment
+                currentLevel[segment] = val;
+                return currentLevel; // does not matter
+            } else {
+                if (!currentLevel[segment]) currentLevel[segment] = {};
+                return currentLevel[segment];
+            }
+        }, object);
+    }
+}
+
+
 // library internal
 export function getElForPathIn(object: any, path: string): any {
 
@@ -131,44 +151,61 @@ export function getElForPathIn(object: any, path: string): any {
 }
 
 
-
-export function setOn(object: any, path: string) {
-
-    return (val: any): void => {
-
-        const segments = path.split('.');
-
-        segments.reduce((currentLevel, segment, i) => {
-            if (i === segments.length - 1) { // last segment
-                currentLevel[segment] = val;
-                return currentLevel; // does not matter
-            } else {
-                if (!currentLevel[segment]) currentLevel[segment] = {};
-                return currentLevel[segment];
-            }
-        }, object);
-    }
-}
-
-
 export function update(path: string, update_fun?: (val: any) => any) {
 
-    return (object: ObjectStruct) => {
+    return (struct: ObjectStruct): any => {
 
-        if (!path.includes('.')) {
+        const {dot, leftBracket, rightBracket, newPath} = calcProps(path);
 
-            const copied = Object.assign({}, object) as UntypedObjectCollection;
-            if (update_fun) copied[path] = update_fun((object as any)[path]);
-            else delete copied[path];
+        if (dot === -1 && leftBracket === -1) { // must be object
+
+            const copied = Object.assign({}, struct) as UntypedObjectCollection;
+            if (update_fun) {
+                copied[newPath] = update_fun((struct as any)[newPath]);
+            }
+            else delete copied[newPath];
+
             return copied;
         }
 
-        const splittedPath = path.split('.');
-        const copied = Object.assign({}, object) as UntypedObjectCollection;
+        if (leftBracket === 0) { // must be array
 
-        const firstElem = splittedPath[0];
-        splittedPath.shift();
-        copied[firstElem] = update(splittedPath.join('.'), update_fun)((object as any)[firstElem]);
+            const copied = copy(struct as any) as UntypedObjectCollection;
+            let i = parseInt(newPath.substring(leftBracket + 1, rightBracket));
+
+            const remainingPath = newPath.substring(rightBracket + 1);
+
+            if (remainingPath.length < 1) {
+
+                if (update_fun) {
+                    copied[i] = update_fun((struct as any)[i]);
+                }
+                else delete copied[i];
+
+            } else {
+                copied[i] = update(remainingPath, update_fun)(copied[i])
+            }
+
+            return copied;
+        }
+
+        // must be object, and also an object or array is coming next
+        const copied = Object.assign({}, struct) as UntypedObjectCollection;
+
+        let i =
+            dot === -1 && leftBracket > -1
+                ? leftBracket
+                : dot > -1 && leftBracket === -1
+                ? dot
+                : dot < leftBracket
+                    ? dot
+                    : leftBracket;
+
+
+        const currentKey = newPath.substring(0, i);
+        const remainingPath = newPath.substring(i);
+
+        copied[currentKey] = update(remainingPath, update_fun)((struct as any)[currentKey]);
         return copied;
     }
 }
