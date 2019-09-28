@@ -76,13 +76,21 @@ function calcProps(path: string) {
 }
 
 
-function makeResult(resultSegment: any) {
+function makeValueForCurrentKey(resultSegment: any) {
     return (resultSegment
         || resultSegment === ''
         || resultSegment === 0
         || resultSegment === false)
         ? resultSegment
         : undefined;
+}
+
+
+function evaulateKeyAndPath(valueForCurrentKey: any, remainingPath: string) {
+
+    if (remainingPath.length < 1) return valueForCurrentKey as any;
+    if (valueForCurrentKey === undefined) return undefined;
+    return getElForPathIn(valueForCurrentKey, remainingPath) as any;
 }
 
 
@@ -95,39 +103,38 @@ export function getElForPathIn(object: any, path: string): any {
 
     if (dot === -1 && leftBracket === -1) {
 
-        if (isObject_(object)) return makeResult(object[newPath]);
+        if (isObject_(object)) return makeValueForCurrentKey(object[newPath]);
         else return undefined;
     }
 
-    let remainingPath = newPath;
-
-    // array access directly at the beginning
-    if (leftBracket === 0 && ((dot !== -1 && leftBracket < dot) || dot === -1)) {
+    if (leftBracket === 0) {
         if (!isArray(object)) return undefined;
         const relevantSegment = newPath.substring(leftBracket + 1, rightBracket);
         let i = parseInt(relevantSegment);
-        object = makeResult(object[i]);
-        remainingPath = newPath.substring(rightBracket + 1, newPath.length);
+
+        return evaulateKeyAndPath(
+            makeValueForCurrentKey(object[i]),
+            newPath.substring(rightBracket + 1));
     }
 
     // object access later, object access now
     if (dot !== -1 && ((leftBracket !== -1 && dot < leftBracket) || leftBracket === -1)) {
         if (!isObject_(object)) return undefined;
-        object = makeResult(object[newPath.substr(0, dot)]);
-        remainingPath = newPath.substring(dot + 1, newPath.length);
+        return evaulateKeyAndPath(
+            makeValueForCurrentKey(object[newPath.substr(0, dot)]),
+            newPath.substring(dot + 1));
     }
 
     // array access later, that is we have object access
     if (leftBracket > 0 && (leftBracket < dot || dot === -1)) {
         if (!isObject_(object)) return undefined;
         let partial = newPath.substring(0, leftBracket);
-        object = makeResult(object[partial]);
-        remainingPath = newPath.substring(leftBracket, newPath.length);
+        return evaulateKeyAndPath(
+            makeValueForCurrentKey(object[partial]),
+            newPath.substring(leftBracket));
     }
 
-    if (remainingPath.length < 1) return object as any;
-    if (object === undefined) return undefined;
-    return getElForPathIn(object, remainingPath) as any;
+    return undefined;
 }
 
 
