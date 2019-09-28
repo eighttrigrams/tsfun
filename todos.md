@@ -1,5 +1,7 @@
 # TODOs
 
+## make and combinator and use in assert-fields-are-valid
+
 ## add notEmpty
 
 ## experiment with immutability, with type system + maybe proxy objects or something similar

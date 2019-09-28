@@ -116,22 +116,30 @@ describe('on (by)', () => {
 
             .toEqual(false));
 
-    // err cases
 
-    xit('is not an object', () =>
+    it('is not an object', () =>
         expect(
 
-            () => on('a[3]', is(15))([]))
+            on('a[3]', is(15))([]))
 
-            .toThrow());
+            .toEqual(false));
 
 
-    xit('is not an array', () =>
+    it('is not an array', () =>
         expect(
 
-            () => on('[10].a', is(15))({ a: 'b' }))
+            on('[10].a', is(15))({ a: 'b' }))
 
-            .toThrow());
+            .toEqual(false));
+
+
+    // it('on - with find and isNot - isUndefinedOrEmpty predicate works with undefined', () =>
+    //     expect(
+    //
+    //         [{a: [1, 2, 4]}, {b: undefined}] <- make that work with path not matching
+    //             .filter(isNot(on('a')(isUndefinedOrEmpty)))
+    //
+    //     ).toEqual([{a: [1, 2, 4]}] as any));
 
     // use cases
 
@@ -151,7 +159,6 @@ describe('on (by)', () => {
                 .filter(isNot(on('a.b')({a: {b: 5}}))))
 
             .toEqual([{a: {b: 4}} as any]));
-
 
 
     it('on - with intersectBy - symmetric',() =>
@@ -217,15 +224,6 @@ describe('on (by)', () => {
         ).toEqual([{a: [1, 2, 4]}] as any));
 
 
-    // it('on - with find and isNot - isUndefinedOrEmpty predicate works with undefined', () =>
-    //     expect(
-    //
-    //         [{a: [1, 2, 4]}, {b: undefined}] <- make that work with path not matching
-    //             .filter(isNot(on('a')(isUndefinedOrEmpty)))
-    //
-    //     ).toEqual([{a: [1, 2, 4]}] as any));
-
-
     // it('on - with find and isNot - partial arrayEquivalent as predicate, without path match', () =>
     //     expect(
     //
@@ -263,15 +261,6 @@ describe('on (by)', () => {
             ([{a: {b: {c: 'e'}}}]))
 
             .toEqual([{a: {b: {c: 'e'}}} as any]));
-
-
-    // it('find onBy equalTo - exact',() =>
-    //     expect(
-    //
-    //         [{a: {b: 4}}, {a: {b: 5}}]
-    //             .find(on('a.b:', jsonEqual)(5)))
-    //
-    //         .toEqual({a: {b: 5}} as any));
 
 
     it('find onBy equalTo - symmetric',() =>
