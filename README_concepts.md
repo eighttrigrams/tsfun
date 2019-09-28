@@ -2,8 +2,8 @@
 
 **tsfun** functions are mainly designed to 
 work with ***Arrays*** and ***Objects***, specified by
-[isArray](test/predicate/is_array.spec.ts) and
-[isObject](test/predicate/is_object.spec.ts).
+[isArray](../tsfun-core/test/predicate/is_array.spec.ts) and
+[isObject](../tsfun-core/test/predicate/is_object.spec.ts).
 These two basic data structures can be found 
 nested arbitrarily deep and mutually. 
 For different treatments in different contexts, 

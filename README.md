@@ -32,9 +32,9 @@ console.log(take(2)([1,2,3]))
 * [isDefined](test/predicate/is_defined.spec.ts)
 * [defined](test/predicate/defined.spec.ts)
 * [isUndefined](test/predicate/is_undefined.spec.ts)
-* [isArray](test/predicate/is_array.spec.ts)
-* [isObject](test/predicate/is_object.spec.ts)
-* [isNot](test/predicate/is_not.spec.ts)
+* [isArray](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/is_array.spec.ts)
+* [isObject](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/is_object.spec.ts)
+* [isNot](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/is_not.spec.ts)
 * [not](test/predicate/not.spec.ts)
 
 ### Comparator
@@ -51,7 +51,7 @@ console.log(take(2)([1,2,3]))
 * [objectEqual](test/comparator/object_equal.spec.ts)
 * [equal](test/comparator/equal.spec.ts)
 * [equivalent](test/comparator/equivalent.spec.ts)
-* [on (by)](test/comparator/on.spec.ts)
+* [on (by)](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/on.spec.ts)
 * [without (by)](test/comparator/without.spec.ts)
 
 ### Composition
