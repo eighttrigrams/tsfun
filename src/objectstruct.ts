@@ -136,18 +136,23 @@ export function getElForPathIn(object: any, path: string): any {
 
     if (!isObject_(object)) return undefined;
 
-    let i =
-        dot === -1 && leftBracket > -1
-            ? leftBracket
-            : dot > -1 && leftBracket === -1
-                ? dot
-                : dot < leftBracket
-                    ? dot
-                    : leftBracket;
+    const splitPos = splitPosition(leftBracket, rightBracket, dot);
 
     return evaulateKeyAndPath(
-        makeValueForCurrentKey(object[newPath.substring(0, i)]),
-        newPath.substring(i));
+        makeValueForCurrentKey(object[newPath.substring(0, splitPos)]),
+        newPath.substring(splitPos));
+}
+
+
+function splitPosition(leftBracket: number, rightBracket: number, dot: number) {
+
+    return dot === -1 && leftBracket > -1
+        ? leftBracket
+        : dot > -1 && leftBracket === -1
+        ? dot
+        : dot < leftBracket
+            ? dot
+            : leftBracket;
 }
 
 
@@ -159,32 +164,24 @@ export function update(path: string, update_fun?: (val: any) => any) {
 
         if (dot === -1 && leftBracket === -1) { // must be object
 
+            const key = newPath;
             const copied = Object.assign({}, struct) as UntypedObjectCollection;
-            if (update_fun) {
-                copied[newPath] = update_fun((struct as any)[newPath]);
-            }
-            else delete copied[newPath];
-
+            if (update_fun) copied[key] = update_fun((struct as any)[key]);
+            else delete copied[key];
             return copied;
         }
 
         if (leftBracket === 0) { // must be array
 
             const copied = copy(struct as any) as UntypedObjectCollection;
-            let i = parseInt(newPath.substring(leftBracket + 1, rightBracket));
+            const key = parseInt(newPath.substring(leftBracket + 1, rightBracket));
 
             const remainingPath = newPath.substring(rightBracket + 1);
 
             if (remainingPath.length < 1) {
-
-                if (update_fun) {
-                    copied[i] = update_fun((struct as any)[i]);
-                }
-                else delete copied[i];
-
-            } else {
-                copied[i] = update(remainingPath, update_fun)(copied[i])
-            }
+                if (update_fun) copied[key] = update_fun((struct as any)[key]);
+                else delete copied[key];
+            } else copied[key] = update(remainingPath, update_fun)(copied[key]);
 
             return copied;
         }
@@ -192,20 +189,12 @@ export function update(path: string, update_fun?: (val: any) => any) {
         // must be object, and also an object or array is coming next
         const copied = Object.assign({}, struct) as UntypedObjectCollection;
 
-        let i =
-            dot === -1 && leftBracket > -1
-                ? leftBracket
-                : dot > -1 && leftBracket === -1
-                ? dot
-                : dot < leftBracket
-                    ? dot
-                    : leftBracket;
+        const splitPos = splitPosition(leftBracket, rightBracket, dot);
 
+        const key = newPath.substring(0, splitPos);
+        const remainingPath = newPath.substring(splitPos);
 
-        const currentKey = newPath.substring(0, i);
-        const remainingPath = newPath.substring(i);
-
-        copied[currentKey] = update(remainingPath, update_fun)((struct as any)[currentKey]);
+        copied[key] = update(remainingPath, update_fun)((struct as any)[key]);
         return copied;
     }
 }
