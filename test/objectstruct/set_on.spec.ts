@@ -11,13 +11,20 @@ describe('setOn', () => {
     });
 
 
-    it('setOn - create path', () => {
+    it('setOn - create path - object', () => {
 
         const o: any = {};
         setOn(o,'a')('d');
         expect(o['a']).toBe('d');
     });
 
+
+    it('setOn - create path - array and object', () => {
+
+        const o: any = {};
+        setOn(o, 'a.[1]')('d');
+        expect(o['a'][1]).toBe('d');
+    });
 
     it('setOn - nested', () => {
 

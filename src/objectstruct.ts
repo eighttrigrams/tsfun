@@ -73,19 +73,24 @@ function makeValueForCurrentKey(resultSegment: any) {
 
 export function setOn(object: any, path: string) {
 
-    return (val: any): void => {
+    return (val: any): void => _setOn(object, convertPath(path), val);
+}
 
-        const segments = path.split('.');
 
-        segments.reduce((currentLevel, segment, i) => {
-            if (i === segments.length - 1) { // last segment
-                currentLevel[segment] = val;
-                return currentLevel; // does not matter
-            } else {
-                if (!currentLevel[segment]) currentLevel[segment] = {};
-                return currentLevel[segment];
-            }
-        }, object);
+export function _setOn(object: any, path: Array<string|number>, val: any) {
+
+    const key = path[0];
+
+    if (path.length === 1) {
+        object[key] = val;
+    } else {
+        path.shift();
+        if (!object[key]) {
+            object[key] = isString(key)
+                ? {}
+                : [];
+        }
+        _setOn(object[key], path, val);
     }
 }
 
