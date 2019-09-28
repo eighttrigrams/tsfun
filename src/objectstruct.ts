@@ -156,6 +156,13 @@ function splitPosition(leftBracket: number, rightBracket: number, dot: number) {
 }
 
 
+function applyUpdate(copied: any, key: string|number, update_fun?: (val: any) => any) {
+
+    if (update_fun) copied[key] = update_fun((copied as any)[key]);
+    else delete copied[key];
+}
+
+
 export function update(path: string, update_fun?: (val: any) => any) {
 
     return (struct: ObjectStruct): any => {
@@ -164,35 +171,34 @@ export function update(path: string, update_fun?: (val: any) => any) {
 
         if (dot === -1 && leftBracket === -1) { // must be object
 
-            const key = newPath;
             const copied = Object.assign({}, struct) as UntypedObjectCollection;
-            if (update_fun) copied[key] = update_fun((struct as any)[key]);
-            else delete copied[key];
+            applyUpdate(copied, newPath, update_fun);
             return copied;
         }
 
-        if (leftBracket === 0) { // must be array
+        let key = undefined;
+        let remainingPath = undefined;
+        let copied = undefined;
 
-            const copied = copy(struct as any) as UntypedObjectCollection;
-            const key = parseInt(newPath.substring(leftBracket + 1, rightBracket));
+        if (leftBracket === 0) {
 
-            const remainingPath = newPath.substring(rightBracket + 1);
+            key = parseInt(newPath.substring(leftBracket + 1, rightBracket));
+            remainingPath = newPath.substring(rightBracket + 1);
+            copied = copy(struct as any) as UntypedObjectCollection;
 
             if (remainingPath.length < 1) {
-                if (update_fun) copied[key] = update_fun((struct as any)[key]);
-                else delete copied[key];
+                applyUpdate(copied, key, update_fun);
+                return copied;
             } else copied[key] = update(remainingPath, update_fun)(copied[key]);
 
-            return copied;
+        } else {
+
+            const splitPos = splitPosition(leftBracket, rightBracket, dot);
+
+            key = newPath.substring(0, splitPos);
+            remainingPath = newPath.substring(splitPos);
+            copied = Object.assign({}, struct) as UntypedObjectCollection;
         }
-
-        // must be object, and also an object or array is coming next
-        const copied = Object.assign({}, struct) as UntypedObjectCollection;
-
-        const splitPos = splitPosition(leftBracket, rightBracket, dot);
-
-        const key = newPath.substring(0, splitPos);
-        const remainingPath = newPath.substring(splitPos);
 
         copied[key] = update(remainingPath, update_fun)((struct as any)[key]);
         return copied;
