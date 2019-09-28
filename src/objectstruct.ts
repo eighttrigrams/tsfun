@@ -61,22 +61,6 @@ export const getOn = <T>(ds: ObjectStruct) => (path: string) => {
 };
 
 
-function calcProps(path: string) {
-
-    let dot = path.indexOf('.');
-    let leftBracket = path.indexOf('[');
-    let rightBracket = path.indexOf(']');
-    let newPath = path;
-    if (dot === 0) {
-        newPath = newPath.substring(1, newPath.length);
-        dot = newPath.indexOf('.');
-        leftBracket = newPath.indexOf('[');
-        rightBracket = newPath.indexOf(']');
-    }
-    return {dot, leftBracket, rightBracket, newPath};
-}
-
-
 function makeValueForCurrentKey(resultSegment: any) {
     return (resultSegment
         || resultSegment === ''
@@ -84,14 +68,6 @@ function makeValueForCurrentKey(resultSegment: any) {
         || resultSegment === false)
         ? resultSegment
         : undefined;
-}
-
-
-function evaulateKeyAndPath(valueForCurrentKey: any, remainingPath: string) {
-
-    if (remainingPath.length < 1) return valueForCurrentKey as any;
-    if (valueForCurrentKey === undefined) return undefined;
-    return getElForPathIn(valueForCurrentKey, remainingPath) as any;
 }
 
 
