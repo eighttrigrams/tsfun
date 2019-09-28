@@ -117,21 +117,21 @@ export function getElForPathIn(object: any, path: string): any {
             newPath.substring(rightBracket + 1));
     }
 
-    // object access later, object access now
-    if (dot !== -1 && ((leftBracket !== -1 && dot < leftBracket) || leftBracket === -1)) {
+    if (dot !== -1 || leftBracket !== -1) {
         if (!isObject_(object)) return undefined;
-        return evaulateKeyAndPath(
-            makeValueForCurrentKey(object[newPath.substr(0, dot)]),
-            newPath.substring(dot + 1));
-    }
 
-    // array access later, that is we have object access
-    if (leftBracket > 0 && (leftBracket < dot || dot === -1)) {
-        if (!isObject_(object)) return undefined;
-        let partial = newPath.substring(0, leftBracket);
+        let i =
+            dot === -1 && leftBracket > -1
+                ? leftBracket
+                : dot > -1 && leftBracket === -1
+                    ? dot
+                    : dot < leftBracket
+                        ? dot
+                        : leftBracket;
+
         return evaulateKeyAndPath(
-            makeValueForCurrentKey(object[partial]),
-            newPath.substring(leftBracket));
+            makeValueForCurrentKey(object[newPath.substring(0, i)]),
+            newPath.substring(i));
     }
 
     return undefined;
