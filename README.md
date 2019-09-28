@@ -32,9 +32,9 @@ console.log(take(2)([1,2,3]))
 * [isDefined](test/predicate/is_defined.spec.ts)
 * [defined](test/predicate/defined.spec.ts)
 * [isUndefined](test/predicate/is_undefined.spec.ts)
-* [isArray](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/is_array.spec.ts)
-* [isObject](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/is_object.spec.ts)
-* [isNot](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/is_not.spec.ts)
+* [isArray](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/predicate/is_array.spec.ts)
+* [isObject](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/predicate/is_object.spec.ts)
+* [isNot](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/predicate/is_not.spec.ts)
 * [not](test/predicate/not.spec.ts)
 
 ### Comparator
