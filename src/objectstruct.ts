@@ -117,24 +117,21 @@ export function getElForPathIn(object: any, path: string): any {
             newPath.substring(rightBracket + 1));
     }
 
-    if (dot !== -1 || leftBracket !== -1) {
-        if (!isObject_(object)) return undefined;
 
-        let i =
-            dot === -1 && leftBracket > -1
-                ? leftBracket
-                : dot > -1 && leftBracket === -1
+    if (!isObject_(object)) return undefined;
+
+    let i =
+        dot === -1 && leftBracket > -1
+            ? leftBracket
+            : dot > -1 && leftBracket === -1
+                ? dot
+                : dot < leftBracket
                     ? dot
-                    : dot < leftBracket
-                        ? dot
-                        : leftBracket;
+                    : leftBracket;
 
-        return evaulateKeyAndPath(
-            makeValueForCurrentKey(object[newPath.substring(0, i)]),
-            newPath.substring(i));
-    }
-
-    return undefined;
+    return evaulateKeyAndPath(
+        makeValueForCurrentKey(object[newPath.substring(0, i)]),
+        newPath.substring(i));
 }
 
 
