@@ -120,41 +120,28 @@ const isObject_ = (o: any) => o instanceof Object;
 // library internal
 export function getElForPathIn(object: any, path: string): any {
 
-    const props = calcProps(path);
-    const {leftBracket, rightBracket, newPath} = props;
-
-    if (pathIsSimple(props)) {
-        if (isObject_(object)) return makeValueForCurrentKey(object[newPath]);
-        else return undefined;
-    }
-
-    if (leftBracket === 0) {
-        if (!isArray(object)) return undefined;
-        let key = parseInt(newPath.substring(1, rightBracket));
-        return evaulateKeyAndPath(
-            makeValueForCurrentKey(object[key]),
-            newPath.substring(rightBracket + 1));
-    }
-
-    if (!isObject_(object)) return undefined;
-
-    const splitPos = splitPosition(props);
-
-    return evaulateKeyAndPath(
-        makeValueForCurrentKey(object[newPath.substring(0, splitPos)]),
-        newPath.substring(splitPos));
+    return _getElForPathIn(object, convertPath(path));
 }
 
 
-function splitPosition({leftBracket, dot}: any) {
+export function _getElForPathIn(object: any, path: Array<string|number>): any {
 
-    return dot === -1 && leftBracket > -1
-        ? leftBracket
-        : dot > -1 && leftBracket === -1
-        ? dot
-        : dot < leftBracket
-            ? dot
-            : leftBracket;
+    const key = path[0];
+
+    if (path.length === 1) {
+
+        if (isString(key)) {
+            if (isObject_(object)) return makeValueForCurrentKey(object[key]);
+            else return undefined;
+        } else {
+            if (isArray(object)) return makeValueForCurrentKey(object[key]);
+            else return undefined;
+        }
+
+    } else {
+        path.shift();
+        return _getElForPathIn(object[key], path);
+    }
 }
 
 
@@ -162,12 +149,6 @@ function applyUpdate(copied: any, key: string|number, update_fun?: (val: any) =>
 
     if (update_fun) copied[key] = update_fun((copied as any)[key]);
     else delete copied[key];
-}
-
-
-function pathIsSimple({dot, leftBracket}: any) {
-
-    return dot === -1 && leftBracket === -1;
 }
 
 
@@ -203,7 +184,7 @@ function _update(path: Array<string|number>, struct: ObjectStruct, update_fun?: 
     const key = path[0];
     let copied = undefined;
 
-    if (path.length === 1) { // last segment
+    if (path.length === 1) {
         copied = isString(key)
             ? Object.assign({}, struct) as UntypedObjectCollection
             : copy(struct as any) as UntypedObjectCollection;
