@@ -1,4 +1,4 @@
-import {arrayEquivalent, by, jsonEqual, on} from '../../src/comparator';
+import {arrayEquivalent, by, is, jsonEqual, on} from '../../src/comparator';
 import {empty, isArray, isDefined, isEmpty, isNot, isUndefined, undefinedOrEmpty} from '../../src/predicate';
 import {intersectBy} from '../../src/arrayset';
 
@@ -10,7 +10,73 @@ import {intersectBy} from '../../src/arrayset';
  */
 describe('on (by)', () => {
 
-    // on
+
+    it('array - first level', () =>
+        expect(
+
+            on('[1]', is(7))([4, 7]))
+
+            .toEqual(true));
+
+
+    it('array - second level', () =>
+        expect(
+
+            on('[1][1]', is(7))([3, [2, 7]]))
+
+            .toEqual(true));
+
+
+    it('object - first level',() =>
+        expect(
+
+            on('a', is(3))({ a: 3 }))
+
+            .toEqual(true));
+
+
+    it('object - second level',() =>
+        expect(
+
+            on('a.b', is(3))({ a: { b: 3 }}))
+
+            .toEqual(true));
+
+
+    it('first level object - second level array',() =>
+        expect(
+
+            on('a[1]', is(3))({ a: [7, 3]}))
+
+            .toEqual(true));
+
+
+    it('first level array - second level object',() =>
+        expect(
+
+            on('[1].a', is(15))([7, { a: 15 }]))
+
+            .toEqual(true));
+
+
+    it('unknown object key', () =>
+        expect(
+
+            on('a.b', is(15))({ c: { a: 1 }}))
+
+            .toEqual(false));
+
+
+    it('unknown array key', () =>
+        expect(
+
+            on('[10].a', is(15))([7, 19, { a: 3 }]))
+
+            .toEqual(false));
+
+
+    // use cases
+
 
     it('on - with find - symmetric',() =>
         expect(
@@ -135,6 +201,7 @@ describe('on (by)', () => {
                 .filter(on('a.b', isArray))
 
         ).toEqual([{a: {b: [2, 1]}}] as any));
+
 
 
     // onBy
