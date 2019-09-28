@@ -108,6 +108,14 @@ describe('on (by)', () => {
 
             .toEqual(false));
 
+
+    it('collection is undefined', () =>
+        expect(
+
+            on('a', is(15))(undefined))
+
+            .toEqual(false));
+
     // err cases
 
     it('unknown array key', () =>

@@ -93,9 +93,8 @@ export function getElForPathIn(object: any, path: string): any {
 
     if (dot === -1 && leftBracket === -1) {
 
-        if (isObject(object)) {
-            return makeResult(object[newPath]);
-        } else throw "expected object in getElForPathIn"
+        if (isObject(object)) return makeResult(object[newPath]);
+        else return undefined;
     }
 
     let newPath_ = newPath;
