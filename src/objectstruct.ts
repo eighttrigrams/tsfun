@@ -60,22 +60,11 @@ export const getOn = <T>(ds: ObjectStruct) => (path: string) => {
 };
 
 
-// library internal
-export function getElForPathIn(object: any, path: string): any {
-
-    function makeResult(resultSegment: any) {
-        return (resultSegment
-                || resultSegment === ''
-                || resultSegment === 0
-                || resultSegment === false)
-            ? resultSegment
-            : undefined;
-    }
+function calcProps(path: string) {
 
     let dot = path.indexOf('.');
     let leftBracket = path.indexOf('[');
     let rightBracket = path.indexOf(']');
-
     let newPath = path;
     if (dot === 0) {
         newPath = newPath.substring(1, newPath.length);
@@ -83,32 +72,52 @@ export function getElForPathIn(object: any, path: string): any {
         leftBracket = newPath.indexOf('[');
         rightBracket = newPath.indexOf(']');
     }
+    return {dot, leftBracket, rightBracket, newPath};
+}
+
+
+function makeResult(resultSegment: any) {
+    return (resultSegment
+        || resultSegment === ''
+        || resultSegment === 0
+        || resultSegment === false)
+        ? resultSegment
+        : undefined;
+}
+
+
+// library internal
+export function getElForPathIn(object: any, path: string): any {
+
+    const {dot, leftBracket, rightBracket, newPath} = calcProps(path);
+
+    let newPath_ = newPath;
 
     if (dot !== -1 && ((leftBracket !== -1 && dot < leftBracket) || leftBracket === -1)) {
         object = makeResult(object[path.substr(0, dot)]);
-        newPath = newPath.substring(dot + 1, path.length);
+        newPath_ = newPath.substring(dot + 1, path.length);
     }
     if (leftBracket > 0) {
         let partial = path.substring(0, leftBracket);
         object = makeResult(object[partial]);
-        newPath = newPath.substring(leftBracket, path.length);
+        newPath_ = newPath.substring(leftBracket, path.length);
     }
     if (leftBracket === 0 && ((dot !== -1 && leftBracket < dot) || dot === -1)) {
         let i = parseInt(path.substring(leftBracket + 1, rightBracket));
         object = makeResult(object[i]);
-        newPath = newPath.substring(rightBracket + 1, path.length);
+        newPath_ = newPath.substring(rightBracket + 1, path.length);
     }
     if (dot === -1 && leftBracket === -1) {
 
         if (isObject(object)) {
             object = makeResult(object[newPath]);
-            newPath = '';
+            newPath_ = '';
         } else throw "expected object in getElForPathIn"
     }
 
-    if (newPath.length < 1) return object as any;
+    if (newPath_.length < 1) return object as any;
     if (object === undefined) return undefined;
-    return getElForPathIn(object, newPath) as any;
+    return getElForPathIn(object, newPath_) as any;
 }
 
 
