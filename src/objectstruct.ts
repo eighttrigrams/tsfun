@@ -99,7 +99,7 @@ export function getElForPathIn(object: any, path: string): any {
         else return undefined;
     }
 
-    let newPath_ = newPath;
+    let remainingPath = newPath;
 
     // array access directly at the beginning
     if (leftBracket === 0 && ((dot !== -1 && leftBracket < dot) || dot === -1)) {
@@ -107,14 +107,14 @@ export function getElForPathIn(object: any, path: string): any {
         const relevantSegment = newPath.substring(leftBracket + 1, rightBracket);
         let i = parseInt(relevantSegment);
         object = makeResult(object[i]);
-        newPath_ = newPath.substring(rightBracket + 1, newPath.length);
+        remainingPath = newPath.substring(rightBracket + 1, newPath.length);
     }
 
     // object access later, object access now
     if (dot !== -1 && ((leftBracket !== -1 && dot < leftBracket) || leftBracket === -1)) {
         if (!isObject_(object)) return undefined;
         object = makeResult(object[newPath.substr(0, dot)]);
-        newPath_ = newPath.substring(dot + 1, newPath.length);
+        remainingPath = newPath.substring(dot + 1, newPath.length);
     }
 
     // array access later, that is we have object access
@@ -122,12 +122,12 @@ export function getElForPathIn(object: any, path: string): any {
         if (!isObject_(object)) return undefined;
         let partial = newPath.substring(0, leftBracket);
         object = makeResult(object[partial]);
-        newPath_ = newPath.substring(leftBracket, newPath.length);
+        remainingPath = newPath.substring(leftBracket, newPath.length);
     }
 
-    if (newPath_.length < 1) return object as any;
+    if (remainingPath.length < 1) return object as any;
     if (object === undefined) return undefined;
-    return getElForPathIn(object, newPath_) as any;
+    return getElForPathIn(object, remainingPath) as any;
 }
 
 
