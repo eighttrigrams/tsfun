@@ -114,13 +114,14 @@ export function setOn(object: any, path: string) {
 }
 
 
+const isObject_ = (o: any) => o instanceof Object;
+
+
 // library internal
 export function getElForPathIn(object: any, path: string): any {
 
-    const isObject_ = (o: any) => o instanceof Object;
-
     const props = calcProps(path);
-    const {dot, leftBracket, rightBracket, newPath} = props;
+    const {leftBracket, rightBracket, newPath} = props;
 
     if (pathIsSimple(props)) {
         if (isObject_(object)) return makeValueForCurrentKey(object[newPath]);
@@ -129,9 +130,9 @@ export function getElForPathIn(object: any, path: string): any {
 
     if (leftBracket === 0) {
         if (!isArray(object)) return undefined;
-        let i = parseInt(newPath.substring(leftBracket + 1, rightBracket));
+        let key = parseInt(newPath.substring(1, rightBracket));
         return evaulateKeyAndPath(
-            makeValueForCurrentKey(object[i]),
+            makeValueForCurrentKey(object[key]),
             newPath.substring(rightBracket + 1));
     }
 
@@ -175,7 +176,7 @@ export function update(path: string, update_fun?: (val: any) => any) {
     return (struct: ObjectStruct): any => {
 
         const props = calcProps(path);
-        const {dot, leftBracket, rightBracket, newPath} = props;
+        const {leftBracket, rightBracket, newPath} = props;
 
         if (pathIsSimple(props)) { // must be object
 
@@ -190,14 +191,14 @@ export function update(path: string, update_fun?: (val: any) => any) {
 
         if (leftBracket === 0) {
 
-            key = parseInt(newPath.substring(leftBracket + 1, rightBracket));
+            key = parseInt(newPath.substring(1, rightBracket));
             remainingPath = newPath.substring(rightBracket + 1);
             copied = copy(struct as any) as UntypedObjectCollection;
 
             if (remainingPath.length < 1) {
                 applyUpdate(copied, key, update_fun);
                 return copied;
-            } else copied[key] = update(remainingPath, update_fun)(copied[key]);
+            }
 
         } else {
 
@@ -208,7 +209,7 @@ export function update(path: string, update_fun?: (val: any) => any) {
             copied = Object.assign({}, struct) as UntypedObjectCollection;
         }
 
-        copied[key] = update(remainingPath, update_fun)((struct as any)[key]);
+        copied[key] = update(remainingPath, update_fun)(copied[key]);
         return copied;
     }
 }
