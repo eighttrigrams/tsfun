@@ -59,6 +59,14 @@ describe('on (by)', () => {
             .toEqual(true));
 
 
+    it('first level object - second level object - second level array',() =>
+        expect(
+
+            on('a.b[1]', is(3))({ a: { b: [7, 3]}}))
+
+            .toEqual(true));
+
+
     it('unknown object key', () =>
         expect(
 
@@ -67,6 +75,8 @@ describe('on (by)', () => {
             .toEqual(false));
 
 
+    // resiliency
+
     it('unknown array key', () =>
         expect(
 
@@ -74,9 +84,16 @@ describe('on (by)', () => {
 
             .toEqual(false));
 
+    // err cases
+
+    it('unknown array key', () =>
+        expect(
+
+            () => on('[10].a', is(15))({ a: 'b' }))
+
+            .toThrow());
 
     // use cases
-
 
     it('on - with find - symmetric',() =>
         expect(
@@ -87,15 +104,6 @@ describe('on (by)', () => {
             .toEqual({a: {b: 5}} as any));
 
 
-    // it('on - with find - exact',() =>
-    //     expect(
-    //
-    //         [{a: {b: 4}}, {a: {b: 5}}]
-    //             .find(on('a.b:')(5)))
-    //
-    //         .toEqual({a: {b: 5}} as any));
-
-
     it('on - with filter and isNot - symmetric', () =>
         expect(
 
@@ -104,13 +112,6 @@ describe('on (by)', () => {
 
             .toEqual([{a: {b: 4}} as any]));
 
-
-    // it('on - with filter and isNot - exact', () =>
-    //     expect(
-    //
-    //         [{a: {b: 4}}, {a: {b: 5}}].filter(isNot(on('a.b:')(5))))
-    //
-    //         .toEqual([{a: {b: 4}} as any]));
 
 
     it('on - with intersectBy - symmetric',() =>

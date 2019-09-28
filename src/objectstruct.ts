@@ -97,13 +97,15 @@ export function getElForPathIn(object: any, path: string): any {
         object = makeResult(object[path.substr(0, dot)]);
         newPath_ = newPath.substring(dot + 1, path.length);
     }
-    if (leftBracket > 0) {
+    if (leftBracket > 0 && (leftBracket < dot || dot === -1)) {
         let partial = path.substring(0, leftBracket);
         object = makeResult(object[partial]);
         newPath_ = newPath.substring(leftBracket, path.length);
     }
     if (leftBracket === 0 && ((dot !== -1 && leftBracket < dot) || dot === -1)) {
-        let i = parseInt(path.substring(leftBracket + 1, rightBracket));
+        const relevantSegment = path.substring(leftBracket + 1, rightBracket);
+        let i = parseInt(relevantSegment);
+        if (!isArray(object)) throw 'expected array in getElForPathIn, [' + relevantSegment + '], ' + JSON.stringify(object);
         object = makeResult(object[i]);
         newPath_ = newPath.substring(rightBracket + 1, path.length);
     }
