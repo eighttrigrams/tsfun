@@ -102,21 +102,17 @@ export function getElForPathIn(object: any, path: string): any {
     const {dot, leftBracket, rightBracket, newPath} = calcProps(path);
 
     if (dot === -1 && leftBracket === -1) {
-
         if (isObject_(object)) return makeValueForCurrentKey(object[newPath]);
         else return undefined;
     }
 
     if (leftBracket === 0) {
         if (!isArray(object)) return undefined;
-        const relevantSegment = newPath.substring(leftBracket + 1, rightBracket);
-        let i = parseInt(relevantSegment);
-
+        let i = parseInt(newPath.substring(leftBracket + 1, rightBracket));
         return evaulateKeyAndPath(
             makeValueForCurrentKey(object[i]),
             newPath.substring(rightBracket + 1));
     }
-
 
     if (!isObject_(object)) return undefined;
 
