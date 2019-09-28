@@ -122,7 +122,9 @@ export function _getElForPathIn(object: any, path: Array<string|number>): any {
 
     } else {
         path.shift();
-        return _getElForPathIn(object[key], path);
+        return object[key]
+            ? _getElForPathIn(object[key], path)
+            : undefined;
     }
 }
 
