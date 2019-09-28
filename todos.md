@@ -6,8 +6,6 @@
 
 ## experiment with immutability, with type system + maybe proxy objects or something similar
 
-## publish new version
-
 ## Add use cases to range function
 
 * also add repeat function
