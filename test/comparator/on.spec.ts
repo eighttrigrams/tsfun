@@ -59,10 +59,34 @@ describe('on (by)', () => {
             .toEqual(true));
 
 
-    it('first level object - second level object - second level array',() =>
+    it('first level object - second level object - third level array',() =>
         expect(
 
             on('a.b[1]', is(3))({ a: { b: [7, 3]}}))
+
+            .toEqual(true));
+
+
+    it('first level array - second level array - third level object',() =>
+        expect(
+
+            on('[1][1].a', is(3))([ 0, [ 3, { a: 3 }]]))
+
+            .toEqual(true));
+
+
+    it('first level array - second level object - third level object',() =>
+        expect(
+
+            on('[1].a[1]', is(3))([ 0, { a: [1, 3] }]))
+
+            .toEqual(true));
+
+
+    it('first level object - second level array - third level object',() =>
+        expect(
+
+            on('a[1].a', is(3))({ a: [1, { a: 3 }]}))
 
             .toEqual(true));
 

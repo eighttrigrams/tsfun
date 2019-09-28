@@ -91,30 +91,35 @@ export function getElForPathIn(object: any, path: string): any {
 
     const {dot, leftBracket, rightBracket, newPath} = calcProps(path);
 
-    let newPath_ = newPath;
-
-    if (dot !== -1 && ((leftBracket !== -1 && dot < leftBracket) || leftBracket === -1)) {
-        object = makeResult(object[path.substr(0, dot)]);
-        newPath_ = newPath.substring(dot + 1, path.length);
-    }
-    if (leftBracket > 0 && (leftBracket < dot || dot === -1)) {
-        let partial = path.substring(0, leftBracket);
-        object = makeResult(object[partial]);
-        newPath_ = newPath.substring(leftBracket, path.length);
-    }
-    if (leftBracket === 0 && ((dot !== -1 && leftBracket < dot) || dot === -1)) {
-        const relevantSegment = path.substring(leftBracket + 1, rightBracket);
-        let i = parseInt(relevantSegment);
-        if (!isArray(object)) throw 'expected array in getElForPathIn, [' + relevantSegment + '], ' + JSON.stringify(object);
-        object = makeResult(object[i]);
-        newPath_ = newPath.substring(rightBracket + 1, path.length);
-    }
     if (dot === -1 && leftBracket === -1) {
 
         if (isObject(object)) {
-            object = makeResult(object[newPath]);
-            newPath_ = '';
+            return makeResult(object[newPath]);
         } else throw "expected object in getElForPathIn"
+    }
+
+    let newPath_ = newPath;
+
+    // array access directly at the beginning
+    if (leftBracket === 0 && ((dot !== -1 && leftBracket < dot) || dot === -1)) {
+        const relevantSegment = newPath.substring(leftBracket + 1, rightBracket);
+        let i = parseInt(relevantSegment);
+        if (!isArray(object)) throw 'expected array in getElForPathIn, [' + relevantSegment + '], ' + JSON.stringify(object);
+        object = makeResult(object[i]);
+        newPath_ = newPath.substring(rightBracket + 1, newPath.length);
+    }
+
+    // object access later, object access now
+    if (dot !== -1 && ((leftBracket !== -1 && dot < leftBracket) || leftBracket === -1)) {
+        object = makeResult(object[newPath.substr(0, dot)]);
+        newPath_ = newPath.substring(dot + 1, newPath.length);
+    }
+
+    // array access later, that is we have object access
+    if (leftBracket > 0 && (leftBracket < dot || dot === -1)) {
+        let partial = newPath.substring(0, leftBracket);
+        object = makeResult(object[partial]);
+        newPath_ = newPath.substring(leftBracket, newPath.length);
     }
 
     if (newPath_.length < 1) return object as any;
