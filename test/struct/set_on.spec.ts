@@ -1,4 +1,4 @@
-import {getOnOr, setOn} from '../../src/objectstruct';
+import {getOnOr, setOn} from '../../src/struct';
 
 describe('setOn', () => {
 

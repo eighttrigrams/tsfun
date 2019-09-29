@@ -1,4 +1,4 @@
-import {getOnOr} from "../../src/objectstruct";
+import {getOnOr} from "../../src/struct";
 
 /**
  * @author Daniel de Oliveira

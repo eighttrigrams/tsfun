@@ -1,4 +1,4 @@
-import {to} from '../../src/objectstruct';
+import {to} from '../../src/struct';
 
 
 describe('to', () => {

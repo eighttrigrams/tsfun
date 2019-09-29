@@ -1,4 +1,4 @@
-import {getOn} from "../../src/objectstruct";
+import {getOn} from "../../src/struct";
 
 /**
  * @author Daniel de Oliveira

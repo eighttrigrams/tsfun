@@ -1,6 +1,6 @@
 import {map} from '../../src/arraylist';
 import {flow} from '../../src/composition';
-import {to} from '../../src/objectstruct';
+import {to} from '../../src/struct';
 
 
 /**

@@ -1,7 +1,7 @@
-import {on, isArray, isObject, isEmpty, getElForPathIn} from 'tsfun-core';
+import {getElForPathIn, isArray, isObject} from 'tsfun-core';
 import {isString} from './predicate';
 import {reverseUncurry2} from './core';
-import {ObjectStruct, Predicate, UntypedObjectCollection} from './type';
+import {ObjectStruct, UntypedObjectCollection} from './type';
 import {val} from "./composition";
 import {copy} from './arraylist';
 

@@ -1,4 +1,4 @@
-import {assoc} from '../../src/objectstruct';
+import {assoc} from '../../src/struct';
 
 
 describe('assoc', () => {

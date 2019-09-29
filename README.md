@@ -108,17 +108,17 @@ console.log(take(2)([1,2,3]))
 * [unique](test/arrayset/unique.spec.ts)
 * [duplicates](test/arrayset/duplicates.spec.ts)
 
-### ObjectStruct
+### Struct
 
-* [to](test/objectstruct/to.spec.ts)
-* [setOn](test/objectstruct/set_on.spec.ts)
-* [clone](test/objectstruct/clone.spec.ts)
-* [jsonClone](test/objectstruct/json_clone.spec.ts)
-* [getOn](test/objectstruct/get_on.spec.ts)
-* [getOnOr](test/objectstruct/get_on_or.spec.ts)
-* [assoc](test/objectstruct/assoc.spec.ts)
-* [dissoc](test/objectstruct/dissoc.spec.ts)
-* [update](test/objectstruct/update.spec.ts)
+* [to](test/struct/to.spec.ts)
+* [setOn](test/struct/set_on.spec.ts)
+* [clone](test/struct/clone.spec.ts)
+* [jsonClone](test/struct/json_clone.spec.ts)
+* [getOn](test/struct/get_on.spec.ts)
+* [getOnOr](test/struct/get_on_or.spec.ts)
+* [assoc](test/struct/assoc.spec.ts)
+* [dissoc](test/struct/dissoc.spec.ts)
+* [update](test/struct/update.spec.ts)
 
 ### ObjectMap
 

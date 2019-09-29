@@ -136,4 +136,4 @@ export {
     assoc,
     dissoc,
     update
-} from './src/objectstruct';
+} from './src/struct';

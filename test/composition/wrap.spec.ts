@@ -1,6 +1,6 @@
 import {wrap} from '../../src/composition';
 import {intersect} from '../../src/arrayset';
-import {jsonClone} from '../../src/objectstruct';
+import {jsonClone} from '../../src/struct';
 import {nthOr} from "../../src/arraylist";
 
 describe('wrap - experimental', () => {

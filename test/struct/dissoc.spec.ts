@@ -1,4 +1,4 @@
-import {dissoc} from '../../src/objectstruct';
+import {dissoc} from '../../src/struct';
 
 describe('dissoc', () => {
 

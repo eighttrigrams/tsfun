@@ -1,4 +1,4 @@
-import {clone} from "../../src/objectstruct";
+import {clone} from "../../src/struct";
 import {isArray, isObject} from "tsfun-core";
 
 describe('clone', () => {

@@ -1,4 +1,4 @@
-import {update} from '../../src/objectstruct';
+import {update} from '../../src/struct';
 
 
 describe('update', () => {
