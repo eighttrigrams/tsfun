@@ -17,19 +17,15 @@ export {
 
 export {
     not,
-    isDefined,
     defined,
-    isUndefined,
     has,
     hasNot,
-    isUndefinedOrEmpty,
-    undefinedOrEmpty,
-    isEmpty,
     empty,
 } from './src/predicate';
 
 
-export {isArray, isObject, isNot} from 'tsfun-core';
+export {isArray, isObject, isNot, isDefined,
+    isUndefinedOrEmpty, isEmpty, isUndefined} from 'tsfun-core';
 
 
 export {

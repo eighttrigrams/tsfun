@@ -1,4 +1,4 @@
-import {defined, isDefined, isUndefined} from '../../src/predicate';
+import {isDefined} from "tsfun-core";
 
 
 describe('isDefined', () => {

@@ -1,5 +1,5 @@
 import {by, jsonEqual, without} from '../../src/comparator';
-import {isUndefined} from '../../src/predicate';
+import {isUndefined} from 'tsfun-core';
 
 
 /**

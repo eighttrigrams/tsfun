@@ -1,4 +1,4 @@
-import {isUndefined} from '../../src/predicate';
+import {isUndefined} from "tsfun-core";
 
 
 describe('isUndefined', () => {

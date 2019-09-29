@@ -1,4 +1,4 @@
-import {isDefined} from './predicate';
+import {isDefined} from 'tsfun-core';
 import {to} from './objectstruct';
 
 

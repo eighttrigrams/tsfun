@@ -1,8 +1,9 @@
 /**
  * @author Daniel de Oliveira
  */
-import {isUndefinedOrEmpty} from '../../src/predicate';
 
+
+import {isUndefinedOrEmpty} from "tsfun-core/src/predicate";
 
 /**
  * @author Daniel de Oliveira

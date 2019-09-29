@@ -1,9 +1,9 @@
-import {isEmpty} from '../../src/predicate';
-
-
 /**
  * @author Daniel de Oliveira
  */
+import {isEmpty} from "tsfun-core/src/predicate";
+
+
 describe('isEmpty', () => {
 
     // isEmpty
