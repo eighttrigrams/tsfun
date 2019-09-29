@@ -29,3 +29,6 @@ export const cond = <A, B, C>(
 
 
 export const val = <A>(v: A) => () => v;
+
+
+export const nop = () => {};

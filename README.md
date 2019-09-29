@@ -64,6 +64,7 @@ console.log(take(2)([1,2,3]))
 * [cond](test/composition/cond.spec.ts)
 * [identity](test/composition/identity.spec.ts)
 * [val](test/composition/val.spec.ts)
+* [nop](test/composition/nop.spec.ts)
 
 ### ArrayList
 

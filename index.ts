@@ -57,7 +57,8 @@ export {
     compose,
     flow,
     cond,
-    val
+    val,
+    nop
 } from './src/composition';
 
 
