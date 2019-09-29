@@ -59,7 +59,7 @@ export const flatMap = <A>(f: (_: A) => ArrayList<A>): SimpleTransformation<Arra
 export const flatten = reduce((acc: any, val: any) => acc.concat(val), [] as any);
 
 
-export const indices = <A>(f: (a: A) => boolean) =>
+export const indices = <A>(f: Predicate<A>) =>
     (as: Array<A>): number[] =>
         as.reduce((indices: number[], a: A, i: number) =>
                 f(a)

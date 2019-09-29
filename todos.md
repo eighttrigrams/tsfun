@@ -19,14 +19,8 @@
 
 ## review lookup
 
-*  fix typing of lookup, which may also return undefined
+* fix typing of lookup, which may also return undefined
 * review if lookup should be moved to arraylist
-
-## Add predicate typing to indices function
-
-* review for comparison function
-* rename to positions?
-* implement in terms of zip?
 
 ## Typesafe id function 
 
