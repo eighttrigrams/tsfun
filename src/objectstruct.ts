@@ -1,4 +1,4 @@
-import {on, isArray, isObject, isEmpty} from 'tsfun-core';
+import {on, isArray, isObject, isEmpty, getElForPathIn} from 'tsfun-core';
 import {isString} from './predicate';
 import {reverseUncurry2} from './core';
 import {ObjectStruct, Predicate, UntypedObjectCollection} from './type';
@@ -61,16 +61,6 @@ export const getOn = <T>(ds: ObjectStruct) => (path: string) => {
 };
 
 
-function makeValueForCurrentKey(resultSegment: any) {
-    return (resultSegment
-        || resultSegment === ''
-        || resultSegment === 0
-        || resultSegment === false)
-        ? resultSegment
-        : undefined;
-}
-
-
 export function setOn(object: any, path: string) {
 
     return (val: any): void => _setOn(object, convertPath(path), val);
@@ -91,40 +81,6 @@ export function _setOn(object: any, path: Array<string|number>, val: any) {
                 : [];
         }
         _setOn(object[key], path, val);
-    }
-}
-
-
-const isObject_ = (o: any) => o instanceof Object;
-
-
-// library internal
-export function getElForPathIn(object: any, path: string): any {
-
-    if (!path || path.length < 1) return undefined;
-    return _getElForPathIn(object, convertPath(path));
-}
-
-
-export function _getElForPathIn(object: any, path: Array<string|number>): any {
-
-    const key = path[0];
-
-    if (path.length === 1) {
-
-        if (isString(key)) {
-            if (isObject_(object)) return makeValueForCurrentKey(object[key]);
-            else return undefined;
-        } else {
-            if (isArray(object)) return makeValueForCurrentKey(object[key]);
-            else return undefined;
-        }
-
-    } else {
-        path.shift();
-        return object[key]
-            ? _getElForPathIn(object[key], path)
-            : undefined;
     }
 }
 
