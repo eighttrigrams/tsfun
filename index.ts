@@ -18,6 +18,7 @@ export {
 export {
     not,
     defined,
+    undefinedOrEmpty,
     has,
     hasNot,
     empty,
