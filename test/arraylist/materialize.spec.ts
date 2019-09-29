@@ -6,10 +6,11 @@ import {lFilter, lMap, lTake, materialize} from '../../src/arraylist_lazy';
 /**
  * @author Daniel de Oliveira
  */
-describe('lMap / lFilter / lTake / materialize', () => {
+describe('materialize', () => {
 
-    it('lMap', () =>
+    it('use case', () =>
         expect(
+
             flow([1, 2, 3, 4, 5],
                 lMap((_: number) => 2 * _),
                 lFilter((_: number) => _ > 5),
