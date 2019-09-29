@@ -52,8 +52,6 @@
 
 ## Document Naming schema of data structures in design doc
 
-## Improve typing, asyncMap should map from A to B
-
 ## experiment with immutability, with type system + maybe proxy objects or something similar
 
 ## Compare unique with rmdups from haskell book p.86
