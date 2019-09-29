@@ -206,10 +206,6 @@ export function arrayList(size: number) {
 }
 
 
-// from https://stackoverflow.com/questions/3895478/does-javascript-have-a-method-like-range-to-generate-a-range-within-the-supp
-export function range(n: number) { return Array.apply(null, Array(n)).map(function (_: any, i: number) {return i;});}
-
-
 export function zip<A,B> (as: ArrayList<A>) {
 
     return (bs: ArrayList<B>) => {
@@ -241,4 +237,23 @@ export function zipWith<A,B,C> (f: (a: A, b: B) => C, as: ArrayList<A>) {
         }
         return zipped;
     }
+}
+
+
+export function range(a: number, b?: number, stepSize: number = 1): number[] {
+
+    let begin: number|undefined = undefined;
+    let end:   number|undefined = undefined;
+
+    if (b === undefined) {
+        end = a;
+        begin = 0;
+    } else {
+        begin = a;
+        end   = b;
+    }
+    const numItems = (end - begin) / stepSize;
+
+    return arrayList(numItems)
+        .map((a: any, i: number) => (begin as number) + (i * stepSize));
 }
