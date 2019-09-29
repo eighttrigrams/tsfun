@@ -134,10 +134,6 @@ console.log(take(2)([1,2,3]))
 * [lRange](test/arraylist/l_range.spec.ts)
 * [materialize](test/arraylist/materialize.spec.ts)
 
-## Concepts
-
-* [concepts](README_concepts.md)
-
 ## Credits 
  
 Ascii Art generated with http://www.patorjk.com/software/taag
