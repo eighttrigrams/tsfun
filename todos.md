@@ -28,10 +28,6 @@
 * rename to positions?
 * implement in terms of zip?
 
-## Review cond typing
-
-* maybe unsion of A|B
-
 ## Typesafe id function 
 
 * see clojure book 85
