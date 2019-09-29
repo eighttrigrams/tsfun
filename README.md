@@ -121,9 +121,9 @@ console.log(take(2)([1,2,3]))
 
 ### ObjectMap
 
-* keysAndValues (list of pairs)
-* keys
-* values
+* [keysAndValues](test/objectmap/keys_and_values.spec.ts)
+* [keys](test/objectmap/keys.spec.ts)
+* [values](test/objectmap/values.spec.ts)
 * [lookup](test/objectmap/lookup.spec.ts)
 
 ### ArrayList (lazy)
