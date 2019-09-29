@@ -257,3 +257,9 @@ export function range(a: number, b?: number, stepSize: number = 1): number[] {
     return arrayList(numItems)
         .map((a: any, i: number) => (begin as number) + (i * stepSize));
 }
+
+
+export function count<T>(p: Predicate<T>) {
+
+    return (as: Array<T>) => as.filter(p).length;
+}

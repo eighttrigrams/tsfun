@@ -67,6 +67,7 @@ export {
     flatten,
     filter,
     remove,
+    count,
     map,
     forEach,
     forEachRight,

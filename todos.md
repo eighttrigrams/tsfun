@@ -28,11 +28,6 @@
 * rename to positions?
 * implement in terms of zip?
 
-## Add count function
-
-* count occurences in list
-* with predicate and by comparison
-
 ## Review cond typing
 
 * maybe unsion of A|B
