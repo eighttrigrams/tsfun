@@ -150,15 +150,3 @@ export const dissoc = (path: string) => update(path);
 
 
 export const to = reverseUncurry2(getElForPathIn);
-
-
-/* experimental */ export const sameOn = <T>(path: string, l: T, r: T) =>
-    on(path)(l)(r);
-
-
-/* experimental */ export const option = <A>(f: Predicate<A>) =>
-    (a: A) => f(a) ? a : {};
-
-
-/* experimental */ export const mapOption = <A>(f: (a: A) => A) =>
-    (a: A) => isEmpty(a) ? {} : f(a);
