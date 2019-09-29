@@ -2,8 +2,6 @@ import {intersect} from '../../src/arrayset';
 
 
 /**
- * intersect and intersection are fast if used without specifying a comparator
- *
  * @author Daniel de Oliveira
  */
 describe('intersect', () => {

@@ -70,30 +70,4 @@ describe('subtract', () => {
             subtract(...[[2], [1, 4]])([1, 2, 3, 3, 2, 4]))
 
             .toEqual([3]));
-
-
-    /**
-     * y_max = 100000
-     * -> ~25ms
-     *
-     * Should be in the order of magnitude of 10 to 100,
-     */
-    it('subtract performance', () => {
-
-        const aas = [];
-
-        for (let x = 0; x < 2; x ++) {
-            const as = [];
-            for (let y = 0; y < 100000; y++) {
-                as.push((x + y).toString())
-            }
-            aas.push(as);
-        }
-
-
-        const begin = new Date();
-        subtract(aas[0])(aas[1]);
-        const elapsed = (new Date() as any) - (begin as any);
-        if (elapsed > 100) fail();
-    });
 });
