@@ -1,7 +1,5 @@
 # TODOs
 
-## add notEmpty
-
 ## Add splitAt function
 
 ## Introduce splitwith function to simplify insert function in csv-export in idai-field
