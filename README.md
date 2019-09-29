@@ -36,6 +36,9 @@ console.log(take(2)([1,2,3]))
 * [isObject](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/predicate/is_object.spec.ts)
 * [isNot](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/predicate/is_not.spec.ts)
 * [not](test/predicate/not.spec.ts)
+* [and](test/predicate/and.spec.ts)
+* [or](test/predicate/or.spec.ts)
+* [xor](test/predicate/xor.spec.ts)
 
 ### Comparator
 

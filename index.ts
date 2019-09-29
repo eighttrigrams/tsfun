@@ -22,6 +22,9 @@ export {
     has,
     hasNot,
     empty,
+    and,
+    or,
+    xor
 } from './src/predicate';
 
 
