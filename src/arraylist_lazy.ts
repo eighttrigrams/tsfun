@@ -3,9 +3,16 @@
 // see https://codewords.recurse.com/issues/four/lazy-composable-and-modular-javascript
 
 
-export function* lRange(n: number) {
+export function* lRange(a: number, b?: number, stepSize: number = 1) {
 
-    for (let i = 0; i < n; i++) {
+    let begin = a;
+    let end   = b;
+    if (b === undefined) {
+        begin = 0;
+        end   = a;
+    }
+
+    for (let i = begin; i < (end as number); i = i + stepSize) {
         yield i;
     }
 }

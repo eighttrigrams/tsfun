@@ -11,13 +11,6 @@
 * isSuperset
 * isSubset, see containedIn
 
-## Add use cases to range function
-
-* also add repeat function
-* range function should have start and end
-* should not have stepwidth, because can be made with filter(divisibleBy)
-* lRange with open ends
-
 ## Review impls of zip, zipWith functions
 
 * new "package" with flatMap and flatten?
