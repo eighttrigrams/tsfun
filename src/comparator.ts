@@ -57,22 +57,4 @@ export const equalTo = equal;
 export const equivalent = equalBy(arrayEquivalent);
 
 
-
-// TODO implement that arbitrary subtrees can get excluded
-export const without = (path: string|string[], compare: Function = tripleEqual) =>
-    (l: any): any => {
-
-        const keys = Object
-            .keys(l)
-            .filter(isNot(
-                isArray(path)
-                    ? includedIn(path as string[])
-                    : equalTo(path)));
-
-        return typeof compare(l) === 'function'
-            ? (r: any) => keys.reduce((acc, key) => acc && compare(r[key])(l[key]), true)
-            : keys.reduce((acc, key) => acc && compare(l[key]), true)
-    };
-
-
 export const by = <A>(p: Predicate<A>) => p;

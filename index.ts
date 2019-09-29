@@ -46,7 +46,6 @@ export {
     differentFrom,
     containedIn,
     jsonEqual,
-    without,
     by
 } from './src/comparator';
 
