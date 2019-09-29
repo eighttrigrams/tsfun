@@ -1,10 +1,15 @@
 # TODOs
 
-## make and combinator and use in assert-fields-are-valid
-
 ## add notEmpty
 
-## experiment with immutability, with type system + maybe proxy objects or something similar
+## Add splitAt function
+
+## Introduce splitwith function to simplify insert function in csv-export in idai-field
+
+## Implement predicates for sets
+
+* isSuperset
+* isSubset, see containedIn
 
 ## Add use cases to range function
 
@@ -21,19 +26,10 @@
 
 * perhaps make _nested subpackage, with flatten and zip, and other functions, maybe tensors
 
-## Implement interleave, interpose
+## review lookup
 
-* and: what was the name of the function where you split it into segments of equal lengths
-
-## Implement groupBy, juxt, partition-by, separate
-
-* see clojure
-
-## fix typing of lookup, which may also return undefined
-
-## review if lookup should be moved to arraylist
-
-## Introduce splitwith function to simplify insert function in csv-export in idai-field
+*  fix typing of lookup, which may also return undefined
+* review if lookup should be moved to arraylist
 
 ## Add predicate typing to indices function
 
@@ -46,19 +42,6 @@
 * count occurences in list
 * with predicate and by comparison
 
-## Document Naming schema of data structures in design doc
-
-## Implement predicates for sets
-
-* isSuperset
-* isSubset
-
-## Improve typing, asyncMap should map from A to B
-
-## Review possibilities to implement typesafe variadic compose
-
-* maybe see haskell book
-
 ## Review cond typing
 
 * maybe unsion of A|B
@@ -68,24 +51,24 @@
 * see clojure book 85
 * also see polymorphic error function
 
-## Add splitAt function
-
-## Review: can getOnOr work with array paths (or should it?) 
-
-* like arfield.0.anotherfield
-
 ## Make without or exclude function
 
 * who does a comparison under exclusion of a list of paths
-
-## Implement drop recursively
 
 ## Review subtract
 
 * make it work so that single (non-array) items can get subtracted (+ prepend and append)
 
-## Implement duplicates
+## Document Naming schema of data structures in design doc
+
+## Improve typing, asyncMap should map from A to B
+
+## experiment with immutability, with type system + maybe proxy objects or something similar
 
 ## Compare unique with rmdups from haskell book p.86
+
+## Review possibilities to implement typesafe variadic compose
+
+* maybe see haskell book
 
 
