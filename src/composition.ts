@@ -1,4 +1,3 @@
-import {SimpleTransformation} from './type';
 import {identity} from './core';
 
 
@@ -6,15 +5,15 @@ import {identity} from './core';
 
 
 
-const composition = <T>(t: T, ...transformations: Array<SimpleTransformation<T>>) =>
-    compose(...transformations)(t);
+const composition = (t: any, ...transformations: Array<Function>) =>
+    compose(...transformations)(t) as any;
 
 
 export const flow = composition;
 
 
-export const compose = <T>(...transformations: Array<SimpleTransformation<T>>) => (t: T)  =>
-    transformations.reduce((acc, transformation) => transformation(acc), t);
+export const compose = (...transformations: Array<Function>) => (t: any)  =>
+    transformations.reduce((acc, transformation) => transformation(acc), t) as any;
 
 
 export const cond = <A, B, C>(
