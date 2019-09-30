@@ -1,13 +1,17 @@
 # TODOs
 
-## Add splitAt function
+## arrayEquivalent
 
-## Introduce splitwith function to simplify insert function in csv-export in idai-field
+* impelement that different order is ok, but all elements need to be listed (not set equal)
 
 ## Implement predicates for sets
 
 * isSuperset
 * isSubset, see containedIn
+
+## Add splitAt function
+
+## Introduce splitwith function to simplify insert function in csv-export in idai-field
 
 ## Review impls of zip, zipWith functions
 
