@@ -29,8 +29,6 @@
 
 * make it work so that single (non-array) items can get subtracted (+ prepend and append)
 
-## Document Naming schema of data structures in design doc
-
 ## experiment with immutability, with type system + maybe proxy objects or something similar
 
 ## Compare unique with rmdups from haskell book p.86
