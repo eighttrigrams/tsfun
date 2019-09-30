@@ -7,10 +7,9 @@
 ## Review impls of zip, zipWith functions
 
 * new "package" with flatMap and flatten?
-
-## Add transpose function
-
-* perhaps make _nested subpackage, with flatten and zip, and other functions, maybe tensors
+* perhaps make _nested subpackage, with flatten and zip, and other functions, 
+* think about tuples
+* make transpose function, maybe tensors?
 
 ## review lookup
 
