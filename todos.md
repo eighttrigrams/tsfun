@@ -7,8 +7,6 @@
 
 ## experiment with immutability, with type system + maybe proxy objects or something similar
 
-## Compare unique with rmdups from haskell book p.86
-
 ## Review possibilities to implement typesafe variadic compose
 
 * maybe see haskell book
