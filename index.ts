@@ -114,13 +114,14 @@ export {
 
 
 export {
-    duplicates
+    duplicates,
 } from './src/arrayset';
 
 
 export {
     intersection,
     union,
+    unique,
     intersect,
     subtract,
     unite
