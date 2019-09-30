@@ -46,14 +46,14 @@ console.log(take(2)([1,2,3]))
 * [jsonEqual](test/comparator/json_equal.spec.ts)
 * [is](test/comparator/is.spec.ts)
 * [isnt](test/comparator/isnt.spec.ts)
-* [differentFrom](test/comparator/different_from.spec.ts)
-* [includedIn](test/comparator/included_in.spec.ts)
-* [subsetOf](test/comparator/subset_of.ts)
-* [sameset](test/comparator/sameset.ts)
-* [arrayEqual](test/comparator/array_equal.spec.ts)
-* [objectEqual](test/comparator/object_equal.spec.ts)
-* [equal](test/comparator/equal.spec.ts)
-* [equalTo](test/comparator/equal.spec.ts)
+* [differentFrom](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/different_from.spec.ts)
+* [includedIn](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/included_in.spec.ts)
+* [subsetOf](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/subset_of.ts)
+* [sameset](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/sameset.ts)
+* [arrayEqual](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/array_equal.spec.ts)
+* [objectEqual](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/object_equal.spec.ts)
+* [equal](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/equal.spec.ts)
+* [equalTo](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/equal.spec.ts)
 * [on](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/on.spec.ts)
 
 ### Composition
@@ -100,13 +100,13 @@ console.log(take(2)([1,2,3]))
 
 ### ArraySet
 
-* [intersection](test/arrayset/intersect.spec.ts)
-* [intersect](test/arrayset/intersect.spec.ts)
-* [subtract](test/arrayset/subtract.spec.ts)
-* [union](test/arrayset/union.spec.ts)
-* [unite](test/arrayset/unite.spec.ts)
-* [unique](test/arrayset/unique.spec.ts)
-* [duplicates](test/arrayset/duplicates.spec.ts)
+* [intersection](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/intersect.spec.ts)
+* [intersect](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/intersect.spec.ts)
+* [subtract](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/subtract.spec.ts)
+* [union](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/union.spec.ts)
+* [unite](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/unite.spec.ts)
+* [unique](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/unique.spec.ts)
+* [duplicates](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/duplicates.spec.ts)
 
 ### Struct
 

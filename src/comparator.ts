@@ -1,7 +1,4 @@
-import {isArray, isNot} from 'tsfun-core';
-import {Comparator, Predicate} from './type';
-import {objectEqualBy, arrayEqualBy, includedInBy,
-    differentFromBy, arraySetEqualBy, equalBy, subsetOfBy} from 'tsfun-core';
+import {isNot} from 'tsfun-core';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -29,29 +26,3 @@ export const jsonEqual: any = <A>(l:A) =>
     (r: A) => l > r;
 
 
-export const differentFrom = differentFromBy(tripleEqual);
-
-
-export const includedIn =  includedInBy(tripleEqual);
-
-
-export const subsetOf = subsetOfBy(tripleEqual);
-
-
-export const arrayEqual = arrayEqualBy(undefined as any);
-
-
-// Compares 2 arrays where elements order does not matter
-export const sameset: Comparator = arraySetEqualBy(undefined as any);
-
-
-export const objectEqual: Comparator = objectEqualBy(arrayEqual as any);
-
-
-export const equal = equalBy(arrayEqual as any);
-
-
-export const equalTo = equal;
-
-
-export const by = <A>(p: Predicate<A>) => p;

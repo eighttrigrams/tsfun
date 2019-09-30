@@ -5,11 +5,14 @@ export {
     ArrayList,
     ArraySet,
     ObjectCollection,
-    ObjectSet,
     ObjectStruct,
     UntypedObjectCollection,
     ObjectMap
 } from './src/type';
+
+export {
+    ObjectSet
+} from 'tsfun-core';
 
 export {
     identity
@@ -35,18 +38,22 @@ export {isArray, isObject, isNot, isDefined,
 export {
     is,
     isnt,
+    tripleEqual,
+    jsonEqual
+} from './src/comparator';
+
+
+export {
     arrayEqual,
     sameset,
     equal,
     equalTo,
     objectEqual,
-    tripleEqual,
     includedIn,
     differentFrom,
     subsetOf,
-    jsonEqual,
     by
-} from './src/comparator';
+} from 'tsfun-core';
 
 
 export {on} from 'tsfun-core';
@@ -107,14 +114,17 @@ export {
 
 
 export {
+    duplicates
+} from './src/arrayset';
+
+
+export {
     intersection,
     union,
     intersect,
     subtract,
-    unite,
-    unique,
-    duplicates
-} from './src/arrayset';
+    unite
+} from 'tsfun-core';
 
 
 export {

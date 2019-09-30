@@ -1,7 +1,8 @@
 import {wrap} from '../../src/composition';
-import {intersect} from '../../src/arrayset';
+import {intersect} from 'tsfun-core';
 import {jsonClone} from '../../src/struct';
 import {nthOr} from "../../src/arraylist";
+
 
 describe('wrap - experimental', () => {
 
