@@ -17,11 +17,6 @@ export const compose = <T>(...transformations: Array<SimpleTransformation<T>>) =
     transformations.reduce((acc, transformation) => transformation(acc), t);
 
 
-/* experimental */ export const wrap = (cloneMethod: Function) =>
-    (doFunction: Function) => <T>(param: T) =>
-        cloneMethod(doFunction(param)) as T;
-
-
 export const cond = <A, B, C>(
     p: (_: A) => boolean,
     f: (_: A) => B,
