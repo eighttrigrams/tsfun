@@ -53,6 +53,7 @@ console.log(take(2)([1,2,3]))
 * [arrayEquivalent](test/comparator/array_set_equal.ts)
 * [objectEqual](test/comparator/object_equal.spec.ts)
 * [equal](test/comparator/equal.spec.ts)
+* [equalTo](test/comparator/equal.spec.ts)
 * [equivalent](test/comparator/equivalent.spec.ts)
 * [on](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/on.spec.ts)
 

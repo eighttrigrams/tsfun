@@ -4,7 +4,7 @@ import {equal} from '../../src/comparator';
 /**
  * @author Daniel de Oliveira
  */
-describe('equal', () => {
+describe('equal|equalTo', () => {
 
     // equal
 
