@@ -2,7 +2,9 @@
 
 ## arrayEquivalent
 
-* impelement that different order is ok, but all elements need to be listed (not set equal)
+* rename arrayEquivalent to arraySetEquivalent
+* reimplement arrayEquivalent such that different order is ok, but all elements need to be listed (not set equal)
+* search for usages and replace with usage of arraySetEquivalent
 
 ## Implement predicates for sets
 
