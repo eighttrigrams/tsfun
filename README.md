@@ -100,7 +100,7 @@ console.log(take(2)([1,2,3]))
 
 ### ArraySet
 
-* [intersection](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/intersect.spec.ts)
+* [intersection](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/intersection.spec.ts)
 * [intersect](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/intersect.spec.ts)
 * [subtract](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/subtract.spec.ts)
 * [union](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/union.spec.ts)
