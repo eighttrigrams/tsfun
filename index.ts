@@ -36,7 +36,7 @@ export {
     is,
     isnt,
     arrayEqual,
-    arrayEquivalent,
+    arraySetEqual,
     equal,
     equalTo,
     equivalent,

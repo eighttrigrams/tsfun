@@ -1,7 +1,7 @@
 import {isArray, isNot} from 'tsfun-core';
 import {Comparator, Predicate} from './type';
 import {objectEqualBy, arrayEqualBy, includedInBy,
-    differentFromBy, arrayEquivalentBy, equalBy, containedInBy} from 'tsfun-core';
+    differentFromBy, arraySetEqualBy, equalBy, containedInBy} from 'tsfun-core';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -42,7 +42,7 @@ export const arrayEqual = arrayEqualBy(undefined as any);
 
 
 // Compares 2 arrays where elements order does not matter
-export const arrayEquivalent: Comparator = arrayEquivalentBy(undefined as any);
+export const arraySetEqual: Comparator = arraySetEqualBy(undefined as any);
 
 
 export const objectEqual: Comparator = objectEqualBy(arrayEqual as any);
@@ -54,7 +54,7 @@ export const equal = equalBy(arrayEqual as any);
 export const equalTo = equal;
 
 
-export const equivalent = equalBy(arrayEquivalent);
+export const equivalent = equalBy(arraySetEqual);
 
 
 export const by = <A>(p: Predicate<A>) => p;

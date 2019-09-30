@@ -1,18 +1,18 @@
-import {arrayEquivalent} from '../../src/comparator';
+import {arraySetEqual} from '../../src/comparator';
 
 
 /**
  * @author Daniel de Oliveira
  */
-describe('arrayEquivalent', () => {
+describe('arraySetEqual', () => {
 
-    // arrayEquivalent compares two Arrays in a way that the order of the Arrays
+    // arraySetEqual compares two Arrays in a way that the order of the Arrays
     // does not matter.
 
     it('equivalent in different order', () =>
         expect(
 
-            arrayEquivalent([1, 4, 7])([7, 4, 1])
+            arraySetEqual([1, 4, 7])([7, 4, 1])
 
         ).toEqual(true));
 
@@ -20,7 +20,7 @@ describe('arrayEquivalent', () => {
     it('left side subset', () =>
         expect(
 
-            arrayEquivalent([1, 4])([7, 4, 1])
+            arraySetEqual([1, 4])([7, 4, 1])
 
         ).toEqual(false));
 
@@ -28,7 +28,7 @@ describe('arrayEquivalent', () => {
     it('left list smaller but same set', () =>
         expect(
 
-            arrayEquivalent([1, 4])([1, 4, 1, 4, 1])
+            arraySetEqual([1, 4])([1, 4, 1, 4, 1])
 
         ).toEqual(true));
 
@@ -36,7 +36,7 @@ describe('arrayEquivalent', () => {
     it('right list smaller', () =>
         expect(
 
-            arrayEquivalent([1, 4, 7])([7, 4])
+            arraySetEqual([1, 4, 7])([7, 4])
 
         ).toEqual(false));
 
@@ -44,7 +44,7 @@ describe('arrayEquivalent', () => {
     it('right list smaller but same set', () =>
         expect(
 
-            arrayEquivalent([1, 4, 1, 4, 1])([1, 4])
+            arraySetEqual([1, 4, 1, 4, 1])([1, 4])
 
         ).toEqual(true));
 
@@ -52,7 +52,7 @@ describe('arrayEquivalent', () => {
     it('different elements', () =>
         expect(
 
-            arrayEquivalent([1, 4, 5])([7, 4, 1])
+            arraySetEqual([1, 4, 5])([7, 4, 1])
 
         ).toEqual(false));
 
@@ -61,7 +61,7 @@ describe('arrayEquivalent', () => {
     it('nested arrays', () =>
         expect(
 
-            arrayEquivalent([1, [4, 7]])([[7, 4], 1])
+            arraySetEqual([1, [4, 7]])([[7, 4], 1])
 
         ).toEqual(true));
 
@@ -69,7 +69,7 @@ describe('arrayEquivalent', () => {
     it('nested arrays different sizes', () =>
         expect(
 
-            arrayEquivalent
+            arraySetEqual
             ([1, [7, [5, 5, 7], 7]])
             ([[7, 7, [5, 5, 7], [5, 5, 7]], 1])
 
@@ -78,10 +78,10 @@ describe('arrayEquivalent', () => {
 
     // using the default comparator, the order of keys does not matter
 
-    it('default comparator is objectEquivalentBy(arrayEquivalent)', () =>
+    it('default comparator is objectEquivalentBy(arraySetEqual)', () =>
         expect(
 
-            arrayEquivalent
+            arraySetEqual
             ([{c: 7}, {c: 5, b: 4}])
             ([{b: 4, c: 5}, {c: 7}])
 
@@ -89,10 +89,10 @@ describe('arrayEquivalent', () => {
 
     // at any level
 
-    it('arrayEquivalent with objectEquivalent - nest to arbitrary depth ', () =>
+    it('arraySetEqual with objectEquivalent - nest to arbitrary depth ', () =>
         expect(
 
-            arrayEquivalent
+            arraySetEqual
             ([{c: 7}, {c: [{g: [[1, 1, {m: 9, n: 10}], 8], d: 5}, 3], b: 4}])
             ([{b: 4, c: [3, {d: 5, g: [8, [1, {n: 10, m: 9}, 1]]}]}, {c: 7}])
 
