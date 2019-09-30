@@ -10,10 +10,6 @@
 * see clojure book 85
 * also see polymorphic error function
 
-## Review subtract
-
-* make it work so that single (non-array) items can get subtracted (+ prepend and append)
-
 ## experiment with immutability, with type system + maybe proxy objects or something similar
 
 ## Compare unique with rmdups from haskell book p.86
