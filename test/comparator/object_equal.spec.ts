@@ -1,24 +1,23 @@
 import {objectEqual} from '../../src/comparator';
 
 /**
- * objectEqual compares ObjectStructs, meaning deeply nested structures.
+ * tsfun - objectEqual
  *
- * The order of keys does not matter at any level, as far as other ObjectStructs
- * are found.
- *
- * On any level, if the type of a certain key on both
- * Objects is of a descendant of `Object`,
- * for instance `Date` or `Map`, the comparison is done via `jsonEqual`. Thus
- *
- * On any level, if the value is either a `string` or a `number`, the values
- * of the corresponding keys are compared via `===`, provided they are both of
- * the same type.
+ * Compares Structs (mutually nested structures of [] and {})
+ * The order of object keys does not matter at any level.
+ * On any level
+ * - if the value of a certain key on both
+ *   objects is of a descendant of `Object`,
+ *   for instance `Date` or `Map`, the comparison is done via `jsonEqual`. Thus
+ * - if the value is either a `string` or a `number`, the values
+ *   of the corresponding keys are compared via `===`, provided they are both of
+ *   the same type.
+ * - if the values are arrays, the comparison is done by arrayEqual
+ *   (, which in turn uses objectEqual by default, for deeper nested {})
  *
  * @author Daniel de Oliveira
  */
 describe('objectEqual', () => {
-
-    // objectEqual
 
     it('order of keys does not matter', () =>
         expect(
