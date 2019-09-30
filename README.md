@@ -106,7 +106,7 @@ console.log(take(2)([1,2,3]))
 * [union](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/union.spec.ts)
 * [unite](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/unite.spec.ts)
 * [unique](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/unique.spec.ts)
-* [duplicates](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/duplicates.spec.ts)
+* [duplicates](test/arrayset/duplicates.spec.ts)
 
 ### Struct
 
