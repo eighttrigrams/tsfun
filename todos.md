@@ -1,16 +1,5 @@
 # TODOs
 
-## arrayEquivalent
-
-* DONE rename arrayEquivalent to arraySetEqual 
-* search for usages and replace with usage of arraySetEquivalent
-* reimplement arrayEquivalent such that different order is ok, but all elements need to be listed (not set equal)
-
-## Implement predicates for sets
-
-* isSuperset
-* isSubset, see containedIn
-
 ## Add splitAt function
 
 ## Introduce splitwith function to simplify insert function in csv-export in idai-field
