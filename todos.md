@@ -1,16 +1,5 @@
 # TODOs
 
-## Add splitAt function
-
-## Introduce splitwith function to simplify insert function in csv-export in idai-field
-
-## Review impls of zip, zipWith functions
-
-* new "package" with flatMap and flatten?
-* perhaps make _nested subpackage, with flatten and zip, and other functions, 
-* think about tuples
-* make transpose function, maybe tensors?
-
 ## review lookup
 
 * fix typing of lookup, which may also return undefined
@@ -20,10 +9,6 @@
 
 * see clojure book 85
 * also see polymorphic error function
-
-## Make without or exclude function
-
-* who does a comparison under exclusion of a list of paths
 
 ## Review subtract
 
