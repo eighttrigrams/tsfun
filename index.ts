@@ -44,7 +44,7 @@ export {
     tripleEqual,
     includedIn,
     differentFrom,
-    containedIn,
+    subsetOf,
     jsonEqual,
     by
 } from './src/comparator';

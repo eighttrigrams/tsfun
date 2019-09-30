@@ -1,7 +1,7 @@
 import {isArray, isNot} from 'tsfun-core';
 import {Comparator, Predicate} from './type';
 import {objectEqualBy, arrayEqualBy, includedInBy,
-    differentFromBy, arraySetEqualBy, equalBy, containedInBy} from 'tsfun-core';
+    differentFromBy, arraySetEqualBy, equalBy, subsetOfBy} from 'tsfun-core';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -35,7 +35,7 @@ export const differentFrom = differentFromBy(tripleEqual);
 export const includedIn =  includedInBy(tripleEqual);
 
 
-export const containedIn = containedInBy(tripleEqual);
+export const subsetOf = subsetOfBy(tripleEqual);
 
 
 export const arrayEqual = arrayEqualBy(undefined as any);
