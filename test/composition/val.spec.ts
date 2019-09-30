@@ -1,5 +1,11 @@
-import {cond, val} from '../../src/composition';
+/**
+ * tsfun | val
+ *
+ * @author Daniel de Oliveira
+ */
+import {cond} from '../../src/composition';
 import {isDefined} from 'tsfun-core/src/predicate';
+import {val} from 'tsfun-core';
 
 
 describe('val', () => {

@@ -28,7 +28,4 @@ export const cond = <A, B, C>(
     g: (_: A) => C = identity as (_: A) => C) => (v: A): B|C => p(v) ? f(v) : g(v);
 
 
-export const val = <A>(v: A) => () => v;
-
-
 export const nop = () => {};

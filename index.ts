@@ -62,9 +62,11 @@ export {
     compose,
     flow,
     cond,
-    val,
     nop
 } from './src/composition';
+
+
+export {val} from 'tsfun-core';
 
 
 export {
