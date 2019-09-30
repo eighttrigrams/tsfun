@@ -54,7 +54,7 @@ console.log(take(2)([1,2,3]))
 * [arrayEqual](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/array_equal.spec.ts)
 * [objectEqual](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/object_equal.spec.ts)
 * [equal](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/equal.spec.ts)
-* [equalTo](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/equal.spec.ts)
+* [equalTo](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/equal_to.spec.ts)
 * [on](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/on.spec.ts)
 
 ### Composition
