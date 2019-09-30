@@ -43,18 +43,17 @@ console.log(take(2)([1,2,3]))
 ### Comparator
 
 * [tripleEqual](test/comparator/triple_equal.spec.ts)
+* [jsonEqual](test/comparator/json_equal.spec.ts)
 * [is](test/comparator/is.spec.ts)
 * [isnt](test/comparator/isnt.spec.ts)
-* [jsonEqual](test/comparator/json_equal.spec.ts)
 * [differentFrom](test/comparator/different_from.spec.ts)
 * [includedIn](test/comparator/included_in.spec.ts)
-* [containedIn](test/comparator/subset_of.ts)
+* [subsetOf](test/comparator/subset_of.ts)
+* [sameset](test/comparator/sameset.ts)
 * [arrayEqual](test/comparator/array_equal.spec.ts)
-* [arrayEquivalent](test/comparator/array_set_equal.ts)
 * [objectEqual](test/comparator/object_equal.spec.ts)
 * [equal](test/comparator/equal.spec.ts)
 * [equalTo](test/comparator/equal.spec.ts)
-* [equivalent](test/comparator/equivalent.spec.ts)
 * [on](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/on.spec.ts)
 
 ### Composition

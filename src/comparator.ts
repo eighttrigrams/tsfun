@@ -42,7 +42,7 @@ export const arrayEqual = arrayEqualBy(undefined as any);
 
 
 // Compares 2 arrays where elements order does not matter
-export const arraySetEqual: Comparator = arraySetEqualBy(undefined as any);
+export const sameset: Comparator = arraySetEqualBy(undefined as any);
 
 
 export const objectEqual: Comparator = objectEqualBy(arrayEqual as any);
