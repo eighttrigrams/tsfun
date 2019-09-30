@@ -54,7 +54,4 @@ export const equal = equalBy(arrayEqual as any);
 export const equalTo = equal;
 
 
-export const equivalent = equalBy(arraySetEqual);
-
-
 export const by = <A>(p: Predicate<A>) => p;

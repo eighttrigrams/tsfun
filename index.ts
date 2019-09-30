@@ -39,7 +39,6 @@ export {
     arraySetEqual,
     equal,
     equalTo,
-    equivalent,
     objectEqual,
     tripleEqual,
     includedIn,
