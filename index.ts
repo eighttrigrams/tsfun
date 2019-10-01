@@ -1,9 +1,5 @@
 export {
     NestedArray,
-    Pair,
-    Either,
-    ArrayList,
-    ArraySet,
     ObjectCollection,
     ObjectStruct,
     UntypedObjectCollection,
@@ -11,7 +7,11 @@ export {
 } from './src/type';
 
 export {
-    ObjectSet
+    ObjectSet,
+    Pair,
+    Either,
+    ArrayList,
+    ArraySet,
 } from 'tsfun-core';
 
 export {

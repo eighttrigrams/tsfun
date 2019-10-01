@@ -1,7 +1,4 @@
-import {ArrayList, ArraySet, Comparator} from './type';
-import {isNot} from 'tsfun-core';
-import {includedInBy, uniqueBy, intersectionBy, unionBy,
-    intersectBy, uniteBy, subtractBy} from 'tsfun-core'
+import {ArrayList, ArraySet} from "tsfun-core/src/type";
 
 // ------------ @author Daniel de Oliveira -----------------
 

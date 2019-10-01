@@ -1,5 +1,4 @@
-import {Predicate} from './type';
-import {isNot, on, isUndefined, isDefined, isUndefinedOrEmpty, isEmpty} from 'tsfun-core';
+import {isNot, on, isUndefined, isDefined, isUndefinedOrEmpty, isEmpty, Predicate} from 'tsfun-core';
 
 // ------------ @author Daniel de Oliveira -----------------
 

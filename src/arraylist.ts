@@ -1,7 +1,7 @@
 import {isNot} from 'tsfun-core';
-import {ArrayList, Pair, Predicate, SimpleTransformation} from './type';
+import {SimpleTransformation} from './type';
 import {identical} from './core';
-import {subtract} from "tsfun-core";
+import {subtract, ArrayList, Predicate, Pair} from 'tsfun-core';
 
 
 // ------------ @author Daniel de Oliveira -----------------
