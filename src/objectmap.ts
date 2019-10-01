@@ -1,7 +1,7 @@
 import {ObjectCollection, UntypedObjectCollection} from './type';
 import {zip} from "./arraylist";
 
-export const lookup = <A>(oc: ObjectCollection<A>) => (targetId: string): A => oc[targetId];
+export const lookup = <A>(oc: ObjectCollection<A>) => (targetId: string): A|undefined => oc[targetId];
 
 export function keysAndValues<T>(o: ObjectCollection<T>): Array<[string, T]> {
 
