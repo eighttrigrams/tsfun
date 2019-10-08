@@ -21,7 +21,7 @@ describe('getOn', () => {
             .toEqual(4));
 
 
-    it('fist level object - second level array',() =>
+    it('first level object - second level array',() =>
         expect(
 
             getOn({a: [4, 5]})('a[1]'))
