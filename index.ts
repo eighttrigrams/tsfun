@@ -70,6 +70,7 @@ export {val} from 'tsfun-core';
 
 
 export {
+    len,
     reverse,
     flatMap,
     flatten,
