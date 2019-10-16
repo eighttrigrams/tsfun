@@ -180,6 +180,9 @@ export const takeUntil = <A>(predicate: Predicate<A>) =>
         )(as.find(predicate));
 
 
+export const len = <A>(as: Array<A>) => as.length;
+
+
 // Written with Thomas Kleinke
 export const nth =
     <A>(i: number) =>

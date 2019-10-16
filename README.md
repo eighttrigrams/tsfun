@@ -70,6 +70,7 @@ console.log(take(2)([1,2,3]))
 
 * [copy](test/arraylist/copy.spec.ts)
 * arrayList
+* [len](test/arraylist/len.spec.ts)
 * [range](test/arraylist/range.spec.ts)
 * [append](test/arraylist/append.spec.ts) 
 * [prepend](test/arraylist/prepend.spec.ts) 
