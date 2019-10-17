@@ -132,11 +132,11 @@ export {
 
 
 export {
-    lookup,
     keysAndValues,
     keys,
-    values
-} from './src/objectmap'
+    values,
+    lookup
+} from './src/associative'
 
 
 export {

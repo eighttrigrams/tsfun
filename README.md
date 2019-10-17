@@ -122,12 +122,12 @@ console.log(take(2)([1,2,3]))
 * [dissoc](test/struct/dissoc.spec.ts)
 * [update](test/struct/update.spec.ts)
 
-### ObjectMap
+### Associative
 
-* [keysAndValues](test/objectmap/keys_and_values.spec.ts)
-* [keys](test/objectmap/keys.spec.ts)
-* [values](test/objectmap/values.spec.ts)
-* [lookup](test/objectmap/lookup.spec.ts)
+* [lookup](test/associative/lookup.spec.ts)
+* [keysAndValues](test/associative/keys_and_values.spec.ts)
+* [keys](test/associative/keys.spec.ts)
+* [values](test/associative/values.spec.ts)
 
 ### ArrayList (lazy)
 
