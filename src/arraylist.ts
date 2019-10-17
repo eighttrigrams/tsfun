@@ -114,9 +114,10 @@ export const drop = <A>(n: number) =>
 
 
 export const dropRight = <A>(n: number) =>
-    (as: ArrayList<A>) =>
-        n < 1 ? as :
-            as.reverse().slice(n).reverse();
+    (as: ArrayList<A>): ArrayList<A> =>
+        n < 1
+            ? as
+            : dropRight(n-1)(as.slice(0, as.length-1)) as ArrayList<A>;
 
 
 export const dropWhile = <A>(predicate: Predicate<A>) =>
