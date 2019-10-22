@@ -10,7 +10,7 @@ describe('forEachRight', () => {
         const items = await forEachRight((item: number) => {
             acc += item
         })([2, 4, 3]);
-        expect(items).toEqual([3, 4, 2]);
+        expect(items).toEqual([2, 4, 3]);
         expect(acc).toEqual(10);
         done();
     });

@@ -1,7 +1,7 @@
 {
   "name": "tsfun",
-  "version": "3.2.6",
-  "description": "Functional Combinators for TypeSCript",
+  "version": "3.4.0",
+  "description": "Functional Combinators for TypeScript",
   "main": "",
   "scripts": {
     "test": "jasmine JASMINE_CONFIG_PATH=test/jasmine.json",
@@ -14,6 +14,6 @@
     "jasmine": "2.5.2",
     "jasmine-core": "2.5.2",
     "typescript": "3.6.2",
-    "tsfun-core": "3.2.5"
+    "tsfun-core": "3.4.0"
   }
 }

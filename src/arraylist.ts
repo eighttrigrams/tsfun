@@ -21,7 +21,7 @@ export const copy = <T>(as: ArrayList<T>): ArrayList<T> =>
 
 
 export const reverse = <A>(as: ArrayList<A>): ArrayList<A> =>
-    as.reverse();
+    as.reduce((acc: Array<A>, a) => [a].concat(acc), []);
 
 
 export const append = <A>(as2: ArrayList<A>) => (as: ArrayList<A>) =>
@@ -92,7 +92,7 @@ export const forEachRight = <A>(
     f: ((_: A, i: number) => void)|((_: A) => void)) =>
     (as: Array<A>) => {
         let i = as.length - 1;
-        for (let item of as.reverse()) {
+        for (let item of reverse(as)) {
             (f as any)(item, i);
             i--;
         }
@@ -115,9 +115,7 @@ export const drop = <A>(n: number) =>
 
 export const dropRight = <A>(n: number) =>
     (as: ArrayList<A>): ArrayList<A> =>
-        n < 1
-            ? as
-            : dropRight(n-1)(as.slice(0, as.length-1)) as ArrayList<A>;
+        as.slice(0, Math.max(0, as.length-n)) as ArrayList<A>;
 
 
 export const dropWhile = <A>(predicate: Predicate<A>) =>
@@ -129,8 +127,11 @@ export const dropWhile = <A>(predicate: Predicate<A>) =>
 
 
 export const dropRightWhile = <A>(predicate: Predicate<A>) =>
-    (as: ArrayList<A>) =>
-        (dropWhile(predicate)(as.reverse())).reverse();
+    (as: ArrayList<A>) => {
+        let go = false;
+        return as.reduceRight((acc: Array<A>, a) =>
+            go || !predicate(a) ? (go = true, [a].concat(acc)) : acc, []);
+    };
 
 
 export const take = <A>(n: number) =>
