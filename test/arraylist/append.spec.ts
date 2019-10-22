@@ -7,7 +7,7 @@ describe('append', () => {
 
         expect(
 
-            append([1, 2])([3, 4]))
+            append(1, 2)([3, 4]))
 
             .toEqual([3, 4, 1, 2]));
 });

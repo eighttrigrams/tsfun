@@ -24,11 +24,11 @@ export const reverse = <A>(as: ArrayList<A>): ArrayList<A> =>
     as.reduce((acc: Array<A>, a) => [a].concat(acc), []);
 
 
-export const append = <A>(as2: ArrayList<A>) => (as: ArrayList<A>) =>
+export const append = <A>(...as2: ArrayList<A>) => (as: ArrayList<A>) =>
     as.concat(as2);
 
 
-export const prepend = <A>(as2: ArrayList<A>) => (as: ArrayList<A>) =>
+export const prepend = <A>(...as2: ArrayList<A>) => (as: ArrayList<A>) =>
     as2.concat(as);
 
 
