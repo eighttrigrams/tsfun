@@ -2,6 +2,8 @@ import {isNot} from 'tsfun-core';
 import {SimpleTransformation} from './type';
 import {identical} from './core';
 import {subtract, ArrayList, Predicate, Pair} from 'tsfun-core';
+import {compose} from './composition';
+import {to} from './struct';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -268,3 +270,10 @@ export function count<T>(p: Predicate<T>) {
 
     return (as: Array<T>) => as.filter(p).length;
 }
+
+
+export const first = to('[0]');
+
+export const second = to('[1]');
+
+export const last = compose(takeRight(1), to('[0]'));
