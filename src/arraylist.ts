@@ -2,7 +2,7 @@ import {isNot} from 'tsfun-core';
 import {SimpleTransformation} from './type';
 import {identical} from './core';
 import {subtract, ArrayList, Predicate, Pair} from 'tsfun-core';
-import {compose} from './composition';
+import {compose} from 'tsfun-core';
 import {to} from './struct';
 
 

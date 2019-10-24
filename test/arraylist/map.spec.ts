@@ -1,5 +1,5 @@
 import {map} from '../../src/arraylist';
-import {flow} from '../../src/composition';
+import {flow} from 'tsfun-core';
 import {to} from '../../src/struct';
 
 

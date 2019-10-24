@@ -1,6 +1,5 @@
 import {map} from '../../src/arraylist';
-import {cond} from '../../src/composition';
-import {val} from 'tsfun-core';
+import {val, cond} from 'tsfun-core';
 
 
 describe('cond', () => {
@@ -10,7 +9,7 @@ describe('cond', () => {
        expect(
 
            map(cond(
-               _ => _ > 3,
+               (_: any) => _ > 3,
                (_: number) => _ * 2,
                val(18)))
            ([3, 4, 5])
@@ -22,7 +21,7 @@ describe('cond', () => {
        expect(
 
            map(cond(
-               _ => _ > 3,
+               (_: any) => _ > 3,
                (_: number) => _ * 2))
            ([3, 4, 5])
 

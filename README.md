@@ -59,12 +59,12 @@ console.log(take(2)([1,2,3]))
 
 ### Composition
 
-* [flow](test/composition/flow.spec.ts)
-* [compose](test/composition/compose.spec.ts)
-* [cond](test/composition/cond.spec.ts)
-* [identity](test/composition/identity.spec.ts)
-* [val](test/composition/val.spec.ts)
-* [nop](test/composition/nop.spec.ts)
+* [flow](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/composition/flow.spec.ts)
+* [compose](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/composition/compose.spec.ts)
+* [cond](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/composition/cond.spec.ts)
+* [identity](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/composition/identity.spec.ts)
+* [val](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/composition/val.spec.ts)
+* [nop](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/composition/nop.spec.ts)
 
 ### ArrayList
 
@@ -131,13 +131,6 @@ console.log(take(2)([1,2,3]))
 * [keysAndValues](test/associative/keys_and_values.spec.ts)
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
-
-### ArrayList (lazy)
-
-* [lZip](test/arraylist/l_zip.spec.ts)
-* [lZipWith](test/arraylist/l_zip_with.spec.ts)
-* [lRange](test/arraylist/l_range.spec.ts)
-* [materialize](test/arraylist/materialize.spec.ts)
 
 ## Credits 
  

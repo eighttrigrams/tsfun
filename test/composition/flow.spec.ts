@@ -1,8 +1,6 @@
-import {greaterThan, lessThan} from '../../src/comparator';
-import {includedIn} from 'tsfun-core';
-import {flow} from '../../src/composition';
+import {flow, isNot, includedIn} from 'tsfun-core';
 import {dropRight, dropWhile, reverse, takeWhile} from '../../src/arraylist';
-import {isNot} from 'tsfun-core';
+import {greaterThan, lessThan} from '../../src/comparator';
 
 
 /**

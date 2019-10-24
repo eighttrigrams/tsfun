@@ -63,7 +63,7 @@ export {
     flow,
     cond,
     nop
-} from './src/composition';
+} from 'tsfun-core';
 
 
 export {val} from 'tsfun-core';

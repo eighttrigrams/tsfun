@@ -1,5 +1,5 @@
 import {lessThan} from '../../src/comparator';
-import {flow} from '../../src/composition';
+import {flow} from 'tsfun-core';
 import {remove} from '../../src/arraylist';
 
 
