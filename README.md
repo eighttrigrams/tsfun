@@ -4,6 +4,8 @@
 
 see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra), [tsfun-core](https://github.com/danielmarreirosdeoliveira/tsfun-core)
 
+---
+
 ## Function reference
 
 ### Predicate
