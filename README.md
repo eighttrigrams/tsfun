@@ -59,9 +59,9 @@ console.log(take(2)([1,2,3]))
 
 ### Composition
 
-* [flow](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/composition/flow.spec.ts)
-* [compose](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/composition/compose.spec.ts)
-* [cond](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/composition/cond.spec.ts)
+* [flow](test/composition/flow.spec.ts)
+* [compose](test/composition/compose.spec.ts)
+* [cond](test/composition/cond.spec.ts)
 * [identity](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/composition/identity.spec.ts)
 * [val](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/composition/val.spec.ts)
 * [nop](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/composition/nop.spec.ts)
