@@ -4,21 +4,6 @@
 
 see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra), [tsfun-core](https://github.com/danielmarreirosdeoliveira/tsfun-core)
 
-## Run
-
-Get started with `npm install; npm run build; npm test`.
-
-Use the library in a project via **npm** and **node**:
-
-```bash
-npm install --save tsfun
-```
-
-```
-import {take} from 'tsfun'
-console.log(take(2)([1,2,3]))
-```
-
 ## Function reference
 
 ### Predicate
