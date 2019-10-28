@@ -53,7 +53,7 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 * [val](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/composition/val.spec.ts)
 * [nop](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/composition/nop.spec.ts)
 
-### ArrayList
+### List
 
 * [copy](test/arraylist/copy.spec.ts)
 * arrayList
@@ -90,7 +90,7 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 * [zip](test/arraylist/zip.spec.ts)
 * [zipWith](test/arraylist/zip_with.spec.ts)
 
-### ArraySet
+### Set
 
 * [intersection](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/intersection.spec.ts)
 * [intersect](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/intersect.spec.ts)
