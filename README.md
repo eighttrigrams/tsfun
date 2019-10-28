@@ -100,6 +100,14 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 * [unique](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/unique.spec.ts)
 * [duplicates](test/arrayset/duplicates.spec.ts)
 
+### Associative
+
+* [lookup](test/associative/lookup.spec.ts)
+* [keysAndValues](test/associative/keys_and_values.spec.ts)
+* [keys](test/associative/keys.spec.ts)
+* [values](test/associative/values.spec.ts)
+
+
 ### Struct
 
 * [to](test/struct/to.spec.ts)
@@ -111,13 +119,6 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 * [assoc](test/struct/assoc.spec.ts)
 * [dissoc](test/struct/dissoc.spec.ts)
 * [update](test/struct/update.spec.ts)
-
-### Associative
-
-* [lookup](test/associative/lookup.spec.ts)
-* [keysAndValues](test/associative/keys_and_values.spec.ts)
-* [keys](test/associative/keys.spec.ts)
-* [values](test/associative/values.spec.ts)
 
 ## Credits 
  
