@@ -102,23 +102,25 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 
 ### Associative
 
-* [lookup](test/associative/lookup.spec.ts)
 * [keysAndValues](test/associative/keys_and_values.spec.ts)
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
+* [lookup](test/associative/lookup.spec.ts)
 
+### Associative | Struct
+
+* [assoc](test/struct/assoc.spec.ts)
+* [dissoc](test/struct/dissoc.spec.ts)
+* [update](test/struct/update.spec.ts)
 
 ### Struct
 
 * [to](test/struct/to.spec.ts)
+* [getOn](test/struct/get_on.spec.ts)
+* [getOnOr](test/struct/get_on_or.spec.ts)
 * [setOn](test/struct/set_on.spec.ts)
 * [clone](test/struct/clone.spec.ts)
 * [jsonClone](test/struct/json_clone.spec.ts)
-* [getOn](test/struct/get_on.spec.ts)
-* [getOnOr](test/struct/get_on_or.spec.ts)
-* [assoc](test/struct/assoc.spec.ts)
-* [dissoc](test/struct/dissoc.spec.ts)
-* [update](test/struct/update.spec.ts)
 
 ## Credits 
  
