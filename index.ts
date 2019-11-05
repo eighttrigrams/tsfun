@@ -139,9 +139,9 @@ export {
     keys,
     values,
     lookup,
-    assocValue,
-    updateValue,
-    dissocValue
+    assoc,
+    update,
+    dissoc
 } from './src/associative'
 
 
@@ -152,7 +152,7 @@ export {
     getOn,
     getOnOr,
     clone,
-    assoc,
-    dissoc,
-    update
+    assocOn,
+    dissocOn,
+    updateOn
 } from './src/struct';

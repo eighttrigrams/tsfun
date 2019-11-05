@@ -113,7 +113,7 @@ function convertPath(path: string) {
 }
 
 
-export function update(path: string, update_fun?: (val: any) => any) {
+export function updateOn(path: string, update_fun?: (val: any) => any) {
 
     return (struct: ObjectStruct): any => _update(convertPath(path), struct, update_fun)
 }
@@ -143,10 +143,10 @@ function _update(path: Array<string|number>, struct: ObjectStruct, update_fun?: 
 }
 
 
-export const assoc = (path: string, v: any) => update(path, val(v));
+export const assocOn = (path: string, v: any) => updateOn(path, val(v));
 
 
-export const dissoc = (path: string) => update(path);
+export const dissocOn = (path: string) => updateOn(path);
 
 
 export const to = reverseUncurry2(getElForPathIn);

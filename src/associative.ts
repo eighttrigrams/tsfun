@@ -3,9 +3,9 @@ import {range, zip} from "./arraylist";
 import {isArray} from 'tsfun-core/src/predicate';
 
 
-export function dissocValue<T>(key: string): (struct: ObjectMap<T>) => ObjectMap<T>;
-export function dissocValue<A>(key: number): (struct: Array<A>) => Array<A>;
-export function dissocValue<T>(key: string|number) {
+export function dissoc<T>(key: string): (struct: ObjectMap<T>) => ObjectMap<T>;
+export function dissoc<A>(key: number): (struct: Array<A>) => Array<A>;
+export function dissoc<T>(key: string|number) {
 
     return (struct: ObjectMap<T>|Array<T>) => {
 
@@ -20,9 +20,9 @@ export function dissocValue<T>(key: string|number) {
 }
 
 
-export function updateValue<T>(key: string, f: (_: T) => T): (struct: ObjectMap<T>) => ObjectMap<T>;
-export function updateValue<A>(key: number, f: (_: A) => A): (struct: Array<A>) => Array<A>;
-export function updateValue<T>(key: string|number, f: (_: T) => T) {
+export function update<T>(key: string, f: (_: T) => T): (struct: ObjectMap<T>) => ObjectMap<T>;
+export function update<A>(key: number, f: (_: A) => A): (struct: Array<A>) => Array<A>;
+export function update<T>(key: string|number, f: (_: T) => T) {
 
     return (struct: ObjectMap<T>|Array<T>) => {
 
@@ -36,9 +36,9 @@ export function updateValue<T>(key: string|number, f: (_: T) => T) {
 }
 
 
-export function assocValue<T>(key: string, value: T): (struct: ObjectMap<T>) => ObjectMap<T>;
-export function assocValue<A>(key: number, value: A): (struct: Array<A>) => Array<A>;
-export function assocValue<T>(key: string|number, value: T) {
+export function assoc<T>(key: string, value: T): (struct: ObjectMap<T>) => ObjectMap<T>;
+export function assoc<A>(key: number, value: A): (struct: Array<A>) => Array<A>;
+export function assoc<T>(key: string|number, value: T) {
 
     return (struct: ObjectMap<T>|Array<T>) => {
 

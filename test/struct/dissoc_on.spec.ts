@@ -1,6 +1,6 @@
-import {dissoc} from '../../src/struct';
+import {dissocOn} from '../../src/struct';
 
-describe('dissoc', () => {
+describe('dissocOn', () => {
 
 
     it('dissoc - first layer', () => {
@@ -8,7 +8,7 @@ describe('dissoc', () => {
         const embeddedStruct = { d: 'd_val' };
 
         const objectStruct = { a: 'a_val', c: embeddedStruct };
-        const resultStruct = dissoc('c')(objectStruct);
+        const resultStruct = dissocOn('c')(objectStruct);
 
         expect(resultStruct).not.toBe(objectStruct);
         expect(embeddedStruct['d']).toBe('d_val');
@@ -22,7 +22,7 @@ describe('dissoc', () => {
         const embeddedStruct = { e: 'e_val' };
 
         const objectStruct = { a: { b: 'b_val', c: embeddedStruct}, d: embeddedStruct };
-        const resultStruct = dissoc('a.c')(objectStruct);
+        const resultStruct = dissocOn('a.c')(objectStruct);
 
         expect(resultStruct).not.toBe(objectStruct);
         expect(resultStruct['d']).toBe(embeddedStruct);

@@ -1,7 +1,7 @@
-import {assoc} from '../../src/struct';
+import {assocOn} from '../../src/struct';
 
 
-describe('assoc', () => {
+describe('assocOn', () => {
 
 
     it('object - first level', () => {
@@ -9,7 +9,7 @@ describe('assoc', () => {
         const embeddedStruct = { d: 'd_val' };
 
         const objectStruct = { a: 'a_val', c: embeddedStruct };
-        const resultStruct = assoc('a', 'a_val_new')(objectStruct);
+        const resultStruct = assocOn('a', 'a_val_new')(objectStruct);
 
         expect(resultStruct).not.toBe(objectStruct);
         expect(resultStruct['a']).toBe('a_val_new');
@@ -26,7 +26,7 @@ describe('assoc', () => {
         const embeddedStruct = { d: 'd_val' };
 
         const objectStruct = ['a_val', embeddedStruct];
-        const resultStruct = assoc('[0]', 'a_val_new')(objectStruct);
+        const resultStruct = assocOn('[0]', 'a_val_new')(objectStruct);
 
         expect(resultStruct).not.toBe(objectStruct);
         expect(resultStruct[0]).toBe('a_val_new');
@@ -43,7 +43,7 @@ describe('assoc', () => {
         const embeddedStruct = { e: 'e_val' };
 
         const objectStruct = { a: { b: 'b_val', c: embeddedStruct}, d: embeddedStruct };
-        const resultStruct = assoc('a.b', 'b_val_new')(objectStruct);
+        const resultStruct = assocOn('a.b', 'b_val_new')(objectStruct);
 
         expect(resultStruct).not.toBe(objectStruct);
         expect(resultStruct['d']).toBe(embeddedStruct);
@@ -63,7 +63,7 @@ describe('assoc', () => {
         const embeddedStruct = { e: 'e_val' };
 
         const objectStruct: any = [{ b: 'b_val', c: embeddedStruct}, embeddedStruct];
-        const resultStruct = assoc('[0].b', 'b_val_new')(objectStruct);
+        const resultStruct = assocOn('[0].b', 'b_val_new')(objectStruct);
 
         expect(resultStruct).not.toBe(objectStruct);
         expect(resultStruct[1]).toBe(embeddedStruct);
@@ -83,7 +83,7 @@ describe('assoc', () => {
         const embeddedStruct = { e: 'e_val' };
 
         const objectStruct: any = [['b_val', embeddedStruct], embeddedStruct];
-        const resultStruct = assoc('[0][0]', 'b_val_new')(objectStruct);
+        const resultStruct = assocOn('[0][0]', 'b_val_new')(objectStruct);
 
         expect(resultStruct).not.toBe(objectStruct);
         expect(resultStruct[1]).toBe(embeddedStruct);
@@ -102,7 +102,7 @@ describe('assoc', () => {
 
 
         const objectStruct = { a: { b: { c: 'c_val'} }};
-        const resultStruct = assoc('a.b.c', 'c_val_new')(objectStruct);
+        const resultStruct = assocOn('a.b.c', 'c_val_new')(objectStruct);
 
         expect(resultStruct['a']['b']['c']).toBe('c_val_new');
     });
@@ -113,7 +113,7 @@ describe('assoc', () => {
         const embeddedStruct = { e: 'e_val' };
 
         const objectStruct: any = { a: [{f: 'f_val', g: embeddedStruct}, embeddedStruct], d: embeddedStruct };
-        const resultStruct = assoc('a[0].f', 'f_val_new')(objectStruct);
+        const resultStruct = assocOn('a[0].f', 'f_val_new')(objectStruct);
 
         expect(resultStruct).not.toBe(objectStruct);
         expect(resultStruct['d']).toBe(embeddedStruct);
@@ -135,7 +135,7 @@ describe('assoc', () => {
         const embeddedStruct = { e: 'e_val' };
 
         const objectStruct: any = [{f: ['f_val', embeddedStruct], g: embeddedStruct}, embeddedStruct ];
-        const resultStruct = assoc('[0].f[0]', 'f_val_new')(objectStruct);
+        const resultStruct = assocOn('[0].f[0]', 'f_val_new')(objectStruct);
 
         expect(resultStruct).not.toBe(objectStruct);
         expect(resultStruct[1]).toBe(embeddedStruct);
