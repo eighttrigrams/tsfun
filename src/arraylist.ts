@@ -18,10 +18,6 @@ export const separate = <A>(p: Predicate<A>) =>
         [as.filter(p), as.filter(isNot(p))];
 
 
-export const copy = <T>(as: ArrayList<T>): ArrayList<T> =>
-        subtract([])(as as any) as ArrayList<T>;
-
-
 export const reverse = <A>(as: ArrayList<A>): ArrayList<A> =>
     as.reduce((acc: Array<A>, a) => [a].concat(acc), []);
 

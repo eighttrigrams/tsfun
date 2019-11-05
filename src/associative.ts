@@ -1,7 +1,22 @@
 import {ObjectCollection, ObjectMap, UntypedObjectCollection} from './type';
 import {range, zip} from "./arraylist";
 import {isArray} from 'tsfun-core/src/predicate';
+import {ArrayList, subtract} from 'tsfun-core';
 
+
+export function copy<T>(struct: Array<T>): Array<T>;
+export function copy<T>(struct: ObjectMap<T>): ObjectMap<T>;
+export function copy<T>(struct: Array<T>|ObjectMap<T>) {
+
+    const newStruct = isArray(struct) ? [] : {};
+    keysAndValues(struct as any).forEach(([k, v]) => {
+        (newStruct as any)[k] = v;
+    });
+    return newStruct;
+}
+
+// export const copy = <T>(as: ArrayList<T>): ArrayList<T> =>
+//     subtract([])(as as any) as ArrayList<T>;
 
 export function dissoc<T>(key: string): (struct: ObjectMap<T>) => ObjectMap<T>;
 export function dissoc<A>(key: number): (struct: Array<A>) => Array<A>;

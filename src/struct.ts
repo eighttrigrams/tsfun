@@ -1,9 +1,9 @@
 import {getElForPathIn, isArray, isObject} from 'tsfun-core';
 import {isString} from './predicate';
 import {reverseUncurry2} from './core';
-import {ObjectCollection, ObjectMap, ObjectStruct, UntypedObjectCollection} from './type';
+import {ObjectStruct, UntypedObjectCollection} from './type';
 import {val} from 'tsfun-core';
-import {copy} from './arraylist';
+import {copy} from './associative';
 
 
 // ------------ @author Daniel de Oliveira -----------------

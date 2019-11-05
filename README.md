@@ -55,7 +55,6 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 
 ### List
 
-* [copy](test/arraylist/copy.spec.ts)
 * arrayList
 * [len](test/arraylist/len.spec.ts)
 * [range](test/arraylist/range.spec.ts)
@@ -109,6 +108,7 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 * [assoc](test/associative/assoc.spec.ts)
 * [update](test/associative/update.spec.ts)
 * [dissoc](test/associative/dissoc.spec.ts)
+* [copy](test/associative/copy.spec.ts)
 
 ### Struct
 

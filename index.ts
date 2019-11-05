@@ -98,7 +98,6 @@ export {
     dropRight,
     dropRightWhile,
     apply,
-    copy,
     nth,
     nthOr,
     indices,
@@ -141,7 +140,8 @@ export {
     lookup,
     assoc,
     update,
-    dissoc
+    dissoc,
+    copy
 } from './src/associative'
 
 
