@@ -149,7 +149,7 @@ export {
     to,
     setOn,
     jsonClone,
-    getOn,
+    lookupOn,
     getOnOr,
     clone,
     assocOn,

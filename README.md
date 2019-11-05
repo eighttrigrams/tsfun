@@ -112,15 +112,15 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 
 ### Struct
 
+* [to](test/struct/to.spec.ts)
+* [lookupOn](test/struct/lookup_on.spec.ts)
 * [assocOn](test/struct/assoc_on.spec.ts)
 * [dissocOn](test/struct/dissoc_on.spec.ts)
 * [updateOn](test/struct/update_on.spec.ts)
-* [to](test/struct/to.spec.ts)
-* [getOn](test/struct/get_on.spec.ts)
-* [getOnOr](test/struct/get_on_or.spec.ts)
-* [setOn](test/struct/set_on.spec.ts)
 * [clone](test/struct/clone.spec.ts)
 * [jsonClone](test/struct/json_clone.spec.ts)
+* [setOn](test/struct/set_on.spec.ts)
+* [getOnOr](test/struct/get_on_or.spec.ts)
 
 ## Credits 
  

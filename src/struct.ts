@@ -53,7 +53,7 @@ export const getOnOr = <T>(path: string, alternative: any) => (ds: ObjectStruct)
 };
 
 
-export const getOn = <T>(ds: ObjectStruct) => (path: string) => {
+export const lookupOn = <T>(ds: ObjectStruct) => (path: string) => {
 
     const result = getOnOr(path, undefined)(ds);
     if (result === undefined) throw Error('getOn, got nothing');
