@@ -138,7 +138,10 @@ export {
     keysAndValues,
     keys,
     values,
-    lookup
+    lookup,
+    assocValue,
+    updateValue,
+    dissocValue
 } from './src/associative'
 
 

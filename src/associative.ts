@@ -3,6 +3,55 @@ import {range, zip} from "./arraylist";
 import {isArray} from 'tsfun-core/src/predicate';
 
 
+export function dissocValue<T>(key: string): (struct: ObjectMap<T>) => ObjectMap<T>;
+export function dissocValue<A>(key: number): (struct: Array<A>) => Array<A>;
+export function dissocValue<T>(key: string|number) {
+
+    return (struct: ObjectMap<T>|Array<T>) => {
+
+        const newStruct = isArray(struct) ? [] : {};
+        keysAndValues(struct as any).forEach(([k, v]) => {
+            (newStruct as any)[k] = v;
+        });
+        if (isArray(struct)) (newStruct as any).splice(key, 1);
+        else delete (newStruct as any)[key];
+        return newStruct;
+    }
+}
+
+
+export function updateValue<T>(key: string, f: (_: T) => T): (struct: ObjectMap<T>) => ObjectMap<T>;
+export function updateValue<A>(key: number, f: (_: A) => A): (struct: Array<A>) => Array<A>;
+export function updateValue<T>(key: string|number, f: (_: T) => T) {
+
+    return (struct: ObjectMap<T>|Array<T>) => {
+
+        const newStruct = isArray(struct) ? [] : {};
+        keysAndValues(struct as any).forEach(([k, v]) => {
+            (newStruct as any)[k] = v;
+        });
+        (newStruct as any)[key] = f((newStruct as any)[key]);
+        return newStruct;
+    }
+}
+
+
+export function assocValue<T>(key: string, value: T): (struct: ObjectMap<T>) => ObjectMap<T>;
+export function assocValue<A>(key: number, value: A): (struct: Array<A>) => Array<A>;
+export function assocValue<T>(key: string|number, value: T) {
+
+    return (struct: ObjectMap<T>|Array<T>) => {
+
+        const newStruct = isArray(struct) ? [] : {};
+        keysAndValues(struct as any).forEach(([k, v]) => {
+            (newStruct as any)[k] = v;
+        });
+        (newStruct as any)[key] = value;
+        return newStruct;
+    }
+}
+
+
 export function lookup<T>(struct: ObjectMap<T>): (targetId: string) => T|undefined;
 export function lookup<A>(struct: Array<A>): (targetId: number) => A|undefined;
 export function lookup<A>(struct: ObjectCollection<A>|Array<A>) {

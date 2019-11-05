@@ -106,6 +106,9 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
 * [lookup](test/associative/lookup.spec.ts)
+* [assocValue](test/associative/assoc_value.spec.ts)
+* [updateValue](test/associative/update_value.spec.ts)
+* [dissocValue](test/associative/dissoc_value.spec.ts)
 
 ### Struct
 
