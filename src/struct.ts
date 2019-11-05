@@ -57,14 +57,12 @@ export function getOn<T>(path: string, alternative?: any) {
         }
         return result;
     }
-};
+}
 
 
 export const lookupOn = <T>(ds: ObjectStruct) => (path: string) => {
 
-    const result = getOn(path, undefined)(ds);
-    if (result === undefined) throw Error('getOn, got nothing');
-    return result;
+    return getOn(path, undefined)(ds);
 };
 
 
