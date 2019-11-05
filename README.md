@@ -83,8 +83,6 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 * [first](test/arraylist/first.spec.ts)
 * [second](test/arraylist/second.spec.ts)
 * [last](test/arraylist/last.spec.ts)
-* [nth](test/arraylist/nth.spec.ts)
-* [nthOr](test/arraylist/nth_or.spec.ts)
 * [indices](test/arraylist/indices.spec.ts)
 * [zip](test/arraylist/zip.spec.ts)
 * [zipWith](test/arraylist/zip_with.spec.ts)
@@ -109,6 +107,8 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 * [update](test/associative/update.spec.ts)
 * [dissoc](test/associative/dissoc.spec.ts)
 * [copy](test/associative/copy.spec.ts)
+* [get](test/arraylist/get.spec.ts)
+* [getOr](test/arraylist/get_or.spec.ts)
 
 ### Struct
 

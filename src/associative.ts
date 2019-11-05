@@ -1,7 +1,26 @@
 import {ObjectCollection, ObjectMap, UntypedObjectCollection} from './type';
 import {range, zip} from "./arraylist";
 import {isArray} from 'tsfun-core/src/predicate';
-import {ArrayList, subtract} from 'tsfun-core';
+import {ArrayList} from 'tsfun-core';
+
+// Written with Thomas Kleinke
+export function get<A>(i: number): (as: ArrayList<A>) => A;
+export function get<T>(i: string): (as: ObjectMap<T>) => T;
+export function get<T>(i: number|string) {
+    return (as: ArrayList<T>|ObjectMap<T>): T => {
+        const result = getOr(i as any, undefined as unknown as T)(as as any);
+        if (result === undefined) throw Error('nth, got nothing');
+        return result;
+    };
+}
+
+// Written with Thomas Kleinke
+export function getOr<A>(i: number, defaultValue?: A|undefined): (as: ArrayList<A>) => A|undefined;
+export function getOr<T>(i: string, defaultValue?: T|undefined): (as: ObjectMap<T>) => T|undefined;
+export function getOr<T>(i: number|string, defaultValue?: T|undefined) {
+
+    return (as: ArrayList<T>|ObjectMap<T>) => as.length < i ? defaultValue : (as as any)[i as any];
+}
 
 
 export function copy<T>(struct: Array<T>): Array<T>;

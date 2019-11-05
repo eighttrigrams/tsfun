@@ -183,23 +183,6 @@ export const takeUntil = <A>(predicate: Predicate<A>) =>
 export const len = <A>(as: Array<A>) => as.length;
 
 
-// Written with Thomas Kleinke
-export const nth =
-    <A>(i: number) =>
-        (as: ArrayList<A>): A => {
-            const result = nthOr(i, undefined as unknown as A)(as as any);
-            if (result === undefined) throw Error('nth, got nothing');
-            return result;
-        };
-
-
-// Written with Thomas Kleinke
-export const nthOr =
-    <A>(i: number, defaultValue?: A) =>
-        (as: ArrayList<A>): A|undefined =>
-            as.length < i ? defaultValue : as[i];
-
-
 /**
  * see https://mail.mozilla.org/pipermail/es-discuss/2012-April/022273.html
  */

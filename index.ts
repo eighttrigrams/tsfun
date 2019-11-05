@@ -98,8 +98,6 @@ export {
     dropRight,
     dropRightWhile,
     apply,
-    nth,
-    nthOr,
     indices,
     arrayList,
     range,
@@ -141,7 +139,9 @@ export {
     assoc,
     update,
     dissoc,
-    copy
+    copy,
+    get,
+    getOr,
 } from './src/associative'
 
 
