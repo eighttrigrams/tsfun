@@ -44,18 +44,25 @@ export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function
 }
 
 
-export const getOnOr = <T>(path: string, alternative: any) => (ds: ObjectStruct) => {
+export function getOn<T>(path: string, alternative?: any) {
 
-    const result = getElForPathIn(ds as Object, path);
-    return result !== undefined
-        ? result
-        : alternative;
+    const outerArgsLength = arguments.length;
+
+    return (ds: ObjectStruct) => {
+
+        const result = getElForPathIn(ds as Object, path);
+        if (result === undefined) {
+            if (outerArgsLength === 1) throw Error('got nothing');
+            else return alternative;
+        }
+        return result;
+    }
 };
 
 
 export const lookupOn = <T>(ds: ObjectStruct) => (path: string) => {
 
-    const result = getOnOr(path, undefined)(ds);
+    const result = getOn(path, undefined)(ds);
     if (result === undefined) throw Error('getOn, got nothing');
     return result;
 };

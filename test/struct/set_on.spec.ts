@@ -1,4 +1,4 @@
-import {getOnOr, setOn} from '../../src/struct';
+import {getOn, setOn} from '../../src/struct';
 
 describe('setOn', () => {
 
@@ -47,7 +47,7 @@ describe('setOn', () => {
         const o1: any = {a: {b: {c: 'd'}}};
 
         const takeOrMake = <T>(o: T, path: string, alternative: any) =>
-            setOn(o, path)(getOnOr(path , alternative)(o));
+            setOn(o, path)(getOn(path , alternative)(o));
 
         takeOrMake(o1, 'a.b.c', undefined); // take
         expect(o1['a']['b']['c']).toBe('d');
