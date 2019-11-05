@@ -108,7 +108,6 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 * [dissoc](test/associative/dissoc.spec.ts)
 * [copy](test/associative/copy.spec.ts)
 * [get](test/arraylist/get.spec.ts)
-* [getOr](test/arraylist/get_or.spec.ts)
 
 ### Struct
 

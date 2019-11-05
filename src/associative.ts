@@ -4,22 +4,21 @@ import {isArray} from 'tsfun-core/src/predicate';
 import {ArrayList} from 'tsfun-core';
 
 // Written with Thomas Kleinke
-export function get<A>(i: number): (as: ArrayList<A>) => A;
-export function get<T>(i: string): (as: ObjectMap<T>) => T;
-export function get<T>(i: number|string) {
-    return (as: ArrayList<T>|ObjectMap<T>): T => {
-        const result = getOr(i as any, undefined as unknown as T)(as as any);
-        if (result === undefined) throw Error('nth, got nothing');
+export function get<A>(i: number, defaultValue?: A|undefined): (as: ArrayList<A>) => A|undefined;
+export function get<T>(i: string, defaultValue?: T|undefined): (as: ObjectMap<T>) => T|undefined;
+export function get<T>(i: number|string, defaultValue?: T|undefined) {
+
+    const outerArgsLength = arguments.length;
+
+    return (as: ArrayList<T>|ObjectMap<T>): T|undefined => {
+
+        const result = (as as any)[i];
+        if (!result) {
+            if (outerArgsLength === 1) throw Error('got nothing');
+            else return defaultValue;
+        }
         return result;
     };
-}
-
-// Written with Thomas Kleinke
-export function getOr<A>(i: number, defaultValue?: A|undefined): (as: ArrayList<A>) => A|undefined;
-export function getOr<T>(i: string, defaultValue?: T|undefined): (as: ObjectMap<T>) => T|undefined;
-export function getOr<T>(i: number|string, defaultValue?: T|undefined) {
-
-    return (as: ArrayList<T>|ObjectMap<T>) => as.length < i ? defaultValue : (as as any)[i as any];
 }
 
 

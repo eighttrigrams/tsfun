@@ -140,8 +140,7 @@ export {
     update,
     dissoc,
     copy,
-    get,
-    getOr,
+    get
 } from './src/associative'
 
 
