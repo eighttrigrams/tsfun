@@ -40,7 +40,7 @@ export function dissoc<T>(key: string|number) {
 
     return (struct: ObjectMap<T>|Array<T>) => {
 
-        const newStruct = isArray(struct) ? [] : {};
+        const newStruct = isArray(struct) ? [] : {}; // TODO reuse copy
         keysAndValues(struct as any).forEach(([k, v]) => {
             (newStruct as any)[k] = v;
         });
