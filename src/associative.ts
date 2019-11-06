@@ -3,6 +3,7 @@ import {range, zip} from "./arraylist";
 import {isArray} from 'tsfun-core/src/predicate';
 import {ArrayList} from 'tsfun-core';
 
+
 // Written with Thomas Kleinke
 export function get<A>(i: number, defaultValue?: A|undefined): (as: ArrayList<A>) => A|undefined;
 export function get<T>(i: string, defaultValue?: T|undefined): (as: ObjectMap<T>) => T|undefined;
@@ -26,11 +27,7 @@ export function copy<T>(struct: Array<T>): Array<T>;
 export function copy<T>(struct: ObjectMap<T>): ObjectMap<T>;
 export function copy<T>(struct: Array<T>|ObjectMap<T>) {
 
-    const newStruct = isArray(struct) ? [] : {};
-    keysAndValues(struct as any).forEach(([k, v]) => {
-        (newStruct as any)[k] = v;
-    });
-    return newStruct;
+    return isArray(struct) ? [...struct] : {...struct};
 }
 
 
@@ -40,10 +37,7 @@ export function dissoc<T>(key: string|number) {
 
     return (struct: ObjectMap<T>|Array<T>) => {
 
-        const newStruct = isArray(struct) ? [] : {}; // TODO reuse copy
-        keysAndValues(struct as any).forEach(([k, v]) => {
-            (newStruct as any)[k] = v;
-        });
+        const newStruct = copy(struct as any);
         if (isArray(struct)) (newStruct as any).splice(key, 1);
         else delete (newStruct as any)[key];
         return newStruct;
@@ -57,10 +51,7 @@ export function update<T>(key: string|number, f: (_: T) => T) {
 
     return (struct: ObjectMap<T>|Array<T>) => {
 
-        const newStruct = isArray(struct) ? [] : {};
-        keysAndValues(struct as any).forEach(([k, v]) => {
-            (newStruct as any)[k] = v;
-        });
+        const newStruct = copy(struct as any);
         (newStruct as any)[key] = f((newStruct as any)[key]);
         return newStruct;
     }
@@ -73,10 +64,7 @@ export function assoc<T>(key: string|number, value: T) {
 
     return (struct: ObjectMap<T>|Array<T>) => {
 
-        const newStruct = isArray(struct) ? [] : {};
-        keysAndValues(struct as any).forEach(([k, v]) => {
-            (newStruct as any)[k] = v;
-        });
+        const newStruct = copy(struct as any);
         (newStruct as any)[key] = value;
         return newStruct;
     }
