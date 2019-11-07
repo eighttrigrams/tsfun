@@ -4,6 +4,7 @@ import {identical} from './core';
 import {subtract, ArrayList, Predicate, Pair} from 'tsfun-core';
 import {compose} from 'tsfun-core';
 import {to} from './struct';
+import {isArray} from "tsfun-core/src/predicate";
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -54,7 +55,20 @@ export const flatMap = <A>(f: (_: A) => ArrayList<A>): SimpleTransformation<Arra
             : as.reduce(intoArrayWith(f),[]);
 
 
-export const flatten = reduce((acc: any, val: any) => acc.concat(val), [] as any);
+
+export function flatten<T,R>(as: Array<T>): Array<R>;
+export function flatten<T,R>(depth: number): (as: Array<T>) => Array<R>;
+export function flatten<T,R>(asOrI: Array<T>|number): Array<T>|((_:Array<T>) => Array<R>) {
+
+    const reducer = reduce((acc: any, val: any) => acc.concat(val), [] as any);
+
+    return isArray(asOrI)
+        ? reducer(asOrI as Array<T>)
+        : (as: Array<T>) =>
+            asOrI === 1
+                ? reducer(as)
+                : flatten((asOrI as number) - 1)(reducer(as));
+}
 
 
 export const indices = <A>(f: Predicate<A>) =>
