@@ -46,16 +46,10 @@ export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function
 
 export function getOn<T>(path: string, alternative?: any) {
 
-    const outerArgsLength = arguments.length;
-
     return (ds: ObjectStruct) => {
 
         const result = getElForPathIn(ds as Object, path);
-        if (result === undefined) {
-            if (outerArgsLength === 1) throw Error('got nothing');
-            else return alternative;
-        }
-        return result;
+        return result !== undefined ? result : alternative;
     }
 }
 

@@ -62,10 +62,10 @@ describe('getOn', () => {
             .toEqual(false));
 
 
-    it('get nothing',() =>
+    it('nothing',() =>
         expect(
 
-            () => getOn('[3]')([1, 2]))
+            getOn('[3]')([1, 2]))
 
-            .toThrow(Error('got nothing')));
+            .toBeUndefined());
 });
