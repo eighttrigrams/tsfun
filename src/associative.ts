@@ -65,11 +65,15 @@ export function assoc<T>(key: string|number, value: T) {
 }
 
 
-export function lookup<T>(struct: ObjectMap<T>): (targetId: string) => T|undefined;
-export function lookup<A>(struct: Array<A>): (targetId: number) => A|undefined;
-export function lookup<A>(struct: ObjectCollection<A>|Array<A>) {
+export function lookup<T>(struct: ObjectMap<T>, alternative?: any): (targetId: string) => T|undefined;
+export function lookup<A>(struct: Array<A>, alternative?: any): (targetId: number) => A|undefined;
+export function lookup<A>(struct: ObjectCollection<A>|Array<A>, alternative?: any) {
 
-    return (targetId: string|number): A|undefined => (struct as any)[targetId];
+    return (targetId: string|number): A|undefined => {
+
+        const result = (struct as any)[targetId];
+        return result !== undefined ? result : alternative;
+    }
 }
 
 

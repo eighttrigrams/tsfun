@@ -25,4 +25,20 @@ describe('lookup', () => {
             map(lookup({a: 9, b: 10}))(['a', 'b'])
 
         ).toEqual([9, 10]));
+
+
+    it('nothing', () =>
+        expect(
+
+            map(lookup({a: 9}))(['d'])
+
+        ).toEqual([undefined]));
+
+
+    it('alternative', () =>
+        expect(
+
+            map(lookup({a: 9}, 13))(['d'])
+
+        ).toEqual([13]));
 });
