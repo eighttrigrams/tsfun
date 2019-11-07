@@ -103,7 +103,7 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
 * [lookup](test/associative/lookup.spec.ts)
-* [get](test/arraylist/get.spec.ts)
+* [get](test/associative/get.spec.ts)
 * [assoc](test/associative/assoc.spec.ts)
 * [update](test/associative/update.spec.ts)
 * [dissoc](test/associative/dissoc.spec.ts)
