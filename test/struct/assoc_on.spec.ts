@@ -1,7 +1,15 @@
 import {assocOn} from '../../src/struct';
+import {equal} from 'tsfun-core';
 
 
 describe('assocOn', () => {
+
+    it('create path', () =>
+        expect(
+
+            equal({ a: { b: { c: 3}}})(assocOn('a.b.c', 3)({}))
+
+        ).toBeTruthy());
 
 
     it('object - first level', () => {
