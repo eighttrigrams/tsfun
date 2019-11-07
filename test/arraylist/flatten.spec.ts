@@ -7,7 +7,7 @@ import {flatten} from '../../src/arraylist';
 describe('flatten', () => {
 
 
-    it('1 level - implicitely', () =>
+    it('1 level - implicitly', () =>
         expect(
 
             flatten([[1, 2], [3, 4]])
@@ -15,7 +15,7 @@ describe('flatten', () => {
         ).toEqual([1, 2, 3, 4]));
 
 
-    it('1 - level (explicitely)', () =>
+    it('1 - level - explicitly', () =>
         expect(
 
             flatten(1)([[1, [2, 3]], [4, [5, [6, 7]]]])
@@ -39,10 +39,18 @@ describe('flatten', () => {
         ).toEqual([1, 2, 3, 4, 5, 6, 7, 8]));
 
 
-    it('1 - level - but not level to compress', () =>
+    it('1 - level - but not level to compress - implicitly', () =>
         expect(
 
             flatten([1, 2] as any)
+
+        ).toEqual([1, 2]));
+
+
+    it('1 - level - but not level to compress - explicitly', () =>
+        expect(
+
+            flatten(1)([1, 2] as any)
 
         ).toEqual([1, 2]));
 
