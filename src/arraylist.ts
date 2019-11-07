@@ -112,11 +112,8 @@ export const forEachRight = <A>(
     };
 
 
-/* experimental */ export const intoArrayWith = <A>(f: (_: A) => Array<A>) =>
+const intoArrayWith = <A>(f: (_: A) => Array<A>) =>
     (acc: Array<A>, val: A) => acc.concat(f(val));
-
-
-/* experimental */ export const intoArray = intoArrayWith(identical as any);
 
 
 export const drop = <A>(n: number) =>
