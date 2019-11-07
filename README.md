@@ -119,7 +119,6 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 * [updateOn](test/struct/update_on.spec.ts)
 * [clone](test/struct/clone.spec.ts)
 * [jsonClone](test/struct/json_clone.spec.ts)
-* [setOn](test/struct/set_on.spec.ts)
 
 ## Credits 
  

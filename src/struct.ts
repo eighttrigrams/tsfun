@@ -1,5 +1,4 @@
-import {getElForPathIn, isArray, isObject} from 'tsfun-core';
-import {isString} from './predicate';
+import {getElForPathIn, isArray, isObject, convertPath, isString} from 'tsfun-core';
 import {reverseUncurry2} from './core';
 import {ObjectStruct, UntypedObjectCollection} from './type';
 import {val} from 'tsfun-core';
@@ -60,55 +59,10 @@ export const lookupOn = <T>(ds: ObjectStruct, alternative?: T) => (path: string)
 };
 
 
-export function setOn(object: any, path: string) {
-
-    return (val: any): void => _setOn(object, convertPath(path), val);
-}
-
-
-export function _setOn(object: any, path: Array<string|number>, val: any) {
-
-    const key = path[0];
-
-    if (path.length === 1) {
-        object[key] = val;
-    } else {
-        path.shift();
-        if (!object[key]) {
-            object[key] = isString(key)
-                ? {}
-                : [];
-        }
-        _setOn(object[key], path, val);
-    }
-}
-
-
 function applyUpdate(copied: any, key: string|number, update_fun?: (val: any) => any) {
 
     if (update_fun) copied[key] = update_fun((copied as any)[key]);
     else delete copied[key];
-}
-
-
-function convertPath(path: string) {
-
-    const segments = [];
-    let current = '';
-    for (let i = 0; i < path.length; i++) {
-        if (path[i] !== '[' && path[i] !== '.' && path[i] !== ']') {
-            current += path[i];
-        } else {
-            if (path[i] === ']') {
-                segments.push(parseInt(current));
-            } else {
-                if (current) segments.push(current);
-            }
-            current = '';
-        }
-    }
-    if (current) segments.push(current);
-    return segments;
 }
 
 

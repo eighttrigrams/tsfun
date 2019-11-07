@@ -146,7 +146,6 @@ export {
 
 export {
     to,
-    setOn,
     jsonClone,
     lookupOn,
     getOn,
