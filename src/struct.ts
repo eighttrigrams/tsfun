@@ -54,9 +54,9 @@ export function getOn<T>(path: string, alternative?: any) {
 }
 
 
-export const lookupOn = <T>(ds: ObjectStruct) => (path: string) => {
+export const lookupOn = <T>(ds: ObjectStruct, alternative?: T) => (path: string) => {
 
-    return getOn(path, undefined)(ds);
+    return getOn(path, alternative)(ds);
 };
 
 

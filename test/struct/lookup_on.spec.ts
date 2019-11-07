@@ -5,13 +5,6 @@ import {lookupOn} from "../../src/struct";
  */
 describe('lookupOn', () => {
 
-    it('nothing object',() =>
-        expect(
-
-            () => lookupOn({a: {b: 4}})('c.d'))
-
-            .toThrow(Error('getOn, got nothing')));
-
 
     it('first level object - second level object',() =>
         expect(
@@ -45,10 +38,34 @@ describe('lookupOn', () => {
             .toEqual(7));
 
 
-    it('a',() =>
+    it('undefined as key',() =>
         expect(
 
-            () => lookupOn([4, [7, 8]])(undefined as any))
+            lookupOn([4, [7, 8]])(undefined as any))
 
-            .toThrow(Error('getOn, got nothing')));
+            .toBeUndefined());
+
+
+    it('nothing array', () =>
+        expect(
+
+            lookupOn([4])('[5]'))
+
+            .toBeUndefined());
+
+
+    it('nothing object',() =>
+        expect(
+
+            lookupOn({a: {b: 4}})('c.d'))
+
+            .toBeUndefined());
+
+
+    it('alternative',() =>
+        expect(
+
+            lookupOn([4], 7)('[5]'))
+
+            .toEqual(7));
 });
