@@ -6,7 +6,7 @@ import {get} from '../../src/associative';
 
 describe('get', () => {
 
-    it('get - from object',() =>
+    it('object',() =>
         expect(
 
             get('a')({a: 'b', c: 'd'}))
@@ -14,7 +14,7 @@ describe('get', () => {
             .toEqual('b'));
 
 
-    it('get',() =>
+    it('array',() =>
         expect(
 
             get(0)([1, 2]))
@@ -22,22 +22,22 @@ describe('get', () => {
             .toEqual(1));
 
 
-    it('get nothing',() =>
+    it('nothing',() =>
         expect(
 
-            () => get(3)([1, 2]))
+            get(3)([1, 2]))
 
-            .toThrow(Error('got nothing')));
+            .toBeUndefined());
 
 
-    it('get - alternative - from object',() =>
+    it('alternative - from object',() =>
         expect(
 
             get('a', undefined as any)({a: 'b', c: 'd'}))
 
             .toEqual('b'));
 
-    it('get - alternative',() =>
+    it('alternative',() =>
         expect(
 
             get(0, undefined as any)([1, 2]))
@@ -45,7 +45,7 @@ describe('get', () => {
             .toEqual(1));
 
 
-    it('getOr - alternative - undefined',() =>
+    it('alternative - undefined',() =>
         expect(
 
             get(3, undefined as any)([1, 2]))
@@ -53,7 +53,7 @@ describe('get', () => {
             .toEqual(undefined));
 
 
-    it('get alternative - alternative',() =>
+    it('alternative - alternative',() =>
         expect(
 
             get(7, 7)([1, 2]))

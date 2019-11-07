@@ -7,18 +7,12 @@ import {ArrayList} from 'tsfun-core';
 // Written with Thomas Kleinke
 export function get<A>(i: number, defaultValue?: A|undefined): (as: ArrayList<A>) => A|undefined;
 export function get<T>(i: string, defaultValue?: T|undefined): (as: ObjectMap<T>) => T|undefined;
-export function get<T>(i: number|string, defaultValue?: T|undefined) {
-
-    const outerArgsLength = arguments.length;
+export function get<T>(i: number|string, alternative?: T|undefined) {
 
     return (as: ArrayList<T>|ObjectMap<T>): T|undefined => {
 
         const result = (as as any)[i];
-        if (!result) {
-            if (outerArgsLength === 1) throw Error('got nothing');
-            else return defaultValue;
-        }
-        return result;
+        return result !== undefined ? result : alternative;
     };
 }
 
