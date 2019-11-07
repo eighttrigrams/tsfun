@@ -1,6 +1,5 @@
 import {isNot} from 'tsfun-core';
 import {SimpleTransformation} from './type';
-import {identical} from './core';
 import {ArrayList, Predicate, Pair} from 'tsfun-core';
 import {compose} from 'tsfun-core';
 import {to} from './struct';
