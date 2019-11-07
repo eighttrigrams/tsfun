@@ -42,7 +42,7 @@ describe('flatten', () => {
     it('1 - level - but not level to compress', () =>
         expect(
 
-            flatten([1, 2])
+            flatten([1, 2] as any)
 
         ).toEqual([1, 2]));
 

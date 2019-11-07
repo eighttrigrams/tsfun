@@ -56,18 +56,18 @@ export const flatMap = <A>(f: (_: A) => ArrayList<A>): SimpleTransformation<Arra
 
 
 
-export function flatten<T,R>(as: Array<T>): Array<R>;
+export function flatten<T>(as: Array<Array<T>>): Array<T>;
 export function flatten<T,R>(depth: number): (as: Array<T>) => Array<R>;
-export function flatten<T,R>(asOrI: Array<T>|number): Array<T>|((_:Array<T>) => Array<R>) {
+export function flatten<T,R>(asOrDepth: Array<Array<T>>|number): Array<Array<T>>|((_:Array<T>) => Array<R>) {
 
     const reducer = reduce((acc: any, val: any) => acc.concat(val), [] as any);
 
-    return isArray(asOrI)
-        ? reducer(asOrI as Array<T>)
+    return isArray(asOrDepth)
+        ? reducer(asOrDepth as Array<Array<T>>)
         : (as: Array<T>) =>
-            asOrI === 1
+            asOrDepth === 1
                 ? reducer(as)
-                : flatten((asOrI as number) - 1)(reducer(as));
+                : flatten((asOrDepth as number) - 1)(reducer(as));
 }
 
 
