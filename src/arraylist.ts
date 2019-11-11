@@ -59,7 +59,7 @@ export function flatten<T>(as: Array<Array<T>>): Array<T>;
 export function flatten<T,R>(depth: number): (as: Array<T>) => Array<R>;
 export function flatten<T,R>(asOrDepth: Array<Array<T>>|number): Array<Array<T>>|((_:Array<T>) => Array<R>) {
 
-    const reducer = reduce((acc: any, val: any) => acc.concat(val), [] as any);
+    const reducer = reduce((acc: any, val: any) => acc.concat(val), [] as any); // TODO rename or review and check duplication with flatMap
 
     return isArray(asOrDepth)
         ? reducer(asOrDepth as Array<Array<T>>)
