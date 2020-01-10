@@ -6,7 +6,9 @@ export {
     clone,
     assocOn,
     dissocOn,
-    updateOn
+    updateOn,
+    getElForPathIn,
+    convertPath
 } from './src/struct';
 
 

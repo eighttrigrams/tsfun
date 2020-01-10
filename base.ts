@@ -20,11 +20,6 @@ export {
 } from './src/core';
 
 export {
-    getElForPathIn,
-    convertPath
-} from './src/struct';
-
-export {
     arrayEqualBy,
     samesetBy,
     equalBy,
