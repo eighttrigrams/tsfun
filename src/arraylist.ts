@@ -27,10 +27,6 @@ export const prepend = <A>(...as2: ArrayList<A>) => (as: ArrayList<A>) =>
     as2.concat(as);
 
 
-export const map = <A, B>(f: (_: A) => B) =>
-    (as: Array<A>): Array<B> => as.map(f);
-
-
 export const reduce = <A, B>(f: (b: B, a: A, i?: number) => B, init: B) =>
     (as: Array<A>): B => {
 
@@ -74,14 +70,6 @@ export const indices = <A>(f: Predicate<A>) =>
                     ? indices.concat([i])
                     : indices
         , []);
-
-
-export const filter = <A>(f: Predicate<A>): SimpleTransformation<Array<A>> =>
-    (as: Array<A>) =>
-        as.filter(f);
-
-
-export const remove = <A>(f: Predicate<A>): SimpleTransformation<Array<A>> => filter(isNot(f));
 
 
 export const forEach = <A>(

@@ -1,6 +1,13 @@
-import {ArrayList, ObjectCollection, ObjectMap, UntypedObjectCollection} from './type';
+import {
+    ArrayList,
+    ObjectCollection,
+    ObjectMap,
+    Predicate,
+    SimpleTransformation,
+    UntypedObjectCollection
+} from './type';
 import {range, zip} from "./arraylist";
-import {isArray} from './predicate';
+import {isArray, isNot} from './predicate';
 
 
 // Written with Thomas Kleinke
@@ -101,4 +108,68 @@ export function values<T>(t: ObjectCollection<T>|Array<T>): Array<T> {
     return isArray(t)
         ? t as Array<T>
         : Object.values(t);
+}
+
+
+/* internal */ export const mapProperties = <A, B>(f: (_: A) => B) =>
+    (keys: Array<number|string>, o: ObjectCollection<A>): ObjectCollection<B> =>
+        keys.reduce(mapPropertiesReducer(f)(o), {});
+
+
+const mapPropertiesReducer = <A, B>(f: (_: A) => B) =>
+    (o: any) => (acc: any, val: string) => (acc[val] = f(o[val]), acc);
+
+
+const filterObj = <T>(predicate: Predicate<T>): SimpleTransformation<ObjectCollection<T>> =>
+    (o: ObjectCollection<T>) =>
+        Object
+            .keys(o)
+            .reduce((acc: ObjectCollection<T>, key: string|number) => {
+                if (predicate(o[key])) acc[key] = o[key];
+                return acc;
+            }, {});
+
+type Mapping<A, B> = (_: A) => B;
+
+const mapObj = <A, B>(f: Mapping <A, B>):
+    (_: ObjectCollection<A>) => ObjectCollection<B> =>
+    (coll: ObjectCollection<A>) => mapProperties(f)(Object.keys(coll), coll);
+
+export function map<A, B>(f: (_: A) => B): {
+    (as: Array<A>): Array<B>
+    (os: ObjectCollection<A>): ObjectCollection<B>
+}
+export function map<A, B>(f: (_: A) => B) {
+
+    return (as: any) => {
+
+        if (isArray(as)) return (as as Array<A>).map(f) as Array<B>;
+        else return mapObj(f)(as as ObjectCollection<A>) as ObjectCollection<B>;
+    }
+}
+
+export function filter<A>(f: Predicate<A>): {
+    (as: Array<A>): Array<A>
+    (os: ObjectCollection<A>): ObjectCollection<A>
+}
+export function filter<A>(f: Predicate<A>) {
+
+    return (as: Array<A>|ObjectCollection<A>) => {
+
+        if (isArray(as)) return (as as Array<A>).filter(f) as Array<A>;
+        else return filterObj(f)(as as ObjectCollection<A>);
+    }
+}
+
+export function remove<A>(f: Predicate<A>): {
+    (as: Array<A>): Array<A>
+    (os: ObjectCollection<A>): ObjectCollection<A>
+}
+export function remove<A>(f: Predicate<A>) {
+
+    return (as: Array<A>|ObjectCollection<A>) => {
+
+        if (isArray(as)) return (as as Array<A>).filter(isNot(f)) as Array<A>;
+        else return filterObj(isNot(f))(as as ObjectCollection<A>);
+    }
 }

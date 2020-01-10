@@ -1,4 +1,4 @@
-import {map} from '../../src/arraylist';
+import {map} from '../../src/associative';
 import {cond, val} from '../../src/composition';
 
 
@@ -12,9 +12,9 @@ describe('cond', () => {
                (_: any) => _ > 3,
                (_: number) => _ * 2,
                val(18)))
-           ([3, 4, 5])
+           ({a: 3, b: 4, c: 5})
 
-       ).toEqual([18, 8, 10]));
+       ).toEqual({a: 18, b: 8, c: 10}));
 
 
    it('pass through', () =>

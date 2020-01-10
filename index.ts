@@ -77,10 +77,7 @@ export {
     reverse,
     flatMap,
     flatten,
-    filter,
-    remove,
     count,
-    map,
     forEach,
     forEachRight,
     reduce,
@@ -132,6 +129,9 @@ export {
     assoc,
     update,
     dissoc,
+    filter,
+    remove,
     copy,
-    get
+    get,
+    map
 } from './src/associative';

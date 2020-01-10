@@ -1,5 +1,4 @@
-import {map} from '../../src/arraylist';
-import {lookup} from '../../src/associative';
+import {lookup, map} from '../../src/associative';
 
 describe('lookup', () => {
 
