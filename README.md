@@ -8,6 +8,12 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 
 ## Function reference
 
+Example:
+
+```typescript
+import {equal} from 'tsfun';
+```
+
 ### Predicate
 
 * [has](test/predicate/has.spec.ts) 
@@ -121,6 +127,12 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 * [jsonClone](test/struct/json_clone.spec.ts)
 
 ## Base functions
+
+Example:
+
+```typescript
+import {samesetBy} from 'tsfun/base';
+```
 
 ### Comparator
 
