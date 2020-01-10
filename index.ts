@@ -110,16 +110,6 @@ export {
 
 
 export {
-    lRange,
-    lZip,
-    lZipWith,
-    lTake,
-    lMap,
-    lFilter
-} from './src/arraylist_lazy';
-
-
-export {
     duplicates,
 } from './src/arrayset';
 

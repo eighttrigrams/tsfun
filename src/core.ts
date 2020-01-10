@@ -24,4 +24,3 @@ export const uncurry2 = <A>(f: (_: Array<A>) => (_: Array<A>) => Array<A>) =>
 
 
 
-

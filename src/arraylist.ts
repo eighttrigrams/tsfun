@@ -1,8 +1,6 @@
 import {ArrayList, Pair, Predicate, SimpleTransformation} from './type';
-import {to} from './struct';
 import {subtractBy} from './arrayset';
 import {isArray, isNot} from './predicate';
-import {compose} from './composition';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -263,8 +261,23 @@ export const copy = <T>(as: ArrayList<T>): ArrayList<T> =>
     subtractBy(undefined as any)([])(as as any) as ArrayList<T>;
 
 
-export const first = to('[0]');
+export function first<T>(as: ArrayList<T>): T|undefined {
 
-export const second = to('[1]');
+    return as.length === 0
+        ? undefined
+        : as[0];
+}
 
-export const last = compose(takeRight(1), to('[0]'));
+export function second<T>(as: ArrayList<T>): T|undefined {
+
+    return as.length < 2
+        ? undefined
+        : as[1];
+}
+
+export function last<T>(as: ArrayList<T>): T|undefined {
+
+    return as.length === 0
+        ? undefined
+        : as[as.length-1];
+}
