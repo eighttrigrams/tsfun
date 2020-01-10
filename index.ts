@@ -111,11 +111,6 @@ export {
 
 
 export {
-    getElForPathIn,
-    convertPath
-} from './src/struct';
-
-export {
     intersection,
     union,
     unique,
@@ -135,16 +130,4 @@ export {
     dissoc,
     copy,
     get
-} from './src/associative'
-
-
-export {
-    to,
-    jsonClone,
-    lookupOn,
-    getOn,
-    clone,
-    assocOn,
-    dissocOn,
-    updateOn
-} from './src/struct';
+} from './src/associative';

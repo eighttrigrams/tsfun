@@ -19,8 +19,10 @@ export {
     identity
 } from './src/core';
 
-
-
+export {
+    getElForPathIn,
+    convertPath
+} from './src/struct';
 
 export {
     arrayEqualBy,
@@ -32,7 +34,6 @@ export {
     subsetOfBy,
     supersetOfBy
 } from './src/comparator';
-
 
 export {
     intersectionBy,
