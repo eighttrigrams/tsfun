@@ -19,9 +19,7 @@ export {
     identity
 } from './src/core';
 
-export {
-    isString
-} from './src/predicate';
+
 
 
 export {
@@ -34,12 +32,6 @@ export {
     subsetOfBy,
     supersetOfBy
 } from './src/comparator';
-
-
-export {
-    getElForPathIn,
-    convertPath
-} from './src/struct';
 
 
 export {

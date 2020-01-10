@@ -26,7 +26,7 @@ export {
     and,
     or,
     xor,
-    isArray, isObject, isNot, isDefined,
+    isArray, isObject, isNot, isDefined, isString,
     isUndefinedOrEmpty, isEmpty, isUndefined
 } from './src/predicate';
 
@@ -109,6 +109,11 @@ export {
     duplicates,
 } from './src/arrayset';
 
+
+export {
+    getElForPathIn,
+    convertPath
+} from './src/struct';
 
 export {
     intersection,
