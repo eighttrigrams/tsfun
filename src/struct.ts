@@ -149,7 +149,7 @@ export function _getElForPathIn(object: any, path: Array<string|number>): any {
 }
 
 
-function convertPath(path: string) {
+export function convertPath(path: string) {
 
     const segments = [];
     let current = '';

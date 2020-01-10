@@ -20,13 +20,7 @@ export {
 } from './src/core';
 
 export {
-    isNot,
-    isDefined,
-    isUndefined,
-    isUndefinedOrEmpty,
-    isEmpty,
-    isArray,
-    isObject
+    isString
 } from './src/predicate';
 
 
@@ -43,7 +37,8 @@ export {
 
 
 export {
-    getElForPathIn // TODO export necessary?
+    getElForPathIn,
+    convertPath
 } from './src/struct';
 
 
