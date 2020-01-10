@@ -1,4 +1,16 @@
 export {
+    to,
+    jsonClone,
+    lookupOn,
+    getOn,
+    clone,
+    assocOn,
+    dissocOn,
+    updateOn
+} from './src/struct';
+
+
+export {
     NestedArray,
     ObjectCollection,
     ObjectStruct,
