@@ -1,6 +1,5 @@
-import {and} from '../../src/predicate';
+import {and, isNot} from '../../src/predicate';
 import {greaterThan, is, isnt} from '../../src/comparator';
-import {isNot} from 'tsfun-core/src/predicate';
 import {filter} from '../../src/arraylist';
 
 

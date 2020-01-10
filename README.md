@@ -2,7 +2,7 @@
 
 **tsfun - functional combinator library for TypeScript**
 
-see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra), [tsfun-core](https://github.com/danielmarreirosdeoliveira/tsfun-core)
+see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra)
 
 ---
 
@@ -12,16 +12,16 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 
 * [has](test/predicate/has.spec.ts) 
 * [hasNot](test/predicate/has_not.spec.ts) 
-* [isEmpty](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/predicate/is_empty.spec.ts)
+* [isEmpty](test/predicate/is_empty.spec.ts)
 * [empty](test/predicate/empty.spec.ts)
-* [isUndefinedOrEmpty](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/predicate/is_undefined_or_empty.spec.ts)
+* [isUndefinedOrEmpty](test/predicate/is_undefined_or_empty.spec.ts)
 * [undefinedOrEmpty](test/predicate/undefined_or_empty.spec.ts)
-* [isDefined](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/predicate/is_defined.spec.ts)
+* [isDefined](test/predicate/is_defined.spec.ts)
 * [defined](test/predicate/defined.spec.ts)
-* [isUndefined](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/predicate/is_undefined.spec.ts)
-* [isArray](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/predicate/is_array.spec.ts)
-* [isObject](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/predicate/is_object.spec.ts)
-* [isNot](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/predicate/is_not.spec.ts)
+* [isUndefined](test/predicate/is_undefined.spec.ts)
+* [isArray](test/predicate/is_array.spec.ts)
+* [isObject](test/predicate/is_object.spec.ts)
+* [isNot](test/predicate/is_not.spec.ts)
 * [not](test/predicate/not.spec.ts)
 * [and](test/predicate/and.spec.ts)
 * [or](test/predicate/or.spec.ts)
@@ -33,25 +33,25 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 * [jsonEqual](test/comparator/json_equal.spec.ts)
 * [is](test/comparator/is.spec.ts)
 * [isnt](test/comparator/isnt.spec.ts)
-* [differentFrom](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/different_from.spec.ts)
-* [includedIn](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/included_in.spec.ts)
-* [subsetOf](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/subset_of.spec.ts)
-* [supersetOf](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/superset_of.spec.ts)
-* [sameset](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/sameset.spec.ts)
-* [arrayEqual](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/array_equal.spec.ts)
-* [objectEqual](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/object_equal.spec.ts)
-* [equal](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/equal.spec.ts)
-* [equalTo](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/equal_to.spec.ts)
-* [on](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/comparator/on.spec.ts)
+* [differentFrom](test/comparator/different_from.spec.ts)
+* [includedIn](test/comparator/included_in.spec.ts)
+* [subsetOf](test/comparator/subset_of.spec.ts)
+* [supersetOf](test/comparator/superset_of.spec.ts)
+* [sameset](test/comparator/sameset.spec.ts)
+* [arrayEqual](test/comparator/array_equal.spec.ts)
+* [objectEqual](test/comparator/object_equal.spec.ts)
+* [equal](test/comparator/equal.spec.ts)
+* [equalTo](test/comparator/equal_to.spec.ts)
+* [on](test/comparator/on.spec.ts)
 
 ### Composition
 
 * [flow](test/composition/flow.spec.ts)
 * [compose](test/composition/compose.spec.ts)
 * [cond](test/composition/cond.spec.ts)
-* [identity](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/composition/identity.spec.ts)
-* [val](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/composition/val.spec.ts)
-* [nop](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/composition/nop.spec.ts)
+* [identity](test/composition/identity.spec.ts)
+* [val](test/composition/val.spec.ts)
+* [nop](test/composition/nop.spec.ts)
 
 ### List
 
@@ -89,12 +89,12 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 
 ### Set
 
-* [intersection](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/intersection.spec.ts)
-* [intersect](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/intersect.spec.ts)
-* [subtract](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/subtract.spec.ts)
-* [union](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/union.spec.ts)
-* [unite](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/unite.spec.ts)
-* [unique](https://github.com/danielmarreirosdeoliveira/tsfun-core/blob/master/test/arrayset/unique.spec.ts)
+* [intersection](test/arrayset/intersection.spec.ts)
+* [intersect](test/arrayset/intersect.spec.ts)
+* [subtract](test/arrayset/subtract.spec.ts)
+* [union](test/arrayset/union.spec.ts)
+* [unite](test/arrayset/unite.spec.ts)
+* [unique](test/arrayset/unique.spec.ts)
 * [duplicates](test/arrayset/duplicates.spec.ts)
 
 ### Associative
@@ -119,6 +119,28 @@ see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra
 * [updateOn](test/struct/update_on.spec.ts)
 * [clone](test/struct/clone.spec.ts)
 * [jsonClone](test/struct/json_clone.spec.ts)
+
+## Base functions
+
+### Comparator
+
+* [differentFromBy](test/comparator/different_from_by.spec.ts)
+* [includedInBy](test/comparator/included_in_by.spec.ts)
+* [subsetOfBy](test/comparator/subset_of_by.spec.ts)
+* [supersetOfBy](test/comparator/superset_of_by.spec.ts)
+* [samesetBy](test/comparator/sameset_by.spec.ts)
+* [arrayEqualBy](test/comparator/array_equal_by.spec.ts)
+* [objectEqualBy](test/comparator/object_equal_by.spec.ts)
+* [equalBy](test/comparator/equal_by.spec.ts)
+
+### ArraySet
+
+* [intersectionBy](test/arrayset/intersection_by.spec.ts)
+* [intersectBy](test/arrayset/intersect_by.spec.ts)
+* [subtractBy](test/arrayset/subtract_by.spec.ts)
+* [unionBy](test/arrayset/union_by.spec.ts)
+* [uniteBy](test/arrayset/unite_by.spec.ts)
+* [uniqueBy](test/arrayset/unique_by.spec.ts)
 
 ## Credits 
  

@@ -1,5 +1,5 @@
 import {map} from '../../src/arraylist';
-import {val, cond} from 'tsfun-core';
+import {cond, val} from '../../src/composition';
 
 
 describe('cond', () => {

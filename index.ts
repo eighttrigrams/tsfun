@@ -3,16 +3,14 @@ export {
     ObjectCollection,
     ObjectStruct,
     UntypedObjectCollection,
-    ObjectMap
-} from './src/type';
-
-export {
+    ObjectMap,
     ObjectSet,
     Pair,
     Either,
     ArrayList,
-    ArraySet,
-} from 'tsfun-core';
+    ArraySet
+} from './src/type';
+
 
 export {
     identity
@@ -27,23 +25,17 @@ export {
     empty,
     and,
     or,
-    xor
+    xor,
+    isArray, isObject, isNot, isDefined,
+    isUndefinedOrEmpty, isEmpty, isUndefined
 } from './src/predicate';
-
-
-export {isArray, isObject, isNot, isDefined,
-    isUndefinedOrEmpty, isEmpty, isUndefined} from 'tsfun-core';
 
 
 export {
     is,
     isnt,
     tripleEqual,
-    jsonEqual
-} from './src/comparator';
-
-
-export {
+    jsonEqual,
     arrayEqual,
     sameset,
     equal,
@@ -52,21 +44,18 @@ export {
     includedIn,
     differentFrom,
     subsetOf,
-    by
-} from 'tsfun-core';
+    by,
+    on
+} from './src/comparator';
 
-
-export {on} from 'tsfun-core';
 
 export {
     compose,
     flow,
     cond,
-    nop
-} from 'tsfun-core';
-
-
-export {val} from 'tsfun-core';
+    nop,
+    val
+} from './src/composition';
 
 
 export {
@@ -128,7 +117,7 @@ export {
     intersect,
     subtract,
     unite
-} from 'tsfun-core';
+} from './src/arrayset';
 
 
 export {

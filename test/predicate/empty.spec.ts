@@ -1,5 +1,4 @@
-import {empty} from '../../src/predicate';
-import {isNot} from 'tsfun-core';
+import {empty, isNot} from '../../src/predicate';
 
 
 /**

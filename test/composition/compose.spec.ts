@@ -1,5 +1,5 @@
-import {compose, flow} from 'tsfun-core';
 import {drop, dropRight, take} from '../../src/arraylist';
+import {compose, flow} from '../../src/composition';
 
 
 /**

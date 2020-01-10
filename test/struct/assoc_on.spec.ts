@@ -1,5 +1,5 @@
 import {assocOn} from '../../src/struct';
-import {equal} from 'tsfun-core';
+import {equal} from '../../src/comparator';
 
 
 describe('assocOn', () => {

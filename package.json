@@ -13,7 +13,6 @@
     "@types/jasmine": "~2.5.41",
     "jasmine": "2.5.2",
     "jasmine-core": "2.5.2",
-    "typescript": "3.6.2",
-    "tsfun-core": "3.5.2"
+    "typescript": "3.6.2"
   }
 }

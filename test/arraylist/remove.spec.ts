@@ -1,6 +1,6 @@
 import {lessThan} from '../../src/comparator';
-import {flow} from 'tsfun-core';
 import {remove} from '../../src/arraylist';
+import {flow} from '../../src/composition';
 
 
 describe('remove', () => {

@@ -1,6 +1,6 @@
 import {map} from '../../src/arraylist';
-import {flow} from 'tsfun-core';
 import {to} from '../../src/struct';
+import {flow} from '../../src/composition';
 
 
 /**

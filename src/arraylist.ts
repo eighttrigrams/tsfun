@@ -1,9 +1,8 @@
-import {isNot} from 'tsfun-core';
-import {SimpleTransformation} from './type';
-import {ArrayList, Predicate, Pair} from 'tsfun-core';
-import {compose} from 'tsfun-core';
+import {ArrayList, Pair, Predicate, SimpleTransformation} from './type';
 import {to} from './struct';
-import {isArray} from "tsfun-core/src/predicate";
+import {subtractBy} from './arrayset';
+import {isArray, isNot} from './predicate';
+import {compose} from './composition';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -259,6 +258,9 @@ export function count<T>(p: Predicate<T>) {
 
     return (as: Array<T>) => as.filter(p).length;
 }
+
+export const copy = <T>(as: ArrayList<T>): ArrayList<T> =>
+    subtractBy(undefined as any)([])(as as any) as ArrayList<T>;
 
 
 export const first = to('[0]');

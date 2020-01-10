@@ -1,8 +1,8 @@
-import {getElForPathIn, isArray, isObject, convertPath, isString} from 'tsfun-core';
 import {reverseUncurry2} from './core';
 import {ObjectStruct, UntypedObjectCollection} from './type';
-import {val} from 'tsfun-core';
 import {copy} from './associative';
+import {val} from './composition';
+import {isArray, isObject, isString} from './predicate';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -103,3 +103,68 @@ export const dissocOn = (path: string) => updateOn(path);
 
 
 export const to = reverseUncurry2(getElForPathIn);
+
+
+function makeValueForCurrentKey(resultSegment: any) {
+    return (resultSegment
+        || resultSegment === ''
+        || resultSegment === 0
+        || resultSegment === false)
+        ? resultSegment
+        : undefined;
+}
+
+
+const isObject_ = (o: any) => o instanceof Object;
+
+
+// library internal
+export function getElForPathIn(object: any, path: string): any {
+
+    if (!path || path.length < 1) return undefined;
+    return _getElForPathIn(object, convertPath(path));
+}
+
+
+export function _getElForPathIn(object: any, path: Array<string|number>): any {
+
+    const key = path[0];
+
+    if (path.length === 1) {
+
+        if (isString(key)) {
+            if (isObject_(object)) return makeValueForCurrentKey(object[key]);
+            else return undefined;
+        } else {
+            if (isArray(object)) return makeValueForCurrentKey(object[key]);
+            else return undefined;
+        }
+
+    } else {
+        path.shift();
+        return object[key]
+            ? _getElForPathIn(object[key], path)
+            : undefined;
+    }
+}
+
+
+function convertPath(path: string) {
+
+    const segments = [];
+    let current = '';
+    for (let i = 0; i < path.length; i++) {
+        if (path[i] !== '[' && path[i] !== '.' && path[i] !== ']') {
+            current += path[i];
+        } else {
+            if (path[i] === ']') {
+                segments.push(parseInt(current));
+            } else {
+                if (current) segments.push(current);
+            }
+            current = '';
+        }
+    }
+    if (current) segments.push(current);
+    return segments;
+}

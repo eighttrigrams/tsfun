@@ -1,5 +1,5 @@
 import {clone} from "../../src/struct";
-import {isArray, isObject} from "tsfun-core";
+import {isArray, isObject} from '../../src/predicate';
 
 describe('clone', () => {
 

@@ -1,7 +1,6 @@
-import {ObjectCollection, ObjectMap, UntypedObjectCollection} from './type';
+import {ArrayList, ObjectCollection, ObjectMap, UntypedObjectCollection} from './type';
 import {range, zip} from "./arraylist";
-import {isArray} from 'tsfun-core/src/predicate';
-import {ArrayList} from 'tsfun-core';
+import {isArray} from './predicate';
 
 
 // Written with Thomas Kleinke
