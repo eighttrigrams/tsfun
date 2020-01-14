@@ -27,6 +27,7 @@ import {equal} from 'tsfun';
 * [isUndefined](test/predicate/is_undefined.spec.ts)
 * [isArray](test/predicate/is_array.spec.ts)
 * [isObject](test/predicate/is_object.spec.ts)
+* [isAssociative](test/predicate/is_associative.spec.ts)
 * [isNot](test/predicate/is_not.spec.ts)
 * [not](test/predicate/not.spec.ts)
 * [and](test/predicate/and.spec.ts)

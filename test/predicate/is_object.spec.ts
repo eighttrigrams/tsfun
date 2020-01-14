@@ -20,4 +20,12 @@ describe('isObject', () => {
             isObject({}))
 
             .toEqual(true));
+
+
+    it('null',() =>
+        expect(
+
+            isObject(null))
+
+            .toEqual(false));
 });

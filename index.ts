@@ -22,7 +22,8 @@ export {
     Pair,
     Either,
     ArrayList,
-    ArraySet
+    ArraySet,
+    Associative
 } from './src/type';
 
 
@@ -40,7 +41,10 @@ export {
     and,
     or,
     xor,
-    isArray, isObject, isNot, isDefined, isString,
+    isArray,
+    isObject,
+    isAssociative,
+    isNot, isDefined, isString,
     isUndefinedOrEmpty, isEmpty, isUndefined
 } from './src/predicate';
 

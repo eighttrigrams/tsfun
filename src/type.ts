@@ -16,6 +16,9 @@ export interface ObjectCollection<T> {[prop: string]: T}
 export interface ObjectMap<T> {[prop: string]: T} // same as ObjectCollection
 
 
+export type Associative<T> = ObjectCollection<T> | Array<T>;
+
+
 export type Comparator = <A, B>(_: A) => Predicate<B>;
 
 

@@ -91,4 +91,7 @@ export const isArray: Predicate<any> = (as: any) => as instanceof Array;
 export const isObject: Predicate<any> = (o: any) => o instanceof Object && o.constructor === Object;
 
 
+export const isAssociative: Predicate<any> = (a: any) => isObject(a) || isArray(a);
+
+
 export const isString: Predicate<any> = (as: any) => typeof as === 'string';
