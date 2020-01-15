@@ -72,18 +72,6 @@ export const indices = <A>(f: Predicate<A>) =>
         , []);
 
 
-export const forEach = <A>(
-    f: ((_: A, i: number) => void)|((_: A) => void)) =>
-    (as: Array<A>) => {
-        let i = 0;
-        for (let item of as) {
-            (f as any)(item, i);
-            i++;
-        }
-        return as;
-    };
-
-
 export const forEachRight = <A>(
     f: ((_: A, i: number) => void)|((_: A) => void)) =>
     (as: Array<A>) => {

@@ -7,7 +7,7 @@ import {
     UntypedObjectCollection
 } from './type';
 import {range, zip} from "./arraylist";
-import {isArray, isNot} from './predicate';
+import {isArray, isNot, isObject} from './predicate';
 
 
 // Written with Thomas Kleinke
@@ -172,4 +172,35 @@ export function remove<A>(f: Predicate<A>) {
         if (isArray(as)) return (as as Array<A>).filter(isNot(f)) as Array<A>;
         else return filterObj(isNot(f))(as as ObjectCollection<A>);
     }
+}
+
+
+export function forEach<A>(f: ((_: A, i: number) => void)|((_: A) => void)): {
+    (as: Array<A>): Array<A>
+    (os: ObjectCollection<A>): ObjectCollection<A>
+}
+export function forEach<A>(f: ((_: A, i: number) => void)|((_: A) => void)) {
+
+    return (as: Array<A>|ObjectCollection<A>) => {
+
+        if (isArray(as)) {
+
+            let i = 0;
+            for (let item of as) {
+                (f as any)(item, i);
+                i++;
+            }
+            return as as Array<A>;
+
+        } else if (isObject(as)) {
+
+            let i = 0;
+            for (let item of Object.values(as)) {
+                (f as any)(item, i);
+                i++;
+            }
+            return as as ObjectCollection<A>;
+
+        }
+    };
 }

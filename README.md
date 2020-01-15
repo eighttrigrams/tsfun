@@ -68,7 +68,6 @@ import {equal} from 'tsfun';
 * [append](test/arraylist/append.spec.ts) 
 * [prepend](test/arraylist/prepend.spec.ts) 
 * [count](test/arraylist/count.spec.ts)
-* [forEach](test/arraylist/for_each.spec.ts)
 * [forEachRight](test/arraylist/for_each_right.spec.ts) 
 * [reduce](test/arraylist/reduce.spec.ts)
 * [flatMap](test/arraylist/flat_map.spec.ts)
@@ -115,6 +114,7 @@ import {equal} from 'tsfun';
 * [update](test/associative/update.spec.ts)
 * [dissoc](test/associative/dissoc.spec.ts)
 * [copy](test/associative/copy.spec.ts)
+* [forEach](test/associative/for_each.spec.ts)
 
 ### Struct
 
