@@ -84,6 +84,15 @@ describe('flow', () => {
                 .includes(2))
 
             .toEqual(true));
+
+
+    it('generic default type param', () =>
+        expect(
+
+            flow<string>(
+                'a'))
+
+            .toEqual('a'));
 });
 
 

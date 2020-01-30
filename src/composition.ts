@@ -1,7 +1,7 @@
 import {identity} from './core';
 
-const composition = (t: any, ...transformations: Array<Function>) =>
-    compose(...transformations)(t) as any;
+const composition = <T = any>(t: any, ...transformations: Array<Function>) =>
+    compose(...transformations)(t) as T;
 
 
 export const flow = composition;
