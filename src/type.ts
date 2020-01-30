@@ -34,7 +34,10 @@ export type PredicateProducer = <A>(_: Predicate<A>) => Predicate<A>;
 export type ObjectSet = UntypedObjectCollection;
 
 
-export type Pair<A> = [A, A];
+export type Pair<A,B> = [A, B];
+
+
+export type Triple<A,B,C> = [A, B, C];
 
 
 export type Either<T1, T2> = [T1, undefined]|[undefined, T2];
