@@ -65,6 +65,15 @@ describe('flow', () => {
             .toEqual([20, 21]));
 
 
+    it('generic default type param', () =>
+        expect(
+
+            flow<string>(
+                'a'))
+
+            .toEqual('a'));
+
+
     // intended use case
 
     // In the example above we feed the flow with an array, and then transform this array step
@@ -76,23 +85,14 @@ describe('flow', () => {
     it('intended use case', () =>
         expect(
 
-            flow(
+            flow<number[]>(
                 [1, 2, 3, 1],
                 takeWhile(isNot(includedIn([3, 4]))),
                 dropRight(1))
-                .map((x: number) => x * 2)
+                .map(x => x * 2)
                 .includes(2))
 
             .toEqual(true));
-
-
-    it('generic default type param', () =>
-        expect(
-
-            flow<string>(
-                'a'))
-
-            .toEqual('a'));
 });
 
 
