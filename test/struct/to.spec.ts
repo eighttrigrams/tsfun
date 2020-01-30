@@ -38,4 +38,12 @@ describe('to', () => {
             [{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}].map(to('a.c')))
 
             .toEqual([undefined, {d: 'e'}]));
+
+
+    it('generic default type param', () =>
+        expect(
+
+            [{c: 'd'}, {c: 'e'}].map(to<string>('c')))
+
+            .toEqual(['d', 'e']));
 });

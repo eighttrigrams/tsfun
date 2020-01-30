@@ -102,7 +102,10 @@ export const assocOn = (path: string, v: any) => updateOn(path, val(v));
 export const dissocOn = (path: string) => updateOn(path);
 
 
-export function to(path: string) { return (reverseUncurry2(getElForPathIn))(path) };
+export function to<T = any>(path: string) {
+
+    return (s: any) => (reverseUncurry2(getElForPathIn))(path)(s) as T;
+}
 
 
 function makeValueForCurrentKey(resultSegment: any) {
