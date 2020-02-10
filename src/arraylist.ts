@@ -1,6 +1,6 @@
 import {ArrayList, Pair, Predicate, SimpleTransformation} from './type';
-import {subtractBy} from './arrayset';
 import {isArray, isNot} from './predicate';
+import {copy} from './associative';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -222,6 +222,12 @@ export function range(a: number, b?: number, stepSize: number = 1): number[] {
 
     return arrayList(numItems)
         .map((a: any, i: number) => (begin as number) + (i * stepSize));
+}
+
+
+export function sort<A>(f: (a: A, b: A) => number) {
+
+    return (as: Array<A>): Array<A> => copy(as).sort(f as any);
 }
 
 

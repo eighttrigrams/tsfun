@@ -105,7 +105,8 @@ export {
     arrayList,
     range,
     zip,
-    zipWith
+    zipWith,
+    sort
 } from './src/arraylist';
 
 

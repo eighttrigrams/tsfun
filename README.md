@@ -67,6 +67,7 @@ import {equal} from 'tsfun';
 * [append](test/arraylist/append.spec.ts) 
 * [prepend](test/arraylist/prepend.spec.ts) 
 * [count](test/arraylist/count.spec.ts)
+* [sort](test/arraylist/sort.spec.ts)
 * [forEachRight](test/arraylist/for_each_right.spec.ts) 
 * [reduce](test/arraylist/reduce.spec.ts)
 * [flatMap](test/arraylist/flat_map.spec.ts)
