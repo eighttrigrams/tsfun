@@ -163,9 +163,6 @@ export const takeUntil = <A>(predicate: Predicate<A>) =>
         )(as.find(predicate));
 
 
-export const len = <A>(as: Array<A>) => as.length;
-
-
 /**
  * see https://mail.mozilla.org/pipermail/es-discuss/2012-April/022273.html
  */

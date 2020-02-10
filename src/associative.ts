@@ -71,6 +71,16 @@ export function assoc<T>(key: string|number, value: T) {
 }
 
 
+export function size<A>(as: Array<A>): number;
+export function size<T>(o: ObjectCollection<T>): number;
+export function size<T>(o: Array<T>|ObjectCollection<T>): number {
+
+    return (isArray(o)
+        ? o.length
+        : keys(o).length) as number;
+}
+
+
 export function lookup<T>(struct: ObjectMap<T>, alternative?: T): (targetId: string) => T|undefined;
 export function lookup<A>(struct: Array<A>, alternative?: A): (targetId: number) => A|undefined;
 export function lookup<A>(struct: ObjectCollection<A>|Array<A>, alternative?: any) {

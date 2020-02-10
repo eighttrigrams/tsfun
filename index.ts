@@ -78,7 +78,6 @@ export {
 
 
 export {
-    len,
     reverse,
     flatMap,
     flatten,
@@ -128,6 +127,7 @@ export {
 export {
     keysAndValues,
     keys,
+    size,
     values,
     lookup,
     assoc,

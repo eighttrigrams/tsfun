@@ -63,7 +63,6 @@ import {equal} from 'tsfun';
 ### List
 
 * arrayList
-* [len](test/arraylist/len.spec.ts)
 * [range](test/arraylist/range.spec.ts)
 * [append](test/arraylist/append.spec.ts) 
 * [prepend](test/arraylist/prepend.spec.ts) 
@@ -105,6 +104,7 @@ import {equal} from 'tsfun';
 * [keysAndValues](test/associative/keys_and_values.spec.ts)
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
+* [size](test/associative/size.spec.ts)
 * [map](test/associative/map.spec.ts)
 * [filter](test/associative/filter.spec.ts) 
 * [remove](test/associative/remove.spec.ts)
