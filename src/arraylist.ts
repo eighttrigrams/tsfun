@@ -231,12 +231,6 @@ export function sort<A>(f: (a: A, b: A) => number) {
 }
 
 
-export function count<T>(p: Predicate<T>) {
-
-    return (as: Array<T>) => as.filter(p).length;
-}
-
-
 export function first<T>(as: ArrayList<T>): T|undefined {
 
     return as.length === 0

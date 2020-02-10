@@ -121,6 +121,19 @@ export function values<T>(t: ObjectCollection<T>|Array<T>): Array<T> {
 }
 
 
+export function count<A>(p: Predicate<A>): {
+    (as: Array<A>): number
+    (os: ObjectCollection<A>): number
+}
+export function count<A>(p: Predicate<A>) {
+
+    return (as: Array<A>|ObjectCollection<A>): number => {
+
+        return size(filter(p)(as as any));
+    }
+}
+
+
 /* internal */ export const mapProperties = <A, B>(f: (_: A) => B) =>
     (keys: Array<number|string>, o: ObjectCollection<A>): ObjectCollection<B> =>
         keys.reduce(mapPropertiesReducer(f)(o), {});
