@@ -74,7 +74,9 @@ export {
     flow,
     cond,
     nop,
-    val
+    val,
+    tuplify,
+    pairWith
 } from './src/composition';
 
 

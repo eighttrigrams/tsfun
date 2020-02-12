@@ -59,6 +59,8 @@ import {equal} from 'tsfun';
 * [identity](test/composition/identity.spec.ts)
 * [val](test/composition/val.spec.ts)
 * [nop](test/composition/nop.spec.ts)
+* [tuplify](test/composition/tuplify.spec.ts)
+* [pairWith](test/composition/pair-with.spec.ts)
 
 ### List
 

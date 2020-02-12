@@ -21,3 +21,15 @@ export const nop = () => {};
 
 
 export const val = <A>(v: A) => () => v;
+
+
+export function tuplify(...fs : any[]) {
+
+    return (s: any) => fs.map(f => f(s));
+}
+
+
+export function pairWith(f: any) {
+
+    return tuplify(identity, f);
+}
