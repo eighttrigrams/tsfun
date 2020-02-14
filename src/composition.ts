@@ -1,5 +1,5 @@
 import {identity} from './core';
-import {Predicate} from './type';
+import {ObjectCollection, Predicate} from './type';
 
 const composition = <T = any>(t: any, ...transformations: Array<Function>) =>
     compose(...transformations)(t) as T;
@@ -12,16 +12,20 @@ export const compose = (...transformations: Array<Function>) => (t: any)  =>
     transformations.reduce((acc, transformation) => transformation(acc), t) as any;
 
 
+type Mapping<A, B> = (_: A) => B;
+
 export function cond<A, B, C>(
     p: Predicate<A>|boolean,
-    f: (_: A) => B,
-    g: (_: A) => C = identity as (_: A) => C)
-    : (v: A) => B|C {
+    f: Mapping<A, B>|ObjectCollection<B>|Array<B>|number|string|undefined,
+    g: Mapping<A, C>|ObjectCollection<C>|Array<C>|number|string|undefined
+        = identity as (_: A) => C)
+    : (v: A) => B|C|ObjectCollection<B>|ObjectCollection<C>|Array<B>|Array<C>|number|string|undefined {
 
     return (v: A) => {
 
-        const condition = typeof p === 'boolean' ? p: p(v);
-        return condition ? f(v) : g(v)
+        return (typeof p === 'function' ? p(v) : p)
+            ? typeof f === 'function' ? f(v) : f
+            : typeof g === 'function' ? g(v) : g
     }
 }
 
