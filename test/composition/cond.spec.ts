@@ -26,4 +26,15 @@ describe('cond', () => {
            ([3, 4, 5])
 
        ).toEqual([3, 8, 10]));
+
+
+   it('cond boolean', () =>
+       expect(
+
+           map(cond(
+               true,
+               (_: number) => _ * 2))
+           ([3, 4, 5])
+
+       ).toEqual([6, 8, 10]));
 });
