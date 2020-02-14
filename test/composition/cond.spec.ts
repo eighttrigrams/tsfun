@@ -1,6 +1,6 @@
-import {map} from '../../src/associative';
+import {filter, map} from '../../src/associative';
 import {cond, val} from '../../src/composition';
-import {is} from '../../src/comparator';
+import {includedIn, is} from '../../src/comparator';
 import {identity} from '../../base';
 
 
@@ -51,4 +51,14 @@ describe('cond', () => {
                 3))
             ([17, 4, 5])
         ).toEqual([17, 3, 3]));
+
+
+    it('use with filter', () =>
+        expect(
+            filter(
+                cond(
+                    includedIn([-2, 4]),
+                    (x: number) => x > 0))
+            ([-2, 4, 5])
+        ).toEqual([4, 5]));
 });

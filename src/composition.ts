@@ -15,17 +15,17 @@ export const compose = (...transformations: Array<Function>) => (t: any)  =>
 type Mapping<A, B> = (_: A) => B;
 
 export function cond<A, B, C>(
-    p: Predicate<A>|boolean,
-    f: Mapping<A, B>|ObjectCollection<B>|Array<B>|number|string|undefined,
-    g: Mapping<A, C>|ObjectCollection<C>|Array<C>|number|string|undefined
+    p: boolean|Predicate<A>,
+    f: Mapping<A, B>|B,
+    g: Mapping<A, C>|C
         = identity as (_: A) => C)
-    : (v: A) => B|C|ObjectCollection<B>|ObjectCollection<C>|Array<B>|Array<C>|number|string|undefined {
+    : (v: A) => B|C {
 
     return (v: A) => {
 
         return (typeof p === 'function' ? p(v) : p)
-            ? typeof f === 'function' ? f(v) : f
-            : typeof g === 'function' ? g(v) : g
+            ? typeof f === 'function' ? (f as Mapping<A,B>)(v) : f
+            : typeof g === 'function' ? (g as Mapping<A,C>)(v) : g
     }
 }
 
