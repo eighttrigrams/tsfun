@@ -152,17 +152,12 @@ const filterObj = <T>(predicate: Predicate<T>): SimpleTransformation<ObjectColle
                 return acc;
             }, {});
 
-type Mapping<A, B> = (_: A) => B;
 
-const mapObj = <A, B>(f: Mapping <A, B>):
-    (_: ObjectCollection<A>) => ObjectCollection<B> =>
-    (coll: ObjectCollection<A>) => mapProperties(f)(Object.keys(coll), coll);
-
-export function map<A, B>(f: ((_: A) => B)|((_: A, pos: string|number) => B)): {
+export function map<A, B>(f: ((_: A) => B)|((_: A, i: string|number) => B)): {
     (as: Array<A>): Array<B>
     (os: ObjectCollection<A>): ObjectCollection<B>
 }
-export function map<A, B>(f: ((_: A) => B)|((_: A, pos: string|number) => B)) {
+export function map<A, B>(f: ((_: A) => B)|((_: A, i: string|number) => B)) {
 
     return (as: any) => {
 
@@ -171,7 +166,6 @@ export function map<A, B>(f: ((_: A) => B)|((_: A, pos: string|number) => B)) {
             const result: ObjectCollection<B> = {};
             for (let key of Object.keys(as)) result[key] = f(as[key], key);
             return result;
-            // TODO remove mapObj; return mapObj(f)(as as ObjectCollection<A>) as ObjectCollection<B>;
         }
     }
 }
