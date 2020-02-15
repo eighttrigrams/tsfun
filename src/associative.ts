@@ -157,7 +157,7 @@ export function map<A, B>(f: (_: A, i?: string|number) => B): {
     (as: Array<A>): Array<B>
     (os: ObjectCollection<A>): ObjectCollection<B>
 }
-export function map<A, B>(f: (_: A, i: string|number) => B) {
+export function map<A, B>(f: (_: A, i?: string|number) => B) {
 
     return (as: any) => {
 
