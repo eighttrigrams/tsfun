@@ -1,4 +1,4 @@
-import {ArrayList, Pair, Predicate, SimpleTransformation} from './type';
+import {ArrayList, ArrayMinLength1, Pair, Predicate, SimpleTransformation} from './type';
 import {isArray, isNot} from './predicate';
 import {copy} from './associative';
 
@@ -231,18 +231,12 @@ export function sort<A>(f: (a: A, b: A) => number) {
 }
 
 
-// see https://stackoverflow.com/questions/49910889/typescript-array-with-minimum-length
-// for a discussion
-type ArrayListMinLength1<T> = {
-    0: T
-} & ArrayList<T>
+export function first<T>(as: ArrayMinLength1<T>|Pair<T,any>): T {
 
-
-export function first<T>(as: ArrayListMinLength1<T>|Pair<T,any>): T {
-
-    if (as.length === 0) throw Error("Illegal argument: array with at least 1 element expected")
+    if (as.length === 0) throw Error("Illegal argument: array with at least 1 element expected");
     return as[0];
 }
+
 
 export function second<T>(as: Pair<any, T>): T {
 
@@ -251,7 +245,7 @@ export function second<T>(as: Pair<any, T>): T {
 }
 
 
-export function last<T>(as: ArrayListMinLength1<T>): T {
+export function last<T>(as: ArrayMinLength1<T>): T {
 
     if (as.length === 0) throw Error("Illegal argument: array with at least 1 element expected");
     return as[as.length-1];

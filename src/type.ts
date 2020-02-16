@@ -37,6 +37,13 @@ export type ObjectSet = UntypedObjectCollection;
 export type Pair<A,B> = [A, B];
 
 
+// see https://stackoverflow.com/questions/49910889/typescript-array-with-minimum-length
+// for a discussion
+export type ArrayMinLength1<T> = {
+    0: T
+} & Array<T>
+
+
 export type Either<T1, T2> = [T1, undefined]|[undefined, T2];
 
 

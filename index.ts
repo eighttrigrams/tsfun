@@ -24,7 +24,8 @@ export {
     Either,
     ArrayList,
     ArraySet,
-    Associative
+    Associative,
+    ArrayMinLength1
 } from './src/type';
 
 
