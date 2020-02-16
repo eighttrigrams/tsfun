@@ -14,7 +14,7 @@ describe('first', () => {
     it('undefined', () =>
         expect(
 
-            first([])
+            () => first([] as any)
 
-        ).toEqual(undefined));
+        ).toThrowError());
 });

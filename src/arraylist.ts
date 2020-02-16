@@ -231,23 +231,28 @@ export function sort<A>(f: (a: A, b: A) => number) {
 }
 
 
-export function first<T>(as: ArrayList<T>|Pair<T,any>): T|undefined {
+// see https://stackoverflow.com/questions/49910889/typescript-array-with-minimum-length
+// for a discussion
+type ArrayListMinLength1<T> = {
+    0: T
+} & ArrayList<T>
 
-    return as.length === 0
-        ? undefined
-        : as[0];
+
+export function first<T>(as: ArrayListMinLength1<T>|Pair<T,any>): T {
+
+    if (as.length === 0) throw Error("Illegal argument: array with at least 1 element expected")
+    return as[0];
 }
 
-export function second<T>(as: Pair<any, T>): T|undefined {
+export function second<T>(as: Pair<any, T>): T {
 
     if (as.length < 2) throw Error("Illegal argument: Pair expected");
     return as[1];
 }
 
 
-export function last<T>(as: ArrayList<T>): T|undefined {
+export function last<T>(as: ArrayListMinLength1<T>): T {
 
-    return as.length === 0
-        ? undefined
-        : as[as.length-1];
+    if (as.length === 0) throw Error("Illegal argument: array with at least 1 element expected");
+    return as[as.length-1];
 }
