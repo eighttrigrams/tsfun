@@ -197,11 +197,11 @@ export function remove<A>(f: Predicate<A>) {
 }
 
 
-export function forEach<A>(f: ((_: A, i: number) => void)|((_: A) => void)): {
+export function forEach<A>(f: (_: A, i?: number|string) => void): {
     (as: Array<A>): Array<A>
     (os: ObjectCollection<A>): ObjectCollection<A>
 }
-export function forEach<A>(f: ((_: A, i: number) => void)|((_: A) => void)) {
+export function forEach<A>(f: (_: A, i?: number|string) => void) {
 
     return (as: Array<A>|ObjectCollection<A>) => {
 
@@ -216,10 +216,8 @@ export function forEach<A>(f: ((_: A, i: number) => void)|((_: A) => void)) {
 
         } else if (isObject(as)) {
 
-            let i = 0;
-            for (let item of Object.values(as)) {
-                (f as any)(item, i);
-                i++;
+            for (let item of keysAndValues(as as any)) {
+                (f as any)(item[1], item[0]);
             }
             return as as ObjectCollection<A>;
 

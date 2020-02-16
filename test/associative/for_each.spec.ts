@@ -3,7 +3,6 @@ import {forEach} from '../../src/associative';
 
 describe('forEach', () => {
 
-
     it('forEach', () => {
 
         let acc = 1;
@@ -18,7 +17,7 @@ describe('forEach', () => {
     it('forEach with i', () => {
 
         let acc = 1;
-        forEach((item, i) => {
+        forEach((item, i: number) => {
             acc += i
         })([2, 4, 3]);
         expect(acc).toEqual(4);
@@ -37,13 +36,13 @@ describe('forEach', () => {
     });
 
 
-    it('forEach with i - object', () => {
+    it('object, with key', () => {
 
-        let acc = -1;
-        forEach((item, i) => {
-            acc += i
+        let acc = '';
+        forEach((item, k: string) => {
+            acc += k
         })({a: 3, b: 7});
 
-        expect(acc).toEqual(0);
+        expect(acc).toEqual('ab');
     });
 });
