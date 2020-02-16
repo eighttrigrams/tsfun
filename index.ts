@@ -24,8 +24,7 @@ export {
     Either,
     ArrayList,
     ArraySet,
-    Associative,
-    ArrayMinLength1
+    Associative
 } from './src/type';
 
 
@@ -73,6 +72,8 @@ export {
     compose,
     flow,
     cond,
+    left,
+    right,
     nop,
     val,
     tuplify,
@@ -90,7 +91,6 @@ export {
     prepend,
     separate,
     first,
-    second,
     last,
     take,
     takeRight,

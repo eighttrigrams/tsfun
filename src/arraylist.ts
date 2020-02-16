@@ -1,4 +1,4 @@
-import {ArrayList, ArrayMinLength1, Pair, Predicate, SimpleTransformation} from './type';
+import {ArrayList, Pair, Predicate, SimpleTransformation} from './type';
 import {isArray, isNot} from './predicate';
 import {copy} from './associative';
 
@@ -231,22 +231,17 @@ export function sort<A>(f: (a: A, b: A) => number) {
 }
 
 
-export function first<T>(as: ArrayMinLength1<T>|Pair<T,any>): T {
+export function first<T>(as: Array<T>): T|undefined {
 
-    if (as.length === 0) throw Error("Illegal argument: array with at least 1 element expected");
-    return as[0];
+    return as.length === 0
+        ? undefined
+        : as[0];
 }
 
 
-export function second<T>(as: Pair<any, T>): T {
+export function last<T>(as: Array<T>): T|undefined {
 
-    if (as.length < 2) throw Error("Illegal argument: Pair expected");
-    return as[1];
-}
-
-
-export function last<T>(as: ArrayMinLength1<T>): T {
-
-    if (as.length === 0) throw Error("Illegal argument: array with at least 1 element expected");
-    return as[as.length-1];
+    return as.length === 0
+        ? undefined
+        : as[as.length-1];
 }

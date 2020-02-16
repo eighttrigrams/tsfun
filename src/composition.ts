@@ -1,5 +1,5 @@
 import {identity} from './core';
-import {ObjectCollection, Predicate} from './type';
+import {Either, Pair, Predicate} from './type';
 
 const composition = <T = any>(t: any, ...transformations: Array<Function>) =>
     compose(...transformations)(t) as T;
@@ -45,4 +45,18 @@ export function tuplify(...fs : any[]) {
 export function pairWith(f: any) {
 
     return tuplify(identity, f);
+}
+
+
+export function left<T>(pair: Pair<T,any>|Either<T,any>): T {
+
+    if (pair.length !== 2) throw Error("Illegal argument: Pair/Either must have length 2");
+    return pair[0] as T;
+}
+
+
+export function right<T>(pair: Pair<any, T>|Either<any,T>): T {
+
+    if (pair.length !== 2) throw Error("Illegal argument: Pair/Either must have length 2");
+    return pair[1] as T;
 }

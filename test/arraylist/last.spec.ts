@@ -14,7 +14,7 @@ describe('last', () => {
     it('undefined', () =>
         expect(
 
-            () => last([] as any)
+            last([])
 
-        ).toThrowError());
+        ).toBeUndefined());
 });

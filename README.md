@@ -61,6 +61,8 @@ import {equal} from 'tsfun';
 * [nop](test/composition/nop.spec.ts)
 * [tuplify](test/composition/tuplify.spec.ts)
 * [pairWith](test/composition/pair-with.spec.ts)
+* [left](test/composition/left.spec.ts)
+* [right](test/composition/right.spec.ts)
 
 ### List
 
@@ -85,7 +87,6 @@ import {equal} from 'tsfun';
 * [apply](test/arraylist/apply.spec.ts) 
 * [separate](test/arraylist/separate.spec.ts) 
 * [first](test/arraylist/first.spec.ts)
-* [second](test/arraylist/second.spec.ts)
 * [last](test/arraylist/last.spec.ts)
 * [indices](test/arraylist/indices.spec.ts)
 * [zip](test/arraylist/zip.spec.ts)

@@ -39,7 +39,8 @@ export type Pair<A,B> = [A, B];
 
 // see https://stackoverflow.com/questions/49910889/typescript-array-with-minimum-length
 // for a discussion
-export type ArrayMinLength1<T> = {
+// TODO remove
+type ArrayMinLength1<T> = {
     0: T
 } & Array<T>
 
