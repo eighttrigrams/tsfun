@@ -88,8 +88,8 @@ const intoArrayWith = <A>(f: (_: A) => Array<A>) =>
     (acc: Array<A>, val: A) => acc.concat(f(val));
 
 
-export const drop = <A>(n: number) =>
-    (as: ArrayList<A>) =>
+export const drop = (n: number) =>
+    <A>(as: ArrayList<A>) =>
         n < 1 ? as :
             as.slice(n);
 
@@ -115,24 +115,24 @@ export const dropRightWhile = <A>(predicate: Predicate<A>) =>
     };
 
 
-export const take = <A>(n: number) =>
-    (as: ArrayList<A>) =>
+export const take = (n: number) =>
+    <A>(as: ArrayList<A>) =>
         n < 0 ? [] :
             as.reduce((acc: ArrayList<A>, val, i) =>
                     i < n ? acc.concat([val]) : acc
                 , []);
 
 
-export const takeRight = <A>(n: number) =>
-    (as: ArrayList<A>) =>
+export const takeRight = (n: number) =>
+    <A>(as: ArrayList<A>) =>
         n < 0 ? [] :
             as.reduceRight((acc: ArrayList<A>, val, i) =>
                 (as.length - i) <= n ? [val].concat(acc) : acc
                 , []);
 
 
-export const takeNth = <A>(n: number) =>
-    (as: ArrayList<A>) =>
+export const takeNth = (n: number) =>
+    <A>(as: ArrayList<A>) =>
         n < 0 ? [] :
             as.reduce((acc: ArrayList<A>, val, i) =>
                     i % n === 0 ? acc.concat([val]) : acc
