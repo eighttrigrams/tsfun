@@ -20,7 +20,6 @@ export {
     ObjectMap,
     ObjectSet,
     Pair,
-    Triple,
     Predicate,
     Either,
     ArrayList,

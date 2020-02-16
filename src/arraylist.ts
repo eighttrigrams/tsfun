@@ -231,19 +231,19 @@ export function sort<A>(f: (a: A, b: A) => number) {
 }
 
 
-export function first<T>(as: ArrayList<T>): T|undefined {
+export function first<T>(as: ArrayList<T>|Pair<T,any>): T|undefined {
 
     return as.length === 0
         ? undefined
         : as[0];
 }
 
-export function second<T>(as: ArrayList<T>): T|undefined {
+export function second<T>(as: Pair<any, T>): T|undefined {
 
-    return as.length < 2
-        ? undefined
-        : as[1];
+    if (as.length < 2) throw Error("Illegal argument: Pair expected");
+    return as[1];
 }
+
 
 export function last<T>(as: ArrayList<T>): T|undefined {
 

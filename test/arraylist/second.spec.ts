@@ -6,7 +6,7 @@ describe('second', () => {
     it('second', () =>
         expect(
 
-            second([4, 5])
+            second(["33", 5])
 
         ).toEqual(5));
 
@@ -14,15 +14,7 @@ describe('second', () => {
     it('undefined 1', () =>
         expect(
 
-            second([])
+            () => second([] as any)
 
-        ).toEqual(undefined));
-
-
-    it('undefined 2', () =>
-        expect(
-
-            second([])
-
-        ).toEqual(undefined));
+        ).toThrowError("Illegal argument: Pair expected"));
 });
