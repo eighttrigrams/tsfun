@@ -94,8 +94,8 @@ export const drop = <A>(n: number) =>
             as.slice(n);
 
 
-export const dropRight = <A>(n: number) =>
-    (as: ArrayList<A>): ArrayList<A> =>
+export const dropRight = (n: number) =>
+    <A>(as: ArrayList<A>): ArrayList<A> =>
         as.slice(0, Math.max(0, as.length-n)) as ArrayList<A>;
 
 
