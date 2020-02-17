@@ -130,7 +130,7 @@ import {equal} from 'tsfun';
 * [clone](test/struct/clone.spec.ts)
 * [jsonClone](test/struct/json_clone.spec.ts)
 
-### Async
+## Async functions
 
 Example:
 
