@@ -130,7 +130,7 @@ import {equal} from 'tsfun';
 * [clone](test/struct/clone.spec.ts)
 * [jsonClone](test/struct/json_clone.spec.ts)
 
-### Async
+## Async functions
 
 Example:
 
@@ -163,7 +163,7 @@ import {samesetBy} from 'tsfun/by';
 * [objectEqualBy](test/comparator/object_equal_by.spec.ts)
 * [equalBy](test/comparator/equal_by.spec.ts)
 
-### ArraySet
+### Set
 
 * [intersectionBy](test/arrayset/intersection_by.spec.ts)
 * [intersectBy](test/arrayset/intersect_by.spec.ts)
