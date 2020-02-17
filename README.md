@@ -156,7 +156,7 @@ import {samesetBy} from 'tsfun/base';
 * [subtractBy](test/arrayset/subtract_by.spec.ts)
 * [unionBy](test/arrayset/union_by.spec.ts)
 * [uniteBy](test/arrayset/unite_by.spec.ts)
-* [uniqueBy](test/arrayset/unique_by.spec.ts)
+* [setBy](test/arrayset/set_by.spec.ts)
 
 ## Credits 
  
