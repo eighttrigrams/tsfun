@@ -6,10 +6,6 @@ import {copy} from './associative';
 // ------------ @author Daniel de Oliveira -----------------
 
 
-export const apply = <T>(f: (_: T, __: T) => T) =>
-    (...coll: ArrayList<T>) => coll.reduce(f);
-
-
 export const separate = <A>(p: Predicate<A>) =>
     (as: Array<A>): Pair<Array<A>, Array<A>> =>
         [as.filter(p), as.filter(isNot(p))];

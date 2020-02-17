@@ -102,7 +102,6 @@ export {
     drop,
     dropRight,
     dropRightWhile,
-    apply,
     indices,
     arrayList,
     range,

@@ -84,7 +84,6 @@ import {equal} from 'tsfun';
 * [dropRight](test/arraylist/drop_right.spec.ts)
 * [dropWhile](test/arraylist/drop_while.spec.ts)
 * [dropRightWhile](test/arraylist/drop_right_while.spec.ts)
-* [apply](test/arraylist/apply.spec.ts) 
 * [separate](test/arraylist/separate.spec.ts) 
 * [first](test/arraylist/first.spec.ts)
 * [last](test/arraylist/last.spec.ts)
