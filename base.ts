@@ -36,5 +36,5 @@ export {
     intersectBy,
     subtractBy,
     uniteBy,
-    uniqueBy,
+    setBy,
 } from './src/arrayset';

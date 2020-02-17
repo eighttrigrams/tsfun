@@ -93,12 +93,12 @@ import {equal} from 'tsfun';
 
 ### Set
 
+* [set](test/arrayset/set.spec.ts)
 * [intersection](test/arrayset/intersection.spec.ts)
 * [intersect](test/arrayset/intersect.spec.ts)
 * [subtract](test/arrayset/subtract.spec.ts)
 * [union](test/arrayset/union.spec.ts)
 * [unite](test/arrayset/unite.spec.ts)
-* [unique](test/arrayset/unique.spec.ts)
 * [duplicates](test/arrayset/duplicates.spec.ts)
 
 ### Associative

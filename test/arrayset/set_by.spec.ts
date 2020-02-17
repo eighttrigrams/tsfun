@@ -1,24 +1,24 @@
-import {uniqueBy} from "../../src/arrayset";
+import {setBy} from "../../src/arrayset";
 import {jsonEqual, on} from "../../src/comparator";
 
 
 /**
  * @author Daniel de Oliveira
  */
-describe('uniqueBy', () => {
+describe('setBy', () => {
 
 
-    it('uniqueBy with on', () =>
+    it('setBy with on', () =>
         expect(
-            uniqueBy(on('a'))([{a: 1}, {a: 2}, {a: 1}])
+            setBy(on('a'))([{a: 1}, {a: 2}, {a: 1}])
         ).toEqual([{a: 1}, {a: 2}])
     );
 
 
-    it('uniqueBy', () =>
+    it('setBy', () =>
         expect(
 
-            uniqueBy(jsonEqual)([{a: 'c'}, {a: 'c'}]))
+            setBy(jsonEqual)([{a: 'c'}, {a: 'c'}]))
 
             .toEqual([{a: 'c'}]));
 
@@ -29,7 +29,7 @@ describe('uniqueBy', () => {
      *
      * Should be in the order of magnitude of 10 to 100,
      */
-    it('unique performance', () => {
+    it('set performance', () => {
 
         const as = [];
         for (let x = 0; x < 100000; x++) {
@@ -38,7 +38,7 @@ describe('uniqueBy', () => {
         as.push(as);
 
         const begin = new Date();
-        uniqueBy()(as);
+        setBy()(as);
         const elapsed = (new Date() as any) - (begin as any);
         if (elapsed > 100) fail();
     });

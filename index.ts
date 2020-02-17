@@ -119,7 +119,7 @@ export {
 export {
     intersection,
     union,
-    unique,
+    set,
     intersect,
     subtract,
     unite

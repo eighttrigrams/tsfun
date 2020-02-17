@@ -15,7 +15,7 @@ describe('subtract', () => {
             .toEqual([1, 2]));
 
 
-    it('subtract - make unique', () =>
+    it('subtract - make set', () =>
         expect(
 
             subtract([3, 4, 5])([1, 2, 3, 3, 4, 4, 1]))
@@ -48,7 +48,7 @@ describe('subtract', () => {
             .toEqual([1, 2, 3]));
 
 
-    it('subtract - no intersection, make unique', () =>
+    it('subtract - no intersection, make set', () =>
         expect(
 
             subtract([4, 5, 6])([1, 2, 3, 3, 2]))

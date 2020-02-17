@@ -37,7 +37,7 @@ export const intersectionBy =
                 // see https://stackoverflow.com/questions/1885557/simplest-code-for-array-intersection-in-javascript, answer of le_m
                 aas[i+1] = aas[i].filter(Set.prototype.has, new Set(aas[i + 1]));
             }
-            return uniqueBy(undefined as any)(aas[aas.length - 1]);
+            return setBy(undefined as any)(aas[aas.length - 1]);
         };
 
 
@@ -50,7 +50,7 @@ export const unionBy =
                 (acc: any, val:any) => val ? _uniteBy(compare)(acc)(val) : acc);
 
             // https://stackoverflow.com/questions/10865025/merge-flatten-an-array-of-arrays, answer of Gumbo and Mark Amery
-            return uniqueBy(undefined as any)([].concat.apply([], aas));
+            return setBy(undefined as any)([].concat.apply([], aas));
         };
 
 
@@ -78,11 +78,11 @@ export const subtractBy =
                         return (x: A) => !unionSubtrahendsSet.has(x);
                     })();
 
-                return uniqueBy(undefined as any)(as).filter(filterFun);
+                return setBy(undefined as any)(as).filter(filterFun);
             };
 
 
-export const uniqueBy = (compare?: Comparator) =>
+export const setBy = (compare?: Comparator) =>
     <A>(as: ArrayList<A>): ArraySet<A> => {
 
         return compare
@@ -116,6 +116,6 @@ export const unite = uniteBy();
 // Generate a new list with elements which are contained in as but not in subtrahend
 export const subtract = subtractBy();
 
-export const unique = uniqueBy();
+export const set = setBy();
 
 
