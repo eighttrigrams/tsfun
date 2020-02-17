@@ -1,7 +1,7 @@
 import {filter, map} from '../../src/associative';
 import {cond, val} from '../../src/composition';
 import {includedIn, is} from '../../src/comparator';
-import {identity} from '../../base';
+import {identity} from '../../by';
 
 
 describe('cond', () => {

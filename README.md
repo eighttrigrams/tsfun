@@ -135,7 +135,7 @@ import {equal} from 'tsfun';
 Example:
 
 ```typescript
-import {samesetBy} from 'tsfun/base';
+import {samesetBy} from 'tsfun/by';
 ```
 
 ### Comparator
