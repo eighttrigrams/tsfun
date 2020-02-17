@@ -5,12 +5,6 @@ import {copy} from './associative';
 
 // ------------ @author Daniel de Oliveira -----------------
 
-
-export const separate = <A>(p: Predicate<A>) =>
-    (as: Array<A>): Pair<Array<A>, Array<A>> =>
-        [as.filter(p), as.filter(isNot(p))];
-
-
 export const reverse = <A>(as: ArrayList<A>): ArrayList<A> =>
     as.reduce((acc: Array<A>, a) => [a].concat(acc), []);
 

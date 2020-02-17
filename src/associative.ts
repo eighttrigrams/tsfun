@@ -1,7 +1,7 @@
 import {
     ArrayList,
     ObjectCollection,
-    ObjectMap,
+    ObjectMap, Pair,
     Predicate,
     SimpleTransformation,
     UntypedObjectCollection
@@ -182,6 +182,18 @@ export function filter<A>(f: Predicate<A>) {
         else return filterObj(f)(as as ObjectCollection<A>);
     }
 }
+
+
+export function separate<A>(f: Predicate<A>): {
+    (as: Array<A>): Pair<Array<A>,Array<A>>
+    (os: ObjectCollection<A>): Pair<ObjectCollection<A>,ObjectCollection<A>>
+}
+export function separate<A>(p: Predicate<A>) {
+
+    return (as: Array<A>|ObjectCollection<A>): Pair<Array<A>, Array<A>>|Pair<ObjectCollection<A>,ObjectCollection<A>> =>
+        [filter(p)(as as any), filter(isNot(p))(as as any)];
+}
+
 
 export function remove<A>(f: Predicate<A>): {
     (as: Array<A>): Array<A>

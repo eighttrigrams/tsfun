@@ -89,7 +89,6 @@ export {
     reduce,
     append,
     prepend,
-    separate,
     first,
     last,
     take,
@@ -140,6 +139,7 @@ export {
     forEach,
     remove,
     copy,
+    separate,
     get,
     map
 } from './src/associative';
