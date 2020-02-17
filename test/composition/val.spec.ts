@@ -1,5 +1,5 @@
-import {cond, val} from '../../src/composition';
-import {isDefined} from '../../src/predicate';
+import {pairWith, val} from '../../src/composition';
+import {map} from '../../src/associative';
 
 /**
  * tsfun | val
@@ -21,7 +21,7 @@ describe('val', () => {
     it('use case', () =>
         expect(
 
-            cond(isDefined, val(5))(3)
+            map(pairWith(val(5)))([3, 7])
 
-        ).toBe(5));
+        ).toEqual([[3, 5], [7, 5]]));
 });
