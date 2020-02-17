@@ -130,7 +130,21 @@ import {equal} from 'tsfun';
 * [clone](test/struct/clone.spec.ts)
 * [jsonClone](test/struct/json_clone.spec.ts)
 
-## Base functions
+### Async
+
+Example:
+
+```typescript
+import {asyncMap} from 'tsfun/async';
+```
+
+* [asyncMap](test/arraylist_async/async_map.spec.ts)
+* [asyncFilter](test/arraylist_async/async_filter.spec.ts)
+* [asyncForEach](test/arraylist_async/async_for_each.spec.ts)
+* [asyncReduce](test/arraylist_async/async_reduce.spec.ts)
+* [asyncFlow](test/arraylist_async/async_flow.spec.ts)
+
+## By functions
 
 Example:
 

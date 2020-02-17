@@ -55,3 +55,6 @@ export type ArraySet<T> = Array<T>;
 
 
 export type ObjectStruct = Object;
+
+
+export type AsyncPredicate<A> = (_: A) => Promise<boolean>;
