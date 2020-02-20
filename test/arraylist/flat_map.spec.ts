@@ -7,7 +7,7 @@ import {flatMap} from '../../src/arraylist';
 describe('flatMap', () => {
 
 
-    it('flatMap', () =>
+    it('basic', () =>
         expect(
 
             flatMap((x: string) => x.split(' '))(['a b', 'c d']))
@@ -15,7 +15,7 @@ describe('flatMap', () => {
             .toEqual(['a', 'b', 'c', 'd']));
 
 
-    it('flatMap - empty', () =>
+    it('empty', () =>
         expect(
 
             flatMap((x: string) => x.split(' '))([]))
@@ -23,7 +23,7 @@ describe('flatMap', () => {
             .toEqual([]));
 
 
-    it('flatMap - one - two', () =>
+    it('one - two', () =>
         expect(
 
             flatMap((x: string) => x.split(' '))(['a b']))
@@ -31,10 +31,18 @@ describe('flatMap', () => {
             .toEqual(['a', 'b']));
 
 
-    it('flatMap - one - one', () =>
+    it('one - one', () =>
         expect(
 
             flatMap((x: string) => x.split(' '))(['a']))
 
             .toEqual(['a']));
+
+
+    it('type A to type B', () =>
+        expect(
+
+            flatMap((_: number) => ['l', 'l'])([3, 4]))
+
+            .toEqual(['l', 'l', 'l', 'l']));
 });

@@ -17,12 +17,11 @@ export const prepend = <A>(...as2: ArrayList<A>) => (as: ArrayList<A>) =>
     as2.concat(as);
 
 
-export const flatMap = <A>(f: (_: A) => ArrayList<A>): SimpleTransformation<ArrayList<A>> =>
-    (as: Array<A>) =>
-        as.length < 1
+export const flatMap = <A, B>(f: (_: A) => ArrayList<B>) =>
+    (as: Array<A>): Array<B> =>
+        (as.length < 1
             ? []
-            : as.reduce(intoArrayWith(f),[]);
-
+            : as.reduce(intoArrayWith(f as any),[])) as unknown as Array<B>;
 
 
 export function flatten<T>(as: Array<Array<T>>): Array<T>;
