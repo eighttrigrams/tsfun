@@ -164,7 +164,7 @@ export function arrayList(size: number) {
 
 export function zip<A,B> (as: ArrayList<A>) {
 
-    return (bs: ArrayList<B>) => {
+    return (bs: ArrayList<B>): ArrayList<Pair<A, B>> => {
 
         const minimumLength = Math.min(as.length, bs.length);
         const _as = take(minimumLength)(as);
@@ -181,7 +181,7 @@ export function zip<A,B> (as: ArrayList<A>) {
 
 export function zipWith<A,B,C> (f: (a: A, b: B) => C, as: ArrayList<A>) {
 
-    return (bs: ArrayList<B>) => {
+    return (bs: ArrayList<B>): ArrayList<C> => {
 
         const minimumLength = Math.min(as.length, bs.length);
         const _as = take(minimumLength)(as);
