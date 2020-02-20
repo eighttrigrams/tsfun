@@ -272,4 +272,3 @@ export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => B, init: B) {
     };
 }
 
-

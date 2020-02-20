@@ -60,3 +60,9 @@ export function right<T>(pair: Pair<any, T>|Either<any,T>): T {
     if (pair.length !== 2) throw Error("Illegal argument: Pair/Either must have length 2");
     return pair[1] as T;
 }
+
+
+export function swap<S, T>([l, r]: Pair<S, T>): Pair<T, S> {
+
+    return [r, l] as Pair<T, S>
+}
