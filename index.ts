@@ -86,7 +86,6 @@ export {
     flatMap,
     flatten,
     forEachRight,
-    reduce,
     append,
     prepend,
     first,
@@ -141,5 +140,6 @@ export {
     copy,
     separate,
     get,
+    reduce,
     map
 } from './src/associative';

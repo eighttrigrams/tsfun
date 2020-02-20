@@ -1,6 +1,6 @@
 import {ArrayList, Pair, Predicate, SimpleTransformation} from './type';
 import {isArray, isNot} from './predicate';
-import {copy} from './associative';
+import {copy, reduce} from './associative';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -15,19 +15,6 @@ export const append = <A>(...as2: ArrayList<A>) => (as: ArrayList<A>) =>
 
 export const prepend = <A>(...as2: ArrayList<A>) => (as: ArrayList<A>) =>
     as2.concat(as);
-
-
-export const reduce = <A, B>(f: (b: B, a: A, i?: number) => B, init: B) =>
-    (as: Array<A>): B => {
-
-        let acc = init;
-        let i = 0;
-        for (let a of as) {
-            acc = f(acc, a, i);
-            i++;
-        }
-        return acc;
-    };
 
 
 export const flatMap = <A>(f: (_: A) => ArrayList<A>): SimpleTransformation<ArrayList<A>> =>

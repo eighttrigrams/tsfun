@@ -236,3 +236,40 @@ export function forEach<A>(f: (_: A, i?: number|string) => void) {
         }
     };
 }
+
+
+export function reduce<A, B>(f: (b: B, a: A, i?: number|string) => B, init: B): {
+    (as: Array<A>): B
+    (os: ObjectCollection<A>): B
+}
+export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => B, init: B) {
+
+    return (ts: Array<T>|ObjectCollection<T>): B => {
+
+        if (isArray(ts)) {
+
+            let acc = init;
+            let i = 0;
+            for (let a of ts) {
+                acc = f(acc, a, i);
+                i++;
+            }
+            return acc;
+
+        } else if (isObject(ts)) {
+
+            const o = ts as ObjectCollection<T>;
+
+            let acc = init;
+            for (let k of keys(ts)) {
+                acc = f(acc, o[k], k);
+            }
+            return acc;
+
+        } else {
+            throw "illegal argument - must be array or object"
+        }
+    };
+}
+
+
