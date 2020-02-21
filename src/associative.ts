@@ -220,14 +220,14 @@ export function remove<A>(p: (a: A, i?: number|string) => boolean) {
 }
 
 
-export function separate<A>(f: Predicate<A>): {
+export function separate<A>(p: (a: A, i?: number|string) => boolean): {
     (as: Array<A>): Pair<Array<A>,Array<A>>
     (os: ObjectCollection<A>): Pair<ObjectCollection<A>,ObjectCollection<A>>
 }
-export function separate<A>(p: Predicate<A>) {
+export function separate<A>(p: (a: A, i?: number|string) => boolean) {
 
     return (as: Array<A>|ObjectCollection<A>): Pair<Array<A>, Array<A>>|Pair<ObjectCollection<A>,ObjectCollection<A>> =>
-        [filter(p)(as as any), filter(isNot(p))(as as any)];
+        [filter(p)(as as any), remove(p)(as as any)];
 }
 
 
