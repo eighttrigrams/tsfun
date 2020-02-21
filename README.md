@@ -2,8 +2,6 @@
 
 **tsfun - functional combinator library for TypeScript**
 
-see also: [tsfun-extra](https://github.com/danielmarreirosdeoliveira/tsfun-extra)
-
 ---
 
 ## Function reference
