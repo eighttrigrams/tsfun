@@ -1,4 +1,4 @@
-import {AsyncPredicate, ObjectCollection} from './type';
+import {ObjectCollection} from './type';
 import {isArray, isObject} from './predicate';
 import {keys, keysAndValues} from './associative';
 
