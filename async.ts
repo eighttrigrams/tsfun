@@ -1,5 +1,6 @@
 export {
     filter,
+    remove,
     forEach,
     reduce,
     map,

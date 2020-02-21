@@ -137,6 +137,7 @@ import {map as asyncMap} from 'tsfun/async';
 
 * [map](test/async/map.spec.ts)
 * [filter](test/async/filter.spec.ts)
+* [remove](test/async/remove.spec.ts)
 * [forEach](test/async/for_each.spec.ts)
 * [reduce](test/async/reduce.spec.ts)
 * [flow](test/async/flow.spec.ts)

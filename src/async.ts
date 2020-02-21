@@ -32,35 +32,52 @@ export function forEach<A>(f: (_: A, i?: number|string) => Promise<void>) {
 }
 
 
-export function filter<T>(f: AsyncPredicate<T>): {
+export function filter<T>(p: (a: T, i?: string|number) => Promise<boolean>): {
     (as: Array<T>): Promise<Array<T>>
     (os: ObjectCollection<T>): ObjectCollection<T>
 }
-export function filter<T>(f: AsyncPredicate<T>) {
+export function filter<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
 
     return async (as: Array<T>|ObjectCollection<T>) => {
 
         if (isArray(as)) {
 
-            const as1: Array<T> = [];
+            const as1 = [];
+            let i = 0;
             for (let a of as) {
-                if (await f(a)) as1.push(a);
+                if (await p(a, i)) as1.push(a);
+                i++;
             }
-            return as1;
+
+            return as1 as Array<T>
 
         } else if (isObject(as)) {
 
             const o = as as ObjectCollection<T>;
-            const o1: ObjectCollection<T> = {};
+
+            const o1: any = {};
+            let i = 0;
             for (let k of keys(o)) {
-                if (await f(o[k])) o1[k] = o[k];
+                if (await p(o[k], k)) o1[k] = o[k];
+                i++;
             }
-            return o1;
+
+            return o1 as ObjectCollection<T>;
 
         } else {
             throw 'illegal argument - must be array or object'
         }
     }
+}
+
+
+export function remove<A>(p: (a: A, i?: string|number) => Promise<boolean>): {
+    (as: Array<A>): Promise<Array<A>>
+    (os: ObjectCollection<A>): Promise<ObjectCollection<A>>
+}
+export function remove<A>(p: (a: A, i?: string|number) => Promise<boolean>) {
+
+    return filter(async (a: any, i?: string|number) => !(await p(a, i)));
 }
 
 
