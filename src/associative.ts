@@ -170,16 +170,41 @@ export function map<A, B>(f: (_: A, i?: string|number) => B) {
     }
 }
 
-export function filter<A>(f: Predicate<A>): {
+export function filter<A>(p: (a: A, i?: number|string) => boolean): {
     (as: Array<A>): Array<A>
     (os: ObjectCollection<A>): ObjectCollection<A>
 }
-export function filter<A>(f: Predicate<A>) {
+export function filter<A>(p: (a: A, i?: number|string) => boolean) {
 
     return (as: Array<A>|ObjectCollection<A>) => {
 
-        if (isArray(as)) return (as as Array<A>).filter(f) as Array<A>;
-        else return filterObj(f)(as as ObjectCollection<A>);
+        if (isArray(as)) {
+
+            const as1 = [];
+            let i = 0;
+            for (let a of as) {
+                if (p(a, i)) as1.push(a);
+                i++;
+            }
+
+            return as1 as Array<A>
+        }
+        else if (isObject(as)) {
+
+            const o = as as ObjectCollection<A>;
+
+            const o1: any = {};
+            let i = 0;
+            for (let k of keys(o)) {
+                if (p(o[k], k)) o1[k] = o[k];
+                i++;
+            }
+
+            return o1 as ObjectCollection<A>;
+
+        } else {
+            throw 'illegal argument - must be array or object';
+        }
     }
 }
 
