@@ -292,6 +292,7 @@ export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => B, init: B) {
             return acc;
 
         } else {
+
             throw "illegal argument - must be array or object"
         }
     };
