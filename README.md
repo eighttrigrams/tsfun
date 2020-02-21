@@ -100,7 +100,6 @@ import {equal} from 'tsfun';
 
 ### Associative
 
-* [keysAndValues](test/associative/keys_and_values.spec.ts)
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
 * [size](test/associative/size.spec.ts)
@@ -117,6 +116,7 @@ import {equal} from 'tsfun';
 * [dissoc](test/associative/dissoc.spec.ts)
 * [copy](test/associative/copy.spec.ts)
 * [forEach](test/associative/for_each.spec.ts)
+* [keysAndValues](test/associative/keys_and_values.spec.ts)
 
 ### Struct
 
