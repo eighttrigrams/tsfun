@@ -134,7 +134,7 @@ import {equal} from 'tsfun';
 Example:
 
 ```typescript
-import {asyncMap} from 'tsfun/async';
+import {map as asyncMap} from 'tsfun/async';
 ```
 
 * [map](test/async/map.spec.ts)
