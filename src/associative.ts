@@ -255,7 +255,9 @@ export function forEach<A>(f: (_: A, i?: number|string) => void) {
                 (f as any)(item[1], item[0]);
             }
             return as as ObjectCollection<A>;
+        } else {
 
+            throw 'illegal argument - must be array or object';
         }
     };
 }
