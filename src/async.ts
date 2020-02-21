@@ -1,4 +1,6 @@
-import {AsyncPredicate} from './type';
+import {AsyncPredicate, ObjectCollection} from './type';
+import {isArray, isObject} from './predicate';
+import {keys} from './associative';
 
 
 export const asyncForEach = <A>(
@@ -22,15 +24,39 @@ export const asyncFilter = <A>(f: AsyncPredicate<A>) =>
     };
 
 
-export const asyncReduce = <A, B>(f: (b: B, a: A) => Promise<B>, init: B) =>
-    async (as: Array<A>): Promise<B> => {
+export function asyncReduce<A, B>(f: (b: B, a: A, i?: number|string) => Promise<B>, init: B): {
+    (as: Array<A>): Promise<B>
+    (os: ObjectCollection<A>): Promise<B>
+}
+export function asyncReduce<T, B>(f: (b: B, t: T, i?: number|string) => Promise<B>, init: B) {
 
-        let acc = init;
-        for (let a of as) {
-            acc = await f(acc, a);
+    return async (ts: Array<T>|ObjectCollection<T>): Promise<B> => {
+
+        if (isArray(ts)) {
+
+            let acc = init;
+            let i = 0;
+            for (let a of ts) {
+                acc = await f(acc, a, i);
+                i++;
+            }
+            return acc;
+
+        } else if (isObject(ts)) {
+
+            const o = ts as ObjectCollection<T>;
+
+            let acc = init;
+            for (let k of keys(ts)) {
+                acc = await f(acc, o[k], k);
+            }
+            return acc;
+
+        } else {
+            throw "illegal argument - must be array or object"
         }
-        return acc;
     };
+}
 
 
 export const asyncMap = <A, B>(f: (_: A) => Promise<B>) =>

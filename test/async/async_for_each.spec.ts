@@ -1,4 +1,4 @@
-import {asyncForEach} from '../../async';
+import {asyncForEach} from '../../src/async';
 
 
 describe('asyncForEach', () => {

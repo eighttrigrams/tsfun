@@ -1,7 +1,7 @@
+import {asyncFlow} from '../../src/async';
 /**
  * @author Daniel de Oliveira
  */
-import {asyncFlow} from '../../async';
 
 describe('asyncFlow', () => {
 

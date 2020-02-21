@@ -1,9 +1,8 @@
+import {asyncMap} from '../../src/async';
+
 /**
  * @author Daniel de Oliveira
  */
-import {asyncMap} from '../../async';
-
-
 describe('asyncMap', () => {
 
     it('asyncMap', async done => {
