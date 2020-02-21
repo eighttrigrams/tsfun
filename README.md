@@ -148,13 +148,16 @@ import {map as asyncMap} from 'tsfun/async';
 Example:
 
 ```typescript
-import {lZip} from 'tsfun/lazy';
+import {zip as lZip} from 'tsfun/lazy';
 ```
 
-* [lZip](test/lazy/l_zip.spec.ts)
-* [lZipWith](test/lazy/l_zip_with.spec.ts)
-* [lRange](test/lazy/l_range.spec.ts)
+* [zip](test/lazy/zip.spec.ts)
+* [zipWith](test/lazy/zip_with.spec.ts)
+* [range](test/lazy/range.spec.ts)
 * [materialize](test/lazy/materialize.spec.ts)
+* filter
+* take
+* map
 
 ## By functions
 

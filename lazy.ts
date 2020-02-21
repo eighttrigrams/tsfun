@@ -1,6 +1,9 @@
 export {
     materialize,
-    lZip,
-    lZipWith,
-    lRange,
+    zip,
+    zipWith,
+    filter,
+    take,
+    map,
+    range,
 } from './src/lazy'

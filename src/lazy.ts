@@ -3,7 +3,7 @@
 // see https://codewords.recurse.com/issues/four/lazy-composable-and-modular-javascript
 
 
-export function* lRange(a: number, b?: number, stepSize: number = 1) {
+export function* range(a: number, b?: number, stepSize: number = 1) {
 
     let begin = a;
     let end   = b;
@@ -18,7 +18,7 @@ export function* lRange(a: number, b?: number, stepSize: number = 1) {
 }
 
 
-export function lZip(as: any) { return function* (bs: any) {
+export function zip(as: any) { return function* (bs: any) {
 
     const aIterator = as[Symbol.iterator]();
     const bIterator = bs[Symbol.iterator]();
@@ -33,7 +33,7 @@ export function lZip(as: any) { return function* (bs: any) {
 }}
 
 
-export function lZipWith(f: Function, as: any) { return function* (bs: any) {
+export function zipWith(f: Function, as: any) { return function* (bs: any) {
 
     const aIterator = as[Symbol.iterator]();
     const bIterator = bs[Symbol.iterator]();
@@ -48,7 +48,7 @@ export function lZipWith(f: Function, as: any) { return function* (bs: any) {
 }}
 
 
-export function lMap(f: Function) {
+export function map(f: Function) {
     return function*(a: any) {
         for (let x of a) {
             // console.log("map x of a", x);
@@ -58,7 +58,7 @@ export function lMap(f: Function) {
 }
 
 
-export function lTake(n: number) {
+export function take(n: number) {
     return function*(a: any) {
         let i = 0;
         for (let x of a) {
@@ -71,7 +71,7 @@ export function lTake(n: number) {
 }
 
 
-export function lFilter(f: Function) {
+export function filter(f: Function) {
     return function*(a: any) {
         for (let x of a) {
             // console.log("filter x of a", x);

@@ -1,16 +1,16 @@
-import {lZipWith, materialize} from '../../src/lazy';
+import {zipWith, materialize} from '../../src/lazy';
 
 
 /**
  * @author Daniel de Oliveira
  */
-describe('lZipWith', () => {
+describe('lazy/zipWith', () => {
 
 
-    it('lZipWith', () => expect(
+    it('zipWith', () => expect(
 
         materialize(
-            lZipWith(
+            zipWith(
                 (x: number, y: number) => x + y,
                 [5, 5, 6])(
                 [3, 4, 5]))

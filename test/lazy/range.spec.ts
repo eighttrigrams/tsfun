@@ -1,15 +1,15 @@
-import {lRange, lZip, materialize} from '../../src/lazy';
+import {range, zip, materialize} from '../../src/lazy';
 
 
 /**
  * @author Daniel de Oliveira
  */
-describe('lRange', () => {
+describe('lazy/Range', () => {
 
     it('up to', () =>
         expect(
 
-            materialize(lRange(0, 3))
+            materialize(range(0, 3))
 
         ).toEqual([0, 1, 2]));
 
@@ -17,7 +17,7 @@ describe('lRange', () => {
     it('from to', () =>
         expect(
 
-            materialize(lRange(3, 7))
+            materialize(range(3, 7))
 
         ).toEqual([3, 4, 5, 6]));
 
@@ -25,7 +25,7 @@ describe('lRange', () => {
     it('step size', () =>
         expect(
 
-            materialize(lRange(3, 7, 3))
+            materialize(range(3, 7, 3))
 
         ).toEqual([3, 6]));
 
@@ -33,7 +33,7 @@ describe('lRange', () => {
     it('use case', () =>
         expect(
 
-            materialize(lZip(lRange(10))(['a', 'b', 'c']))
+            materialize(zip(range(10))(['a', 'b', 'c']))
 
         ).toEqual([[0, 'a'], [1, 'b'], [2, 'c']]))
 });

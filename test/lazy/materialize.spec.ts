@@ -1,4 +1,4 @@
-import {lFilter, lMap, lTake, materialize} from '../../src/lazy';
+import {filter, map, take, materialize} from '../../src/lazy';
 import {flow} from '../../src/composition';
 
 
@@ -12,9 +12,9 @@ describe('materialize', () => {
         expect(
 
             flow([1, 2, 3, 4, 5],
-                lMap((_: number) => 2 * _),
-                lFilter((_: number) => _ > 5),
-                lTake(1),
+                map((_: number) => 2 * _),
+                filter((_: number) => _ > 5),
+                take(1),
                 materialize))
 
             .toEqual([6]));
