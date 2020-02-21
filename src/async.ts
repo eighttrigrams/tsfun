@@ -3,7 +3,7 @@ import {isArray, isObject} from './predicate';
 import {keys} from './associative';
 
 
-export const asyncForEach = <A>(
+export const forEach = <A>(
     f: ((_: A, i: number) => Promise<void>)|((_: A) => Promise<void>)) =>
     async (as: Array<A>) => {
 
@@ -16,7 +16,7 @@ export const asyncForEach = <A>(
     };
 
 
-export const asyncFilter = <A>(f: AsyncPredicate<A>) =>
+export const filter = <A>(f: AsyncPredicate<A>) =>
     async (as: Array<A>) => {
         const newAs: Array<A> = [];
         for (let a of as) if (await f(a)) newAs.push(a as never);
@@ -24,11 +24,11 @@ export const asyncFilter = <A>(f: AsyncPredicate<A>) =>
     };
 
 
-export function asyncReduce<A, B>(f: (b: B, a: A, i?: number|string) => Promise<B>, init: B): {
+export function reduce<A, B>(f: (b: B, a: A, i?: number|string) => Promise<B>, init: B): {
     (as: Array<A>): Promise<B>
     (os: ObjectCollection<A>): Promise<B>
 }
-export function asyncReduce<T, B>(f: (b: B, t: T, i?: number|string) => Promise<B>, init: B) {
+export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => Promise<B>, init: B) {
 
     return async (ts: Array<T>|ObjectCollection<T>): Promise<B> => {
 
@@ -59,7 +59,7 @@ export function asyncReduce<T, B>(f: (b: B, t: T, i?: number|string) => Promise<
 }
 
 
-export const asyncMap = <A, B>(f: (_: A) => Promise<B>) =>
+export const map = <A, B>(f: (_: A) => Promise<B>) =>
     async (as: Array<A>): Promise<Array<B>> => {
 
         const bs: Array<B> = [];
@@ -68,7 +68,7 @@ export const asyncMap = <A, B>(f: (_: A) => Promise<B>) =>
     };
 
 
-export async function asyncFlow(a: any, ...b: any[]) {
+export async function flow(a: any, ...b: any[]) {
 
     let currentA = a;
     for (let currentB of b) currentA = await currentB(currentA);

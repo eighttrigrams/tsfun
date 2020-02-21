@@ -137,11 +137,11 @@ Example:
 import {asyncMap} from 'tsfun/async';
 ```
 
-* [asyncMap](test/arraylist_async/async_map.spec.ts)
-* [asyncFilter](test/arraylist_async/async_filter.spec.ts)
-* [asyncForEach](test/arraylist_async/async_for_each.spec.ts)
-* [asyncReduce](test/arraylist_async/async_reduce.spec.ts)
-* [asyncFlow](test/arraylist_async/async_flow.spec.ts)
+* [map](test/async/map.spec.ts)
+* [filter](test/async/filter.spec.ts)
+* [forEach](test/async/for_each.spec.ts)
+* [reduce](test/async/reduce.spec.ts)
+* [flow](test/async/flow.spec.ts)
 
 ## Lazy functions
 

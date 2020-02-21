@@ -1,4 +1,4 @@
-import {asyncFlow} from '../../src/async';
+import {flow as asyncFlow} from '../../src/async';
 /**
  * @author Daniel de Oliveira
  */

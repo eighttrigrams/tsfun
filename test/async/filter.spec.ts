@@ -1,4 +1,4 @@
-import {asyncFilter} from '../../src/async';
+import {filter} from '../../src/async';
 
 
 describe('asyncFilter', () => {
@@ -8,7 +8,7 @@ describe('asyncFilter', () => {
 
         expect(
 
-            await asyncFilter((_: any) => Promise.resolve(_ < 4))([2, 4, 3]))
+            await filter((_: any) => Promise.resolve(_ < 4))([2, 4, 3]))
 
             .toEqual([2, 3]);
 

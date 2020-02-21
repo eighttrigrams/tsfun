@@ -1,4 +1,4 @@
-import {asyncMap} from '../../src/async';
+import {map as asyncMap} from '../../src/async';
 
 /**
  * @author Daniel de Oliveira

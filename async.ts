@@ -1,7 +1,7 @@
 export {
-    asyncFilter as filter,
-    asyncForEach as forEach,
-    asyncMap as map,
-    asyncReduce as reduce,
-    asyncFlow as flow
+    filter,
+    forEach,
+    reduce,
+    map,
+    flow
 } from './src/async'

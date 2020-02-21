@@ -1,4 +1,4 @@
-import {asyncReduce} from '../../src/async';
+import {reduce as asyncReduce} from '../../src/async';
 
 
 describe('asyncReduce', () => {
