@@ -53,19 +53,40 @@ export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => Promise<B>, i
             return acc;
 
         } else {
+
             throw "illegal argument - must be array or object"
         }
     };
 }
 
 
-export const map = <A, B>(f: (_: A) => Promise<B>) =>
-    async (as: Array<A>): Promise<Array<B>> => {
 
-        const bs: Array<B> = [];
-        for (let a of as) bs.push(await f(a));
-        return bs;
-    };
+export function map<A, B>(f: (_: A, i?: string|number) => Promise<B>): {
+    (as: Array<A>): Promise<Array<B>>
+    (os: ObjectCollection<A>): Promise<ObjectCollection<B>>
+}
+export function map<A, B>(f: (_: A, i?: string|number) => B) {
+
+    return async (as: any) => {
+
+        if (isArray(as)) {
+
+            const bs: Array<B> = [];
+            for (let a of as) bs.push(await f(a));
+            return bs;
+
+        } else if (isObject(as)) {
+
+            const result: ObjectCollection<B> = {};
+            for (let key of Object.keys(as)) result[key] = await f(as[key], key);
+            return result;
+
+        } else {
+
+            throw 'illegal argument - must be array or object'
+        }
+    }
+}
 
 
 export async function flow(a: any, ...b: any[]) {

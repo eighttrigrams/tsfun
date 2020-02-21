@@ -8,7 +8,6 @@ import {flow} from '../../src/composition';
  */
 describe('map', () => {
 
-
     it('map', () =>
         expect(
 
