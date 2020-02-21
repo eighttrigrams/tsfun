@@ -1,4 +1,4 @@
-import {AsyncPredicate, ObjectCollection} from './type';
+import {AsyncPredicate, ObjectCollection, Predicate} from './type';
 import {isArray, isObject} from './predicate';
 import {keys} from './associative';
 
@@ -15,13 +15,45 @@ export const forEach = <A>(
         return as;
     };
 
-
+/*
 export const filter = <A>(f: AsyncPredicate<A>) =>
     async (as: Array<A>) => {
         const newAs: Array<A> = [];
         for (let a of as) if (await f(a)) newAs.push(a as never);
         return newAs;
     };
+*/
+
+export function filter<T>(f: AsyncPredicate<T>): {
+    (as: Array<T>): Promise<Array<T>>
+    (os: ObjectCollection<T>): ObjectCollection<T>
+}
+export function filter<T>(f: AsyncPredicate<T>) {
+
+    return async (as: Array<T>|ObjectCollection<T>) => {
+
+        if (isArray(as)) {
+
+            const as1: Array<T> = [];
+            for (let a of as) {
+                if (await f(a)) as1.push(a);
+            }
+            return as1;
+
+        } else if (isObject(as)) {
+
+            const o = as as ObjectCollection<T>;
+            const o1: ObjectCollection<T> = {};
+            for (let k of keys(o)) {
+                if (await f(o[k])) o1[k] = o[k];
+            }
+            return o1;
+
+        } else {
+            throw 'illegal argument - must be array or object'
+        }
+    }
+}
 
 
 export function reduce<A, B>(f: (b: B, a: A, i?: number|string) => Promise<B>, init: B): {
