@@ -7,7 +7,7 @@ import {
     UntypedObjectCollection
 } from './type';
 import {range, zip} from "./arraylist";
-import {isArray, isNot, isObject} from './predicate';
+import {isArray, isObject} from './predicate';
 
 
 // Written with Thomas Kleinke
@@ -203,6 +203,7 @@ export function filter<A>(p: (a: A, i?: number|string) => boolean) {
             return o1 as ObjectCollection<A>;
 
         } else {
+
             throw 'illegal argument - must be array or object';
         }
     }
