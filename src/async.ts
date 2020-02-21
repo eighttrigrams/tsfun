@@ -15,14 +15,6 @@ export const forEach = <A>(
         return as;
     };
 
-/*
-export const filter = <A>(f: AsyncPredicate<A>) =>
-    async (as: Array<A>) => {
-        const newAs: Array<A> = [];
-        for (let a of as) if (await f(a)) newAs.push(a as never);
-        return newAs;
-    };
-*/
 
 export function filter<T>(f: AsyncPredicate<T>): {
     (as: Array<T>): Promise<Array<T>>
