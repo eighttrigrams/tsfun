@@ -139,15 +139,6 @@ export const takeUntil = <A>(predicate: Predicate<A>) =>
         )(as.find(predicate));
 
 
-/**
- * see https://mail.mozilla.org/pipermail/es-discuss/2012-April/022273.html
- */
-export function arrayList(size: number) {
-
-    return Array.apply(null, Array(size))
-}
-
-
 export function zip<A,B> (as: ArrayList<A>) {
 
     return (bs: ArrayList<B>): ArrayList<Pair<A, B>> => {
@@ -179,6 +170,15 @@ export function zipWith<A,B,C> (f: (a: A, b: B) => C, as: ArrayList<A>) {
         }
         return zipped;
     }
+}
+
+
+/**
+ * see https://mail.mozilla.org/pipermail/es-discuss/2012-April/022273.html
+ */
+function arrayList(size: number) {
+
+    return Array.apply(null, Array(size))
 }
 
 

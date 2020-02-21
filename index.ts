@@ -101,7 +101,6 @@ export {
     dropRight,
     dropRightWhile,
     indices,
-    arrayList,
     range,
     zip,
     zipWith,

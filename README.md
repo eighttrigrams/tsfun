@@ -66,7 +66,6 @@ import {equal} from 'tsfun';
 
 ### List
 
-* arrayList
 * [range](test/arraylist/range.spec.ts)
 * [append](test/arraylist/append.spec.ts) 
 * [prepend](test/arraylist/prepend.spec.ts) 
