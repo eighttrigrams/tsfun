@@ -143,6 +143,19 @@ import {asyncMap} from 'tsfun/async';
 * [asyncReduce](test/arraylist_async/async_reduce.spec.ts)
 * [asyncFlow](test/arraylist_async/async_flow.spec.ts)
 
+## Lazy functions
+
+Example:
+
+```typescript
+import {lZip} from 'tsfun/lazy';
+```
+
+* [lZip](test/lazy/l_zip.spec.ts)
+* [lZipWith](test/lazy/l_zip_with.spec.ts)
+* [lRange](test/lazy/l_range.spec.ts)
+* [materialize](test/lazy/materialize.spec.ts)
+
 ## By functions
 
 Example:
