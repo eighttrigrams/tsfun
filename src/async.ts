@@ -1,19 +1,35 @@
-import {AsyncPredicate, ObjectCollection, Predicate} from './type';
+import {AsyncPredicate, ObjectCollection} from './type';
 import {isArray, isObject} from './predicate';
-import {keys} from './associative';
+import {keys, keysAndValues} from './associative';
 
 
-export const forEach = <A>(
-    f: ((_: A, i: number) => Promise<void>)|((_: A) => Promise<void>)) =>
-    async (as: Array<A>) => {
+export function forEach<A>(f: (_: A, i?: number|string) => Promise<void>): {
+    (as: Array<A>): Promise<Array<A>>
+    (os: ObjectCollection<A>): Promise<ObjectCollection<A>>
+}
+export function forEach<A>(f: (_: A, i?: number|string) => Promise<void>) {
 
-        let i = 0;
-        for (let item of as) {
-            await (f as any)(item, i);
-            i++;
+    return async (as: Array<A>|ObjectCollection<A>) => {
+
+        if (isArray(as)) {
+
+            let i = 0;
+            for (let item of as) {
+                await (f as any)(item, i);
+                i++;
+            }
+            return as as Array<A>;
+
+        } else if (isObject(as)) {
+
+            for (let item of keysAndValues(as as any)) {
+                await (f as any)(item[1], item[0]);
+            }
+            return as as ObjectCollection<A>;
+
         }
-        return as;
     };
+}
 
 
 export function filter<T>(f: AsyncPredicate<T>): {
