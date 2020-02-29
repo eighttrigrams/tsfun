@@ -76,16 +76,16 @@ import {equal} from 'tsfun';
 
 ###### array
 
+* [takeRight](test/arraylist/take_right.spec.ts)
+* [dropRight](test/arraylist/drop_right.spec.ts)
 * [range](test/arraylist/range.spec.ts)
 * [sort](test/arraylist/sort.spec.ts)
 * [forEachRight](test/arraylist/for_each_right.spec.ts) 
 * [flatMap](test/arraylist/flat_map.spec.ts)
 * [flatten](test/arraylist/flatten.spec.ts)
-* [takeRight](test/arraylist/take_right.spec.ts)
 * [takeNth](test/arraylist/take_nth.spec.ts)
 * [takeWhile](test/arraylist/take_while.spec.ts)
 * [takeRightWhile](test/arraylist/take_right_while.spec.ts)
-* [dropRight](test/arraylist/drop_right.spec.ts)
 * [dropWhile](test/arraylist/drop_while.spec.ts)
 * [dropRightWhile](test/arraylist/drop_right_while.spec.ts)
 * [indices](test/arraylist/indices.spec.ts)
