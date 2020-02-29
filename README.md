@@ -71,12 +71,12 @@ import {equal} from 'tsfun';
 * [first](test/arraylist/first.spec.ts)
 * [last](test/arraylist/last.spec.ts)
 * [reverse](test/arraylist/reverse.spec.ts)
+* [append](test/arraylist/append.spec.ts) 
+* [prepend](test/arraylist/prepend.spec.ts) 
 
 ###### array
 
 * [range](test/arraylist/range.spec.ts)
-* [append](test/arraylist/append.spec.ts) 
-* [prepend](test/arraylist/prepend.spec.ts) 
 * [sort](test/arraylist/sort.spec.ts)
 * [forEachRight](test/arraylist/for_each_right.spec.ts) 
 * [flatMap](test/arraylist/flat_map.spec.ts)

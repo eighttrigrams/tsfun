@@ -24,12 +24,45 @@ export function reverse<A>(as: ArrayList<A>|string): ArrayList<A>|string {
 }
 
 
-export const append = <A>(...as2: ArrayList<A>) => (as: ArrayList<A>) =>
-    as.concat(as2);
+export function append<A>(...as2: Array<A>): {
+    (as: Array<A>): Array<A>;
+    (as: string): string;
+}
+export function append<A>(...as2: Array<A>) {
+
+    return (as: Array<A>|string) => {
+
+        if (isArray(as) && isArray(as2)) {
+
+            return as.concat(as2 as any) as Array<A>;
+
+        } else if (isString(as)) {
+
+            return as.concat((as2 as any).join('')) as string;
+        }
+    }
+}
 
 
-export const prepend = <A>(...as2: ArrayList<A>) => (as: ArrayList<A>) =>
-    as2.concat(as);
+
+export function prepend<A>(...as2: Array<A>): {
+    (as: Array<A>): Array<A>;
+    (as: string): string;
+}
+export function prepend<A>(...as2: Array<A>) {
+
+    return (as: Array<A>|string) => {
+
+        if (isArray(as) && isArray(as2)) {
+
+            return as2.concat(as as any) as Array<A>;
+
+        } else if (isString(as)) {
+
+            return (as2 as any).join('').concat(as) as string;
+        }
+    }
+}
 
 
 export const flatMap = <A, B>(f: (_: A) => ArrayList<B>) =>
