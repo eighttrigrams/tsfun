@@ -3,7 +3,7 @@ import {take} from '../../src/arraylist';
 
 describe('take', () => {
 
-    it('take - 5', () =>
+    it('5', () =>
 
         expect(
 
@@ -14,7 +14,7 @@ describe('take', () => {
     );
 
 
-    it('take - 0', () =>
+    it('0', () =>
 
         expect(
 
@@ -25,7 +25,7 @@ describe('take', () => {
     );
 
 
-    it('take - more', () =>
+    it('more', () =>
 
         expect(
 
@@ -36,7 +36,7 @@ describe('take', () => {
     );
 
 
-    it('take - from empty', () =>
+    it('from empty', () =>
 
         expect(
 
@@ -47,7 +47,7 @@ describe('take', () => {
     );
 
 
-    it('take - negative n', () =>
+    it('negative n', () =>
 
         expect(
 
@@ -55,5 +55,27 @@ describe('take', () => {
             ([1, 2])
 
         ).toEqual([])
+    );
+
+
+    it('string', () =>
+
+        expect(
+
+            take(4)
+            ('sosos')
+
+        ).toEqual('soso')
+    );
+
+
+    it('string - from empty', () =>
+
+        expect(
+
+            take(4)
+            ('')
+
+        ).toEqual('')
     );
 });

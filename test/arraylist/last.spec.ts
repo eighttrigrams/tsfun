@@ -1,4 +1,4 @@
-import {last} from '../../src/arraylist';
+import {first, last} from '../../src/arraylist';
 
 
 describe('last', () => {
@@ -15,6 +15,22 @@ describe('last', () => {
         expect(
 
             last([])
+
+        ).toBeUndefined());
+
+
+    it('string', () =>
+        expect(
+
+            last('abc')
+
+        ).toEqual('c'));
+
+
+    it('string - from empty', () =>
+        expect(
+
+            last('')
 
         ).toBeUndefined());
 });

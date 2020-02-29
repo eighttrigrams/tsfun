@@ -64,6 +64,15 @@ import {equal} from 'tsfun';
 
 ### List
 
+###### array & string
+
+* [take](test/arraylist/take.spec.ts)
+* [drop](test/arraylist/drop.spec.ts)
+* [first](test/arraylist/first.spec.ts)
+* [last](test/arraylist/last.spec.ts)
+
+###### array
+
 * [range](test/arraylist/range.spec.ts)
 * [append](test/arraylist/append.spec.ts) 
 * [prepend](test/arraylist/prepend.spec.ts) 
@@ -71,17 +80,13 @@ import {equal} from 'tsfun';
 * [forEachRight](test/arraylist/for_each_right.spec.ts) 
 * [flatMap](test/arraylist/flat_map.spec.ts)
 * [flatten](test/arraylist/flatten.spec.ts)
-* [take](test/arraylist/take.spec.ts)
 * [takeRight](test/arraylist/take_right.spec.ts)
 * [takeNth](test/arraylist/take_nth.spec.ts)
 * [takeWhile](test/arraylist/take_while.spec.ts)
 * [takeRightWhile](test/arraylist/take_right_while.spec.ts)
-* [drop](test/arraylist/drop.spec.ts)
 * [dropRight](test/arraylist/drop_right.spec.ts)
 * [dropWhile](test/arraylist/drop_while.spec.ts)
 * [dropRightWhile](test/arraylist/drop_right_while.spec.ts)
-* [first](test/arraylist/first.spec.ts)
-* [last](test/arraylist/last.spec.ts)
 * [indices](test/arraylist/indices.spec.ts)
 * [zip](test/arraylist/zip.spec.ts)
 * [zipWith](test/arraylist/zip_with.spec.ts)

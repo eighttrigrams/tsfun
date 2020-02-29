@@ -1,5 +1,5 @@
 import {ArrayList, Pair, Predicate, SimpleTransformation} from './type';
-import {isArray, isNot} from './predicate';
+import {isArray, isNot, isString} from './predicate';
 import {copy, reduce} from './associative';
 
 
@@ -64,12 +64,6 @@ const intoArrayWith = <A>(f: (_: A) => Array<A>) =>
     (acc: Array<A>, val: A) => acc.concat(f(val));
 
 
-export const drop = (n: number) =>
-    <A>(as: ArrayList<A>) =>
-        n < 1 ? as :
-            as.slice(n);
-
-
 export const dropRight = (n: number) =>
     <A>(as: ArrayList<A>): ArrayList<A> =>
         as.slice(0, Math.max(0, as.length-n)) as ArrayList<A>;
@@ -91,12 +85,62 @@ export const dropRightWhile = <A>(predicate: Predicate<A>) =>
     };
 
 
-export const take = (n: number) =>
-    <A>(as: ArrayList<A>) =>
-        n < 0 ? [] :
-            as.reduce((acc: ArrayList<A>, val, i) =>
-                    i < n ? acc.concat([val]) : acc
-                , []);
+export function take(n: number) {
+
+    function inner<A>(as: ArrayList<A>): ArrayList<A>;
+    function inner(as: string): string;
+    function inner<A>(as: ArrayList<A>|string): ArrayList<A>|string {
+
+        if (isArray(as)) {
+
+            const as_ = as as ArrayList<A>;
+            return n < 0 ? [] :
+                as_.reduce((acc: ArrayList<A>, val, i) =>
+                        i < n ? acc.concat([val]) : acc
+                    , []) as ArrayList<A>;
+
+        } else if (isString(as)) {
+
+            const as_ = as as string;
+            return n < 0
+                ? ''
+                : as_.slice(0, n) as string;
+
+        } else {
+
+            throw 'illegal argument - must be array or string';
+        }
+    }
+
+    return inner;
+}
+
+
+export function drop(n: number) {
+
+    function inner<A>(as: ArrayList<A>): ArrayList<A>;
+    function inner(as: string): string;
+    function inner<A>(as: ArrayList<A>|string): ArrayList<A>|string {
+
+        if (isArray(as)) {
+
+            const as_ = as as ArrayList<A>;
+            return n < 1 ? as_ :
+                    as.slice(n);
+
+        } else if (isString(as)) {
+
+            const as_ = as as string;
+            return as_.slice(n) as string;
+
+        } else {
+
+            throw 'illegal argument - must be array or string';
+        }
+    }
+
+    return inner;
+}
 
 
 export const takeRight = (n: number) =>
@@ -207,7 +251,9 @@ export function sort<A>(f: (a: A, b: A) => number) {
 }
 
 
-export function first<T>(as: Array<T>): T|undefined {
+export function first<T>(as: string): string|undefined;
+export function first<T>(as: Array<T>): T|undefined;
+export function first<T>(as: Array<T>|string): string|T|undefined {
 
     return as.length === 0
         ? undefined
@@ -215,7 +261,9 @@ export function first<T>(as: Array<T>): T|undefined {
 }
 
 
-export function last<T>(as: Array<T>): T|undefined {
+export function last<T>(as: string): string|undefined;
+export function last<T>(as: Array<T>): T|undefined;
+export function last<T>(as: Array<T>|string): string|T|undefined {
 
     return as.length === 0
         ? undefined

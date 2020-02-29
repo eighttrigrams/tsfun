@@ -2,9 +2,7 @@ import {drop} from '../../src/arraylist';
 
 describe('drop', () => {
 
-
-
-    it('drop - 2', () =>
+    it('2', () =>
 
         expect(
 
@@ -15,7 +13,7 @@ describe('drop', () => {
     );
 
 
-    it('drop - all', () =>
+    it('all', () =>
 
         expect(
 
@@ -26,7 +24,7 @@ describe('drop', () => {
     );
 
 
-    it('drop - none', () =>
+    it('none', () =>
 
         expect(
 
@@ -37,7 +35,7 @@ describe('drop', () => {
     );
 
 
-    it('drop - 5 of empty', () =>
+    it('5 of empty', () =>
 
         expect(
 
@@ -48,7 +46,7 @@ describe('drop', () => {
     );
 
 
-    it('drop - 0 of empty', () =>
+    it('0 of empty', () =>
 
         expect(
 
@@ -56,5 +54,27 @@ describe('drop', () => {
             ([])
 
         ).toEqual([])
+    );
+
+
+    it('string', () =>
+
+        expect(
+
+            drop(2)
+            ('abc')
+
+        ).toEqual('c')
+    );
+
+
+    it('string - from empty', () =>
+
+        expect(
+
+            drop(2)
+            ('')
+
+        ).toEqual('')
     );
 });

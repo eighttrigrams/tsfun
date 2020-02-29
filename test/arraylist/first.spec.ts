@@ -17,4 +17,20 @@ describe('first', () => {
             first([])
 
         ).toBeUndefined());
+
+
+    it('string', () =>
+        expect(
+
+            first('abc')
+
+        ).toEqual('a'));
+
+
+    it('string - from empty', () =>
+        expect(
+
+            first('')
+
+        ).toBeUndefined());
 });
