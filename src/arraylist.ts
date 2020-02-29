@@ -1,12 +1,27 @@
-import {ArrayList, Pair, Predicate, SimpleTransformation} from './type';
+import {ArrayList, Pair, Predicate} from './type';
 import {isArray, isNot, isString} from './predicate';
 import {copy, reduce} from './associative';
 
 
 // ------------ @author Daniel de Oliveira -----------------
 
-export const reverse = <A>(as: ArrayList<A>): ArrayList<A> =>
-    as.reduce((acc: Array<A>, a) => [a].concat(acc), []);
+export function reverse<A>(as: string): string;
+export function reverse<A>(as: ArrayList<A>): ArrayList<A>;
+export function reverse<A>(as: ArrayList<A>|string): ArrayList<A>|string {
+
+    if (isArray(as)) {
+
+        return (as as Array<A>).reduce((acc: Array<A>, a) => [a].concat(acc), []);
+
+    } if (isString(as)) {
+
+        return (as as string).split('').reverse().join('');
+
+    } else {
+
+        throw 'illegal argument - must be array or string'
+    }
+}
 
 
 export const append = <A>(...as2: ArrayList<A>) => (as: ArrayList<A>) =>

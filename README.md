@@ -70,6 +70,7 @@ import {equal} from 'tsfun';
 * [drop](test/arraylist/drop.spec.ts)
 * [first](test/arraylist/first.spec.ts)
 * [last](test/arraylist/last.spec.ts)
+* [reverse](test/arraylist/reverse.spec.ts)
 
 ###### array
 
@@ -151,7 +152,7 @@ import {map as asyncMap} from 'tsfun/async';
 
 ### Lazy functions
 
-Example:
+Example:__
 
 ```typescript
 import {zip as lZip} from 'tsfun/lazy';
