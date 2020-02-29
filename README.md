@@ -132,7 +132,9 @@ import {equal} from 'tsfun';
 * [clone](test/struct/clone.spec.ts)
 * [jsonClone](test/struct/json_clone.spec.ts)
 
-## Async functions
+## Special functions - reference
+
+### Async functions
 
 Example:
 
@@ -147,7 +149,7 @@ import {map as asyncMap} from 'tsfun/async';
 * [reduce](test/async/reduce.spec.ts)
 * [flow](test/async/flow.spec.ts)
 
-## Lazy functions
+### Lazy functions
 
 Example:
 
@@ -163,7 +165,7 @@ import {zip as lZip} from 'tsfun/lazy';
 * take
 * map
 
-## By functions
+### By functions
 
 Example:
 
@@ -171,7 +173,7 @@ Example:
 import {samesetBy} from 'tsfun/by';
 ```
 
-### Comparator
+##### Comparator
 
 * [differentFromBy](test/comparator/different_from_by.spec.ts)
 * [includedInBy](test/comparator/included_in_by.spec.ts)
@@ -182,7 +184,7 @@ import {samesetBy} from 'tsfun/by';
 * [objectEqualBy](test/comparator/object_equal_by.spec.ts)
 * [equalBy](test/comparator/equal_by.spec.ts)
 
-### Set
+##### Set
 
 * [intersectionBy](test/arrayset/intersection_by.spec.ts)
 * [intersectBy](test/arrayset/intersect_by.spec.ts)
