@@ -112,11 +112,6 @@ const intoArrayWith = <A>(f: (_: A) => Array<A>) =>
     (acc: Array<A>, val: A) => acc.concat(f(val));
 
 
-export const dropRight = (n: number) =>
-    <A>(as: ArrayList<A>): ArrayList<A> =>
-        as.slice(0, Math.max(0, as.length-n)) as ArrayList<A>;
-
-
 export const dropWhile = <A>(predicate: Predicate<A>) =>
     (as: ArrayList<A>) => {
         let go = false;
@@ -191,12 +186,60 @@ export function drop(n: number) {
 }
 
 
-export const takeRight = (n: number) =>
-    <A>(as: ArrayList<A>) =>
-        n < 0 ? [] :
-            as.reduceRight((acc: ArrayList<A>, val, i) =>
-                (as.length - i) <= n ? [val].concat(acc) : acc
-                , []);
+
+export function dropRight(n: number) {
+
+    function inner<A>(as: ArrayList<A>): ArrayList<A>;
+    function inner(as: string): string;
+    function inner<A>(as: ArrayList<A>|string): ArrayList<A>|string {
+
+        if (isArray(as)) {
+
+            return (as as Array<A>).slice(0, Math.max(0, as.length-n)) as ArrayList<A>;
+
+        } else if (isString(as)) {
+
+            return ((as as string).split(''))
+                .slice(0, Math.max(0, as.length-n)).join('') as string;
+
+        } else {
+
+            throw 'illegal argument - must be array or string';
+        }
+    }
+
+    return inner;
+}
+
+
+export function takeRight(n: number) {
+
+    function inner<A>(as: ArrayList<A>): ArrayList<A>;
+    function inner(as: string): string;
+    function inner<A>(as: ArrayList<A>|string): ArrayList<A>|string {
+
+        if (isArray(as)) {
+
+            return n < 0 ? [] :
+                (as as Array<A>).reduceRight((acc: ArrayList<A>, val, i) =>
+                        (as.length - i) <= n ? [val].concat(acc) : acc
+                    , [])
+
+        } else if (isString(as)) {
+
+            return n < 0 ? '' :
+                ((as as string).split('')).reduceRight((acc: ArrayList<string>, val, i) =>
+                        (as.length - i) <= n ? [val].concat(acc) : acc
+                    , []).join('');
+
+        } else {
+
+            throw 'illegal argument - must be array or string';
+        }
+    }
+
+    return inner;
+}
 
 
 export const takeNth = (n: number) =>

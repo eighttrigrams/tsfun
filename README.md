@@ -68,6 +68,8 @@ import {equal} from 'tsfun';
 
 * [take](test/arraylist/take.spec.ts)
 * [drop](test/arraylist/drop.spec.ts)
+* [takeRight](test/arraylist/take_right.spec.ts)
+* [dropRight](test/arraylist/drop_right.spec.ts)
 * [first](test/arraylist/first.spec.ts)
 * [last](test/arraylist/last.spec.ts)
 * [reverse](test/arraylist/reverse.spec.ts)
@@ -76,8 +78,6 @@ import {equal} from 'tsfun';
 
 ###### array
 
-* [takeRight](test/arraylist/take_right.spec.ts)
-* [dropRight](test/arraylist/drop_right.spec.ts)
 * [range](test/arraylist/range.spec.ts)
 * [sort](test/arraylist/sort.spec.ts)
 * [forEachRight](test/arraylist/for_each_right.spec.ts) 

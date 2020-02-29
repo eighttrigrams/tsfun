@@ -4,7 +4,7 @@ import {takeRight} from '../../src/arraylist';
 describe('takeRight', () => {
 
 
-    it('takeRight - 1', () =>
+    it('1', () =>
 
         expect(
 
@@ -15,7 +15,7 @@ describe('takeRight', () => {
     );
 
 
-    it('takeRight - 2', () =>
+    it('2', () =>
 
         expect(
 
@@ -26,7 +26,7 @@ describe('takeRight', () => {
     );
 
 
-    it('takeRight - 0', () =>
+    it('0', () =>
 
         expect(
 
@@ -37,7 +37,7 @@ describe('takeRight', () => {
     );
 
 
-    it('takeRight - more', () =>
+    it('more', () =>
 
         expect(
 
@@ -48,7 +48,7 @@ describe('takeRight', () => {
     );
 
 
-    it('takeRight - negative n', () =>
+    it('negative n', () =>
 
         expect(
 
@@ -59,7 +59,7 @@ describe('takeRight', () => {
     );
 
 
-    it('takeRight - from empty', () =>
+    it('from empty', () =>
 
         expect(
 
@@ -67,5 +67,38 @@ describe('takeRight', () => {
             ([])
 
         ).toEqual([])
+    );
+
+
+    it('string', () =>
+
+        expect(
+
+            takeRight(3)
+            ('abcd')
+
+        ).toEqual('bcd')
+    );
+
+
+    it('string - all', () =>
+
+        expect(
+
+            takeRight(5)
+            ('abcd')
+
+        ).toEqual('abcd')
+    );
+
+
+    it('string - from empty', () =>
+
+        expect(
+
+            takeRight(5)
+            ('')
+
+        ).toEqual('')
     );
 });

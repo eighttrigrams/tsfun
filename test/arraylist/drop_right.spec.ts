@@ -3,7 +3,7 @@ import {dropRight} from '../../src/arraylist';
 describe('dropRight', () => {
 
 
-    it('dropRight - 2', () =>
+    it('2', () =>
 
         expect(
 
@@ -14,7 +14,7 @@ describe('dropRight', () => {
     );
 
 
-    it('dropRight - all', () =>
+    it('all', () =>
 
         expect(
 
@@ -25,7 +25,7 @@ describe('dropRight', () => {
     );
 
 
-    it('dropRight - none', () =>
+    it('none', () =>
 
         expect(
 
@@ -36,7 +36,7 @@ describe('dropRight', () => {
     );
 
 
-    it('dropRight - 2 of empty', () =>
+    it('2 of empty', () =>
 
         expect(
 
@@ -47,7 +47,7 @@ describe('dropRight', () => {
     );
 
 
-    it('dropRight - none of empty', () =>
+    it('none of empty', () =>
 
         expect(
 
@@ -55,5 +55,38 @@ describe('dropRight', () => {
             ([])
 
         ).toEqual([])
+    );
+
+
+    it('string', () =>
+
+        expect(
+
+            dropRight(1)
+            ('abc')
+
+        ).toEqual('ab')
+    );
+
+
+    it('string - all', () =>
+
+        expect(
+
+            dropRight(4)
+            ('abc')
+
+        ).toEqual('')
+    );
+
+
+    it('string - from empty', () =>
+
+        expect(
+
+            dropRight(4)
+            ('')
+
+        ).toEqual('')
     );
 });
