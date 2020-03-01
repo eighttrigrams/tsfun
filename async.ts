@@ -4,5 +4,6 @@ export {
     forEach,
     reduce,
     map,
-    flow
+    flow,
+    separate
 } from './src/async'

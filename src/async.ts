@@ -1,4 +1,4 @@
-import {ObjectCollection} from './type';
+import {ObjectCollection, Pair} from './type';
 import {isArray, isObject} from './predicate';
 import {keys, keysAndValues} from './associative';
 
@@ -65,6 +65,37 @@ export function filter<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
             return o1 as ObjectCollection<T>;
 
         } else {
+            throw 'illegal argument - must be array or object'
+        }
+    }
+}
+
+
+
+export function separate<T>(p: (a: T, i?: string|number) => Promise<boolean>): {
+    (as: Array<T>): Promise<Pair<Array<T>, Array<T>>>
+    (os: ObjectCollection<T>): Promise<Pair<ObjectCollection<T>, ObjectCollection<T>>>
+}
+export function separate<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
+
+    return async (as: Array<T>|ObjectCollection<T>) => {
+
+        if (isArray(as)) {
+
+            return [
+                await filter(p)(as as Array<T>),
+                await remove(p)(as as Array<T>)
+            ] as Pair<Array<T>, Array<T>>;
+
+        } else if (isObject(as)) {
+
+            return [
+                await filter(p)(as as ObjectCollection<T>),
+                await remove(p)(as as ObjectCollection<T>)
+            ] as Pair<ObjectCollection<T>, ObjectCollection<T>>;
+
+        } else {
+
             throw 'illegal argument - must be array or object'
         }
     }

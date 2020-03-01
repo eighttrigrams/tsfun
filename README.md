@@ -149,6 +149,7 @@ import {map as asyncMap} from 'tsfun/async';
 * [forEach](test/async/for_each.spec.ts)
 * [reduce](test/async/reduce.spec.ts)
 * [flow](test/async/flow.spec.ts)
+* [separate](test/async/separate.spec.ts)
 
 ### Lazy functions
 
