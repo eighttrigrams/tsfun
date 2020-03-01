@@ -79,6 +79,7 @@ import {equal} from 'tsfun';
 * [zip](test/arraylist/zip.spec.ts)
 * [sort](test/arraylist/sort.spec.ts)
 * [indices](test/arraylist/indices.spec.ts)
+* [takeNth](test/arraylist/take_nth.spec.ts)
 
 ###### array
 
@@ -86,7 +87,6 @@ import {equal} from 'tsfun';
 * [forEachRight](test/arraylist/for_each_right.spec.ts) 
 * [flatMap](test/arraylist/flat_map.spec.ts)
 * [flatten](test/arraylist/flatten.spec.ts)
-* [takeNth](test/arraylist/take_nth.spec.ts)
 * [takeWhile](test/arraylist/take_while.spec.ts)
 * [takeRightWhile](test/arraylist/take_right_while.spec.ts)
 * [dropWhile](test/arraylist/drop_while.spec.ts)

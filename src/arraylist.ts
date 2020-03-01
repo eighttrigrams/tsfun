@@ -242,12 +242,31 @@ export function takeRight(n: number) {
 }
 
 
-export const takeNth = (n: number) =>
-    <A>(as: ArrayList<A>) =>
-        n < 0 ? [] :
-            as.reduce((acc: ArrayList<A>, val, i) =>
-                    i % n === 0 ? acc.concat([val]) : acc
-                , []);
+export function takeNth(n: number): {
+    <A>(as: Array<A>): Array<A>
+    (as: string): string
+}
+export function takeNth(n: number) {
+
+    const reducer = <A>(acc: Array<A>, val: any, i: number) =>
+        i % n === 0 ? acc.concat([val]) : acc;
+
+    return <A>(as: Array<A>|string) => {
+
+        if (isArray(as)) {
+
+            return n < 0 ? [] : (as as Array<A>).reduce(reducer, []);
+
+        } else if (isString(as)) {
+
+            return n < 0 ? '' : ((as as string).split('')).reduce(reducer, []).join('');
+
+        } else {
+
+            throw 'illegal argument - must be array or string';
+        }
+    }
+}
 
 
 export const takeWhile = <A>(predicate: Predicate<A>) =>

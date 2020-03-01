@@ -3,7 +3,7 @@ import {takeNth} from '../../src/arraylist';
 
 describe('takeNth', () => {
 
-    it('takeNth - 2', () =>
+    it('2', () =>
 
         expect(
 
@@ -13,7 +13,17 @@ describe('takeNth', () => {
     );
 
 
-    it('takeNth - 3', () =>
+    it('every', () =>
+
+        expect(
+
+            takeNth(1)([1,2,7])
+
+        ).toEqual([1,2,7])
+    );
+
+
+    it('3', () =>
 
         expect(
 
@@ -23,7 +33,7 @@ describe('takeNth', () => {
     );
 
 
-    it('takeNth - 7 of empty', () =>
+    it('7 of empty', () =>
 
         expect(
 
@@ -33,7 +43,7 @@ describe('takeNth', () => {
     );
 
 
-    it('takeNth - 0 of empty', () =>
+    it('0 of empty', () =>
 
         expect(
 
@@ -43,7 +53,17 @@ describe('takeNth', () => {
     );
 
 
-    it('takeNth - 2 of one item', () =>
+    it('0', () =>
+
+        expect(
+
+            takeNth(0)([3, 9, 8])
+
+        ).toEqual([])
+    );
+
+
+    it('2 of one item', () =>
 
         expect(
 
@@ -53,12 +73,62 @@ describe('takeNth', () => {
     );
 
 
-    it('takeNth - of negative', () =>
+    it('of negative', () =>
 
         expect(
 
             takeNth(-1)([1])
 
         ).toEqual([])
+    );
+
+
+    it('string', () =>
+
+        expect(
+
+            takeNth(2)('abcd')
+
+        ).toEqual('ac')
+    );
+
+
+    it('string - 0', () =>
+
+        expect(
+
+            takeNth(0)('abcd')
+
+        ).toEqual('')
+    );
+
+
+    it('string - negative', () =>
+
+        expect(
+
+            takeNth(-1)('abcd')
+
+        ).toEqual('')
+    );
+
+
+    it('string - of empty', () =>
+
+        expect(
+
+            takeNth(1)('')
+
+        ).toEqual('')
+    );
+
+
+    it('string - every', () =>
+
+        expect(
+
+            takeNth(1)('abc')
+
+        ).toEqual('abc')
     );
 });
