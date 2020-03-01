@@ -96,6 +96,7 @@ export {
     append,
     prepend,
     first,
+    rest,
     last,
     take,
     takeRight,

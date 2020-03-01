@@ -441,6 +441,14 @@ export function first<T>(as: Array<T>|string): string|T|undefined {
 }
 
 
+export function rest<T>(as: string): string;
+export function rest<T>(as: Array<T>): Array<T>;
+export function rest<T>(as: Array<T>|string): Array<T>|string {
+
+    return drop(1)(as as any);
+}
+
+
 export function last<T>(as: string): string|undefined;
 export function last<T>(as: Array<T>): T|undefined;
 export function last<T>(as: Array<T>|string): string|T|undefined {

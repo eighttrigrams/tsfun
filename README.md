@@ -78,6 +78,7 @@ import {equal} from 'tsfun';
 * [takeRight](test/list/take_right.spec.ts)
 * [dropRight](test/list/drop_right.spec.ts)
 * [first](test/list/first.spec.ts)
+* [rest](test/list/rest.spec.ts)
 * [last](test/list/last.spec.ts)
 * [reverse](test/list/reverse.spec.ts)
 * [append](test/list/append.spec.ts) 
