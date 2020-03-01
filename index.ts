@@ -45,6 +45,7 @@ export {
     isArray,
     isObject,
     isAssociative,
+    isList,
     isNot, isDefined,
     isString,
     isUndefinedOrEmpty, isEmpty, isUndefined
