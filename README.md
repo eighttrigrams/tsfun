@@ -75,6 +75,7 @@ import {equal} from 'tsfun';
 * [reverse](test/arraylist/reverse.spec.ts)
 * [append](test/arraylist/append.spec.ts) 
 * [prepend](test/arraylist/prepend.spec.ts) 
+* [zip](test/arraylist/zip.spec.ts)
 
 ###### array
 
@@ -89,7 +90,6 @@ import {equal} from 'tsfun';
 * [dropWhile](test/arraylist/drop_while.spec.ts)
 * [dropRightWhile](test/arraylist/drop_right_while.spec.ts)
 * [indices](test/arraylist/indices.spec.ts)
-* [zip](test/arraylist/zip.spec.ts)
 * [zipWith](test/arraylist/zip_with.spec.ts)
 
 ### Set

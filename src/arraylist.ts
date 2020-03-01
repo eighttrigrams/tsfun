@@ -274,19 +274,31 @@ export const takeUntil = <A>(predicate: Predicate<A>) =>
         )(as.find(predicate));
 
 
-export function zip<A,B> (as: ArrayList<A>) {
+export function zip<A>(as: string): {
+    <B>(bs: Array<B>): Array<Pair<string, B>>
+    (bs: string): Array<string>
+}
+export function zip<A>(as: Array<A>): {
+    <B>(bs: Array<B>): Array<Pair<A, B>>
+    (bs: string): Array<Pair<A, string>>
+}
+export function zip<A>(as: Array<A>|string) {
 
-    return (bs: ArrayList<B>): ArrayList<Pair<A, B>> => {
+    return <B>(bs: Array<B>|string): Array<Pair<A, B>>|Array<string> => {
+
+        const asAndBsStrings = isString(as) && isString(bs);
+        const as1 = isString(as) ? (as as string).split('') : as;
+        const bs1 = isString(bs) ? (bs as string).split('') : bs;
 
         const minimumLength = Math.min(as.length, bs.length);
-        const _as = take(minimumLength)(as);
-        const _bs = take(minimumLength)(bs);
+        const _as = take(minimumLength)(as as any);
+        const _bs = take(minimumLength)(bs as any);
 
-        const zipped: ArrayList<[A, B]> = [];
+        const zipped: Array<[A, B]> = [];
         for (let i = 0; i < minimumLength; i++) {
             zipped.push([_as[i] as A, _bs[i] as B]);
         }
-        return zipped;
+        return asAndBsStrings ? zipped.map(item => item.join('')) : zipped;
     }
 }
 
