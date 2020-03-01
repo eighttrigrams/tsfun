@@ -95,6 +95,8 @@ import {equal} from 'tsfun';
 
 ### Set
 
+###### array
+
 * [set](test/set/set.spec.ts)
 * [intersection](test/set/intersection.spec.ts)
 * [intersect](test/set/intersect.spec.ts)
