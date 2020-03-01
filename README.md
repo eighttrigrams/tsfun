@@ -67,41 +67,41 @@ import {equal} from 'tsfun';
 
 ###### array & string
 
-* [take](test/arraylist/take.spec.ts)
-* [drop](test/arraylist/drop.spec.ts)
-* [takeRight](test/arraylist/take_right.spec.ts)
-* [dropRight](test/arraylist/drop_right.spec.ts)
-* [first](test/arraylist/first.spec.ts)
-* [last](test/arraylist/last.spec.ts)
-* [reverse](test/arraylist/reverse.spec.ts)
-* [append](test/arraylist/append.spec.ts) 
-* [prepend](test/arraylist/prepend.spec.ts) 
-* [zip](test/arraylist/zip.spec.ts)
-* [sort](test/arraylist/sort.spec.ts)
-* [indices](test/arraylist/indices.spec.ts)
-* [takeNth](test/arraylist/take_nth.spec.ts)
-* [takeWhile](test/arraylist/take_while.spec.ts)
-* [takeRightWhile](test/arraylist/take_right_while.spec.ts)
-* [dropWhile](test/arraylist/drop_while.spec.ts)
-* [dropRightWhile](test/arraylist/drop_right_while.spec.ts)
+* [take](test/list/take.spec.ts)
+* [drop](test/list/drop.spec.ts)
+* [takeRight](test/list/take_right.spec.ts)
+* [dropRight](test/list/drop_right.spec.ts)
+* [first](test/list/first.spec.ts)
+* [last](test/list/last.spec.ts)
+* [reverse](test/list/reverse.spec.ts)
+* [append](test/list/append.spec.ts) 
+* [prepend](test/list/prepend.spec.ts) 
+* [zip](test/list/zip.spec.ts)
+* [sort](test/list/sort.spec.ts)
+* [indices](test/list/indices.spec.ts)
+* [takeNth](test/list/take_nth.spec.ts)
+* [takeWhile](test/list/take_while.spec.ts)
+* [takeRightWhile](test/list/take_right_while.spec.ts)
+* [dropWhile](test/list/drop_while.spec.ts)
+* [dropRightWhile](test/list/drop_right_while.spec.ts)
 
 ###### array
 
-* [range](test/arraylist/range.spec.ts)
-* [forEachRight](test/arraylist/for_each_right.spec.ts) 
-* [flatMap](test/arraylist/flat_map.spec.ts)
-* [flatten](test/arraylist/flatten.spec.ts)
-* [zipWith](test/arraylist/zip_with.spec.ts)
+* [range](test/list/range.spec.ts)
+* [forEachRight](test/list/for_each_right.spec.ts) 
+* [flatMap](test/list/flat_map.spec.ts)
+* [flatten](test/list/flatten.spec.ts)
+* [zipWith](test/list/zip_with.spec.ts)
 
 ### Set
 
-* [set](test/arrayset/set.spec.ts)
-* [intersection](test/arrayset/intersection.spec.ts)
-* [intersect](test/arrayset/intersect.spec.ts)
-* [subtract](test/arrayset/subtract.spec.ts)
-* [union](test/arrayset/union.spec.ts)
-* [unite](test/arrayset/unite.spec.ts)
-* [duplicates](test/arrayset/duplicates.spec.ts)
+* [set](test/set/set.spec.ts)
+* [intersection](test/set/intersection.spec.ts)
+* [intersect](test/set/intersect.spec.ts)
+* [subtract](test/set/subtract.spec.ts)
+* [union](test/set/union.spec.ts)
+* [unite](test/set/unite.spec.ts)
+* [duplicates](test/set/duplicates.spec.ts)
 
 ### Associative
 
@@ -189,12 +189,12 @@ import {samesetBy} from 'tsfun/by';
 
 ##### Set
 
-* [intersectionBy](test/arrayset/intersection_by.spec.ts)
-* [intersectBy](test/arrayset/intersect_by.spec.ts)
-* [subtractBy](test/arrayset/subtract_by.spec.ts)
-* [unionBy](test/arrayset/union_by.spec.ts)
-* [uniteBy](test/arrayset/unite_by.spec.ts)
-* [setBy](test/arrayset/set_by.spec.ts)
+* [intersectionBy](test/set/intersection_by.spec.ts)
+* [intersectBy](test/set/intersect_by.spec.ts)
+* [subtractBy](test/set/subtract_by.spec.ts)
+* [unionBy](test/set/union_by.spec.ts)
+* [uniteBy](test/set/unite_by.spec.ts)
+* [setBy](test/set/set_by.spec.ts)
 
 ## Credits 
  

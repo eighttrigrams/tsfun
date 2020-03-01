@@ -9,7 +9,7 @@ export const tripleEqual: any = <A>(l:A) =>
 
 
 import {isArray, isNot, isObject} from './predicate';
-import {subtractBy} from './arrayset';
+import {subtractBy} from './set';
 import {getElForPathIn} from './struct';
 
 

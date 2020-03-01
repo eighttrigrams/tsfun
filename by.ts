@@ -37,4 +37,4 @@ export {
     subtractBy,
     uniteBy,
     setBy,
-} from './src/arrayset';
+} from './src/set';

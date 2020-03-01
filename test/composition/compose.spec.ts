@@ -1,4 +1,4 @@
-import {drop, dropRight, take} from '../../src/arraylist';
+import {drop, dropRight, take} from '../../src/list';
 import {compose, flow} from '../../src/composition';
 
 

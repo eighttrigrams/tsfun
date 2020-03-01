@@ -106,12 +106,12 @@ export {
     zip,
     zipWith,
     sort
-} from './src/arraylist';
+} from './src/list';
 
 
 export {
     duplicates,
-} from './src/arrayset';
+} from './src/set';
 
 
 export {
@@ -121,7 +121,7 @@ export {
     intersect,
     subtract,
     unite
-} from './src/arrayset';
+} from './src/set';
 
 
 export {

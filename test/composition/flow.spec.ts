@@ -1,4 +1,4 @@
-import {dropRight, dropWhile, reverse, takeWhile} from '../../src/arraylist';
+import {dropRight, dropWhile, reverse, takeWhile} from '../../src/list';
 import {greaterThan, includedIn, lessThan} from '../../src/comparator';
 import {flow} from '../../src/composition';
 import {isNot} from '../../src/predicate';

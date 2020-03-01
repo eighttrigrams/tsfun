@@ -6,7 +6,7 @@ import {
     SimpleTransformation,
     UntypedObjectCollection
 } from './type';
-import {range, zip} from "./arraylist";
+import {range, zip} from "./list";
 import {isArray, isObject} from './predicate';
 
 

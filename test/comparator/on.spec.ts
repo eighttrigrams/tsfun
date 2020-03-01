@@ -7,7 +7,7 @@ import {
     isUndefined,
     isUndefinedOrEmpty
 } from "../../src/predicate";
-import {intersectBy} from "../../src/arrayset";
+import {intersectBy} from "../../src/set";
 
 
 /**
