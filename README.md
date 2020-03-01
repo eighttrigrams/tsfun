@@ -105,6 +105,8 @@ import {equal} from 'tsfun';
 
 ### Associative
 
+###### array & object
+
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
 * [size](test/associative/size.spec.ts)
