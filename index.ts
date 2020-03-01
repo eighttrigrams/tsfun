@@ -42,10 +42,6 @@ export {
     and,
     or,
     xor,
-    gt,
-    gte,
-    st,
-    ste,
     isArray,
     isObject,
     isAssociative,
@@ -70,7 +66,11 @@ export {
     differentFrom,
     subsetOf,
     by,
-    on
+    on,
+    greaterThan,
+    greaterThanEqual,
+    lessThan,
+    lessThanEqual,
 } from './src/comparator';
 
 

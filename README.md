@@ -33,10 +33,6 @@ import {equal} from 'tsfun';
 * [and](test/predicate/and.spec.ts)
 * [or](test/predicate/or.spec.ts)
 * [xor](test/predicate/xor.spec.ts)
-* [gt](test/predicate/gt.spec.ts)
-* [gte](test/predicate/gte.spec.ts)
-* [st](test/predicate/st.spec.ts)
-* [ste](test/predicate/ste.spec.ts)
 
 ### Comparator
 
@@ -45,6 +41,10 @@ import {equal} from 'tsfun';
 * [is](test/comparator/is.spec.ts)
 * [isnt](test/comparator/isnt.spec.ts)
 * [differentFrom](test/comparator/different_from.spec.ts)
+* [greaterThan](test/comparator/greater_than.spec.ts)
+* [greaterThanEqual](test/comparator/greater_than_equal.spec.ts)
+* [lessThan](test/comparator/less_than.spec.ts)
+* [lessThanEqual](test/comparator/less_than_equal.ts)
 * [includedIn](test/comparator/included_in.spec.ts)
 * [subsetOf](test/comparator/subset_of.spec.ts)
 * [supersetOf](test/comparator/superset_of.spec.ts)

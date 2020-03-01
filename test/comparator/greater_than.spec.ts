@@ -1,13 +1,13 @@
-import {gt} from '../../src/predicate';
+import {greaterThan} from '../../src/comparator';
 
 
-describe('gt', () => {
+describe('greaterThan', () => {
 
    it('true', () =>
 
        expect(
 
-           gt(3)(4)
+           greaterThan(3)(4)
 
        ).toEqual(true)
    );
@@ -17,7 +17,7 @@ describe('gt', () => {
 
         expect(
 
-            gt(4)(3)
+            greaterThan(4)(3)
 
         ).toEqual(false)
     );
@@ -27,7 +27,7 @@ describe('gt', () => {
 
         expect(
 
-            gt('a')('b')
+            greaterThan('a')('b')
 
         ).toEqual(true)
     );
@@ -37,7 +37,7 @@ describe('gt', () => {
 
         expect(
 
-            gt('b')('a')
+            greaterThan('b')('a')
 
         ).toEqual(false)
     );
@@ -47,7 +47,7 @@ describe('gt', () => {
 
         expect(
 
-            () => gt('b')('ab')
+            () => greaterThan('b')('ab')
 
         ).toThrow()
     );

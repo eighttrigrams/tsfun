@@ -1,5 +1,5 @@
-import {lessThan} from '../../src/comparator';
 import {separate} from '../../src/associative';
+import {lessThan} from '../../src/comparator';
 
 
 describe('separate', () => {

@@ -1,13 +1,13 @@
-import {gte} from '../../src/predicate';
+import {greaterThanEqual} from '../../src/comparator';
 
 
-describe('gte', () => {
+describe('greaterThanEqual', () => {
 
     it('true', () =>
 
         expect(
 
-            gte(3)(4)
+            greaterThanEqual(3)(4)
 
         ).toEqual(true)
     );
@@ -16,7 +16,7 @@ describe('gte', () => {
 
         expect(
 
-            gte(4)(4)
+            greaterThanEqual(4)(4)
 
         ).toEqual(true)
     );
@@ -26,7 +26,7 @@ describe('gte', () => {
 
         expect(
 
-            gte(4)(3)
+            greaterThanEqual(4)(3)
 
         ).toEqual(false)
     );
@@ -36,7 +36,7 @@ describe('gte', () => {
 
         expect(
 
-            gte('a')('b')
+            greaterThanEqual('a')('b')
 
         ).toEqual(true)
     );
@@ -46,7 +46,7 @@ describe('gte', () => {
 
         expect(
 
-            gte('a')('a')
+            greaterThanEqual('a')('a')
 
         ).toEqual(true)
     );
@@ -57,7 +57,7 @@ describe('gte', () => {
 
         expect(
 
-            gte('b')('a')
+            greaterThanEqual('b')('a')
 
         ).toEqual(false)
     );
@@ -67,7 +67,7 @@ describe('gte', () => {
 
         expect(
 
-            () => gte('b')('ab')
+            () => greaterThanEqual('b')('ab')
 
         ).toThrow()
     );

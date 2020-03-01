@@ -8,23 +8,100 @@ export const tripleEqual: any = <A>(l:A) =>
     (r:A) => l === r;
 
 
-import {isArray, isNot, isObject} from './predicate';
+import {isArray, isNot, isObject, isString} from './predicate';
 import {subtractBy} from './set';
 import {getElForPathIn} from './struct';
+
+
+
+export function greaterThan(than: number): (that: number) => boolean;
+export function greaterThan(than: string): (that: string) => boolean;
+export function greaterThan(than: number|string) {
+
+    return (that: number|string) => {
+
+        if (isString(than) && (than as string).length !== 1) {
+            throw 'illegal argument - string argument must be of length 1';
+        }
+        if (isString(that) && (that as string).length !== 1) {
+            throw 'illegal argument - string argument must be of length 1';
+        }
+        if ((isString(that) && !isString(than)) || (isString(than) && !isString(that))) {
+            throw 'illegal argument - either both arguments must be number or both arguments must be string'
+        }
+
+        return that > than;
+    }
+}
+
+
+export function lessThan(than: number): (that: number) => boolean;
+export function lessThan(than: string): (that: string) => boolean;
+export function lessThan(than: number|string) {
+
+    return (that: number|string) => {
+
+        if (isString(than) && (than as string).length !== 1) {
+            throw 'illegal argument - string argument must be of length 1';
+        }
+        if (isString(that) && (that as string).length !== 1) {
+            throw 'illegal argument - string argument must be of length 1';
+        }
+        if ((isString(that) && !isString(than)) || (isString(than) && !isString(that))) {
+            throw 'illegal argument - either both arguments must be number or both arguments must be string'
+        }
+
+        return that < than;
+    }
+}
+
+
+export function greaterThanEqual(than: number): (that: number) => boolean;
+export function greaterThanEqual(than: string): (that: string) => boolean;
+export function greaterThanEqual(than: number|string) {
+
+    return (that: number|string) => {
+
+        if (isString(than) && (than as string).length !== 1) {
+            throw 'illegal argument - string argument must be of length 1';
+        }
+        if (isString(that) && (that as string).length !== 1) {
+            throw 'illegal argument - string argument must be of length 1';
+        }
+        if ((isString(that) && !isString(than)) || (isString(than) && !isString(that))) {
+            throw 'illegal argument - either both arguments must be number or both arguments must be string'
+        }
+
+        return that >= than;
+    }
+}
+
+
+export function lessThanEqual(than: number): (that: number) => boolean;
+export function lessThanEqual(than: string): (that: string) => boolean;
+export function lessThanEqual(than: number|string) {
+
+    return (that: number|string) => {
+
+        if (isString(than) && (than as string).length !== 1) {
+            throw 'illegal argument - string argument must be of length 1';
+        }
+        if (isString(that) && (that as string).length !== 1) {
+            throw 'illegal argument - string argument must be of length 1';
+        }
+        if ((isString(that) && !isString(than)) || (isString(than) && !isString(that))) {
+            throw 'illegal argument - either both arguments must be number or both arguments must be string'
+        }
+
+        return that <= than;
+    }
+}
 
 
 export const is = tripleEqual;
 
 
 export const isnt = <A>(l: A) => isNot(tripleEqual(l));
-
-
-/* internal */ export const greaterThan: any = <A>(l:A) =>
-    (r: A) => l < r;
-
-
-/* internal */ export const lessThan: any = <A>(l:A) =>
-    (r: A) => l > r;
 
 
 export const jsonEqual: any = <A>(l:A) =>

@@ -1,13 +1,13 @@
-import {ste} from '../../src/predicate';
+import {lessThanEqual} from '../../src/comparator';
 
 
-describe('ste', () => {
+describe('lessThanEqual', () => {
 
     it('false', () =>
 
         expect(
 
-            ste(3)(4)
+            lessThanEqual(3)(4)
 
         ).toEqual(false)
     );
@@ -16,7 +16,7 @@ describe('ste', () => {
 
         expect(
 
-            ste(4)(4)
+            lessThanEqual(4)(4)
 
         ).toEqual(true)
     );
@@ -26,7 +26,7 @@ describe('ste', () => {
 
         expect(
 
-            ste(4)(3)
+            lessThanEqual(4)(3)
 
         ).toEqual(true)
     );
@@ -36,7 +36,7 @@ describe('ste', () => {
 
         expect(
 
-            ste('a')('b')
+            lessThanEqual('a')('b')
 
         ).toEqual(false)
     );
@@ -46,7 +46,7 @@ describe('ste', () => {
 
         expect(
 
-            ste('a')('a')
+            lessThanEqual('a')('a')
 
         ).toEqual(true)
     );
@@ -57,7 +57,7 @@ describe('ste', () => {
 
         expect(
 
-            ste('b')('a')
+            lessThanEqual('b')('a')
 
         ).toEqual(true)
     );
@@ -67,7 +67,7 @@ describe('ste', () => {
 
         expect(
 
-            () => ste('b')('ab')
+            () => lessThanEqual('b')('ab')
 
         ).toThrow()
     );

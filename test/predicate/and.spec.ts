@@ -5,7 +5,6 @@ import {filter} from '../../src/associative';
 
 describe('and', () => {
 
-
     it('true', () =>
        expect(
 

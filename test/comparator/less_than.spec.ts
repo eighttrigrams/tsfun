@@ -1,13 +1,13 @@
-import {st} from '../../src/predicate';
+import {lessThan} from '../../src/comparator';
 
 
-describe('st', () => {
+describe('lessThan', () => {
 
     it('false', () =>
 
         expect(
 
-            st(3)(4)
+            lessThan(3)(4)
 
         ).toEqual(false)
     );
@@ -17,27 +17,27 @@ describe('st', () => {
 
         expect(
 
-            st(4)(3)
+            lessThan(4)(3)
 
         ).toEqual(true)
     );
 
 
-    it('string - false', () =>
+    it('ltring - false', () =>
 
         expect(
 
-            st('a')('b')
+            lessThan('a')('b')
 
         ).toEqual(false)
     );
 
 
-    it('string', () =>
+    it('ltring', () =>
 
         expect(
 
-            st('b')('a')
+            lessThan('b')('a')
 
         ).toEqual(true)
     );
@@ -47,7 +47,7 @@ describe('st', () => {
 
         expect(
 
-            () => st('b')('ab')
+            () => lessThan('b')('ab')
 
         ).toThrow()
     );
