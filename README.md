@@ -33,6 +33,10 @@ import {equal} from 'tsfun';
 * [and](test/predicate/and.spec.ts)
 * [or](test/predicate/or.spec.ts)
 * [xor](test/predicate/xor.spec.ts)
+* [gt](test/predicate/gt.spec.ts)
+* [gte](test/predicate/gte.spec.ts)
+* [st](test/predicate/st.spec.ts)
+* [ste](test/predicate/ste.spec.ts)
 
 ### Comparator
 
