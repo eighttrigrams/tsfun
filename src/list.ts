@@ -411,14 +411,22 @@ export function range(a: number, b?: number, stepSize: number = 1): number[] {
         .map((a: any, i: number) => (begin as number) + (i * stepSize));
 }
 
-
+export function sort(s: string): string;
 export function sort<A>(f: (a: A, b: A) => number): {
     (as: Array<A>): Array<A>;
     (as: string): string;
 }
-export function sort<A>(f: (a: A, b: A) => number) {
+export function sort<A>(f: string|((a: A, b: A) => number)) {
 
-    return (as: Array<A>|string) => {
+    if (isString(f)) {
+
+        return (f as string).split('').sort((a: string, b: string) => {
+            if (a === b) return 0;
+            if (a < b) return -1;
+            return 1;
+        }).join('');
+
+    } else return (as: Array<A>|string) => {
 
         if (isArray(as)) {
             return copy(as as any).sort(f as any);

@@ -14,11 +14,18 @@ describe('sort', () => {
         ).toEqual(['a','b']));
 
 
-
     it('string', () =>
         expect(
 
             sort(aFirst)('babbba')
+
+        ).toEqual('aabbbb'));
+
+
+    it('string - no param', () =>
+        expect(
+
+            sort('babbba')
 
         ).toEqual('aabbbb'));
 });
