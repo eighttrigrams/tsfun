@@ -348,9 +348,22 @@ export function range(a: number, b?: number, stepSize: number = 1): number[] {
 }
 
 
+export function sort<A>(f: (a: A, b: A) => number): {
+    (as: Array<A>): Array<A>;
+    (as: string): string;
+}
 export function sort<A>(f: (a: A, b: A) => number) {
 
-    return (as: Array<A>): Array<A> => copy(as).sort(f as any);
+    return (as: Array<A>|string) => {
+
+        if (isArray(as)) {
+            return copy(as as any).sort(f as any);
+        } else if (isString(as)) {
+            return copy((as as any).split('')).sort(f as any).join('');
+        } else {
+            throw 'illegal argument - must be array or string'
+        }
+    }
 }
 
 

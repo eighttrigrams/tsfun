@@ -76,12 +76,12 @@ import {equal} from 'tsfun';
 * [append](test/arraylist/append.spec.ts) 
 * [prepend](test/arraylist/prepend.spec.ts) 
 * [zip](test/arraylist/zip.spec.ts)
+* [sort](test/arraylist/sort.spec.ts)
 * [indices](test/arraylist/indices.spec.ts)
 
 ###### array
 
 * [range](test/arraylist/range.spec.ts)
-* [sort](test/arraylist/sort.spec.ts)
 * [forEachRight](test/arraylist/for_each_right.spec.ts) 
 * [flatMap](test/arraylist/flat_map.spec.ts)
 * [flatten](test/arraylist/flatten.spec.ts)
