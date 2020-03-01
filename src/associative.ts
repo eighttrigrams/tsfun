@@ -8,6 +8,7 @@ import {
 } from './type';
 import {range, zip} from "./list";
 import {isArray, isObject} from './predicate';
+import {size} from './composition';
 
 
 // Written with Thomas Kleinke
@@ -68,16 +69,6 @@ export function assoc<T>(key: string|number, value: T) {
         (newStruct as any)[key] = value;
         return newStruct;
     }
-}
-
-
-export function size<A>(as: Array<A>): number;
-export function size<T>(o: ObjectCollection<T>): number;
-export function size<T>(o: Array<T>|ObjectCollection<T>): number {
-
-    return (isArray(o)
-        ? o.length
-        : keys(o).length) as number;
 }
 
 

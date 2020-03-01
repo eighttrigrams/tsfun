@@ -63,6 +63,7 @@ import {equal} from 'tsfun';
 * [pairWith](test/composition/pair-with.spec.ts)
 * [left](test/composition/left.spec.ts)
 * [right](test/composition/right.spec.ts)
+* [size](test/composition/size.spec.ts)
 
 ### List
 
@@ -112,7 +113,6 @@ import {equal} from 'tsfun';
 
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
-* [size](test/associative/size.spec.ts)
 * [count](test/associative/count.spec.ts)
 * [map](test/associative/map.spec.ts)
 * [filter](test/associative/filter.spec.ts) 

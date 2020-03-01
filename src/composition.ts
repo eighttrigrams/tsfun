@@ -1,5 +1,7 @@
 import {identity} from './core';
-import {Either, Pair, Predicate} from './type';
+import {Either, ObjectCollection, Pair, Predicate} from './type';
+import {isArray, isString} from './predicate';
+import {keys} from './associative';
 
 const composition = <T = any>(t: any, ...transformations: Array<Function>) =>
     compose(...transformations)(t) as T;
@@ -27,6 +29,17 @@ export function cond<A, B, C>(
             ? typeof f === 'function' ? (f as Mapping<A,B>)(v) : f
             : typeof g === 'function' ? (g as Mapping<A,C>)(v) : g
     }
+}
+
+
+export function size(as: string): number;
+export function size<A>(as: Array<A>): number;
+export function size<T>(o: ObjectCollection<T>): number;
+export function size<T>(o: string|Array<T>|ObjectCollection<T>): number {
+
+    return (isArray(o) || isString(o)
+        ? o.length
+        : keys(o as any).length) as number;
 }
 
 

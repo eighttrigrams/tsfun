@@ -1,8 +1,7 @@
-import {size} from '../../src/associative';
+import {size} from '../../src/composition';
 
 
 describe('size', () => {
-
 
     it('object', () =>
         expect(
@@ -17,5 +16,13 @@ describe('size', () => {
 
             size(['a', 'b'])
 
-        ).toEqual(2))
+        ).toEqual(2));
+
+
+    it('string', () =>
+        expect(
+
+            size('abc')
+
+        ).toEqual(3))
 });

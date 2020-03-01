@@ -78,6 +78,7 @@ export {
     right,
     nop,
     val,
+    size,
     tuplify,
     pairWith
 } from './src/composition';
@@ -128,7 +129,6 @@ export {
 export {
     keysAndValues,
     keys,
-    size,
     values,
     count,
     lookup,
