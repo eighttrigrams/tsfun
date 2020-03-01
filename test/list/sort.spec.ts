@@ -14,6 +14,14 @@ describe('sort', () => {
         ).toEqual(['a','b']));
 
 
+    it('sort - array of numbers - no param', () =>
+        expect(
+
+            sort([2, 1])
+
+        ).toEqual([1, 2]));
+
+
     it('string', () =>
         expect(
 

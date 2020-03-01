@@ -412,11 +412,12 @@ export function range(a: number, b?: number, stepSize: number = 1): number[] {
 }
 
 export function sort(s: string): string;
+export function sort(s: Array<number>): Array<number>;
 export function sort<A>(f: (a: A, b: A) => number): {
     (as: Array<A>): Array<A>;
     (as: string): string;
 }
-export function sort<A>(f: string|((a: A, b: A) => number)) {
+export function sort<A>(f: string|Array<number>|((a: A, b: A) => number)) {
 
     if (isString(f)) {
 
@@ -425,6 +426,14 @@ export function sort<A>(f: string|((a: A, b: A) => number)) {
             if (a < b) return -1;
             return 1;
         }).join('');
+
+    } else if (typeof f !== 'function') {
+
+        return (f as any).sort((a: string, b: string) => {
+            if (a === b) return 0;
+            if (a < b) return -1;
+            return 1;
+        });
 
     } else return (as: Array<A>|string) => {
 
