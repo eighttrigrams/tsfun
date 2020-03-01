@@ -1,11 +1,10 @@
-import {lessThan} from '../../src/comparator';
+import {isnt, lessThan} from '../../src/comparator';
 import {dropWhile} from '../../src/arraylist';
 
 
 describe('drop', () => {
 
-
-    it('dropWhile - drop five', () =>
+    it('drop five', () =>
 
         expect(
 
@@ -16,7 +15,7 @@ describe('drop', () => {
     );
 
 
-    it('dropWhile - drop none', () =>
+    it('drop none', () =>
 
         expect(
 
@@ -27,7 +26,7 @@ describe('drop', () => {
     );
 
 
-    it('dropWhile - empty', () =>
+    it('empty', () =>
 
         expect(
 
@@ -35,5 +34,16 @@ describe('drop', () => {
             ([])
 
         ).toEqual([])
+    );
+
+
+    it('string', () =>
+
+        expect(
+
+            dropWhile(isnt('a'))
+            ('ddefabc')
+
+        ).toEqual('abc')
     );
 });

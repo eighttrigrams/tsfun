@@ -1,12 +1,10 @@
-import {greaterThan, lessThan} from '../../src/comparator';
+import {greaterThan, isnt, lessThan} from '../../src/comparator';
 import {takeWhile} from '../../src/arraylist';
-
 
 
 describe('takeWhile', () => {
 
-
-    it('takeWhile - take five', () =>
+    it('take five', () =>
 
         expect(
 
@@ -17,7 +15,7 @@ describe('takeWhile', () => {
     );
 
 
-    it('takeWhile - take none', () =>
+    it('take none', () =>
 
         expect(
 
@@ -28,7 +26,7 @@ describe('takeWhile', () => {
     );
 
 
-    it('takeWhile - take all', () =>
+    it('take all', () =>
 
         expect(
 
@@ -39,9 +37,22 @@ describe('takeWhile', () => {
     );
 
 
-    it('takeWhile - empty', () =>
+    it('empty', () =>
 
-        expect(takeWhile(greaterThan(23))
-        ([])).toEqual([])
+        expect(
+
+            takeWhile(greaterThan(23))([])
+
+        ).toEqual([])
+    );
+
+
+    it('string', () =>
+
+        expect(
+
+            takeWhile(isnt('a'))('ddeaf')
+
+        ).toEqual('dde')
     );
 });

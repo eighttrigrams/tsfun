@@ -1,4 +1,4 @@
-import {greaterThan} from '../../src/comparator';
+import {greaterThan, isnt} from '../../src/comparator';
 import {takeRightWhile} from '../../src/arraylist';
 
 
@@ -6,7 +6,7 @@ import {takeRightWhile} from '../../src/arraylist';
 describe('takeRightWhile', () => {
 
 
-    it('takeRightWhile - take five', () =>
+    it('take five', () =>
 
         expect(
 
@@ -17,7 +17,7 @@ describe('takeRightWhile', () => {
     );
 
 
-    it('takeRightWhile - take none', () =>
+    it('take none', () =>
 
         expect(
 
@@ -28,7 +28,7 @@ describe('takeRightWhile', () => {
     );
 
 
-    it('takeRightWhile - take all', () =>
+    it('take all', () =>
 
         expect(
 
@@ -39,7 +39,7 @@ describe('takeRightWhile', () => {
     );
 
 
-    it('takeRightWhile - empty', () =>
+    it('empty', () =>
 
         expect(
 
@@ -47,5 +47,15 @@ describe('takeRightWhile', () => {
             ([])
 
         ).toEqual([])
+    );
+
+
+    it('string', () =>
+
+        expect(
+
+            takeRightWhile(isnt('a'))('abcdabbbe')
+
+        ).toEqual('bbbe')
     );
 });

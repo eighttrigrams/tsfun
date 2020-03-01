@@ -1,9 +1,8 @@
-import {greaterThan, lessThan} from '../../src/comparator';
+import {greaterThan, isnt, lessThan} from '../../src/comparator';
 import {dropRightWhile} from '../../src/arraylist';
 
 
 describe('dropRightWhile', () => {
-
 
     it('dropRightWhile', () =>
 
@@ -16,7 +15,7 @@ describe('dropRightWhile', () => {
     );
 
 
-    it('dropRightWhile - none', () =>
+    it('none', () =>
 
         expect(
 
@@ -27,7 +26,7 @@ describe('dropRightWhile', () => {
     );
 
 
-    it('dropRightWhile - all', () =>
+    it('all', () =>
 
         expect(
 
@@ -38,7 +37,7 @@ describe('dropRightWhile', () => {
     );
 
 
-    it('dropRightWhile - of empty', () =>
+    it('of empty', () =>
 
         expect(
 
@@ -46,5 +45,15 @@ describe('dropRightWhile', () => {
             ([])
 
         ).toEqual([])
+    );
+
+
+    it('string', () =>
+
+        expect(
+
+            dropRightWhile(isnt('a'))('bbedeajjjk')
+
+        ).toEqual('bbedea')
     );
 });

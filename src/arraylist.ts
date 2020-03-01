@@ -112,22 +112,6 @@ const intoArrayWith = <A>(f: (_: A) => Array<A>) =>
     (acc: Array<A>, val: A) => acc.concat(f(val));
 
 
-export const dropWhile = <A>(predicate: Predicate<A>) =>
-    (as: ArrayList<A>) => {
-        let go = false;
-        return as.reduce((acc: Array<A>, a) =>
-            go || !predicate(a) ? (go = true, acc.concat([a])) : acc, []);
-    };
-
-
-export const dropRightWhile = <A>(predicate: Predicate<A>) =>
-    (as: ArrayList<A>) => {
-        let go = false;
-        return as.reduceRight((acc: Array<A>, a) =>
-            go || !predicate(a) ? (go = true, [a].concat(acc)) : acc, []);
-    };
-
-
 export function take(n: number) {
 
     function inner<A>(as: ArrayList<A>): ArrayList<A>;
@@ -269,20 +253,81 @@ export function takeNth(n: number) {
 }
 
 
-export const takeWhile = <A>(predicate: Predicate<A>) =>
-    (as: ArrayList<A>) => {
+export function takeWhile<A>(predicate: Predicate<A>): {
+    (as: Array<A>): Array<A>
+    (as: string): string
+}
+export function takeWhile<A>(predicate: Predicate<A>|Predicate<string>) {
+
+    return (as: Array<A>|string) => {
+
+        const as1 = isString(as) ? (as as any).split('') : as;
+
         let go = true;
-        return as.reduce((acc: ArrayList<A>, a) =>
+        const result = as1.reduce((acc: Array<A>, a: any) =>
             go && predicate(a) ? acc.concat([a]) : (go = false, acc), []);
+
+        return isString(as) ? result.join('') : result;
     };
+}
 
 
-export const takeRightWhile = <A>(predicate: Predicate<A>) =>
-    (as: ArrayList<A>) => {
+export function takeRightWhile<A>(predicate: Predicate<A>): {
+    (as: Array<A>): Array<A>
+    (as: string): string
+}
+export function takeRightWhile<A>(predicate: Predicate<A>) {
+
+    return (as: ArrayList<A>|string) => {
+
+        const as1 = isString(as) ? (as as any).split('') : as;
+
         let go = true;
-        return as.reduceRight((acc: Array<A>, a) =>
+        const result = as1.reduceRight((acc: Array<A>, a: any) =>
             go && predicate(a) ? [a].concat(acc) : (go = false, acc), []);
+
+        return isString(as) ? result.join('') : result;
     };
+}
+
+
+export function dropWhile<A>(predicate: Predicate<A>): {
+    (as: Array<A>): Array<A>
+    (as: string): string
+}
+export function dropWhile<A>(predicate: Predicate<A>) {
+
+    return (as: ArrayList<A>|string) => {
+
+        const as1 = isString(as) ? (as as any).split('') : as;
+
+        let go = false;
+        const result = as1.reduce((acc: Array<A>, a: any) =>
+            go || !predicate(a) ? (go = true, acc.concat([a])) : acc, []);
+
+        return isString(as) ? result.join('') : result;
+    };
+}
+
+
+export function dropRightWhile<A>(predicate: Predicate<A>): {
+    (as: Array<A>): Array<A>
+    (as: string): string
+}
+export function dropRightWhile<A>(predicate: Predicate<A>) {
+
+    return (as: ArrayList<A>|string) => {
+
+        const as1 = isString(as) ? (as as any).split('') : as;
+
+        let go = false;
+        const result = as1.reduceRight((acc: Array<A>, a: any) =>
+            go || !predicate(a) ? (go = true, [a].concat(acc)) : acc, []);
+
+        return isString(as) ? result.join('') : result;
+    };
+}
+
 
 
 export const takeUntil = <A>(predicate: Predicate<A>) =>
