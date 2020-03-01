@@ -45,7 +45,8 @@ export {
     isArray,
     isObject,
     isAssociative,
-    isNot, isDefined, isString,
+    isNot, isDefined,
+    isString,
     isUndefinedOrEmpty, isEmpty, isUndefined
 } from './src/predicate';
 
