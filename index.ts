@@ -135,6 +135,7 @@ export {
     assoc,
     update,
     dissoc,
+    prune,
     filter,
     forEach,
     remove,

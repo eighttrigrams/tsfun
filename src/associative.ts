@@ -7,7 +7,7 @@ import {
     UntypedObjectCollection
 } from './type';
 import {range, zip} from "./list";
-import {isArray, isObject} from './predicate';
+import {isArray, isDefined, isObject} from './predicate';
 import {size} from './composition';
 
 
@@ -122,6 +122,14 @@ export function count<A>(p: Predicate<A>) {
 
         return size(filter(p)(as as any));
     }
+}
+
+
+export function prune<T>(o: ObjectCollection<T>): ObjectCollection<T>;
+export function prune<A>(as: Array<A>): Array<A>;
+export function prune<T>(ts: Array<T>|ObjectCollection<T>) {
+
+    return filter(isDefined)(ts);
 }
 
 

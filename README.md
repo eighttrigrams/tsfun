@@ -111,6 +111,7 @@ import {equal} from 'tsfun';
 
 ###### array & object
 
+* [prune](test/associative/prune.spec.ts)
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
 * [count](test/associative/count.spec.ts)
