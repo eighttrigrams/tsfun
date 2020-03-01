@@ -1,13 +1,13 @@
-import {lessThanEqual} from '../../src/comparator';
+import {lessOrEqualThan} from '../../src/comparator';
 
 
-describe('lessThanEqual', () => {
+describe('lessOrEqualThan', () => {
 
     it('false', () =>
 
         expect(
 
-            lessThanEqual(3)(4)
+            lessOrEqualThan(3)(4)
 
         ).toEqual(false)
     );
@@ -16,7 +16,7 @@ describe('lessThanEqual', () => {
 
         expect(
 
-            lessThanEqual(4)(4)
+            lessOrEqualThan(4)(4)
 
         ).toEqual(true)
     );
@@ -26,7 +26,7 @@ describe('lessThanEqual', () => {
 
         expect(
 
-            lessThanEqual(4)(3)
+            lessOrEqualThan(4)(3)
 
         ).toEqual(true)
     );
@@ -36,7 +36,7 @@ describe('lessThanEqual', () => {
 
         expect(
 
-            lessThanEqual('a')('b')
+            lessOrEqualThan('a')('b')
 
         ).toEqual(false)
     );
@@ -46,7 +46,7 @@ describe('lessThanEqual', () => {
 
         expect(
 
-            lessThanEqual('a')('a')
+            lessOrEqualThan('a')('a')
 
         ).toEqual(true)
     );
@@ -57,7 +57,7 @@ describe('lessThanEqual', () => {
 
         expect(
 
-            lessThanEqual('b')('a')
+            lessOrEqualThan('b')('a')
 
         ).toEqual(true)
     );
@@ -67,7 +67,7 @@ describe('lessThanEqual', () => {
 
         expect(
 
-            () => lessThanEqual('b')('ab')
+            () => lessOrEqualThan('b')('ab')
 
         ).toThrow()
     );

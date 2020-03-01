@@ -1,13 +1,13 @@
-import {greaterThanEqual} from '../../src/comparator';
+import {greaterOrEqualThan} from '../../src/comparator';
 
 
-describe('greaterThanEqual', () => {
+describe('greaterOrEqualThan', () => {
 
     it('true', () =>
 
         expect(
 
-            greaterThanEqual(3)(4)
+            greaterOrEqualThan(3)(4)
 
         ).toEqual(true)
     );
@@ -16,7 +16,7 @@ describe('greaterThanEqual', () => {
 
         expect(
 
-            greaterThanEqual(4)(4)
+            greaterOrEqualThan(4)(4)
 
         ).toEqual(true)
     );
@@ -26,7 +26,7 @@ describe('greaterThanEqual', () => {
 
         expect(
 
-            greaterThanEqual(4)(3)
+            greaterOrEqualThan(4)(3)
 
         ).toEqual(false)
     );
@@ -36,7 +36,7 @@ describe('greaterThanEqual', () => {
 
         expect(
 
-            greaterThanEqual('a')('b')
+            greaterOrEqualThan('a')('b')
 
         ).toEqual(true)
     );
@@ -46,7 +46,7 @@ describe('greaterThanEqual', () => {
 
         expect(
 
-            greaterThanEqual('a')('a')
+            greaterOrEqualThan('a')('a')
 
         ).toEqual(true)
     );
@@ -57,7 +57,7 @@ describe('greaterThanEqual', () => {
 
         expect(
 
-            greaterThanEqual('b')('a')
+            greaterOrEqualThan('b')('a')
 
         ).toEqual(false)
     );
@@ -67,7 +67,7 @@ describe('greaterThanEqual', () => {
 
         expect(
 
-            () => greaterThanEqual('b')('ab')
+            () => greaterOrEqualThan('b')('ab')
 
         ).toThrow()
     );

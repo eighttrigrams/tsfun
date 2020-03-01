@@ -56,9 +56,9 @@ export function lessThan(than: number|string) {
 }
 
 
-export function greaterThanEqual(than: number): (that: number) => boolean;
-export function greaterThanEqual(than: string): (that: string) => boolean;
-export function greaterThanEqual(than: number|string) {
+export function greaterOrEqualThan(than: number): (that: number) => boolean;
+export function greaterOrEqualThan(than: string): (that: string) => boolean;
+export function greaterOrEqualThan(than: number|string) {
 
     return (that: number|string) => {
 
@@ -77,9 +77,9 @@ export function greaterThanEqual(than: number|string) {
 }
 
 
-export function lessThanEqual(than: number): (that: number) => boolean;
-export function lessThanEqual(than: string): (that: string) => boolean;
-export function lessThanEqual(than: number|string) {
+export function lessOrEqualThan(than: number): (that: number) => boolean;
+export function lessOrEqualThan(than: string): (that: string) => boolean;
+export function lessOrEqualThan(than: number|string) {
 
     return (that: number|string) => {
 

@@ -68,9 +68,9 @@ export {
     by,
     on,
     greaterThan,
-    greaterThanEqual,
+    greaterOrEqualThan,
     lessThan,
-    lessThanEqual,
+    lessOrEqualThan,
 } from './src/comparator';
 
 
