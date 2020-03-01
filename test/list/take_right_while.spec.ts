@@ -1,4 +1,4 @@
-import {greaterThan, isnt} from '../../src/comparator';
+import {greaterThan} from '../../src/comparator';
 import {takeRightWhile} from '../../src/list';
 
 
@@ -54,7 +54,7 @@ describe('takeRightWhile', () => {
 
         expect(
 
-            takeRightWhile(isnt('a'))('abcdabbbe')
+            takeRightWhile(greaterThan('a'))('abcdabbbe')
 
         ).toEqual('bbbe')
     );

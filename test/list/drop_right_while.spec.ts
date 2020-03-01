@@ -1,4 +1,4 @@
-import {greaterThan, isnt, lessThan} from '../../src/comparator';
+import {greaterThan, lessThan} from '../../src/comparator';
 import {dropRightWhile} from '../../src/list';
 
 
@@ -52,7 +52,7 @@ describe('dropRightWhile', () => {
 
         expect(
 
-            dropRightWhile(isnt('a'))('bbedeajjjk')
+            dropRightWhile(greaterThan('f'))('bbedeajjjk')
 
         ).toEqual('bbedea')
     );

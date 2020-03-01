@@ -1,4 +1,4 @@
-import {greaterThan, isnt, lessThan} from '../../src/comparator';
+import {greaterThan, lessThan} from '../../src/comparator';
 import {takeWhile} from '../../src/list';
 
 
@@ -51,7 +51,7 @@ describe('takeWhile', () => {
 
         expect(
 
-            takeWhile(isnt('a'))('ddeaf')
+            takeWhile(greaterThan('a'))('ddeaf')
 
         ).toEqual('dde')
     );

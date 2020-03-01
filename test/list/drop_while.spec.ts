@@ -1,4 +1,4 @@
-import {isnt, lessThan} from '../../src/comparator';
+import {lessThan} from '../../src/comparator';
 import {dropWhile} from '../../src/list';
 
 
@@ -41,9 +41,9 @@ describe('drop', () => {
 
         expect(
 
-            dropWhile(isnt('a'))
+            dropWhile(lessThan('f'))
             ('ddefabc')
 
-        ).toEqual('abc')
+        ).toEqual('fabc')
     );
 });
