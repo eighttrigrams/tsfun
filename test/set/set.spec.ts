@@ -1,11 +1,9 @@
+import {set} from "../../src/set";
+
 /**
  * @author Daniel de Oliveira
  */
-import {set} from "../../src/set";
-
-
 describe('set', () => {
-
 
     it('set', () =>
         expect(
@@ -15,10 +13,18 @@ describe('set', () => {
             .toEqual([1, 7, 8]));
 
 
-    it('set - of none', () =>
+    it('of none', () =>
         expect(
 
             set([]))
 
             .toEqual([]));
+
+
+    it('set', () =>
+        expect(
+
+            set('117871')
+
+        ).toEqual('178'));
 });

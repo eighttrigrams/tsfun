@@ -1,13 +1,11 @@
+import {intersection} from "../../src/set";
+
 /**
  * @author Daniel de Oliveira
  */
-import {intersection} from "../../src/set";
-
-
 describe('intersection', () => {
 
-
-    it('intersection - what remove duplicates',() =>
+    it('what remove duplicates',() =>
         expect(
 
             intersection([[1,2,2,3],[2,3,4,5]]))
@@ -23,7 +21,7 @@ describe('intersection', () => {
             .toEqual([2]));
 
 
-    it('intersect - no intersection',() =>
+    it('no intersection',() =>
         expect(
 
             intersection([[1,2],[3,4],[5,6]]))
@@ -31,7 +29,7 @@ describe('intersection', () => {
             .toEqual([]));
 
 
-    it('intersect - no intersection where only partial intersection',() =>
+    it('no intersection where only partial intersection',() =>
         expect(
 
             intersection([[1,2],[2,3],[3,4]]))
@@ -39,10 +37,18 @@ describe('intersection', () => {
             .toEqual([]));
 
 
-    it('intersect - empty array',() =>
+    it('empty array',() =>
         expect(
 
             intersection([]))
 
             .toEqual([]));
+
+
+    it('string',() =>
+        expect(
+
+            intersection(['def', 'deg']))
+
+            .toEqual('de'));
 });

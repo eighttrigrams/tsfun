@@ -1,11 +1,9 @@
+import {intersect} from "../../src/set";
+
 /**
  * @author Daniel de Oliveira
  */
-import {intersect} from "../../src/set";
-
-
 describe('intersect', () => {
-
 
     it('intersect',() =>
         expect(
@@ -13,4 +11,12 @@ describe('intersect', () => {
             intersect([1,2])([2,4]))
 
             .toEqual([2]));
+
+
+    it('intersect',() =>
+        expect(
+
+            intersect('12')('24'))
+
+            .toEqual('2'));
 });

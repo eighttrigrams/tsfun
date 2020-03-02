@@ -130,7 +130,7 @@ import {equal} from 'tsfun';
 
 ### Set
 
-###### array
+###### array & string
 
 * [set](test/set/set.spec.ts)
 * [intersection](test/set/intersection.spec.ts)

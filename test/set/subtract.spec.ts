@@ -1,11 +1,9 @@
+import {subtract} from "../../src/set";
+
 /**
  * @author Daniel de Oliveira
  */
-import {subtract} from "../../src/set";
-
-
 describe('subtract', () => {
-
 
     it('subtract', () =>
         expect(
@@ -15,7 +13,7 @@ describe('subtract', () => {
             .toEqual([1, 2]));
 
 
-    it('subtract - make set', () =>
+    it('make set', () =>
         expect(
 
             subtract([3, 4, 5])([1, 2, 3, 3, 4, 4, 1]))
@@ -23,7 +21,7 @@ describe('subtract', () => {
             .toEqual([1, 2]));
 
 
-    it('subtract - from empty list', () =>
+    it('from empty list', () =>
         expect(
 
             subtract([3, 4, 5])([]))
@@ -31,7 +29,7 @@ describe('subtract', () => {
             .toEqual([]));
 
 
-    it('subtract - empty list', () =>
+    it('empty list', () =>
         expect(
 
             subtract<number>([])([1, 2, 3]))
@@ -39,7 +37,7 @@ describe('subtract', () => {
             .toEqual([1, 2, 3]));
 
 
-    it('subtract - no intersection', () =>
+    it('no intersection', () =>
 
         expect(
 
@@ -48,10 +46,18 @@ describe('subtract', () => {
             .toEqual([1, 2, 3]));
 
 
-    it('subtract - no intersection, make set', () =>
+    it('no intersection, make set', () =>
         expect(
 
             subtract([4, 5, 6])([1, 2, 3, 3, 2]))
 
             .toEqual([1, 2, 3]));
+
+
+    it('string', () =>
+        expect(
+
+            subtract('456')('12332'))
+
+            .toEqual('123'));
 });

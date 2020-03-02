@@ -1,6 +1,6 @@
 import {uncurry2} from './core';
 import {ArrayList, ArraySet, Comparator, NestedArray} from './type';
-import {isNot} from './predicate';
+import {isEmpty, isNot, isString} from './predicate';
 import {includedInBy} from './comparator';
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -8,20 +8,29 @@ import {includedInBy} from './comparator';
 
 
 // Contributed by Thomas Kleinke
-export function duplicates<A>(array: ArrayList<A>): ArraySet<A> {
+export function duplicates(s: string): string;
+export function duplicates<A>(s: Array<A>): Array<A>;
+export function duplicates<A>(as: ArrayList<A>|string) {
 
-    const temp: any[] = [];
-    const result: any[] = [];
+    function inner(as1: Array<A>) {
 
-    for (let value of array) {
-        if (temp.indexOf(value) > -1 && result.indexOf(value) == -1) {
-            result.push(value);
-        } else {
-            temp.push(value);
+        const temp: any[] = [];
+        const result: any[] = [];
+
+        for (let value of as1) {
+            if (temp.indexOf(value) > -1 && result.indexOf(value) == -1) {
+                result.push(value);
+            } else {
+                temp.push(value);
+            }
         }
+
+        return result;
     }
 
-    return result;
+    return isString(as)
+        ? (inner((as as any).split('')) as any).join('')
+        : inner(as as any);
 }
 
 export const intersectionBy =
@@ -69,7 +78,7 @@ export const uniteBy = (compare?: Comparator) => <A>(as1: Array<A>) =>
 export const subtractBy =
     (compare?: Comparator) =>
         <A>(subtrahend: Array<A>) =>
-            (as: ArrayList<A>): ArraySet<A> => {
+            (as: Array<A>): Array<A> => {
 
                 const filterFun = compare
                     ? isNot(includedInBy(compare)(subtrahend))
@@ -105,17 +114,74 @@ const _intersectBy = (compare: Comparator) => <A>(as1: Array<A>) =>
     (as2: Array<A>) => as1.filter(includedInBy(compare)(as2));
 
 
-export const intersection = intersectionBy();
+export function intersection(aas: Array<string>): Array<string>;
+export function intersection<A>(aas: Array<Array<A>>): Array<A>;
+export function intersection<A>(aas: Array<Array<A>>|Array<string>) {
 
-export const union = unionBy();
+    if (isEmpty(aas)) return [];
+    return isString(aas[0])
+        ? (intersectionBy()((aas as any).map((as: any) => as.split('')))).join('')
+        : intersectionBy()(aas as any);
+}
 
-export const intersect = intersectBy();
+export function intersect(as1: string): (as2: string) => string;
+export function intersect<A>(as1: Array<A>): (as2: Array<A>) => Array<A>;
+export function intersect<A>(as1: Array<A>|string) {
+    return (as2: Array<A>|string) => {
 
-export const unite = uniteBy();
+        if (isEmpty(as1) || isEmpty(as2)) return [];
+
+        return isString(as1)
+            ? (intersectBy()((as1 as any).split(''))((as2 as any).split(''))).join('')
+            : intersectBy()(as1 as any)(as2 as any) as any;
+    }
+}
+
+export function union(aas: Array<string>): Array<string>;
+export function union<A>(aas: Array<Array<A>>): Array<A>;
+export function union<A>(aas: Array<Array<A>>|Array<string>) {
+
+    if (isEmpty(aas)) return [];
+    return isString(aas[0])
+        ? (unionBy()((aas as any).map((as: any) => as.split('')))).join('')
+        : unionBy()(aas as any);
+}
+
+
+export function unite(as1: string): (as2: string) => string;
+export function unite<A>(as1: Array<A>): (as2: Array<A>) => Array<A>;
+export function unite<A>(as1: Array<A>|string) {
+    return (as2: Array<A>|string) => {
+
+        return isString(as1) || isString(as2)
+            ? (uniteBy()((as1 as any).split(''))((as2 as any).split(''))).join('')
+            : uniteBy()(as1 as any)(as2 as any) as any;
+    }
+}
+
 
 // Generate a new list with elements which are contained in as but not in subtrahend
-export const subtract = subtractBy();
+export function subtract(as1: string): (as2: string) => string;
+export function subtract<A>(as1: Array<A>): (as2: Array<A>) => Array<A>;
+export function subtract<A>(as1: Array<A>|string) {
+    return (as2: Array<A>|string) => {
 
-export const set = setBy();
+        return isString(as1) || isString(as2)
+            ? (subtractBy()((as1 as any).split(''))((as2 as any).split(''))).join('')
+            : subtractBy()(as1 as any)(as2 as any) as any;
+    }
+}
+
+
+export function set(as: string): string;
+export function set<A>(as: Array<A>): Array<A>;
+export function set<A>(as: Array<A>|string) {
+
+    if (isEmpty(as)) return [];
+
+    return isString(as)
+        ? (setBy()((as as any).split(''))).join('')
+        : setBy()(as as any);
+}
 
 
