@@ -128,17 +128,6 @@ import {equal} from 'tsfun';
 * [prune](test/collection/prune.spec.ts)
 * [size](test/collection/size.spec.ts)
 
-### Struct
-
-* [to](test/struct/to.spec.ts)
-* [lookupOn](test/struct/lookup_on.spec.ts)
-* [getOn](test/struct/get_on.spec.ts)
-* [assocOn](test/struct/assoc_on.spec.ts)
-* [dissocOn](test/struct/dissoc_on.spec.ts)
-* [updateOn](test/struct/update_on.spec.ts)
-* [clone](test/struct/clone.spec.ts)
-* [jsonClone](test/struct/json_clone.spec.ts)
-
 ### Set
 
 ###### array
@@ -150,6 +139,17 @@ import {equal} from 'tsfun';
 * [union](test/set/union.spec.ts)
 * [unite](test/set/unite.spec.ts)
 * [duplicates](test/set/duplicates.spec.ts)
+
+### Struct
+
+* [to](test/struct/to.spec.ts)
+* [lookupOn](test/struct/lookup_on.spec.ts)
+* [getOn](test/struct/get_on.spec.ts)
+* [assocOn](test/struct/assoc_on.spec.ts)
+* [dissocOn](test/struct/dissoc_on.spec.ts)
+* [updateOn](test/struct/update_on.spec.ts)
+* [clone](test/struct/clone.spec.ts)
+* [jsonClone](test/struct/json_clone.spec.ts)
 
 ## Special functions reference
 
