@@ -1,5 +1,5 @@
 import {filter} from '../../src/associative';
-import {lessThan} from '../../src/comparator';
+import {greaterThan, lessThan} from '../../src/comparator';
 
 
 describe('filter', () => {
@@ -37,5 +37,15 @@ describe('filter', () => {
             filter((_, k: string) => k !== 'd')({d: 3, e: 4}))
 
             .toEqual({e: 4});
+    });
+
+
+    it('string', () => {
+
+        expect(
+
+            filter(greaterThan('d'))('ede'))
+
+            .toEqual('ee');
     });
 });

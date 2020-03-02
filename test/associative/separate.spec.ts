@@ -1,5 +1,5 @@
 import {separate} from '../../src/associative';
-import {lessThan} from '../../src/comparator';
+import {greaterThan, lessThan} from '../../src/comparator';
 
 
 describe('separate', () => {
@@ -38,4 +38,13 @@ describe('separate', () => {
             separate((v: number, k: string) => k === 'm')({d: 3, e: 4, m: 7}))
 
             .toEqual([{ m: 7 }, { d: 3, e: 4 }]));
+
+
+    it('string', () =>
+
+        expect(
+
+            separate(greaterThan('b'))('abcde'))
+
+            .toEqual(['cde', 'ab']));
 });

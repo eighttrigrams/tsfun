@@ -18,4 +18,12 @@ describe('count', () => {
             count(greaterThan(2))({a: 3, b: 2, c: 7})
 
         ).toEqual(2));
+
+
+    it('string', () =>
+        expect(
+
+            count(greaterThan('d'))('abede')
+
+        ).toEqual(2));
 });

@@ -115,26 +115,26 @@ import {equal} from 'tsfun';
 
 ###### array & object
 
-* [prune](test/associative/prune.spec.ts)
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
-* [count](test/associative/count.spec.ts)
-* [map](test/associative/map.spec.ts)
-* [filter](test/associative/filter.spec.ts) 
-* [remove](test/associative/remove.spec.ts)
-* [separate](test/associative/separate.spec.ts) 
+* [map](test/associative/map.spec.ts)  
 * [reduce](test/associative/reduce.spec.ts)
 * [lookup](test/associative/lookup.spec.ts)
 * [get](test/associative/get.spec.ts)
 * [assoc](test/associative/assoc.spec.ts)
 * [update](test/associative/update.spec.ts)
 * [dissoc](test/associative/dissoc.spec.ts)
-* [copy](test/associative/copy.spec.ts)
 * [forEach](test/associative/for_each.spec.ts)
 * [keysAndValues](test/associative/keys_and_values.spec.ts)
 
 ###### array & object & string
 
+* [copy](test/associative/copy.spec.ts)
+* [filter](test/associative/filter.spec.ts)
+* [remove](test/associative/remove.spec.ts)
+* [separate](test/associative/separate.spec.ts)
+* [count](test/associative/count.spec.ts)
+* [prune](test/associative/prune.spec.ts)
 * [size](test/composition/size.spec.ts)
 
 ### Struct

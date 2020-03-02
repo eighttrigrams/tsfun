@@ -25,9 +25,14 @@ export function get<T>(i: number|string, alternative?: T|undefined) {
 
 export function copy<T>(struct: Array<T>): Array<T>;
 export function copy<T>(struct: ObjectMap<T>): ObjectMap<T>;
-export function copy<T>(struct: Array<T>|ObjectMap<T>) {
+export function copy(struct: string): string;
+export function copy<T>(struct: Array<T>|ObjectMap<T>|string) {
 
-    return isArray(struct) ? [...struct] : {...struct};
+    return isString(struct)
+        ? (struct as any).slice()
+        : isArray(struct)
+            ? [...struct]
+            : {...struct as any};
 }
 
 
@@ -114,21 +119,25 @@ export function values<T>(t: ObjectCollection<T>|Array<T>): Array<T> {
 export function count<A>(p: Predicate<A>): {
     (as: Array<A>): number
     (os: ObjectCollection<A>): number
+    (s: string): number
 }
 export function count<A>(p: Predicate<A>) {
 
-    return (as: Array<A>|ObjectCollection<A>): number => {
+    return (as: Array<A>|ObjectCollection<A>|string): number => {
 
         return size(filter(p)(as as any));
     }
 }
 
 
+export function prune(o: string): string;
 export function prune<T>(o: ObjectCollection<T>): ObjectCollection<T>;
 export function prune<A>(as: Array<A>): Array<A>;
-export function prune<T>(ts: Array<T>|ObjectCollection<T>) {
+export function prune<T>(ts: Array<T>|ObjectCollection<T>|string) {
 
-    return filter(isDefined)(ts);
+    return !isString(ts)
+        ? filter(isDefined)(ts as any)
+        : (ts as string).replace(' ', '') as any;
 }
 
 
@@ -171,6 +180,7 @@ export function map<A, B>(f: (_: A, i?: string|number) => B) {
 export function filter<A>(p: (a: A, i?: number|string) => boolean): {
     (as: Array<A>): Array<A>
     (os: ObjectCollection<A>): ObjectCollection<A>
+    (s: string): string;
 }
 export function filter<A>(p: (a: A, i?: number|string) => boolean) {
 
@@ -200,6 +210,19 @@ export function filter<A>(p: (a: A, i?: number|string) => boolean) {
 
             return o1 as ObjectCollection<A>;
 
+        } else if (isString(as)) {
+
+            const s = (as as any).split('');
+
+            const o1: any = [];
+            let i = 0;
+            for (let k of keys(s)) {
+                if (p(s[k], k)) o1[k] = s[k];
+                i++;
+            }
+
+            return o1.join('') as string;
+
         } else {
 
             throw 'illegal argument - must be array or object';
@@ -223,6 +246,7 @@ export function size<T>(o: string|Array<T>|ObjectCollection<T>): number {
 export function remove<A>(p: (a: A, i?: number|string) => boolean): {
     (as: Array<A>): Array<A>
     (os: ObjectCollection<A>): ObjectCollection<A>
+    (s: string): string
 }
 export function remove<A>(p: (a: A, i?: number|string) => boolean) {
 
@@ -233,6 +257,7 @@ export function remove<A>(p: (a: A, i?: number|string) => boolean) {
 export function separate<A>(p: (a: A, i?: number|string) => boolean): {
     (as: Array<A>): Pair<Array<A>,Array<A>>
     (os: ObjectCollection<A>): Pair<ObjectCollection<A>,ObjectCollection<A>>
+    (s: string): Pair<string, string>
 }
 export function separate<A>(p: (a: A, i?: number|string) => boolean) {
 

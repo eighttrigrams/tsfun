@@ -1,5 +1,5 @@
 import {remove} from '../../src/associative';
-import {lessThan} from '../../src/comparator';
+import {greaterThan, lessThan} from '../../src/comparator';
 
 
 describe('remove', () => {
@@ -37,5 +37,15 @@ describe('remove', () => {
             remove((_, k: string) => k === 'd')({d: 3, e: 4}))
 
             .toEqual({e: 4});
+    });
+
+
+    it('string', () => {
+
+        expect(
+
+            remove(greaterThan('e'))('abcdefg'))
+
+            .toEqual('abcde');
     });
 });

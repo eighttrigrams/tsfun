@@ -25,7 +25,7 @@ describe('copy', () => {
     });
 
 
-    it('object instance new, instance value same',() => {
+    it('object instance new, instance value same', () => {
 
         const instance = {a: 'hey'};
         const originalColl = {a: instance, b: 4};
@@ -36,7 +36,7 @@ describe('copy', () => {
     });
 
 
-    it('copy - object, keys mixed numbers and strings',() =>
+    it('copy - object, keys mixed numbers and strings', () =>
         expect(
 
             copy({a: 1, 2: 2}))
@@ -44,11 +44,20 @@ describe('copy', () => {
             .toEqual({a: 1, 2: 2}));
 
 
-    it('copy - retain existent keys with undefined properties',() =>
+    it('copy - retain existent keys with undefined properties', () =>
 
         expect(
 
             copy({a: 1, 2: undefined}))
 
             .toEqual({a: 1, 2: undefined}));
+
+
+    it('string', () =>
+
+        expect(
+
+            copy('abcde'))
+
+            .toEqual('abcde'));
 });
