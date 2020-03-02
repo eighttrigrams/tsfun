@@ -64,10 +64,6 @@ import {equal} from 'tsfun';
 * [identity](test/composition/identity.spec.ts)
 * [val](test/composition/val.spec.ts)
 * [nop](test/composition/nop.spec.ts)
-* [tuplify](test/composition/tuplify.spec.ts)
-* [pairWith](test/composition/pair-with.spec.ts)
-* [left](test/composition/left.spec.ts)
-* [right](test/composition/right.spec.ts)
 
 ### List
 
@@ -152,6 +148,15 @@ import {equal} from 'tsfun';
 * [updateOn](test/struct/update_on.spec.ts)
 * [clone](test/struct/clone.spec.ts)
 * [jsonClone](test/struct/json_clone.spec.ts)
+
+### Tuple
+
+###### array
+
+* [tuplify](test/tuple/tuplify.spec.ts)
+* [pairWith](test/tuple/pair-with.spec.ts)
+* [left](test/tuple/left.spec.ts)
+* [right](test/tuple/right.spec.ts)
 
 ## Special functions reference
 

@@ -78,13 +78,17 @@ export {
     compose,
     flow,
     cond,
+    nop,
+    val
+} from './src/composition';
+
+
+export {
     left,
     right,
-    nop,
-    val,
     tuplify,
     pairWith
-} from './src/composition';
+} from './src/tuple';
 
 
 export {

@@ -1,4 +1,4 @@
-import {tuplify} from '../../src/composition';
+import {tuplify} from '../../src/tuple';
 
 
 describe('tuplify', () => {

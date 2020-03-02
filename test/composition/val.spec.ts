@@ -1,5 +1,6 @@
-import {pairWith, val} from '../../src/composition';
+import {val} from '../../src/composition';
 import {map} from '../../src/associative';
+import {pairWith} from '../../src/tuple';
 
 /**
  * tsfun | val

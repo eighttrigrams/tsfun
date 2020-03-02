@@ -1,4 +1,4 @@
-import {swap} from '../../src/composition';
+import {swap} from '../../src/tuple';
 
 
 describe('swap', () => {

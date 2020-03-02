@@ -1,4 +1,4 @@
-import {pairWith} from '../../src/composition';
+import {pairWith} from '../../src/tuple';
 
 
 describe('pairWith', () => {

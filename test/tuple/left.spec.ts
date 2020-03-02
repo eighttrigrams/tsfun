@@ -1,4 +1,4 @@
-import {left} from '../../src/composition';
+import {left} from '../../src/tuple';
 
 
 describe('left', () => {
