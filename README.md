@@ -99,18 +99,6 @@ import {equal} from 'tsfun';
 * [flatten](test/list/flatten.spec.ts)
 * [zipWith](test/list/zip_with.spec.ts)
 
-### Set
-
-###### array
-
-* [set](test/set/set.spec.ts)
-* [intersection](test/set/intersection.spec.ts)
-* [intersect](test/set/intersect.spec.ts)
-* [subtract](test/set/subtract.spec.ts)
-* [union](test/set/union.spec.ts)
-* [unite](test/set/unite.spec.ts)
-* [duplicates](test/set/duplicates.spec.ts)
-
 ### Associative
 
 ###### array & object & string
@@ -147,6 +135,18 @@ import {equal} from 'tsfun';
 * [updateOn](test/struct/update_on.spec.ts)
 * [clone](test/struct/clone.spec.ts)
 * [jsonClone](test/struct/json_clone.spec.ts)
+
+### Set
+
+###### array
+
+* [set](test/set/set.spec.ts)
+* [intersection](test/set/intersection.spec.ts)
+* [intersect](test/set/intersect.spec.ts)
+* [subtract](test/set/subtract.spec.ts)
+* [union](test/set/union.spec.ts)
+* [unite](test/set/unite.spec.ts)
+* [duplicates](test/set/duplicates.spec.ts)
 
 ## Special functions reference
 
