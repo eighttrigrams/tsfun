@@ -142,6 +142,8 @@ import {equal} from 'tsfun';
 
 ### Struct
 
+###### array & object
+
 * [to](test/struct/to.spec.ts)
 * [lookupOn](test/struct/lookup_on.spec.ts)
 * [getOn](test/struct/get_on.spec.ts)
