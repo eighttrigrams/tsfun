@@ -97,6 +97,7 @@ export function filter<A>(p: (a: A, i?: number|string) => boolean) {
 
 export function indices(p: Predicate<string>): {
     (as: string): number[]
+    (as: Array<string>): number[]
 }
 export function indices<A>(p: Predicate<A>): {
     (as: Array<A>): number[]
@@ -104,9 +105,7 @@ export function indices<A>(p: Predicate<A>): {
 }
 export function indices<A>(p: Predicate<A>) {
 
-    function inner(as: Array<A>|string): number[];
-    function inner(as: ObjectCollection<A>): string[];
-    function inner(as: Array<A>|string|ObjectCollection<A>): number[]|string[] {
+    return (as: Array<A>|string|ObjectCollection<A>): number[]|string[] => {
 
         return reduce(
             (indices: number[], a: A, i: number|string) => p(a)
@@ -114,8 +113,6 @@ export function indices<A>(p: Predicate<A>) {
                 : indices
             , [])(isString(as) ? (as as any).split('') : as);
     }
-
-    return inner;
 }
 
 

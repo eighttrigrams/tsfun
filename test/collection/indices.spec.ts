@@ -4,7 +4,15 @@ import {greaterThan, is} from '../../src/comparator';
 
 describe('indices', () => {
 
-    it('array', () =>
+    it('array of string', () =>
+        expect(
+
+            indices(is('3'))(['1', '3', '7', '1'])
+
+        ).toEqual([1]));
+
+
+    it('array of number', () =>
         expect(
 
             indices(greaterThan(2))([1, 3, 7, 1])
