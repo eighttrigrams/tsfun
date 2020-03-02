@@ -1,5 +1,5 @@
-import {count} from "../../src/associative";
 import {greaterThan} from '../../src/comparator';
+import {count} from '../../src/collection';
 
 
 describe('count', () => {

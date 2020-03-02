@@ -27,6 +27,7 @@ import {equal} from 'tsfun';
 * [isObject](test/predicate/is_object.spec.ts)
 * [isString](test/predicate/is_string.spec.ts)
 * [isAssociative](test/predicate/is_associative.spec.ts)
+* [isCollection](test/predicate/is_collection.spec.ts)
 * [isList](test/predicate/is_list.spec.ts)
 * [isNot](test/predicate/is_not.spec.ts)
 * [not](test/predicate/not.spec.ts)
@@ -101,16 +102,6 @@ import {equal} from 'tsfun';
 
 ### Associative
 
-###### array & object & string
-
-* [copy](test/associative/copy.spec.ts)
-* [filter](test/associative/filter.spec.ts)
-* [remove](test/associative/remove.spec.ts)
-* [separate](test/associative/separate.spec.ts)
-* [count](test/associative/count.spec.ts)
-* [prune](test/associative/prune.spec.ts)
-* [size](test/composition/size.spec.ts)
-
 ###### array & object
 
 * [keys](test/associative/keys.spec.ts)
@@ -124,6 +115,18 @@ import {equal} from 'tsfun';
 * [dissoc](test/associative/dissoc.spec.ts)
 * [forEach](test/associative/for_each.spec.ts)
 * [keysAndValues](test/associative/keys_and_values.spec.ts)
+
+### Collection
+
+###### array & object & string
+
+* [copy](test/collection/copy.spec.ts)
+* [filter](test/collection/filter.spec.ts)
+* [remove](test/collection/remove.spec.ts)
+* [separate](test/collection/separate.spec.ts)
+* [count](test/collection/count.spec.ts)
+* [prune](test/collection/prune.spec.ts)
+* [size](test/collection/size.spec.ts)
 
 ### Struct
 

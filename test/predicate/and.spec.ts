@@ -1,6 +1,6 @@
 import {and, isNot} from '../../src/predicate';
 import {greaterThan, is, isnt} from '../../src/comparator';
-import {filter} from '../../src/associative';
+import {filter} from '../../src/collection';
 
 
 describe('and', () => {

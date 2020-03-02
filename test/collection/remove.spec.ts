@@ -1,5 +1,5 @@
-import {remove} from '../../src/associative';
 import {greaterThan, lessThan} from '../../src/comparator';
+import {remove} from '../../src/collection';
 
 
 describe('remove', () => {

@@ -1,8 +1,8 @@
 import {ObjectStruct, UntypedObjectCollection} from './type';
-import {copy} from './associative';
 import {val} from './composition';
 import {isArray, isObject, isString} from './predicate';
 import {reverseUncurry2} from './core';
+import {copy} from './collection';
 
 
 // ------------ @author Daniel de Oliveira -----------------

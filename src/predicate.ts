@@ -94,6 +94,9 @@ export const isObject: Predicate<any> = (o: any) => o instanceof Object && o.con
 export const isAssociative: Predicate<any> = (a: any) => isObject(a) || isArray(a);
 
 
+export const isCollection: Predicate<any> = (a: any) => isObject(a) || isArray(a) || isString(a);
+
+
 export const isList: Predicate<any> = (a: any) => isArray(a) || isString(a);
 
 

@@ -1,6 +1,7 @@
 import {ArrayList, Pair, Predicate} from './type';
 import {isArray, isNot, isString} from './predicate';
-import {copy, reduce} from './associative';
+import {reduce} from './associative';
+import {copy} from './collection';
 
 
 // ------------ @author Daniel de Oliveira -----------------

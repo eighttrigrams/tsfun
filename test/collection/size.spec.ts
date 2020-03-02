@@ -1,4 +1,4 @@
-import {size} from '../../src/associative';
+import {size} from '../../src/collection';
 
 
 describe('size', () => {

@@ -134,19 +134,23 @@ export {
     keysAndValues,
     keys,
     values,
-    count,
     lookup,
     assoc,
-    size,
     update,
     dissoc,
-    prune,
-    filter,
     forEach,
-    remove,
-    copy,
-    separate,
     get,
     reduce,
     map
 } from './src/associative';
+
+
+export {
+    count,
+    size,
+    prune,
+    filter,
+    remove,
+    copy,
+    separate,
+} from './src/collection'

@@ -1,5 +1,5 @@
-import {filter} from '../../src/associative';
 import {greaterThan, lessThan} from '../../src/comparator';
+import {filter} from '../../src/collection';
 
 
 describe('filter', () => {

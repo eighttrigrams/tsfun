@@ -1,9 +1,9 @@
-import {prune} from '../../src/associative';
-
-
 /**
  * @author Daniel de Oliveira
  */
+import {prune} from '../../src/collection';
+
+
 describe('prune', () => {
 
     it('object', () =>
