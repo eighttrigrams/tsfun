@@ -49,4 +49,16 @@ describe('async/remove', () => {
 
         done();
     });
+
+
+    it('string', async done => {
+
+        expect(
+
+            await remove((a: string) => Promise.resolve(a > 'a'))('abde'))
+
+            .toEqual('a');
+
+        done();
+    });
 });

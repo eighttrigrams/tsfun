@@ -28,4 +28,16 @@ describe('async/separate', () => {
 
         done();
     });
+
+
+    it('string', async done => {
+
+        expect(
+
+            await separate((s: string) => Promise.resolve(s > 'b'))('ddebca'))
+
+            .toEqual(['ddec', 'ba']);
+
+        done();
+    });
 });

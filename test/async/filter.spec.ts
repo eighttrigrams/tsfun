@@ -28,4 +28,16 @@ describe('async/filter', () => {
 
         done();
     });
+
+
+    it('string', async done => {
+
+        expect(
+
+            await filter((a: string) => Promise.resolve(a > 'a'))('abad'))
+
+            .toEqual('bd');
+
+        done();
+    });
 });

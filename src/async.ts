@@ -1,5 +1,5 @@
 import {ObjectCollection, Pair} from './type';
-import {isArray, isObject} from './predicate';
+import {isArray, isObject, isString} from './predicate';
 import {keys, keysAndValues} from './associative';
 
 
@@ -34,18 +34,19 @@ export function forEach<A>(f: (_: A, i?: number|string) => Promise<void>) {
 
 export function filter<T>(p: (a: T, i?: string|number) => Promise<boolean>): {
     (as: Array<T>): Promise<Array<T>>
-    (os: ObjectCollection<T>): ObjectCollection<T>
+    (os: ObjectCollection<T>): Promise<ObjectCollection<T>>
+    (s: string): Promise<string>
 }
 export function filter<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
 
-    return async (as: Array<T>|ObjectCollection<T>) => {
+    return async (as: Array<T>|ObjectCollection<T>|string) => {
 
         if (isArray(as)) {
 
             const as1 = [];
             let i = 0;
             for (let a of as) {
-                if (await p(a, i)) as1.push(a);
+                if (await p(a as any, i)) as1.push(a);
                 i++;
             }
 
@@ -64,7 +65,21 @@ export function filter<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
 
             return o1 as ObjectCollection<T>;
 
+        } else if (isString(as)) {
+
+            const s = (as as any).split('');
+
+            const s1: any = [];
+            let i = 0;
+            for (let k of keys(s)) {
+                if (await p(s[k], k)) s1[k] = s[k];
+                i++;
+            }
+
+            return (s1.join('')) as string;
+
         } else {
+
             throw 'illegal argument - must be array or object'
         }
     }
@@ -75,10 +90,11 @@ export function filter<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
 export function separate<T>(p: (a: T, i?: string|number) => Promise<boolean>): {
     (as: Array<T>): Promise<Pair<Array<T>, Array<T>>>
     (os: ObjectCollection<T>): Promise<Pair<ObjectCollection<T>, ObjectCollection<T>>>
+    (s: string): Promise<Pair<string, string>>
 }
 export function separate<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
 
-    return async (as: Array<T>|ObjectCollection<T>) => {
+    return async (as: Array<T>|ObjectCollection<T>|string) => {
 
         if (isArray(as)) {
 
@@ -94,6 +110,13 @@ export function separate<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
                 await remove(p)(as as ObjectCollection<T>)
             ] as Pair<ObjectCollection<T>, ObjectCollection<T>>;
 
+        } else if (isString(as)) {
+
+            return [
+                await filter(p)(as as any),
+                await remove(p)(as as any)
+            ] as unknown as Pair<string, string>;
+
         } else {
 
             throw 'illegal argument - must be array or object'
@@ -105,6 +128,7 @@ export function separate<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
 export function remove<A>(p: (a: A, i?: string|number) => Promise<boolean>): {
     (as: Array<A>): Promise<Array<A>>
     (os: ObjectCollection<A>): Promise<ObjectCollection<A>>
+    (s: string): Promise<string>
 }
 export function remove<A>(p: (a: A, i?: string|number) => Promise<boolean>) {
 
