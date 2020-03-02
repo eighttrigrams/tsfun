@@ -87,7 +87,8 @@ export {
     left,
     right,
     tuplify,
-    pairWith
+    pairWith,
+    swap
 } from './src/tuple';
 
 

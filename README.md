@@ -157,6 +157,7 @@ import {equal} from 'tsfun';
 * [pairWith](test/tuple/pair-with.spec.ts)
 * [left](test/tuple/left.spec.ts)
 * [right](test/tuple/right.spec.ts)
+* [swap](test/tuple/swap.spec.ts)
 
 ## Special functions reference
 
