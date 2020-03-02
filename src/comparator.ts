@@ -117,7 +117,7 @@ export const differentFromBy: ComparatorProducer = (compare: Comparator) => <A>(
 export const includedInBy = (compare: Comparator) => <A>(as: Array<A>) =>
     (a: A): boolean => {
 
-        if (!isArray(as)) throw new TypeError('includedInBy: expected an Array');
+        if (!isArray(as)) throw 'illegal argument - includedInBy: expected an Array';
 
         return includesBy(compare)(as, a).length > 0;
     };
@@ -127,7 +127,7 @@ export const subsetOfBy = (compare: Comparator) => <A>(superset: Array<A>) =>
     (subset: Array<A>): boolean => {
 
         if (!isArray(subset) || !isArray(superset))
-            throw new TypeError('containedInBy: expected Arrays');
+            throw 'illegal argument - containedInBy: expected Arrays';
 
         return subset
             .filter(includedInBy(compare)(superset))
