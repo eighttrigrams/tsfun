@@ -1,9 +1,8 @@
+import {copy} from '../../src/collection';
+
 /**
  * `copy` creates a shallow copy of an associative collection.
  */
-import {copy} from '../../src/collection';
-
-
 describe('copy', () => {
 
     it('array',() =>

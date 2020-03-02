@@ -85,7 +85,6 @@ import {equal} from 'tsfun';
 * [prepend](test/list/prepend.spec.ts) 
 * [zip](test/list/zip.spec.ts)
 * [sort](test/list/sort.spec.ts)
-* [indices](test/list/indices.spec.ts)
 * [takeNth](test/list/take_nth.spec.ts)
 * [takeWhile](test/list/take_while.spec.ts)
 * [takeRightWhile](test/list/take_right_while.spec.ts)
@@ -127,6 +126,7 @@ import {equal} from 'tsfun';
 * [count](test/collection/count.spec.ts)
 * [prune](test/collection/prune.spec.ts)
 * [size](test/collection/size.spec.ts)
+* [indices](test/collection/indices.spec.ts)
 
 ### Set
 

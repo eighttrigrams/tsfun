@@ -1,6 +1,6 @@
 import {ObjectCollection, ObjectMap, Pair, Predicate} from './type';
 import {isArray, isDefined, isObject, isString} from './predicate';
-import {keys} from './associative';
+import {keys, reduce} from './associative';
 
 
 export function copy<T>(struct: Array<T>): Array<T>;
@@ -92,6 +92,30 @@ export function filter<A>(p: (a: A, i?: number|string) => boolean) {
             throw 'illegal argument - must be array or object';
         }
     }
+}
+
+
+export function indices(p: Predicate<string>): {
+    (as: string): number[]
+}
+export function indices<A>(p: Predicate<A>): {
+    (as: Array<A>): number[]
+    (as: ObjectCollection<A>): string[]
+}
+export function indices<A>(p: Predicate<A>) {
+
+    function inner(as: Array<A>|string): number[];
+    function inner(as: ObjectCollection<A>): string[];
+    function inner(as: Array<A>|string|ObjectCollection<A>): number[]|string[] {
+
+        return reduce(
+            (indices: number[], a: A, i: number|string) => p(a)
+                ? indices.concat([i] as any)
+                : indices
+            , [])(isString(as) ? (as as any).split('') : as);
+    }
+
+    return inner;
 }
 
 

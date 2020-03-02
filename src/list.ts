@@ -88,15 +88,6 @@ export function flatten<T,R>(asOrDepth: Array<Array<T>>|number): Array<Array<T>>
 }
 
 
-export function indices<A>(p: Predicate<A>) {
-
-    return (as: Array<A>|string): number[] =>
-        (isString(as) ? (as as any).split('') : as)
-            .reduce((indices: number[], a: A, i: number) => p(a) ? indices.concat([i]) : indices
-        , []);
-}
-
-
 export const forEachRight = <A>(
     f: ((_: A, i: number) => void)|((_: A) => void)) =>
     (as: Array<A>) => {
