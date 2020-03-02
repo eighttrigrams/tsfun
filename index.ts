@@ -82,7 +82,6 @@ export {
     right,
     nop,
     val,
-    size,
     tuplify,
     pairWith
 } from './src/composition';
@@ -138,6 +137,7 @@ export {
     count,
     lookup,
     assoc,
+    size,
     update,
     dissoc,
     prune,

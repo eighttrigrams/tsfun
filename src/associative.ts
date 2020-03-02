@@ -7,8 +7,7 @@ import {
     UntypedObjectCollection
 } from './type';
 import {range, zip} from "./list";
-import {isArray, isDefined, isObject} from './predicate';
-import {size} from './composition';
+import {isArray, isDefined, isObject, isString} from './predicate';
 
 
 // Written with Thomas Kleinke
@@ -206,6 +205,17 @@ export function filter<A>(p: (a: A, i?: number|string) => boolean) {
             throw 'illegal argument - must be array or object';
         }
     }
+}
+
+
+export function size(as: string): number;
+export function size<A>(as: Array<A>): number;
+export function size<T>(o: ObjectCollection<T>): number;
+export function size<T>(o: string|Array<T>|ObjectCollection<T>): number {
+
+    return (isArray(o) || isString(o)
+        ? o.length
+        : keys(o as any).length) as number;
 }
 
 

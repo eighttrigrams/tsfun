@@ -1,4 +1,4 @@
-import {size} from '../../src/composition';
+import {size} from '../../src/associative';
 
 
 describe('size', () => {

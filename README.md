@@ -67,7 +67,6 @@ import {equal} from 'tsfun';
 * [pairWith](test/composition/pair-with.spec.ts)
 * [left](test/composition/left.spec.ts)
 * [right](test/composition/right.spec.ts)
-* [size](test/composition/size.spec.ts)
 
 ### List
 
@@ -133,6 +132,10 @@ import {equal} from 'tsfun';
 * [copy](test/associative/copy.spec.ts)
 * [forEach](test/associative/for_each.spec.ts)
 * [keysAndValues](test/associative/keys_and_values.spec.ts)
+
+###### array & object & string
+
+* [size](test/composition/size.spec.ts)
 
 ### Struct
 

@@ -32,17 +32,6 @@ export function cond<A, B, C>(
 }
 
 
-export function size(as: string): number;
-export function size<A>(as: Array<A>): number;
-export function size<T>(o: ObjectCollection<T>): number;
-export function size<T>(o: string|Array<T>|ObjectCollection<T>): number {
-
-    return (isArray(o) || isString(o)
-        ? o.length
-        : keys(o as any).length) as number;
-}
-
-
 export const nop = () => {};
 
 
