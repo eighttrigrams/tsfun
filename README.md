@@ -113,6 +113,16 @@ import {equal} from 'tsfun';
 
 ### Associative
 
+###### array & object & string
+
+* [copy](test/associative/copy.spec.ts)
+* [filter](test/associative/filter.spec.ts)
+* [remove](test/associative/remove.spec.ts)
+* [separate](test/associative/separate.spec.ts)
+* [count](test/associative/count.spec.ts)
+* [prune](test/associative/prune.spec.ts)
+* [size](test/composition/size.spec.ts)
+
 ###### array & object
 
 * [keys](test/associative/keys.spec.ts)
@@ -126,16 +136,6 @@ import {equal} from 'tsfun';
 * [dissoc](test/associative/dissoc.spec.ts)
 * [forEach](test/associative/for_each.spec.ts)
 * [keysAndValues](test/associative/keys_and_values.spec.ts)
-
-###### array & object & string
-
-* [copy](test/associative/copy.spec.ts)
-* [filter](test/associative/filter.spec.ts)
-* [remove](test/associative/remove.spec.ts)
-* [separate](test/associative/separate.spec.ts)
-* [count](test/associative/count.spec.ts)
-* [prune](test/associative/prune.spec.ts)
-* [size](test/composition/size.spec.ts)
 
 ### Struct
 
