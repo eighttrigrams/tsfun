@@ -4,8 +4,10 @@
 
 import {ArraySet, Comparator, ComparatorProducer, Predicate} from './type';
 
-export const tripleEqual: any = <A>(l:A) =>
-    (r:A) => l === r;
+export function tripleEqual<A>(l:A) {
+
+    return (r: A) => l === r;
+}
 
 
 import {isArray, isNot, isObject, isString} from './predicate';
@@ -236,7 +238,7 @@ export const on = (path: string, compare: Function = tripleEqual) =>
 
 
 const includesBy =
-    (compare: Comparator = tripleEqual) =>
+    (compare: Comparator = tripleEqual as any) =>
         <A>(as: Array<A>, a: A) =>
             as.filter(compare(a));
 
@@ -244,16 +246,16 @@ const includesBy =
 export const by = <A>(p: Predicate<A>) => p;
 
 
-export const differentFrom = differentFromBy(tripleEqual);
+export const differentFrom = differentFromBy(tripleEqual as any);
 
 
-export const includedIn =  includedInBy(tripleEqual);
+export const includedIn =  includedInBy(tripleEqual as any);
 
 
-export const subsetOf = subsetOfBy(tripleEqual);
+export const subsetOf = subsetOfBy(tripleEqual as any);
 
 
-export const supersetOf = supersetOfBy(tripleEqual);
+export const supersetOf = supersetOfBy(tripleEqual as any);
 
 
 export const arrayEqual = arrayEqualBy(undefined as any);

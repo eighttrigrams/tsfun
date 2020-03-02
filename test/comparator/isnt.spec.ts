@@ -6,7 +6,6 @@ import {isnt} from '../../src/comparator';
  */
 describe('isnt', () => {
 
-
     it('isnt', () =>
         expect(
 
