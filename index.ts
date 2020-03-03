@@ -96,7 +96,6 @@ export {
     reverse,
     flatMap,
     flatten,
-    forEachRight,
     append,
     prepend,
     first,

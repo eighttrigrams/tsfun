@@ -88,18 +88,6 @@ export function flatten<T,R>(asOrDepth: Array<Array<T>>|number): Array<Array<T>>
 }
 
 
-export const forEachRight = <A>(
-    f: ((_: A, i: number) => void)|((_: A) => void)) =>
-    (as: Array<A>) => {
-        let i = as.length - 1;
-        for (let item of reverse(as)) {
-            (f as any)(item, i);
-            i--;
-        }
-        return as;
-    };
-
-
 const intoArrayWith = <A>(f: (_: A) => Array<A>) =>
     (acc: Array<A>, val: A) => acc.concat(f(val));
 

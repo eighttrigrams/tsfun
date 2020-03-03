@@ -90,7 +90,6 @@ import {equal} from 'tsfun';
 ###### array
 
 * [range](test/list/range.spec.ts)
-* [forEachRight](test/list/for_each_right.spec.ts) 
 * [flatMap](test/list/flat_map.spec.ts)
 * [flatten](test/list/flatten.spec.ts)
 * [zipWith](test/list/zip_with.spec.ts)
