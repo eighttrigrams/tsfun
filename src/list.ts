@@ -367,7 +367,7 @@ export function zipWith<A,B,C> (f: (a: A, b: B) => C, as: ArrayList<A>) {
 /**
  * see https://mail.mozilla.org/pipermail/es-discuss/2012-April/022273.html
  */
-function arrayList(size: number) {
+export function dense(size: number) {
 
     return Array.apply(null, Array(size))
 }
@@ -387,7 +387,7 @@ export function range(a: number, b?: number, stepSize: number = 1): number[] {
     }
     const numItems = (end - begin) / stepSize;
 
-    return arrayList(numItems)
+    return dense(numItems)
         .map((a: any, i: number) => (begin as number) + (i * stepSize));
 }
 

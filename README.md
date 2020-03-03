@@ -26,6 +26,9 @@ import {equal} from 'tsfun';
 * [isArray](test/predicate/is_array.spec.ts)
 * [isObject](test/predicate/is_object.spec.ts)
 * [isString](test/predicate/is_string.spec.ts)
+* [isNumber](test/predicate/is_number.spec.ts)
+* [isBoolean](test/predicate/is_boolean.spec.ts)
+* [isFunction](test/predicate/is_function.spec.ts)
 * [isAssociative](test/predicate/is_associative.spec.ts)
 * [isCollection](test/predicate/is_collection.spec.ts)
 * [isList](test/predicate/is_list.spec.ts)
@@ -64,6 +67,7 @@ import {equal} from 'tsfun';
 * [identity](test/composition/identity.spec.ts)
 * [val](test/composition/val.spec.ts)
 * [nop](test/composition/nop.spec.ts)
+* [throws](test/composition/throws.spec.ts)
 
 ### List
 
@@ -90,6 +94,7 @@ import {equal} from 'tsfun';
 ###### array
 
 * [range](test/list/range.spec.ts)
+* [dense](test/list/dense.spec.ts)
 * [flatMap](test/list/flat_map.spec.ts)
 * [flatten](test/list/flatten.spec.ts)
 * [zipWith](test/list/zip_with.spec.ts)

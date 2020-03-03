@@ -101,3 +101,12 @@ export const isList: Predicate<any> = (a: any) => isArray(a) || isString(a);
 
 
 export const isString: Predicate<any> = (as: any) => typeof as === 'string';
+
+
+export const isNumber: Predicate<any> = (as: any) => typeof as === 'number';
+
+
+export const isBoolean: Predicate<any> = (as: any) => typeof as === 'boolean';
+
+
+export const isFunction: Predicate<any> = (as: any) => typeof as === 'function';

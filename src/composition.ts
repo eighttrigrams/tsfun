@@ -1,7 +1,5 @@
 import {identity} from './core';
-import {Either, ObjectCollection, Pair, Predicate} from './type';
-import {isArray, isString} from './predicate';
-import {keys} from './associative';
+import {Predicate} from './type';
 
 const composition = <T = any>(t: any, ...transformations: Array<Function>) =>
     compose(...transformations)(t) as T;
@@ -36,3 +34,9 @@ export const nop = () => {};
 
 
 export const val = <A>(v: A) => () => v;
+
+
+export function throws(e: any) {
+
+    return (): any => { throw e };
+}

@@ -46,6 +46,9 @@ export {
     isObject,
     isAssociative,
     isList,
+    isNumber,
+    isBoolean,
+    isFunction,
     isNot, isDefined,
     isString,
     isUndefinedOrEmpty, isEmpty, isUndefined
@@ -79,7 +82,8 @@ export {
     flow,
     cond,
     nop,
-    val
+    val,
+    throws
 } from './src/composition';
 
 
@@ -114,7 +118,8 @@ export {
     range,
     zip,
     zipWith,
-    sort
+    sort,
+    dense
 } from './src/list';
 
 
