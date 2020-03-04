@@ -73,6 +73,7 @@ export {
     greaterThan,
     greaterOrEqualThan,
     startsWith,
+    endsWith,
     lessThan,
     lessOrEqualThan,
 } from './src/comparator';

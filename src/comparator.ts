@@ -15,7 +15,7 @@ import {subtractBy} from './set';
 import {getElForPathIn} from './struct';
 import {flow} from './composition';
 import {remove, size} from './collection';
-import {zip} from './list';
+import {reverse, zip} from './list';
 
 
 
@@ -344,5 +344,36 @@ export function startsWith<A>(that: string|Array<A>) {
 
 
 const pairIsSame = <A>([a, b]: Pair<A, A>) => a === b;
+
+
+export function endsWith<A>(s: string): (as: string) => boolean;
+export function endsWith<A>(s: Array<A>): (as: Array<A>) => boolean;
+export function endsWith<A>(that: string|Array<A>) {
+
+    return (what: string|Array<A>) => {
+
+        if (isString(what) && isString(that)) {
+
+            return (what as any).endsWith(that);
+
+        } else if (isArray(what) && isArray(that)) {
+
+            return that.length > what.length
+                ? false
+                : flow(
+                    (what as Array<A>),
+                    reverse,
+                    zip(reverse(that as Array<A>)),
+                    remove(pairIsSame),
+                    size,
+                    is(0));
+
+        } else {
+
+            throw 'illegal argument - args must be either both strings or both arrays';
+        }
+    }
+}
+
 
 
