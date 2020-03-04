@@ -255,9 +255,25 @@ export const by = <A>(p: Predicate<A>) => p;
 export const differentFrom = differentFromBy(tripleEqual as any);
 
 
-export function includedIn<A>(as: Array<A>) {
+export function includedIn(as: string): (a: string) => boolean;
+export function includedIn<A>(as: Array<A>): (a: A) => boolean;
+export function includedIn<A>(as: Array<A>|string) {
 
-    return includedInBy(tripleEqual as any)(as);
+    return (a: A) => {
+
+        if (isString(as) && isString(a) && (a as any).length === 1) {
+
+            return includedInBy(tripleEqual as any)((as as any).split(''))(a);
+
+        } else if (isArray(as)) {
+
+            return includedInBy(tripleEqual as any)(as as any)(a);
+
+        } else {
+
+            throw 'illegal argument in includedIn'
+        }
+    }
 }
 
 

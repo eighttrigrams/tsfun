@@ -1,9 +1,9 @@
-/**
- * @author Daniel de Oliveira
- */
 import {includedIn} from "../../src/comparator";
 
 
+/**
+ * @author Daniel de Oliveira
+ */
 describe('includedIn', () => {
 
     it('includedIn', () =>
@@ -20,4 +20,28 @@ describe('includedIn', () => {
             [1, 2, 7].filter(includedIn([2, 5, 1]))
 
         ).toEqual([1, 2]));
+
+
+    it('string', () =>
+        expect(
+
+            includedIn('251')('1')
+
+        ).toEqual(true));
+
+
+    it('string', () =>
+        expect(
+
+            includedIn('251')('7')
+
+        ).toEqual(false));
+
+
+    it('allow only single elements to compare in this manner', () =>
+        expect(
+
+            () => includedIn('251')('25')
+
+        ).toThrow());
 });
