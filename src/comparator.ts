@@ -279,19 +279,6 @@ export function includedIn<A>(as: Array<A>|string) {
     }
 }
 
-
-export function subsetOf<A>(that: Array<A>) {
-
-    return subsetOfBy(tripleEqual as any)(that);
-}
-
-
-export function supersetOf<A>(that: Array<A>) {
-
-    return supersetOfBy(tripleEqual as any)(that);
-}
-
-
 export function arrayEqual<A>(that: Array<A>) {
 
     return arrayEqualBy(undefined as any)(that);
@@ -299,9 +286,70 @@ export function arrayEqual<A>(that: Array<A>) {
 
 
 // Compares 2 arrays where elements order does not matter
-export function sameset<A>(as: Array<A>) {
+export function sameset(that: string): (as2: string) => boolean;
+export function sameset<A>(that: Array<A>): (as2: Array<A>) => boolean;
+export function sameset<A>(that: Array<A>|string) {
 
-    return samesetBy(undefined as any)(as);
+    return (as2: Array<A>|string) => {
+
+        if (isString(that) && isString(as2)) {
+
+            return samesetBy(undefined as any)((that as any).split(''))((as2 as any).split(''));
+
+        } else if (isArray(that) && isArray(as2)) {
+
+            return samesetBy(undefined as any)(that)(as2);
+
+        } else {
+
+            throw 'illegal argument - arguments must be either both arrays or both strings'
+        }
+    }
+}
+
+
+export function subsetOf(that: string): (as2: string) => boolean;
+export function subsetOf<A>(that: Array<A>): (as2: Array<A>) => boolean;
+export function subsetOf<A>(that: Array<A>|string) {
+
+    return (as2: Array<A>|string) => {
+
+        if (isString(that) && isString(as2)) {
+
+            return subsetOfBy(undefined as any)((that as any).split(''))((as2 as any).split(''));
+
+        } else if (isArray(that) && isArray(as2)) {
+
+            return subsetOfBy(undefined as any)(that as any)(as2 as any);
+
+        } else {
+
+            throw 'illegal argument - arguments must be either both arrays or both strings'
+        }
+    }
+}
+
+
+
+export function supersetOf(that: string): (as2: string) => boolean;
+export function supersetOf<A>(that: Array<A>): (as2: Array<A>) => boolean;
+export function supersetOf<A>(that: Array<A>|string) {
+
+    return (as2: Array<A>|string) => {
+
+        if (isString(that) && isString(as2)) {
+
+            return supersetOfBy(undefined as any)((that as any).split(''))((as2 as any).split(''));
+
+        } else if (isArray(that) && isArray(as2)) {
+
+            return supersetOfBy(undefined as any)(that as any)(as2 as any);
+
+        } else {
+
+            throw 'illegal argument - arguments must be either both arrays or both strings'
+        }
+    }
 }
 
 

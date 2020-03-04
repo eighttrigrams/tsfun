@@ -11,6 +11,8 @@ import {intersectBy} from "../../src/set";
 
 
 /**
+ * tsfun | on
+ *
  * Used for ObjectStructs in Arrays
  *
  * @author Daniel de Oliveira

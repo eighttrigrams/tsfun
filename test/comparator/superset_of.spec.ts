@@ -1,9 +1,11 @@
-/**
- * @author Daniel de Oliveira
- */
 import {supersetOf} from "../../src/comparator";
 
 
+/**
+ * tsfun | supersetOf
+ *
+ * @author Daniel de Oliveira
+ */
 describe('supersetOf', () => {
 
     it('empty', () =>
@@ -22,6 +24,14 @@ describe('supersetOf', () => {
         ).toEqual(true));
 
 
+    it('string - one entry', () =>
+        expect(
+
+            supersetOf('3')('3')
+
+        ).toEqual(true));
+
+
     it('superset', () =>
         expect(
 
@@ -30,10 +40,26 @@ describe('supersetOf', () => {
         ).toEqual(true));
 
 
-    it('subset', () =>
+    it('superset', () =>
+        expect(
+
+            supersetOf('3')('311')
+
+        ).toEqual(true));
+
+
+    it('subset false', () =>
         expect(
 
             supersetOf([3, 1])([1])
+
+        ).toEqual(false));
+
+
+    it('subset false - string', () =>
+        expect(
+
+            supersetOf('31')('1')
 
         ).toEqual(false));
 

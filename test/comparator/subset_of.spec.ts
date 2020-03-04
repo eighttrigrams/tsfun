@@ -1,11 +1,11 @@
-/**
- * @author Daniel de Oliveira
- */
 import {subsetOf} from "../../src/comparator";
 
-
+/**
+ * tsfun | subsetOf
+ *
+ * @author Daniel de Oliveira
+ */
 describe('subsetOf', () => {
-
 
     it('subsetOf', () =>
         expect(

@@ -1,3 +1,6 @@
+import {sameset} from "../../src/comparator";
+
+
 /**
  * tsfun | sameset
  *
@@ -9,9 +12,6 @@
  *
  * @author Daniel de Oliveira
  */
-import {sameset} from "../../src/comparator";
-
-
 describe('sameset', () => {
 
     it('equivalent in different order', () =>
@@ -22,10 +22,26 @@ describe('sameset', () => {
         ).toEqual(true));
 
 
+    it('string - equivalent in different order', () =>
+        expect(
+
+            sameset('147')('741')
+
+        ).toEqual(true));
+
+
     it('left side subset', () =>
         expect(
 
             sameset([1, 4])([7, 4, 1])
+
+        ).toEqual(false));
+
+
+    it('string - left side subset', () =>
+        expect(
+
+            sameset('14')('741')
 
         ).toEqual(false));
 
