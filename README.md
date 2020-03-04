@@ -40,20 +40,20 @@ import {equal} from 'tsfun';
 
 ### Comparator
 
-* [tripleEqual](test/comparator/triple_equal.spec.ts)
-* [jsonEqual](test/comparator/json_equal.spec.ts)
+###### Reference
+
 * [is](test/comparator/is.spec.ts)
+* [tripleEqual](test/comparator/triple_equal.spec.ts)
 * [isnt](test/comparator/isnt.spec.ts)
-* [differentFrom](test/comparator/different_from.spec.ts)
+
+###### Ordered
+
+***string of length 1 & number***
+
 * [greaterThan](test/comparator/greater_than.spec.ts)
 * [lessThan](test/comparator/less_than.spec.ts)
 * [greaterOrEqualThan](test/comparator/greater_or_equal_than.spec.ts)
 * [lessOrEqualThan](test/comparator/less_or_equal_than.spec.ts)
-* [arrayEqual](test/comparator/array_equal.spec.ts)
-* [objectEqual](test/comparator/object_equal.spec.ts)
-* [equal](test/comparator/equal.spec.ts)
-* [equalTo](test/comparator/equal_to.spec.ts)
-* [on](test/comparator/on.spec.ts)
 
 ###### Set
 
@@ -65,6 +65,16 @@ import {equal} from 'tsfun';
 ###### List
 
 * [startsWith](test/comparator/starts_with.spec.ts)
+
+###### Struct
+
+* [jsonEqual](test/comparator/json_equal.spec.ts)
+* [differentFrom](test/comparator/different_from.spec.ts)
+* [arrayEqual](test/comparator/array_equal.spec.ts)
+* [objectEqual](test/comparator/object_equal.spec.ts)
+* [equal](test/comparator/equal.spec.ts)
+* [equalTo](test/comparator/equal_to.spec.ts)
+* [on](test/comparator/on.spec.ts)
 
 ### Composition
 
