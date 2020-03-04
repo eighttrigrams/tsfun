@@ -48,8 +48,6 @@ import {equal} from 'tsfun';
 
 ###### Ordered
 
-***string of length 1 & number***
-
 * [greaterThan](test/comparator/greater_than.spec.ts)
 * [lessThan](test/comparator/less_than.spec.ts)
 * [greaterOrEqualThan](test/comparator/greater_or_equal_than.spec.ts)
