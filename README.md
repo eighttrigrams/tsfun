@@ -44,7 +44,7 @@ import {equal} from 'tsfun';
 * [isCollection](test/predicate/is_collection.spec.ts)
 * [isList](test/predicate/is_list.spec.ts)
 
-###### Misc
+###### Struct
 
 * [has](test/predicate/has.spec.ts) 
 * [hasNot](test/predicate/has_not.spec.ts) 
