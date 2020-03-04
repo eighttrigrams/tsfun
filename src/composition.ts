@@ -30,10 +30,10 @@ export function cond<A, B, C>(
 }
 
 
-export const nop = () => {};
+export function nop() {}
 
 
-export const val = <A>(v: A) => () => v;
+export function val<A>(v: A) { return () => v }
 
 
 export function throws(e: any) {

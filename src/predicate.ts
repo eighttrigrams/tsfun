@@ -1,32 +1,53 @@
-// ------------ @author Daniel de Oliveira -----------------
-
-import {Predicate, PredicateProducer} from './type';
+import {Predicate} from './type';
 import {on} from './comparator';
 
 
-export const isDefined: Predicate<any> = (_: any) => _ !== undefined;
+// ------------ @author Daniel de Oliveira -----------------
 
 
-export const isNot: PredicateProducer = <A>(f: Predicate<A>) =>
-    (a: A) => flip(f(a));
+export function isDefined(_: any) {
+
+    return _ !== undefined;
+}
 
 
-export const isUndefined: Predicate<any> = isNot(isDefined);
+export function isNot<A>(f: Predicate<A>) {
+
+    return (a: A) => flip(f(a));
+}
 
 
-export const not = isNot;
+export function isUndefined(what: any) {
+
+    return isNot(isDefined)(what);
+}
 
 
-export const defined = isDefined;
+export function not<T>(p: Predicate<T>) {
+
+    return isNot(p);
+}
+
+
+export function defined(what: any) {
+
+    return isDefined(what);
+}
 
 
 const Undefined = isUndefined;
 
 
-export const undefinedOrEmpty = isUndefinedOrEmpty;
+export function undefinedOrEmpty(what: any) {
+
+    return isUndefinedOrEmpty(what);
+}
 
 
-export const empty = isEmpty;
+export function empty(what: any) {
+
+    return isEmpty(what);
+}
 
 
 export const has = (path: string) => (o: Object) => on(path, isDefined)(o);
