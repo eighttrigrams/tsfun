@@ -6,7 +6,6 @@ import {includedIn} from "../../src/comparator";
 
 describe('includedIn', () => {
 
-
     it('includedIn', () =>
         expect(
 

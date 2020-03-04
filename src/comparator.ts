@@ -2,7 +2,7 @@
 
 // ------------ @author Daniel de Oliveira -----------------
 
-import {ArraySet, Comparator, ComparatorProducer, Predicate} from './type';
+import {ArraySet, Comparator, ComparatorProducer, Pair, Predicate} from './type';
 
 export function tripleEqual<A>(l:A) {
 
@@ -13,6 +13,9 @@ export function tripleEqual<A>(l:A) {
 import {isArray, isNot, isObject, isString} from './predicate';
 import {subtractBy} from './set';
 import {getElForPathIn} from './struct';
+import {flow} from './composition';
+import {remove, size} from './collection';
+import {zip} from './list';
 
 
 
@@ -100,7 +103,10 @@ export function lessOrEqualThan(than: number|string) {
 }
 
 
-export const is = tripleEqual;
+export function is<A>(a: A) {
+
+    return tripleEqual(a);
+}
 
 
 export const isnt = <A>(l: A) => isNot(tripleEqual(l));
@@ -249,7 +255,10 @@ export const by = <A>(p: Predicate<A>) => p;
 export const differentFrom = differentFromBy(tripleEqual as any);
 
 
-export const includedIn =  includedInBy(tripleEqual as any);
+export function includedIn<A>(as: Array<A>) {
+
+    return includedInBy(tripleEqual as any)(as);
+}
 
 
 export const subsetOf = subsetOfBy(tripleEqual as any);
@@ -262,7 +271,10 @@ export const arrayEqual = arrayEqualBy(undefined as any);
 
 
 // Compares 2 arrays where elements order does not matter
-export const sameset: Comparator = samesetBy(undefined as any);
+export function sameset<A>(as: Array<A>) {
+
+    return samesetBy(undefined as any)(as);
+}
 
 
 export const objectEqual: Comparator = objectEqualBy(arrayEqual as any);
@@ -272,5 +284,37 @@ export const equal = equalBy(arrayEqual as any);
 
 
 export const equalTo = equal;
+
+
+export function startsWith<A>(s: string): (as: string) => boolean;
+export function startsWith<A>(s: Array<A>): (as: Array<A>) => boolean;
+export function startsWith<A>(that: string|Array<A>) {
+
+    return (what: string|Array<A>) => {
+
+        if (isString(what) && isString(that)) {
+
+            return (what as any).startsWith(that);
+
+        } else if (isArray(what) && isArray(that)) {
+
+            return that.length > what.length
+                ? false
+                : flow(
+                    what as Array<A>,
+                    zip(that as Array<A>),
+                    remove(pairIsSame),
+                    size,
+                    is(0));
+
+        } else {
+
+            throw 'illegal argument - args must be either both strings or both arrays';
+        }
+    }
+}
+
+
+const pairIsSame = <A>([a, b]: Pair<A, A>) => a === b;
 
 

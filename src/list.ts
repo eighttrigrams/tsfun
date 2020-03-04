@@ -1,7 +1,9 @@
 import {ArrayList, Pair, Predicate} from './type';
 import {isArray, isNot, isString} from './predicate';
 import {reduce} from './associative';
-import {copy} from './collection';
+import {copy, remove, size} from './collection';
+import {flow} from './composition';
+import {greaterThan, is} from './comparator';
 
 
 // ------------ @author Daniel de Oliveira -----------------

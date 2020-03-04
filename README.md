@@ -50,14 +50,21 @@ import {equal} from 'tsfun';
 * [greaterOrEqualThan](test/comparator/greater_or_equal_than.spec.ts)
 * [lessOrEqualThan](test/comparator/less_or_equal_than.spec.ts)
 * [includedIn](test/comparator/included_in.spec.ts)
-* [subsetOf](test/comparator/subset_of.spec.ts)
-* [supersetOf](test/comparator/superset_of.spec.ts)
-* [sameset](test/comparator/sameset.spec.ts)
 * [arrayEqual](test/comparator/array_equal.spec.ts)
 * [objectEqual](test/comparator/object_equal.spec.ts)
 * [equal](test/comparator/equal.spec.ts)
 * [equalTo](test/comparator/equal_to.spec.ts)
 * [on](test/comparator/on.spec.ts)
+
+###### Set
+
+* [subsetOf](test/comparator/subset_of.spec.ts)
+* [supersetOf](test/comparator/superset_of.spec.ts)
+* [sameset](test/comparator/sameset.spec.ts)
+
+###### List
+
+* [startsWith](test/comparator/starts_with.spec.ts)
 
 ### Composition
 
