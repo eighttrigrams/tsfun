@@ -1,4 +1,4 @@
-import {dense} from '../../src/list';
+import {dense} from '../../src/array';
 
 describe('dense', () => {
 

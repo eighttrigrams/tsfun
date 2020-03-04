@@ -1,4 +1,4 @@
-import {flatten} from '../../src/list';
+import {flatten} from '../../src/array';
 
 
 /**

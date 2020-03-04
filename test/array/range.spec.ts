@@ -1,4 +1,4 @@
-import {range} from '../../src/list';
+import {range} from '../../src/array';
 
 
 describe('range', () => {

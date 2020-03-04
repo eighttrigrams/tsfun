@@ -1,4 +1,4 @@
-import {flatMap} from '../../src/list';
+import {flatMap} from '../../src/array';
 
 
 /**

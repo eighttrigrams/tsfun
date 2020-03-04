@@ -6,9 +6,10 @@ import {
     SimpleTransformation,
     UntypedObjectCollection
 } from './type';
-import {range, zip} from "./list";
+import {zip} from "./list";
 import {isArray, isDefined, isObject, isString} from './predicate';
 import {copy} from './collection';
+import {range} from './array';
 
 
 // Written with Thomas Kleinke

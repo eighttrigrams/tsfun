@@ -1,4 +1,4 @@
-import {zipWith} from "../../src/list";
+import {zipWith} from "../../src/array";
 
 describe('zipWith', () => {
 

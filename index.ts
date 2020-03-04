@@ -97,9 +97,15 @@ export {
 
 
 export {
-    reverse,
     flatMap,
     flatten,
+    range,
+    zipWith,
+    dense
+} from './src/array'
+
+export {
+    reverse,
     append,
     prepend,
     first,
@@ -115,11 +121,8 @@ export {
     drop,
     dropRight,
     dropRightWhile,
-    range,
     zip,
-    zipWith,
-    sort,
-    dense
+    sort
 } from './src/list';
 
 

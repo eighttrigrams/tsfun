@@ -71,11 +71,11 @@ import {equal} from 'tsfun';
 
 ###### Array
 
-* [range](test/list/range.spec.ts)
-* [dense](test/list/dense.spec.ts)
-* [flatMap](test/list/flat_map.spec.ts)
-* [flatten](test/list/flatten.spec.ts)
-* [zipWith](test/list/zip_with.spec.ts)
+* [range](test/array/range.spec.ts)
+* [dense](test/array/dense.spec.ts)
+* [flatMap](test/array/flat_map.spec.ts)
+* [flatten](test/array/flatten.spec.ts)
+* [zipWith](test/array/zip_with.spec.ts)
 
 ### List
 
