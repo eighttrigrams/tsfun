@@ -14,8 +14,16 @@ import {equal} from 'tsfun';
 
 ### Predicate
 
-* [has](test/predicate/has.spec.ts) 
-* [hasNot](test/predicate/has_not.spec.ts) 
+###### Composition
+
+* [isNot](test/predicate/is_not.spec.ts)
+* [not](test/predicate/not.spec.ts)
+* [and](test/predicate/and.spec.ts)
+* [or](test/predicate/or.spec.ts)
+* [xor](test/predicate/xor.spec.ts)
+
+###### Defined & Empty
+
 * [isEmpty](test/predicate/is_empty.spec.ts)
 * [empty](test/predicate/empty.spec.ts)
 * [isUndefinedOrEmpty](test/predicate/is_undefined_or_empty.spec.ts)
@@ -23,6 +31,9 @@ import {equal} from 'tsfun';
 * [isDefined](test/predicate/is_defined.spec.ts)
 * [defined](test/predicate/defined.spec.ts)
 * [isUndefined](test/predicate/is_undefined.spec.ts)
+
+###### Types
+
 * [isArray](test/predicate/is_array.spec.ts)
 * [isObject](test/predicate/is_object.spec.ts)
 * [isString](test/predicate/is_string.spec.ts)
@@ -32,11 +43,11 @@ import {equal} from 'tsfun';
 * [isAssociative](test/predicate/is_associative.spec.ts)
 * [isCollection](test/predicate/is_collection.spec.ts)
 * [isList](test/predicate/is_list.spec.ts)
-* [isNot](test/predicate/is_not.spec.ts)
-* [not](test/predicate/not.spec.ts)
-* [and](test/predicate/and.spec.ts)
-* [or](test/predicate/or.spec.ts)
-* [xor](test/predicate/xor.spec.ts)
+
+###### Misc
+
+* [has](test/predicate/has.spec.ts) 
+* [hasNot](test/predicate/has_not.spec.ts) 
 
 ### Comparator
 
