@@ -88,7 +88,7 @@ export function isUndefinedOrEmpty<T>(coll: Object|Array<T>|string|undefined): b
     if (coll === undefined) return true;
     if (!isObject(coll)
         && !isArray(coll)
-        && !isString(coll)) throw new TypeError('arg must be string, object or array');
+        && !isString(coll)) throw 'illegal argument - must be string, object or array';
 
     return coll instanceof Array
         ? coll.length === 0
@@ -98,7 +98,7 @@ export function isUndefinedOrEmpty<T>(coll: Object|Array<T>|string|undefined): b
 
 export function isEmpty<T>(coll: Object|Array<T>): boolean {
 
-    if (coll === undefined) throw new TypeError('arg must not be undefined');
+    if (coll === undefined) throw 'illegal argument - arg must not be undefined';
     return isUndefinedOrEmpty(coll);
 }
 
