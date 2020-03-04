@@ -1,13 +1,13 @@
 import {
     ArrayList,
     ObjectCollection,
-    ObjectMap, Pair,
+    ObjectMap,
     Predicate,
     SimpleTransformation,
     UntypedObjectCollection
 } from './type';
 import {zip} from "./list";
-import {isArray, isDefined, isObject, isString} from './predicate';
+import {isArray, isObject} from './predicate';
 import {copy} from './collection';
 import {range} from './array';
 
