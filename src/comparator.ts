@@ -252,7 +252,10 @@ const includesBy =
 export const by = <A>(p: Predicate<A>) => p;
 
 
-export const differentFrom = differentFromBy(tripleEqual as any);
+export function differentFrom(that: any) {
+
+    return differentFromBy(tripleEqual as any)(that);
+}
 
 
 export function includedIn(as: string): (a: string) => boolean;
@@ -277,13 +280,22 @@ export function includedIn<A>(as: Array<A>|string) {
 }
 
 
-export const subsetOf = subsetOfBy(tripleEqual as any);
+export function subsetOf<A>(that: Array<A>) {
+
+    return subsetOfBy(tripleEqual as any)(that);
+}
 
 
-export const supersetOf = supersetOfBy(tripleEqual as any);
+export function supersetOf<A>(that: Array<A>) {
+
+    return supersetOfBy(tripleEqual as any)(that);
+}
 
 
-export const arrayEqual = arrayEqualBy(undefined as any);
+export function arrayEqual<A>(that: Array<A>) {
+
+    return arrayEqualBy(undefined as any)(that);
+}
 
 
 // Compares 2 arrays where elements order does not matter

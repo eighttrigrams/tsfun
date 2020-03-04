@@ -56,6 +56,7 @@ import {equal} from 'tsfun';
 * [is](test/comparator/is.spec.ts)
 * [tripleEqual](test/comparator/triple_equal.spec.ts)
 * [isnt](test/comparator/isnt.spec.ts)
+* [differentFrom](test/comparator/different_from.spec.ts)
 
 ###### Ordered
 
@@ -78,7 +79,6 @@ import {equal} from 'tsfun';
 ###### Struct
 
 * [jsonEqual](test/comparator/json_equal.spec.ts)
-* [differentFrom](test/comparator/different_from.spec.ts)
 * [arrayEqual](test/comparator/array_equal.spec.ts)
 * [objectEqual](test/comparator/object_equal.spec.ts)
 * [equal](test/comparator/equal.spec.ts)
