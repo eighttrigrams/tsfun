@@ -69,6 +69,14 @@ import {equal} from 'tsfun';
 * [nop](test/composition/nop.spec.ts)
 * [throws](test/composition/throws.spec.ts)
 
+###### Array
+
+* [range](test/list/range.spec.ts)
+* [dense](test/list/dense.spec.ts)
+* [flatMap](test/list/flat_map.spec.ts)
+* [flatten](test/list/flatten.spec.ts)
+* [zipWith](test/list/zip_with.spec.ts)
+
 ### List
 
 ###### array & string
@@ -90,14 +98,6 @@ import {equal} from 'tsfun';
 * [takeRightWhile](test/list/take_right_while.spec.ts)
 * [dropWhile](test/list/drop_while.spec.ts)
 * [dropRightWhile](test/list/drop_right_while.spec.ts)
-
-###### array
-
-* [range](test/list/range.spec.ts)
-* [dense](test/list/dense.spec.ts)
-* [flatMap](test/list/flat_map.spec.ts)
-* [flatten](test/list/flatten.spec.ts)
-* [zipWith](test/list/zip_with.spec.ts)
 
 ### Associative
 
