@@ -95,7 +95,7 @@ import {equal} from 'tsfun';
 * [nop](test/composition/nop.spec.ts)
 * [throws](test/composition/throws.spec.ts)
 
-###### Array
+### Array
 
 * [range](test/array/range.spec.ts)
 * [dense](test/array/dense.spec.ts)
