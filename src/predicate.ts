@@ -1,5 +1,6 @@
-import {Predicate} from './type';
+import {Either, Maybe, Predicate} from './type';
 import {on} from './comparator';
+import {first} from './list';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -131,3 +132,17 @@ export const isBoolean: Predicate<any> = (as: any) => typeof as === 'boolean';
 
 
 export const isFunction: Predicate<any> = (as: any) => typeof as === 'function';
+
+
+export function isSuccess<E,T>(m: Maybe<T>|Either<E,T>) {
+
+    if (m.length === 0) return false;
+    if (m.length === 1) return true;
+    if (m.length === 2) return first(m as any) === undefined;
+}
+
+
+export function isFailure<T, E = any>(m: Maybe<T>|Either<E,T>) {
+
+    return !isSuccess(m);
+}

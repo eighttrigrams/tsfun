@@ -49,6 +49,11 @@ import {equal} from 'tsfun';
 * [has](test/predicate/has.spec.ts) 
 * [hasNot](test/predicate/has_not.spec.ts) 
 
+###### Tuple
+
+* [isSuccess](test/predicate/is_success.spec.ts)
+* [isFailure](test/predicate/is_failure.spec.ts)
+
 ### Comparator
 
 ###### Reference

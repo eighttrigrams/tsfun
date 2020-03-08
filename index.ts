@@ -48,7 +48,8 @@ export {
     isFunction,
     isNot, isDefined,
     isString,
-    isUndefinedOrEmpty, isEmpty, isUndefined
+    isUndefinedOrEmpty, isEmpty, isUndefined,
+    isSuccess, isFailure
 } from './src/predicate';
 
 
