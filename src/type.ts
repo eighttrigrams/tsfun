@@ -31,10 +31,16 @@ export type Predicate<A> = (_: A) => boolean;
 export type PredicateProducer = <A>(_: Predicate<A>) => Predicate<A>;
 
 
-export type ObjectSet = UntypedObjectCollection;
+export type Singleton<T> = [T];
 
 
 export type Pair<A,B> = [A, B];
+
+
+export type Either<T1, T2> = [T1, undefined]|[undefined, T2];
+
+
+export type Maybe<T> = [] | [T];
 
 
 // see https://stackoverflow.com/questions/49910889/typescript-array-with-minimum-length
@@ -45,7 +51,7 @@ type ArrayMinLength1<T> = {
 } & Array<T>
 
 
-export type Either<T1, T2> = [T1, undefined]|[undefined, T2];
+export type ObjectSet = UntypedObjectCollection;
 
 
 export type ArrayList<T> = Array<T>;

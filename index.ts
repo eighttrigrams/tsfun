@@ -21,6 +21,8 @@ export {
     ObjectSet,
     Pair,
     Predicate,
+    Singleton,
+    Maybe,
     Either,
     ArrayList,
     ArraySet,

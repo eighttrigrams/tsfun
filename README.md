@@ -198,7 +198,14 @@ import {equal} from 'tsfun';
 * [right](test/tuple/right.spec.ts)
 * [swap](test/tuple/swap.spec.ts)
 
-## Special functions reference
+## Types and special functions reference
+
+### Types
+
+* [Singleton](test/type/singleton.spec.ts)
+* [Pair](test/type/pair.spec.ts)
+* [Maybe](test/type/maybe.spec.ts)
+* [Either](test/type/either.spec.ts)
 
 ### Async functions
 
