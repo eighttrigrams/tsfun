@@ -104,6 +104,13 @@ import {equal} from 'tsfun';
 * [flatten](test/array/flatten.spec.ts)
 * [zipWith](test/array/zip_with.spec.ts)
 
+### String
+
+* [join](test/string/join.spec.ts)
+* [split](test/string/split.spec.ts)
+* [toUpperCase](test/string/to_upper_case.spec.ts)
+* [toLowerCase](test/string/to_lower_case.spec.ts)
+
 ### List
 
 ###### array & string
