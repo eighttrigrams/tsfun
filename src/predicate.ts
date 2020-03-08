@@ -136,6 +136,7 @@ export const isFunction: Predicate<any> = (as: any) => typeof as === 'function';
 
 export function isSuccess<E,T>(m: Maybe<T>|Either<E,T>) {
 
+    if (!isEither(m) && !isMaybe(m)) throw 'illegal argument';
     if (m.length === 0) return false;
     if (m.length === 1) return true;
     if (m.length === 2) return first(m as any) === undefined;
@@ -145,4 +146,29 @@ export function isSuccess<E,T>(m: Maybe<T>|Either<E,T>) {
 export function isFailure<T, E = any>(m: Maybe<T>|Either<E,T>) {
 
     return !isSuccess(m);
+}
+
+
+export function isPair(pair: any) {
+
+    if (!isArray(pair)) return false;
+    if (pair.length !== 2) return false;
+    return true;
+}
+
+
+export function isEither(either: any) {
+
+    if (!isArray(either)) return false;
+    if (either.length !== 2) return false;
+    if (either.filter(isDefined).length !== 1) return false;
+    return true;
+}
+
+
+export function isMaybe(maybe: any) {
+
+    if (!isArray(maybe)) return false;
+    if (maybe.length > 1) return false;
+    return true;
 }
