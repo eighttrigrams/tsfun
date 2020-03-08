@@ -1,16 +1,13 @@
-import {ArrayList, Pair, Predicate} from './type';
+import {Pair, Predicate} from './type';
 import {isArray, isNot, isString} from './predicate';
-import {reduce} from './associative';
-import {copy, remove, size} from './collection';
-import {flow} from './composition';
-import {greaterThan, is} from './comparator';
+import {copy} from './collection';
 
 
 // ------------ @author Daniel de Oliveira -----------------
 
 export function reverse<A>(as: string): string;
-export function reverse<A>(as: ArrayList<A>): ArrayList<A>;
-export function reverse<A>(as: ArrayList<A>|string): ArrayList<A>|string {
+export function reverse<A>(as: Array<A>): Array<A>;
+export function reverse<A>(as: Array<A>|string): Array<A>|string {
 
     if (isArray(as)) {
 
@@ -70,17 +67,17 @@ export function prepend<A>(...as2: Array<A>) {
 
 export function take(n: number) {
 
-    function inner<A>(as: ArrayList<A>): ArrayList<A>;
+    function inner<A>(as: Array<A>): Array<A>;
     function inner(as: string): string;
-    function inner<A>(as: ArrayList<A>|string): ArrayList<A>|string {
+    function inner<A>(as: Array<A>|string): Array<A>|string {
 
         if (isArray(as)) {
 
-            const as_ = as as ArrayList<A>;
+            const as_ = as as Array<A>;
             return n < 0 ? [] :
-                as_.reduce((acc: ArrayList<A>, val, i) =>
+                as_.reduce((acc: Array<A>, val, i) =>
                         i < n ? acc.concat([val]) : acc
-                    , []) as ArrayList<A>;
+                    , []) as Array<A>;
 
         } else if (isString(as)) {
 
@@ -101,13 +98,13 @@ export function take(n: number) {
 
 export function drop(n: number) {
 
-    function inner<A>(as: ArrayList<A>): ArrayList<A>;
+    function inner<A>(as: Array<A>): Array<A>;
     function inner(as: string): string;
-    function inner<A>(as: ArrayList<A>|string): ArrayList<A>|string {
+    function inner<A>(as: Array<A>|string): Array<A>|string {
 
         if (isArray(as)) {
 
-            const as_ = as as ArrayList<A>;
+            const as_ = as as Array<A>;
             return n < 1 ? as_ :
                     as.slice(n);
 
@@ -129,13 +126,13 @@ export function drop(n: number) {
 
 export function dropRight(n: number) {
 
-    function inner<A>(as: ArrayList<A>): ArrayList<A>;
+    function inner<A>(as: Array<A>): Array<A>;
     function inner(as: string): string;
-    function inner<A>(as: ArrayList<A>|string): ArrayList<A>|string {
+    function inner<A>(as: Array<A>|string): Array<A>|string {
 
         if (isArray(as)) {
 
-            return (as as Array<A>).slice(0, Math.max(0, as.length-n)) as ArrayList<A>;
+            return (as as Array<A>).slice(0, Math.max(0, as.length-n)) as Array<A>;
 
         } else if (isString(as)) {
 
@@ -154,21 +151,21 @@ export function dropRight(n: number) {
 
 export function takeRight(n: number) {
 
-    function inner<A>(as: ArrayList<A>): ArrayList<A>;
+    function inner<A>(as: Array<A>): Array<A>;
     function inner(as: string): string;
-    function inner<A>(as: ArrayList<A>|string): ArrayList<A>|string {
+    function inner<A>(as: Array<A>|string): Array<A>|string {
 
         if (isArray(as)) {
 
             return n < 0 ? [] :
-                (as as Array<A>).reduceRight((acc: ArrayList<A>, val, i) =>
+                (as as Array<A>).reduceRight((acc: Array<A>, val, i) =>
                         (as.length - i) <= n ? [val].concat(acc) : acc
                     , [])
 
         } else if (isString(as)) {
 
             return n < 0 ? '' :
-                ((as as string).split('')).reduceRight((acc: ArrayList<string>, val, i) =>
+                ((as as string).split('')).reduceRight((acc: Array<string>, val, i) =>
                         (as.length - i) <= n ? [val].concat(acc) : acc
                     , []).join('');
 
@@ -234,7 +231,7 @@ export function takeRightWhile<A>(predicate: Predicate<A>): {
 }
 export function takeRightWhile<A>(predicate: Predicate<A>) {
 
-    return (as: ArrayList<A>|string) => {
+    return (as: Array<A>|string) => {
 
         const as1 = isString(as) ? (as as any).split('') : as;
 
@@ -253,7 +250,7 @@ export function dropWhile<A>(predicate: Predicate<A>): {
 }
 export function dropWhile<A>(predicate: Predicate<A>) {
 
-    return (as: ArrayList<A>|string) => {
+    return (as: Array<A>|string) => {
 
         const as1 = isString(as) ? (as as any).split('') : as;
 
@@ -272,7 +269,7 @@ export function dropRightWhile<A>(predicate: Predicate<A>): {
 }
 export function dropRightWhile<A>(predicate: Predicate<A>) {
 
-    return (as: ArrayList<A>|string) => {
+    return (as: Array<A>|string) => {
 
         const as1 = isString(as) ? (as as any).split('') : as;
 
@@ -287,7 +284,7 @@ export function dropRightWhile<A>(predicate: Predicate<A>) {
 
 
 export const takeUntil = <A>(predicate: Predicate<A>) =>
-    (as: ArrayList<A>) =>
+    (as: Array<A>) =>
         (found => found ?
                 takeWhile(isNot(predicate))(as).concat([found])
                 : as

@@ -2,7 +2,7 @@
 
 // ------------ @author Daniel de Oliveira -----------------
 
-import {ArraySet, Comparator, ComparatorProducer, Pair, Predicate} from './type';
+import {Comparator, ComparatorProducer, Pair, Predicate} from './type';
 
 export function tripleEqual<A>(l:A) {
 
@@ -141,8 +141,8 @@ export const subsetOfBy = (compare: Comparator) => <A>(superset: Array<A>) =>
     };
 
 
-export const supersetOfBy = (compare: Comparator) => <A>(subset: ArraySet<A>) =>
-    (superset: ArraySet<A>): boolean => subsetOfBy(compare)(superset)(subset);
+export const supersetOfBy = (compare: Comparator) => <A>(subset: Array<A>) =>
+    (superset: Array<A>): boolean => subsetOfBy(compare)(superset)(subset);
 
 
 const compare = (acomparator: Comparator, ocomparator: Comparator) => (l: any) =>

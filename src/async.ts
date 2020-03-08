@@ -1,15 +1,15 @@
-import {ObjectCollection, Pair} from './type';
+import {Pair, Map} from './type';
 import {isArray, isObject, isString} from './predicate';
 import {keys, keysAndValues} from './associative';
 
 
 export function forEach<A>(f: (_: A, i?: number|string) => Promise<void>): {
     (as: Array<A>): Promise<Array<A>>
-    (os: ObjectCollection<A>): Promise<ObjectCollection<A>>
+    (os: Map<A>): Promise<Map<A>>
 }
 export function forEach<A>(f: (_: A, i?: number|string) => Promise<void>) {
 
-    return async (as: Array<A>|ObjectCollection<A>) => {
+    return async (as: Array<A>|Map<A>) => {
 
         if (isArray(as)) {
 
@@ -25,7 +25,7 @@ export function forEach<A>(f: (_: A, i?: number|string) => Promise<void>) {
             for (let item of keysAndValues(as as any)) {
                 await (f as any)(item[1], item[0]);
             }
-            return as as ObjectCollection<A>;
+            return as as Map<A>;
 
         }
     };
@@ -34,12 +34,12 @@ export function forEach<A>(f: (_: A, i?: number|string) => Promise<void>) {
 
 export function filter<T>(p: (a: T, i?: string|number) => Promise<boolean>): {
     (as: Array<T>): Promise<Array<T>>
-    (os: ObjectCollection<T>): Promise<ObjectCollection<T>>
+    (os: Map<T>): Promise<Map<T>>
     (s: string): Promise<string>
 }
 export function filter<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
 
-    return async (as: Array<T>|ObjectCollection<T>|string) => {
+    return async (as: Array<T>|Map<T>|string) => {
 
         if (isArray(as)) {
 
@@ -54,7 +54,7 @@ export function filter<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
 
         } else if (isObject(as)) {
 
-            const o = as as ObjectCollection<T>;
+            const o = as as Map<T>;
 
             const o1: any = {};
             let i = 0;
@@ -63,7 +63,7 @@ export function filter<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
                 i++;
             }
 
-            return o1 as ObjectCollection<T>;
+            return o1 as Map<T>;
 
         } else if (isString(as)) {
 
@@ -89,12 +89,12 @@ export function filter<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
 
 export function separate<T>(p: (a: T, i?: string|number) => Promise<boolean>): {
     (as: Array<T>): Promise<Pair<Array<T>, Array<T>>>
-    (os: ObjectCollection<T>): Promise<Pair<ObjectCollection<T>, ObjectCollection<T>>>
+    (os: Map<T>): Promise<Pair<Map<T>, Map<T>>>
     (s: string): Promise<Pair<string, string>>
 }
 export function separate<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
 
-    return async (as: Array<T>|ObjectCollection<T>|string) => {
+    return async (as: Array<T>|Map<T>|string) => {
 
         if (isArray(as)) {
 
@@ -106,9 +106,9 @@ export function separate<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
         } else if (isObject(as)) {
 
             return [
-                await filter(p)(as as ObjectCollection<T>),
-                await remove(p)(as as ObjectCollection<T>)
-            ] as Pair<ObjectCollection<T>, ObjectCollection<T>>;
+                await filter(p)(as as Map<T>),
+                await remove(p)(as as Map<T>)
+            ] as Pair<Map<T>, Map<T>>;
 
         } else if (isString(as)) {
 
@@ -127,7 +127,7 @@ export function separate<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
 
 export function remove<A>(p: (a: A, i?: string|number) => Promise<boolean>): {
     (as: Array<A>): Promise<Array<A>>
-    (os: ObjectCollection<A>): Promise<ObjectCollection<A>>
+    (os: Map<A>): Promise<Map<A>>
     (s: string): Promise<string>
 }
 export function remove<A>(p: (a: A, i?: string|number) => Promise<boolean>) {
@@ -138,11 +138,11 @@ export function remove<A>(p: (a: A, i?: string|number) => Promise<boolean>) {
 
 export function reduce<A, B>(f: (b: B, a: A, i?: number|string) => Promise<B>, init: B): {
     (as: Array<A>): Promise<B>
-    (os: ObjectCollection<A>): Promise<B>
+    (os: Map<A>): Promise<B>
 }
 export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => Promise<B>, init: B) {
 
-    return async (ts: Array<T>|ObjectCollection<T>): Promise<B> => {
+    return async (ts: Array<T>|Map<T>): Promise<B> => {
 
         if (isArray(ts)) {
 
@@ -156,7 +156,7 @@ export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => Promise<B>, i
 
         } else if (isObject(ts)) {
 
-            const o = ts as ObjectCollection<T>;
+            const o = ts as Map<T>;
 
             let acc = init;
             for (let k of keys(ts)) {
@@ -175,7 +175,7 @@ export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => Promise<B>, i
 
 export function map<A, B>(f: (_: A, i?: string|number) => Promise<B>): {
     (as: Array<A>): Promise<Array<B>>
-    (os: ObjectCollection<A>): Promise<ObjectCollection<B>>
+    (os: Map<A>): Promise<Map<B>>
 }
 export function map<A, B>(f: (_: A, i?: string|number) => B) {
 
@@ -189,7 +189,7 @@ export function map<A, B>(f: (_: A, i?: string|number) => B) {
 
         } else if (isObject(as)) {
 
-            const result: ObjectCollection<B> = {};
+            const result: Map<B> = {};
             for (let key of Object.keys(as)) result[key] = await f(as[key], key);
             return result;
 

@@ -13,19 +13,12 @@ export {
 
 
 export {
-    NestedArray,
-    ObjectCollection,
-    ObjectStruct,
-    UntypedObjectCollection,
-    ObjectMap,
-    ObjectSet,
+    Map,
     Pair,
     Predicate,
     Singleton,
     Maybe,
     Either,
-    ArrayList,
-    ArraySet,
     Associative
 } from './src/type';
 

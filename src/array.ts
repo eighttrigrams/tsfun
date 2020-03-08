@@ -1,9 +1,9 @@
-import {ArrayList, ObjectCollection} from './type';
-import {keys, reduce} from './associative';
+import {Map} from './type';
+import {reduce} from './associative';
 import {isArray, isEmpty, isObject} from './predicate';
 import {first, rest, take} from './list';
 
-export const flatMap = <A, B>(f: (_: A) => ArrayList<B>) =>
+export const flatMap = <A, B>(f: (_: A) => Array<B>) =>
     (as: Array<A>): Array<B> =>
         (as.length < 1
             ? []
@@ -57,15 +57,15 @@ export function range(a: number, b?: number, stepSize: number = 1): number[] {
 }
 
 
-export function zipWith<A,B,C> (f: (a: A, b: B) => C, as: ArrayList<A>) {
+export function zipWith<A,B,C> (f: (a: A, b: B) => C, as: Array<A>) {
 
-    return (bs: ArrayList<B>): ArrayList<C> => {
+    return (bs: Array<B>): Array<C> => {
 
         const minimumLength = Math.min(as.length, bs.length);
         const _as = take(minimumLength)(as);
         const _bs = take(minimumLength)(bs);
 
-        const zipped: ArrayList<C> = [];
+        const zipped: Array<C> = [];
         for (let i = 0; i < minimumLength; i++) {
             zipped.push(f((_as as any)[i] as A, (_bs as any)[i] as B));
         }

@@ -1,5 +1,5 @@
 import {uncurry2} from './core';
-import {ArrayList, ArraySet, Comparator, NestedArray} from './type';
+import {Comparator} from './type';
 import {isEmpty, isNot, isString} from './predicate';
 import {includedInBy} from './comparator';
 
@@ -10,7 +10,7 @@ import {includedInBy} from './comparator';
 // Contributed by Thomas Kleinke
 export function duplicates(s: string): string;
 export function duplicates<A>(s: Array<A>): Array<A>;
-export function duplicates<A>(as: ArrayList<A>|string) {
+export function duplicates<A>(as: Array<A>|string) {
 
     function inner(as1: Array<A>) {
 
@@ -35,7 +35,7 @@ export function duplicates<A>(as: ArrayList<A>|string) {
 
 export const intersectionBy =
     (compare?: Comparator) =>
-        <A>(aas: NestedArray<A>): ArraySet<A> => {
+        <A>(aas: Array<Array<A>>): Array<A> => {
 
             if (aas.length < 1) return [];
             if (aas.length === 1) return aas[0];
@@ -52,7 +52,7 @@ export const intersectionBy =
 
 export const unionBy =
     (compare?: Comparator) =>
-        <A>(aas: NestedArray<A>): ArraySet<A> => {
+        <A>(aas: Array<Array<A>>): Array<A> => {
 
             if (aas.length < 1) return [];
             if (compare) return aas.reduce(
@@ -66,11 +66,11 @@ export const unionBy =
 export const intersectBy =
     (compare?: Comparator) =>
         <A>(as1: Array<A>) =>
-            (as2: ArrayList<A>): ArraySet<A> => intersectionBy(compare)<A>([as1, as2]);
+            (as2: Array<A>): Array<A> => intersectionBy(compare)<A>([as1, as2]);
 
 
 export const uniteBy = (compare?: Comparator) => <A>(as1: Array<A>) =>
-    (as2: Array<A>): ArraySet<A> => unionBy(compare)([as1, as2]);
+    (as2: Array<A>): Array<A> => unionBy(compare)([as1, as2]);
 
 
 
@@ -92,7 +92,7 @@ export const subtractBy =
 
 
 export const setBy = (compare?: Comparator) =>
-    <A>(as: ArrayList<A>): ArraySet<A> => {
+    <A>(as: Array<A>): Array<A> => {
 
         return compare
             ? as.reduce((acc: Array<A>, val) =>

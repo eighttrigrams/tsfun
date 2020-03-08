@@ -3,16 +3,8 @@ export {
     PredicateProducer,
     Comparator,
     ComparatorProducer,
-    NestedArray,
     Pair,
     Either,
-    ArrayList,
-    ArraySet,
-    ObjectCollection,
-    ObjectSet,
-    ObjectStruct,
-    UntypedObjectCollection,
-    ObjectMap
 } from './src/type';
 
 export {

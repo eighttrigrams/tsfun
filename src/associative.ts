@@ -1,10 +1,5 @@
 import {
-    ArrayList,
-    ObjectCollection,
-    ObjectMap,
-    Predicate,
-    SimpleTransformation,
-    UntypedObjectCollection
+    Predicate, Map
 } from './type';
 import {zip} from "./list";
 import {isArray, isObject} from './predicate';
@@ -13,11 +8,11 @@ import {range} from './array';
 
 
 // Written with Thomas Kleinke
-export function get<A>(i: number, defaultValue?: A|undefined): (as: ArrayList<A>) => A|undefined;
-export function get<T>(i: string, defaultValue?: T|undefined): (as: ObjectMap<T>) => T|undefined;
+export function get<A>(i: number, defaultValue?: A|undefined): (as: Array<A>) => A|undefined;
+export function get<T>(i: string, defaultValue?: T|undefined): (as: Map<T>) => T|undefined;
 export function get<T>(i: number|string, alternative?: T|undefined) {
 
-    return (as: ArrayList<T>|ObjectMap<T>): T|undefined => {
+    return (as: Array<T>|Map<T>): T|undefined => {
 
         const result = (as as any)[i];
         return result !== undefined ? result : alternative;
@@ -25,11 +20,11 @@ export function get<T>(i: number|string, alternative?: T|undefined) {
 }
 
 
-export function dissoc<T>(key: string): (struct: ObjectMap<T>) => ObjectMap<T>;
+export function dissoc<T>(key: string): (struct: Map<T>) => Map<T>;
 export function dissoc<A>(key: number): (struct: Array<A>) => Array<A>;
 export function dissoc<T>(key: string|number) {
 
-    return (struct: ObjectMap<T>|Array<T>) => {
+    return (struct: Map<T>|Array<T>) => {
 
         const newStruct = copy(struct as any);
         if (isArray(struct)) (newStruct as any).splice(key, 1);
@@ -39,11 +34,11 @@ export function dissoc<T>(key: string|number) {
 }
 
 
-export function update<T>(key: string, f: (_: T) => T): (struct: ObjectMap<T>) => ObjectMap<T>;
+export function update<T>(key: string, f: (_: T) => T): (struct: Map<T>) => Map<T>;
 export function update<A>(key: number, f: (_: A) => A): (struct: Array<A>) => Array<A>;
 export function update<T>(key: string|number, f: (_: T) => T) {
 
-    return (struct: ObjectMap<T>|Array<T>) => {
+    return (struct: Map<T>|Array<T>) => {
 
         const newStruct = copy(struct as any);
         (newStruct as any)[key] = f((newStruct as any)[key]);
@@ -52,11 +47,11 @@ export function update<T>(key: string|number, f: (_: T) => T) {
 }
 
 
-export function assoc<T>(key: string, value: T): (struct: ObjectMap<T>) => ObjectMap<T>;
+export function assoc<T>(key: string, value: T): (struct: Map<T>) => Map<T>;
 export function assoc<A>(key: number, value: A): (struct: Array<A>) => Array<A>;
 export function assoc<T>(key: string|number, value: T) {
 
-    return (struct: ObjectMap<T>|Array<T>) => {
+    return (struct: Map<T>|Array<T>) => {
 
         const newStruct = copy(struct as any);
         (newStruct as any)[key] = value;
@@ -65,9 +60,9 @@ export function assoc<T>(key: string|number, value: T) {
 }
 
 
-export function lookup<T>(struct: ObjectMap<T>, alternative?: T): (targetId: string) => T|undefined;
+export function lookup<T>(struct: Map<T>, alternative?: T): (targetId: string) => T|undefined;
 export function lookup<A>(struct: Array<A>, alternative?: A): (targetId: number) => A|undefined;
-export function lookup<A>(struct: ObjectCollection<A>|Array<A>, alternative?: any) {
+export function lookup<A>(struct: Map<A>|Array<A>, alternative?: any) {
 
     return (targetId: string|number): A|undefined => {
 
@@ -78,16 +73,16 @@ export function lookup<A>(struct: ObjectCollection<A>|Array<A>, alternative?: an
 
 
 export function keysAndValues<A>(as: Array<A>): Array<[number, A]>;
-export function keysAndValues<T>(o: ObjectCollection<T>): Array<[string, T]>;
-export function keysAndValues<T>(o: ObjectCollection<T>|Array<T>): Array<[string|number, T]> {
+export function keysAndValues<T>(o: Map<T>): Array<[string, T]>;
+export function keysAndValues<T>(o: Map<T>|Array<T>): Array<[string|number, T]> {
 
     return zip(keys(o))(Object.values(o)) as Array<[string, T]>;
 }
 
 
 export function keys<T>(as: Array<T>): number[];
-export function keys(o: UntypedObjectCollection): string[];
-export function keys<T>(t: Array<T>|UntypedObjectCollection): number[]|string[] {
+export function keys(o: Map<any>): string[];
+export function keys<T>(t: Array<T>|Map<any>): number[]|string[] {
 
     return isArray(t)
         ? range(t.length)
@@ -96,8 +91,8 @@ export function keys<T>(t: Array<T>|UntypedObjectCollection): number[]|string[] 
 
 
 export function values<A>(as: Array<A>): Array<A>;
-export function values<T>(o: ObjectCollection<T>): Array<T>;
-export function values<T>(t: ObjectCollection<T>|Array<T>): Array<T> {
+export function values<T>(o: Map<T>): Array<T>;
+export function values<T>(t: Map<T>|Array<T>): Array<T> {
 
     return isArray(t)
         ? t as Array<T>
@@ -106,7 +101,7 @@ export function values<T>(t: ObjectCollection<T>|Array<T>): Array<T> {
 
 
 /* internal */ export const mapProperties = <A, B>(f: (_: A) => B) =>
-    (keys: Array<number|string>, o: ObjectCollection<A>): ObjectCollection<B> =>
+    (keys: Array<number|string>, o: Map<A>): Map<B> =>
         keys.reduce(mapPropertiesReducer(f)(o), {});
 
 
@@ -114,11 +109,11 @@ const mapPropertiesReducer = <A, B>(f: (_: A) => B) =>
     (o: any) => (acc: any, val: string) => (acc[val] = f(o[val]), acc);
 
 
-const filterObj = <T>(predicate: Predicate<T>): SimpleTransformation<ObjectCollection<T>> =>
-    (o: ObjectCollection<T>) =>
+const filterObj = <T>(predicate: Predicate<T>): (_: Map<T>) => Map<T> =>
+    (o: Map<T>) =>
         Object
             .keys(o)
-            .reduce((acc: ObjectCollection<T>, key: string|number) => {
+            .reduce((acc: Map<T>, key: string|number) => {
                 if (predicate(o[key])) acc[key] = o[key];
                 return acc;
             }, {});
@@ -126,7 +121,7 @@ const filterObj = <T>(predicate: Predicate<T>): SimpleTransformation<ObjectColle
 
 export function map<A, B>(f: (_: A, i?: string|number) => B): {
     (as: Array<A>): Array<B>
-    (os: ObjectCollection<A>): ObjectCollection<B>
+    (os: Map<A>): Map<B>
 }
 export function map<A, B>(f: (_: A, i?: string|number) => B) {
 
@@ -134,7 +129,7 @@ export function map<A, B>(f: (_: A, i?: string|number) => B) {
 
         if (isArray(as)) return (as as Array<A>).map(f) as Array<B>;
         else {
-            const result: ObjectCollection<B> = {};
+            const result: Map<B> = {};
             for (let key of Object.keys(as)) result[key] = f(as[key], key);
             return result;
         }
@@ -144,11 +139,11 @@ export function map<A, B>(f: (_: A, i?: string|number) => B) {
 
 export function forEach<A>(f: (_: A, i?: number|string) => void): {
     (as: Array<A>): Array<A>
-    (os: ObjectCollection<A>): ObjectCollection<A>
+    (os: Map<A>): Map<A>
 }
 export function forEach<A>(f: (_: A, i?: number|string) => void) {
 
-    return (as: Array<A>|ObjectCollection<A>) => {
+    return (as: Array<A>|Map<A>) => {
 
         if (isArray(as)) {
 
@@ -164,7 +159,7 @@ export function forEach<A>(f: (_: A, i?: number|string) => void) {
             for (let item of keysAndValues(as as any)) {
                 (f as any)(item[1], item[0]);
             }
-            return as as ObjectCollection<A>;
+            return as as Map<A>;
         } else {
 
             throw 'illegal argument - must be array or object';
@@ -175,11 +170,11 @@ export function forEach<A>(f: (_: A, i?: number|string) => void) {
 
 export function reduce<A, B>(f: (b: B, a: A, i?: number|string) => B, init: B): {
     (as: Array<A>): B
-    (os: ObjectCollection<A>): B
+    (os: Map<A>): B
 }
 export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => B, init: B) {
 
-    return (ts: Array<T>|ObjectCollection<T>): B => {
+    return (ts: Array<T>|Map<T>): B => {
 
         if (isArray(ts)) {
 
@@ -193,7 +188,7 @@ export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => B, init: B) {
 
         } else if (isObject(ts)) {
 
-            const o = ts as ObjectCollection<T>;
+            const o = ts as Map<T>;
 
             let acc = init;
             for (let k of keys(ts)) {

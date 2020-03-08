@@ -1,4 +1,4 @@
-import {ObjectStruct, UntypedObjectCollection} from './type';
+import {Map} from './type';
 import {val} from './composition';
 import {isArray, isObject, isString} from './predicate';
 import {reverseUncurry2} from './core';
@@ -34,7 +34,7 @@ export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function
         return (Object.keys(struct as any)).reduce((klone, k: any) =>{
             (klone as any)[k] = clone((struct as any)[k], f);
             return klone;
-        }, {} as ObjectStruct) as T;
+        }, {} as Object) as T;
 
     } else {
 
@@ -45,7 +45,7 @@ export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function
 
 export function getOn<T>(path: string, alternative?: any) {
 
-    return (ds: ObjectStruct) => {
+    return (ds: Object) => {
 
         const result = getElForPathIn(ds as Object, path);
         return result !== undefined ? result : alternative;
@@ -53,7 +53,7 @@ export function getOn<T>(path: string, alternative?: any) {
 }
 
 
-export const lookupOn = <T>(ds: ObjectStruct, alternative?: T) => (path: string) => {
+export const lookupOn = <T>(ds: Object, alternative?: T) => (path: string) => {
 
     return getOn(path, alternative)(ds);
 };
@@ -68,26 +68,26 @@ function applyUpdate(copied: any, key: string|number, update_fun?: (val: any) =>
 
 export function updateOn(path: string, update_fun?: (val: any) => any) {
 
-    return (struct: ObjectStruct): any => _update(convertPath(path), struct, update_fun)
+    return (struct: Object): any => _update(convertPath(path), struct, update_fun)
 }
 
 
-function _update(path: Array<string|number>, struct: ObjectStruct, update_fun?: (val: any) => any, ) {
+function _update(path: Array<string|number>, struct: Object, update_fun?: (val: any) => any, ) {
 
     const key = path[0];
     let copied = undefined;
 
     if (path.length === 1) {
         copied = isString(key)
-            ? Object.assign({}, struct) as UntypedObjectCollection
-            : copy(struct as any) as UntypedObjectCollection;
+            ? Object.assign({}, struct) as Map<any>
+            : copy(struct as any) as Map<any>;
 
         applyUpdate(copied, key, update_fun);
 
     } else {
         copied = isString(key)
-            ? Object.assign({}, struct) as UntypedObjectCollection
-            : copy(struct as any) as UntypedObjectCollection;
+            ? Object.assign({}, struct) as Map<any>
+            : copy(struct as any) as Map<any>;
 
         path.shift();
         copied[key] = _update(path, copied[key], update_fun);
