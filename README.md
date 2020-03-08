@@ -103,6 +103,7 @@ import {equal} from 'tsfun';
 * [flatMap](test/array/flat_map.spec.ts)
 * [flatten](test/array/flatten.spec.ts)
 * [zipWith](test/array/zip_with.spec.ts)
+* [reduce1](test/array/reduce1.spec.ts)
 
 ### String
 

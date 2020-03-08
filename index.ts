@@ -111,7 +111,8 @@ export {
     flatten,
     range,
     zipWith,
-    dense
+    dense,
+    reduce1
 } from './src/array'
 
 export {

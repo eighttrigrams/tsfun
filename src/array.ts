@@ -1,7 +1,7 @@
-import {ArrayList} from './type';
-import {reduce} from './associative';
-import {isArray} from './predicate';
-import {take} from './list';
+import {ArrayList, ObjectCollection} from './type';
+import {keys, reduce} from './associative';
+import {isArray, isEmpty, isObject} from './predicate';
+import {first, rest, take} from './list';
 
 export const flatMap = <A, B>(f: (_: A) => ArrayList<B>) =>
     (as: Array<A>): Array<B> =>
@@ -71,4 +71,26 @@ export function zipWith<A,B,C> (f: (a: A, b: B) => C, as: ArrayList<A>) {
         }
         return zipped;
     }
+}
+
+
+export function reduce1<T>(f: (b: T, t: T, i?: number) => T) {
+
+    return (ts: Array<T>): T => {
+
+        if (isArray(ts) && !isEmpty(ts)) {
+
+            let acc: T = first(ts) as T;
+            let i = 0;
+            for (let a of rest(ts)) {
+                acc = f(acc, a, i);
+                i++;
+            }
+            return acc;
+
+        } else {
+
+            throw "illegal argument - must be array or object"
+        }
+    };
 }
