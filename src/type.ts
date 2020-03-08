@@ -16,7 +16,13 @@ export type Either<T1, T2> = [T1, undefined]|[undefined, T2];
 export type Maybe<T> = [] | [T];
 
 
-export type Associative<T> = Map<T> | Array<T>;
+export type Associative<T = any> = Map<T> | Array<T>;
+
+
+export type List<T = any> = Array<T> | string;
+
+
+export type Collection<T = any> = Associative<T> | List<T>;
 
 
 export type Predicate<A> = (_: A) => boolean;

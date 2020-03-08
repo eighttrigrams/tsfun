@@ -18,6 +18,8 @@ export {
     Predicate,
     Singleton,
     Maybe,
+    List,
+    Collection,
     Either,
     Associative
 } from './src/type';
