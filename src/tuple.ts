@@ -46,16 +46,18 @@ export function mmap<T>(f: (x: T) => Maybe<T>) {
 }
 
 
-export function mflow<T>(g: (...args: Array<T>) => T, seed: T,
-                         ...fs: Array<(x: T, ...xs: Array<T>) => Maybe<T>>): Maybe<T> {
+export function mflow<T>(g: ((...args: Array<T>) => T) = identity) {
 
-    let results = [seed];
-    for (let f of fs) {
-        const res = f(first(results) as T, ...rest(results));
-        if (isFailure(res)) return [];
-        results = [(first(res) as T)].concat(results);
+    return (seed: T, ...fs: Array<(x: T, ...xs: Array<T>) => Maybe<T>>): Maybe<T> => {
+
+        let results = [seed];
+        for (let f of fs) {
+            const res = f(first(results) as T, ...rest(results));
+            if (isFailure(res)) return [];
+            results = [(first(res) as T)].concat(results);
+        }
+        return [g(...rest(reverse(results)))];
     }
-    return [g(...rest(reverse(results)))];
 }
 
 
