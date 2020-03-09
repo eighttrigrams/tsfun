@@ -1,4 +1,4 @@
-import {mflow, mmatch, mval} from '../../src/tuple';
+import {mflow, mval} from '../../src/tuple';
 import {Maybe} from '../../src/type';
 import {identity} from '../../src/core';
 import {val} from '../../src/composition';
