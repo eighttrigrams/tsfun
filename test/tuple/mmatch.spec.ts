@@ -10,7 +10,7 @@ describe('mmatch', () => {
 
     const square = (x: number) => x * x;
 
-    it('mmatch - success', () =>
+    it('success', () =>
 
         expect(
 
@@ -20,7 +20,7 @@ describe('mmatch', () => {
     );
 
 
-    it('mmatch - failure', () =>
+    it('failure', () =>
 
         expect(
 
