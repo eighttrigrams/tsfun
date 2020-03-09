@@ -71,7 +71,7 @@ describe('mflow', () => {
 
         expect(
 
-            (mflow()([1], safediv(3), safediv(3)))
+            mflow()([1], safediv(3), safediv(3))
 
         ).toEqual([3])
     );
