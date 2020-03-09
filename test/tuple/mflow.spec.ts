@@ -1,4 +1,4 @@
-import {mflow, mval} from '../../src/tuple';
+import {mflow, mmatch, mval} from '../../src/tuple';
 import {Maybe} from '../../src/type';
 
 
@@ -71,5 +71,25 @@ describe('mflow', () => {
             mflow()([1], safediv(3), safediv(3))
 
         ).toEqual([3])
+    );
+
+
+    it('mmatch - success', () =>
+
+        expect(
+
+            mmatch([3], (x: number) => x * x, () => 17)
+
+        ).toEqual(9)
+    );
+
+
+    it('mmatch - failure', () =>
+
+        expect(
+
+            mmatch([], (x: number) => x * x, () => 17)
+
+        ).toEqual(17)
     );
 });

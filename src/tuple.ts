@@ -1,6 +1,6 @@
 import {identity} from './core';
 import {Either, Maybe, Pair} from './type';
-import {isFailure} from './predicate';
+import {isFailure, isSuccess} from './predicate';
 import {first, rest, reverse} from './list';
 
 export function tuplify(...fs : any[]) {
@@ -59,6 +59,16 @@ export function mflow<T>(g: ((...args: Array<T>) => T) = identity) {
         }
         return [g(...rest(reverse(results)))];
     }
+}
+
+
+export function mmatch<T, R>(m: Maybe<T>,
+                             onSuccess: (x: T) => R,
+                             onFailure: () => R) {
+
+    return isSuccess(m)
+        ? onSuccess((m as any)[0])
+        : onFailure();
 }
 
 
