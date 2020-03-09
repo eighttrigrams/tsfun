@@ -1,6 +1,5 @@
 import {mflow, mval} from '../../src/tuple';
 import {Maybe} from '../../src/type';
-import {identity} from '../../src/core';
 
 
 /**
@@ -15,43 +14,51 @@ describe('mflow', () => {
     const safediv = (x: number) => (y: number) => (y === 0 ? [] : [x / y]) as Maybe<number>;
     const add = (x: number, y: number) => x + y;
 
-    it('mflow - success', () =>
+    it('success', () =>
 
         expect(
 
-            mflow(add)(0, mval(3), mval(3))
+            mflow(add)([0], mval(3), mval(3))
 
         ).toEqual([6])
     );
 
 
-    it('mflow - use previous value', () =>
+    it('use previous value', () =>
 
         expect(
 
-            mflow(add)(3, dec, dec)
+            mflow(add)([3], dec, dec)
 
         ).toEqual([3])
     );
 
 
-    it('mflow - failure', () =>
+    it('failure', () =>
 
         expect(
 
-            mflow(add)(2, dec, dec)
+            mflow(add)([2], dec, dec)
 
         ).toEqual([])
     );
 
 
-    // 3 / (3 / 0)
+    it('dont even start', () =>
+
+        expect(
+
+            mflow(add)([], dec, dec)
+
+        ).toEqual([])
+    );
+
 
     it('3 / (3 / 0)', () =>
 
         expect(
 
-            mflow()(0, safediv(3), safediv(3))
+            mflow()([0], safediv(3), safediv(3))
 
         ).toEqual([])
     );
@@ -61,7 +68,7 @@ describe('mflow', () => {
 
         expect(
 
-            mflow()(1, safediv(3), safediv(3))
+            mflow()([1], safediv(3), safediv(3))
 
         ).toEqual([3])
     );
