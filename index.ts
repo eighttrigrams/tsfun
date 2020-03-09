@@ -20,6 +20,8 @@ export {
     Maybe,
     List,
     Collection,
+    Left,
+    Right,
     Either,
     Associative
 } from './src/type';

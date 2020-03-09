@@ -10,7 +10,13 @@ export type Singleton<T> = [T];
 export type Pair<A,B> = [A, B];
 
 
-export type Either<T1, T2> = [T1, undefined]|[undefined, T2];
+export type Left<T = any> = [T, undefined];
+
+
+export type Right<T = any> = [undefined, T];
+
+
+export type Either<T1 = any, T2 = any> = Left<T1>|Right<T2>;
 
 
 export type Maybe<T> = [] | [T];
