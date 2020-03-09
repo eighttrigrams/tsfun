@@ -1,5 +1,7 @@
 import {mflow, mmatch, mval} from '../../src/tuple';
 import {Maybe} from '../../src/type';
+import {identity} from '../../src/core';
+import {val} from '../../src/composition';
 
 
 /**
@@ -13,6 +15,7 @@ describe('mflow', () => {
     const dec = (x: number) => (x-1 === 0 ? [] : [x-1]) as Maybe<number>;
     const safediv = (x: number) => (y: number) => (y === 0 ? [] : [x / y]) as Maybe<number>;
     const add = (x: number, y: number) => x + y;
+    const square = (x: number) => x * x;
 
     it('success', () =>
 
@@ -68,28 +71,28 @@ describe('mflow', () => {
 
         expect(
 
-            mflow()([1], safediv(3), safediv(3))
+            (mflow()([1], safediv(3), safediv(3)))
 
         ).toEqual([3])
     );
 
 
-    it('mmatch - success', () =>
+    it('3 / (3 / 0) - on failure', () =>
 
         expect(
 
-            mmatch([3], (x: number) => x * x, () => 17)
+            mflow(identity, val(19), val(17))([0], safediv(3), safediv(3))
 
-        ).toEqual(9)
+        ).toEqual(17)
     );
 
 
-    it('mmatch - failure', () =>
+    it('3 / (3 / 1) - on success', () =>
 
         expect(
 
-            mmatch([], (x: number) => x * x, () => 17)
+            mflow(identity, square)([1], safediv(3), safediv(3))
 
-        ).toEqual(17)
+        ).toEqual(9)
     );
 });
