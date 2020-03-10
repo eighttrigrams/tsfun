@@ -1,4 +1,4 @@
-import {elift, eVal, getValue, mcompose, midentity, mlift, mVal, toEither, toMaybe} from '../../src/tuple';
+import {elift, eitherval, getValue, mcompose, midentity, mlift, maybeval, either, maybe} from '../../src/tuple';
 import {Either, Maybe} from '../../src/type';
 import {identity} from '../../src/core';
 import {cond, flow, throws} from '../../src/composition';
@@ -110,7 +110,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, mVal(3), mVal(3))([0])
+            mcompose(add, maybeval(3), maybeval(3))([0])
 
         ).toEqual([6])
     );
@@ -120,7 +120,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, eVal(3), eVal(3))([undefined, 0])
+            mcompose(add, eitherval(3), eitherval(3))([undefined, 0])
 
         ).toEqual([undefined, 6])
     );
@@ -232,7 +232,7 @@ describe('mcompose', () => {
 
             flow(
                 [3, 0, 4, 2],
-                map(toMaybe),
+                map(maybe),
                 map(
                     mcompose(
                         square,
@@ -251,7 +251,7 @@ describe('mcompose', () => {
 
             flow(
                 [3, 0, 4, 2],
-                map(toEither),
+                map(either),
                 map(
                     mcompose(
                         square,

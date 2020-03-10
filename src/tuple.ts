@@ -35,17 +35,6 @@ export function swap<S, T>([l, r]: Pair<S, T>): Pair<T, S> {
 }
 
 
-export function mmap<T>(f: (x: T) => Maybe<T>) {
-
-    return (m: Maybe<T>) => {
-
-        return isFailure(m)
-            ? []
-            : f((m as any)[0]);
-    }
-}
-
-
 export function mcompose<T, R>(g: ((...args: Array<T>) => R),
                                ...fs: Array<(x: T, ...xs: Array<T>) => Either<any, T>>)
     : (seed: Either<any, T>) => Either<any, R>;
@@ -87,30 +76,30 @@ function convert<T>(what: any, basedOn: Fallible<T>): any {
 
     if (!isEither(basedOn) && !isMaybe(basedOn)) throw 'illegal argument - basedOn is neither Maybe nor Either';
     return isEither(basedOn)
-        ? toEither(what)
-        : toMaybe(what);
+        ? either(what)
+        : maybe(what);
 }
 
 
-export function mVal<T>(v: T) {
+export function maybeval<T>(v: T) {
 
     return (..._: any) => [v] as Maybe<T>;
 }
 
 
-export function eVal<T>(v: T) {
+export function eitherval<T>(v: T) {
 
     return (..._: any) => [undefined, v] as Either<T>;
 }
 
 
-export function toMaybe<T>(v: T): Maybe<T> {
+export function maybe<T>(v: T): Maybe<T> {
 
     return [v];
 }
 
 
-export function toEither<T>(v: T): Either<any, T> {
+export function either<T>(v: T): Either<any, T> {
 
     return [undefined, v];
 }
