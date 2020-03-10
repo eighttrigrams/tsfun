@@ -59,7 +59,7 @@ export function mcompose<T, R>(g: ((...args: Array<T>) => R) = (identity as any)
             if (isFailure(res)) return res as any;
             results = [getValue(res)].concat(results);
         }
-        return [g(...results)];
+        return convert(g(...results), seed);
     }
 }
 
@@ -72,12 +72,13 @@ export function ecompose<L, T>(g: ((...args: Array<any>) => T) = (identity as an
 
         let results = [(seed as any)[1]] as Array<any>;
         for (let f of reverse(fs)) {
+
             const res = f(first(results) as any, ...rest(results));
             if (isFailure(res)) return res as any;
             results = [getValue(res)].concat(results as any);
         }
 
-        return [undefined, g(...results)];
+        return convert(g(...results), seed);
     }
 }
 
@@ -91,6 +92,15 @@ export function mmatch<T, R>(onSuccess: (x: T) => R,
             ? onSuccess((m as any)[0])
             : onFailure();
     }
+}
+
+
+function convert<T>(what: any, basedOn: Fallible<T>): any {
+
+    if (!isEither(basedOn) && !isMaybe(basedOn)) throw 'illegal argument - basedOn is neither Maybe nor Either';
+    return isEither(basedOn)
+        ? toEither(what)
+        : toMaybe(what);
 }
 
 
