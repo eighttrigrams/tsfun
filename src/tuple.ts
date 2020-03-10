@@ -1,6 +1,6 @@
 import {identity} from './core';
-import {Either, Just, Maybe, Pair} from './type';
-import {isFailure, isSuccess} from './predicate';
+import {Either, Fallible, Just, Maybe, Pair} from './type';
+import {isEither, isFailure, isMaybe, isSuccess} from './predicate';
 import {first, rest, reverse} from './list';
 
 export function tuplify(...fs : any[]) {
@@ -50,16 +50,14 @@ export function mcompose<T, R>(g: ((...args: Array<T>) => R) = (identity as any)
                                ...fs: Array<(x: T, ...xs: Array<T>) => Maybe<T>>) {
 
     return (seed: Maybe<T>): Maybe<R> => {
-
         if (isFailure(seed)) return seed as any;
 
         let results = seed as Array<T>;
-
         for (let f of reverse(fs)) {
 
             const res = f(first(results) as T, ...rest(results));
             if (isFailure(res)) return res as any;
-            results = [(first(res) as T)].concat(results);
+            results = [getValue(res)].concat(results);
         }
         return [g(...results)];
     }
@@ -70,15 +68,13 @@ export function ecompose<L, T>(g: ((...args: Array<any>) => T) = (identity as an
                                ...fs: Array<(x: any, ...xs: Array<any>) => Either<L>>) {
 
     return (seed: Either<L>): Either<L, T> => {
-
         if (isFailure(seed)) return seed;
 
         let results = [(seed as any)[1]] as Array<any>;
-
         for (let f of reverse(fs)) {
             const res = f(first(results) as any, ...rest(results));
             if (isFailure(res)) return res as any;
-            results = [(right(res) as T)].concat(results as any);
+            results = [getValue(res)].concat(results as any);
         }
 
         return [undefined, g(...results)];
@@ -148,15 +144,13 @@ export function elift<T,R>(f: (x: T) => R) {
 }
 
 
-export function fromSuccess<T>(x: Just<T>) {
+export function getValue<T>(x: Fallible<T>) {
 
-    return x[0];
-}
-
-
-export function fromESuccess<T>(x: Just<T>) {
-
-    return (x as any)[1];
+    if (!isEither(x) && !isMaybe(x)) throw 'illegal argument - neither Maybe nor Either';
+    if (!isSuccess(x)) throw 'illegal argument - expected success value to be present';
+    return isEither(x)
+        ? (x as any)[1]
+        : (x as any)[0];
 }
 
 

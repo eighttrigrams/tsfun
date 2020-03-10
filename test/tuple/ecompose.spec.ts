@@ -1,4 +1,4 @@
-import {ecompose, elift, eVal, fromESuccess, midentity, toEither} from '../../src/tuple';
+import {ecompose, elift, eVal, getValue, midentity, toEither} from '../../src/tuple';
 import {Either} from '../../src/type';
 import {identity} from '../../src/core';
 import {cond, flow, throws} from '../../src/composition';
@@ -136,7 +136,7 @@ describe('ecompose', () => {
                         elift(cond(lessThan(2), throws('e1')) as any),
                         safediv(6))),
                 filter(isSuccess as any),
-                map(fromESuccess))
+                map(getValue))
 
         ).toEqual([4, 9])
     );

@@ -1,4 +1,4 @@
-import {fromSuccess, mcompose, midentity, mlift, mVal, toMaybe} from '../../src/tuple';
+import {getValue, mcompose, midentity, mlift, mVal, toMaybe} from '../../src/tuple';
 import {Maybe} from '../../src/type';
 import {identity} from '../../src/core';
 import {cond, flow, throws} from '../../src/composition';
@@ -136,7 +136,7 @@ describe('mcompose', () => {
                         mlift(cond(lessThan(2), throws('')) as any),
                         safediv(6))),
                 filter(isSuccess as any),
-                map(fromSuccess))
+                map(getValue))
 
         ).toEqual([4, 9])
     );

@@ -28,6 +28,9 @@ export type Nothing = [];
 export type Maybe<T> = Nothing | Just<T>;
 
 
+export type Fallible<T> = Either<any, T> | Maybe<T>;
+
+
 export type Associative<T = any> = Map<T> | Array<T>;
 
 
