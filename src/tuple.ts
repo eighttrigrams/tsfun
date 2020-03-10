@@ -124,3 +124,9 @@ export function fromSuccess<T>(x: Just<T>) {
 
     return x[0];
 }
+
+
+export function midentity<T>(...p: Array<T>) {
+
+    return p;
+}

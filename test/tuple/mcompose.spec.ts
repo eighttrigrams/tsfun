@@ -1,4 +1,4 @@
-import {fromSuccess, mcompose, mlift, mmatch, mval, toMaybe} from '../../src/tuple';
+import {fromSuccess, mcompose, midentity, mlift, mmatch, mval, toMaybe} from '../../src/tuple';
 import {Maybe} from '../../src/type';
 import {identity} from '../../src/core';
 import {cond, flow, throws, val} from '../../src/composition';
@@ -39,6 +39,16 @@ describe('mcompose', () => {
             mcompose(add, dec, dec)([3])
 
         ).toEqual([3])
+    );
+
+
+    it('get all intermediate values', () =>
+
+        expect(
+
+            mcompose(midentity, dec, dec)([3])
+
+        ).toEqual([[1, 2, 3]])
     );
 
 
