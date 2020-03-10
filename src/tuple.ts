@@ -111,7 +111,11 @@ export function mlift<T,R>(f: (x: T) => R) {
 
     return (x: T): Maybe<R> => {
 
-        return [f(x)];
+        try {
+            return [f(x)];
+        } catch {
+            return [];
+        }
     }
 }
 
