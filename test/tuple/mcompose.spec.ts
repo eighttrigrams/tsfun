@@ -1,4 +1,4 @@
-import {mcompose, mlift, mval, toMaybe} from '../../src/tuple';
+import {fromSuccess, mcompose, mlift, mval, toMaybe} from '../../src/tuple';
 import {Maybe} from '../../src/type';
 import {identity} from '../../src/core';
 import {flow, val} from '../../src/composition';
@@ -89,8 +89,9 @@ describe('mcompose', () => {
                 [1.5, 0,0, 2.0],
                 map(toMaybe),
                 map(mcompose(square, mlift(div(6)), safediv(3))),
-                filter(isSuccess as any))
+                filter(isSuccess as any),
+                map(fromSuccess))
 
-        ).toEqual([[9],[16]])
+        ).toEqual([9, 16])
     );
 });

@@ -19,7 +19,13 @@ export type Right<T = any> = [undefined, T];
 export type Either<T1 = any, T2 = any> = Left<T1>|Right<T2>;
 
 
-export type Maybe<T> = [] | [T];
+export type Just<T> = [T];
+
+
+export type Nothing = [];
+
+
+export type Maybe<T> = Nothing | Just<T>;
 
 
 export type Associative<T = any> = Map<T> | Array<T>;

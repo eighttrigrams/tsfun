@@ -1,5 +1,5 @@
 import {identity} from './core';
-import {Either, Maybe, Pair} from './type';
+import {Either, Just, Maybe, Pair} from './type';
 import {isFailure, isSuccess} from './predicate';
 import {first, rest, reverse} from './list';
 
@@ -111,4 +111,10 @@ export function mlift<T,R>(f: (x: T) => R) {
 
         return [f(x)];
     }
+}
+
+
+export function fromSuccess<T>(x: Just<T>) {
+
+    return x[0];
 }
