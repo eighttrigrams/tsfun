@@ -16,9 +16,9 @@ import {lessThan} from '../../src/comparator';
  */
 describe('mcompose', () => {
 
+    const zero = (_: any) => [0] as Maybe<number>;
     const dec = (x: number) => (x-1 === 0 ? [] : [x-1]) as Maybe<number>;
     const safediv = (x: number) => (y: number) => (y === 0 ? [] : [x / y]) as Maybe<number>;
-    const div = (x: number) => (y: number) => x / y;
     const add = (x: number, y: number) => x + y;
     const square = (x: number) => x * x;
 
@@ -56,29 +56,39 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, dec, dec)([])
+            mcompose(add, safediv(3), dec)([])
 
         ).toEqual([])
     );
 
 
-    it('3 / (3 / 0)', () =>
+    it('dont get to savediv', () =>
 
         expect(
 
-            mcompose(identity, safediv(3), safediv(3))([0])
+            mcompose(add, safediv(3), dec)([1])
 
         ).toEqual([])
     );
 
 
-    it('6 / (3 / 1.5)', () =>
+    it('(3 / 0)', () =>
 
         expect(
 
-            mcompose(square, safediv(6), safediv(3))([1.5])
+            mcompose(identity, safediv(3), zero)([6])
 
-        ).toEqual([9])
+        ).toEqual([])
+    );
+
+
+    it('(3 / 2)^2', () =>
+
+        expect(
+
+            mcompose(square, safediv(6), dec)([2])
+
+        ).toEqual([36])
     );
 
 
