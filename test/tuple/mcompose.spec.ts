@@ -42,7 +42,7 @@ describe('mcompose', () => {
     );
 
 
-    it('get all intermediate values', () =>
+    it('get all intermediate values, youngest first', () =>
 
         expect(
 
