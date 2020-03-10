@@ -1,4 +1,4 @@
-import {fromSuccess, mcompose, midentity, mlift, mval, toMaybe} from '../../src/tuple';
+import {fromSuccess, mcompose, midentity, mlift, mVal, toMaybe} from '../../src/tuple';
 import {Maybe} from '../../src/type';
 import {identity} from '../../src/core';
 import {cond, flow, throws} from '../../src/composition';
@@ -67,7 +67,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, mval(3), mval(3))([0])
+            mcompose(add, mVal(3), mVal(3))([0])
 
         ).toEqual([6])
     );
