@@ -1,5 +1,5 @@
-import {ecompose, elift, eVal, getValue, midentity, toEither} from '../../src/tuple';
-import {Either} from '../../src/type';
+import {mcompose, elift, eVal, getValue, midentity, toEither} from '../../src/tuple';
+import {Either, Maybe} from '../../src/type';
 import {identity} from '../../src/core';
 import {cond, flow, throws} from '../../src/composition';
 import {map} from '../../src/associative';
@@ -9,12 +9,12 @@ import {isSuccess} from '../../src/predicate';
 
 
 /**
- * tsfun | ecompose
+ * tsfun | mcompose for either
  * monadic compose function
  *
  * @author Daniel de Oliveira
  */
-describe('ecompose', () => {
+describe('mcompose - either', () => {
 
     const zero = (_: any) => [undefined, 0] as Either<string, number>;
     const dec = (x: number) => (x-1 === 0 ? ['decfailed', undefined] : [undefined, x-1]) as Either<string, number>;
@@ -27,7 +27,7 @@ describe('ecompose', () => {
 
         expect(
 
-            ecompose(square, dec)([undefined, 3])
+            mcompose(square, dec)([undefined, 3])
 
         ).toEqual([undefined, 4])
     );
@@ -37,7 +37,7 @@ describe('ecompose', () => {
 
         expect(
 
-            ecompose(square, dec)([undefined, 1])
+            mcompose(square, dec)([undefined, 1])
 
         ).toEqual(['decfailed', undefined])
     );
@@ -47,7 +47,7 @@ describe('ecompose', () => {
 
         expect(
 
-            ecompose(add, dec, dec)([undefined, 4])
+            mcompose(add, dec, dec)([undefined, 4])
 
         ).toEqual([undefined, 5])
     );
@@ -57,7 +57,7 @@ describe('ecompose', () => {
 
         expect(
 
-            ecompose(add, dec, dec)([undefined, 2])
+            mcompose(add, dec, dec)([undefined, 2])
 
         ).toEqual(['decfailed', undefined])
     );
@@ -67,7 +67,7 @@ describe('ecompose', () => {
 
         expect(
 
-            ecompose(add, eVal(3), eVal(3))([undefined, 0])
+            mcompose(add, eVal(3), eVal(3))([undefined, 0])
 
         ).toEqual([undefined, 6])
     );
@@ -77,7 +77,7 @@ describe('ecompose', () => {
 
         expect(
 
-            ecompose(midentity, dec, dec)([undefined, 3])
+            mcompose(midentity, dec, dec)([undefined, 3])
 
         ).toEqual([undefined, [1, 2, 3]])
     );
@@ -87,7 +87,7 @@ describe('ecompose', () => {
 
         expect(
 
-            ecompose(add, safediv(3), dec)(['didntstart', undefined])
+            mcompose(add, safediv(3), dec)(['didntstart', undefined])
 
         ).toEqual(['didntstart', undefined])
     );
@@ -97,7 +97,7 @@ describe('ecompose', () => {
 
         expect(
 
-            ecompose(add, safediv(3), dec)([undefined, 1])
+            mcompose(add, safediv(3), dec)([undefined, 1])
 
         ).toEqual(['decfailed', undefined])
     );
@@ -107,7 +107,7 @@ describe('ecompose', () => {
 
         expect(
 
-            ecompose(identity, safediv(3), zero)([undefined, 6])
+            mcompose(identity, safediv(3), zero)([undefined, 6])
 
         ).toEqual(['safedivfail', undefined])
     );
@@ -117,7 +117,7 @@ describe('ecompose', () => {
 
         expect(
 
-            ecompose(square, safediv(6), dec)([undefined, 2])
+            mcompose(square, safediv(6), dec)([undefined, 2])
 
         ).toEqual([undefined, 36])
     );
@@ -131,7 +131,7 @@ describe('ecompose', () => {
                 [3, 0, 4, 2],
                 map(toEither),
                 map(
-                    ecompose(
+                    mcompose(
                         square,
                         elift(cond(lessThan(2), throws('e1')) as any),
                         safediv(6))),

@@ -46,39 +46,27 @@ export function mmap<T>(f: (x: T) => Maybe<T>) {
 }
 
 
-export function mcompose<T, R>(g: ((...args: Array<T>) => R) = (identity as any),
-                               ...fs: Array<(x: T, ...xs: Array<T>) => Maybe<T>>) {
+export function mcompose<T, R>(g: ((...args: Array<T>) => R),
+                               ...fs: Array<(x: T, ...xs: Array<T>) => Either<any, T>>)
+    : (seed: Either<any, T>) => Either<any, R>;
+export function mcompose<T, R>(g: ((...args: Array<T>) => R),
+                               ...fs: Array<(x: T, ...xs: Array<T>) => Maybe<T>>)
+    : (seed: Maybe<T>) => Maybe<R>;
+export function mcompose<T, R>(g: ((...args: Array<T>) => R),
+                               ...fs: Array<(x: T, ...xs: Array<T>) => Either<any, T>|Maybe<T>>)
+    : (seed: Either<any, T>|Maybe<T>) => Maybe<R>|Either<any, R> {
 
-    return (seed: Maybe<T>): Maybe<R> => {
+    return (seed: Maybe<T>|Either<any, T>) => {
         if (isFailure(seed)) return seed as any;
 
-        let results = seed as Array<T>;
+        let results = [getValue(seed)] as Array<T>;
         for (let f of reverse(fs)) {
 
             const res = f(first(results) as T, ...rest(results));
             if (isFailure(res)) return res as any;
             results = [getValue(res)].concat(results);
         }
-        return convert(g(...results), seed);
-    }
-}
-
-
-export function ecompose<L, T>(g: ((...args: Array<any>) => T) = (identity as any),
-                               ...fs: Array<(x: any, ...xs: Array<any>) => Either<L>>) {
-
-    return (seed: Either<L>): Either<L, T> => {
-        if (isFailure(seed)) return seed;
-
-        let results = [(seed as any)[1]] as Array<any>;
-        for (let f of reverse(fs)) {
-
-            const res = f(first(results) as any, ...rest(results));
-            if (isFailure(res)) return res as any;
-            results = [getValue(res)].concat(results as any);
-        }
-
-        return convert(g(...results), seed);
+        return convert(g(...results), seed) as any;
     }
 }
 
