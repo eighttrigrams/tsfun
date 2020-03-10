@@ -100,9 +100,12 @@ import {equal} from 'tsfun';
 * [compose](test/composition/compose.spec.ts)
 * [cond](test/composition/cond.spec.ts)
 * [identity](test/composition/identity.spec.ts)
+* [multiidentity](test/composition/multiidentity.spec.ts)
 * [val](test/composition/val.spec.ts)
 * [nop](test/composition/nop.spec.ts)
 * [throws](test/composition/throws.spec.ts)
+* [mcompose](test/composition/mcompose.spec.ts)
+* [mmatch](test/composition/mmatch.spec.ts)
 
 ### Array
 
@@ -205,6 +208,10 @@ import {equal} from 'tsfun';
 * [left](test/tuple/left.spec.ts)
 * [right](test/tuple/right.spec.ts)
 * [swap](test/tuple/swap.spec.ts)
+* [maybeval](test/tuple/maybeval.spec.ts)
+* [eitherval](test/tuple/eitherval.spec.ts)
+* [maybelift](test/tuple/maybelift.spec.ts)
+* [eitherlift](test/tuple/eitherlift.spec.ts)
 
 ## Types reference 
 

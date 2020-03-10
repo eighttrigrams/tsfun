@@ -85,7 +85,10 @@ export {
     cond,
     nop,
     val,
-    throws
+    throws,
+    multiidentity,
+    mcompose,
+    mmatch
 } from './src/composition';
 
 
@@ -102,7 +105,11 @@ export {
     right,
     tuplify,
     pairWith,
-    swap
+    swap,
+    maybeval,
+    eitherval,
+    eitherlift,
+    maybelift
 } from './src/tuple';
 
 

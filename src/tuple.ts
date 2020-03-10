@@ -1,5 +1,5 @@
 import {identity} from './core';
-import {Either, Fallible, Just, Maybe, Pair} from './type';
+import {Either, Fallible, Maybe, Pair} from './type';
 import {isEither, isFailure, isMaybe, isSuccess} from './predicate';
 import {first, rest, reverse} from './list';
 
@@ -35,52 +35,6 @@ export function swap<S, T>([l, r]: Pair<S, T>): Pair<T, S> {
 }
 
 
-export function mcompose<T, R>(g: ((...args: Array<T>) => R),
-                               ...fs: Array<(x: T, ...xs: Array<T>) => Either<any, T>>)
-    : (seed: Either<any, T>) => Either<any, R>;
-export function mcompose<T, R>(g: ((...args: Array<T>) => R),
-                               ...fs: Array<(x: T, ...xs: Array<T>) => Maybe<T>>)
-    : (seed: Maybe<T>) => Maybe<R>;
-export function mcompose<T, R>(g: ((...args: Array<T>) => R),
-                               ...fs: Array<(x: T, ...xs: Array<T>) => Either<any, T>|Maybe<T>>)
-    : (seed: Either<any, T>|Maybe<T>) => Maybe<R>|Either<any, R> {
-
-    return (seed: Maybe<T>|Either<any, T>) => {
-        if (isFailure(seed)) return seed as any;
-
-        let results = [getValue(seed)] as Array<T>;
-        for (let f of reverse(fs)) {
-
-            const res = f(first(results) as T, ...rest(results));
-            if (isFailure(res)) return res as any;
-            results = [getValue(res)].concat(results);
-        }
-        return convert(g(...results), seed) as any;
-    }
-}
-
-
-export function mmatch<T, R>(onSuccess: (x: T) => R,
-                             onFailure: () => R) {
-
-    return (m: Maybe<T>) => {
-
-        return isSuccess(m)
-            ? onSuccess((m as any)[0])
-            : onFailure();
-    }
-}
-
-
-function convert<T>(what: any, basedOn: Fallible<T>): any {
-
-    if (!isEither(basedOn) && !isMaybe(basedOn)) throw 'illegal argument - basedOn is neither Maybe nor Either';
-    return isEither(basedOn)
-        ? either(what)
-        : maybe(what);
-}
-
-
 export function maybeval<T>(v: T) {
 
     return (..._: any) => [v] as Maybe<T>;
@@ -105,7 +59,7 @@ export function either<T>(v: T): Either<any, T> {
 }
 
 
-export function mlift<T,R>(f: (x: T) => R) {
+export function maybelift<T,R>(f: (x: T) => R) {
 
     return (x: T): Maybe<R> => {
 
@@ -118,7 +72,7 @@ export function mlift<T,R>(f: (x: T) => R) {
 }
 
 
-export function elift<T,R>(f: (x: T) => R) {
+export function eitherlift<T,R>(f: (x: T) => R) {
 
     return (x: T): Either<any, R> => {
 
@@ -138,10 +92,4 @@ export function getValue<T>(x: Fallible<T>) {
     return isEither(x)
         ? (x as any)[1]
         : (x as any)[0];
-}
-
-
-export function midentity<T>(...p: Array<T>) {
-
-    return p;
 }

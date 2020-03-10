@@ -1,15 +1,15 @@
-import {mcompose, mlift} from '../../src/tuple';
-import {cond, throws, val} from '../../src/composition';
+import {maybelift} from '../../src/tuple';
+import {cond, mcompose, throws, val} from '../../src/composition';
 import {map} from '../../src/associative';
 import {is} from '../../src/comparator';
 
 
 /**
- * tsfun | mlift
+ * tsfun | maybelift
  *
  * @author Daniel de Oliveira
  */
-describe('mlift', () => {
+describe('maybelift', () => {
 
     const square = (x: number) => x * x;
 
@@ -17,7 +17,7 @@ describe('mlift', () => {
 
         expect(
 
-            mlift(val(3))([17])
+            maybelift(val(3))([17])
 
         ).toEqual([3])
     );
@@ -27,7 +27,7 @@ describe('mlift', () => {
 
         expect(
 
-            mlift(throws(3))([19])
+            maybelift(throws(3))([19])
 
         ).toEqual([])
     );
@@ -37,7 +37,7 @@ describe('mlift', () => {
 
         expect(
 
-            map(mcompose(square, mlift(cond(is(1.5), throws(3)))))([[1.5], [0], [2]])
+            map(mcompose(square, maybelift(cond(is(1.5), throws(3)))))([[1.5], [0], [2]])
 
         ).toEqual([[],[0],[4]])
     );

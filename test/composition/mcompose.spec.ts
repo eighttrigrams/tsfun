@@ -1,7 +1,7 @@
-import {elift, eitherval, getValue, mcompose, midentity, mlift, maybeval, either, maybe} from '../../src/tuple';
+import {eitherlift, eitherval, getValue, maybelift, maybeval, either, maybe} from '../../src/tuple';
 import {Either, Maybe} from '../../src/type';
 import {identity} from '../../src/core';
-import {cond, flow, throws} from '../../src/composition';
+import {cond, flow, mcompose, multiidentity, throws} from '../../src/composition';
 import {map} from '../../src/associative';
 import {isSuccess} from '../../src/predicate';
 import {filter} from '../../src/collection';
@@ -18,9 +18,9 @@ describe('mcompose', () => {
 
     const zero = (_: any) => [0] as Maybe<number>;
     const zeroE = (_: any) => [undefined, 0] as Either<string, number>;
-    const dec = (x: number) => (x-1 === 0 ? [] : [x-1]) as Maybe<number>;
+    const decM = (x: number) => (x-1 === 0 ? [] : [x-1]) as Maybe<number>;
     const decE = (x: number) => (x-1 === 0 ? ['decfailed', undefined] : [undefined, x-1]) as Either<string, number>;
-    const safediv = (x: number) => (y: number) => (y === 0 ? [] : [x / y]) as Maybe<number>;
+    const safedivM = (x: number) => (y: number) => (y === 0 ? [] : [x / y]) as Maybe<number>;
     const safedivE = (x: number) => (y: number) => (y === 0 ? ['safedivfail', undefined] : [undefined, x / y]) as Either<string, number>;
     const add = (x: number, y: number) => x + y;
     const square = (x: number) => x * x;
@@ -30,7 +30,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(square, dec)([3])
+            mcompose(square, decM)([3])
 
         ).toEqual([4])
     );
@@ -50,7 +50,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(square, dec)([1])
+            mcompose(square, decM)([1])
 
         ).toEqual([])
     );
@@ -70,7 +70,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, dec, dec)([4])
+            mcompose(add, decM, decM)([4])
 
         ).toEqual([5])
     );
@@ -90,7 +90,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, dec, dec)([2])
+            mcompose(add, decM, decM)([2])
 
         ).toEqual([])
     );
@@ -130,7 +130,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(midentity, dec, dec)([3])
+            mcompose(multiidentity, decM, decM)([3])
 
         ).toEqual([[1, 2, 3]])
     );
@@ -140,7 +140,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(midentity, decE, decE)([undefined, 3])
+            mcompose(multiidentity, decE, decE)([undefined, 3])
 
         ).toEqual([undefined, [1, 2, 3]])
     );
@@ -150,7 +150,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, safediv(3), dec)([])
+            mcompose(add, safedivM(3), decM)([])
 
         ).toEqual([])
     );
@@ -170,7 +170,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, safediv(3), dec)([1])
+            mcompose(add, safedivM(3), decM)([1])
 
         ).toEqual([])
     );
@@ -190,7 +190,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(identity, safediv(3), zero)([6])
+            mcompose(identity, safedivM(3), zero)([6])
 
         ).toEqual([])
     );
@@ -210,7 +210,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(square, safediv(6), dec)([2])
+            mcompose(square, safedivM(6), decM)([2])
 
         ).toEqual([36])
     );
@@ -236,8 +236,8 @@ describe('mcompose', () => {
                 map(
                     mcompose(
                         square,
-                        mlift(cond(lessThan(2), throws('')) as any),
-                        safediv(6))),
+                        maybelift(cond(lessThan(2), throws('')) as any),
+                        safedivM(6))),
                 filter(isSuccess as any),
                 map(getValue))
 
@@ -255,7 +255,7 @@ describe('mcompose', () => {
                 map(
                     mcompose(
                         square,
-                        elift(cond(lessThan(2), throws('e1')) as any),
+                        eitherlift(cond(lessThan(2), throws('e1')) as any),
                         safedivE(6))),
                 filter(isSuccess as any),
                 map(getValue))
