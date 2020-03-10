@@ -109,7 +109,8 @@ export {
     maybeval,
     eitherval,
     eitherlift,
-    maybelift
+    maybelift,
+    getValue
 } from './src/tuple';
 
 

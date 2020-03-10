@@ -212,6 +212,7 @@ import {equal} from 'tsfun';
 * [eitherval](test/tuple/eitherval.spec.ts)
 * [maybelift](test/tuple/maybelift.spec.ts)
 * [eitherlift](test/tuple/eitherlift.spec.ts)
+* [getValue](test/tuple/get_value.spec.ts)
 
 ## Types reference 
 
