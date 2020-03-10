@@ -1,4 +1,4 @@
-import {fromSuccess, mcompose, mlift, mval, toMaybe} from '../../src/tuple';
+import {fromSuccess, mcompose, mlift, mmatch, mval, toMaybe} from '../../src/tuple';
 import {Maybe} from '../../src/type';
 import {identity} from '../../src/core';
 import {flow, val} from '../../src/composition';
@@ -86,12 +86,26 @@ describe('mcompose', () => {
         expect(
 
             flow(
-                [1.5, 0,0, 2.0],
+                [1.5, 0.0, 2.0],
                 map(toMaybe),
                 map(mcompose(square, mlift(div(6)), safediv(3))),
                 filter(isSuccess as any),
                 map(fromSuccess))
 
         ).toEqual([9, 16])
+    );
+
+
+    it('use with flow, mmatch', () =>
+
+        expect(
+
+            flow(
+                [1.5, 0.0, 2.0],
+                map(toMaybe),
+                map(mcompose(square, mlift(div(6)), safediv(3))),
+                map(mmatch(square, val(4))))
+
+        ).toEqual([81, 4, 256])
     );
 });

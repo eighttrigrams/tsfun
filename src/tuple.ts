@@ -83,13 +83,15 @@ export function eflow<T, L, R, U = Either<L, R>>(g: ((...args: Array<T>) => R) =
 }
 
 
-export function mmatch<T, R>(m: Maybe<T>,
-                             onSuccess: (x: T) => R,
+export function mmatch<T, R>(onSuccess: (x: T) => R,
                              onFailure: () => R) {
 
-    return isSuccess(m)
-        ? onSuccess((m as any)[0])
-        : onFailure();
+    return (m: Maybe<T>) => {
+
+        return isSuccess(m)
+            ? onSuccess((m as any)[0])
+            : onFailure();
+    }
 }
 
 
