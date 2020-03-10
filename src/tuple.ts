@@ -46,22 +46,19 @@ export function mmap<T>(f: (x: T) => Maybe<T>) {
 }
 
 
-export function mflow<T, R, U = Maybe<R>>(g: ((...args: Array<T>) => R) = (identity as any),
-                            onSuccess?: (x: R) => U,
-                            onFailure?: () => U) {
+export function mcompose<T, R>(g: ((...args: Array<T>) => R) = (identity as any),
+                               ...fs: Array<(x: T, ...xs: Array<T>) => Maybe<T>>) {
 
-    return (seed: Maybe<T>, ...fs: Array<(x: T, ...xs: Array<T>) => Maybe<T>>): U => {
+    return (seed: Maybe<T>): Maybe<R> => {
 
-        if (isFailure(seed)) return (onFailure ? onFailure() : []) as U;
+        if (isFailure(seed)) return [];
         let results = seed as Array<T>;
-        for (let f of fs) {
+        for (let f of reverse(fs)) {
             const res = f(first(results) as T, ...rest(results));
-            if (isFailure(res)) return (onFailure ? onFailure() : []) as U;
+            if (isFailure(res)) return [];
             results = [(first(res) as T)].concat(results);
         }
-        return (onSuccess
-            ? onSuccess(g(...rest(reverse(results))))
-            : [g(...rest(reverse(results)))]) as U;
+        return [g(...results)];
     }
 }
 
@@ -99,4 +96,19 @@ export function mmatch<T, R>(m: Maybe<T>,
 export function mval<T>(v: T) {
 
     return (..._: any) => [v] as Maybe<T>;
+}
+
+
+export function toMaybe<T>(v: T): Maybe<T> {
+
+    return [v];
+}
+
+
+export function mlift<T,R>(f: (x: T) => R) {
+
+    return (x: T): Maybe<R> => {
+
+        return [f(x)];
+    }
 }
