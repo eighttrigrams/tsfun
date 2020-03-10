@@ -128,7 +128,7 @@ describe('mcompose', () => {
         expect(
 
             flow(
-                [3, 0, 4],
+                [3, 0, 4, 2],
                 map(toMaybe),
                 map(
                     mcompose(
@@ -138,6 +138,6 @@ describe('mcompose', () => {
                 filter(isSuccess as any),
                 map(fromSuccess))
 
-        ).toEqual([4])
+        ).toEqual([4, 9])
     );
 });
