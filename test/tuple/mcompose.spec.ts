@@ -1,7 +1,7 @@
-import {fromSuccess, mcompose, midentity, mlift, mmatch, mval, toMaybe} from '../../src/tuple';
+import {fromSuccess, mcompose, midentity, mlift, mval, toMaybe} from '../../src/tuple';
 import {Maybe} from '../../src/type';
 import {identity} from '../../src/core';
-import {cond, flow, throws, val} from '../../src/composition';
+import {cond, flow, throws} from '../../src/composition';
 import {map} from '../../src/associative';
 import {isSuccess} from '../../src/predicate';
 import {filter} from '../../src/collection';
@@ -22,13 +22,24 @@ describe('mcompose', () => {
     const add = (x: number, y: number) => x + y;
     const square = (x: number) => x * x;
 
+
     it('success', () =>
 
         expect(
 
-            mcompose(add, mval(3), mval(3))([0])
+            mcompose(square, dec)([3])
 
-        ).toEqual([6])
+        ).toEqual([4])
+    );
+
+
+    it('failure', () =>
+
+        expect(
+
+            mcompose(square, dec)([1])
+
+        ).toEqual([])
     );
 
 
@@ -36,9 +47,29 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, dec, dec)([3])
+            mcompose(add, dec, dec)([4])
 
-        ).toEqual([3])
+        ).toEqual([5])
+    );
+
+
+    it('failure at second step', () =>
+
+        expect(
+
+            mcompose(add, dec, dec)([2])
+
+        ).toEqual([])
+    );
+
+
+    it('pass success values to final function', () =>
+
+        expect(
+
+            mcompose(add, mval(3), mval(3))([0])
+
+        ).toEqual([6])
     );
 
 
@@ -49,16 +80,6 @@ describe('mcompose', () => {
             mcompose(midentity, dec, dec)([3])
 
         ).toEqual([[1, 2, 3]])
-    );
-
-
-    it('failure', () =>
-
-        expect(
-
-            mcompose(add, dec, dec)([2])
-
-        ).toEqual([])
     );
 
 
