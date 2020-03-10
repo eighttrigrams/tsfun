@@ -1,9 +1,7 @@
-import {mcompose, mlift, mmatch, toMaybe} from '../../src/tuple';
-import {Maybe} from '../../src/type';
-import {cond, flow, throws, val} from '../../src/composition';
+import {mcompose, mlift} from '../../src/tuple';
+import {cond, throws, val} from '../../src/composition';
 import {map} from '../../src/associative';
 import {is} from '../../src/comparator';
-import {identity} from '../../src/core';
 
 
 /**
