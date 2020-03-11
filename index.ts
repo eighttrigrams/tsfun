@@ -112,7 +112,7 @@ export {
     swap,
     eitherlift,
     maybelift,
-    getValue
+    getSuccess
 } from './src/tuple';
 
 

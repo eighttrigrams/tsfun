@@ -1,11 +1,11 @@
-import {getValue} from '../../src/tuple';
+import {getSuccess} from '../../src/tuple';
 
-describe('getValue', () => {
+describe('getSuccess', () => {
 
     it('Maybe', () =>
         expect(
 
-            getValue([3])
+            getSuccess([3])
 
         ).toEqual(3)
     );
@@ -14,7 +14,7 @@ describe('getValue', () => {
     it('Either', () =>
         expect(
 
-            getValue([undefined, 3])
+            getSuccess([undefined, 3])
 
         ).toEqual(3)
     );
@@ -23,7 +23,7 @@ describe('getValue', () => {
     it('Maybe - illegal argument', () =>
         expect(
 
-            () => getValue([])
+            () => getSuccess([])
 
         ).toThrow()
     );
@@ -32,7 +32,7 @@ describe('getValue', () => {
     it('Either illegal argument', () =>
         expect(
 
-            () => getValue([3, undefined])
+            () => getSuccess([3, undefined])
 
         ).toThrow()
     );

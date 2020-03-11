@@ -73,7 +73,7 @@ export function eitherlift<T,R>(f: (x: T) => R) {
 }
 
 
-export function getValue<T>(x: Fallible<T>) {
+export function getSuccess<T>(x: Fallible<T>) {
 
     if (!isEither(x) && !isMaybe(x)) throw 'illegal argument - neither Maybe nor Either';
     if (!isSuccess(x)) throw 'illegal argument - expected success value to be present';

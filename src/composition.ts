@@ -2,7 +2,7 @@ import {identity} from './core';
 import {Either, Fallible, Mapping, Maybe, Predicate} from './type';
 import {isEither, isFailure, isMaybe, isSuccess} from './predicate';
 import {first, rest, reverse} from './list';
-import {either, getValue, maybe} from './tuple';
+import {either, getSuccess, maybe} from './tuple';
 
 
 const composition = <T = any>(t: any, ...transformations: Array<Function>) =>
@@ -63,12 +63,12 @@ export function mcompose<T, R>(g: ((...args: Array<T>) => R),
     return (seed: Maybe<T>|Either<any, T>) => {
         if (isFailure(seed)) return seed as any;
 
-        let results = [getValue(seed)] as Array<T>;
+        let results = [getSuccess(seed)] as Array<T>;
         for (let f of reverse(fs)) {
 
             const res = f(first(results) as T, ...rest(results));
             if (isFailure(res)) return res as any;
-            results = [getValue(res)].concat(results);
+            results = [getSuccess(res)].concat(results);
         }
         return convert(g(...results), seed) as any;
     }
