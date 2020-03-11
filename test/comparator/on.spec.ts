@@ -1,13 +1,6 @@
-import {samesetBy, by, is, jsonEqual, on} from "../../src/comparator";
-import {
-    isArray,
-    isDefined,
-    isEmpty,
-    isNot,
-    isUndefined,
-    isUndefinedOrEmpty
-} from "../../src/predicate";
-import {intersectBy} from "../../src/set";
+import {samesetBy, by, is, jsonEqual, on} from '../../src/comparator';
+import {isArray, isDefined, isEmpty, isNot, isUndefined, isUndefinedOrEmpty} from '../../src/predicate';
+import {intersectBy} from '../../src/set';
 
 
 /**
@@ -28,10 +21,26 @@ describe('on (by)', () => {
             .toEqual(true));
 
 
+    it('array - first level - path by array', () =>
+        expect(
+
+            on([1], is(7))([4, 7]))
+
+            .toEqual(true));
+
+
     it('array - second level', () =>
         expect(
 
             on('[1][1]', is(7))([3, [2, 7]]))
+
+            .toEqual(true));
+
+
+    it('array - second level - path by array', () =>
+        expect(
+
+            on([1, 1], is(7))([3, [2, 7]]))
 
             .toEqual(true));
 
@@ -48,6 +57,14 @@ describe('on (by)', () => {
         expect(
 
             on('a.b', is(3))({ a: { b: 3 }}))
+
+            .toEqual(true));
+
+
+    it('object - second level - path by array',() =>
+        expect(
+
+            on(['a', 'b'], is(3))({ a: { b: 3 }}))
 
             .toEqual(true));
 

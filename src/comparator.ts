@@ -12,7 +12,7 @@ export function tripleEqual<A>(l:A) {
 
 import {isArray, isNot, isObject, isString} from './predicate';
 import {subtractBy} from './set';
-import {getElForPathIn} from './struct';
+import {getElForPathIn, path} from './struct';
 import {flow} from './composition';
 import {remove, size} from './collection';
 import {reverse, zip} from './list';
@@ -229,18 +229,26 @@ export const equalBy =
                 objectEqualBy(arrayComparator))(o1)(o2);
 
 
-const onBy = (compare: Function) => (path: string) =>
-    (l: any) => (r: any) =>
-        path.length === 0
+const onBy = (compare: Function) => (path_: string|Array<number|string>) =>
+    (l: any) => (r: any) => {
+
+        const path__ = (isString(path_) ? path_ : path(path_ as Array<number|string>)) as string;
+
+        return path__.length === 0
             ? undefined
-            : compare(getElForPathIn(l, path))(getElForPathIn(r, path));
+            : compare(getElForPathIn(l, path__))(getElForPathIn(r, path__));
+    };
 
 
-export const on = (path: string, compare: Function = tripleEqual) =>
-    (l: any) =>
-        typeof compare(l) === 'function'
-            ? (r: any) => onBy(compare)(path)(l)(r)
-            : compare(getElForPathIn(l, path));
+export const on = (path_: string|Array<number|string>, compare: Function = tripleEqual) =>
+    (l: any) => {
+
+        const path__ = (isString(path_) ? path_ : path(path_ as Array<number|string>)) as string;
+
+        return typeof compare(l) === 'function'
+            ? (r: any) => onBy(compare)(path__)(l)(r)
+            : compare(getElForPathIn(l, path__ as any));
+    };
 
 
 const includesBy =
