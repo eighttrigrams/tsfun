@@ -102,6 +102,7 @@ import {equal} from 'tsfun';
 * [flow](test/composition/flow.spec.ts)
 * [compose](test/composition/compose.spec.ts)
 * [cond](test/composition/cond.spec.ts)
+* [conds](test/composition/conds.spec.ts)
 * [identity](test/composition/identity.spec.ts)
 * [collect](test/composition/collect.spec.ts)
 * [val](test/composition/val.spec.ts)

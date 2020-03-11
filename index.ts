@@ -89,6 +89,7 @@ export {
     compose,
     flow,
     cond,
+    conds,
     nop,
     val,
     throws,

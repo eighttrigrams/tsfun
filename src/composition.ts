@@ -1,8 +1,8 @@
 import {identity} from './core';
-import {Either, Fallible, Mapping, Maybe, Predicate} from './type';
-import {isEither, isFailure, isMaybe, isSuccess} from './predicate';
+import {Either, Fallible, Mapping, Maybe, Pair, Predicate} from './type';
+import {isEither, isFailure, isFunction, isMaybe, isSuccess} from './predicate';
 import {first, rest, reverse} from './list';
-import {either, getSuccess, maybe} from './tuple';
+import {either, getSuccess, left, maybe, right} from './tuple';
 
 
 const composition = <T = any>(t: any, ...transformations: Array<Function>) =>
@@ -94,3 +94,20 @@ export function mmatch<T, R>(onSuccess: (x: T) => R,
             : onFailure();
     }
 }
+
+
+export function conds(...cs: Array<Pair>) {
+
+    return (what: any) => {
+
+        for (let c of cs) {
+
+            const result = isFunction(left(c)) ? left(c)(what) : what;
+            if (result) return right(c);
+        }
+        return what;
+    }
+}
+
+
+export const otherwise = val(true);
