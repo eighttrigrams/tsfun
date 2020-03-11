@@ -1,7 +1,7 @@
 import {identity} from './core';
 import {Either, Fallible, Maybe, Pair} from './type';
-import {isEither, isFailure, isMaybe, isSuccess} from './predicate';
-import {first, rest, reverse} from './list';
+import {isEither, isMaybe, isSuccess} from './predicate';
+
 
 export function tuplify(...fs : any[]) {
 
@@ -32,18 +32,6 @@ export function right<T>(pair: Pair<any, T>|Either<any,T>): T {
 export function swap<S, T>([l, r]: Pair<S, T>): Pair<T, S> {
 
     return [r, l] as Pair<T, S>
-}
-
-
-export function maybeval<T>(v: T) {
-
-    return (..._: any) => [v] as Maybe<T>;
-}
-
-
-export function eitherval<T>(v: T) {
-
-    return (..._: any) => [undefined, v] as Either<T>;
 }
 
 

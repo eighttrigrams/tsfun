@@ -1,7 +1,7 @@
-import {eitherlift, eitherval, getValue, maybelift, maybeval, either, maybe} from '../../src/tuple';
+import {eitherlift, getValue, maybelift, either, maybe} from '../../src/tuple';
 import {Either, Maybe} from '../../src/type';
 import {identity} from '../../src/core';
-import {cond, flow, mcompose, multidentity, throws} from '../../src/composition';
+import {cond, flow, mcompose, multidentity, throws, val} from '../../src/composition';
 import {map} from '../../src/associative';
 import {isSuccess} from '../../src/predicate';
 import {filter} from '../../src/collection';
@@ -110,7 +110,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, maybeval(3), maybeval(3))([0])
+            mcompose(add, val([3]), val([3]))([0])
 
         ).toEqual([6])
     );
@@ -120,7 +120,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, eitherval(3), eitherval(3))([undefined, 0])
+            mcompose(add, val([undefined, 3]), val([undefined, 3]))([undefined, 0])
 
         ).toEqual([undefined, 6])
     );

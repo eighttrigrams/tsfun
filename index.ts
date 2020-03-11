@@ -110,8 +110,6 @@ export {
     tuplify,
     pairWith,
     swap,
-    maybeval,
-    eitherval,
     eitherlift,
     maybelift,
     getValue
