@@ -9,6 +9,9 @@ import {conds, otherwise} from '../../src/composition';
  */
 describe('conds', () => {
 
+    const square = (x: number) => x * x;
+
+
     it('first - by function', () =>
         expect(
 
@@ -30,6 +33,18 @@ describe('conds', () => {
             (3)
 
         ).toEqual(5)
+    );
+
+
+    it('first - square result', () =>
+        expect(
+
+            conds(
+                [3, square],
+                [5, square])
+            (3)
+
+        ).toEqual(9)
     );
 
 
