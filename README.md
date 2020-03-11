@@ -93,6 +93,7 @@ import {equal} from 'tsfun';
 * [equal](test/comparator/equal.spec.ts)
 * [equalTo](test/comparator/equal_to.spec.ts)
 * [on](test/comparator/on.spec.ts)
+* [path](test/comparator/path.spec.ts)
 
 ### Composition
 

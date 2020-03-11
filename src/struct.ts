@@ -3,6 +3,7 @@ import {val} from './composition';
 import {isArray, isObject, isString} from './predicate';
 import {reverseUncurry2} from './core';
 import {copy} from './collection';
+import {join} from './string';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -66,9 +67,9 @@ function applyUpdate(copied: any, key: string|number, update_fun?: (val: any) =>
 }
 
 
-export function updateOn(path: string, update_fun?: (val: any) => any) {
+export function updateOn(path_: string, update_fun?: (val: any) => any) {
 
-    return (struct: Object): any => _update(convertPath(path), struct, update_fun)
+    return (struct: Object): any => _update(path(path_), struct, update_fun)
 }
 
 
@@ -122,10 +123,10 @@ const isObject_ = (o: any) => o instanceof Object;
 
 
 // library internal
-export function getElForPathIn(object: any, path: string): any {
+export function getElForPathIn(object: any, path_: string): any {
 
-    if (!path || path.length < 1) return undefined;
-    return _getElForPathIn(object, convertPath(path));
+    if (!path_ || path_.length < 1) return undefined;
+    return _getElForPathIn(object, path(path_));
 }
 
 
@@ -152,22 +153,41 @@ export function _getElForPathIn(object: any, path: Array<string|number>): any {
 }
 
 
-export function convertPath(path: string) {
+export function path(path: string): Array<number|string>;
+export function path(path: Array<number|string>): string;
+export function path(path: string|Array<number|string>): string|Array<number|string> {
 
-    const segments = [];
-    let current = '';
-    for (let i = 0; i < path.length; i++) {
-        if (path[i] !== '[' && path[i] !== '.' && path[i] !== ']') {
-            current += path[i];
-        } else {
-            if (path[i] === ']') {
-                segments.push(parseInt(current));
+    if (isString(path)) {
+
+        const segments = [];
+        let current = '';
+        for (let i = 0; i < path.length; i++) {
+            if (path[i] !== '[' && path[i] !== '.' && path[i] !== ']') {
+                current += path[i];
             } else {
-                if (current) segments.push(current);
+                if (path[i] === ']') {
+                    segments.push(parseInt(current));
+                } else {
+                    if (current) segments.push(current);
+                }
+                current = '';
             }
-            current = '';
         }
+        if (current) segments.push(current);
+        return segments;
+
+    } else {
+
+        let joined = (path as Array<number|string>).map((segment: any) => {
+
+            return isString(segment)
+                ? '.' + segment + '.'
+                : '[' + segment.toString() + ']';
+
+        }).join('').replace('..', '.').replace('.[', '[');
+
+        if (joined.startsWith('.')) joined = joined.slice(1);
+        if (joined.endsWith('.')) joined = joined.slice(0, joined.length-1);
+        return joined;
     }
-    if (current) segments.push(current);
-    return segments;
 }

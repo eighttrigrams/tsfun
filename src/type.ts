@@ -1,7 +1,10 @@
 // ------------ @author Daniel de Oliveira -----------------
 
 
-export interface Map<T> {[prop: string]: T} // same as ObjectCollection
+export interface Map<T> {[prop: string]: T}
+
+
+export type Mapping<A, B> = (_: A) => B;
 
 
 export type Singleton<T> = [T];

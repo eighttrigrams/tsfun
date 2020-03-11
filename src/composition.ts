@@ -1,8 +1,9 @@
 import {identity} from './core';
-import {Either, Fallible, Maybe, Predicate} from './type';
+import {Either, Fallible, Mapping, Maybe, Predicate} from './type';
 import {isEither, isFailure, isMaybe, isSuccess} from './predicate';
 import {first, rest, reverse} from './list';
 import {either, getValue, maybe} from './tuple';
+
 
 const composition = <T = any>(t: any, ...transformations: Array<Function>) =>
     compose(...transformations)(t) as T;
@@ -14,8 +15,6 @@ export const flow = composition;
 export const compose = (...transformations: Array<Function>) => (t: any)  =>
     transformations.reduce((acc, transformation) => transformation(acc), t) as any;
 
-
-type Mapping<A, B> = (_: A) => B;
 
 export function cond<A, B, C>(
     p: boolean|Predicate<A>,

@@ -8,7 +8,7 @@ export {
     dissocOn,
     updateOn,
     getElForPathIn,
-    convertPath
+    path
 } from './src/struct';
 
 
@@ -25,7 +25,9 @@ export {
     Left,
     Right,
     Either,
-    Associative
+    Associative,
+    Fallible,
+    Mapping
 } from './src/type';
 
 
