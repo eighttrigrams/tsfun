@@ -79,6 +79,7 @@ import {equal} from 'tsfun';
 * [subsetOf](test/comparator/subset_of.spec.ts)
 * [supersetOf](test/comparator/superset_of.spec.ts)
 * [sameset](test/comparator/sameset.spec.ts)
+* [includes](test/comparator/includes.spec.ts)
 * [includedIn](test/comparator/included_in.spec.ts)
 
 ###### List

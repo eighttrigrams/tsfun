@@ -71,6 +71,7 @@ export {
     equalTo,
     objectEqual,
     includedIn,
+    includes,
     differentFrom,
     subsetOf,
     by,

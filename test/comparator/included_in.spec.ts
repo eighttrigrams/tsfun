@@ -2,6 +2,8 @@ import {includedIn} from "../../src/comparator";
 
 
 /**
+ * tsfun | includedIn
+ *
  * @author Daniel de Oliveira
  */
 describe('includedIn', () => {

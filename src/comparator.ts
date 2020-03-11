@@ -277,6 +277,29 @@ export function includedIn<A>(as: Array<A>|string) {
     }
 }
 
+
+export function includes(as: string): (a: string) => boolean;
+export function includes<A>(a: A): (as: Array<A>) => boolean;
+export function includes<A>(a: Array<A>|string) {
+
+    return (as: Array<A>|string) => {
+
+        if (isString(as) && isString(a) && (a as any).length === 1) {
+
+            return includedInBy(tripleEqual as any)((as as any).split(''))(a);
+
+        } else if (isArray(as)) {
+
+            return includedInBy(tripleEqual as any)(as as any)(a);
+
+        } else {
+
+            throw 'illegal argument in includes'
+        }
+    }
+}
+
+
 export function arrayEqual<A>(that: Array<A>) {
 
     return arrayEqualBy(undefined as any)(that);
@@ -351,13 +374,22 @@ export function supersetOf<A>(that: Array<A>|string) {
 }
 
 
-export const objectEqual: Comparator = objectEqualBy(arrayEqual as any);
+export function objectEqual(o1: Object) {
+
+    return objectEqualBy(arrayEqual as any)(o1);
+}
 
 
-export const equal = equalBy(arrayEqual as any);
+export function equal(o1: any) {
+
+    return equalBy(arrayEqual as any)(o1);
+}
 
 
-export const equalTo = equal;
+export function equalTo(o1: any) {
+
+    return equal(o1);
+}
 
 
 export function startsWith<A>(s: string): (as: string) => boolean;
