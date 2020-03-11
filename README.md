@@ -51,7 +51,7 @@ import {equal} from 'tsfun';
 ###### Struct
 
 * [has](test/predicate/has.spec.ts) 
-* [hasNot](test/predicate/has_not.spec.ts) 
+* [hasnt](test/predicate/hasnt.spec.ts) 
 
 ###### Tuple
 

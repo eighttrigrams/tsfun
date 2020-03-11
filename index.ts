@@ -40,7 +40,7 @@ export {
     defined,
     undefinedOrEmpty,
     has,
-    hasNot,
+    hasnt,
     empty,
     and,
     or,

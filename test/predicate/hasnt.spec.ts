@@ -1,16 +1,17 @@
-import {has} from '../../src/predicate';
+import {hasnt} from '../../src/predicate';
 
 /**
- * tsfun | has
+ * tsfun | hasnt
  *
  * @author Daniel de Oliveira
  */
-describe('has', () => {
+describe('hasnt', () => {
+
 
     it('true', () =>
         expect(
 
-            has('a.b')({a: {b: 1}}))
+            hasnt('a.c')({a: {b: 1}}))
 
             .toEqual(true));
 
@@ -18,7 +19,7 @@ describe('has', () => {
     it('false', () =>
         expect(
 
-            has('a.c')({a: {b: 1}}))
+            hasnt('a.b')({a: {b: 1}}))
 
             .toEqual(false));
 });

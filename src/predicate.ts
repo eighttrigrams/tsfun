@@ -57,7 +57,7 @@ export function empty(what: any) {
 export const has = (path: string) => (o: Object) => on(path, isDefined)(o);
 
 
-export const hasNot = (path: string) => (o: Object) => not(on(path, isDefined))(o);
+export const hasnt = (path: string) => (o: Object) => not(on(path, isDefined))(o);
 
 
 export function and(...preds: Array<Predicate<any>>) {
