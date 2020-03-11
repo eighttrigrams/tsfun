@@ -229,26 +229,16 @@ export const equalBy =
                 objectEqualBy(arrayComparator))(o1)(o2);
 
 
-const onBy = (compare: Function) => (path_: string|Array<number|string>) =>
-    (l: any) => (r: any) => {
-
-        const path__ = (isString(path_) ? path_ : path(path_ as Array<number|string>)) as string;
-
-        return path__.length === 0
-            ? undefined
-            : compare(getElForPathIn(l, path__))(getElForPathIn(r, path__));
-    };
+const onBy = (compare: Function) => (path: string|Array<number|string>) =>
+    (l: any) => (r: any) => path.length === 0
+        ? undefined
+        : compare(getElForPathIn(l, path))(getElForPathIn(r, path));
 
 
-export const on = (path_: string|Array<number|string>, compare: Function = tripleEqual) =>
-    (l: any) => {
-
-        const path__ = (isString(path_) ? path_ : path(path_ as Array<number|string>)) as string;
-
-        return typeof compare(l) === 'function'
-            ? (r: any) => onBy(compare)(path__)(l)(r)
-            : compare(getElForPathIn(l, path__ as any));
-    };
+export const on = (path: string|Array<number|string>, compare: Function = tripleEqual) =>
+    (l: any) => typeof compare(l) === 'function'
+        ? (r: any) => onBy(compare)(path as any)(l)(r)
+        : compare(getElForPathIn(l, path as any));
 
 
 const includesBy =

@@ -123,10 +123,12 @@ const isObject_ = (o: any) => o instanceof Object;
 
 
 // library internal
-export function getElForPathIn(object: any, path_: string): any {
+export function getElForPathIn(object: any, path_: string|Array<string|number>): any {
 
     if (!path_ || path_.length < 1) return undefined;
-    return _getElForPathIn(object, path(path_));
+
+    return _getElForPathIn(object,
+        (isString(path_) ? path(path_ as string) : path_) as Array<string|number>);
 }
 
 
