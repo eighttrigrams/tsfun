@@ -1,6 +1,7 @@
 import {Either, Maybe, Predicate} from './type';
 import {on} from './comparator';
 import {first} from './list';
+import {reduce} from './associative';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -57,20 +58,20 @@ export const has = (path: string) => (o: Object) => on(path, isDefined)(o);
 export const hasNot = (path: string) => (o: Object) => not(on(path, isDefined))(o);
 
 
-export function and(pred1: Predicate<any>, pred2: Predicate<any>) {
+export function and(...preds: Array<Predicate<any>>) {
 
-    return (argument: any): any => {
+    return (argument: any): boolean => {
 
-        return pred1(argument) && pred2(argument);
+        return reduce((acc: boolean, p: Predicate<any>) => acc && p(argument), true)(preds);
     }
 }
 
 
-export function or(pred1: Predicate<any>, pred2: Predicate<any>) {
+export function or(...preds: Array<Predicate<any>>) {
 
     return (argument: any): any => {
 
-        return pred1(argument) || pred2(argument);
+        return reduce((acc: boolean, p: Predicate<any>) => acc || p(argument), false)(preds);
     }
 }
 

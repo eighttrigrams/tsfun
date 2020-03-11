@@ -21,6 +21,14 @@ describe('and', () => {
         ).toBe(false));
 
 
+    it('three args', () =>
+        expect(
+
+            and(is(3), isnt(4), isnt(5))(6)
+
+        ).toBe(false));
+
+
     // use case
 
     it('use case', () =>
