@@ -1,14 +1,16 @@
 import {flow as asyncFlow} from '../../src/async';
+
+
 /**
+ * tsfun | async/flow
+ *
  * @author Daniel de Oliveira
  */
-
-describe('asyncFlow', () => {
+describe('async/flow', () => {
 
     it('asyncFlow', async done => {
 
         expect(
-
 
             await asyncFlow(
                 'abc',

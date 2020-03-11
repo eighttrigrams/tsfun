@@ -246,6 +246,7 @@ import {map as asyncMap} from 'tsfun/async';
 * [reduce](test/async/reduce.spec.ts)
 * [flow](test/async/flow.spec.ts)
 * [separate](test/async/separate.spec.ts)
+* [mcompose](test/async/mcompose.spec.ts)
 
 ### Lazy functions
 

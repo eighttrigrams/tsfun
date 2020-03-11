@@ -75,7 +75,7 @@ export function mcompose<T, R>(g: ((...args: Array<T>) => R),
 }
 
 
-function convert<T>(what: any, basedOn: Fallible<T>): any {
+export function convert<T>(what: any, basedOn: Fallible<T>): any {
 
     if (!isEither(basedOn) && !isMaybe(basedOn)) throw 'illegal argument - basedOn is neither Maybe nor Either';
     return isEither(basedOn)

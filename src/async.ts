@@ -1,6 +1,9 @@
-import {Pair, Map} from './type';
-import {isArray, isObject, isString} from './predicate';
+import {Pair, Map, Either, Maybe} from './type';
+import {isArray, isFailure, isObject, isString} from './predicate';
 import {keys, keysAndValues} from './associative';
+import {getSuccess} from './tuple';
+import {first, rest, reverse} from './list';
+import {convert} from './composition';
 
 
 export function forEach<A>(f: (_: A, i?: number|string) => Promise<void>): {
@@ -206,4 +209,34 @@ export async function flow(a: any, ...b: any[]) {
     let currentA = a;
     for (let currentB of b) currentA = await currentB(currentA);
     return currentA;
+}
+
+
+export function mcompose<T, R>(g: ((...args: Array<T>) => Promise<R>|R),
+                               ...fs: Array<(x: T, ...xs: Array<T>) => Promise<Either<any, T>>|Either<any, T>>)
+    : (seed: Either<any, T>) => Promise<Either<any, R>>;
+export function mcompose<T, R>(g: ((...args: Array<T>) => Promise<R>|R),
+                               ...fs: Array<(x: T, ...xs: Array<T>) => Promise<Maybe<T>>|Maybe<T>>)
+    : (seed: Maybe<T>) => Promise<Maybe<R>>;
+export function mcompose<T, R>(g: ((...args: Array<T>) => Promise<R>|R),
+                               ...fs: Array<
+                                   (x: T, ...xs: Array<T>) =>
+                                       Promise<Either<any, T>>
+                                       |Promise<Maybe<T>>
+                                       |Either<any, T>
+                                       |Maybe<T>
+                                   >) {
+
+    return async (seed: Maybe<T>|Either<any, T>) => {
+        if (isFailure(seed)) return seed as any;
+
+        let results = [getSuccess(seed)] as Array<T>;
+        for (let f of reverse(fs)) {
+
+            const res = await f(first(results) as T, ...rest(results));
+            if (isFailure(res)) return res as any;
+            results = [getSuccess(res)].concat(results);
+        }
+        return convert(await g(...results), seed) as any;
+    }
 }
