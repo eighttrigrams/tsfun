@@ -1,4 +1,4 @@
-import {is} from '../../src/comparator';
+import {is, jsonEqual, on} from '../../src/comparator';
 import {conds, otherwise} from '../../src/composition';
 
 /**
@@ -94,5 +94,17 @@ describe('conds', () => {
             (4)
 
         ).toEqual(4)
+    );
+
+
+    it('use case', () =>
+        expect(
+
+            conds(
+                [on('a', is(7)), on('a', square)],
+                [jsonEqual({a: 7}), 10])
+            ({a: 7})
+
+        ).toEqual(49)
     );
 });
