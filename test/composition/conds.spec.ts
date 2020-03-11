@@ -1,5 +1,6 @@
 import {is, jsonEqual, on} from '../../src/comparator';
-import {conds, otherwise} from '../../src/composition';
+import {conds, flow, otherwise} from '../../src/composition';
+import {to} from '../../src/struct';
 
 /**
  * tsfun | conds
@@ -100,10 +101,11 @@ describe('conds', () => {
     it('use case', () =>
         expect(
 
-            conds(
-                [on('a', is(7)), on('a', square)],
-                [jsonEqual({a: 7}), 10])
-            ({a: 7})
+            flow(
+                {a: 7},
+                conds(
+                    [on('a', is(7)), on('a', square)],
+                    [jsonEqual({a: 7}), to('a')]))
 
         ).toEqual(49)
     );
