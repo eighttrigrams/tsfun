@@ -4,13 +4,13 @@
 export interface Map<T> {[prop: string]: T}
 
 
-export type Mapping<A, B> = (_: A) => B;
+export type Mapping<A = any, B = A> = (_: A) => B;
 
 
 export type Singleton<T> = [T];
 
 
-export type Pair<A,B> = [A, B];
+export type Pair<A = any, B = A> = [A, B];
 
 
 export type Left<T = any> = [T, undefined];

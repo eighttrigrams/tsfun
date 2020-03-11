@@ -221,10 +221,11 @@ import {equal} from 'tsfun';
 * [Pair](test/type/pair.spec.ts)
 * [Maybe](test/type/maybe.spec.ts)
 * [Either](test/type/either.spec.ts)
-* [List](test/type/list.spec.ts)
 * [Map](test/type/map.spec.ts)
+* [List](test/type/list.spec.ts)
 * [Associative](test/type/associative.spec.ts)
 * [Collection](test/type/collection.spec.ts)
+* [Mapping](test/type/predicate.spec.ts)
 * [Predicate](test/type/predicate.spec.ts)
 
 ## Special functions reference
