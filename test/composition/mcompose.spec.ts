@@ -86,6 +86,26 @@ describe('mcompose', () => {
     );
 
 
+    it('access previous value - Maybe', () =>
+
+        expect(
+
+            mcompose(add, (vZero: number, vMinus1: number) => [vMinus1-vZero], decM)([4])
+
+        ).toEqual([4])
+    );
+
+
+    it('access previous value - Either', () =>
+
+        expect(
+
+            mcompose(add, (vZero: number, vMinus1: number) => [undefined, vMinus1-vZero], decE)([undefined, 4])
+
+        ).toEqual([undefined, 4])
+    );
+
+
     it('failure at second step - Maybe', () =>
 
         expect(
