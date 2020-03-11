@@ -102,8 +102,11 @@ export function conds(...cs: Array<Pair>) {
 
         for (let c of cs) {
 
-            const result = isFunction(left(c)) ? left(c)(what) : what;
-            if (result) return right(c);
+            if (isFunction(left(c))) {
+                if (left(c)(what)) return right(c);
+            } else {
+                if (left(c) === what) return right(c);
+            }
         }
         return what;
     }

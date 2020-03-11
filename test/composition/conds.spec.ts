@@ -49,8 +49,8 @@ describe('conds', () => {
         expect(
 
             conds(
-                [is(3), 5],
-                [is(5), 6])
+                [3, 5],
+                [5, 6])
             (5)
 
         ).toEqual(6)
