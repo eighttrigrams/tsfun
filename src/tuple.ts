@@ -1,6 +1,6 @@
 import {identity} from './core';
 import {Either, Fallible, Maybe, Pair} from './type';
-import {isEither, isMaybe, isSuccess} from './predicate';
+import {isArray, isEither, isMaybe, isSuccess} from './predicate';
 
 
 export function tuplify(...fs : any[]) {
@@ -47,12 +47,14 @@ export function either<T>(v: T): Either<any, T> {
 }
 
 
+export function maybeLift<T, R>(f: (x: T) => R): (x: T) => Maybe<R>;
+export function maybeLift<T, R>(f: (...x: T[]) => R): (...x: T[]) => Maybe<R>;
 export function maybeLift<T,R>(f: (x: T) => R) {
 
-    return (x: T): Maybe<R> => {
+    return (...x: T[]): Maybe<R> => {
 
         try {
-            return [f(x)];
+            return [isArray(x) ? (f as any)(...x) : (f as any)(x)];
         } catch {
             return [];
         }
@@ -60,12 +62,14 @@ export function maybeLift<T,R>(f: (x: T) => R) {
 }
 
 
-export function eitherLift<T,R>(f: (x: T) => R) {
+export function eitherLift<T,R>(f: (x: T) => R): (x: T) => Either<any, R>;
+export function eitherLift<T,R>(f: (...x: T[]) => R): (...x: T[]) => Either<any, R>;
+export function eitherLift<T,R>(f: (...x: T[]) => R) {
 
-    return (x: T): Either<any, R> => {
+    return (...x: Array<T>): Either<any, R> => {
 
         try {
-            return [undefined, f(x)];
+            return [undefined, f(...x)];
         } catch (e) {
             return [e, undefined];
         }

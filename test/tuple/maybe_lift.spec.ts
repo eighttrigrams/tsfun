@@ -17,7 +17,7 @@ describe('maybelift', () => {
 
         expect(
 
-            maybeLift(val(3))([17])
+            maybeLift(val(3))(17)
 
         ).toEqual([3])
     );
@@ -27,9 +27,19 @@ describe('maybelift', () => {
 
         expect(
 
-            maybeLift(throws(3))([19])
+            maybeLift(throws(3))(19)
 
         ).toEqual([])
+    );
+
+
+    it('varargs', () =>
+
+        expect(
+
+            maybeLift((x: number, y: number) => x + y)(17, 19)
+
+        ).toEqual([36])
     );
 
 

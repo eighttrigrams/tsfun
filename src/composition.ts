@@ -35,7 +35,7 @@ export function cond<A, B, C>(
 export function nop() {}
 
 
-export function val<A>(v: A) { return () => v }
+export function val<A>(v: A) { return () => v as A }
 
 
 export function throws(e: any) {

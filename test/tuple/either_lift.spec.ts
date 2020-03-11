@@ -17,7 +17,7 @@ describe('eitherLift', () => {
 
         expect(
 
-            eitherLift(val(3))([17])
+            eitherLift(val(3))(17)
 
         ).toEqual([undefined, 3])
     );
@@ -27,9 +27,19 @@ describe('eitherLift', () => {
 
         expect(
 
-            eitherLift(throws(3))([19])
+            eitherLift(throws(3))(19)
 
         ).toEqual([3, undefined])
+    );
+
+
+    it('accept varargs', () =>
+
+        expect(
+
+            eitherLift((x: number, y: number) => x + y)(17, 19)
+
+        ).toEqual([undefined, 36])
     );
 
 

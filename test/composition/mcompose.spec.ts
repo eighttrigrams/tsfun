@@ -90,7 +90,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, (vZero: number, vMinus1: number) => [vMinus1-vZero], decM)([4])
+            mcompose(add, maybeLift((vZero: number, vMinus1: number) => vMinus1-vZero), decM)([4])
 
         ).toEqual([4])
     );
@@ -100,7 +100,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, (vZero: number, vMinus1: number) => [undefined, vMinus1-vZero], decE)([undefined, 4])
+            mcompose(add, eitherLift((vZero: number, vMinus1: number) => vMinus1-vZero), decE)([undefined, 4])
 
         ).toEqual([undefined, 4])
     );
