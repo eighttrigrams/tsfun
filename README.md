@@ -43,9 +43,10 @@ import {equal} from 'tsfun';
 * [isAssociative](test/predicate/is_associative.spec.ts)
 * [isCollection](test/predicate/is_collection.spec.ts)
 * [isList](test/predicate/is_list.spec.ts)
+* [isSingleton](test/predicate/is_singleton.spec.ts)
+* [isPair](test/predicate/is_pair.spec.ts)
 * [isEither](test/predicate/is_either.spec.ts)
 * [isMaybe](test/predicate/is_maybe.spec.ts)
-* [isPair](test/predicate/is_pair.spec.ts)
 
 ###### Struct
 

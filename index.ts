@@ -48,6 +48,7 @@ export {
     isArray,
     isObject,
     isAssociative,
+    isSingleton,
     isList,
     isNumber,
     isBoolean,

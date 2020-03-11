@@ -164,6 +164,14 @@ export function isPair(pair: any) {
 }
 
 
+export function isSingleton(l: Array<any>) {
+
+    if (!isArray(l)) throw 'illegal argument - array expected';
+    if (l.length !== 1) return false;
+    return true;
+}
+
+
 export function isEither(either: any) {
 
     if (!isArray(either)) return false;
