@@ -1,22 +1,20 @@
+import {Comparator, ComparatorProducer, Pair, Predicate} from './type';
+import {isArray, isNot, isObject, isString} from './predicate';
+import {subtractBy} from './set';
+import {getElForPathIn} from './struct';
+import {flow} from './composition';
+import {remove, size} from './collection';
+import {reverse, zip} from './list';
+
 
 
 // ------------ @author Daniel de Oliveira -----------------
 
-import {Comparator, ComparatorProducer, Pair, Predicate} from './type';
 
 export function tripleEqual<A>(l:A) {
 
     return (r: A) => l === r;
 }
-
-
-import {isArray, isNot, isObject, isString} from './predicate';
-import {subtractBy} from './set';
-import {getElForPathIn, path} from './struct';
-import {flow} from './composition';
-import {remove, size} from './collection';
-import {reverse, zip} from './list';
-
 
 
 export function greaterThan(than: number): (that: number) => boolean;
@@ -125,8 +123,14 @@ export const includedInBy = (compare: Comparator) => <A>(as: Array<A>) =>
 
         if (!isArray(as)) throw 'illegal argument - includedInBy: expected an Array';
 
-        return includesBy(compare)(as, a).length > 0;
+        return includesBy(compare)(a)(as);
     };
+
+
+export const includesBy =
+    (compare: Comparator = tripleEqual as any) =>
+        <A>(a: A) => (as: Array<A>) =>
+            as.filter(compare(a)).length > 0;
 
 
 export const subsetOfBy = (compare: Comparator) => <A>(superset: Array<A>) =>
@@ -241,12 +245,6 @@ export const on = (path: string|Array<number|string>, compare: Function = triple
         : compare(getElForPathIn(l, path as any));
 
 
-const includesBy =
-    (compare: Comparator = tripleEqual as any) =>
-        <A>(as: Array<A>, a: A) =>
-            as.filter(compare(a));
-
-
 export const by = <A>(p: Predicate<A>) => p;
 
 
@@ -286,11 +284,11 @@ export function includes<A>(a: Array<A>|string) {
 
         if (isString(as) && isString(a) && (a as any).length === 1) {
 
-            return includedInBy(tripleEqual as any)((as as any).split(''))(a);
+            return includesBy(tripleEqual as any)(a)((as as any).split(''));
 
         } else if (isArray(as)) {
 
-            return includedInBy(tripleEqual as any)(as as any)(a);
+            return includesBy(tripleEqual as any)(a)(as as any);
 
         } else {
 

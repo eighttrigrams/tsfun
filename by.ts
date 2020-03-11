@@ -17,6 +17,7 @@ export {
     equalBy,
     objectEqualBy,
     includedInBy,
+    includesBy,
     differentFromBy,
     subsetOfBy,
     supersetOfBy

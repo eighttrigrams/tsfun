@@ -279,6 +279,7 @@ import {samesetBy} from 'tsfun/by';
 
 * [differentFromBy](test/comparator/different_from_by.spec.ts)
 * [includedInBy](test/comparator/included_in_by.spec.ts)
+* [includesBy](test/comparator/includes_by.spec.ts)
 * [subsetOfBy](test/comparator/subset_of_by.spec.ts)
 * [supersetOfBy](test/comparator/superset_of_by.spec.ts)
 * [samesetBy](test/comparator/sameset_by.spec.ts)
