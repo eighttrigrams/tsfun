@@ -15,6 +15,14 @@ describe('getOn', () => {
             .toEqual(4));
 
 
+    it('first level object - second level object - by array',() =>
+        expect(
+
+            getOn(['a','b'], undefined)({a: {b: 4}}))
+
+            .toEqual(4));
+
+
     it('first level object - second level key missing',() =>
         expect(
 

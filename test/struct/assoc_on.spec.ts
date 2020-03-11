@@ -7,7 +7,15 @@ describe('assocOn', () => {
     it('create path', () =>
         expect(
 
-            equal({ a: { b: { c: 3}}})(assocOn('a.b.c', 3)({}))
+            equal({ a: { b: { c: 3 }}})(assocOn('a.b.c', 3)({}))
+
+        ).toBeTruthy());
+
+
+    it('create path - by array', () =>
+        expect(
+
+            equal({ a: { b: { c: 3 }}})(assocOn(['a', 'b', 'c'], 3)({}))
 
         ).toBeTruthy());
 

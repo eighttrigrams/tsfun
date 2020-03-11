@@ -14,6 +14,14 @@ describe('lookupOn', () => {
             .toEqual(4));
 
 
+    it('first level object - second level object - by array',() =>
+        expect(
+
+            lookupOn({a: {b: 4}})(['a', 'b']))
+
+            .toEqual(4));
+
+
     it('first level object - second level array',() =>
         expect(
 

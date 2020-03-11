@@ -44,7 +44,7 @@ export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function
 }
 
 
-export function getOn<T>(path: string, alternative?: any) {
+export function getOn<T>(path: string|Array<string|number>, alternative?: any) {
 
     return (ds: Object) => {
 
@@ -54,7 +54,7 @@ export function getOn<T>(path: string, alternative?: any) {
 }
 
 
-export const lookupOn = <T>(ds: Object, alternative?: T) => (path: string) => {
+export const lookupOn = <T>(ds: Object, alternative?: T) => (path: string|Array<string|number>) => {
 
     return getOn(path, alternative)(ds);
 };
@@ -67,18 +67,20 @@ function applyUpdate(copied: any, key: string|number, update_fun?: (val: any) =>
 }
 
 
-export function updateOn(path_: string, update_fun?: (val: any) => any) {
+export function updateOn(path_: string|Array<string|number>, update_fun?: (val: any) => any) {
 
-    return (struct: Object): any => _update(path(path_), struct, update_fun)
+    return (struct: Object): any => _update(path_, struct, update_fun)
 }
 
 
-function _update(path: Array<string|number>, struct: Object, update_fun?: (val: any) => any, ) {
+function _update(path__: string|Array<string|number>, struct: Object, update_fun?: (val: any) => any, ) {
 
-    const key = path[0];
+    const path_ = (isString(path__) ? path(path__ as any) : path__) as Array<string|number>;
+
+    const key = path_[0];
     let copied = undefined;
 
-    if (path.length === 1) {
+    if (path_.length === 1) {
         copied = isString(key)
             ? Object.assign({}, struct) as Map<any>
             : copy(struct as any) as Map<any>;
@@ -90,20 +92,20 @@ function _update(path: Array<string|number>, struct: Object, update_fun?: (val: 
             ? Object.assign({}, struct) as Map<any>
             : copy(struct as any) as Map<any>;
 
-        path.shift();
-        copied[key] = _update(path, copied[key], update_fun);
+        path_.shift();
+        copied[key] = _update(path_, copied[key], update_fun);
     }
     return copied;
 }
 
 
-export const assocOn = (path: string, v: any) => updateOn(path, val(v));
+export const assocOn = (path: string|Array<string|number>, v: any) => updateOn(path, val(v));
 
 
-export const dissocOn = (path: string) => updateOn(path);
+export const dissocOn = (path: string|Array<string|number>) => updateOn(path);
 
 
-export function to<T = any>(path: string) {
+export function to<T = any>(path: string|Array<string|number>) {
 
     return (s: any) => (reverseUncurry2(getElForPathIn))(path)(s) as T;
 }

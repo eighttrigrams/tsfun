@@ -3,13 +3,29 @@ import {updateOn} from '../../src/struct';
 
 describe('updateOn', () => {
 
-
     it('update - first layer', () => {
 
         const embeddedStruct = { d: 'd_val' };
 
         const objectStruct = { a: 'a_val', c: embeddedStruct };
         const resultStruct = updateOn('a', (val: string) => val + '_new')(objectStruct);
+
+        expect(resultStruct).not.toBe(objectStruct);
+        expect(resultStruct['a']).toBe('a_val_new');
+        expect(resultStruct['c']).toBe(embeddedStruct);
+
+        // changes
+        resultStruct['a'] = 'a_val_changed';
+        expect(objectStruct['a']).toBe('a_val');
+    });
+
+
+    it('update - first layer - by array', () => {
+
+        const embeddedStruct = { d: 'd_val' };
+
+        const objectStruct = { a: 'a_val', c: embeddedStruct };
+        const resultStruct = updateOn(['a'], (val: string) => val + '_new')(objectStruct);
 
         expect(resultStruct).not.toBe(objectStruct);
         expect(resultStruct['a']).toBe('a_val_new');

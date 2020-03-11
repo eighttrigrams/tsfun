@@ -24,6 +24,14 @@ describe('to', () => {
             .toEqual({c: 'd'}));
 
 
+    it('to - by array', () =>
+        expect(
+
+            to(['a', 'b'])({a: {b: {c: 'd'}}}))
+
+            .toEqual({c: 'd'}));
+
+
     it('to with map', () =>
         expect(
 

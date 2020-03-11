@@ -17,6 +17,20 @@ describe('dissocOn', () => {
     });
 
 
+    it('dissoc - first layer - by array', () => {
+
+        const embeddedStruct = { d: 'd_val' };
+
+        const objectStruct = { a: 'a_val', c: embeddedStruct };
+        const resultStruct = dissocOn(['c'])(objectStruct);
+
+        expect(resultStruct).not.toBe(objectStruct);
+        expect(embeddedStruct['d']).toBe('d_val');
+        expect(objectStruct['a']).toBe('a_val');
+        expect(resultStruct['c']).toBeUndefined();
+    });
+
+
     it('dissoc - second layer', () => {
 
         const embeddedStruct = { e: 'e_val' };
