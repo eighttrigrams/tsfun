@@ -15,6 +15,8 @@ export {
 export {
     Map,
     Pair,
+    Just,
+    Nothing,
     Predicate,
     Singleton,
     Maybe,
