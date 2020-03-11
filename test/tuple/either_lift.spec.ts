@@ -1,4 +1,4 @@
-import {eitherlift} from '../../src/tuple';
+import {eitherLift} from '../../src/tuple';
 import {cond, mcompose, throws, val} from '../../src/composition';
 import {map} from '../../src/associative';
 import {is} from '../../src/comparator';
@@ -9,7 +9,7 @@ import {is} from '../../src/comparator';
  *
  * @author Daniel de Oliveira
  */
-describe('eitherlift', () => {
+describe('eitherLift', () => {
 
     const square = (x: number) => x * x;
 
@@ -17,7 +17,7 @@ describe('eitherlift', () => {
 
         expect(
 
-            eitherlift(val(3))([17])
+            eitherLift(val(3))([17])
 
         ).toEqual([undefined, 3])
     );
@@ -27,7 +27,7 @@ describe('eitherlift', () => {
 
         expect(
 
-            eitherlift(throws(3))([19])
+            eitherLift(throws(3))([19])
 
         ).toEqual([3, undefined])
     );
@@ -37,7 +37,7 @@ describe('eitherlift', () => {
 
         expect(
 
-            map(mcompose(square, eitherlift(cond(is(1.5), throws(3)))))([[undefined, 1.5], [undefined, 0], [undefined, 2]])
+            map(mcompose(square, eitherLift(cond(is(1.5), throws(3)))))([[undefined, 1.5], [undefined, 0], [undefined, 2]])
 
         ).toEqual([[3, undefined],[undefined, 0],[undefined, 4]])
     );

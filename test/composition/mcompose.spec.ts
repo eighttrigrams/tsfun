@@ -1,4 +1,4 @@
-import {eitherlift, getSuccess, maybelift, either, maybe} from '../../src/tuple';
+import {eitherLift, getSuccess, maybeLift, either, maybe} from '../../src/tuple';
 import {Either, Maybe} from '../../src/type';
 import {identity} from '../../src/core';
 import {cond, flow, mcompose, multidentity, throws, val} from '../../src/composition';
@@ -236,7 +236,7 @@ describe('mcompose', () => {
                 map(
                     mcompose(
                         square,
-                        maybelift(cond(lessThan(2), throws('')) as any),
+                        maybeLift(cond(lessThan(2), throws('')) as any),
                         safedivM(6))),
                 filter(isSuccess as any),
                 map(getSuccess))
@@ -255,7 +255,7 @@ describe('mcompose', () => {
                 map(
                     mcompose(
                         square,
-                        eitherlift(cond(lessThan(2), throws('e1')) as any),
+                        eitherLift(cond(lessThan(2), throws('e1')) as any),
                         safedivE(6))),
                 filter(isSuccess as any),
                 map(getSuccess))

@@ -1,4 +1,4 @@
-import {maybelift} from '../../src/tuple';
+import {maybeLift} from '../../src/tuple';
 import {cond, mcompose, throws, val} from '../../src/composition';
 import {map} from '../../src/associative';
 import {is} from '../../src/comparator';
@@ -17,7 +17,7 @@ describe('maybelift', () => {
 
         expect(
 
-            maybelift(val(3))([17])
+            maybeLift(val(3))([17])
 
         ).toEqual([3])
     );
@@ -27,7 +27,7 @@ describe('maybelift', () => {
 
         expect(
 
-            maybelift(throws(3))([19])
+            maybeLift(throws(3))([19])
 
         ).toEqual([])
     );
@@ -37,7 +37,7 @@ describe('maybelift', () => {
 
         expect(
 
-            map(mcompose(square, maybelift(cond(is(1.5), throws(3)))))([[1.5], [0], [2]])
+            map(mcompose(square, maybeLift(cond(is(1.5), throws(3)))))([[1.5], [0], [2]])
 
         ).toEqual([[],[0],[4]])
     );

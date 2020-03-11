@@ -47,7 +47,7 @@ export function either<T>(v: T): Either<any, T> {
 }
 
 
-export function maybelift<T,R>(f: (x: T) => R) {
+export function maybeLift<T,R>(f: (x: T) => R) {
 
     return (x: T): Maybe<R> => {
 
@@ -60,7 +60,7 @@ export function maybelift<T,R>(f: (x: T) => R) {
 }
 
 
-export function eitherlift<T,R>(f: (x: T) => R) {
+export function eitherLift<T,R>(f: (x: T) => R) {
 
     return (x: T): Either<any, R> => {
 

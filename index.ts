@@ -110,8 +110,8 @@ export {
     tuplify,
     pairWith,
     swap,
-    eitherlift,
-    maybelift,
+    eitherLift,
+    maybeLift,
     getSuccess
 } from './src/tuple';
 
