@@ -2,6 +2,11 @@ import {is} from '../../src/comparator';
 import {or} from '../../src/predicate';
 
 
+/**
+ * tsfun | or
+ *
+ * @author Daniel de Oliveira
+ */
 describe('or', () => {
 
 

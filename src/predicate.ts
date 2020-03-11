@@ -1,7 +1,9 @@
 import {Either, Maybe, Predicate} from './type';
-import {on} from './comparator';
+import {is, on} from './comparator';
 import {first} from './list';
-import {reduce} from './associative';
+import {map, reduce} from './associative';
+import {flow} from './composition';
+import {filter, size} from './collection';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -76,11 +78,15 @@ export function or(...preds: Array<Predicate<any>>) {
 }
 
 
-export function xor(pred1: Predicate<any>, pred2: Predicate<any>) {
+export function xor(...preds: Array<Predicate<any>>) {
 
     return (argument: any): any => {
 
-        return (pred1(argument) && !pred2(argument)) || (!pred1(argument) && pred2(argument));
+        return flow(preds,
+            map((p: Predicate<any>) => p(argument)),
+            filter(is(true)),
+            size,
+            is(1));
     }
 }
 

@@ -3,6 +3,11 @@ import {greaterThan, is, isnt} from '../../src/comparator';
 import {filter} from '../../src/collection';
 
 
+/**
+ * tsfun | and
+ *
+ * @author Daniel de Oliveira
+ */
 describe('and', () => {
 
     it('true', () =>
