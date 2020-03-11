@@ -174,6 +174,8 @@ import {equal} from 'tsfun';
 * [prune](test/collection/prune.spec.ts)
 * [size](test/collection/size.spec.ts)
 * [indices](test/collection/indices.spec.ts)
+* [all](test/collection/all.spec.ts)
+* [any](test/collection/any.spec.ts)
 
 ### Set
 

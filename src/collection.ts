@@ -1,6 +1,6 @@
 import {Map, Pair, Predicate} from './type';
-import {isArray, isDefined, isObject, isString} from './predicate';
-import {keys, reduce} from './associative';
+import {and, isArray, isDefined, isObject, isString} from './predicate';
+import {keys, reduce, values} from './associative';
 
 
 export function copy<T>(struct: Array<T>): Array<T>;
@@ -148,4 +148,26 @@ export function separate<A>(p: (a: A, i?: number|string) => boolean) {
 
     return (as: Array<A>|Map<A>): Pair<Array<A>, Array<A>>|Pair<Map<A>,Map<A>> =>
         [filter(p)(as as any), remove(p)(as as any)];
+}
+
+
+export function all<T>(p: Predicate<T>) {
+
+    return (as: string|Array<T>|Map<T>): boolean => {
+
+        return (isString(as))
+            ? (as as any).split('').every(p)
+            : (values(as as any)).every(p);
+    }
+}
+
+
+export function any<T>(p: Predicate<T>) {
+
+    return (as: string|Array<T>|Map<T>): boolean => {
+
+        return (isString(as))
+            ? (as as any).split('').some(p)
+            : (values(as as any)).some(p);
+    }
 }

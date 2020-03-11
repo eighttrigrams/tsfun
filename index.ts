@@ -188,4 +188,6 @@ export {
     remove,
     copy,
     separate,
+    any,
+    all
 } from './src/collection'
