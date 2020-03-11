@@ -1,5 +1,5 @@
 import {swap} from '../../src/tuple';
-import {Pair} from '../../src/type';
+import {Either, Pair} from '../../src/type';
 
 
 describe('swap', () => {
@@ -19,5 +19,14 @@ describe('swap', () => {
 
         // wrong
         // const p2: Pair<string, number> = swap(p1);
+    });
+
+
+    it('swap typing - with either', () => {
+
+        const p1: Either<string, string> = ['a', undefined];
+        const p2: Either<string, string> = swap(p1);
+
+        // works if both type args are of the same type
     })
 });
