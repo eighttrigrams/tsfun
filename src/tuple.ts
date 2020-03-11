@@ -35,13 +35,13 @@ export function swap<S, T>([l, r]: Pair<S, T>): Pair<T, S> {
 }
 
 
-export function maybe<T>(v: T): Maybe<T> {
+export function maybe<T = any>(v: T): Maybe<T> {
 
     return [v];
 }
 
 
-export function either<T>(v: T): Either<any, T> {
+export function either<L = string, R = any>(v: R): Either<L, R> {
 
     return [undefined, v];
 }

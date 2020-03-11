@@ -19,7 +19,7 @@ export type Left<T = any> = [T, undefined];
 export type Right<T = any> = [undefined, T];
 
 
-export type Either<T1 = any, T2 = any> = Left<T1>|Right<T2>;
+export type Either<L = any, R = any> = Left<L>|Right<R>;
 
 
 export type Just<T = any> = [T];

@@ -212,6 +212,8 @@ import {equal} from 'tsfun';
 * [left](test/tuple/left.spec.ts)
 * [right](test/tuple/right.spec.ts)
 * [swap](test/tuple/swap.spec.ts)
+* [maybe](test/tuple/maybe.spec.ts)
+* [either](test/tuple/either.spec.ts)
 * [liftM](test/tuple/lift_m.spec.ts)
 * [liftE](test/tuple/lift_e.spec.ts)
 * [getSuccess](test/tuple/get_success.spec.ts)

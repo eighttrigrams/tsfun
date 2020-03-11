@@ -113,7 +113,9 @@ export {
     swap,
     liftE,
     liftM,
-    getSuccess
+    getSuccess,
+    either,
+    maybe
 } from './src/tuple';
 
 
