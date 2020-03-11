@@ -1,6 +1,7 @@
 // ------------ @author Daniel de Oliveira -----------------
 
 
+// varargs support?
 export const identity = <A>(v: A) => v;
 
 

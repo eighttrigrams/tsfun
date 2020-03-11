@@ -90,7 +90,7 @@ export {
     nop,
     val,
     throws,
-    multidentity,
+    collect,
     mcompose,
     mmatch
 } from './src/composition';

@@ -44,7 +44,7 @@ export function throws(e: any) {
 }
 
 
-export function multidentity<T>(...p: Array<T>) {
+export function collect<T>(...p: Array<T>) {
 
     return p;
 }

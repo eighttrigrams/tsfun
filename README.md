@@ -101,7 +101,7 @@ import {equal} from 'tsfun';
 * [compose](test/composition/compose.spec.ts)
 * [cond](test/composition/cond.spec.ts)
 * [identity](test/composition/identity.spec.ts)
-* [multidentity](test/composition/multidentity.spec.ts)
+* [collect](test/composition/collect.spec.ts)
 * [val](test/composition/val.spec.ts)
 * [nop](test/composition/nop.spec.ts)
 * [throws](test/composition/throws.spec.ts)
