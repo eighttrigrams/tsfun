@@ -84,7 +84,7 @@ export function filter(f: Function) {
 export function materialize(lAs: any) {
     const as: Array<any> = [];
     for (let x of lAs) {
-        // console.log("filter x of a", x);
+        // console.log("materialize x of a", x);
         as.push(x);
     }
     return as;
