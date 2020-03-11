@@ -47,9 +47,9 @@ export function either<T>(v: T): Either<any, T> {
 }
 
 
-export function maybeLift<T, R>(f: (x: T) => R): (x: T) => Maybe<R>;
-export function maybeLift<T, R>(f: (...x: T[]) => R): (...x: T[]) => Maybe<R>;
-export function maybeLift<T,R>(f: (x: T) => R) {
+export function liftM<T, R>(f: (x: T) => R): (x: T) => Maybe<R>;
+export function liftM<T, R>(f: (...x: T[]) => R): (...x: T[]) => Maybe<R>;
+export function liftM<T,R>(f: (x: T) => R) {
 
     return (...x: T[]): Maybe<R> => {
 
@@ -62,9 +62,9 @@ export function maybeLift<T,R>(f: (x: T) => R) {
 }
 
 
-export function eitherLift<T,R>(f: (x: T) => R): (x: T) => Either<any, R>;
-export function eitherLift<T,R>(f: (...x: T[]) => R): (...x: T[]) => Either<any, R>;
-export function eitherLift<T,R>(f: (...x: T[]) => R) {
+export function liftE<T,R>(f: (x: T) => R): (x: T) => Either<any, R>;
+export function liftE<T,R>(f: (...x: T[]) => R): (...x: T[]) => Either<any, R>;
+export function liftE<T,R>(f: (...x: T[]) => R) {
 
     return (...x: Array<T>): Either<any, R> => {
 

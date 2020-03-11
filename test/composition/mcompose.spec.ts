@@ -1,4 +1,4 @@
-import {eitherLift, getSuccess, maybeLift, either, maybe} from '../../src/tuple';
+import {liftE, getSuccess, liftM, either, maybe} from '../../src/tuple';
 import {Either, Maybe} from '../../src/type';
 import {identity} from '../../src/core';
 import {cond, flow, mcompose, collect, throws, val} from '../../src/composition';
@@ -90,7 +90,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, maybeLift((vZero: number, vMinus1: number) => vMinus1-vZero), decM)([4])
+            mcompose(add, liftM((vZero: number, vMinus1: number) => vMinus1-vZero), decM)([4])
 
         ).toEqual([4])
     );
@@ -100,7 +100,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, eitherLift((vZero: number, vMinus1: number) => vMinus1-vZero), decE)([undefined, 4])
+            mcompose(add, liftE((vZero: number, vMinus1: number) => vMinus1-vZero), decE)([undefined, 4])
 
         ).toEqual([undefined, 4])
     );
@@ -256,7 +256,7 @@ describe('mcompose', () => {
                 map(
                     mcompose(
                         square,
-                        maybeLift(cond(lessThan(2), throws('')) as any),
+                        liftM(cond(lessThan(2), throws('')) as any),
                         safedivM(6))),
                 filter(isSuccess as any),
                 map(getSuccess))
@@ -275,7 +275,7 @@ describe('mcompose', () => {
                 map(
                     mcompose(
                         square,
-                        eitherLift(cond(lessThan(2), throws('e1')) as any),
+                        liftE(cond(lessThan(2), throws('e1')) as any),
                         safedivE(6))),
                 filter(isSuccess as any),
                 map(getSuccess))

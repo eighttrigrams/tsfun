@@ -211,8 +211,8 @@ import {equal} from 'tsfun';
 * [left](test/tuple/left.spec.ts)
 * [right](test/tuple/right.spec.ts)
 * [swap](test/tuple/swap.spec.ts)
-* [maybeLift](test/tuple/maybe_lift.spec.ts)
-* [eitherLift](test/tuple/either_lift.spec.ts)
+* [liftM](test/tuple/lift_m.spec.ts)
+* [liftE](test/tuple/lift_e.spec.ts)
 * [getSuccess](test/tuple/get_success.spec.ts)
 
 ## Types reference 

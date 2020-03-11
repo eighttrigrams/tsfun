@@ -1,4 +1,4 @@
-import {maybeLift, maybe} from '../../src/tuple';
+import {liftM, maybe} from '../../src/tuple';
 import {flow, mcompose, mmatch, val} from '../../src/composition';
 import {map} from '../../src/associative';
 import {Maybe} from '../../src/type';
@@ -42,7 +42,7 @@ describe('mmatch', () => {
             flow(
                 [1.5, 0.0, 2.0],
                 map(maybe),
-                map(mcompose(square, maybeLift(div(6)), safediv(3))),
+                map(mcompose(square, liftM(div(6)), safediv(3))),
                 map(mmatch(square, val(4))))
 
         ).toEqual([81, 4, 256])
