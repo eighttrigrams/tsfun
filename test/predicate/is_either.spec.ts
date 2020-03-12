@@ -1,5 +1,10 @@
 import {isEither} from '../../src/predicate';
 
+/**
+ * tsfun | isEither
+ *
+ * @author Daniel de Oliveira
+ */
 describe('isEither', () => {
 
    it('success', () =>

@@ -119,7 +119,9 @@ export {
     nothing,
     success,
     failure,
-    just
+    just,
+    singleton,
+    pair
 } from './src/tuple';
 
 

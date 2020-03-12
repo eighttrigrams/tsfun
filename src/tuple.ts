@@ -1,5 +1,5 @@
 import {identity} from './core';
-import {Either, Fallible, Maybe, Pair} from './type';
+import {Either, Fallible, Maybe, Pair, Singleton} from './type';
 import {isArray, isEither, isMaybe, isSuccess} from './predicate';
 
 
@@ -44,6 +44,18 @@ export function just<T = any>(v: T): Maybe<T> {
 export function nothing<T = any>(): Maybe<T> {
 
     return [];
+}
+
+
+export function singleton<T = any>(v: T): Singleton<T> {
+
+    return [v];
+}
+
+
+export function pair<L = any, R = L>(l: L, r: R): Pair<L, R> {
+
+    return [l, r];
 }
 
 

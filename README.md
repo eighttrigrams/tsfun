@@ -214,6 +214,8 @@ import {equal} from 'tsfun';
 * [left](test/tuple/left.spec.ts)
 * [right](test/tuple/right.spec.ts)
 * [swap](test/tuple/swap.spec.ts)
+* [singleton](test/tuple/singleton.spec.ts)
+* [pair](test/tuple/pair.spec.ts)
 * [just](test/tuple/just.spec.ts)
 * [nothing](test/tuple/nothing.spec.ts)
 * [success](test/tuple/success.spec.ts)
