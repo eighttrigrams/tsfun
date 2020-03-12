@@ -1,4 +1,4 @@
-import {liftE, getSuccess, liftM, either, maybe, right, left} from '../../src/tuple';
+import {liftE, getSuccess, liftM, success, just, right, left} from '../../src/tuple';
 import {Either, Maybe} from '../../src/type';
 import {identity} from '../../src/core';
 import {cond, flow, mcompose, collect, throws, val} from '../../src/composition';
@@ -252,7 +252,7 @@ describe('mcompose', () => {
 
             flow(
                 [3, 0, 4, 2],
-                map(maybe),
+                map(just),
                 map(
                     mcompose(
                         square,
@@ -271,7 +271,7 @@ describe('mcompose', () => {
 
             flow(
                 [3, 0, 4, 2],
-                map(either),
+                map(success),
                 map(
                     mcompose(
                         square,
@@ -289,7 +289,7 @@ describe('mcompose', () => {
         expect(
             flow(
                 [0, 3, 1],
-                map(either),
+                map(success),
                 map(mcompose(square, decE, safedivE(3))),
                 separate(isSuccess),
                 update(0, map(right)),

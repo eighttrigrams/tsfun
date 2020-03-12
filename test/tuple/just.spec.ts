@@ -1,19 +1,19 @@
-import {maybe} from '../../src/tuple';
+import {just} from '../../src/tuple';
 
 
-describe('maybe', () => {
+describe('just', () => {
 
-    it('maybe', () =>
+    it('just', () =>
         expect(
 
-            maybe(4)
+            just(4)
 
         ).toEqual([4]));
 
 
     it('typing', () => {
 
-        const e1  = maybe(4);
+        const e1  = just(4);
         e1[0] = 3;
 
         // wrong - e1[0] = 'abc'

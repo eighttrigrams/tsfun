@@ -22,8 +22,8 @@ export {
     Maybe,
     List,
     Collection,
-    Left,
-    Right,
+    Failure,
+    Success,
     Either,
     Associative,
     Fallible,
@@ -116,8 +116,10 @@ export {
     liftE,
     liftM,
     getSuccess,
-    either,
-    maybe
+    nothing,
+    success,
+    failure,
+    just
 } from './src/tuple';
 
 
