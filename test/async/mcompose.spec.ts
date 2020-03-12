@@ -1,16 +1,14 @@
-import {mcompose as asyncMcompose, map as asyncMap, flow as asyncFlow} from '../../src/async';
+import {flow as asyncFlow, map as asyncMap, mcompose as asyncMcompose} from '../../src/async';
 import {Either, Maybe} from '../../src/type';
-import {either, getSuccess, left, liftE, right} from '../../src/tuple';
-import {throws} from '../../src/composition';
+import {either, left, right} from '../../src/tuple';
 import {map, update} from '../../src/associative';
-import {isArray, isSuccess} from '../../src/predicate';
+import {isSuccess} from '../../src/predicate';
 import {separate} from '../../src/collection';
-import {on} from '../../src/comparator';
-import {to} from '../../src/struct';
 
 
 /**
  * tsfun | async/mcompose
+ *
  * @author Daniel de Oliveira
  */
 describe('async/mcompose', () => {
