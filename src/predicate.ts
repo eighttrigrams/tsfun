@@ -143,12 +143,13 @@ export const isBoolean: Predicate<any> = (as: any) => typeof as === 'boolean';
 export const isFunction: Predicate<any> = (as: any) => typeof as === 'function';
 
 
-export function isSuccess<E,T>(m: Maybe<T>|Either<E,T>) {
+export function isSuccess<E,T>(m: Maybe<T>|Either<E,T>): boolean {
 
     if (!isEither(m) && !isMaybe(m)) throw 'illegal argument';
     if (m.length === 0) return false;
     if (m.length === 1) return true;
     if (m.length === 2) return first(m as any) === undefined;
+    throw 'illegal argument - array too long';
 }
 
 

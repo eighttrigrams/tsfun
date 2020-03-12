@@ -1,10 +1,10 @@
-import {liftE, getSuccess, liftM, either, maybe} from '../../src/tuple';
+import {liftE, getSuccess, liftM, success, just, right, left} from '../../src/tuple';
 import {Either, Maybe} from '../../src/type';
 import {identity} from '../../src/core';
 import {cond, flow, mcompose, collect, throws, val} from '../../src/composition';
-import {map} from '../../src/associative';
+import {map, update} from '../../src/associative';
 import {isSuccess} from '../../src/predicate';
-import {filter} from '../../src/collection';
+import {filter, separate} from '../../src/collection';
 import {lessThan} from '../../src/comparator';
 
 
@@ -252,7 +252,7 @@ describe('mcompose', () => {
 
             flow(
                 [3, 0, 4, 2],
-                map(maybe),
+                map(just),
                 map(
                     mcompose(
                         square,
@@ -271,7 +271,7 @@ describe('mcompose', () => {
 
             flow(
                 [3, 0, 4, 2],
-                map(either),
+                map(success),
                 map(
                     mcompose(
                         square,
@@ -281,5 +281,23 @@ describe('mcompose', () => {
                 map(getSuccess))
 
         ).toEqual([4, 9])
+    );
+
+
+    it('use case', () =>
+
+        expect(
+            flow(
+                [0, 3, 1],
+                map(success),
+                map(mcompose(square, decE, safedivE(3))),
+                separate(isSuccess),
+                update(0, map(right)),
+                update(1, map(left)))
+
+        ).toEqual([
+            [4],
+            ['safedivfail', 'decfailed']
+        ])
     );
 });

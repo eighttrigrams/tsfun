@@ -35,15 +35,27 @@ export function swap<S, T>([l, r]: Pair<S, T>): Pair<T, S> {
 }
 
 
-export function maybe<T = any>(v: T): Maybe<T> {
+export function just<T = any>(v: T): Maybe<T> {
 
     return [v];
 }
 
 
-export function either<L = string, R = any>(v: R): Either<L, R> {
+export function nothing<T = any>(): Maybe<T> {
+
+    return [];
+}
+
+
+export function success<L = string, R = any>(v: R): Either<L, R> {
 
     return [undefined, v];
+}
+
+
+export function failure<L = string, R = any>(v: L): Either<L, R> {
+
+    return [v, undefined];
 }
 
 

@@ -2,7 +2,7 @@ import {identity} from './core';
 import {Either, Fallible, Mapping, Maybe, Pair, Predicate} from './type';
 import {isEither, isFailure, isFunction, isMaybe, isSuccess} from './predicate';
 import {first, rest, reverse} from './list';
-import {either, getSuccess, left, maybe, right} from './tuple';
+import {success, getSuccess, left, just, right} from './tuple';
 
 
 const composition = <T = any>(t: any, ...transformations: Array<Function>) =>
@@ -79,8 +79,8 @@ export function convert<T>(what: any, basedOn: Fallible<T>): any {
 
     if (!isEither(basedOn) && !isMaybe(basedOn)) throw 'illegal argument - basedOn is neither Maybe nor Either';
     return isEither(basedOn)
-        ? either(what)
-        : maybe(what);
+        ? success(what)
+        : just(what);
 }
 
 

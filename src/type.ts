@@ -13,13 +13,13 @@ export type Singleton<T> = [T];
 export type Pair<A = any, B = A> = [A, B];
 
 
-export type Left<T = any> = [T, undefined];
+export type Failure<T = any> = [T, undefined];
 
 
-export type Right<T = any> = [undefined, T];
+export type Success<T = any> = [undefined, T];
 
 
-export type Either<L = any, R = any> = Left<L>|Right<R>;
+export type Either<L = any, R = any> = Failure<L>|Success<R>;
 
 
 export type Just<T = any> = [T];
