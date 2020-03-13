@@ -1,6 +1,6 @@
 import {map} from '../../src/associative';
 import {cond, val} from '../../src/composition';
-import {includedIn, is} from '../../src/comparator';
+import {greaterThan, includedIn, is} from '../../src/comparator';
 import {identity} from '../../by';
 import {filter} from '../../src/collection';
 
@@ -10,7 +10,7 @@ describe('cond', () => {
     it('cond', () =>
         expect(
             map(cond(
-                (_: any) => _ > 3,
+                greaterThan(3),
                 (_: number) => _ * 2,
                 val(18)))
             ({a: 3, b: 4, c: 5})
@@ -20,7 +20,7 @@ describe('cond', () => {
     it('pass through', () =>
         expect(
             map(cond(
-                (_: any) => _ > 3,
+                greaterThan(3),
                 (_: number) => _ * 2))
             ([3, 4, 5])
         ).toEqual([3, 8, 10]));
@@ -59,7 +59,7 @@ describe('cond', () => {
             filter(
                 cond(
                     includedIn([-2, 4]),
-                    (x: number) => x > 0))
+                    greaterThan(0)))
             ([-2, 4, 5])
         ).toEqual([4, 5]));
 });
