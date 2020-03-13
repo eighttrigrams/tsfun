@@ -3,28 +3,28 @@ import {Either, Fallible, Maybe, Pair, Singleton} from './type';
 import {isArray, isEither, isMaybe, isSuccess} from './predicate';
 
 
-export function tuplify(...fs : any[]) {
+export function tuplify<S = any, T = S>(...fs : Array<(s: S) => T>) {
 
-    return (s: any) => fs.map(f => f(s));
+    return (s: S) => fs.map(f => f(s)) as Array<T>;
 }
 
 
-export function pairWith(f: any) {
+export function pairWith<S = any, T = S>(f: (s: S) => T) {
 
-    return tuplify(identity, f);
+    return tuplify(identity as any, f) as (s: S) => Pair<S, T>;
 }
 
 
-export function left<T>(pair: Pair<T,any>|Either<T,any>): T {
+export function left<T = any>(pair: Pair<T>|Either<T>): T {
 
-    if (pair.length !== 2) throw 'illegal argument: Pair/Either must have length 2';
+    if (pair.length !== 2) throw 'illegal argument - Pair/Either must have length 2';
     return pair[0] as T;
 }
 
 
 export function right<T>(pair: Pair<any, T>|Either<any,T>): T {
 
-    if (pair.length !== 2) throw 'illegal argument: Pair/Either must have length 2';
+    if (pair.length !== 2) throw 'illegal argument - Pair/Either must have length 2';
     return pair[1] as T;
 }
 
