@@ -15,21 +15,21 @@ export function pairWith(f: any) {
 }
 
 
-export function getLeft<T>(pair: Pair<T,any>|Either<T,any>): T {
+export function left<T>(pair: Pair<T,any>|Either<T,any>): T {
 
     if (pair.length !== 2) throw 'illegal argument: Pair/Either must have length 2';
     return pair[0] as T;
 }
 
 
-export function getRight<T>(pair: Pair<any, T>|Either<any,T>): T {
+export function right<T>(pair: Pair<any, T>|Either<any,T>): T {
 
     if (pair.length !== 2) throw 'illegal argument: Pair/Either must have length 2';
     return pair[1] as T;
 }
 
 
-export function getValue<T = any>(s: Singleton<T>): T {
+export function value<T = any>(s: Singleton<T>): T {
 
     if (s.length !== 1) throw 'illegal argument - singleton array must have length 1';
     return s[0];

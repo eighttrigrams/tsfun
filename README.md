@@ -220,9 +220,9 @@ import {equal} from 'tsfun';
 * [failure](test/tuple/failure.spec.ts)
 * [liftM](test/tuple/lift_m.spec.ts)
 * [liftE](test/tuple/lift_e.spec.ts)
-* [getLeft](test/tuple/get_left.spec.ts)
-* [getRight](test/tuple/get_right.spec.ts)
-* [getValue](test/tuple/get_value.spec.ts)
+* [left](test/tuple/left.spec.ts)
+* [right](test/tuple/right.spec.ts)
+* [value](test/tuple/value.spec.ts)
 * [getSuccess](test/tuple/get_success.spec.ts)
 
 ## Types reference 

@@ -108,9 +108,9 @@ export {
 
 
 export {
-    getLeft,
-    getRight,
-    getValue,
+    left,
+    right,
+    value,
     getSuccess,
     tuplify,
     pairWith,

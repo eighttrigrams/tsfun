@@ -7,7 +7,7 @@ export interface Map<T = any> {[prop: string]: T}
 export type Mapping<A = any, B = A> = (_: A) => B;
 
 
-export type Singleton<T> = [T];
+export type Singleton<T = any> = [T];
 
 
 export type Pair<A = any, B = A> = [A, B];
