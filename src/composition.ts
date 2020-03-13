@@ -2,7 +2,7 @@ import {identity} from './core';
 import {Either, Fallible, Mapping, Maybe, Pair, Predicate} from './type';
 import {isEither, isFailure, isFunction, isMaybe, isSuccess} from './predicate';
 import {first, rest, reverse} from './list';
-import {success, getSuccess, left, just, right} from './tuple';
+import {success, getSuccess, getLeft, just, getRight} from './tuple';
 
 
 const composition = <T = any>(t: any, ...transformations: Array<Function>) =>
@@ -102,12 +102,12 @@ export function conds(...cs: Array<Pair>) {
 
         for (let c of cs) {
 
-            const r = () => isFunction(right(c)) ? right(c)(what) : right(c);
+            const r = () => isFunction(getRight(c)) ? getRight(c)(what) : getRight(c);
 
-            if (isFunction(left(c))) {
-                if (left(c)(what)) return r();
+            if (isFunction(getLeft(c))) {
+                if (getLeft(c)(what)) return r();
             } else {
-                if (left(c) === what) return r();
+                if (getLeft(c) === what) return r();
             }
         }
         return what;

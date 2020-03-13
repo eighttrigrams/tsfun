@@ -1,7 +1,7 @@
 import {pair} from '../../src/tuple';
 
 /**
- * tsfun | singletong
+ * tsfun | pair
  *
  * @author Daniel de Oliveira
  */

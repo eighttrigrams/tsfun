@@ -108,14 +108,15 @@ export {
 
 
 export {
-    left,
-    right,
+    getLeft,
+    getRight,
+    getValue,
+    getSuccess,
     tuplify,
     pairWith,
     swap,
     liftE,
     liftM,
-    getSuccess,
     nothing,
     success,
     failure,
