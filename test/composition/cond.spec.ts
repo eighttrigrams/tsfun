@@ -5,13 +5,18 @@ import {identity} from '../../by';
 import {filter} from '../../src/collection';
 
 
+/**
+ * tsfun | cond
+ *
+ * @author Daniel de Oliveira
+ */
 describe('cond', () => {
 
     it('cond', () =>
         expect(
             map(cond(
                 greaterThan(3),
-                (_: number) => _ * 2,
+                times(2),
                 val(18)))
             ({a: 3, b: 4, c: 5})
         ).toEqual({a: 18, b: 8, c: 10}));
@@ -21,7 +26,7 @@ describe('cond', () => {
         expect(
             map(cond(
                 greaterThan(3),
-                (_: number) => _ * 2))
+                times(2)))
             ([3, 4, 5])
         ).toEqual([3, 8, 10]));
 
@@ -30,7 +35,7 @@ describe('cond', () => {
         expect(
             map(cond(
                 true,
-                (_: number) => _ * 2))
+                times(2)))
             ([3, 4, 5])
         ).toEqual([6, 8, 10]));
 
@@ -63,3 +68,5 @@ describe('cond', () => {
             ([-2, 4, 5])
         ).toEqual([4, 5]));
 });
+
+const times = (x: number) => (y: number) => x * y;
