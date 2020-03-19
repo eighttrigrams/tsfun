@@ -11,9 +11,9 @@ describe('map', () => {
     it('map', () =>
         expect(
 
-            map((_: number) => 2 * _)([1, 2]))
+            map(_ => 2 * _)([3, 7]))
 
-            .toEqual([2, 4]));
+            .toEqual([6, 14]));
 
 
     it('map - with to and flow', () =>
@@ -28,7 +28,7 @@ describe('map', () => {
     it('map object', () =>
         expect(
 
-            map((_: number) => 2 * _)({a: 1, b: 2}))
+            map(_ => 2 * _)({a: 1, b: 2}))
 
             .toEqual({a: 2, b: 4}));
 
