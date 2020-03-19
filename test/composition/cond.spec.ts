@@ -1,17 +1,22 @@
 import {map} from '../../src/associative';
 import {cond, val} from '../../src/composition';
-import {includedIn, is} from '../../src/comparator';
+import {greaterThan, includedIn, is} from '../../src/comparator';
 import {identity} from '../../by';
 import {filter} from '../../src/collection';
 
 
+/**
+ * tsfun | cond
+ *
+ * @author Daniel de Oliveira
+ */
 describe('cond', () => {
 
     it('cond', () =>
         expect(
             map(cond(
-                (_: any) => _ > 3,
-                (_: number) => _ * 2,
+                greaterThan(3),
+                times(2),
                 val(18)))
             ({a: 3, b: 4, c: 5})
         ).toEqual({a: 18, b: 8, c: 10}));
@@ -20,8 +25,8 @@ describe('cond', () => {
     it('pass through', () =>
         expect(
             map(cond(
-                (_: any) => _ > 3,
-                (_: number) => _ * 2))
+                greaterThan(3),
+                times(2)))
             ([3, 4, 5])
         ).toEqual([3, 8, 10]));
 
@@ -30,7 +35,7 @@ describe('cond', () => {
         expect(
             map(cond(
                 true,
-                (_: number) => _ * 2))
+                times(2)))
             ([3, 4, 5])
         ).toEqual([6, 8, 10]));
 
@@ -59,7 +64,9 @@ describe('cond', () => {
             filter(
                 cond(
                     includedIn([-2, 4]),
-                    (x: number) => x > 0))
+                    greaterThan(0)))
             ([-2, 4, 5])
         ).toEqual([4, 5]));
 });
+
+const times = (x: number) => (y: number) => x * y;
