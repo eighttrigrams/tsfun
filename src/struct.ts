@@ -79,14 +79,12 @@ function _update(path_: string|Array<string|number>,
     const pathSegments = (isString(path_) ? path(path_ as any) : path_) as Array<string|number>;
 
     const pathSegment = pathSegments[0];
-    let copied;
+    const copied = copy(struct) as Map;
 
     if (pathSegments.length === 1) {
-        copied = copy(struct) as Map;
         if (update_fun) copied[pathSegment] = update_fun(copied[pathSegment]);
         else delete copied[pathSegment];
     } else {
-        copied = copy(struct) as Map;
         pathSegments.shift();
         if (update_fun || !isUndefinedOrEmpty(copied[pathSegment])) {
             copied[pathSegment] = _update(pathSegments, copied[pathSegment], update_fun);
