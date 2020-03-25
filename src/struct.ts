@@ -1,6 +1,6 @@
 import {Associative, Map} from './type';
 import {val} from './composition';
-import {isArray, isEmpty, isObject, isString} from './predicate';
+import {isArray, isAssociative, isEmpty, isObject, isString, isUndefinedOrEmpty} from './predicate';
 import {reverseUncurry2} from './core';
 import {copy} from './collection';
 import {join} from './string';
@@ -87,8 +87,8 @@ function _update(path_: string|Array<string|number>,
         else delete copied[pathSegment];
     } else {
         copied = copy(struct) as Map;
-        if (!update_fun && isEmpty(copied)) return copied; // do not create anything on dissoc
         pathSegments.shift();
+        if (!update_fun && isUndefinedOrEmpty(copied[pathSegment])) return struct; // do not create anything on dissoc
         copied[pathSegment] = _update(pathSegments, copied[pathSegment], update_fun);
     }
     return copied;

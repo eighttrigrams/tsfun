@@ -51,12 +51,22 @@ describe('dissocOn', () => {
     });
 
 
-    it('dissoc - do not create anything on dissoc', () => {
+    it(' do not create anything', () => {
 
         const objectStruct = {};
         const resultStruct = dissocOn('a.c')(objectStruct);
 
         // does not create the a property, just to get to the 'c' property
         expect(resultStruct).toEqual({});
+    });
+
+
+    it('do not modify undefined', () => {
+
+        const objectStruct = { a: undefined };
+        const resultStruct = dissocOn(['a','b'])(objectStruct);
+
+        // does not create the a property, just to get to the 'c' property
+        expect(resultStruct).toEqual({ a: undefined });
     });
 });
