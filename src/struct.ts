@@ -86,7 +86,7 @@ function _update(path_: string|Array<string|number>,
         else delete copied[pathSegment];
     } else {
         pathSegments.shift();
-        if (update_fun || !isUndefinedOrEmpty(copied[pathSegment])) {
+        if (update_fun || copied[pathSegment] !== undefined) {
             copied[pathSegment] = _update(pathSegments, copied[pathSegment], update_fun);
         }
     }
