@@ -88,8 +88,9 @@ function _update(path_: string|Array<string|number>,
     } else {
         copied = copy(struct) as Map;
         pathSegments.shift();
-        if (!update_fun && isUndefinedOrEmpty(copied[pathSegment])) return struct; // do not create anything on dissoc
-        copied[pathSegment] = _update(pathSegments, copied[pathSegment], update_fun);
+        if (update_fun || !isUndefinedOrEmpty(copied[pathSegment])) {
+            copied[pathSegment] = _update(pathSegments, copied[pathSegment], update_fun);
+        }
     }
     return copied;
 }
