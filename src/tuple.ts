@@ -15,7 +15,7 @@ export function pairWith<S = any, T = S>(f: (s: S) => T) {
 }
 
 
-export function left<T = any>(pair: Pair<T>|Either<T>): T {
+export function left<T = any>(pair: Pair<T, any>|Either<T>): T {
 
     if (pair.length !== 2) throw 'illegal argument - Pair/Either must have length 2';
     return pair[0] as T;
