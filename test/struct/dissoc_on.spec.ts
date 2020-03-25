@@ -1,7 +1,11 @@
 import {dissocOn} from '../../src/struct';
 
+/**
+ * tsfun | dissocOn
+ *
+ * @author Daniel de Oliveira
+ */
 describe('dissocOn', () => {
-
 
     it('dissoc - first layer', () => {
 
@@ -44,5 +48,15 @@ describe('dissocOn', () => {
         expect(resultStruct['a']['b']).toBe('b_val');
         expect(objectStruct['a']['c']).toBe(embeddedStruct);
         expect(embeddedStruct['e']).toBe('e_val');
+    });
+
+
+    it('dissoc - do not create anything on dissoc', () => {
+
+        const objectStruct = {};
+        const resultStruct = dissocOn('a.c')(objectStruct);
+
+        // does not create the a property, just to get to the 'c' property
+        expect(resultStruct).toEqual({});
     });
 });

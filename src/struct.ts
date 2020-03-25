@@ -1,6 +1,6 @@
-import {Map} from './type';
+import {Associative, Map} from './type';
 import {val} from './composition';
-import {isArray, isObject, isString} from './predicate';
+import {isArray, isEmpty, isObject, isString} from './predicate';
 import {reverseUncurry2} from './core';
 import {copy} from './collection';
 import {join} from './string';
@@ -60,42 +60,9 @@ export const lookupOn = <T>(ds: Object, alternative?: T) => (path: string|Array<
 };
 
 
-function applyUpdate(copied: any, key: string|number, update_fun?: (val: any) => any) {
-
-    if (update_fun) copied[key] = update_fun((copied as any)[key]);
-    else delete copied[key];
-}
-
-
 export function updateOn(path_: string|Array<string|number>, update_fun?: (val: any) => any) {
 
     return (struct: Object): any => _update(path_, struct, update_fun)
-}
-
-
-function _update(path__: string|Array<string|number>, struct: Object, update_fun?: (val: any) => any, ) {
-
-    const path_ = (isString(path__) ? path(path__ as any) : path__) as Array<string|number>;
-
-    const key = path_[0];
-    let copied = undefined;
-
-    if (path_.length === 1) {
-        copied = isString(key)
-            ? Object.assign({}, struct) as Map<any>
-            : copy(struct as any) as Map<any>;
-
-        applyUpdate(copied, key, update_fun);
-
-    } else {
-        copied = isString(key)
-            ? Object.assign({}, struct) as Map<any>
-            : copy(struct as any) as Map<any>;
-
-        path_.shift();
-        copied[key] = _update(path_, copied[key], update_fun);
-    }
-    return copied;
 }
 
 
@@ -103,6 +70,29 @@ export const assocOn = (path: string|Array<string|number>, v: any) => updateOn(p
 
 
 export const dissocOn = (path: string|Array<string|number>) => updateOn(path);
+
+
+function _update(path_: string|Array<string|number>,
+                 struct: Object,
+                 update_fun?: (val: any) => any) {
+
+    const pathSegments = (isString(path_) ? path(path_ as any) : path_) as Array<string|number>;
+
+    const pathSegment = pathSegments[0];
+    let copied;
+
+    if (pathSegments.length === 1) {
+        copied = copy(struct) as Map;
+        if (update_fun) copied[pathSegment] = update_fun(copied[pathSegment]);
+        else delete copied[pathSegment];
+    } else {
+        copied = copy(struct) as Map;
+        if (!update_fun && isEmpty(copied)) return copied; // do not create anything on dissoc
+        pathSegments.shift();
+        copied[pathSegment] = _update(pathSegments, copied[pathSegment], update_fun);
+    }
+    return copied;
+}
 
 
 export function to<T = any>(path: string|Array<string|number>) {
