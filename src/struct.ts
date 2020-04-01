@@ -4,6 +4,7 @@ import {isArray, isAssociative, isEmpty, isObject, isString, isUndefinedOrEmpty}
 import {reverseUncurry2} from './core';
 import {copy} from './collection';
 import {join} from './string';
+import {rest} from './list';
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -138,9 +139,8 @@ export function _getElForPathIn(object: any, path: Array<string|number>): any {
         }
 
     } else {
-        path.shift();
         return object[key]
-            ? _getElForPathIn(object[key], path)
+            ? _getElForPathIn(object[key], rest(path))
             : undefined;
     }
 }
