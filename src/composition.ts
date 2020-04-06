@@ -38,9 +38,9 @@ export function nop() {}
 export function val<A>(v: A) { return () => v as A }
 
 
-export function throws(e: any) {
+export function throws(e1?: any) {
 
-    return (): any => { throw e };
+    return (e2?: any): any => { throw e1 ? e1 : e2 };
 }
 
 
