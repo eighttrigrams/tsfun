@@ -27,7 +27,8 @@ export {
     Either,
     Associative,
     Fallible,
-    Mapping
+    Mapping,
+    Filter
 } from './src/type';
 
 

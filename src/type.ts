@@ -40,6 +40,9 @@ export type List<T = any> = Array<T> | string;
 export type Collection<T = any> = Associative<T> | List<T>;
 
 
+export type Filter<T = any> = Mapping<Collection<T>>;
+
+
 export type Predicate<A = any> = (_: A) => boolean;
 
 
