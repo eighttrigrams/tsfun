@@ -1,7 +1,6 @@
 import {liftE, getSuccess, liftM, success, just, right, left} from '../../src/tuple';
 import {Either, Maybe} from '../../src/type';
-import {identity} from '../../src/core';
-import {cond, flow, mcompose, collect, throws, val} from '../../src/composition';
+import {collect, cond, flow, mcompose, throws, val} from '../../src/composition';
 import {map, update} from '../../src/associative';
 import {isSuccess} from '../../src/predicate';
 import {filter, separate} from '../../src/collection';
@@ -24,13 +23,16 @@ describe('mcompose', () => {
     const safedivE = (x: number) => (y: number) => (y === 0 ? ['safedivfail', undefined] : [undefined, x / y]) as Either<string, number>;
     const add = (x: number, y: number) => x + y;
     const square = (x: number) => x * x;
+    const squareE = liftE(square);
+    const squareM = liftM(square);
 
 
     it('success - Maybe', () =>
 
         expect(
 
-            mcompose(square, decM)([3])
+            mcompose(decM, squareM)
+            ([3])
 
         ).toEqual([4])
     );
@@ -40,7 +42,8 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(square, decE)([undefined, 3])
+            mcompose(decE, squareE)
+            ([undefined, 3])
 
         ).toEqual([undefined, 4])
     );
@@ -50,7 +53,8 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(square, decM)([1])
+            mcompose(decM, squareM)
+            ([1])
 
         ).toEqual([])
     );
@@ -60,7 +64,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(square, decE)([undefined, 1])
+            mcompose(decE, squareE)([undefined, 1])
 
         ).toEqual(['decfailed', undefined])
     );
@@ -70,7 +74,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, decM, decM)([4])
+            mcompose(decM, decM, liftM(add))([4])
 
         ).toEqual([5])
     );
@@ -80,7 +84,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, decE, decE)([undefined, 4])
+            mcompose(decE, decE, liftE(add))([undefined, 4])
 
         ).toEqual([undefined, 5])
     );
@@ -90,7 +94,8 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, liftM((vZero: number, vMinus1: number) => vMinus1-vZero), decM)([4])
+            mcompose(decM, liftM((vZero: number, vMinus1: number) => vMinus1-vZero), liftM(add))
+            ([4])
 
         ).toEqual([4])
     );
@@ -100,7 +105,8 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, liftE((vZero: number, vMinus1: number) => vMinus1-vZero), decE)([undefined, 4])
+            mcompose(decE, liftE((vZero: number, vMinus1: number) => vMinus1-vZero), liftE(add))
+            ([undefined, 4])
 
         ).toEqual([undefined, 4])
     );
@@ -110,7 +116,8 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, decM, decM)([2])
+            mcompose(decM, decM, liftM(add))
+            ([2])
 
         ).toEqual([])
     );
@@ -120,7 +127,8 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, decE, decE)([undefined, 2])
+            mcompose(decE, decE, liftE(add))
+            ([undefined, 2])
 
         ).toEqual(['decfailed', undefined])
     );
@@ -130,7 +138,8 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, val([3]), val([3]))([0])
+            mcompose(val([3]), val([3]), liftM(add))
+            ([0])
 
         ).toEqual([6])
     );
@@ -140,7 +149,8 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, val([undefined, 3]), val([undefined, 3]))([undefined, 0])
+            mcompose(val([undefined, 3]), val([undefined, 3]),liftE(add))
+            ([undefined, 0])
 
         ).toEqual([undefined, 6])
     );
@@ -150,7 +160,8 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(collect, decM, decM)([3])
+            mcompose(decM, decM, liftM(collect as any)) // TODO review collect usage
+            ([3])
 
         ).toEqual([[1, 2, 3]])
     );
@@ -160,7 +171,8 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(collect, decE, decE)([undefined, 3])
+            mcompose(decE, decE, liftE(collect as any)) // TODO review collect usage
+            ([undefined, 3])
 
         ).toEqual([undefined, [1, 2, 3]])
     );
@@ -170,7 +182,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, safedivM(3), decM)([])
+            mcompose(decM, safedivM(3), liftM(add))([])
 
         ).toEqual([])
     );
@@ -180,7 +192,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, safedivE(3), decE)(['didntstart', undefined])
+            mcompose(decE, safedivE(3), liftE(add))(['didntstart', undefined])
 
         ).toEqual(['didntstart', undefined])
     );
@@ -190,7 +202,8 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, safedivM(3), decM)([1])
+            mcompose(decM, safedivM(3), liftM(add))
+            ([1])
 
         ).toEqual([])
     );
@@ -200,7 +213,8 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(add, safedivE(3), decE)([undefined, 1])
+            mcompose(decE, safedivE(3), liftE(add))
+            ([undefined, 1])
 
         ).toEqual(['decfailed', undefined])
     );
@@ -210,7 +224,8 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(identity, safedivM(3), zero)([6])
+            mcompose(zero, safedivM(3))
+            ([6])
 
         ).toEqual([])
     );
@@ -220,7 +235,7 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(identity, safedivE(3), zeroE)([undefined, 6])
+            mcompose(zeroE, safedivE(3))([undefined, 6])
 
         ).toEqual(['safedivfail', undefined])
     );
@@ -230,74 +245,74 @@ describe('mcompose', () => {
 
         expect(
 
-            mcompose(square, safedivM(6), decM)([2])
+            mcompose(decM, safedivM(6), squareM)([2])
 
         ).toEqual([36])
     );
 
 
-    it('(3 / 2)^2 - Either', () =>
+        it('(3 / 2)^2 - Either', () =>
 
-        expect(
+            expect(
 
-            mcompose(square, safedivE(6), decE)([undefined, 2])
+                mcompose(decE, safedivE(6), squareE)([undefined, 2])
 
-        ).toEqual([undefined, 36])
-    );
-
-
-    it('use with flow - Maybe', () =>
-
-        expect(
-
-            flow(
-                [3, 0, 4, 2],
-                map(just),
-                map(
-                    mcompose(
-                        square,
-                        liftM(cond(lessThan(2), throws('')) as any),
-                        safedivM(6))),
-                filter(isSuccess as any),
-                map(getSuccess))
-
-        ).toEqual([4, 9])
-    );
+            ).toEqual([undefined, 36])
+        );
 
 
-    it('use with flow - Either', () =>
+        it('use with flow - Maybe', () =>
 
-        expect(
+            expect(
 
-            flow(
-                [3, 0, 4, 2],
-                map(success),
-                map(
-                    mcompose(
-                        square,
-                        liftE(cond(lessThan(2), throws('e1')) as any),
-                        safedivE(6))),
-                filter(isSuccess as any),
-                map(getSuccess))
+                flow(
+                    [3, 0, 4, 2],
+                    map(just),
+                    map(
+                        mcompose(
+                            safedivM(6),
+                            liftM(cond(lessThan(2), throws('')) as any),
+                            liftM(square))),
+                    filter(isSuccess as any),
+                    map(getSuccess))
 
-        ).toEqual([4, 9])
-    );
+            ).toEqual([4, 9])
+        );
 
 
-    it('use case', () =>
+        it('use with flow - Either', () =>
 
-        expect(
-            flow(
-                [0, 3, 1],
-                map(success),
-                map(mcompose(square, decE, safedivE(3))),
-                separate(isSuccess),
-                update(0, map(right)),
-                update(1, map(left)))
+            expect(
 
-        ).toEqual([
-            [4],
-            ['safedivfail', 'decfailed']
-        ])
-    );
+                flow(
+                    [3, 0, 4, 2],
+                    map(success),
+                    map(
+                        mcompose(
+                            safedivE(6),
+                            liftE(cond(lessThan(2), throws('e1')) as any),
+                            squareE)),
+                    filter(isSuccess as any),
+                    map(getSuccess))
+
+            ).toEqual([4, 9])
+        );
+
+
+        it('use case', () =>
+
+            expect(
+                flow(
+                    [0, 3, 1],
+                    map(success),
+                    map(mcompose(safedivE(3), decE, squareE)),
+                    separate(isSuccess),
+                    update(0, map(right)),
+                    update(1, map(left)))
+
+            ).toEqual([
+                [4],
+                ['safedivfail', 'decfailed']
+            ])
+        );
 });

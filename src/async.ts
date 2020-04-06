@@ -212,14 +212,11 @@ export async function flow(a: any, ...b: any[]) {
 }
 
 
-export function mcompose<T, R>(g: ((...args: Array<T>) => Promise<R>|R),
-                               ...fs: Array<(x: T, ...xs: Array<T>) => Promise<Either<any, T>>|Either<any, T>>)
+export function mcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Promise<Either<any, T>>|Either<any, T>>)
     : (seed: Either<any, T>) => Promise<Either<any, R>>;
-export function mcompose<T, R>(g: ((...args: Array<T>) => Promise<R>|R),
-                               ...fs: Array<(x: T, ...xs: Array<T>) => Promise<Maybe<T>>|Maybe<T>>)
+export function mcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Promise<Maybe<T>>|Maybe<T>>)
     : (seed: Maybe<T>) => Promise<Maybe<R>>;
-export function mcompose<T, R>(g: ((...args: Array<T>) => Promise<R>|R),
-                               ...fs: Array<
+export function mcompose<T, R>(...fs: Array<
                                    (x: T, ...xs: Array<T>) =>
                                        Promise<Either<any, T>>
                                        |Promise<Maybe<T>>
@@ -231,12 +228,12 @@ export function mcompose<T, R>(g: ((...args: Array<T>) => Promise<R>|R),
         if (isFailure(seed)) return seed as any;
 
         let results = [getSuccess(seed)] as Array<T>;
-        for (let f of reverse(fs)) {
+        for (let f of fs) {
 
             const res = await f(first(results) as T, ...rest(results));
             if (isFailure(res)) return res as any;
             results = [getSuccess(res)].concat(results);
         }
-        return convert(await g(...results), seed) as any;
+        return convert(first(results), seed) as any;
     }
 }

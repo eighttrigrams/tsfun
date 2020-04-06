@@ -50,27 +50,24 @@ export function collect<T>(...p: Array<T>) {
 }
 
 
-export function mcompose<T, R>(g: ((...args: Array<T>) => R),
-                               ...fs: Array<(x: T, ...xs: Array<T>) => Either<any, T>>)
+export function mcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Either<any, T>>)
     : (seed: Either<any, T>) => Either<any, R>;
-export function mcompose<T, R>(g: ((...args: Array<T>) => R),
-                               ...fs: Array<(x: T, ...xs: Array<T>) => Maybe<T>>)
+export function mcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Maybe<T>>)
     : (seed: Maybe<T>) => Maybe<R>;
-export function mcompose<T, R>(g: ((...args: Array<T>) => R),
-                               ...fs: Array<(x: T, ...xs: Array<T>) => Either<any, T>|Maybe<T>>)
+export function mcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Either<any, T>|Maybe<T>>)
     : (seed: Either<any, T>|Maybe<T>) => Maybe<R>|Either<any, R> {
 
     return (seed: Maybe<T>|Either<any, T>) => {
         if (isFailure(seed)) return seed as any;
 
         let results = [getSuccess(seed)] as Array<T>;
-        for (let f of reverse(fs)) {
+        for (let f of fs) {
 
             const res = f(first(results) as T, ...rest(results));
             if (isFailure(res)) return res as any;
             results = [getSuccess(res)].concat(results);
         }
-        return convert(g(...results), seed) as any;
+        return convert(first(results), seed) as any;
     }
 }
 

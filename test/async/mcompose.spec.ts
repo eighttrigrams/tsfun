@@ -17,14 +17,16 @@ describe('async/mcompose', () => {
     const syncDecM = (x: number) => (x-1 === 0 ? [] : [x-1]) as Maybe<number>;
     const decE = async (x: number) => (x-1 === 0 ? ['decfailed', undefined] : [undefined, x-1]) as Either<string, number>;
     const safedivE = (x: number) => async (y: number) => (y === 0 ? ['safedivfail', undefined] : [undefined, x / y]) as Either<string, number>;
-    const square = async (x: number) => x * x;
-    const syncSquare = (x: number) => x * x;
+    const squareM = async (x: number): Promise<Maybe<number>> => [x * x];
+    const squareE = async (x: number): Promise<Either<any, number>> => [undefined, x * x];
+    const syncSquareM = (x: number): Maybe<number> => [x * x];
 
     it('success - Maybe', async () =>
 
         expect(
 
-            await asyncMcompose(square, decM)([3])
+            await asyncMcompose(decM, squareM)
+            ([3])
 
         ).toEqual([4])
     );
@@ -34,7 +36,8 @@ describe('async/mcompose', () => {
 
         expect(
 
-            await asyncMcompose(syncSquare, decM)([3])
+            await asyncMcompose(decM, syncSquareM)
+            ([3])
 
         ).toEqual([4])
     );
@@ -44,7 +47,8 @@ describe('async/mcompose', () => {
 
         expect(
 
-            await asyncMcompose(syncSquare, syncDecM)([3])
+            await asyncMcompose(syncDecM, syncSquareM)
+            ([3])
 
         ).toEqual([4])
     );
@@ -54,7 +58,8 @@ describe('async/mcompose', () => {
 
         expect(
 
-            await asyncMcompose(square, decE)([undefined, 3])
+            await asyncMcompose(decE, squareE)
+            ([undefined, 3])
 
         ).toEqual([undefined, 4])
     );
@@ -64,7 +69,8 @@ describe('async/mcompose', () => {
 
         expect(
 
-            await asyncMcompose(square, decM)([1])
+            await asyncMcompose(decM, squareM)
+            ([1])
 
         ).toEqual([])
     );
@@ -74,7 +80,8 @@ describe('async/mcompose', () => {
 
         expect(
 
-            await asyncMcompose(square, decE)([undefined, 1])
+            await asyncMcompose(decE, squareE)
+            ([undefined, 1])
 
         ).toEqual(['decfailed', undefined])
     );
@@ -86,7 +93,7 @@ describe('async/mcompose', () => {
 
             await asyncFlow(
                 [1],
-                asyncMcompose(square, decM))
+                asyncMcompose(decM, squareM))
 
         ).toEqual([])
     );
@@ -98,7 +105,7 @@ describe('async/mcompose', () => {
             await asyncFlow(
                 [0, 3, 1],
                 map(success),
-                asyncMap(asyncMcompose(square, decE, safedivE(3))),
+                asyncMap(asyncMcompose(safedivE(3), decE, squareE)),
                 separate(isSuccess),
                 update(0, map(right)),
                 update(1, map(left)))

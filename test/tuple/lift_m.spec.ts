@@ -47,7 +47,8 @@ describe('liftM', () => {
 
         expect(
 
-            map(mcompose(square, liftM(cond(is(1.5), throws(3)))))([[1.5], [0], [2]])
+            map(mcompose(liftM(cond(is(1.5), throws(3))), liftM(square)))
+            ([[1.5], [0], [2]])
 
         ).toEqual([[],[0],[4]])
     );
