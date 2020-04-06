@@ -109,7 +109,7 @@ export function conds(...cs: Array<Pair>) {
                 if (leftC === what) return r();
             }
         }
-        return what;
+        throw 'case exception - try using \'otherwise\' in conds';
     }
 }
 

@@ -8,7 +8,7 @@ import {to} from '../../src/struct';
  *
  * @author Daniel de Oliveira
  */
-fdescribe('conds', () => {
+describe('conds', () => {
 
     const square = (x: number) => x * x;
 
@@ -89,12 +89,12 @@ fdescribe('conds', () => {
     it('default', () =>
         expect(
 
-            conds(
+            () => conds(
                 [is(3), 5],
                 [is(5), 6])
             (4)
 
-        ).toEqual(4)
+        ).toThrow()
     );
 
 
