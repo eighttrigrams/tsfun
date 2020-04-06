@@ -99,12 +99,14 @@ export function conds(...cs: Array<Pair>) {
 
         for (let c of cs) {
 
-            const r = () => isFunction(right(c)) ? right(c)(what) : right(c);
+            const rightC = right(c); // avoid calling it twice
+            const r = () => isFunction(rightC) ? rightC(what) : rightC;
 
-            if (isFunction(left(c))) {
-                if (left(c)(what)) return r();
+            const leftC = left(c); // same
+            if (isFunction(leftC)) {
+                if (leftC(what)) return r();
             } else {
-                if (left(c) === what) return r();
+                if (leftC === what) return r();
             }
         }
         return what;

@@ -8,7 +8,7 @@ import {to} from '../../src/struct';
  *
  * @author Daniel de Oliveira
  */
-describe('conds', () => {
+fdescribe('conds', () => {
 
     const square = (x: number) => x * x;
 
