@@ -86,6 +86,8 @@ import {equal} from 'tsfun';
 
 * [startsWith](test/comparator/starts_with.spec.ts)
 * [endsWith](test/comparator/ends_with.spec.ts)
+* [shorterThan](test/comparator/shorterThan.spec.ts)
+* [longerThan](test/comparator/longerThan.spec.ts)
 
 ###### Struct
 

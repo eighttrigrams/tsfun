@@ -1,4 +1,4 @@
-import {Either, Maybe, Predicate} from './type';
+import {Either, List, Maybe, Predicate} from './type';
 import {is, on} from './comparator';
 import {first} from './list';
 import {map, reduce} from './associative';

@@ -83,6 +83,8 @@ export {
     endsWith,
     lessThan,
     lessOrEqualThan,
+    shorterThan,
+    longerThan
 } from './src/comparator';
 
 

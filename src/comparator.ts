@@ -1,4 +1,4 @@
-import {Comparator, ComparatorProducer, Pair, Predicate} from './type';
+import {Comparator, ComparatorProducer, List, Pair, Predicate} from './type';
 import {isArray, isNot, isObject, isString} from './predicate';
 import {subtractBy} from './set';
 import {getElForPathIn} from './struct';
@@ -451,5 +451,17 @@ export function endsWith<A>(that: string|Array<A>) {
     }
 }
 
+
+
+export function longerThan<T>(than: List<T>) {
+
+    return (what: List<T>) => what.length > than.length
+}
+
+
+export function shorterThan<T>(than: List<T>) {
+
+    return (what: List<T>) => what.length < than.length
+}
 
 
