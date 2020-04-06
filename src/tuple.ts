@@ -3,6 +3,11 @@ import {Either, Fallible, Maybe, Pair, Singleton} from './type';
 import {isArray, isEither, isMaybe, isSuccess} from './predicate';
 
 
+// to be used with on
+export const LEFT = 0;
+export const RIGHT = 1;
+
+
 export function tuplify<S = any, T = S>(...fs : Array<(s: S) => T>) {
 
     return (s: S) => fs.map(f => f(s)) as Array<T>;

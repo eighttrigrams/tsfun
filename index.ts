@@ -124,7 +124,9 @@ export {
     failure,
     just,
     singleton,
-    pair
+    pair,
+    LEFT,
+    RIGHT
 } from './src/tuple';
 
 

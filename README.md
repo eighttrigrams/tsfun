@@ -242,6 +242,11 @@ import {equal} from 'tsfun';
 * [Mapping](test/type/predicate.spec.ts)
 * [Predicate](test/type/predicate.spec.ts)
 
+## Constants reference
+
+* [LEFT](test/tuple/left-constant.spec.ts)
+* [RIGHT](test/tuple/right-constant.spec.ts)
+
 ## Special functions reference
 
 ### Async functions
