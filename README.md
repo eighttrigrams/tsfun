@@ -131,7 +131,7 @@ import {equal} from 'tsfun';
 
 ### List
 
-###### array & string
+###### Array & string
 
 * [take](test/list/take.spec.ts)
 * [drop](test/list/drop.spec.ts)
@@ -153,7 +153,7 @@ import {equal} from 'tsfun';
 
 ### Associative
 
-###### array & object
+###### Array & Map
 
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
@@ -169,7 +169,7 @@ import {equal} from 'tsfun';
 
 ### Collection
 
-###### array & object & string
+###### Array & Map & string
 
 * [copy](test/collection/copy.spec.ts)
 * [filter](test/collection/filter.spec.ts)
@@ -184,7 +184,7 @@ import {equal} from 'tsfun';
 
 ### Set
 
-###### array & string
+###### Array & string
 
 * [set](test/set/set.spec.ts)
 * [intersection](test/set/intersection.spec.ts)
@@ -196,7 +196,7 @@ import {equal} from 'tsfun';
 
 ### Struct
 
-###### array & object
+###### Array & Map
 
 * [to](test/struct/to.spec.ts)
 * [lookupOn](test/struct/lookup_on.spec.ts)
