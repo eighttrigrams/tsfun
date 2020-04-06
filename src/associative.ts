@@ -2,7 +2,7 @@ import {
     Predicate, Map
 } from './type';
 import {zip} from "./list";
-import {isArray, isObject} from './predicate';
+import {isArray, isFunction, isObject} from './predicate';
 import {copy} from './collection';
 import {range} from './array';
 
@@ -47,14 +47,14 @@ export function update<T>(key: string|number, f: (_: T) => T) {
 }
 
 
-export function assoc<T>(key: string, value: T): (struct: Map<T>) => Map<T>;
-export function assoc<A>(key: number, value: A): (struct: Array<A>) => Array<A>;
-export function assoc<T>(key: string|number, value: T) {
+export function assoc<T>(key: string, value: T|(() => T)): (struct: Map<T>) => Map<T>;
+export function assoc<A>(key: number, value: A|(() => A)): (struct: Array<A>) => Array<A>;
+export function assoc<T>(key: string|number, value: T|(() => T)) {
 
     return (struct: Map<T>|Array<T>) => {
 
         const newStruct = copy(struct as any);
-        (newStruct as any)[key] = value;
+        (newStruct as any)[key] = isFunction(value) ? (value as any)() : value;
         return newStruct;
     }
 }

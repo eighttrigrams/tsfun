@@ -1,6 +1,11 @@
-import {assoc} from '../../src/associative';
+import {assoc, map} from '../../src/associative';
+import {val} from '../../src/composition';
 
-
+/**
+ * tsfun | assoc
+ *
+ * @author Daniel de Oliveira
+ */
 describe('assoc', () => {
 
     it('array', () =>
@@ -24,5 +29,17 @@ describe('assoc', () => {
         const result = assoc(3, 8)([11, 12]);
         expect(result[3]).toEqual(8);
         expect(result[2]).toBeUndefined();
+    });
+
+
+    it('pitfall', () => {
+
+        const result = map(assoc('a', {}))([{a: 1}, {a: 1}]);
+        expect(result[0].a).toBe(result[1].a); // this is possibly not be what one wants
+
+        // to circumvent this, we use it like this
+        const result2 = map(assoc('a', () => ({})))([{a: 1}, {a: 1}]);
+        expect(result2[0].a).toEqual({});
+        expect(result2[0].a).not.toBe(result[1].a);
     });
 });

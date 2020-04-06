@@ -1,6 +1,14 @@
 import {Associative, Map} from './type';
 import {val} from './composition';
-import {isArray, isAssociative, isEmpty, isObject, isString, isUndefinedOrEmpty} from './predicate';
+import {
+    isArray,
+    isAssociative,
+    isEmpty,
+    isFunction,
+    isObject,
+    isString,
+    isUndefinedOrEmpty
+} from './predicate';
 import {reverseUncurry2} from './core';
 import {copy} from './collection';
 import {join} from './string';
@@ -83,7 +91,10 @@ function _update(path_: string|Array<string|number>,
     const copied = copy(struct) as Map;
 
     if (pathSegments.length === 1) {
-        if (update_fun) copied[pathSegment] = update_fun(copied[pathSegment]);
+        if (update_fun) {
+            const updateFunResult =  update_fun(copied[pathSegment]);
+            copied[pathSegment] = isFunction(updateFunResult) ? updateFunResult() : updateFunResult;
+        }
         else delete copied[pathSegment];
     } else {
         pathSegments.shift();

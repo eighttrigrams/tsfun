@@ -1,7 +1,13 @@
 import {assocOn} from '../../src/struct';
 import {equal} from '../../src/comparator';
+import {assoc, map} from '../../src/associative';
 
 
+/**
+ * tsfun | assocOn
+ *
+ * @author Daniel de Oliveira
+ */
 describe('assocOn', () => {
 
     it('create path', () =>
@@ -165,5 +171,17 @@ describe('assocOn', () => {
         // changes do not affect original
         resultStruct[0]['f'][0] = 'f_val_changed';
         expect(objectStruct[0]['f'][0]).toBe('f_val');
+    });
+
+
+    it('pitfall', () => {
+
+        const result = map(assocOn('a.b', {}))([{a: {b: 1}}, {a: {b: 1}}]);
+        expect(result[0].a.b).toBe(result[1].a.b); // this is possibly not be what one wants
+
+        // to circumvent this, we use it like this
+        const result2 = map(assocOn('a.b', () => ({})))([{a: {b: 1}}, {a: {b: 1}}]);
+        expect(result2[0].a.b).toEqual({});
+        expect(result2[0].a.b).not.toBe(result[1].a.b);
     });
 });
