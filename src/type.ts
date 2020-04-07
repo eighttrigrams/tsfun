@@ -63,7 +63,6 @@ export type PredicateProducer = <A>(_: Predicate<A>) => Predicate<A>;
 
 // see https://stackoverflow.com/questions/49910889/typescript-array-with-minimum-length
 // for a discussion
-// TODO remove
 type ArrayMinLength1<T> = {
     0: T
 } & Array<T>
