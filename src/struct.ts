@@ -139,21 +139,17 @@ export function _getElForPathIn(object: any, path: Array<string|number>): any {
 
     const key = path[0];
 
-    if (path.length === 1) {
-
-        if (isString(key)) {
-            if (isObject_(object)) return makeValueForCurrentKey(object[key]);
-            else return undefined;
-        } else {
-            if (isArray(object)) return makeValueForCurrentKey(object[key]);
-            else return undefined;
-        }
-
-    } else {
-        return object[key]
+    return path.length === 1
+        ? isString(key)
+            ? isObject_(object)
+                ? makeValueForCurrentKey(object[key])
+                : undefined
+            : isArray(object)
+                ? makeValueForCurrentKey(object[key])
+                : undefined
+        : object[key]
             ? _getElForPathIn(object[key], rest(path))
             : undefined;
-    }
 }
 
 
