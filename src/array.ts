@@ -1,7 +1,6 @@
-import {Map} from './type';
-import {reduce} from './associative';
-import {isArray, isEmpty, isObject} from './predicate';
+import {isArray, isEmpty} from './predicate';
 import {first, rest, take} from './list';
+import {identity} from './core';
 
 export const flatMap = <A, B>(f: (_: A) => Array<B>) =>
     (as: Array<A>): Array<B> =>
@@ -14,14 +13,14 @@ export function flatten<T>(as: Array<Array<T>>): Array<T>;
 export function flatten<T,R>(depth: number): (as: Array<T>) => Array<R>;
 export function flatten<T,R>(asOrDepth: Array<Array<T>>|number): Array<Array<T>>|((_:Array<T>) => Array<R>) {
 
-    const reducer = reduce((acc: any, val: any) => acc.concat(val), [] as any); // TODO rename or review and check duplication with flatMap
+    const _flatten = flatMap(identity as any) as any;
 
     return isArray(asOrDepth)
-        ? reducer(asOrDepth as Array<Array<T>>)
+        ? _flatten(asOrDepth as Array<Array<T>>)
         : (as: Array<T>) =>
             asOrDepth === 1
-                ? reducer(as)
-                : flatten((asOrDepth as number) - 1)(reducer(as));
+                ? _flatten(as)
+                : flatten((asOrDepth as number) - 1)(_flatten(as));
 }
 
 
