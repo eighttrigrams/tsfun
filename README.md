@@ -84,10 +84,11 @@ import {equal} from 'tsfun';
 
 ###### List
 
-* [startsWith](test/comparator/starts_with.spec.ts)
-* [endsWith](test/comparator/ends_with.spec.ts)
-* [shorterThan](test/comparator/shorterThan.spec.ts)
-* [longerThan](test/comparator/longerThan.spec.ts)
+* [startsWith](test/comparator/list/starts_with.spec.ts)
+* [endsWith](test/comparator/list/ends_with.spec.ts)
+* [shorterThan](test/comparator/list/shorter_than.spec.ts)
+* [longerThan](test/comparator/list/longer_than.spec.ts)
+* [sameLength](test/comparator/list/same_length.spec.ts)
 
 ###### Struct
 

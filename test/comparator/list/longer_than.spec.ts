@@ -1,4 +1,4 @@
-import {longerThan} from '../../src/comparator';
+import {longerThan} from '../../../src/comparator';
 
 /**
  * tsfun | longerThan

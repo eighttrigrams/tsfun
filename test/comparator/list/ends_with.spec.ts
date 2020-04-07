@@ -1,4 +1,4 @@
-import {endsWith} from '../../src/comparator';
+import {endsWith} from '../../../src/comparator';
 
 
 describe('endsWith', () => {

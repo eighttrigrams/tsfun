@@ -465,3 +465,9 @@ export function shorterThan<T>(than: List<T>) {
 }
 
 
+export function sameLength<T>(as: List<T>) {
+
+    return (what: List<T>) => what.length === as.length
+}
+
+

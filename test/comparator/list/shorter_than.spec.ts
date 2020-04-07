@@ -1,4 +1,4 @@
-import {shorterThan} from '../../src/comparator';
+import {shorterThan} from '../../../src/comparator';
 
 /**
  * tsfun | shorterThan

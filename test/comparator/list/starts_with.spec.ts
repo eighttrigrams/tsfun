@@ -1,4 +1,4 @@
-import {startsWith} from '../../src/comparator';
+import {startsWith} from '../../../src/comparator';
 
 
 describe('startsWith', () => {
