@@ -1,4 +1,4 @@
-import {isnt} from '../../src/comparator';
+import {isnt} from '../../../src/comparator';
 
 
 /**

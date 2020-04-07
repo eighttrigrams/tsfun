@@ -1,4 +1,4 @@
-import {supersetOf} from "../../src/comparator";
+import {supersetOf} from "../../../src/comparator";
 
 
 /**

@@ -15,7 +15,7 @@
  *
  * @author Daniel de Oliveira
  */
-import {objectEqual} from '../../src/comparator';
+import {objectEqual} from '../../../src/comparator';
 
 
 describe('objectEqual', () => {

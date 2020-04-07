@@ -1,7 +1,7 @@
 /**
  * @author Daniel de Oliveira
  */
-import {arrayEqualBy, jsonEqual} from "../../src/comparator";
+import {arrayEqualBy, jsonEqual} from "../../../src/comparator";
 
 
 describe('arrayEqualBy', () => {

@@ -1,4 +1,4 @@
-import {greaterThan} from '../../src/comparator';
+import {greaterThan} from '../../../src/comparator';
 
 
 describe('greaterThan', () => {

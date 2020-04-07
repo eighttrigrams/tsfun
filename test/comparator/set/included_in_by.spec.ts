@@ -1,4 +1,4 @@
-import {includedInBy, jsonEqual} from "../../src/comparator";
+import {includedInBy, jsonEqual} from "../../../src/comparator";
 
 
 /**

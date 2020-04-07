@@ -1,7 +1,7 @@
 /**
  * @author Daniel de Oliveira
  */
-import {subsetOfBy, on} from "../../src/comparator";
+import {subsetOfBy, on} from "../../../src/comparator";
 
 
 describe('subsetOfBy', () => {

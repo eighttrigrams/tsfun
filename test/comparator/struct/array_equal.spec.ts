@@ -1,7 +1,7 @@
 /**
  * @author Daniel de Oliveira
  */
-import {arrayEqual} from "../../src/comparator";
+import {arrayEqual} from "../../../src/comparator";
 
 
 describe('arrayEqual', () => {

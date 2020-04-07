@@ -1,7 +1,7 @@
 /**
  * @author Daniel de Oliveira
  */
-import {samesetBy, equalBy} from "../../src/comparator";
+import {samesetBy, equalBy} from "../../../src/comparator";
 
 
 describe('equalBy', () => {

@@ -1,4 +1,4 @@
-import {greaterOrEqualThan} from '../../src/comparator';
+import {greaterOrEqualThan} from '../../../src/comparator';
 
 
 describe('greaterOrEqualThan', () => {

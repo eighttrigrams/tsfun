@@ -1,7 +1,7 @@
 /**
  * @author Daniel de Oliveira
  */
-import {supersetOfBy} from "../../src/comparator";
+import {supersetOfBy} from "../../../src/comparator";
 
 
 describe('supersetOfBy', () => {

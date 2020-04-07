@@ -1,4 +1,4 @@
-import {sameset} from "../../src/comparator";
+import {sameset} from "../../../src/comparator";
 
 
 /**

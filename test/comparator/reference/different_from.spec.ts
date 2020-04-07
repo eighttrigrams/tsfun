@@ -1,7 +1,7 @@
 /**
  * @author Daniel de Oliveira
  */
-import {differentFrom} from "../../src/comparator";
+import {differentFrom} from "../../../src/comparator";
 
 
 describe('differentFrom', () => {

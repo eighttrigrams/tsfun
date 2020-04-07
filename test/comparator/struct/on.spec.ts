@@ -1,6 +1,6 @@
-import {samesetBy, by, is, jsonEqual, on} from '../../src/comparator';
-import {isArray, isDefined, isEmpty, isNot, isUndefined, isUndefinedOrEmpty} from '../../src/predicate';
-import {intersectBy} from '../../src/set';
+import {samesetBy, by, is, jsonEqual, on} from '../../../src/comparator';
+import {isArray, isDefined, isEmpty, isNot, isUndefined, isUndefinedOrEmpty} from '../../../src/predicate';
+import {intersectBy} from '../../../src/set';
 
 
 /**

@@ -62,25 +62,25 @@ import {equal} from 'tsfun';
 
 ###### Reference
 
-* [is](test/comparator/is.spec.ts)
-* [tripleEqual](test/comparator/triple_equal.spec.ts)
-* [isnt](test/comparator/isnt.spec.ts)
-* [differentFrom](test/comparator/different_from.spec.ts)
+* [is](test/comparator/reference/is.spec.ts)
+* [tripleEqual](test/comparator/reference/triple_equal.spec.ts)
+* [isnt](test/comparator/reference/isnt.spec.ts)
+* [differentFrom](test/comparator/reference/different_from.spec.ts)
 
 ###### Ordered
 
-* [greaterThan](test/comparator/greater_than.spec.ts)
-* [lessThan](test/comparator/less_than.spec.ts)
-* [greaterOrEqualThan](test/comparator/greater_or_equal_than.spec.ts)
-* [lessOrEqualThan](test/comparator/less_or_equal_than.spec.ts)
+* [greaterThan](test/comparator/ordered/greater_than.spec.ts)
+* [lessThan](test/comparator/ordered/less_than.spec.ts)
+* [greaterOrEqualThan](test/comparator/ordered/greater_or_equal_than.spec.ts)
+* [lessOrEqualThan](test/comparator/ordered/less_or_equal_than.spec.ts)
 
 ###### Set
 
-* [subsetOf](test/comparator/subset_of.spec.ts)
-* [supersetOf](test/comparator/superset_of.spec.ts)
-* [sameset](test/comparator/sameset.spec.ts)
-* [includes](test/comparator/includes.spec.ts)
-* [includedIn](test/comparator/included_in.spec.ts)
+* [subsetOf](test/comparator/set/subset_of.spec.ts)
+* [supersetOf](test/comparator/set/superset_of.spec.ts)
+* [sameset](test/comparator/set/sameset.spec.ts)
+* [includes](test/comparator/set/includes.spec.ts)
+* [includedIn](test/comparator/set/included_in.spec.ts)
 
 ###### List
 
@@ -92,13 +92,13 @@ import {equal} from 'tsfun';
 
 ###### Struct
 
-* [jsonEqual](test/comparator/json_equal.spec.ts)
-* [arrayEqual](test/comparator/array_equal.spec.ts)
-* [objectEqual](test/comparator/object_equal.spec.ts)
-* [equal](test/comparator/equal.spec.ts)
-* [equalTo](test/comparator/equal_to.spec.ts)
-* [on](test/comparator/on.spec.ts)
-* [path](test/comparator/path.spec.ts)
+* [jsonEqual](test/comparator/struct/json_equal.spec.ts)
+* [arrayEqual](test/comparator/struct/array_equal.spec.ts)
+* [objectEqual](test/comparator/struct/object_equal.spec.ts)
+* [equal](test/comparator/struct/equal.spec.ts)
+* [equalTo](test/comparator/struct/equal_to.spec.ts)
+* [on](test/comparator/struct/on.spec.ts)
+* [path](test/comparator/struct/path.spec.ts)
 
 ### Composition
 
@@ -295,15 +295,15 @@ import {samesetBy} from 'tsfun/by';
 
 ##### Comparator
 
-* [differentFromBy](test/comparator/different_from_by.spec.ts)
-* [includedInBy](test/comparator/included_in_by.spec.ts)
-* [includesBy](test/comparator/includes_by.spec.ts)
-* [subsetOfBy](test/comparator/subset_of_by.spec.ts)
-* [supersetOfBy](test/comparator/superset_of_by.spec.ts)
-* [samesetBy](test/comparator/sameset_by.spec.ts)
-* [arrayEqualBy](test/comparator/array_equal_by.spec.ts)
-* [objectEqualBy](test/comparator/object_equal_by.spec.ts)
-* [equalBy](test/comparator/equal_by.spec.ts)
+* [differentFromBy](test/comparator/reference/different_from_by.spec.ts)
+* [includedInBy](test/comparator/set/included_in_by.spec.ts)
+* [includesBy](test/comparator/set/includes_by.spec.ts)
+* [subsetOfBy](test/comparator/set/subset_of_by.spec.ts)
+* [supersetOfBy](test/comparator/set/superset_of_by.spec.ts)
+* [samesetBy](test/comparator/set/sameset_by.spec.ts)
+* [arrayEqualBy](test/comparator/struct/array_equal_by.spec.ts)
+* [objectEqualBy](test/comparator/struct/object_equal_by.spec.ts)
+* [equalBy](test/comparator/struct/equal_by.spec.ts)
 
 ##### Set
 

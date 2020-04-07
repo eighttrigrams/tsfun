@@ -1,7 +1,7 @@
 /**
  * @author Daniel de Oliveira
  */
-import {samesetBy, jsonEqual} from "../../src/comparator";
+import {samesetBy, jsonEqual} from "../../../src/comparator";
 
 
 describe('samesetBy', () => {

@@ -1,4 +1,4 @@
-import {subsetOf} from "../../src/comparator";
+import {subsetOf} from "../../../src/comparator";
 
 /**
  * tsfun | subsetOf

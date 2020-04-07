@@ -1,4 +1,4 @@
-import {is} from '../../src/comparator';
+import {is} from '../../../src/comparator';
 
 
 /**

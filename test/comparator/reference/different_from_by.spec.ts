@@ -1,7 +1,7 @@
 /**
  * @author Daniel de Oliveira
  */
-import {differentFromBy, jsonEqual} from "../../src/comparator";
+import {differentFromBy, jsonEqual} from "../../../src/comparator";
 
 
 describe('differentFromBy', () => {

@@ -1,7 +1,7 @@
 /**
  * @author Daniel de Oliveira
  */
-import {equalTo} from "../../src/comparator";
+import {equalTo} from "../../../src/comparator";
 
 
 describe('equalTo', () => {

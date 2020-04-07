@@ -1,4 +1,4 @@
-import {includedIn} from "../../src/comparator";
+import {includedIn} from "../../../src/comparator";
 
 
 /**

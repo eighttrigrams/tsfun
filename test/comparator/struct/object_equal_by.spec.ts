@@ -14,7 +14,7 @@
  *
  * @author Daniel de Oliveira
  */
-import {arrayEqualBy, samesetBy, objectEqualBy} from '../../src/comparator';
+import {arrayEqualBy, samesetBy, objectEqualBy} from '../../../src/comparator';
 
 
 describe('objectEqualBy', () => {

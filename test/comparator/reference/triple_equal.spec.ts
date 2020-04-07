@@ -1,4 +1,4 @@
-import {is, isnt, tripleEqual} from '../../src/comparator';
+import {is, isnt, tripleEqual} from '../../../src/comparator';
 
 
 /**
