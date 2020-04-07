@@ -1,17 +1,8 @@
-import {Associative, Map} from './type';
+import {Map} from './type';
 import {val} from './composition';
-import {
-    isArray,
-    isAssociative,
-    isEmpty,
-    isFunction,
-    isObject,
-    isString,
-    isUndefinedOrEmpty
-} from './predicate';
+import {isArray, isFunction, isObject, isString} from './predicate';
 import {reverseUncurry2} from './core';
 import {copy} from './collection';
-import {join} from './string';
 import {rest} from './list';
 
 
