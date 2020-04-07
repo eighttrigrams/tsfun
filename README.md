@@ -209,7 +209,7 @@ import {equal} from 'tsfun';
 
 ### Tuple
 
-###### array
+###### Array
 
 * [tuplify](test/tuple/tuplify.spec.ts)
 * [pairWith](test/tuple/pair-with.spec.ts)
