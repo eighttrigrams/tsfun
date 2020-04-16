@@ -212,6 +212,12 @@ export async function flow(a: any, ...b: any[]) {
 }
 
 
+export function compose(...b: any[]) {
+
+    return async (a: any) => flow(a, ...b);
+}
+
+
 export function mcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Promise<Either<any, T>>|Either<any, T>>)
     : (seed: Either<any, T>) => Promise<Either<any, R>>;
 export function mcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Promise<Maybe<T>>|Maybe<T>>)
