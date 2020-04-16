@@ -102,7 +102,7 @@ export function values<T>(t: Map<T>|Array<T>): Array<T> {
 
 /* internal */ export const mapProperties = <A, B>(f: (_: A) => B) =>
     (keys: Array<number|string>, o: Map<A>): Map<B> =>
-        keys.reduce((mapPropertiesReducer as any)(f)(o), {});
+        keys.reduce(mapPropertiesReducer(f)(o), {});
 
 
 const mapPropertiesReducer = <A, B>(f: (_: A) => B) =>
