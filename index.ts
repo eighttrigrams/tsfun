@@ -12,7 +12,7 @@ export {
 } from './src/struct';
 
 
-export {
+export type {
     Map,
     Pair,
     Just,
