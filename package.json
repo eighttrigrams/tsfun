@@ -1,6 +1,6 @@
 {
   "name": "tsfun",
-  "version": "4.2.94",
+  "version": "4.2.95",
   "description": "Functional Combinators for TypeScript",
   "main": "",
   "scripts": {
