@@ -1,15 +1,14 @@
-import {lookupOn} from "../../src/struct";
+import {lookup} from "../../src/struct"
 
 /**
- * tsfun | lookupOn
+ * tsfun | struct/lookup
  */
-describe('lookupOn', () => {
-
+describe('struct/lookup', () => {
 
     it('first level object - second level object',() =>
         expect(
 
-            lookupOn({a: {b: 4}})('a.b'))
+            lookup({a: {b: 4}})('a.b'))
 
             .toEqual(4));
 
@@ -17,7 +16,7 @@ describe('lookupOn', () => {
     it('first level object - second level object - by array',() =>
         expect(
 
-            lookupOn({a: {b: 4}})(['a', 'b']))
+            lookup({a: {b: 4}})(['a', 'b']))
 
             .toEqual(4));
 
@@ -25,7 +24,7 @@ describe('lookupOn', () => {
     it('first level object - second level array',() =>
         expect(
 
-            lookupOn({a: [4, 5]})('a[1]'))
+            lookup({a: [4, 5]})('a[1]'))
 
             .toEqual(5));
 
@@ -33,7 +32,7 @@ describe('lookupOn', () => {
     it('fist level array - second level object',() =>
         expect(
 
-            lookupOn([4, {d: 7}])('[1].d'))
+            lookup([4, {d: 7}])('[1].d'))
 
             .toEqual(7));
 
@@ -41,7 +40,7 @@ describe('lookupOn', () => {
     it('fist level array - second level array',() =>
         expect(
 
-            lookupOn([4, [7, 8]])('[1][0]'))
+            lookup([4, [7, 8]])('[1][0]'))
 
             .toEqual(7));
 
@@ -49,7 +48,7 @@ describe('lookupOn', () => {
     it('undefined as key',() =>
         expect(
 
-            lookupOn([4, [7, 8]])(undefined as any))
+            lookup([4, [7, 8]])(undefined as any))
 
             .toBeUndefined());
 
@@ -57,7 +56,7 @@ describe('lookupOn', () => {
     it('nothing array', () =>
         expect(
 
-            lookupOn([4])('[5]'))
+            lookup([4])('[5]'))
 
             .toBeUndefined());
 
@@ -65,7 +64,7 @@ describe('lookupOn', () => {
     it('nothing object',() =>
         expect(
 
-            lookupOn({a: {b: 4}})('c.d'))
+            lookup({a: {b: 4}})('c.d'))
 
             .toBeUndefined());
 
@@ -73,7 +72,7 @@ describe('lookupOn', () => {
     it('alternative',() =>
         expect(
 
-            lookupOn([4], 7)('[5]'))
+            lookup([4], 7)('[5]'))
 
             .toEqual(7));
 });

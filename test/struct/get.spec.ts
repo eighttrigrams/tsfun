@@ -1,16 +1,16 @@
-import {getOn} from "../../src/struct";
+import {get} from '../../src/struct'
 
 
 /**
- * @author Daniel de Oliveira
+ * tsfun | struct/get
  */
-describe('getOn', () => {
+describe('struct/get', () => {
 
 
     it('first level object - second level object',() =>
         expect(
 
-            getOn('a.b', undefined)({a: {b: 4}}))
+            get('a.b', undefined)({a: {b: 4}}))
 
             .toEqual(4));
 
@@ -18,7 +18,7 @@ describe('getOn', () => {
     it('first level object - second level object - by array',() =>
         expect(
 
-            getOn(['a','b'], undefined)({a: {b: 4}}))
+            get(['a','b'], undefined)({a: {b: 4}}))
 
             .toEqual(4));
 
@@ -26,7 +26,7 @@ describe('getOn', () => {
     it('first level object - second level key missing',() =>
         expect(
 
-            getOn('a.c', undefined)({a: {b: 4}}))
+            get('a.c', undefined)({a: {b: 4}}))
 
             .toEqual(undefined));
 
@@ -34,7 +34,7 @@ describe('getOn', () => {
     it('first level object - second level object - third level key missing',() =>
         expect(
 
-            getOn('a.c.e', undefined)({a: {c: {c: 7}}}))
+            get('a.c.e', undefined)({a: {c: {c: 7}}}))
 
             .toEqual(undefined));
 
@@ -42,30 +42,30 @@ describe('getOn', () => {
     it('first level object key missing - second level object key missing - third level key missing',() =>
         expect(
 
-            getOn('e.e.e', undefined)({c: {c: {c: 7}}}))
+            get('e.e.e', undefined)({c: {c: {c: 7}}}))
 
             .toEqual(undefined));
 
 
-    it('getOnOr - undefined',() =>
+    it('getOr - undefined',() =>
         expect(
 
-            getOn('c.d', undefined)({a: {b: 4}}))
+            get('c.d', undefined)({a: {b: 4}}))
 
             .toEqual(undefined));
 
 
-    it('getOn - alternative',() =>
+    it('get - alternative',() =>
         expect(
 
-            getOn('c.d', 8)({a: {b: 4}}))
+            get('c.d', 8)({a: {b: 4}}))
 
             .toEqual(8));
 
     it('wrap - with getElForPathIn and false',() =>
         expect(
 
-            getOn('a', undefined)({a: false}))
+            get('a', undefined)({a: false}))
 
             .toEqual(false));
 
@@ -73,7 +73,7 @@ describe('getOn', () => {
     it('nothing',() =>
         expect(
 
-            getOn('[3]')([1, 2]))
+            get('[3]')([1, 2]))
 
             .toBeUndefined());
 });

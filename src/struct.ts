@@ -44,7 +44,7 @@ export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function
 }
 
 
-export function getOn<T>(path: string|Array<string|number>, alternative?: any) {
+export function get<T>(path: string|Array<string|number>, alternative?: any) {
 
     return (ds: Object) => {
 
@@ -54,22 +54,22 @@ export function getOn<T>(path: string|Array<string|number>, alternative?: any) {
 }
 
 
-export const lookupOn = <T>(ds: Object, alternative?: T) => (path: string|Array<string|number>) => {
+export const lookup = <T>(ds: Object, alternative?: T) => (path: string|Array<string|number>) => {
 
-    return getOn(path, alternative)(ds);
-};
+    return get(path, alternative)(ds)
+}
 
 
-export function updateOn(path_: string|Array<string|number>, update_fun?: (val: any) => any) {
+export function update(path_: string|Array<string|number>, update_fun?: (val: any) => any) {
 
     return (struct: Object): any => _update(path_, struct, update_fun)
 }
 
 
-export const assocOn = (path: string|Array<string|number>, v: any) => updateOn(path, val(v));
+export const assoc = (path: string|Array<string|number>, v: any) => update(path, val(v));
 
 
-export const dissocOn = (path: string|Array<string|number>) => updateOn(path);
+export const dissoc = (path: string|Array<string|number>) => update(path);
 
 
 function _update(path_: string|Array<string|number>,

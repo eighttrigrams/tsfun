@@ -1,18 +1,16 @@
-import {dissocOn} from '../../src/struct';
+import {dissoc} from '../../src/struct';
 
 /**
- * tsfun | dissocOn
- *
- * @author Daniel de Oliveira
+ * tsfun | struct/dissoc
  */
-describe('dissocOn', () => {
+describe('struct/dissoc', () => {
 
     it('dissoc - first layer', () => {
 
         const embeddedStruct = { d: 'd_val' };
 
         const objectStruct = { a: 'a_val', c: embeddedStruct };
-        const resultStruct = dissocOn('c')(objectStruct);
+        const resultStruct = dissoc('c')(objectStruct);
 
         expect(resultStruct).not.toBe(objectStruct);
         expect(embeddedStruct['d']).toBe('d_val');
@@ -26,7 +24,7 @@ describe('dissocOn', () => {
         const embeddedStruct = { d: 'd_val' };
 
         const objectStruct = { a: 'a_val', c: embeddedStruct };
-        const resultStruct = dissocOn(['c'])(objectStruct);
+        const resultStruct = dissoc(['c'])(objectStruct);
 
         expect(resultStruct).not.toBe(objectStruct);
         expect(embeddedStruct['d']).toBe('d_val');
@@ -40,7 +38,7 @@ describe('dissocOn', () => {
         const embeddedStruct = { e: 'e_val' };
 
         const objectStruct = { a: { b: 'b_val', c: embeddedStruct}, d: embeddedStruct };
-        const resultStruct = dissocOn('a.c')(objectStruct);
+        const resultStruct = dissoc('a.c')(objectStruct);
 
         expect(resultStruct).not.toBe(objectStruct);
         expect(resultStruct['d']).toBe(embeddedStruct);
@@ -48,15 +46,15 @@ describe('dissocOn', () => {
         expect(resultStruct['a']['b']).toBe('b_val');
         expect(objectStruct['a']['c']).toBe(embeddedStruct);
         expect(embeddedStruct['e']).toBe('e_val');
-    });
+    })
 
 
     it('do not create anything', () => {
 
         const objectStruct = {};
-        const resultStruct = dissocOn('a.c')(objectStruct);
+        const resultStruct = dissoc('a.c')(objectStruct);
 
         // does not create the a property, just to get to the 'c' property
         expect(resultStruct).toEqual({});
-    });
-});
+    })
+})

@@ -1,11 +1,11 @@
 export {
     jsonClone,
-    lookupOn,
-    getOn,
+    lookup,
+    get,
     clone,
-    assocOn,
-    dissocOn,
-    updateOn,
+    assoc,
+    dissoc,
+    update,
     getElForPathIn,
     path
 } from './src/struct';

@@ -258,15 +258,15 @@ import {lookup} from 'tsfun/associative';
 ###### Array & Map
 
 ```typescript
-import {assocOn} from 'tsfun/struct';
+import {assoc as assocOn} from 'tsfun/struct';
 ```
-
+I
 * [path](test/struct/path.spec.ts)
-* [lookupOn](test/struct/lookup_on.spec.ts)
-* [getOn](test/struct/get_on.spec.ts)
-* [assocOn](test/struct/assoc_on.spec.ts)
-* [dissocOn](test/struct/dissoc_on.spec.ts)
-* [updateOn](test/struct/update_on.spec.ts)
+* [lookup](test/struct/lookup.spec.ts)
+* [get](test/struct/get.spec.ts)
+* [assoc](test/struct/assoc.spec.ts)
+* [dissoc](test/struct/dissoc.spec.ts)
+* [update](test/struct/update.spec.ts)
 * [clone](test/struct/clone.spec.ts)
 * [jsonClone](test/struct/json_clone.spec.ts)
 

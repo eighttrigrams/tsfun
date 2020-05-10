@@ -1,14 +1,17 @@
-import {updateOn} from '../../src/struct';
+import {update} from '../../src/struct';
 
 
-describe('updateOn', () => {
+/**
+ * tsfun | struct/update
+ */
+describe('update', () => {
 
     it('update - first layer', () => {
 
         const embeddedStruct = { d: 'd_val' };
 
         const objectStruct = { a: 'a_val', c: embeddedStruct };
-        const resultStruct = updateOn('a', (val: string) => val + '_new')(objectStruct);
+        const resultStruct = update('a', (val: string) => val + '_new')(objectStruct);
 
         expect(resultStruct).not.toBe(objectStruct);
         expect(resultStruct['a']).toBe('a_val_new');
@@ -17,7 +20,7 @@ describe('updateOn', () => {
         // changes
         resultStruct['a'] = 'a_val_changed';
         expect(objectStruct['a']).toBe('a_val');
-    });
+    })
 
 
     it('update - first layer - by array', () => {
@@ -25,7 +28,7 @@ describe('updateOn', () => {
         const embeddedStruct = { d: 'd_val' };
 
         const objectStruct = { a: 'a_val', c: embeddedStruct };
-        const resultStruct = updateOn(['a'], (val: string) => val + '_new')(objectStruct);
+        const resultStruct = update(['a'], (val: string) => val + '_new')(objectStruct);
 
         expect(resultStruct).not.toBe(objectStruct);
         expect(resultStruct['a']).toBe('a_val_new');
@@ -34,7 +37,7 @@ describe('updateOn', () => {
         // changes
         resultStruct['a'] = 'a_val_changed';
         expect(objectStruct['a']).toBe('a_val');
-    });
+    })
 
 
     it('update - second layer', () => {
@@ -42,7 +45,7 @@ describe('updateOn', () => {
         const embeddedStruct = { e: 'e_val' };
 
         const objectStruct = { a: { b: 'b_val', c: embeddedStruct}, d: embeddedStruct };
-        const resultStruct = updateOn('a.b', (val: string) => val + '_new')(objectStruct);
+        const resultStruct = update('a.b', (val: string) => val + '_new')(objectStruct);
 
         expect(resultStruct).not.toBe(objectStruct);
         expect(resultStruct['d']).toBe(embeddedStruct);
@@ -61,8 +64,8 @@ describe('updateOn', () => {
 
 
         const objectStruct = { a: { b: { c: 'c_val'} }};
-        const resultStruct = updateOn('a.b.c', (val: string) => val + '_new')(objectStruct);
+        const resultStruct = update('a.b.c', (val: string) => val + '_new')(objectStruct);
 
         expect(resultStruct['a']['b']['c']).toBe('c_val_new');
-    });
-});
+    })
+})
