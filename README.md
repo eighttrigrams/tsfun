@@ -208,6 +208,7 @@ import {equal} from 'tsfun';
 
 ###### Array & Map
 
+* [map](test/associative/map.spec.ts)  
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
 
@@ -243,7 +244,6 @@ import {equal} from 'tsfun';
 import {lookup} from 'tsfun/associative';
 ```
 
-* [map](test/associative/map.spec.ts)  
 * [reduce](test/associative/reduce.spec.ts)
 * [lookup](test/associative/lookup.spec.ts)
 * [get](test/associative/get.spec.ts)

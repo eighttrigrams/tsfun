@@ -1,6 +1,7 @@
 export {
     keys,
     values,
+    map
 } from './src/associative';
 
 

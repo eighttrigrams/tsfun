@@ -7,5 +7,4 @@ export {
     forEach,
     get,
     reduce,
-    map
 } from './src/associative';
