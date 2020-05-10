@@ -9,6 +9,9 @@ import {sameset} from "../../../src/comparator";
  * with the same elements, meaning that
  * duplicates do count as one set item and
  * the order of the elements does not matter.
+ *
+ * It can be used in a flow context, where the arguments are given as separate argument lists,
+ * as well as in a standard context, where the arguments are given in a single argument list.
  */
 describe('sameset', () => {
 
