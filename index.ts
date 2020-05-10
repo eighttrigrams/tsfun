@@ -1,16 +1,21 @@
 export {
+    assoc
+} from './src/object'
+
+
+export {
     keys,
     values,
     map,
     keysAndValues,
     reduce,
     forEach
-} from './src/associative';
+} from './src/associative'
 
 
 export {
     to
-} from './src/struct';
+} from './src/struct'
 
 
 export type {
@@ -30,12 +35,12 @@ export type {
     Fallible,
     Mapping,
     Filter
-} from './src/type';
+} from './src/type'
 
 
 export {
     identity
-} from './src/core';
+} from './src/core'
 
 export {
     not,
@@ -59,7 +64,7 @@ export {
     isString,
     isUndefinedOrEmpty, isEmpty, isUndefined,
     isSuccess, isFailure, isEither, isMaybe, isPair
-} from './src/predicate';
+} from './src/predicate'
 
 
 export {
@@ -87,7 +92,7 @@ export {
     shorterThan,
     longerThan,
     sameLength
-} from './src/comparator';
+} from './src/comparator'
 
 
 export {
@@ -102,7 +107,7 @@ export {
     collect,
     mcompose,
     mmatch
-} from './src/composition';
+} from './src/composition'
 
 
 export {
@@ -110,7 +115,7 @@ export {
     toLowerCase,
     join,
     split
-} from './src/string';
+} from './src/string'
 
 
 export {
@@ -131,7 +136,7 @@ export {
     pair,
     LEFT,
     RIGHT
-} from './src/tuple';
+} from './src/tuple'
 
 
 export {
@@ -163,12 +168,12 @@ export {
     dropRightWhile,
     zip,
     sort
-} from './src/list';
+} from './src/list'
 
 
 export {
     duplicates,
-} from './src/set';
+} from './src/set'
 
 
 export {
@@ -178,7 +183,7 @@ export {
     intersect,
     subtract,
     unite
-} from './src/set';
+} from './src/set'
 
 
 export {
