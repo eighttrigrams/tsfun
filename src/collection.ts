@@ -1,18 +1,18 @@
-import {Map, Pair, Predicate} from './type';
-import {and, isArray, isDefined, isObject, isString} from './predicate';
-import {keys, reduce, values} from './associative';
+import {Map, Pair, Predicate} from './type'
+import {and, isArray, isDefined, isObject, isString} from './predicate'
+import {keys, reduce, values} from './associative'
 
 
-export function copy<T>(struct: Array<T>): Array<T>;
-export function copy<T>(struct: Map<T>): Map<T>;
-export function copy(struct: string): string;
+export function copy<T>(struct: Array<T>): Array<T>
+export function copy<T>(struct: Map<T>): Map<T>
+export function copy(struct: string): string
 export function copy<T>(struct: Array<T>|Map<T>|string) {
 
     return isString(struct)
         ? (struct as any).slice()
         : isArray(struct)
             ? [...struct]
-            : {...struct as any};
+            : {...struct as any}
 }
 
 
@@ -30,14 +30,14 @@ export function count<A>(p: Predicate<A>, as?: any): any {
 }
 
 
-export function prune(o: string): string;
-export function prune<T>(o: Map<T>): Map<T>;
-export function prune<A>(as: Array<A>): Array<A>;
+export function prune(o: string): string
+export function prune<T>(o: Map<T>): Map<T>
+export function prune<A>(as: Array<A>): Array<A>
 export function prune<T>(ts: Array<T>|Map<T>|string) {
 
     return !isString(ts)
         ? filter(isDefined)(ts as any)
-        : (ts as string).replace(' ', '') as any;
+        : (ts as string).replace(' ', '') as any
 }
 
 
