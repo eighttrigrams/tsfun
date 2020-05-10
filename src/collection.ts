@@ -152,14 +152,21 @@ export function remove<A>(p: (a: A, i?: any) => boolean, as?: any): any {
 
 
 export function separate<A>(p: (a: A, i?: number|string) => boolean): {
-    (as: Array<A>): Pair<Array<A>,Array<A>>
-    (os: Map<A>): Pair<Map<A>,Map<A>>
-    (s: string): Pair<string, string>
+    (as: Array<A>): Pair<Array<A>>
+    (os: Map<A>): Pair<Map<A>>
+    (s: string): Pair<string>
 }
-export function separate<A>(p: (a: A, i?: number|string) => boolean) {
+export function separate<A>(p: (a: A, i?: number) => boolean, as: string): Pair<string>
+export function separate<A>(p: (a: A, i?: number) => boolean, as: Array<A>): Pair<Array<A>>
+export function separate<A>(p: (a: A, i?: string) => boolean, as: Map<A>): Pair<Map<A>>
+export function separate<A>(p: (a: A, i?: any) => boolean, as?: any): any {
 
-    return (as: Array<A>|Map<A>): Pair<Array<A>, Array<A>>|Pair<Map<A>,Map<A>> =>
+    const inner = (as: Array<A>|Map<A>): Pair<Array<A>, Array<A>>|Pair<Map<A>,Map<A>> =>
         [filter(p)(as as any), remove(p)(as as any)]
+
+    return as === undefined
+        ? inner
+        : inner(as)
 }
 
 
