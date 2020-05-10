@@ -9,9 +9,6 @@ import {startsWith} from '../../../src/comparator';
  * startsWith operates on the List abstraction over Arrays and strings.
  * although here, the arguments must be both either of type string or Array,
  * and in the Array case both Array must contain the same type of arguments.
- *
- * It can be used in a flow context, where the arguments are given as separate argument lists,
- * as well as in a standard context, where the arguments are given in a single argument list.
  */
 describe('startsWith', () => {
 

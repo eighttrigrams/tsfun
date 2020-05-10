@@ -123,14 +123,14 @@ export function indices<A>(p: Predicate<A>) {
 }
 
 
-export function size(as: string): number;
-export function size<A>(as: Array<A>): number;
-export function size<T>(o: Map<T>): number;
+export function size(as: string): number
+export function size<A>(as: Array<A>): number
+export function size<T>(o: Map<T>): number
 export function size<T>(o: string|Array<T>|Map<T>): number {
 
     return (isArray(o) || isString(o)
         ? o.length
-        : keys(o as any).length) as number;
+        : keys(o as any).length) as number
 }
 
 
@@ -140,9 +140,14 @@ export function remove<A>(p: (a: A, i?: number|string) => boolean): {
     (os: Map<A>): Map<A>
     (s: string): string
 }
-export function remove<A>(p: (a: A, i?: number|string) => boolean) {
-
-    return filter((a: any, i: number|string) => !p(a, i));
+export function remove<A>(p: (a: A, i?: number) => boolean, as: Array<A>): Array<A>
+export function remove<A>(p: (a: A, i?: number) => boolean, as: string): string
+export function remove<A>(p: (a: A, i?: string) => boolean, as: Map<A>): Map<A>
+export function remove<A>(p: (a: A, i?: any) => boolean, as?: any): any {
+    const inner = filter((a: any, i: number|string) => !p(a, i))
+    return as === undefined
+        ? inner
+        : inner(as)
 }
 
 
@@ -154,7 +159,7 @@ export function separate<A>(p: (a: A, i?: number|string) => boolean): {
 export function separate<A>(p: (a: A, i?: number|string) => boolean) {
 
     return (as: Array<A>|Map<A>): Pair<Array<A>, Array<A>>|Pair<Map<A>,Map<A>> =>
-        [filter(p)(as as any), remove(p)(as as any)];
+        [filter(p)(as as any), remove(p)(as as any)]
 }
 
 
@@ -164,7 +169,7 @@ export function all<T>(p: Predicate<T>) {
 
         return (isString(as))
             ? (as as any).split('').every(p)
-            : (values(as as any)).every(p);
+            : (values(as as any)).every(p)
     }
 }
 
@@ -175,6 +180,6 @@ export function any<T>(p: Predicate<T>) {
 
         return (isString(as))
             ? (as as any).split('').some(p)
-            : (values(as as any)).some(p);
+            : (values(as as any)).some(p)
     }
 }
