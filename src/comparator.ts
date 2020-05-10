@@ -390,11 +390,13 @@ export function equalTo(o1: any) {
 }
 
 
-export function startsWith<A>(s: string): (as: string) => boolean;
-export function startsWith<A>(s: Array<A>): (as: Array<A>) => boolean;
-export function startsWith<A>(that: string|Array<A>) {
+export function startsWith<A>(s1: string, s2: string): boolean
+export function startsWith<A>(s1: string): (s2: string) => boolean;
+export function startsWith<A>(as1: Array<A>, as2: Array<A>): boolean;
+export function startsWith<A>(as1: Array<A>): (as2: Array<A>) => boolean;
+export function startsWith<A>(that: string|Array<A>, what?:string|Array<A>): any {
 
-    return (what: string|Array<A>) => {
+    const compare = (that: string|Array<A>, what: string|Array<A>) => {
 
         if (isString(what) && isString(that)) {
 
@@ -416,6 +418,10 @@ export function startsWith<A>(that: string|Array<A>) {
             throw 'illegal argument - args must be either both strings or both arrays';
         }
     }
+
+    return what === undefined
+        ? (what: string|Array<A>) => compare(that, what)
+        : compare(that, what);
 }
 
 
