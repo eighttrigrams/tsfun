@@ -1,14 +1,11 @@
 export {
-    to,
-    jsonClone,
-    lookupOn,
-    getOn,
-    clone,
-    assocOn,
-    dissocOn,
-    updateOn,
-    getElForPathIn,
-    path
+    keys,
+    values,
+} from './src/associative';
+
+
+export {
+    to
 } from './src/struct';
 
 
@@ -142,6 +139,7 @@ export {
     reduce1
 } from './src/array'
 
+
 export {
     reverse,
     append,
@@ -177,21 +175,6 @@ export {
     subtract,
     unite
 } from './src/set';
-
-
-export {
-    keysAndValues,
-    keys,
-    values,
-    lookup,
-    assoc,
-    update,
-    dissoc,
-    forEach,
-    get,
-    reduce,
-    map
-} from './src/associative';
 
 
 export {

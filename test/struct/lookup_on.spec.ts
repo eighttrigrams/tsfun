@@ -1,7 +1,7 @@
 import {lookupOn} from "../../src/struct";
 
 /**
- * @author Daniel de Oliveira
+ * tsfun | lookupOn
  */
 describe('lookupOn', () => {
 

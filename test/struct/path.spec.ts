@@ -2,8 +2,6 @@ import {path} from '../../src/struct';
 
 /**
  * tsfun | path
- *
- * @author Daniel de Oliveira
  */
 describe('path', () => {
 

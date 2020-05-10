@@ -98,7 +98,6 @@ import {equal} from 'tsfun';
 * [equal](test/comparator/struct/equal.spec.ts)
 * [equalTo](test/comparator/struct/equal_to.spec.ts)
 * [on](test/comparator/struct/on.spec.ts)
-* [path](test/comparator/struct/path.spec.ts)
 
 ### Composition
 
@@ -152,22 +151,6 @@ import {equal} from 'tsfun';
 * [dropWhile](test/list/drop_while.spec.ts)
 * [dropRightWhile](test/list/drop_right_while.spec.ts)
 
-### Associative
-
-###### Array & Map
-
-* [keys](test/associative/keys.spec.ts)
-* [values](test/associative/values.spec.ts)
-* [map](test/associative/map.spec.ts)  
-* [reduce](test/associative/reduce.spec.ts)
-* [lookup](test/associative/lookup.spec.ts)
-* [get](test/associative/get.spec.ts)
-* [assoc](test/associative/assoc.spec.ts)
-* [update](test/associative/update.spec.ts)
-* [dissoc](test/associative/dissoc.spec.ts)
-* [forEach](test/associative/for_each.spec.ts)
-* [keysAndValues](test/associative/keys_and_values.spec.ts)
-
 ### Collection
 
 ###### Array & Map & string
@@ -195,19 +178,6 @@ import {equal} from 'tsfun';
 * [unite](test/set/unite.spec.ts)
 * [duplicates](test/set/duplicates.spec.ts)
 
-### Struct
-
-###### Array & Map
-
-* [to](test/struct/to.spec.ts)
-* [lookupOn](test/struct/lookup_on.spec.ts)
-* [getOn](test/struct/get_on.spec.ts)
-* [assocOn](test/struct/assoc_on.spec.ts)
-* [dissocOn](test/struct/dissoc_on.spec.ts)
-* [updateOn](test/struct/update_on.spec.ts)
-* [clone](test/struct/clone.spec.ts)
-* [jsonClone](test/struct/json_clone.spec.ts)
-
 ### Tuple
 
 ###### Array
@@ -227,6 +197,19 @@ import {equal} from 'tsfun';
 * [right](test/tuple/right.spec.ts)
 * [value](test/tuple/value.spec.ts)
 * [getSuccess](test/tuple/get_success.spec.ts)
+
+### Struct
+
+###### Array & Map
+
+* [to](test/struct/to.spec.ts)
+
+### Associative
+
+###### Array & Map
+
+* [keys](test/associative/keys.spec.ts)
+* [values](test/associative/values.spec.ts)
 
 ## Types reference 
 
@@ -250,9 +233,44 @@ import {equal} from 'tsfun';
 * [LEFT](test/tuple/left-constant.spec.ts)
 * [RIGHT](test/tuple/right-constant.spec.ts)
 
-## Special functions reference
+## Extra packages reference
 
-### Async functions
+### Associative
+
+###### Array & Map
+
+```typescript
+import {lookup} from 'tsfun/associative';
+```
+
+* [map](test/associative/map.spec.ts)  
+* [reduce](test/associative/reduce.spec.ts)
+* [lookup](test/associative/lookup.spec.ts)
+* [get](test/associative/get.spec.ts)
+* [assoc](test/associative/assoc.spec.ts)
+* [update](test/associative/update.spec.ts)
+* [dissoc](test/associative/dissoc.spec.ts)
+* [forEach](test/associative/for_each.spec.ts)
+* [keysAndValues](test/associative/keys_and_values.spec.ts)
+
+### Struct
+
+###### Array & Map
+
+```typescript
+import {assocOn} from 'tsfun/struct';
+```
+
+* [path](test/struct/path.spec.ts)
+* [lookupOn](test/struct/lookup_on.spec.ts)
+* [getOn](test/struct/get_on.spec.ts)
+* [assocOn](test/struct/assoc_on.spec.ts)
+* [dissocOn](test/struct/dissoc_on.spec.ts)
+* [updateOn](test/struct/update_on.spec.ts)
+* [clone](test/struct/clone.spec.ts)
+* [jsonClone](test/struct/json_clone.spec.ts)
+
+### Async
 
 Example:
 
@@ -270,7 +288,7 @@ import {map as asyncMap} from 'tsfun/async';
 * [separate](test/async/separate.spec.ts)
 * [mcompose](test/async/mcompose.spec.ts)
 
-### Lazy functions
+### Lazy
 
 Example:__
 
@@ -286,7 +304,7 @@ import {zip as lZip} from 'tsfun/lazy';
 * [take](test/lazy/take.spec.ts)
 * [map](test/lazy/map.spec.ts)
 
-### By functions
+### By
 
 Example:
 
