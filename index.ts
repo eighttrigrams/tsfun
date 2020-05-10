@@ -1,7 +1,10 @@
 export {
     keys,
     values,
-    map
+    map,
+    keysAndValues,
+    reduce,
+    forEach
 } from './src/associative';
 
 

@@ -211,6 +211,9 @@ import {equal} from 'tsfun';
 * [map](test/associative/map.spec.ts)  
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
+* [forEach](test/associative/for_each.spec.ts)
+* [reduce](test/associative/reduce.spec.ts)
+* [keysAndValues](test/associative/keys_and_values.spec.ts)
 
 ## Types reference 
 
@@ -244,14 +247,11 @@ import {equal} from 'tsfun';
 import {lookup} from 'tsfun/associative';
 ```
 
-* [reduce](test/associative/reduce.spec.ts)
 * [lookup](test/associative/lookup.spec.ts)
 * [get](test/associative/get.spec.ts)
 * [assoc](test/associative/assoc.spec.ts)
 * [update](test/associative/update.spec.ts)
 * [dissoc](test/associative/dissoc.spec.ts)
-* [forEach](test/associative/for_each.spec.ts)
-* [keysAndValues](test/associative/keys_and_values.spec.ts)
 
 ### Struct
 

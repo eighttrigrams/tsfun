@@ -1,10 +1,7 @@
 export {
-    keysAndValues,
     lookup,
     assoc,
     update,
     dissoc,
-    forEach,
-    get,
-    reduce,
+    get
 } from './src/associative';
