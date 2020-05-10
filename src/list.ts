@@ -104,63 +104,69 @@ export function take<A>(n: number, list?: string|Array<A>): any {
 }
 
 
-export function drop(n: number) {
+export function drop(n: number): {
+    <A>(as: Array<A>): Array<A>
+    <A>(as: string): string
+}
+export function drop<A>(n: number, as: Array<A>): Array<A>
+export function drop<A>(n: number, as: string): string
+export function drop(n: number, as?: any): any {
 
-    function inner<A>(as: Array<A>): Array<A>;
-    function inner(as: string): string;
-    function inner<A>(as: Array<A>|string): Array<A>|string {
+    const inner = <A>(as: any) => {
 
         if (isArray(as)) {
 
-            const as_ = as as Array<A>;
+            const as_ = as as Array<A>
             return n < 1 ? as_ :
-                    as.slice(n);
+                    as.slice(n)
 
         } else if (isString(as)) {
 
-            const as_ = as as string;
-            return as_.slice(n) as string;
+            const as_ = as as string
+            return as_.slice(n) as string
 
         } else {
 
-            throw 'illegal argument - must be array or string';
+            throw 'illegal argument - must be array or string'
         }
     }
 
-    return inner;
+    return as === undefined
+        ? inner
+        : inner(as)
 }
 
 
 
 export function dropRight(n: number) {
 
-    function inner<A>(as: Array<A>): Array<A>;
-    function inner(as: string): string;
+    function inner<A>(as: Array<A>): Array<A>
+    function inner(as: string): string
     function inner<A>(as: Array<A>|string): Array<A>|string {
 
         if (isArray(as)) {
 
-            return (as as Array<A>).slice(0, Math.max(0, as.length-n)) as Array<A>;
+            return (as as Array<A>).slice(0, Math.max(0, as.length-n)) as Array<A>
 
         } else if (isString(as)) {
 
             return ((as as string).split(''))
-                .slice(0, Math.max(0, as.length-n)).join('') as string;
+                .slice(0, Math.max(0, as.length-n)).join('') as string
 
         } else {
 
-            throw 'illegal argument - must be array or string';
+            throw 'illegal argument - must be array or string'
         }
     }
 
-    return inner;
+    return inner
 }
 
 
 export function takeRight(n: number) {
 
-    function inner<A>(as: Array<A>): Array<A>;
-    function inner(as: string): string;
+    function inner<A>(as: Array<A>): Array<A>
+    function inner(as: string): string
     function inner<A>(as: Array<A>|string): Array<A>|string {
 
         if (isArray(as)) {
@@ -175,15 +181,15 @@ export function takeRight(n: number) {
             return n < 0 ? '' :
                 ((as as string).split('')).reduceRight((acc: Array<string>, val, i) =>
                         (as.length - i) <= n ? [val].concat(acc) : acc
-                    , []).join('');
+                    , []).join('')
 
         } else {
 
-            throw 'illegal argument - must be array or string';
+            throw 'illegal argument - must be array or string'
         }
     }
 
-    return inner;
+    return inner
 }
 
 
@@ -200,15 +206,15 @@ export function takeNth(n: number) {
 
         if (isArray(as)) {
 
-            return n < 0 ? [] : (as as Array<A>).reduce(reducer, []);
+            return n < 0 ? [] : (as as Array<A>).reduce(reducer, [])
 
         } else if (isString(as)) {
 
-            return n < 0 ? '' : ((as as string).split('')).reduce(reducer, []).join('');
+            return n < 0 ? '' : ((as as string).split('')).reduce(reducer, []).join('')
 
         } else {
 
-            throw 'illegal argument - must be array or string';
+            throw 'illegal argument - must be array or string'
         }
     }
 }
@@ -222,13 +228,13 @@ export function takeWhile<A>(predicate: Predicate<A>|Predicate<string>) {
 
     return (as: Array<A>|string) => {
 
-        const as1 = isString(as) ? (as as any).split('') : as;
+        const as1 = isString(as) ? (as as any).split('') : as
 
         let go = true;
         const result = as1.reduce((acc: Array<A>, a: any) =>
-            go && predicate(a) ? acc.concat([a]) : (go = false, acc), []);
+            go && predicate(a) ? acc.concat([a]) : (go = false, acc), [])
 
-        return isString(as) ? result.join('') : result;
+        return isString(as) ? result.join('') : result
     };
 }
 
@@ -245,9 +251,9 @@ export function takeRightWhile<A>(predicate: Predicate<A>) {
 
         let go = true;
         const result = as1.reduceRight((acc: Array<A>, a: any) =>
-            go && predicate(a) ? [a].concat(acc) : (go = false, acc), []);
+            go && predicate(a) ? [a].concat(acc) : (go = false, acc), [])
 
-        return isString(as) ? result.join('') : result;
+        return isString(as) ? result.join('') : result
     };
 }
 
@@ -260,13 +266,15 @@ export function dropWhile<A>(predicate: Predicate<A>) {
 
     return (as: Array<A>|string) => {
 
-        const as1 = isString(as) ? (as as any).split('') : as;
+        const as1 = isString(as) ? (as as any).split('') : as
 
-        let go = false;
+        let go = false
         const result = as1.reduce((acc: Array<A>, a: any) =>
-            go || !predicate(a) ? (go = true, acc.concat([a])) : acc, []);
+            go || !predicate(a) ? (go = true, acc.concat([a])) : acc, [])
 
-        return isString(as) ? result.join('') : result;
+        return isString(as)
+            ? result.join('')
+            : result
     };
 }
 
@@ -279,13 +287,13 @@ export function dropRightWhile<A>(predicate: Predicate<A>) {
 
     return (as: Array<A>|string) => {
 
-        const as1 = isString(as) ? (as as any).split('') : as;
+        const as1 = isString(as) ? (as as any).split('') : as
 
-        let go = false;
+        let go = false
         const result = as1.reduceRight((acc: Array<A>, a: any) =>
-            go || !predicate(a) ? (go = true, [a].concat(acc)) : acc, []);
+            go || !predicate(a) ? (go = true, [a].concat(acc)) : acc, [])
 
-        return isString(as) ? result.join('') : result;
+        return isString(as) ? result.join('') : result
     };
 }
 
@@ -296,7 +304,7 @@ export const takeUntil = <A>(predicate: Predicate<A>) =>
         (found => found ?
                 takeWhile(isNot(predicate))(as).concat([found])
                 : as
-        )(as.find(predicate));
+        )(as.find(predicate))
 
 
 export function zip<A>(as: string): {
@@ -311,53 +319,53 @@ export function zip<A>(as: Array<A>|string) {
 
     return <B>(bs: Array<B>|string): Array<Pair<A, B>>|Array<string> => {
 
-        const asAndBsStrings = isString(as) && isString(bs);
-        const as1 = isString(as) ? (as as string).split('') : as;
-        const bs1 = isString(bs) ? (bs as string).split('') : bs;
+        const asAndBsStrings = isString(as) && isString(bs)
+        const as1 = isString(as) ? (as as string).split('') : as
+        const bs1 = isString(bs) ? (bs as string).split('') : bs
 
-        const minimumLength = Math.min(as.length, bs.length);
-        const _as = take(minimumLength)(as as any);
-        const _bs = take(minimumLength)(bs as any);
+        const minimumLength = Math.min(as.length, bs.length)
+        const _as = take(minimumLength)(as as any)
+        const _bs = take(minimumLength)(bs as any)
 
-        const zipped: Array<[A, B]> = [];
+        const zipped: Array<[A, B]> = []
         for (let i = 0; i < minimumLength; i++) {
-            zipped.push([_as[i] as A, _bs[i] as B]);
+            zipped.push([_as[i] as A, _bs[i] as B])
         }
-        return asAndBsStrings ? zipped.map(item => item.join('')) : zipped;
+        return asAndBsStrings ? zipped.map(item => item.join('')) : zipped
     }
 }
 
 
-export function sort(s: string): string;
-export function sort(s: Array<number>): Array<number>;
+export function sort(s: string): string
+export function sort(s: Array<number>): Array<number>
 export function sort<A>(f: (a: A, b: A) => number): {
-    (as: Array<A>): Array<A>;
-    (as: string): string;
+    (as: Array<A>): Array<A>
+    (as: string): string
 }
 export function sort<A>(f: string|Array<number>|((a: A, b: A) => number)) {
 
     if (isString(f)) {
 
         return (f as string).split('').sort((a: string, b: string) => {
-            if (a === b) return 0;
-            if (a < b) return -1;
-            return 1;
-        }).join('');
+            if (a === b) return 0
+            if (a < b) return -1
+            return 1
+        }).join('')
 
     } else if (typeof f !== 'function') {
 
         return (f as any).sort((a: string, b: string) => {
-            if (a === b) return 0;
-            if (a < b) return -1;
-            return 1;
+            if (a === b) return 0
+            if (a < b) return -1
+            return 1
         });
 
     } else return (as: Array<A>|string) => {
 
         if (isArray(as)) {
-            return copy(as as any).sort(f as any);
+            return copy(as as any).sort(f as any)
         } else if (isString(as)) {
-            return copy((as as any).split('')).sort(f as any).join('');
+            return copy((as as any).split('')).sort(f as any).join('')
         } else {
             throw 'illegal argument - must be array or string'
         }
@@ -371,23 +379,23 @@ export function first<T>(as: Array<T>|string): string|T|undefined {
 
     return as.length === 0
         ? undefined
-        : as[0];
+        : as[0]
 }
 
 
-export function rest<T>(as: string): string;
-export function rest<T>(as: Array<T>): Array<T>;
+export function rest<T>(as: string): string
+export function rest<T>(as: Array<T>): Array<T>
 export function rest<T>(as: Array<T>|string): Array<T>|string {
 
-    return drop(1)(as as any);
+    return drop(1)(as as any)
 }
 
 
-export function last<T>(as: string): string|undefined;
-export function last<T>(as: Array<T>): T|undefined;
+export function last<T>(as: string): string|undefined
+export function last<T>(as: Array<T>): T|undefined
 export function last<T>(as: Array<T>|string): string|T|undefined {
 
     return as.length === 0
         ? undefined
-        : as[as.length-1];
+        : as[as.length-1]
 }

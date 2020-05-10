@@ -1,16 +1,15 @@
 import {drop} from '../../src/list';
 
+/**
+ * tsfun | drop
+ */
 describe('drop', () => {
 
-    it('2', () =>
+    it('2', () => {
 
-        expect(
-
-            drop(2)
-            ([8,9,11])
-
-        ).toEqual([11])
-    );
+        expect(drop(2)([8, 9, 11])).toEqual([11])
+        expect(drop(2, [8, 9, 11])).toEqual([11])
+    });
 
 
     it('all', () =>
