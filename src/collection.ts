@@ -44,54 +44,61 @@ export function prune<T>(ts: Array<T>|Map<T>|string) {
 export function filter<A>(p: (a: A, i?: number|string) => boolean): {
     (as: Array<A>): Array<A>
     (os: Map<A>): Map<A>
-    (s: string): string;
+    (s: string): string
 }
-export function filter<A>(p: (a: A, i?: number|string) => boolean) {
+export function filter<A>(p: (a: A, i?: number) => boolean, as: Array<A>): Array<A>
+export function filter<A>(p: (a: A, i?: string) => boolean, as: Map<A>): Map<A>
+export function filter<A>(p: (a: A, i?: number) => boolean, as: string): string
+export function filter<A>(p: (a: A, i?: any) => boolean, as?: any): any {
 
-    return (as: Array<A>|Map<A>) => {
+    const inner = (as: Array<A>|Map<A>) => {
 
         if (isArray(as)) {
 
-            const as1 = [];
-            let i = 0;
+            const as1 = []
+            let i = 0
             for (let a of as) {
-                if (p(a, i)) as1.push(a);
-                i++;
+                if (p(a, i)) as1.push(a)
+                i++
             }
 
             return as1 as Array<A>
         }
         else if (isObject(as)) {
 
-            const o = as as Map<A>;
+            const o = as as Map<A>
 
-            const o1: any = {};
-            let i = 0;
+            const o1: any = {}
+            let i = 0
             for (let k of keys(o)) {
-                if (p(o[k], k)) o1[k] = o[k];
-                i++;
+                if (p(o[k], k)) o1[k] = o[k]
+                i++
             }
 
-            return o1 as Map<A>;
+            return o1 as Map<A>
 
         } else if (isString(as)) {
 
-            const s = (as as any).split('');
+            const s = (as as any).split('')
 
-            const o1: any = [];
-            let i = 0;
+            const o1: any = []
+            let i = 0
             for (let k of keys(s)) {
-                if (p(s[k], k)) o1[k] = s[k];
-                i++;
+                if (p(s[k], k)) o1[k] = s[k]
+                i++
             }
 
-            return o1.join('') as string;
+            return o1.join('') as string
 
         } else {
 
-            throw 'illegal argument - must be array or object';
+            throw 'illegal argument - must be array or object'
         }
     }
+
+    return as === undefined
+        ? inner
+        : inner(as)
 }
 
 
