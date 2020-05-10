@@ -1,10 +1,10 @@
-import {Comparator, ComparatorProducer, List, Pair, Predicate} from './type';
-import {isArray, isNot, isObject, isString} from './predicate';
-import {subtractBy} from './set';
-import {getElForPathIn} from './struct';
-import {flow} from './composition';
-import {remove, size} from './collection';
-import {reverse, zip} from './list';
+import {Comparator, ComparatorProducer, List, Pair, Predicate, Map} from './type'
+import {isArray, isNot, isObject, isString} from './predicate'
+import {subtractBy} from './set'
+import {getElForPathIn} from './struct'
+import {flow} from './composition'
+import {remove, size} from './collection'
+import {reverse, zip} from './list'
 
 
 
@@ -13,105 +13,112 @@ import {reverse, zip} from './list';
 
 export function tripleEqual<A>(l:A) {
 
-    return (r: A) => l === r;
+    return (r: A) => l === r
 }
 
 
-export function greaterThan(than: number): (that: number) => boolean;
-export function greaterThan(than: string): (that: string) => boolean;
+export function greaterThan(than: number): (that: number) => boolean
+export function greaterThan(than: string): (that: string) => boolean
 export function greaterThan(than: number|string) {
 
     return (that: number|string) => {
 
         if (isString(than) && (than as string).length !== 1) {
-            throw 'illegal argument - string argument must be of length 1';
+            throw 'illegal argument - string argument must be of length 1'
         }
         if (isString(that) && (that as string).length !== 1) {
-            throw 'illegal argument - string argument must be of length 1';
+            throw 'illegal argument - string argument must be of length 1'
         }
         if ((isString(that) && !isString(than)) || (isString(than) && !isString(that))) {
             throw 'illegal argument - either both arguments must be number or both arguments must be string'
         }
 
-        return that > than;
+        return that > than
     }
 }
 
 
-export function lessThan(than: number): (that: number) => boolean;
-export function lessThan(than: string): (that: string) => boolean;
+export function lessThan(than: number): (that: number) => boolean
+export function lessThan(than: string): (that: string) => boolean
 export function lessThan(than: number|string) {
 
     return (that: number|string) => {
 
         if (isString(than) && (than as string).length !== 1) {
-            throw 'illegal argument - string argument must be of length 1';
+            throw 'illegal argument - string argument must be of length 1'
         }
         if (isString(that) && (that as string).length !== 1) {
-            throw 'illegal argument - string argument must be of length 1';
+            throw 'illegal argument - string argument must be of length 1'
         }
         if ((isString(that) && !isString(than)) || (isString(than) && !isString(that))) {
             throw 'illegal argument - either both arguments must be number or both arguments must be string'
         }
 
-        return that < than;
+        return that < than
     }
 }
 
 
-export function greaterOrEqualThan(than: number): (that: number) => boolean;
-export function greaterOrEqualThan(than: string): (that: string) => boolean;
+export function greaterOrEqualThan(than: number): (that: number) => boolean
+export function greaterOrEqualThan(than: string): (that: string) => boolean
 export function greaterOrEqualThan(than: number|string) {
 
     return (that: number|string) => {
 
         if (isString(than) && (than as string).length !== 1) {
-            throw 'illegal argument - string argument must be of length 1';
+            throw 'illegal argument - string argument must be of length 1'
         }
         if (isString(that) && (that as string).length !== 1) {
-            throw 'illegal argument - string argument must be of length 1';
+            throw 'illegal argument - string argument must be of length 1'
         }
         if ((isString(that) && !isString(than)) || (isString(than) && !isString(that))) {
             throw 'illegal argument - either both arguments must be number or both arguments must be string'
         }
 
-        return that >= than;
+        return that >= than
     }
 }
 
 
-export function lessOrEqualThan(than: number): (that: number) => boolean;
-export function lessOrEqualThan(than: string): (that: string) => boolean;
+export function lessOrEqualThan(than: number): (that: number) => boolean
+export function lessOrEqualThan(than: string): (that: string) => boolean
 export function lessOrEqualThan(than: number|string) {
 
     return (that: number|string) => {
 
         if (isString(than) && (than as string).length !== 1) {
-            throw 'illegal argument - string argument must be of length 1';
+            throw 'illegal argument - string argument must be of length 1'
         }
         if (isString(that) && (that as string).length !== 1) {
-            throw 'illegal argument - string argument must be of length 1';
+            throw 'illegal argument - string argument must be of length 1'
         }
         if ((isString(that) && !isString(than)) || (isString(than) && !isString(that))) {
             throw 'illegal argument - either both arguments must be number or both arguments must be string'
         }
 
-        return that <= than;
+        return that <= than
     }
 }
 
 
 export function is<A>(a: A) {
 
-    return tripleEqual(a);
+    return tripleEqual(a)
 }
 
 
-export const isnt = <A>(l: A) => isNot(tripleEqual(l));
+export const isnt = <A>(l: A) => isNot(tripleEqual(l))
 
 
-export const jsonEqual: any = <A>(l:A) =>
-    (r:A) => tripleEqual(JSON.stringify(l))(JSON.stringify(r));
+export function jsonEqual<A>(l: A): (r: A) => boolean
+export function jsonEqual<A>(l: A, r: A): boolean
+export function jsonEqual(l: any, ...r: any[]): any {
+    if (r.length > 1) throw 'illegal argument - first param list in jsonEqual can have at most 2 arguments'
+    const inner = (r: any) => tripleEqual(JSON.stringify(l))(JSON.stringify(r))
+    return r.length === 0
+        ? inner
+        : inner(r[0])
+}
 
 
 export const differentFromBy: ComparatorProducer = (compare: Comparator) => <A>(a:A) =>
@@ -208,9 +215,9 @@ export const objectEqualBy =
             (o2: Object): boolean => {
 
                 if (!isObject(o1) || !isObject(o2))
-                    throw new TypeError('types do not match objectEqualBy');
+                    throw new TypeError('types do not match objectEqualBy')
 
-                if (!samesetBy(undefined as any)(Object.keys(o1))(Object.keys(o2))) return false;
+                if (!samesetBy(undefined as any)(Object.keys(o1))(Object.keys(o2))) return false
 
                 return Object
                     .keys(o1)
@@ -220,9 +227,9 @@ export const objectEqualBy =
                             arrayComparator,
                             objectEqualBy(arrayComparator))
                         ((o1 as any)[key])
-                        ((o2 as any)[key]);
+                        ((o2 as any)[key])
                     })
-                    .length === Object.keys(o1).length;
+                    .length === Object.keys(o1).length
             };
 
 
@@ -230,43 +237,43 @@ export const equalBy =
     (arrayComparator: Comparator) =>
         (o1: any) =>
             (o2: any): boolean => compare(arrayComparator,
-                objectEqualBy(arrayComparator))(o1)(o2);
+                objectEqualBy(arrayComparator))(o1)(o2)
 
 
 const onBy = (compare: Function) => (path: string|Array<number|string>) =>
     (l: any) => (r: any) => path.length === 0
         ? undefined
-        : compare(getElForPathIn(l, path))(getElForPathIn(r, path));
+        : compare(getElForPathIn(l, path))(getElForPathIn(r, path))
 
 
 export const on = (path: string|Array<number|string>, compare: Function = tripleEqual) =>
     (l: any) => typeof compare(l) === 'function'
         ? (r: any) => onBy(compare)(path as any)(l)(r)
-        : compare(getElForPathIn(l, path as any));
+        : compare(getElForPathIn(l, path as any))
 
 
-export const by = <A>(p: Predicate<A>) => p;
+export const by = <A>(p: Predicate<A>) => p
 
 
 export function differentFrom(that: any) {
 
-    return differentFromBy(tripleEqual as any)(that);
+    return differentFromBy(tripleEqual as any)(that)
 }
 
 
-export function includedIn(as: string): (a: string) => boolean;
-export function includedIn<A>(as: Array<A>): (a: A) => boolean;
+export function includedIn(as: string): (a: string) => boolean
+export function includedIn<A>(as: Array<A>): (a: A) => boolean
 export function includedIn<A>(as: Array<A>|string) {
 
     return (a: A) => {
 
         if (isString(as) && isString(a) && (a as any).length === 1) {
 
-            return includedInBy(tripleEqual as any)((as as any).split(''))(a);
+            return includedInBy(tripleEqual as any)((as as any).split(''))(a)
 
         } else if (isArray(as)) {
 
-            return includedInBy(tripleEqual as any)(as as any)(a);
+            return includedInBy(tripleEqual as any)(as as any)(a)
 
         } else {
 
@@ -284,11 +291,11 @@ export function includes<A>(a: Array<A>|string) {
 
         if (isString(as) && isString(a) && (a as any).length === 1) {
 
-            return includesBy(tripleEqual as any)(a)((as as any).split(''));
+            return includesBy(tripleEqual as any)(a)((as as any).split(''))
 
         } else if (isArray(as)) {
 
-            return includesBy(tripleEqual as any)(a)(as as any);
+            return includesBy(tripleEqual as any)(a)(as as any)
 
         } else {
 
@@ -300,7 +307,7 @@ export function includes<A>(a: Array<A>|string) {
 
 export function arrayEqual<A>(that: Array<A>) {
 
-    return arrayEqualBy(undefined as any)(that);
+    return arrayEqualBy(undefined as any)(that)
 }
 
 
@@ -333,19 +340,19 @@ export function sameset<A>(that: Array<A>|string, as2?: Array<A>|string): any {
 }
 
 
-export function subsetOf(that: string): (as2: string) => boolean;
-export function subsetOf<A>(that: Array<A>): (as2: Array<A>) => boolean;
+export function subsetOf(that: string): (as2: string) => boolean
+export function subsetOf<A>(that: Array<A>): (as2: Array<A>) => boolean
 export function subsetOf<A>(that: Array<A>|string) {
 
     return (as2: Array<A>|string) => {
 
         if (isString(that) && isString(as2)) {
 
-            return subsetOfBy(undefined as any)((that as any).split(''))((as2 as any).split(''));
+            return subsetOfBy(undefined as any)((that as any).split(''))((as2 as any).split(''))
 
         } else if (isArray(that) && isArray(as2)) {
 
-            return subsetOfBy(undefined as any)(that as any)(as2 as any);
+            return subsetOfBy(undefined as any)(that as any)(as2 as any)
 
         } else {
 
