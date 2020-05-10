@@ -198,6 +198,12 @@ import {equal} from 'tsfun';
 * [value](test/tuple/value.spec.ts)
 * [getSuccess](test/tuple/get_success.spec.ts)
 
+### Object
+
+###### object & interface
+
+* [assoc](test/object/assoc.spec.ts)
+
 ### Struct
 
 ###### Array & Map
@@ -260,7 +266,7 @@ import {lookup} from 'tsfun/associative';
 ```typescript
 import {assoc as assocOn} from 'tsfun/struct';
 ```
-I
+
 * [path](test/struct/path.spec.ts)
 * [lookup](test/struct/lookup.spec.ts)
 * [get](test/struct/get.spec.ts)
