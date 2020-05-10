@@ -356,19 +356,19 @@ export function subsetOf<A>(that: Array<A>|string) {
 
 
 
-export function supersetOf(that: string): (as2: string) => boolean;
-export function supersetOf<A>(that: Array<A>): (as2: Array<A>) => boolean;
+export function supersetOf(that: string): (as2: string) => boolean
+export function supersetOf<A>(that: Array<A>): (as2: Array<A>) => boolean
 export function supersetOf<A>(that: Array<A>|string) {
 
     return (as2: Array<A>|string) => {
 
         if (isString(that) && isString(as2)) {
 
-            return supersetOfBy(undefined as any)((that as any).split(''))((as2 as any).split(''));
+            return supersetOfBy(undefined as any)((that as any).split(''))((as2 as any).split(''))
 
         } else if (isArray(that) && isArray(as2)) {
 
-            return supersetOfBy(undefined as any)(that as any)(as2 as any);
+            return supersetOfBy(undefined as any)(that as any)(as2 as any)
 
         } else {
 
@@ -380,7 +380,7 @@ export function supersetOf<A>(that: Array<A>|string) {
 
 export function objectEqual(o1: Object) {
 
-    return objectEqualBy(arrayEqual as any)(o1);
+    return objectEqualBy(arrayEqual as any)(o1)
 }
 
 
@@ -401,7 +401,7 @@ export function equal(o1: any, ...os: any[]): any {
 
 export function equalTo(o1: any) {
 
-    return equal(o1);
+    return equal(o1)
 }
 
 
@@ -415,7 +415,7 @@ export function startsWith<A>(that: string|Array<A>, what?:string|Array<A>): any
 
         if (isString(what) && isString(that)) {
 
-            return (what as any).startsWith(that);
+            return (what as any).startsWith(that)
 
         } else if (isArray(what) && isArray(that)) {
 
@@ -426,32 +426,32 @@ export function startsWith<A>(that: string|Array<A>, what?:string|Array<A>): any
                     zip(that as Array<A>),
                     remove(pairIsSame),
                     size,
-                    is(0));
+                    is(0))
 
         } else {
 
-            throw 'illegal argument - args must be either both strings or both arrays';
+            throw 'illegal argument - args must be either both strings or both arrays'
         }
     }
 
     return what === undefined
         ? (what: string|Array<A>) => compare(that, what)
-        : compare(that, what);
+        : compare(that, what)
 }
 
 
-const pairIsSame = <A>([a, b]: Pair<A, A>) => a === b;
+const pairIsSame = <A>([a, b]: Pair<A, A>) => a === b
 
 
-export function endsWith<A>(s: string): (as: string) => boolean;
-export function endsWith<A>(s: Array<A>): (as: Array<A>) => boolean;
+export function endsWith<A>(s: string): (as: string) => boolean
+export function endsWith<A>(s: Array<A>): (as: Array<A>) => boolean
 export function endsWith<A>(that: string|Array<A>) {
 
     return (what: string|Array<A>) => {
 
         if (isString(what) && isString(that)) {
 
-            return (what as any).endsWith(that);
+            return (what as any).endsWith(that)
 
         } else if (isArray(what) && isArray(that)) {
 
@@ -463,11 +463,11 @@ export function endsWith<A>(that: string|Array<A>) {
                     zip(reverse(that as Array<A>)),
                     remove(pairIsSame),
                     size,
-                    is(0));
+                    is(0))
 
         } else {
 
-            throw 'illegal argument - args must be either both strings or both arrays';
+            throw 'illegal argument - args must be either both strings or both arrays'
         }
     }
 }
