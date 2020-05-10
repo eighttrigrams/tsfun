@@ -198,6 +198,17 @@ import {equal} from 'tsfun';
 * [value](test/tuple/value.spec.ts)
 * [getSuccess](test/tuple/get_success.spec.ts)
 
+### Associative
+
+###### Array & Map
+
+* [map](test/associative/map.spec.ts)  
+* [keys](test/associative/keys.spec.ts)
+* [values](test/associative/values.spec.ts)
+* [forEach](test/associative/for_each.spec.ts)
+* [reduce](test/associative/reduce.spec.ts)
+* [keysAndValues](test/associative/keys_and_values.spec.ts)
+
 ### Object
 
 ###### object & interface
@@ -209,17 +220,6 @@ import {equal} from 'tsfun';
 ###### Array & Map
 
 * [to](test/struct/to.spec.ts)
-
-### Associative
-
-###### Array & Map
-
-* [map](test/associative/map.spec.ts)  
-* [keys](test/associative/keys.spec.ts)
-* [values](test/associative/values.spec.ts)
-* [forEach](test/associative/for_each.spec.ts)
-* [reduce](test/associative/reduce.spec.ts)
-* [keysAndValues](test/associative/keys_and_values.spec.ts)
 
 ## Types reference 
 
