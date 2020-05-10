@@ -9,23 +9,20 @@ import {sameset} from "../../../src/comparator";
  * with the same elements, meaning that
  * duplicates do count as one set item and
  * the order of the elements does not matter.
- *
- * @author Daniel de Oliveira
  */
 describe('sameset', () => {
 
-    it('equivalent in different order', () =>
-        expect(
+    it('equivalent in different order', () => {
 
-            sameset([1, 4, 7])([7, 4, 1])
-
-        ).toEqual(true));
+        expect(sameset([1, 4, 7])([7, 4, 1])).toEqual(true)
+        expect(sameset([1, 4, 7], [7, 4, 1])).toEqual(true)
+    })
 
 
     it('string - equivalent in different order', () =>
         expect(
 
-            sameset('147')('741')
+            sameset('147', '741')
 
         ).toEqual(true));
 
@@ -33,7 +30,7 @@ describe('sameset', () => {
     it('left side subset', () =>
         expect(
 
-            sameset([1, 4])([7, 4, 1])
+            sameset([1, 4], [7, 4, 1])
 
         ).toEqual(false));
 
@@ -41,7 +38,7 @@ describe('sameset', () => {
     it('string - left side subset', () =>
         expect(
 
-            sameset('14')('741')
+            sameset('14', '741')
 
         ).toEqual(false));
 
@@ -49,7 +46,7 @@ describe('sameset', () => {
     it('left list smaller but same set', () =>
         expect(
 
-            sameset([1, 4])([1, 4, 1, 4, 1])
+            sameset([1, 4], [1, 4, 1, 4, 1])
 
         ).toEqual(true));
 
@@ -57,7 +54,7 @@ describe('sameset', () => {
     it('right list smaller', () =>
         expect(
 
-            sameset([1, 4, 7])([7, 4])
+            sameset([1, 4, 7], [7, 4])
 
         ).toEqual(false));
 
@@ -65,7 +62,7 @@ describe('sameset', () => {
     it('right list smaller but same set', () =>
         expect(
 
-            sameset([1, 4, 1, 4, 1])([1, 4])
+            sameset([1, 4, 1, 4, 1], [1, 4])
 
         ).toEqual(true));
 
@@ -73,7 +70,7 @@ describe('sameset', () => {
     it('different elements', () =>
         expect(
 
-            sameset([1, 4, 5])([7, 4, 1])
+            sameset([1, 4, 5], [7, 4, 1])
 
         ).toEqual(false));
 
@@ -82,7 +79,7 @@ describe('sameset', () => {
     it('nested arrays', () =>
         expect(
 
-            sameset([1, [4, 7]])([[7, 4], 1])
+            sameset([1, [4, 7]], [[7, 4], 1])
 
         ).toEqual(true));
 
@@ -118,4 +115,17 @@ describe('sameset', () => {
             ([{b: 4, c: [3, {d: 5, g: [8, [1, {n: 10, m: 9}, 1]]}]}, {c: 7}])
 
         ).toEqual(true));
+
+
+    it('typing', () => {
+
+        sameset([], [])
+        sameset([])([])
+        // sameset('13')([]) // WRONG
+        // sameset('13', []) // WRONG
+        // sameset([1], ['1']) // WRONG
+        // sameset([{a: 3}])([{b: 4}]) // WRONG
+        // sameset(['1'])([3]) // WRONG
+        // sameset(['1'], [3]) // WRONG
+    })
 });

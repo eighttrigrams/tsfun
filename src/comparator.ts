@@ -305,25 +305,31 @@ export function arrayEqual<A>(that: Array<A>) {
 
 
 // Compares 2 arrays where elements order does not matter
-export function sameset(that: string): (as2: string) => boolean;
-export function sameset<A>(that: Array<A>): (as2: Array<A>) => boolean;
-export function sameset<A>(that: Array<A>|string) {
+export function sameset(that: string): (as2: string) => boolean
+export function sameset(that: string, as2: string):  boolean
+export function sameset<A>(that: Array<A>): (as2: Array<A>) => boolean
+export function sameset<A>(that: Array<A>, as2: Array<A>): boolean
+export function sameset<A>(that: Array<A>|string, as2?: Array<A>|string): any {
 
-    return (as2: Array<A>|string) => {
+    const inner = (as2: Array<A>|string) => {
 
         if (isString(that) && isString(as2)) {
 
-            return samesetBy(undefined as any)((that as any).split(''))((as2 as any).split(''));
+            return samesetBy(undefined as any)((that as any).split(''))((as2 as any).split(''))
 
         } else if (isArray(that) && isArray(as2)) {
 
-            return samesetBy(undefined as any)(that)(as2);
+            return samesetBy(undefined as any)(that)(as2)
 
         } else {
 
             throw 'illegal argument - arguments must be either both arrays or both strings'
         }
     }
+
+    return as2 === undefined
+        ? inner
+        : inner(as2)
 }
 
 
