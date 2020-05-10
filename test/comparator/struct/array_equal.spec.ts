@@ -1,9 +1,8 @@
-/**
- * @author Daniel de Oliveira
- */
 import {arrayEqual} from "../../../src/comparator";
 
-
+/**
+ * tsfun | arrayEqual
+ */
 describe('arrayEqual', () => {
 
     // arrayEqual compares Arrays

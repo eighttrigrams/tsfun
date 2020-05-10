@@ -1,3 +1,5 @@
+import {objectEqual} from '../../../src/comparator';
+
 /**
  * tsfun | objectEqual
  *
@@ -12,12 +14,7 @@
  *   the same type.
  * - if the values are arrays, the comparison is done by arrayEqual
  *   (, which in turn uses objectEqual by default, for deeper nested {})
- *
- * @author Daniel de Oliveira
  */
-import {objectEqual} from '../../../src/comparator';
-
-
 describe('objectEqual', () => {
 
     it('order of keys does not matter', () =>
