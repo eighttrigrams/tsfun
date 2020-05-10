@@ -1,7 +1,7 @@
 import {map as asyncMap} from '../../src/async';
 
 /**
- * @author Daniel de Oliveira
+ * tsfun | async/map
  */
 describe('async/map', () => {
 
@@ -9,7 +9,17 @@ describe('async/map', () => {
 
         expect(
 
-            await asyncMap((_: number) => Promise.resolve(_ * 2))([1, 2]))
+            await asyncMap((_: number) =>
+                new Promise<any>(resolve => setTimeout(() => resolve(_ * 2), 50)))
+            ([1, 2]))
+
+            .toEqual([2, 4]);
+
+        expect(
+
+            await asyncMap((_: number) =>
+                new Promise<any>(resolve => setTimeout(() => resolve(_ * 2), 50))
+                , [1, 2]))
 
             .toEqual([2, 4]);
 

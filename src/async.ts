@@ -180,27 +180,33 @@ export function map<A, B>(f: (_: A, i?: string|number) => Promise<B>): {
     (as: Array<A>): Promise<Array<B>>
     (os: Map<A>): Promise<Map<B>>
 }
-export function map<A, B>(f: (_: A, i?: string|number) => B) {
+export function map<A, B>(f: (_: A, i?: number) => Promise<B>, as: Array<A>): Promise<Array<B>>
+export function map<A, B>(f: (_: A, i?: string) => Promise<B>, as: Map<A>): Promise<Map<B>>
+export function map<A, B>(f: (_: A, i?: any) => Promise<B>, as?: any): any {
 
-    return async (as: any) => {
+    const inner = async (as: any) => {
 
         if (isArray(as)) {
 
-            const bs: Array<B> = [];
-            for (let a of as) bs.push(await f(a));
-            return bs;
+            const bs: Array<B> = []
+            for (let a of as) bs.push(await f(a))
+            return bs
 
         } else if (isObject(as)) {
 
-            const result: Map<B> = {};
-            for (let key of Object.keys(as)) result[key] = await f(as[key], key);
-            return result;
+            const result: Map<B> = {}
+            for (let key of Object.keys(as)) result[key] = await f(as[key], key)
+            return result
 
         } else {
 
             throw 'illegal argument - must be array or object'
         }
     }
+
+    return (as === undefined
+        ? inner
+        : inner(as)) as any
 }
 
 
