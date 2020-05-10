@@ -378,9 +378,18 @@ export function objectEqual(o1: Object) {
 }
 
 
-export function equal(o1: any) {
-
-    return equalBy(arrayEqual as any)(o1);
+export function equal(o1: undefined, o2: undefined): true
+export function equal<T>(o1: T, o2: T): boolean
+export function equal(o1: undefined): {
+    (o2: undefined): true
+    (o2: any): false
+};
+export function equal<T>(o1: T): (o2: T) => boolean;
+export function equal(o1: any, ...os: any[]): any {
+    if (os.length > 1) throw 'illegal argument - equal expects 1 or 2 arguments in first parameter list'
+    return os.length === 0
+        ? (o2: any) => equalBy(arrayEqual as any)(o2)(o1)
+        : equalBy(arrayEqual as any)(os[0])(o1)
 }
 
 
