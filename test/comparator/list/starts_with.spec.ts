@@ -13,7 +13,7 @@ import {startsWith} from '../../../src/comparator';
  * It can be used in a flow context, where the arguments are given as separate argument lists,
  * as well as in a standard context, where the arguments are given in a single argument list.
  */
-fdescribe('startsWith', () => {
+describe('startsWith', () => {
 
     it('string', () => {
 
