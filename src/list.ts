@@ -65,11 +65,17 @@ export function prepend<A>(...as2: Array<A>) {
 }
 
 
-export function take(n: number) {
+export function take<A>(n: number, as: Array<A>): Array<A>;
+export function take<A>(n: number, s: string): string;
+export function take(n: number): {
+    <A>(_: Array<A>): Array<A>
+    (_: string): string
+}
+export function take<A>(n: number, list?: string|Array<A>): any {
 
-    function inner<A>(as: Array<A>): Array<A>;
+    function inner(as: Array<A>): Array<A>;
     function inner(as: string): string;
-    function inner<A>(as: Array<A>|string): Array<A>|string {
+    function inner(as: Array<A>|string): Array<A>|string {
 
         if (isArray(as)) {
 
@@ -92,7 +98,9 @@ export function take(n: number) {
         }
     }
 
-    return inner;
+    return list === undefined
+        ? inner as any
+        : inner(list as any) as any
 }
 
 

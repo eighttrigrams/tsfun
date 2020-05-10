@@ -6,7 +6,7 @@ import {startsWith} from '../../../src/comparator';
  *
  * Tests if the right hand side argument starts with the one given on the left hand side.
  *
- * startsWith operates on the List abstraction.
+ * startsWith operates on the List abstraction over Arrays and strings.
  * although here, the arguments must be both either of type string or Array,
  * and in the Array case both Array must contain the same type of arguments.
  *
