@@ -180,7 +180,7 @@ export function reduce<A, B>(f: (b: B, a: A, i?: number|string) => B, init: B): 
 }
 export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => B, init: B) {
 
-    return (ts: Array<T>|Map<T>): B => {
+    return (ts: any): B => {
 
         if (isArray(ts)) {
 

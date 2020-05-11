@@ -12,7 +12,7 @@ export function forEach<A>(f: (_: A, i?: number|string) => Promise<void>): {
 }
 export function forEach<A>(f: (_: A, i?: number|string) => Promise<void>) {
 
-    return async (as: Array<A>|Map<A>) => {
+    return async (as: any) => {
 
         if (isArray(as)) {
 
@@ -145,7 +145,7 @@ export function reduce<A, B>(f: (b: B, a: A, i?: number|string) => Promise<B>, i
 }
 export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => Promise<B>, init: B) {
 
-    return async (ts: Array<T>|Map<T>): Promise<B> => {
+    return async (ts: any): Promise<B> => {
 
         if (isArray(ts)) {
 
