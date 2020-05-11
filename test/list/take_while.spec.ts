@@ -2,17 +2,16 @@ import {greaterThan, lessThan} from '../../src/comparator';
 import {takeWhile} from '../../src/list';
 
 
+/**
+ * tsfun | takeWhile
+ */
 describe('takeWhile', () => {
 
-    it('take five', () =>
+    it('take five', () => {
 
-        expect(
-
-            takeWhile(lessThan(20))
-            ([7, 9, 10, 13, 17, 20])
-
-        ).toEqual([7, 9, 10, 13, 17])
-    );
+        expect(takeWhile(lessThan(20))([7, 9, 10, 13, 17, 20])).toEqual([7, 9, 10, 13, 17])
+        expect(takeWhile(lessThan(20), [7, 9, 10, 13, 17, 20])).toEqual([7, 9, 10, 13, 17])
+    });
 
 
     it('take none', () =>

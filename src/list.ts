@@ -224,9 +224,11 @@ export function takeWhile<A>(predicate: Predicate<A>): {
     (as: Array<A>): Array<A>
     (as: string): string
 }
-export function takeWhile<A>(predicate: Predicate<A>|Predicate<string>) {
+export function takeWhile<A>(predicate: Predicate<A>, as: Array<A>): Array<A>
+export function takeWhile<A>(predicate: Predicate<A>, as: string): string
+export function takeWhile<A>(predicate: Predicate<A>|Predicate<string>, as?: any): any {
 
-    return (as: Array<A>|string) => {
+    const inner = (as: Array<A>|string) => {
 
         const as1 = isString(as) ? (as as any).split('') : as
 
@@ -236,6 +238,10 @@ export function takeWhile<A>(predicate: Predicate<A>|Predicate<string>) {
 
         return isString(as) ? result.join('') : result
     };
+
+    return as === undefined
+        ? inner
+        : inner(as)
 }
 
 
