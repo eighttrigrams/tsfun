@@ -42,7 +42,7 @@ export function filter<T>(p: (a: T, i?: string|number) => Promise<boolean>): {
 }
 export function filter<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
 
-    return async (as: Array<T>|Map<T>|string) => {
+    return async (as: any) => {
 
         if (isArray(as)) {
 

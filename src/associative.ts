@@ -149,7 +149,7 @@ export function forEach<A>(f: (_: A, i?: number|string) => void): {
 }
 export function forEach<A>(f: (_: A, i?: number|string) => void) {
 
-    return (as: Array<A>|Map<A>) => {
+    return (as: any) => {
 
         if (isArray(as)) {
 

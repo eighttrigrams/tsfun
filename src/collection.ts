@@ -51,7 +51,7 @@ export function filter<A>(p: (a: A, i?: string) => boolean, as: Map<A>): Map<A>
 export function filter<A>(p: (a: A, i?: number) => boolean, as: string): string
 export function filter<A>(p: (a: A, i?: any) => boolean, as?: any): any {
 
-    const inner = (as: Array<A>|Map<A>) => {
+    const inner = (as: any) => {
 
         if (isArray(as)) {
 
