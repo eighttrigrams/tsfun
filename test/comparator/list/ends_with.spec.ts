@@ -1,16 +1,16 @@
 import {endsWith} from '../../../src/comparator';
 
 
+/**
+ * tsfun | endsWith
+ */
 describe('endsWith', () => {
 
-    it('string - true', () =>
+    it('string - true', () => {
 
-        expect(
-
-            endsWith('efg')('defg')
-
-        ).toBe(true)
-    );
+        expect(endsWith('efg')('defg')).toBe(true)
+        expect(endsWith('efg', 'defg')).toBe(true)
+    });
 
 
     it('string - false', () =>

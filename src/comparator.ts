@@ -466,11 +466,13 @@ export function startsWith<A>(that: string|Array<A>, what?:string|Array<A>): any
 const pairIsSame = <A>([a, b]: Pair<A, A>) => a === b
 
 
-export function endsWith<A>(s: string): (as: string) => boolean
-export function endsWith<A>(s: Array<A>): (as: Array<A>) => boolean
-export function endsWith<A>(that: string|Array<A>) {
+export function endsWith<A>(s1: string, s2: string): boolean
+export function endsWith<A>(s1: string): (s2: string) => boolean;
+export function endsWith<A>(as1: Array<A>, as2: Array<A>): boolean;
+export function endsWith<A>(as1: Array<A>): (as2: Array<A>) => boolean;
+export function endsWith<A>(that: any, as2?: any): any {
 
-    return (what: string|Array<A>) => {
+    const inner = (what: any) => {
 
         if (isString(what) && isString(that)) {
 
@@ -493,6 +495,10 @@ export function endsWith<A>(that: string|Array<A>) {
             throw 'illegal argument - args must be either both strings or both arrays'
         }
     }
+
+    return as2 === undefined
+        ? inner
+        : inner(as2)
 }
 
 
