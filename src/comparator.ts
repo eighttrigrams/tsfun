@@ -340,11 +340,15 @@ export function sameset<A>(that: Array<A>|string, as2?: Array<A>|string): any {
 }
 
 
-export function subsetOf(that: string): (as2: string) => boolean
-export function subsetOf<A>(that: Array<A>): (as2: Array<A>) => boolean
-export function subsetOf<A>(that: Array<A>|string) {
+export function subsetOf<A>(that: Array<A>|string): {
+    (as2: string): boolean
+    (as2: Array<A>): boolean
+}
+export function subsetOf<A>(that: Array<A>, as2: Array<A>): boolean
+export function subsetOf<A>(that: Array<A>, as2: Array<A>): boolean
+export function subsetOf<A>(that: any, as2?: any): any {
 
-    return (as2: Array<A>|string) => {
+    const inner = (as2: any): any => {
 
         if (isString(that) && isString(as2)) {
 
@@ -359,15 +363,23 @@ export function subsetOf<A>(that: Array<A>|string) {
             throw 'illegal argument - arguments must be either both arrays or both strings'
         }
     }
+
+    return as2 === undefined
+        ? inner
+        : inner(as2)
 }
 
 
 
-export function supersetOf(that: string): (as2: string) => boolean
-export function supersetOf<A>(that: Array<A>): (as2: Array<A>) => boolean
-export function supersetOf<A>(that: Array<A>|string) {
+export function supersetOf<A>(that: Array<A>|string): {
+    (as2: string): boolean
+    (as2: Array<A>): boolean
+}
+export function supersetOf<A>(that: string, as2: string): boolean
+export function supersetOf<A>(that: Array<A>, as2: Array<A>): boolean
+export function supersetOf<A>(that: any, as2?: any): any {
 
-    return (as2: Array<A>|string) => {
+    const inner = (as2: any): any => {
 
         if (isString(that) && isString(as2)) {
 
@@ -382,6 +394,10 @@ export function supersetOf<A>(that: Array<A>|string) {
             throw 'illegal argument - arguments must be either both arrays or both strings'
         }
     }
+
+    return as2 === undefined
+        ? inner
+        : inner(as2)
 }
 
 

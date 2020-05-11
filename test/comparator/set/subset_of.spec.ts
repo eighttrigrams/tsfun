@@ -2,17 +2,14 @@ import {subsetOf} from "../../../src/comparator";
 
 /**
  * tsfun | subsetOf
- *
- * @author Daniel de Oliveira
  */
 describe('subsetOf', () => {
 
-    it('subsetOf', () =>
-        expect(
+    it('subsetOf', () => {
 
-            subsetOf([3, 2, 7])([2, 7])
-
-        ).toEqual(true));
+        expect(subsetOf([3, 2, 7])([2, 7])).toEqual(true)
+        expect(subsetOf([3, 2, 7], [2, 7])).toEqual(true)
+    });
 
 
     it('not subsetOf', () =>

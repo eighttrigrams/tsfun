@@ -3,8 +3,6 @@ import {supersetOf} from "../../../src/comparator";
 
 /**
  * tsfun | supersetOf
- *
- * @author Daniel de Oliveira
  */
 describe('supersetOf', () => {
 
@@ -16,12 +14,11 @@ describe('supersetOf', () => {
         ).toEqual(true));
 
 
-    it('one entry', () =>
-        expect(
+    it('one entry', () => {
 
-            supersetOf([3])([3])
-
-        ).toEqual(true));
+        expect(supersetOf([3])([3])).toEqual(true)
+        expect(supersetOf([3], [3])).toEqual(true)
+    });
 
 
     it('string - one entry', () =>
