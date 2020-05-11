@@ -6,7 +6,7 @@ import {keys, reduce, values} from './associative'
 export function copy<T>(struct: Array<T>): Array<T>
 export function copy<T>(struct: Map<T>): Map<T>
 export function copy(struct: string): string
-export function copy<T>(struct: Array<T>|Map<T>|string) {
+export function copy<T>(struct: any) {
 
     return isString(struct)
         ? (struct as any).slice()
