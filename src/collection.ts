@@ -110,16 +110,24 @@ export function indices<A>(p: Predicate<A>): {
     (as: Array<A>): number[]
     (as: Map<A>): string[]
 }
-export function indices<A>(p: Predicate<A>) {
+export function indices<A>(p: Predicate<string>, as: string): number[]
+export function indices<A>(p: Predicate<string>, as: Array<string>): number[]
+export function indices<A>(p: Predicate<A>, as: Array<A>): number[]
+export function indices<A>(p: Predicate<A>, as: Map<A>): number[]
+export function indices<A>(p: Predicate<A>, as?: any): any {
 
-    return (as: Array<A>|string|Map<A>): number[]|string[] => {
+    const inner = (as: any): any => {
 
         return reduce(
             (indices: number[], a: A, i: number|string) => p(a)
                 ? indices.concat([i] as any)
                 : indices
-            , [])(isString(as) ? (as as any).split('') : as);
+            , [])(isString(as) ? (as as any).split('') : as)
     }
+
+    return as === undefined
+        ? inner
+        : inner(as)
 }
 
 
@@ -132,7 +140,6 @@ export function size<T>(o: string|Array<T>|Map<T>): number {
         ? o.length
         : keys(o as any).length) as number
 }
-
 
 
 export function remove<A>(p: (a: A, i?: number|string) => boolean): {

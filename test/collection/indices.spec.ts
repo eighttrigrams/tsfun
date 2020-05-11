@@ -2,14 +2,16 @@ import {indices} from '../../src/collection';
 import {greaterThan, is} from '../../src/comparator';
 
 
+/**
+ * tsfun | indices
+ */
 describe('indices', () => {
 
-    it('array of string', () =>
-        expect(
+    it('array of string', () => {
 
-            indices(is('3'))(['1', '3', '7', '1'])
-
-        ).toEqual([1]));
+        expect(indices(is('3'))(['1', '3', '7', '1'])).toEqual([1])
+        expect(indices(is('3'), ['1', '3', '7', '1'])).toEqual([1])
+    })
 
 
     it('array of number', () =>
@@ -17,7 +19,7 @@ describe('indices', () => {
 
             indices(greaterThan(2))([1, 3, 7, 1])
 
-        ).toEqual([1, 2]));
+        ).toEqual([1, 2]))
 
 
     it('object', () =>
@@ -25,7 +27,7 @@ describe('indices', () => {
 
             indices(greaterThan(2))({a: 3, b: 1, c: 7})
 
-        ).toEqual(['a', 'c']));
+        ).toEqual(['a', 'c']))
 
 
     it('string', () =>
@@ -33,5 +35,5 @@ describe('indices', () => {
 
             indices(is('d'))('dded')
 
-        ).toEqual([0, 1, 3]));
-});
+        ).toEqual([0, 1, 3]))
+})
