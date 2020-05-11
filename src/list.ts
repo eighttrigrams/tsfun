@@ -1,21 +1,21 @@
-import {Pair, Predicate} from './type';
-import {isArray, isNot, isString} from './predicate';
-import {copy} from './collection';
+import {Pair, Predicate} from './type'
+import {isArray, isNot, isString} from './predicate'
+import {copy} from './collection'
 
 
 // ------------ @author Daniel de Oliveira -----------------
 
-export function reverse<A>(as: string): string;
-export function reverse<A>(as: Array<A>): Array<A>;
+export function reverse<A>(as: string): string
+export function reverse<A>(as: Array<A>): Array<A>
 export function reverse<A>(as: Array<A>|string): Array<A>|string {
 
     if (isArray(as)) {
 
-        return (as as Array<A>).reduce((acc: Array<A>, a) => [a].concat(acc), []);
+        return (as as Array<A>).reduce((acc: Array<A>, a) => [a].concat(acc), [])
 
     } if (isString(as)) {
 
-        return (as as string).split('').reverse().join('');
+        return (as as string).split('').reverse().join('')
 
     } else {
 
@@ -25,8 +25,8 @@ export function reverse<A>(as: Array<A>|string): Array<A>|string {
 
 
 export function append<A>(...as2: Array<A>): {
-    (as: Array<A>): Array<A>;
-    (as: string): string;
+    (as: Array<A>): Array<A>
+    (as: string): string
 }
 export function append<A>(...as2: Array<A>) {
 
@@ -34,11 +34,11 @@ export function append<A>(...as2: Array<A>) {
 
         if (isArray(as) && isArray(as2)) {
 
-            return as.concat(as2 as any) as Array<A>;
+            return as.concat(as2 as any) as Array<A>
 
         } else if (isString(as)) {
 
-            return as.concat((as2 as any).join('')) as string;
+            return as.concat((as2 as any).join('')) as string
         }
     }
 }
@@ -46,8 +46,8 @@ export function append<A>(...as2: Array<A>) {
 
 
 export function prepend<A>(...as2: Array<A>): {
-    (as: Array<A>): Array<A>;
-    (as: string): string;
+    (as: Array<A>): Array<A>
+    (as: string): string
 }
 export function prepend<A>(...as2: Array<A>) {
 
@@ -55,18 +55,18 @@ export function prepend<A>(...as2: Array<A>) {
 
         if (isArray(as) && isArray(as2)) {
 
-            return as2.concat(as as any) as Array<A>;
+            return as2.concat(as as any) as Array<A>
 
         } else if (isString(as)) {
 
-            return (as2 as any).join('').concat(as) as string;
+            return (as2 as any).join('').concat(as) as string
         }
     }
 }
 
 
-export function take<A>(n: number, as: Array<A>): Array<A>;
-export function take<A>(n: number, s: string): string;
+export function take<A>(n: number, as: Array<A>): Array<A>
+export function take<A>(n: number, s: string): string
 export function take(n: number): {
     <A>(_: Array<A>): Array<A>
     (_: string): string
@@ -79,18 +79,18 @@ export function take<A>(n: number, list?: string|Array<A>): any {
 
         if (isArray(as)) {
 
-            const as_ = as as Array<A>;
+            const as_ = as as Array<A>
             return n < 0 ? [] :
                 as_.reduce((acc: Array<A>, val, i) =>
                         i < n ? acc.concat([val]) : acc
-                    , []) as Array<A>;
+                    , []) as Array<A>
 
         } else if (isString(as)) {
 
-            const as_ = as as string;
+            const as_ = as as string
             return n < 0
                 ? ''
-                : as_.slice(0, n) as string;
+                : as_.slice(0, n) as string
 
         } else {
 
@@ -259,7 +259,7 @@ export function takeRightWhile<A>(predicate: Predicate<A>) {
 
     return (as: Array<A>|string) => {
 
-        const as1 = isString(as) ? (as as any).split('') : as;
+        const as1 = isString(as) ? (as as any).split('') : as
 
         let go = true;
         const result = as1.reduceRight((acc: Array<A>, a: any) =>
@@ -382,7 +382,7 @@ export function sort<A>(f: string|Array<number>|((a: A, b: A) => number)) {
             if (a === b) return 0
             if (a < b) return -1
             return 1
-        });
+        })
 
     } else return (as: Array<A>|string) => {
 
