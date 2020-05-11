@@ -301,9 +301,11 @@ export function dropRightWhile<A>(predicate: Predicate<A>): {
     (as: Array<A>): Array<A>
     (as: string): string
 }
-export function dropRightWhile<A>(predicate: Predicate<A>) {
+export function dropRightWhile<A>(predicate: Predicate<A>, as: Array<A>): Array<A>
+export function dropRightWhile<A>(predicate: Predicate<A>, as: string): string
+export function dropRightWhile<A>(predicate: Predicate<A>, as?: any): any {
 
-    return (as: Array<A>|string) => {
+    const inner = (as: any): any => {
 
         const as1 = isString(as) ? (as as any).split('') : as
 
@@ -312,7 +314,11 @@ export function dropRightWhile<A>(predicate: Predicate<A>) {
             go || !predicate(a) ? (go = true, [a].concat(acc)) : acc, [])
 
         return isString(as) ? result.join('') : result
-    };
+    }
+
+    return as === undefined
+        ? inner
+        : inner(as)
 }
 
 
