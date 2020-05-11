@@ -1,14 +1,16 @@
 import {dissoc} from '../../src/associative';
 
 
+/**
+ * tsfun | dissoc
+ */
 describe('dissoc', () => {
 
-    it('array', () =>
-        expect(
+    it('array', () => {
 
-            dissoc(2)([1, 5, 7, 9])
-
-        ).toEqual([1, 5, 9]));
+        expect(dissoc(2)([1, 5, 7, 9])).toEqual([1, 5, 9])
+        expect(dissoc(2, [1, 5, 7, 9])).toEqual([1, 5, 9])
+    });
 
 
     it('object', () =>

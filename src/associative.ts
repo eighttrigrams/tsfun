@@ -20,17 +20,25 @@ export function get<T>(i: number|string, alternative?: T|undefined) {
 }
 
 
-export function dissoc<T>(key: string): (struct: Map<T>) => Map<T>;
-export function dissoc<A>(key: number): (struct: Array<A>) => Array<A>;
-export function dissoc<T>(key: string|number) {
+export function dissoc(key: string|number): {
+    <T>(struct: Map<T>): Map<T>
+    <A>(struct: Array<A>): Array<A>
+}
+export function dissoc<A>(key: number, as: Array<A>): Array<A>;
+export function dissoc<A>(key: string, as: Map<A>): Map<A>;
+export function dissoc<T>(key: any, as?: any): any {
 
-    return (struct: Map<T>|Array<T>) => {
+    const inner = (struct: any): any => {
 
         const newStruct = copy(struct as any);
         if (isArray(struct)) (newStruct as any).splice(key, 1);
         else delete (newStruct as any)[key];
         return newStruct;
     }
+
+    return as === undefined
+        ? inner
+        : inner(as)
 }
 
 
