@@ -138,11 +138,15 @@ export function drop(n: number, as?: any): any {
 
 
 
-export function dropRight(n: number) {
+export function dropRight(n: number): {
+    <A>(as: Array<A>): Array<A>
+    (as: string): string
+}
+export function dropRight<A>(n: number, as: Array<A>): Array<A>
+export function dropRight(n: number, as: string): string
+export function dropRight(n: number, as?: any): any {
 
-    function inner<A>(as: Array<A>): Array<A>
-    function inner(as: string): string
-    function inner<A>(as: Array<A>|string): Array<A>|string {
+    const inner = <A>(as: any): any => {
 
         if (isArray(as)) {
 
@@ -159,7 +163,9 @@ export function dropRight(n: number) {
         }
     }
 
-    return inner
+    return as === undefined
+        ? inner
+        : inner(as)
 }
 
 

@@ -1,17 +1,16 @@
 import {dropRight} from '../../src/list';
 
+
+/**
+ * tsfun | dropRight
+ */
 describe('dropRight', () => {
 
+    it('2', () => {
 
-    it('2', () =>
-
-        expect(
-
-            dropRight(2)
-            ([8,9,11])
-
-        ).toEqual([8])
-    );
+        expect(dropRight(2)([8, 9, 11])).toEqual([8])
+        expect(dropRight(2, [8, 9, 11])).toEqual([8])
+    });
 
 
     it('all', () =>
