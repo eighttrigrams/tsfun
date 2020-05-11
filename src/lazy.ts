@@ -5,45 +5,45 @@
 
 export function* range(a: number, b?: number, stepSize: number = 1) {
 
-    let begin = a;
-    let end   = b;
+    let begin = a
+    let end   = b
     if (b === undefined) {
-        begin = 0;
-        end   = a;
+        begin = 0
+        end   = a
     }
 
     for (let i = begin; i < (end as number); i = i + stepSize) {
-        yield i;
+        yield i
     }
 }
 
 
 export function zip(as: any) { return function* (bs: any) {
 
-    const aIterator = as[Symbol.iterator]();
-    const bIterator = bs[Symbol.iterator]();
+    const aIterator = as[Symbol.iterator]()
+    const bIterator = bs[Symbol.iterator]()
 
     while (true) {
-        const aNext = aIterator.next();
-        if (aNext.done) break;
-        const bNext = bIterator.next();
-        if (bNext.done) break;
-        yield [aNext.value, bNext.value];
+        const aNext = aIterator.next()
+        if (aNext.done) break
+        const bNext = bIterator.next()
+        if (bNext.done) break
+        yield [aNext.value, bNext.value]
     }
 }}
 
 
 export function zipWith(f: Function, as: any) { return function* (bs: any) {
 
-    const aIterator = as[Symbol.iterator]();
-    const bIterator = bs[Symbol.iterator]();
+    const aIterator = as[Symbol.iterator]()
+    const bIterator = bs[Symbol.iterator]()
 
     while (true) {
-        const aNext = aIterator.next();
-        if (aNext.done) break;
-        const bNext = bIterator.next();
-        if (bNext.done) break;
-        yield f(aNext.value, bNext.value);
+        const aNext = aIterator.next()
+        if (aNext.done) break
+        const bNext = bIterator.next()
+        if (bNext.done) break
+        yield f(aNext.value, bNext.value)
     }
 }}
 
@@ -51,7 +51,7 @@ export function zipWith(f: Function, as: any) { return function* (bs: any) {
 export function map(f: Function) {
     return function*(a: any) {
         for (let x of a) {
-            // console.log("map x of a", x);
+            // console.log("map x of a", x)
             yield f(x)
         }
     }
@@ -60,12 +60,12 @@ export function map(f: Function) {
 
 export function take(n: number) {
     return function*(a: any) {
-        let i = 0;
+        let i = 0
         for (let x of a) {
-            if (i === n) return;
-            // console.log("take x of a", x);
-            yield x;
-            i++;
+            if (i === n) return
+            // console.log("take x of a", x)
+            yield x
+            i++
         }
     }
 }
@@ -74,18 +74,18 @@ export function take(n: number) {
 export function filter(f: Function) {
     return function*(a: any) {
         for (let x of a) {
-            // console.log("filter x of a", x);
-            if (f(x)) yield x;
+            // console.log("filter x of a", x)
+            if (f(x)) yield x
         }
     }
 }
 
 
 export function materialize(lAs: any) {
-    const as: Array<any> = [];
+    const as: Array<any> = []
     for (let x of lAs) {
-        // console.log("materialize x of a", x);
-        as.push(x);
+        // console.log("materialize x of a", x)
+        as.push(x)
     }
-    return as;
+    return as
 }
