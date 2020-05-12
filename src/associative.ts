@@ -133,7 +133,7 @@ export function map<A = any, B = A>(f: (_: A, i: number) => B, as: Array<A>): Ar
 export function map<A = any, B = A>(as: Array<A>, f: (_: A, i: number) => B): Array<B>
 export function map<A = any, B = A>(f: (_: A, i: string) => B, as: {[prop: string]: A}): Map<B>
 export function map<A = any, B = A>(as: {[prop: string]: A}, f: (_: A, i: string) => B): Map<B>
-export function map<A, B>(first: any, ...second: any[]): any {
+export function map<A, B>(first: any, ...rest: any[]): any {
 
     const inner = (as: any): any => {
 
@@ -142,7 +142,7 @@ export function map<A, B>(first: any, ...second: any[]): any {
             : as
         const mappingFunction = isFunction(first)
             ? first
-            : second[0] // typing should prevent this to be out of bounds
+            : rest[0] // typing should prevent this to be out of bounds
 
         if (isArray(associativeColl)) return (associativeColl as Array<A>).map(mappingFunction) as Array<B>
         else {
@@ -154,9 +154,9 @@ export function map<A, B>(first: any, ...second: any[]): any {
         }
     }
 
-    return second.length === 0
+    return rest.length === 0
         ? inner
-        : inner(second[0])
+        : inner(rest[0])
 }
 
 
