@@ -125,10 +125,12 @@ const filterObj = <T>(predicate: Predicate<T>): (_: Map<T>) => Map<T> =>
             }, {})
 
 
-export function map<A = any, B = A>(f: (_: A, i?: string|number) => B): {
+export function map<A = any, B = A>(f: (_: A) => B): {
     (as: Array<A>): Array<B>
-    (os: Map<A>): Map<B>
+    (as: Map<A>): Map<B>
 }
+export function map<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
+export function map<A = any, B = A>(f: (_: A, key: string) => B): (as: Map<A>) => Map<B>
 export function map<A = any, B = A>(f: (_: A, i: number) => B, as: Array<A>): Array<B>
 export function map<A = any, B = A>(as: Array<A>, f: (_: A, i: number) => B): Array<B>
 export function map<A = any, B = A>(f: (_: A, i: string) => B, as: {[prop: string]: A}): Map<B>
