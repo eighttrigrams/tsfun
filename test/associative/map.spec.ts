@@ -5,6 +5,8 @@ import {flow} from '../../src/composition';
 
 /**
  * tsfun | map
+ *
+ * Allows for mapping over Associative collections
  */
 describe('map', () => {
 
