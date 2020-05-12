@@ -4,16 +4,26 @@ import {flow} from '../../src/composition';
 
 
 /**
- * @author Daniel de Oliveira
+ * tsfun | map
  */
 describe('map', () => {
 
-    it('map', () =>
+    it('map', () => {
+
         expect(
 
-            map(_ => 2 * _)([3, 7]))
+            map(_ => 2 * _, [3, 7])
 
-            .toEqual([6, 14]));
+        ).toEqual([6, 14])
+        expect(
+
+            map(_ => 2 * _, {a: 3, b: 7})
+
+        ).toEqual({a: 6, b: 14})
+
+        expect(map(_ => 2 * _)([3, 7])).toEqual([6, 14])
+        expect(map(_ => 2 * _)({a: 3, b: 7})).toEqual({a: 6, b: 14})
+    });
 
 
     it('map - with to and flow', () =>

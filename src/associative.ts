@@ -129,17 +129,23 @@ export function map<A = any, B = A>(f: (_: A, i?: string|number) => B): {
     (as: Array<A>): Array<B>
     (os: Map<A>): Map<B>
 }
-export function map<A, B>(f: (_: A, i?: string|number) => B) {
+export function map<A = any, B = A>(f: (_: A, i: number) => B, as: Array<A>): Array<B>
+export function map<A = any, B = A>(f: (_: A, i: string) => B, as: {[prop: string]: A}): Map<B>
+export function map<A, B>(first: any, ...second: any[]): any {
 
-    return (as: any) => {
+    const inner = (as: any): any => {
 
-        if (isArray(as)) return (as as Array<A>).map(f) as Array<B>
+        if (isArray(as)) return (as as Array<A>).map(first) as Array<B>
         else {
             const result: Map<B> = {}
-            for (let key of Object.keys(as)) result[key] = f(as[key], key)
+            for (let key of Object.keys(as)) result[key] = first(as[key], key)
             return result
         }
     }
+
+    return second.length === 0
+        ? inner
+        : inner(second[0])
 }
 
 
