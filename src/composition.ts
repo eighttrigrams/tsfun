@@ -5,11 +5,19 @@ import {first, rest} from './list'
 import {success, getSuccess, left, just, right} from './tuple'
 
 
-const composition = <T = any>(t: any, ...transformations: Array<Function>) =>
-    compose(...transformations)(t) as T
 
+// flow can also be called 'composition'
+export function flow<A>(t: A): A
+export function flow<A,B>(t: A, f: ((_: A) => B)): B
+export function flow<A,B,C>(t: A, f: ((_: A) => B), g: ((_: B) => C)): C
+export function flow<A,B,C,D>(t: A, f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D)): D
+export function flow<A,B,C,D,E>(t: A, f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E)): E
+export function flow<A,B,C,D,E,F>(t: A, f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F)): F
+export function flow<A,B,C,D,E,F,G>(t: A, f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F), ...transformations: Array<Function>): G
+export function flow(t: any, ...transformations: Array<Function>): any {
 
-export const flow = composition
+    return compose(...transformations)(t)
+}
 
 
 export const compose = (...transformations: Array<Function>) => (t: any)  =>

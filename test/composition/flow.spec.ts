@@ -27,7 +27,6 @@ import {isNot} from '../../src/predicate';
  */
 describe('flow', () => {
 
-
     it('flow', () =>
         expect(
 
@@ -85,14 +84,68 @@ describe('flow', () => {
     it('intended use case', () =>
         expect(
 
-            flow<number[]>(
+            (flow(
                 [1, 2, 3, 1],
                 takeWhile(isNot(includedIn([3, 4]))),
-                dropRight(1))
+                dropRight(1)) as number[])
                 .map(x => x * 2)
                 .includes(2))
 
             .toEqual(true));
+
+
+    it('tying', () => {
+
+        const result1: number = flow('1',
+            parseInt)
+
+        // const result: string = flow('1', // WRONG
+        //     parseInt)
+
+        const result2: string = flow('1',
+            parseInt,
+            _ => _.toString())
+
+        // const result: number = flow('1', // WRONG
+        //     parseInt,
+        //     _ => _.toString())
+
+        const result3: number = flow('1',
+            parseInt,
+            _ => _.toString(),
+            parseInt)
+
+        // const result: string = flow('1', // WRONG
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt)
+
+        const result4: string = flow('1',
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString())
+
+        // const result: number = flow('1', // WRONG
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString())
+
+        const result5: number = flow('1',
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt)
+
+        // const result: string = flow('1', // WRONG
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt)
+    })
 });
 
 

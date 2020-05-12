@@ -137,11 +137,7 @@ export function drop(n: number, as?: any): any {
 }
 
 
-
-export function dropRight(n: number): {
-    <A>(as: Array<A>): Array<A>
-    (as: string): string
-}
+export function dropRight(n: number): (as: any) => any
 export function dropRight<A>(n: number, as: Array<A>): Array<A>
 export function dropRight(n: number, as: string): string
 export function dropRight(n: number, as?: any): any {
@@ -226,28 +222,25 @@ export function takeNth(n: number) {
 }
 
 
-export function takeWhile<A>(predicate: Predicate<A>): {
-    (as: Array<A>): Array<A>
-    (as: string): string
-}
-export function takeWhile<A>(predicate: Predicate<A>, as: Array<A>): Array<A>
-export function takeWhile<A>(predicate: Predicate<A>, as: string): string
-export function takeWhile<A>(predicate: Predicate<A>|Predicate<string>, as?: any): any {
+export function takeWhile<A>(predicate: Predicate<A>): (list: any) => any
+export function takeWhile<A>(predicate: Predicate<A>, list: Array<A>): Array<A>
+export function takeWhile<A>(predicate: Predicate<A>, list: string): string
+export function takeWhile<A>(predicate: Predicate<A>|Predicate<string>, list?: any): any {
 
-    const inner = (as: Array<A>|string) => {
+    const inner = (list: any) => {
 
-        const as1 = isString(as) ? (as as any).split('') : as
+        const as1 = isString(list) ? (list as any).split('') : list
 
         let go = true;
         const result = as1.reduce((acc: Array<A>, a: any) =>
             go && predicate(a) ? acc.concat([a]) : (go = false, acc), [])
 
-        return isString(as) ? result.join('') : result
+        return isString(list) ? result.join('') : result
     };
 
-    return as === undefined
+    return list === undefined
         ? inner
-        : inner(as)
+        : inner(list)
 }
 
 
@@ -271,8 +264,8 @@ export function takeRightWhile<A>(predicate: Predicate<A>) {
 
 
 export function dropWhile<A>(predicate: Predicate<A>): {
-    (as: Array<A>): Array<A>
     (as: string): string
+    (as: Array<A>): Array<A>
 }
 export function dropWhile<A>(predicate: Predicate<A>, as: Array<A>): Array<A>
 export function dropWhile<A>(predicate: Predicate<A>, as: string): string

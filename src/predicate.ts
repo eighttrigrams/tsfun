@@ -85,7 +85,7 @@ export function xor(...preds: Array<Predicate<any>>) {
     return (argument: any): any => {
 
         return flow(preds,
-            map((p: Predicate<any>) => p(argument)),
+            map((p: Predicate): boolean => p(argument)),
             filter(is(true)),
             size,
             is(1));
@@ -116,25 +116,25 @@ export function isEmpty<T>(coll: Object|Array<T>): boolean {
 export const flip = (v: boolean) => !v;
 
 
-export const isArray: Predicate<any> = (as: any) => as instanceof Array;
+export const isArray: Predicate = (as: any) => as instanceof Array;
 
 
-export const isObject: Predicate<any> = (o: any) => o instanceof Object && o.constructor === Object;
+export const isObject: Predicate = (o: any) => o instanceof Object && o.constructor === Object;
 
 
-export const isAssociative: Predicate<any> = (a: any) => isObject(a) || isArray(a);
+export const isAssociative: Predicate = (a: any) => isObject(a) || isArray(a);
 
 
-export const isCollection: Predicate<any> = (a: any) => isObject(a) || isArray(a) || isString(a);
+export const isCollection: Predicate = (a: any) => isObject(a) || isArray(a) || isString(a);
 
 
-export const isList: Predicate<any> = (a: any) => isArray(a) || isString(a);
+export const isList: Predicate = (a: any) => isArray(a) || isString(a);
 
 
-export const isString: Predicate<any> = (as: any) => typeof as === 'string';
+export const isString: Predicate = (as: any) => typeof as === 'string';
 
 
-export const isNumber: Predicate<any> = (as: any) => typeof as === 'number';
+export const isNumber: Predicate = (as: any) => typeof as === 'number';
 
 
 export const isBoolean: Predicate<any> = (as: any) => typeof as === 'boolean';

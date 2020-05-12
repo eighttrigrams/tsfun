@@ -42,9 +42,9 @@ export function prune<T>(ts: Array<T>|Map<T>|string) {
 
 
 export function filter<A>(p: (a: A, i?: number|string) => boolean): {
+    (s: string): string
     (as: Array<A>): Array<A>
     (os: Map<A>): Map<A>
-    (s: string): string
 }
 export function filter<A>(p: (a: A, i?: number) => boolean, as: Array<A>): Array<A>
 export function filter<A>(p: (a: A, i?: string) => boolean, as: Map<A>): Map<A>
@@ -142,11 +142,7 @@ export function size<T>(o: string|Array<T>|Map<T>): number {
 }
 
 
-export function remove<A>(p: (a: A, i?: number|string) => boolean): {
-    (as: Array<A>): Array<A>
-    (os: Map<A>): Map<A>
-    (s: string): string
-}
+export function remove<A>(p: (a: A, i?: number|string) => boolean): (as: any) => any
 export function remove<A>(p: (a: A, i?: number) => boolean, as: Array<A>): Array<A>
 export function remove<A>(p: (a: A, i?: number) => boolean, as: string): string
 export function remove<A>(p: (a: A, i?: string) => boolean, as: Map<A>): Map<A>
@@ -169,7 +165,7 @@ export function separate<A>(p: (a: A, i?: string) => boolean, as: Map<A>): Pair<
 export function separate<A>(p: (a: A, i?: any) => boolean, as?: any): any {
 
     const inner = (as: Array<A>|Map<A>): Pair<Array<A>, Array<A>>|Pair<Map<A>,Map<A>> =>
-        [filter(p)(as as any), remove(p)(as as any)]
+        [filter(p)(as as any) as any, remove(p)(as as any)]
 
     return as === undefined
         ? inner

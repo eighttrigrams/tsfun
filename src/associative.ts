@@ -40,11 +40,9 @@ export function dissoc<T>(key: any, as?: any): any {
 }
 
 
-export function update<T>(key: string, f: (_: T) => T): (struct: Map<T>) => Map<T>;
-export function update<A>(key: number, f: (_: A) => A): (struct: Array<A>) => Array<A>;
 export function update<T>(key: string|number, f: (_: T) => T) {
 
-    return (struct: Map<T>|Array<T>) => {
+    return (struct: any): any => {
 
         const newStruct = copy(struct as any);
         (newStruct as any)[key] = f((newStruct as any)[key])
@@ -125,10 +123,7 @@ const filterObj = <T>(predicate: Predicate<T>): (_: Map<T>) => Map<T> =>
             }, {})
 
 
-export function map<A = any, B = A>(f: (_: A) => B): {
-    (as: Array<A>): Array<B>
-    (as: Map<A>): Map<B>
-}
+export function map<A = any, B = A>(f: (_: A) => B): (as: any) => any
 export function map<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
 export function map<A = any, B = A>(f: (_: A, key: string) => B): (as: Map<A>) => Map<B>
 export function map<A = any, B = A>(f: (_: A, i: number) => B, as: Array<A>): Array<B>
