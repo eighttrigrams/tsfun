@@ -1,6 +1,6 @@
 import {map} from '../../src/associative';
 import {to} from '../../src/struct';
-import {flow} from '../../src/composition';
+import {flow, nop} from '../../src/composition';
 
 
 /**
@@ -95,6 +95,16 @@ describe('map', () => {
     })
 
 
+    it('illegal arguments', () => {
+
+        expect(() => (map as any)([])).toThrow()
+        expect(() => (map as any)([], [])).toThrow()
+        expect(() => (map as any)(nop, nop)).toThrow()
+        expect(() => (map as any)(nop)(nop)).toThrow()
+        expect(() => (map as any)(nop, [], [])).toThrow()
+    })
+
+
     it('typing', () => {
 
         map(_ => _.toExponential(2), {a: 3})
@@ -102,7 +112,7 @@ describe('map', () => {
 
         // map(_ => _.toExponential(2), ['3']) // WRONG
         // map(_ => _.toExponential(2), {a: '3'}) // WRONG
-        // map(_ => _.toExponential(2))({a: '3'}) // WRONG, but passes, no inference over multiple parameter lists
+        {() => map(_ => _.toExponential(2))({a: '3'})} // WRONG, but passes, no inference over multiple parameter lists
         // '3'.toExponential(2) // see this
 
         // map((_, k) => _ - k, {a: 3}) // WRONG, k is string

@@ -137,14 +137,30 @@ export function map<A = any, B = A>(f: (_: A, i: string) => B, as: {[prop: strin
 export function map<A = any, B = A>(as: {[prop: string]: A}, f: (_: A, i: string) => B): Map<B>
 export function map<A, B>(first: any, ...rest: any[]): any {
 
-    const inner = (as: any): any => {
+    if (rest.length > 1) {
+        throw 'illegal argument - in \'map\': first argument list can have at most two arguments'
+    }
+    if (rest.length === 0 && !isFunction(first)) {
+        throw 'illegal argument - in \'map\': argument must be function in one element argument list'
+    }
+    if (rest.length === 1) {
+        if (!
+            (isFunction(first) && isAssociative(rest[0])
+            || isFunction(rest[0]) && isAssociative(first)))
+        throw 'illegal argument - in \'map\': in ' +
+        'two element argument list one must be an associative collection and one a function'
+    }
 
-        const associativeColl = isAssociative(first)
-            ? first
-            : as
-        const mappingFunction = isFunction(first)
-            ? first
-            : rest[0] // typing should prevent this to be out of bounds
+    const mappingFunction = isFunction(first)
+        ? first
+        : rest[0] // typing and guards prevent this to be out of bounds
+
+    const inner = (associativeColl: any): any => {
+
+        if (rest.length === 0 && !isAssociative(associativeColl)) {
+            throw 'illegal argument - in \'map\': ' +
+            'argument in second argument list must be an associative collection'
+        }
 
         if (isArray(associativeColl)) return (associativeColl as Array<A>).map(mappingFunction) as Array<B>
         else {
@@ -158,7 +174,11 @@ export function map<A, B>(first: any, ...rest: any[]): any {
 
     return rest.length === 0
         ? inner
-        : inner(rest[0])
+        : inner(
+            isAssociative(rest[0])
+                ? rest[0]
+                : first
+        )
 }
 
 
