@@ -56,26 +56,20 @@ describe('map', () => {
     })
 
 
-    it('map object', () =>
+    it('indexed', () => {
+
+        // indices are accessible on every item call
         expect(
 
-            map(_ => 2 * _)({a: 1, b: 2}))
+            map((item: number, i: number) => item * i, [2, 3, 4]))
 
-            .toEqual({a: 2, b: 4}))
+            .toEqual([0, 3, 8])
 
-
-    it('array, indexed', () =>
+        // as well as keys in the Map case
         expect(
 
-            map((v: number, i: number) => v * i)([2, 3, 4]))
+            map((item: string, key: string) => key + item, {a: '1', b: '2'}))
 
-            .toEqual([0, 3, 8]))
-
-
-    it('object, indexed', () =>
-        expect(
-
-            map((v: string, pos: string) => pos + v)({a: '1', b: '2'}))
-
-            .toEqual({a: 'a1', b: 'b2'}))
+            .toEqual({a: 'a1', b: 'b2'})
+    })
 })
