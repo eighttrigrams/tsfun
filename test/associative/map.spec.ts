@@ -26,9 +26,25 @@ describe('map', () => {
     });
 
 
-    it('map - with to and flow', () => {
+    it('call variants', () => {
 
-        // in flow context, two parameter lists are used
+        // param order can be reversed, if one prefers
+        expect(
+
+            map([3, 7], _ => 2 * _)
+
+        ).toEqual([6, 14])
+        expect(
+
+            map({a: 3, b: 7}, _ => 2 * _)
+
+        ).toEqual({a: 6, b: 14})
+
+        // param order reversal works in non composition contexts
+
+
+        // in composition context, two parameter lists are used,
+        // of which the first expects the mapping function
         expect(
 
             map
@@ -43,8 +59,11 @@ describe('map', () => {
             ({a: 3, b: 7})
 
         ).toEqual({a: 6, b: 14})
+    })
 
-        // ->
+
+    it('map - with to and flow', () => {
+
         expect(
 
             flow(
