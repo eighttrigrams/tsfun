@@ -123,7 +123,7 @@ const filterObj = <T>(predicate: Predicate<T>): (_: Map<T>) => Map<T> =>
             }, {})
 
 
-export function map<A = any, B = A>(f: (_: A) => B): (as: Associative<A>) => Associative<B>
+export function map<A = any, B = A >(f: (_: A) => B): (as: Associative<A>) => Associative<B> // TODO maybe remove any casts in subsequent examples, it seems to not bring many benefits and maybe drawbacks, as the flatten example showed
 export function map<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
 export function map<A = any, B = A>(f: (_: A, key: string) => B): (as: Map<A>) => Map<B>
 export function map<A = any, B = A>(f: (_: A, i: number) => B, as: Array<A>): Array<B>

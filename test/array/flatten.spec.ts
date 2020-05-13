@@ -1,26 +1,88 @@
 import {flatten} from '../../src/array';
+import {flow} from '../../src/composition';
+import {map} from '../../src/associative';
+import {Associative} from '../../src/type';
 
 
 /**
- * @author Daniel de Oliveira
+ * tsfun | flatten
  */
 describe('flatten', () => {
 
+    it('1 level', () => {
 
-    it('1 level - implicitly', () =>
+        // with a single argument list
         expect(
 
-            flatten([[1, 2], [3, 4]])
+            flatten(1, [[1, 2], [3, 4]])
 
-        ).toEqual([1, 2, 3, 4]));
+        ).toEqual([1, 2, 3, 4])
 
 
-    it('1 - level - explicitly', () =>
+        // or multiple argument lists
+        expect(
+
+            flatten(1)([[1, 2], [3, 4]])
+
+        ).toEqual([1, 2, 3, 4])
+
+
+        // in the latter case an empty arg list means flatten by 1 level
+        expect(
+
+            flatten()([[1, 2], [3, 4]])
+
+        ).toEqual([1, 2, 3, 4])
+    });
+
+
+    it('1 level flattening can also be done with Array Maps', () => {
+
+        expect(
+
+            flatten()({ a: [1, 2], b: [3, 4] })
+
+        ).toEqual([1, 2, 3, 4])
+
+
+        // in addition to this functionality, it also results in a typing giving Associative,
+        // which plays nice with other higher order functions like 'map' in compositions.
+        expect(
+
+            flow([3, 4]
+            , map(_ => [_ * 2, _ * 3]) // this gives Associative
+            , flatten()               // which flatten happily takes
+            )
+
+        ).toEqual([6, 9, 8, 12])
+
+        const result13: Associative<number[]>
+            = flow([3, 4]
+            , map(_ => [_ * 2, _ * 3]) // this gives Associative
+        )
+
+        const result14: number[] // not so good
+            = flow([3, 4]
+            , map(_ => [_ * 2, _ * 3]) // this gives Associative
+            , flatten()         // which flatten happily takes
+        )
+    });
+
+
+    it('1 - level of multiple', () => {
+
         expect(
 
             flatten(1)([[1, [2, 3]], [4, [5, [6, 7]]]])
 
-        ).toEqual([1, [2, 3], 4, [5, [6, 7]]]));
+        ).toEqual([1, [2, 3], 4, [5, [6, 7]]])
+
+        expect(
+
+            flatten(1)([[1, [2, 3]], [4, [5, [6, 7]]]])
+
+        ).toEqual([1, [2, 3], 4, [5, [6, 7]]])
+    });
 
 
     it('2 - levels', () =>
@@ -31,12 +93,21 @@ describe('flatten', () => {
         ).toEqual([1, 2, 3, 4, 5, [6, 7]]));
 
 
-    it('3 - levels', () =>
+    it('3 - levels', () => {
+
         expect(
 
             flatten(3)([[1, [2, [3, 4]]], [5, [6, [7, 8]]]])
 
-        ).toEqual([1, 2, 3, 4, 5, 6, 7, 8]));
+        ).toEqual([1, 2, 3, 4, 5, 6, 7, 8])
+
+
+        expect(
+
+            flatten(3, [[1, [2, [3, 4]]], [5, [6, [7, 8]]]])
+
+        ).toEqual([1, 2, 3, 4, 5, 6, 7, 8])
+    });
 
 
     it('1 - level - but not level to compress - implicitly', () =>
@@ -58,7 +129,22 @@ describe('flatten', () => {
     it('2 - level - but not level to compress', () =>
         expect(
 
-            flatten(2)([1, 2])
+            flatten(2, [1, 2])
 
         ).toEqual([1, 2]));
+
+
+    it('typing', () => {
+
+        // in the 1 level flattening case, we can easily infer the return type
+        const result1: number[] = flatten()([[1, 2], [3, 4]])
+        // const result: number = flatten()([[1, 2], [3, 4]]) // NOPE
+        // const result: string[] = flatten()([[1, 2], [3, 4]]) // NOPE
+        const result2: number[] = flatten(1)([[1, 2], [3, 4]])
+        // const result: number = flatten(1)([[1, 2], [3, 4]]) // NOPE
+        // const result: string[] = flatten(1)([[1, 2], [3, 4]]) // NOPE
+        const result3: number[] = flatten(1, [[1, 2], [3, 4]])
+        // const result: number = flatten(1, [[1, 2], [3, 4]]) // NOPE
+        // const result: string[] = flatten(1, [[1, 2], [3, 4]]) // NOPE
+    })
 });
