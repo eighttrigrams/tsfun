@@ -301,6 +301,14 @@ export const takeUntil = <A>(predicate: Predicate<A>) =>
         )(as.find(predicate))
 
 
+// export function zip<A>(as: string): {
+//     <B>(bs: Array<B>): Array<Pair<string, B>>
+//     (bs: string): Array<string>
+// }
+// export function zip<A>(as: Array<A>): {
+//     <B>(bs: Array<B>): Array<Pair<A, B>>
+//     (bs: string): Array<Pair<A, string>>
+// }
 export function zip<A>(as: string): {
     <B>(bs: Array<B>): Array<Pair<string, B>>
     (bs: string): Array<string>
