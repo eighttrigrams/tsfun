@@ -2,6 +2,7 @@ import {uncurry2} from './core';
 import {Comparator} from './type';
 import {isEmpty, isNot, isString} from './predicate';
 import {includedInBy} from './comparator';
+import {reduce1} from './array';
 
 // ------------ @author Daniel de Oliveira -----------------
 
@@ -124,17 +125,26 @@ export function intersection<A>(aas: Array<Array<A>>|Array<string>) {
         : intersectionBy()(aas as any);
 }
 
-export function intersect(as1: string): (as2: string) => string;
-export function intersect<A>(as1: Array<A>): (as2: Array<A>) => Array<A>;
-export function intersect<A>(as1: Array<A>|string) {
-    return (as2: Array<A>|string) => {
+// TODO remove intersection function then, but consider intersectBy and intersectionBy
 
-        if (isEmpty(as1) || isEmpty(as2)) return [];
+export function intersect(...sets: string[]): (as2: string) => string;
+export function intersect<A>(...sets: Array<Array<A>>): (as2: Array<A>) => Array<A>;
+export function intersect<A>(...sets: any[]): any {
 
-        return isString(as1)
-            ? (intersectBy()((as1 as any).split(''))((as2 as any).split(''))).join('')
-            : intersectBy()(as1 as any)(as2 as any) as any;
+    if (sets.length === 0) throw 'illegal argument - intersect expects at least one argument in first parameter list'
+
+    const inner = (set1: any) => (set2: any) => { // TODO add Set type to type.ts
+
+        if (isEmpty(set1) || isEmpty(set2)) return [];
+
+        return isString(set1)
+            ? (intersectBy()((set1 as any).split(''))((set2 as any).split(''))).join('')
+            : intersectBy()(set1 as any)(set2 as any) as any;
     }
+
+    return sets.length === 1
+        ? inner(sets[0])
+        : reduce1(uncurry2(inner))(sets) // TODO perhaps rename redue1 to fold
 }
 
 export function union(aas: Array<string>): Array<string>;
