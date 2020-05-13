@@ -16,12 +16,20 @@ export function flow<A,B,C,D,E,F>(t: A, f: ((_: A) => B), g: ((_: B) => C), h: (
 export function flow<A,B,C,D,E,F,G>(t: A, f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F), ...transformations: Array<Function>): G
 export function flow(t: any, ...transformations: Array<Function>): any {
 
-    return compose(...transformations)(t)
+    return (compose as any)(...transformations)(t)
 }
 
 
-export const compose = (...transformations: Array<Function>) => (t: any)  =>
-    transformations.reduce((acc, transformation) => transformation(acc), t) as any
+export function compose<A,B>(f: (_: A) => B): (_: A) => B
+export function compose<A,B,C>(f: ((_: A) => B), g: ((_: B) => C)): (_: A) => C
+export function compose<A,B,C,D>(f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D)): (_: A) => D
+export function compose<A,B,C,D,E>(f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E)): (_: A) => E
+export function compose<A,B,C,D,E,F>(f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F)): (_: A) => F
+export function compose<A,B,C,D,E,F,G>(f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F), ...transformations: Array<Function>): (_: A) => G
+export function compose(...transformations: Array<Function>) {
+    return (t: any) =>
+        transformations.reduce((acc, transformation) => transformation(acc), t) as any
+}
 
 
 export function cond<A, B, C>(

@@ -5,6 +5,12 @@ import {isNot} from '../../src/predicate';
 
 
 /**
+ * tsfun | flow
+ *
+ * with type inference for up to 5 function args
+ *
+ *
+ *
  * A `flow` is a series of transformations of some
  * instance of type `A` to another instance
  * of type `A`.
@@ -22,8 +28,6 @@ import {isNot} from '../../src/predicate';
  * type `A`. It is just that `tsfun` itself
  * provides many array manipulating functions which
  * are designed with flow in mind.
- *
- * @author Daniel de Oliveira
  */
 describe('flow', () => {
 

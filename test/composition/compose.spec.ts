@@ -3,7 +3,9 @@ import {compose, flow} from '../../src/composition';
 
 
 /**
- * @author Daniel de Oliveira
+ * tsfun | compose
+ *
+ * supports type inference for up to 5 function args
  */
 describe('compose', () => {
 
@@ -41,6 +43,66 @@ describe('compose', () => {
     //     .includes(2)
     //
     // -> true
+
+    it('typing', () => {
+
+        const result1: number = compose(parseInt)('3')
+        // const result2: number = compose(parseInt)(3) // WRONG
+        // const result: string = compose(parseInt)('3') // WRONG
+
+        const result2: string =
+            compose(parseInt, _ => _.toString())('3')
+        // const result: number = // WRONG
+        //     compose(parseInt, _ => _.toString())('3')
+
+        const result3: number =
+            compose(
+                parseInt,
+                _ => _.toString(),
+                parseInt)
+            ('3')
+
+        // const result: string = // WRONG
+        //     compose(
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt)
+        //     ('3')
+
+        const result4: string =
+            compose(
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString())
+            ('3')
+
+        // const result: number = // WRONG
+        //     compose(
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt,
+        //         _ => _.toString())
+        //     ('3')
+
+        const result5: number =
+            compose(
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt)
+            ('3')
+
+        // const result: string = // WRONG
+        //     compose(
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt)
+        //     ('3')
+    })
 });
 
 
