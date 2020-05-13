@@ -16,3 +16,21 @@ export function assoc<T, K extends keyof T>(key: keyof T, val: T[K], o?: T): T {
         ? inner
         : inner(o)) as T;
 }
+
+
+
+export function dissoc<T, K extends keyof T>(key: keyof T): <T>(o: T) => T;
+export function dissoc<T, K extends keyof T>(key: keyof T, o: T): T;
+export function dissoc<T, K extends keyof T>(key: keyof T, o?: T): T {
+
+    const inner = <T>(o: T) => {
+
+        const c: any = copy(o as any)
+        delete c[key]
+        return c as T
+    }
+
+    return (o === undefined
+        ? inner
+        : inner(o)) as T;
+}

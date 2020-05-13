@@ -214,6 +214,7 @@ import {equal} from 'tsfun';
 ###### object & interface
 
 * [assoc](test/object/assoc.spec.ts)
+* [dissoc](test/object/dissoc.spec.ts)
 
 ### Struct
 
