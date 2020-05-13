@@ -67,5 +67,13 @@ describe('takeWhile', () => {
         // const result: number = takeWhile((_: string) => true)('abc') as number
         // const result_: number[] = takeWhile((_: number) => true)('abc') // WRONG
         // const result: number[] = takeWhile((_: string) => true)([3]) // WRONG
+
+        const result4 = takeWhile((_: string) => true)(['']) as string
+        const result5 = takeWhile((_: string) => true)('') as string
+        // const result = takeWhile((_: number) => true)(['']) as number[]
+        // const result = takeWhile((_: number) => true)('') as number[]
+        // const result = takeWhile((_: string) => true)('') as number[]
+        const result6 = takeWhile((_: number) => true)([3]) as number[]
+        // const result = takeWhile((_: number) => true)([3]) as string // WRONG
     })
 })
