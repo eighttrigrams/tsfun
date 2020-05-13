@@ -127,8 +127,10 @@ export function intersection<A>(aas: Array<Array<A>>|Array<string>) {
 
 // TODO remove intersection function then, but consider intersectBy and intersectionBy
 
-export function intersect(...sets: string[]): (as2: string) => string;
-export function intersect<A>(...sets: Array<Array<A>>): (as2: Array<A>) => Array<A>;
+export function intersect(set1: string): (as2: string) => string;
+export function intersect<A>(set1: Array<A>): (set2: Array<A>) => Array<A>;
+export function intersect(...sets: string[]): string;
+export function intersect<A>(...sets: Array<Array<A>>): Array<A>;
 export function intersect<A>(...sets: any[]): any {
 
     if (sets.length === 0) throw 'illegal argument - intersect expects at least one argument in first parameter list'

@@ -52,6 +52,26 @@ describe('intersect', () => {
             .toEqual([2])
     })
 
+
+    it('typing', () => {
+
+        const result1: number[] = intersect([1], [2])
+        const result2: string[] = intersect(['1'], ['2'])
+        const result3: string = intersect('1', '2')
+
+        const result4: (_: number[]) => number[] = intersect([1])
+        const result5: (_: string[]) => string[] = intersect([''])
+        const result6: (_: string) => string = intersect('')
+
+        const result7: number[] = intersect([1])([2])
+        const result8: string[] = intersect(['1'])(['2'])
+        const result9: string = intersect('1')('2')
+
+        const result10: number[] = intersect([1], [2], [3])
+        const result11: string[] = intersect(['1'], ['2'], ['3'])
+        const result12: string = intersect('1', '2', '3')
+    })
+
     // err cases
 
     it('illegal arguments', () => {
