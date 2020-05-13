@@ -13,7 +13,12 @@ export function flow<A,B,C>(t: A, f: ((_: A) => B), g: ((_: B) => C)): C
 export function flow<A,B,C,D>(t: A, f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D)): D
 export function flow<A,B,C,D,E>(t: A, f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E)): E
 export function flow<A,B,C,D,E,F>(t: A, f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F)): F
-export function flow<A,B,C,D,E,F,G>(t: A, f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F), ...transformations: Array<Function>): G
+export function flow<A,B,C,D,E,F,G>(t: A, f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F), k: ((_: F) => G)): G
+export function flow<A,B,C,D,E,F,G,H>(t: A, f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F), k: ((_: F) => G), l: ((_: G) => H)): H
+export function flow<A,B,C,D,E,F,G,H,I>(t: A, f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F), k: ((_: F) => G), l: ((_: G) => H), m: ((_: H) => I)): I
+export function flow<A,B,C,D,E,F,G,H,I,J>(t: A, f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F), k: ((_: F) => G), l: ((_: G) => H), m: ((_: H) => I), n: ((_: I) => J)): J
+export function flow<A,B,C,D,E,F,G,H,I,J,K>(t: A, f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F), k: ((_: F) => G), l: ((_: G) => H), m: ((_: H) => I), n: ((_: I) => J), o: ((_: J) => K)): K
+export function flow<A,B,C,D,E,F,G,H,I,J,K>(t: A, f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F), k: ((_: F) => G), l: ((_: G) => H), m: ((_: H) => I), n: ((_: I) => J), o: ((_: J) => K), ...transformations: Array<Function>): any
 export function flow(t: any, ...transformations: Array<Function>): any {
 
     return (compose as any)(...transformations)(t)
@@ -25,7 +30,12 @@ export function compose<A,B,C>(f: ((_: A) => B), g: ((_: B) => C)): (_: A) => C
 export function compose<A,B,C,D>(f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D)): (_: A) => D
 export function compose<A,B,C,D,E>(f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E)): (_: A) => E
 export function compose<A,B,C,D,E,F>(f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F)): (_: A) => F
-export function compose<A,B,C,D,E,F,G>(f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F), ...transformations: Array<Function>): (_: A) => G
+export function compose<A,B,C,D,E,F,G>(f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F), k: ((_: F) => G)): (_: A) => G
+export function compose<A,B,C,D,E,F,G,H>(f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F), k: ((_: F) => G), l: ((_: G) => H)): (_: A) => H
+export function compose<A,B,C,D,E,F,G,H,I>(f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F), k: ((_: F) => G), l: ((_: G) => H), m: ((_: H) => I)): (_: A) => I
+export function compose<A,B,C,D,E,F,G,H,I,J>(f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F), k: ((_: F) => G), l: ((_: G) => H), m: ((_: H) => I), n: ((_: I) => J)): (_: A) => J
+export function compose<A,B,C,D,E,F,G,H,I,J,K>(f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F), k: ((_: F) => G), l: ((_: G) => H), m: ((_: H) => I), n: ((_: I) => J), o: ((_: J) => K)): (_: A) => K
+export function compose<A,B,C,D,E,F,G,H,I,J,K>(f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D), i: ((_: D) => E), j: ((_: E) => F), k: ((_: F) => G), l: ((_: G) => H), m: ((_: H) => I), n: ((_: I) => J), o: ((_: J) => K), ...transformations: Array<Function>): (_: A) => any
 export function compose(...transformations: Array<Function>) {
     return (t: any) =>
         transformations.reduce((acc, transformation) => transformation(acc), t) as any

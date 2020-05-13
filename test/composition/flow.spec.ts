@@ -10,7 +10,7 @@ import {Associative} from '../../src/type';
 /**
  * tsfun | flow
  *
- * with type inference for up to 5 function args
+ * with type inference for up to 10 function args
  *
  *
  *
@@ -153,13 +153,156 @@ describe('flow', () => {
         //     _ => _.toString(),
         //     parseInt)
 
+        const result6: string = flow('1',
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString())
+
+        // const result: number = flow('1', // WRONG
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString())
+
+        const result7: number = flow('1',
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt)
+
+        // const result: string = flow('1', WRONG
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt)
+
+        const result8: string = flow('1',
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString())
+
+        // const result: number = flow('1', // WRONG
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString())
+
+        const result9: number = flow('1',
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt)
+
+        // const result: string = flow('1',
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt)
+
+        const result10: string = flow('1',
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString())
+
+        // const result: number = flow('1', // WRONG
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString())
+
+        const result11: number = flow('1',
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt)
+
+        // const result: string = flow('1', // WRONG
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt,
+        //     _ => _.toString(),
+        //     parseInt)
+
+        const result12: string = flow('1',
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            _ => _.toString(),
+            parseInt,
+            (_: any) => _.toString()) // <- not inferred anymore
 
 
-        const result6: Associative<string> = flow([3],
+
+
+        /////////////////////////////////
+
+        const result20: Associative<string> = flow([3],
             filter(_ => _ > 2),
             map(_ => _.toString()))
 
-        const result7: Associative<string> = flow([3],
+        const result21: Associative<string> = flow([3],
             filter(_ => _ > 2),
             map(_ => _.toString())) as Array<string>
 
@@ -167,7 +310,7 @@ describe('flow', () => {
         //     filter(_ => _ > 2),
         //     map(_ => _.toString())) as Array<number>
 
-        const result8 = flow([''],
+        const result22 = flow([''],
             filter(_ => true),
             map(_ => _.toLowerCase()))
 

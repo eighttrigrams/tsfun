@@ -5,7 +5,7 @@ import {compose, flow} from '../../src/composition';
 /**
  * tsfun | compose
  *
- * supports type inference for up to 5 function args
+ * supports type inference for up to 10 function args
  */
 describe('compose', () => {
 
@@ -102,6 +102,156 @@ describe('compose', () => {
         //         _ => _.toString(),
         //         parseInt)
         //     ('3')
+
+        const result6: string =
+            compose(
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString())
+            ('3')
+
+        // const result: number = // WRONG
+        //     compose(
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt,
+        //         _ => _.toString())
+        //     ('3')
+
+        const result7: number =
+            compose(
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt)
+            ('3')
+
+        // const result: string = // WRONG
+        //     compose(
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt)
+        //     ('3')
+
+        const result8: string =
+            compose(
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString())
+            ('3')
+
+        // const result: number = // WRONG
+        //     compose(
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt,
+        //         _ => _.toString())
+        //     ('3')
+
+        const result9: number =
+            compose(
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt)
+            ('3')
+
+        // const result: string = // WRONG
+        //     compose(
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt)
+        //     ('3')
+
+        const result10: string =
+            compose(
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString())
+            ('3')
+
+        // const result: number = // WRONG
+        //     compose(
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt,
+        //         _ => _.toString(),
+        //         parseInt,
+        //         _ => _.toString())
+        //     ('3')
+
+        const result11: number =
+            compose(
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt)
+            ('3')
+
+        const result: string =
+            compose(
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt,
+                _ => _.toString(),
+                parseInt)               // not inferred anymore, result is typed to any
+            ('3')
     })
 });
 
