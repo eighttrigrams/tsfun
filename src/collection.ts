@@ -1,4 +1,4 @@
-import {Map, Pair, Predicate} from './type'
+import {Collection, Map, Pair, Predicate} from './type'
 import {and, isArray, isDefined, isObject, isString} from './predicate'
 import {keys, reduce, values} from './associative'
 
@@ -142,7 +142,7 @@ export function size<T>(o: string|Array<T>|Map<T>): number {
 }
 
 
-export function remove<A>(p: (a: A, i?: number|string) => boolean): (as: any) => any
+export function remove<A>(p: (a: A, i?: number|string) => boolean): (as: Collection) => Collection
 export function remove<A>(p: (a: A, i?: number) => boolean, as: Array<A>): Array<A>
 export function remove<A>(p: (a: A, i?: number) => boolean, as: string): string
 export function remove<A>(p: (a: A, i?: string) => boolean, as: Map<A>): Map<A>
@@ -155,9 +155,7 @@ export function remove<A>(p: (a: A, i?: any) => boolean, as?: any): any {
 
 
 export function separate<A>(p: (a: A, i?: number|string) => boolean): {
-    (as: Array<A>): Pair<Array<A>>
-    (os: Map<A>): Pair<Map<A>>
-    (s: string): Pair<string>
+    (as: Collection<A>): Pair<Collection<A>>
 }
 export function separate<A>(p: (a: A, i?: number) => boolean, as: string): Pair<string>
 export function separate<A>(p: (a: A, i?: number) => boolean, as: Array<A>): Pair<Array<A>>
@@ -165,7 +163,7 @@ export function separate<A>(p: (a: A, i?: string) => boolean, as: Map<A>): Pair<
 export function separate<A>(p: (a: A, i?: any) => boolean, as?: any): any {
 
     const inner = (as: Array<A>|Map<A>): Pair<Array<A>, Array<A>>|Pair<Map<A>,Map<A>> =>
-        [filter(p)(as as any) as any, remove(p)(as as any)]
+        [filter(p)(as as any) as any, remove(p)(as as any) as any]
 
     return as === undefined
         ? inner

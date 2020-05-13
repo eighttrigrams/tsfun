@@ -1,4 +1,4 @@
-import {Predicate, Map} from './type'
+import {Predicate, Map, Associative} from './type'
 import {zip} from './list'
 import {isArray, isAssociative, isFunction, isObject} from './predicate'
 import {copy} from './collection'
@@ -123,7 +123,7 @@ const filterObj = <T>(predicate: Predicate<T>): (_: Map<T>) => Map<T> =>
             }, {})
 
 
-export function map<A = any, B = A>(f: (_: A) => B): (as: any) => any
+export function map<A = any, B = A>(f: (_: A) => B): (as: Associative<A>) => Associative<B>
 export function map<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
 export function map<A = any, B = A>(f: (_: A, key: string) => B): (as: Map<A>) => Map<B>
 export function map<A = any, B = A>(f: (_: A, i: number) => B, as: Array<A>): Array<B>

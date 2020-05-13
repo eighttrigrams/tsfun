@@ -84,13 +84,13 @@ describe('take', () => {
 
     it('typing', () => {
 
-        const result1: Array<number> = take(5)([1, 2, 7, 7, 8, 9, 11])
-        const result2: Array<number> = take(5, [1, 2, 7, 7, 8, 9, 11])
-        // WRONG - const result: Array<number> = take(5) - second parameter list expected, to give Array<number>
+        const result1: number[] = take(5)([1, 2, 7, 7, 8, 9, 11]) as number[]
+        const result2: number[] = take(5, [1, 2, 7, 7, 8, 9, 11])
+        // const result: number[] = take(5) // WRONG - second parameter list expected, to give Array<number>
 
-        // WRONG - const result: string= take(5, [1, 2, 7, 7, 8, 9, 11]) - types do not match
-        // WRONG - const result: Array<string> = take(5)([1, 2, 7, 7, 8, 9, 11]) - Array types do not match
+        // const result: string= take(5, [1, 2, 7, 7, 8, 9, 11]) // WRONG - types do not match
+        // const result: Array<string> = take(5)([1, 2, 7, 7, 8, 9, 11]) // WRONG - Array types do not match
 
-        const result3: string = take(5)("abc")
+        const result3: string = take(5)("abc") as string
     });
 });

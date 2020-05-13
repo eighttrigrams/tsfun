@@ -1,4 +1,4 @@
-import {Pair, Predicate} from './type'
+import {List, Mapping, Pair, Predicate} from './type'
 import {isArray, isNot, isString} from './predicate'
 import {copy} from './collection'
 
@@ -24,10 +24,7 @@ export function reverse<A>(as: Array<A>|string): Array<A>|string {
 }
 
 
-export function append<A>(...as2: Array<A>): {
-    (as: Array<A>): Array<A>
-    (as: string): string
-}
+export function append<A>(...as2: Array<A>): Mapping<List<A>>
 export function append<A>(...as2: Array<A>) {
 
     return (as: Array<A>|string) => {
@@ -45,10 +42,7 @@ export function append<A>(...as2: Array<A>) {
 
 
 
-export function prepend<A>(...as2: Array<A>): {
-    (as: Array<A>): Array<A>
-    (as: string): string
-}
+export function prepend<A>(...as2: Array<A>): Mapping<List<A>>
 export function prepend<A>(...as2: Array<A>) {
 
     return (as: Array<A>|string) => {
@@ -65,9 +59,9 @@ export function prepend<A>(...as2: Array<A>) {
 }
 
 
+export function take(n: number): <A>(_: List<A>) => List<A>
 export function take<A>(n: number, as: Array<A>): Array<A>
 export function take<A>(n: number, s: string): string
-export function take(n: number): <A>(_: Array<A>|string) => any
 export function take<A>(n: number, list?: string|Array<A>): any {
 
     function inner(as: Array<A>): Array<A>;
@@ -101,7 +95,7 @@ export function take<A>(n: number, list?: string|Array<A>): any {
 }
 
 
-export function drop(n: number): <A>(as: Array<A>|string) => Array<A>|string
+export function drop(n: number): <A>(as: List<A>) => List<A>
 export function drop<A>(n: number, as: Array<A>): Array<A>
 export function drop<A>(n: number, as: string): string
 export function drop(n: number, as?: any): any {
@@ -131,7 +125,7 @@ export function drop(n: number, as?: any): any {
 }
 
 
-export function dropRight(n: number): <A>(as: Array<A>|string) => any
+export function dropRight(n: number): <A>(as: List<A>) => List<A>
 export function dropRight<A>(n: number, as: Array<A>): Array<A>
 export function dropRight(n: number, as: string): string
 export function dropRight(n: number, as?: any): any {
@@ -189,10 +183,7 @@ export function takeRight(n: number) {
 }
 
 
-export function takeNth(n: number): {
-    <A>(as: Array<A>): Array<A>
-    (as: string): string
-}
+export function takeNth(n: number): <A>(as: List<A>) => List<A>
 export function takeNth(n: number) {
 
     const reducer = <A>(acc: Array<A>, val: any, i: number) =>
@@ -216,8 +207,8 @@ export function takeNth(n: number) {
 }
 
 
-export function takeWhile<A>(predicate: Predicate<string>): (list: string|Array<string>) => any
-export function takeWhile<A>(predicate: Predicate<A>): (list: Array<A>) => any
+export function takeWhile<A>(predicate: Predicate<string>): (list: string|Array<string>) => string|Array<string>
+export function takeWhile<A>(predicate: Predicate<A>): (list: Array<A>) => Array<A>
 export function takeWhile<A>(predicate: Predicate<A>, list: Array<A>): Array<A>
 export function takeWhile<A>(predicate: Predicate<A>, list: string): string
 export function takeWhile<A>(predicate: Predicate<A>|Predicate<string>, list?: any): any {

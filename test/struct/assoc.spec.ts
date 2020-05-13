@@ -1,6 +1,7 @@
-import {assoc} from '../../src/struct';
-import {equal} from '../../src/comparator';
-import {map} from '../../src/associative';
+import {Map} from '../../src/type'
+import {assoc} from '../../src/struct'
+import {equal} from '../../src/comparator'
+import {map} from '../../src/associative'
 
 
 /**
@@ -174,12 +175,12 @@ describe('struct/assoc', () => {
 
     it('pitfall', () => {
 
-        const result = map(assoc('a.b', {}))([{a: {b: 1}}, {a: {b: 1}}]);
+        const result = map(assoc('a.b', {}))([{a: {b: 1}}, {a: {b: 1}}]) as Array<Map>;
         expect(result[0].a.b).toBe(result[1].a.b); // this is possibly not be what one wants
 
         // to circumvent this, we use it like this
-        const result2 = map(assoc('a.b', () => ({})))([{a: {b: 1}}, {a: {b: 1}}]);
+        const result2 = map(assoc('a.b', () => ({})))([{a: {b: 1}}, {a: {b: 1}}]) as Array<Map>;
         expect(result2[0].a.b).toEqual({});
-        expect(result2[0].a.b).not.toBe(result[1].a.b);
+        expect(result2[0].a.b).not.toBe(result[1].a.b)
     });
 });

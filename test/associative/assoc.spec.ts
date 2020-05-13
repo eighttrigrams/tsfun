@@ -34,11 +34,11 @@ describe('assoc', () => {
 
     it('pitfall', () => {
 
-        const result = map(assoc('a', {}))([{a: 1}, {a: 1}]);
+        const result = map(assoc('a', {}))([{a: 1}, {a: 1}]) as Array<{a: number}>;
         expect(result[0].a).toBe(result[1].a); // this is possibly not be what one wants
 
         // to circumvent this, we use it like this
-        const result2 = map(assoc('a', () => ({})))([{a: 1}, {a: 1}]);
+        const result2 = map(assoc('a', () => ({})))([{a: 1}, {a: 1}]) as Array<{a: any}>;
         expect(result2[0].a).toEqual({});
         expect(result2[0].a).not.toBe(result[1].a);
     });
