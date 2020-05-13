@@ -207,8 +207,8 @@ export function takeNth(n: number) {
 }
 
 
-export function takeWhile<A>(predicate: Predicate<string>): (list: string|Array<string>) => string|Array<string>
-export function takeWhile<A>(predicate: Predicate<A>): (list: Array<A>) => Array<A>
+export function takeWhile<A>(predicate: Predicate<string>): Mapping<List<string>>
+export function takeWhile<A>(predicate: Predicate<A>): Mapping<Array<A>>
 export function takeWhile<A>(predicate: Predicate<A>, list: Array<A>): Array<A>
 export function takeWhile<A>(predicate: Predicate<A>, list: string): string
 export function takeWhile<A>(predicate: Predicate<A>|Predicate<string>, list?: any): any {

@@ -1,6 +1,7 @@
 import {map} from '../../src/associative';
 import {to} from '../../src/struct';
 import {flow, nop} from '../../src/composition';
+import {Associative} from '../../src/type';
 
 
 /**
@@ -106,6 +107,8 @@ describe('map', () => {
 
 
     it('typing', () => {
+
+        const result1: Associative = map(_ => _.toString())([1])
 
         map(_ => _.toExponential(2), {a: 3})
         map(_ => _.toExponential(2), [3])

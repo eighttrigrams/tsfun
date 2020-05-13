@@ -1,4 +1,4 @@
-import {Collection, Map, Pair, Predicate} from './type'
+import {Associative, Collection, Map, Pair, Predicate} from './type'
 import {and, isArray, isDefined, isObject, isString} from './predicate'
 import {keys, reduce, values} from './associative'
 
@@ -23,7 +23,7 @@ export function count<A>(p: Predicate<A>): {
 }
 export function count<A>(p: Predicate<A>, as: Array<A>|Map<A>|string): number
 export function count<A>(p: Predicate<A>, as?: any): any {
-    const inner = (as: Array<A>|Map<A>|string): number => size(filter(p)(as as any))
+    const inner = (as: Array<A>|Map<A>|string): number => size(filter(p)(as as any) as any)
     return as === undefined
         ? inner
         : inner(as)
@@ -41,11 +41,7 @@ export function prune<T>(ts: Array<T>|Map<T>|string) {
 }
 
 
-export function filter<A>(p: (a: A, i?: number|string) => boolean): {
-    (s: string): string
-    (as: Array<A>): Array<A>
-    (os: Map<A>): Map<A>
-}
+export function filter<A>(p: (a: A, i?: number|string) => boolean): (_: Collection<A>) => Collection<A>
 export function filter<A>(p: (a: A, i?: number) => boolean, as: Array<A>): Array<A>
 export function filter<A>(p: (a: A, i?: string) => boolean, as: Map<A>): Map<A>
 export function filter<A>(p: (a: A, i?: number) => boolean, as: string): string

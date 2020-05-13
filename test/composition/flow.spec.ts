@@ -2,6 +2,9 @@ import {dropRight, dropWhile, reverse, takeWhile} from '../../src/list';
 import {greaterThan, includedIn, lessThan} from '../../src/comparator';
 import {flow} from '../../src/composition';
 import {isNot} from '../../src/predicate';
+import {filter} from '../../src/collection';
+import {map} from '../../src/associative';
+import {Associative} from '../../src/type';
 
 
 /**
@@ -149,6 +152,28 @@ describe('flow', () => {
         //     parseInt,
         //     _ => _.toString(),
         //     parseInt)
+
+
+
+        const result6: Associative<string> = flow([3],
+            filter(_ => _ > 2),
+            map(_ => _.toString()))
+
+        const result7: Associative<string> = flow([3],
+            filter(_ => _ > 2),
+            map(_ => _.toString())) as Array<string>
+
+        // const result = flow([3], // WRONG
+        //     filter(_ => _ > 2),
+        //     map(_ => _.toString())) as Array<number>
+
+        const result8 = flow([''],
+            filter(_ => true),
+            map(_ => _.toLowerCase()))
+
+        // const result = flow([3], // WRONG
+        //     filter(_ => true),
+        //     map(_ => _.toLowerCase()))
     })
 });
 
