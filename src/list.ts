@@ -230,10 +230,7 @@ export function takeWhile<A>(predicate: Predicate<A>|Predicate<string>, list?: a
 }
 
 
-export function takeRightWhile<A>(predicate: Predicate<A>): {
-    (as: Array<A>): Array<A>
-    (as: string): string
-}
+export function takeRightWhile<A>(predicate: Predicate<A>): Mapping<List<A>>
 export function takeRightWhile<A>(predicate: Predicate<A>) {
 
     return (as: Array<A>|string) => {
@@ -249,10 +246,7 @@ export function takeRightWhile<A>(predicate: Predicate<A>) {
 }
 
 
-export function dropWhile<A>(predicate: Predicate<A>): {
-    (as: string): string
-    (as: Array<A>): Array<A>
-}
+export function dropWhile<A>(predicate: Predicate<A>): Mapping<List<A>>
 export function dropWhile<A>(predicate: Predicate<A>, as: Array<A>): Array<A>
 export function dropWhile<A>(predicate: Predicate<A>, as: string): string
 export function dropWhile<A>(predicate: Predicate<A>, as?: any): any {
@@ -276,10 +270,7 @@ export function dropWhile<A>(predicate: Predicate<A>, as?: any): any {
 }
 
 
-export function dropRightWhile<A>(predicate: Predicate<A>): {
-    (as: Array<A>): Array<A>
-    (as: string): string
-}
+export function dropRightWhile<A>(predicate: Predicate<A>): Mapping<List<A>>
 export function dropRightWhile<A>(predicate: Predicate<A>, as: Array<A>): Array<A>
 export function dropRightWhile<A>(predicate: Predicate<A>, as: string): string
 export function dropRightWhile<A>(predicate: Predicate<A>, as?: any): any {
