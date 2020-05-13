@@ -1,4 +1,5 @@
 import {dissoc} from "../../src/object";
+import {flow} from '../../src/composition';
 
 /**
  * tsfun | dissoc
@@ -36,5 +37,14 @@ describe('dissoc', () => {
         // this however does not work anyway in case of multiple parameter lists, because the T gets inferred in the outer param list
         const result8: A = dissoc('a')({a: 7, b: '7'})   // passes for the given reason
         const result6: A = dissoc('a')({ a: 4, b: '7' }) // passes for the given reason
+
+
+
+        // flow
+
+        const result10: { a: any }
+            = flow({ a: 7 }
+            , dissoc('a')
+            )
     })
 })
