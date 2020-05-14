@@ -228,6 +228,13 @@ describe('flatten', () => {
 
         expect(
 
+            flatten(1, [1, 2] as any)
+
+        ).toEqual([1, 2])
+
+
+        expect(
+
             flatten(1)([1, 2] as any)
 
         ).toEqual([1, 2])
