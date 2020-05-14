@@ -1,4 +1,4 @@
-import {isArray, isAssociative, isEmpty} from './predicate';
+import {isArray, isAssociative, isEmpty, isNumber} from './predicate';
 import {first, rest, take} from './list';
 import {identity} from './core';
 import {Associative} from './type';
@@ -12,27 +12,31 @@ export const flatMap = <A, B>(f: (_: A) => Array<B>) =>
 
 
 // TODO move to associative package
-export function flatten<U, T extends Array<U>>(depth: number, as: Associative<T>): T;
-export function flatten<T>(depth: number, as: Array<T>): Array<any>;
-export function flatten<U, T extends Array<U>>(depth: 1, as: Associative<T>): T;
+export function flatten<U, T extends Array<U>>(as: Associative<T>): T;
+export function flatten<U, T extends Array<U>>(as: Associative<T>, depth: 1): T;
+export function flatten<U, T extends Array<U>>(as: Array<T>, depth: number): T;
+export function flatten<T>(as: Array<T>, depth: number): Array<any>;
 export function flatten(depth: void): <U, T extends Array<U>>(as: Associative<T>) => T;
 export function flatten(depth: 1): <U, T extends Array<U>>(as: Associative<T>) => T;
 export function flatten(depth: number): <T,R>(as: Array<T>) => Array<R>;
 // export function flatten<T>(as: Associative<T>): Array<T>;
-export function flatten(asOrDepth: any, snd?: any): any {
+export function flatten(p1: any, ...p2: any[]): any {
 
     const _flatten = flatMap(identity as any) as any;
 
-    const inner = isArray(asOrDepth)
-        ? _flatten(values(asOrDepth) as Array<Array<any>>)
-        : (as: Array<any>) =>
-            asOrDepth === 1 || asOrDepth === undefined
+    const inner = (num: number) =>
+         (as: Array<any>) =>
+            num === 1 || num === undefined
                 ? _flatten(values(as))
-                : flatten((asOrDepth as number) - 1)(_flatten(as));
+                : flatten(num - 1)(_flatten(as))
 
-    return snd === undefined
-        ? inner
-        : inner(snd)
+    return p2.length === 0
+        ? isNumber(p1)
+            ? inner(p1)
+            : p1 === undefined
+                ? inner(1)
+                : inner(1)(p1)
+        : inner(p2[0])(p1)
 }
 
 
