@@ -12,6 +12,7 @@ export const flatMap = <A, B>(f: (_: A) => Array<B>) =>
 
 
 // TODO move to associative package
+// TODO we could also improve insofar as we could allow to pass depth as as in reverse order when used with single param list
 export function flatten<U, T extends Array<U>>(as: Associative<T>): T;
 export function flatten<U, T extends Array<U>>(as: Associative<T>, depth: 1): T;
 export function flatten<U, T extends Array<U>>(as: Array<T>, depth: number): T;
