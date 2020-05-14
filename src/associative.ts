@@ -245,6 +245,7 @@ export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => B, init: B) {
 }
 
 
+// TODO allow deeper levels to get collapsed in associative, if they all are arrays. if not, then stop at the level, it cannot get further collapsed
 export function flatten<U, T extends Array<U>>(as: Associative<T>): T;
 export function flatten<U, T extends Array<U>>(depth: 1, as: Associative<T>): T;
 export function flatten<U, T extends Array<U>>(as: Associative<T>, depth: 1): T;
