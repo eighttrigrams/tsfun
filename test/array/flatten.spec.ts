@@ -261,5 +261,11 @@ describe('flatten', () => {
         expect(() => flatten(0)([])).toThrow(expected)
         expect(() => flatten(0, [])).toThrow(expected)
         expect(() => flatten([], 0)).toThrow(expected)
+
+        expect(() => flatten({} as any, 1)).toThrow(expected)
+        expect(() => flatten(1 as any, {} as any)).toThrow(expected)
+        expect(() => flatten(1)({} as any)).toThrow(expected)
+        expect(() => flatten()({} as any)).toThrow(expected)
+        expect(() => flatten()({} as any)).toThrow(expected)
     })
 })
