@@ -9,7 +9,7 @@
     "experimentalDecorators": true,
     "strictNullChecks": true,
     "removeComments": false,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "declaration" : true,
     "types": ["jasmine"],
     "lib": [

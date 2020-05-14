@@ -47,14 +47,14 @@ export function filter<A>(p: (a: A, i?: string) => boolean, as: Map<A>): Map<A>
 export function filter<A>(p: (a: A, i?: number) => boolean, as: string): string
 export function filter<A>(p: (a: A, i?: any) => boolean, as?: any): any {
 
-    const inner = (as: any) => {
+    const inner = as => {
 
         if (isArray(as)) {
 
             const as1 = []
             let i = 0
             for (let a of as) {
-                if (p(a, i)) as1.push(a)
+                if (p(a, i)) as1.push(a as never)
                 i++
             }
 

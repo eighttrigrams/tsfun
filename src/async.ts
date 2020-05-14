@@ -2,7 +2,7 @@ import {Pair, Map, Either, Maybe} from './type';
 import {isArray, isFailure, isObject, isString} from './predicate';
 import {keys, keysAndValues} from './associative';
 import {getSuccess} from './tuple';
-import {first, rest, reverse} from './list';
+import {first, rest} from './list';
 import {convert} from './composition';
 
 
@@ -42,14 +42,14 @@ export function filter<T>(p: (a: T, i?: string|number) => Promise<boolean>): {
 }
 export function filter<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
 
-    return async (as: any) => {
+    return async (as) => {
 
         if (isArray(as)) {
 
             const as1 = [];
             let i = 0;
             for (let a of as) {
-                if (await p(a as any, i)) as1.push(a);
+                if (await p(a as any, i)) as1.push(a as never);
                 i++;
             }
 

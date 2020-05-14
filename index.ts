@@ -146,6 +146,8 @@ export {
     zipWith,
     dense,
     filter,
+    remove,
+    separate,
     reduce1,
     flatten,
     take,

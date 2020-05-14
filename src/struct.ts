@@ -157,14 +157,14 @@ export function path(path: string|Array<number|string>): string|Array<number|str
                 current += path[i];
             } else {
                 if (path[i] === ']') {
-                    segments.push(parseInt(current));
+                    segments.push(parseInt(current) as never);
                 } else {
-                    if (current) segments.push(current);
+                    if (current) segments.push(current as never);
                 }
                 current = '';
             }
         }
-        if (current) segments.push(current);
+        if (current) segments.push(current as never);
         return segments;
 
     } else {
