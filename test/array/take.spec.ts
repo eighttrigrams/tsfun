@@ -1,8 +1,8 @@
-import {take} from '../../src/list';
+import {take} from '../../src/array';
 
 
 /**
- * tsfun | list/take
+ * tsfun | take
  *
  * Takes a number of items from a List and returns a List of the same type.
  *
@@ -11,19 +11,12 @@ import {take} from '../../src/list';
  * It can be used in a flow context, where the arguments are given as separate argument lists,
  * as well as in a standard context, where the arguments are given in a single argument list.
  */
-describe('list/take', () => {
+describe('take', () => {
 
     it('5', () => {
 
         expect(take(5)([1, 2, 7, 7, 8, 9, 11])).toEqual([1, 2, 7, 7, 8])
         expect(take(5, [1, 2, 7, 7, 8, 9, 11])).toEqual([1, 2, 7, 7, 8])
-    });
-
-
-    it('string', () => {
-
-        expect(take(4)('sosos')).toEqual('soso')
-        expect(take(4, 'sosos')).toEqual('soso')
     });
 
 
@@ -71,17 +64,6 @@ describe('list/take', () => {
     );
 
 
-    it('string - from empty', () =>
-
-        expect(
-
-            take(4)
-            ('')
-
-        ).toEqual('')
-    );
-
-
     it('typing', () => {
 
         const result1: number[] = take(5)([1, 2, 7, 7, 8, 9, 11]) as number[]
@@ -91,6 +73,6 @@ describe('list/take', () => {
         // const result: string= take(5, [1, 2, 7, 7, 8, 9, 11]) // WRONG - types do not match
         // const result: Array<string> = take(5)([1, 2, 7, 7, 8, 9, 11]) // WRONG - Array types do not match
 
-        const result3: string = take(5)("abc") as string
+        // const result3: string = take(5)("abc") as string
     });
 });

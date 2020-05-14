@@ -1,17 +1,17 @@
-import {lessThan} from '../../src/comparator';
-import {dropWhile} from '../../src/list';
+import {lessThan} from '../../src/comparator'
+import {dropWhile} from '../../src/array'
 
 
 /**
- * tsfun | list/dropWhile
+ * tsfun | dropWhile
  */
-describe('list/dropWhile', () => {
+describe('dropWhile', () => {
 
     it('dropWhile', () => {
 
         expect(dropWhile(lessThan(20))([7, 9, 10, 13, 21, 20])).toEqual([21, 20])
         expect(dropWhile(lessThan(20), [7, 9, 10, 13, 21, 20])).toEqual([21, 20])
-    });
+    })
 
 
     it('drop none', () =>
@@ -22,7 +22,7 @@ describe('list/dropWhile', () => {
             ([7, 9, 10, 13, 21, 20])
 
         ).toEqual([7, 9, 10, 13, 21, 20])
-    );
+    )
 
 
     it('empty', () =>
@@ -33,16 +33,5 @@ describe('list/dropWhile', () => {
             ([])
 
         ).toEqual([])
-    );
-
-
-    it('string', () =>
-
-        expect(
-
-            dropWhile(lessThan('f'))
-            ('ddefabc')
-
-        ).toEqual('fabc')
     )
 })

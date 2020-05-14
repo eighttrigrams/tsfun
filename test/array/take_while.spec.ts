@@ -1,11 +1,11 @@
 import {greaterThan, lessThan} from '../../src/comparator';
-import {takeWhile} from '../../src/list';
+import {takeWhile} from '../../src/array';
 
 
 /**
- * tsfun | list/takeWhile
+ * tsfun | takeWhile
  */
-describe('list/takeWhile', () => {
+describe('takeWhile', () => {
 
     it('take five', () => {
 
@@ -46,16 +46,6 @@ describe('list/takeWhile', () => {
     )
 
 
-    it('string', () =>
-
-        expect(
-
-            takeWhile(greaterThan('a'))('ddeaf')
-
-        ).toEqual('dde')
-    )
-
-
     it('typing', () => {
 
         const result1: number[] = takeWhile((_: number) => _ > 3)([3])
@@ -63,13 +53,13 @@ describe('list/takeWhile', () => {
         const result2: string[] = takeWhile((_: string) => true)(['a']) as string[] // of string[]|string
         // const result2: string[] = takeWhile((_: string) => true)(['a']) as number[] // WRONG, because not of of string[]|string
         // const result: number[] = takeWhile((_: string) => true)([3]) // WRONG
-        const result3: string = takeWhile((_: string) => true)('abc') as string // of string[]|string
+        // const result3: string = takeWhile((_: string) => true)('abc') as string // of string[]|string
         // const result: number = takeWhile((_: string) => true)('abc') as number
         // const result_: number[] = takeWhile((_: number) => true)('abc') // WRONG
         // const result: number[] = takeWhile((_: string) => true)([3]) // WRONG
 
-        const result4 = takeWhile((_: string) => true)(['']) as string
-        const result5 = takeWhile((_: string) => true)('') as string
+        // const result4 = takeWhile((_: string) => true)(['']) as string
+        // const result5 = takeWhile((_: string) => true)('') as string
         // const result = takeWhile((_: number) => true)(['']) as number[]
         // const result = takeWhile((_: number) => true)('') as number[]
         // const result = takeWhile((_: string) => true)('') as number[]

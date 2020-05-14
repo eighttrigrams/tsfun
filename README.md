@@ -123,6 +123,14 @@ import {equal} from 'tsfun';
 * [flatMap](test/array/flat_map.spec.ts)
 * [zipWith](test/array/zip_with.spec.ts)
 * [reduce1](test/array/reduce1.spec.ts)
+* [take](test/array/take.spec.ts)
+* [drop](test/array/drop.spec.ts)
+* [takeRight](test/array/take_right.spec.ts)
+* [dropRight](test/array/drop_right.spec.ts)
+* [dropRightWhile](array/list/drop_right_while.spec.ts)
+* [takeWhile](test/array/take_while.spec.ts)
+* [takeRightWhile](test/array/take_right_while.spec.ts)
+* [dropWhile](test/array/drop_while.spec.ts)
 
 ### String
 
@@ -135,10 +143,6 @@ import {equal} from 'tsfun';
 
 ###### Array & string
 
-* [take](test/list/take.spec.ts)
-* [drop](test/list/drop.spec.ts)
-* [takeRight](test/list/take_right.spec.ts)
-* [dropRight](test/list/drop_right.spec.ts)
 * [first](test/list/first.spec.ts)
 * [rest](test/list/rest.spec.ts)
 * [last](test/list/last.spec.ts)
@@ -148,10 +152,6 @@ import {equal} from 'tsfun';
 * [zip](test/list/zip.spec.ts)
 * [sort](test/list/sort.spec.ts)
 * [takeNth](test/list/take_nth.spec.ts)
-* [takeWhile](test/list/take_while.spec.ts)
-* [takeRightWhile](test/list/take_right_while.spec.ts)
-* [dropWhile](test/list/drop_while.spec.ts)
-* [dropRightWhile](test/list/drop_right_while.spec.ts)
 
 ### Collection
 
@@ -287,6 +287,23 @@ import {filter as filterColl} from 'tsfun/collection';
 * [filter](test/collection/filter.spec.ts)
 * [remove](test/collection/remove.spec.ts)
 * [separate](test/collection/separate.spec.ts)
+
+### List
+
+### Array & string
+
+```typescript
+import {take as listTake} from 'tsfun/list';
+```
+
+* [take](test/list/take.spec.ts)
+* [drop](test/list/drop.spec.ts)
+* [takeRight](test/list/take_right.spec.ts)
+* [dropRight](test/list/drop_right.spec.ts)
+* [dropRightWhile](test/list/drop_right_while.spec.ts)
+* [takeWhile](test/list/take_while.spec.ts)
+* [takeRightWhile](test/list/take_right_while.spec.ts)
+* [dropWhile](test/list/drop_while.spec.ts)
 
 ### Async
 

@@ -7,9 +7,20 @@ import {
     isObject, isString,
     isUndefined
 } from './predicate';
-import {first, rest, take} from './list';
+import {
+    first,
+    rest,
+    take as listTake,
+    drop as listDrop,
+    dropRight as listDropRight,
+    takeRight as listTakeRight,
+    dropWhile as listDropWhile,
+    takeWhile as listTakeWhile,
+    takeRightWhile as listTakeRightWhile,
+    dropRightWhile as listDropRightWhile
+} from './list';
 import {identity} from './core';
-import {Associative, Collection, Map} from './type';
+import {Associative, Collection, List, Map, Mapping, Predicate} from './type';
 import {values, map as mapAsc, keys} from './associative';
 import {filter as filterColl} from './collection';
 
@@ -161,4 +172,65 @@ export function filter<A>(...args: any[]): any {
 
     if (args.length > 1) throw 'illegal argument - in \'tsfun|filter\''
     return filterColl(args[0])
+}
+
+
+export function drop(n: number): <A>(as: Array<A>) => Array<A>
+export function drop<A>(n: number, as: Array<A>): Array<A>
+export function drop(p1: number, p2?: any): any {
+
+    return listDrop(p1, p2)
+}
+
+
+export function take(n: number): <A>(_: Array<A>) => Array<A>
+export function take<A>(n: number, as: Array<A>): Array<A>
+export function take<A>(p1: number, p2?: any): any {
+
+    return listTake(p1, p2)
+}
+
+
+export function dropRight(n: number): <A>(as: Array<A>) => Array<A>
+export function dropRight<A>(n: number, as: Array<A>): Array<A>
+export function dropRight(p1: number, p2?: any): any {
+
+    return listDropRight(p1, p2)
+}
+
+
+export function dropWhile<A>(predicate: Predicate<A>): Mapping<Array<A>>
+export function dropWhile<A>(predicate: Predicate<A>, as: Array<A>): Array<A>
+export function dropWhile<A>(p1: any, p2?: any): any {
+
+    return listDropWhile(p1, p2)
+}
+
+
+export function dropRightWhile<A>(predicate: Predicate<A>): Mapping<Array<A>>
+export function dropRightWhile<A>(predicate: Predicate<A>, as: Array<A>): Array<A>
+export function dropRightWhile<A>(p1: any, p2?: any): any {
+
+    return listDropRightWhile(p1, p2)
+}
+
+
+export function takeRightWhile<A>(predicate: Predicate<A>): Mapping<Array<A>>
+export function takeRightWhile<A>(predicate: Predicate<A>) {
+
+    return listTakeRightWhile(predicate)
+}
+
+export function takeRight(n: number): <A>(as: Array<A>) => Array<A>
+export function takeRight(n: number): <A>(as: Array<A>) => Array<A> {
+
+    return listTakeRight(n)
+}
+
+
+export function takeWhile<A>(predicate: Predicate<A>): Mapping<Array<A>>
+export function takeWhile<A>(predicate: Predicate<A>, list: Array<A>): Array<A>
+export function takeWhile<A>(p1: any, p2?: any): any {
+
+    return listTakeWhile(p1, p2)
 }

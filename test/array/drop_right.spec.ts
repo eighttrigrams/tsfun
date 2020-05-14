@@ -1,10 +1,10 @@
-import {dropRight} from '../../src/list';
+import {dropRight} from '../../src/array';
 
 
 /**
- * tsfun | list/dropRight
+ * tsfun | dropRight
  */
-describe('list/dropRight', () => {
+describe('dropRight', () => {
 
     it('2', () => {
 
@@ -54,38 +54,5 @@ describe('list/dropRight', () => {
             ([])
 
         ).toEqual([])
-    );
-
-
-    it('string', () =>
-
-        expect(
-
-            dropRight(1)
-            ('abc')
-
-        ).toEqual('ab')
-    );
-
-
-    it('string - all', () =>
-
-        expect(
-
-            dropRight(4)
-            ('abc')
-
-        ).toEqual('')
-    );
-
-
-    it('string - from empty', () =>
-
-        expect(
-
-            dropRight(4)
-            ('')
-
-        ).toEqual('')
     );
 });

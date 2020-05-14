@@ -1,15 +1,15 @@
-import {drop} from '../../src/list';
+import {drop} from '../../src/array'
 
 /**
- * tsfun | list/drop
+ * tsfun | drop
  */
-describe('list/drop', () => {
+describe('drop', () => {
 
     it('2', () => {
 
         expect(drop(2)([8, 9, 11])).toEqual([11])
         expect(drop(2, [8, 9, 11])).toEqual([11])
-    });
+    })
 
 
     it('all', () =>
@@ -20,7 +20,7 @@ describe('list/drop', () => {
             ([8,9,11])
 
         ).toEqual([])
-    );
+    )
 
 
     it('none', () =>
@@ -31,7 +31,7 @@ describe('list/drop', () => {
             ([8, 9, 11])
 
         ).toEqual([8, 9, 11])
-    );
+    )
 
 
     it('5 of empty', () =>
@@ -42,7 +42,7 @@ describe('list/drop', () => {
             ([])
 
         ).toEqual([])
-    );
+    )
 
 
     it('0 of empty', () =>
@@ -53,27 +53,5 @@ describe('list/drop', () => {
             ([])
 
         ).toEqual([])
-    );
-
-
-    it('string', () =>
-
-        expect(
-
-            drop(2)
-            ('abc')
-
-        ).toEqual('c')
-    );
-
-
-    it('string - from empty', () =>
-
-        expect(
-
-            drop(2)
-            ('')
-
-        ).toEqual('')
-    );
-});
+    )
+})

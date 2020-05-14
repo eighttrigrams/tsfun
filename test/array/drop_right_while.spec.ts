@@ -1,11 +1,11 @@
-import {greaterThan, lessThan} from '../../src/comparator';
-import {dropRightWhile} from '../../src/list';
+import {greaterThan, lessThan} from '../../src/comparator'
+import {dropRightWhile} from '../../src/array'
 
 
 /**
- * tsfun | list/dropRightWhile
+ * tsfun | dropRightWhile
  */
-describe('list/dropRightWhile', () => {
+describe('dropRightWhile', () => {
 
     it('dropRightWhile', () => {
 
@@ -22,7 +22,7 @@ describe('list/dropRightWhile', () => {
             ([13, 21, 20])
 
         ).toEqual([13, 21, 20])
-    );
+    )
 
 
     it('all', () =>
@@ -33,7 +33,7 @@ describe('list/dropRightWhile', () => {
             ([13, 21, 20])
 
         ).toEqual([])
-    );
+    )
 
 
     it('of empty', () =>
@@ -44,15 +44,5 @@ describe('list/dropRightWhile', () => {
             ([])
 
         ).toEqual([])
-    );
-
-
-    it('string', () =>
-
-        expect(
-
-            dropRightWhile(greaterThan('f'))('bbedeajjjk')
-
-        ).toEqual('bbedea')
     )
 })

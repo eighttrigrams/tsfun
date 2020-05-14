@@ -147,7 +147,15 @@ export {
     dense,
     filter,
     reduce1,
-    flatten
+    flatten,
+    take,
+    takeRight,
+    takeRightWhile,
+    takeWhile,
+    dropWhile,
+    dropRightWhile,
+    dropRight,
+    drop
 } from './src/array'
 
 
@@ -158,16 +166,8 @@ export {
     first,
     rest,
     last,
-    take,
-    takeRight,
-    takeRightWhile,
-    takeUntil,
-    takeWhile,
+    takeUntil, // TODO document in readme
     takeNth,
-    dropWhile,
-    drop,
-    dropRight,
-    dropRightWhile,
     zip,
     sort
 } from './src/list'

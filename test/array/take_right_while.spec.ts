@@ -1,12 +1,11 @@
-import {greaterThan} from '../../src/comparator';
-import {takeRightWhile} from '../../src/list';
+import {greaterThan} from '../../src/comparator'
+import {takeRightWhile} from '../../src/array'
 
 
 /**
- * tsfun | list/takeRightWhile
+ * tsfun | takeRightWhile
  */
-describe('list/takeRightWhile', () => {
-
+describe('takeRightWhile', () => {
 
     it('take five', () =>
 
@@ -16,7 +15,7 @@ describe('list/takeRightWhile', () => {
             ([7, 9, 10, 13, 17, 20])
 
         ).toEqual([17, 20])
-    );
+    )
 
 
     it('take none', () =>
@@ -27,7 +26,7 @@ describe('list/takeRightWhile', () => {
             ([7, 9, 10, 13, 17, 20])
 
         ).toEqual([])
-    );
+    )
 
 
     it('take all', () =>
@@ -38,7 +37,7 @@ describe('list/takeRightWhile', () => {
             ([7, 9])
 
         ).toEqual([7, 9])
-    );
+    )
 
 
     it('empty', () =>
@@ -49,15 +48,5 @@ describe('list/takeRightWhile', () => {
             ([])
 
         ).toEqual([])
-    );
-
-
-    it('string', () =>
-
-        expect(
-
-            takeRightWhile(greaterThan('a'))('abcdabbbe')
-
-        ).toEqual('bbbe')
-    );
-});
+    )
+})

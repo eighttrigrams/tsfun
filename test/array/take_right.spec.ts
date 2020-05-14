@@ -1,12 +1,11 @@
-import {takeRight} from '../../src/list';
+import {takeRight} from '../../src/array'
 
 
 /**
- * tsfun | list/takeRight
+ * tsfun | takeRight
  */
-describe('list/takeRight', () => {
-
-
+describe('takeRight', () => {
+    
     it('1', () =>
 
         expect(
@@ -15,7 +14,7 @@ describe('list/takeRight', () => {
             ([1, 2])
 
         ).toEqual([2])
-    );
+    )
 
 
     it('2', () =>
@@ -26,7 +25,7 @@ describe('list/takeRight', () => {
             ([0, 1, 2])
 
         ).toEqual([1, 2])
-    );
+    )
 
 
     it('0', () =>
@@ -37,7 +36,7 @@ describe('list/takeRight', () => {
             ([1, 2])
 
         ).toEqual([])
-    );
+    )
 
 
     it('more', () =>
@@ -48,7 +47,7 @@ describe('list/takeRight', () => {
             ([1, 2])
 
         ).toEqual([1, 2])
-    );
+    )
 
 
     it('negative n', () =>
@@ -59,7 +58,7 @@ describe('list/takeRight', () => {
             ([1, 2])
 
         ).toEqual([])
-    );
+    )
 
 
     it('from empty', () =>
@@ -70,38 +69,5 @@ describe('list/takeRight', () => {
             ([])
 
         ).toEqual([])
-    );
-
-
-    it('string', () =>
-
-        expect(
-
-            takeRight(3)
-            ('abcd')
-
-        ).toEqual('bcd')
-    );
-
-
-    it('string - all', () =>
-
-        expect(
-
-            takeRight(5)
-            ('abcd')
-
-        ).toEqual('abcd')
-    );
-
-
-    it('string - from empty', () =>
-
-        expect(
-
-            takeRight(5)
-            ('')
-
-        ).toEqual('')
-    );
-});
+    )
+})
