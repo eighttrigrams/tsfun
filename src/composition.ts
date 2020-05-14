@@ -110,12 +110,11 @@ export function convert<T>(what: any, basedOn: Fallible<T>): any {
 export function mmatch<T, R>(onSuccess: (x: T) => R,
                              onFailure: () => R) {
 
-    return (m: Maybe<T>) => {
-
-        return isSuccess(m)
+    return (m: Maybe<T>) =>
+        isSuccess(m)
             ? onSuccess((m as any)[0])
             : onFailure()
-    }
+
 }
 
 
