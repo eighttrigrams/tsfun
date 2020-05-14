@@ -1,4 +1,4 @@
-import {isArray, isAssociative, isEmpty, isNumber} from './predicate';
+import {isArray, isAssociative, isEmpty, isNumber, isObject} from './predicate';
 import {first, rest, take} from './list';
 import {identity} from './core';
 import {Associative} from './type';
@@ -28,8 +28,8 @@ export function flatten(p1: any, ...p2: any[]): any {
     const _flatten = flatMap(identity as any) as any;
 
     const inner = (num: number) =>
-         (as: Array<any>) =>
-            num === 1 || num === undefined
+         (as: Associative<any>) =>
+            num === 1 || num === undefined || isObject(as)
                 ? _flatten(values(as))
                 : flatten(num - 1)(_flatten(as))
 

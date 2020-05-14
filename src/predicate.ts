@@ -118,7 +118,7 @@ export const flip = (v: boolean) => !v;
 
 export const isArray: Predicate = (as: any) => as instanceof Array;
 
-
+// TODO rename to isMap or make alias
 export const isObject: Predicate = (o: any) => o instanceof Object && o.constructor === Object;
 
 

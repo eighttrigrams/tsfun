@@ -30,7 +30,7 @@ describe('flatten', () => {
         // with a single argument list and explicit argument in different order
         expect(
 
-            flatten([[1, 2], [3, 4]], 1)
+            flatten(1, [[1, 2], [3, 4]])
 
         ).toEqual([1, 2, 3, 4])
 
@@ -187,28 +187,51 @@ describe('flatten', () => {
     })
 
 
-    it('1 - level - but not level to compress - implicitly', () =>
+    it('1 - level - but not level to compress - implicitly', () => {
+
         expect(
 
             flatten([1, 2] as any)
 
-        ).toEqual([1, 2]))
+        ).toEqual([1, 2])
 
 
-    it('1 - level - but not level to compress - explicitly', () =>
         expect(
 
             flatten(1)([1, 2] as any)
 
-        ).toEqual([1, 2]))
+        ).toEqual([1, 2])
 
 
-    it('2 - level - but not level to compress', () =>
+        expect(
+
+            flatten(1)({a: 1, b: 2} as any)
+
+        ).toEqual([1, 2])
+
+
+        expect(
+
+            flatten({a: 1, b: 2} as any, 1)
+
+        ).toEqual([1, 2])
+    })
+
+
+    it('2 - level - but not level to compress', () => {
+
         expect(
 
             flatten([1, 2], 2)
 
-        ).toEqual([1, 2]))
+        ).toEqual([1, 2])
+
+        expect(
+
+            flatten(2, {a: 1, b: 2} as any)
+
+        ).toEqual([1, 2])
+    })
 
 
     it('typing', () => {
