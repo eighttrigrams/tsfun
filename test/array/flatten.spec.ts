@@ -1,7 +1,7 @@
-import {flatten} from '../../src/array';
-import {flow} from '../../src/composition';
-import {map} from '../../src/associative';
-import {Associative} from '../../src/type';
+import {flatten} from '../../src/array'
+import {flow} from '../../src/composition'
+import {map} from '../../src/associative'
+import {Associative} from '../../src/type'
 
 
 /**
@@ -49,7 +49,7 @@ describe('flatten', () => {
             flatten()([[1, 2], [3, 4]])
 
         ).toEqual([1, 2, 3, 4])
-    });
+    })
 
 
     it('1 level flattening can also be done with Array Maps', () => {
@@ -117,7 +117,7 @@ describe('flatten', () => {
             , flatten()                // which flatten happily takes,
             // and with the parentheses the type gets correctly inferred
         )
-    });
+    })
 
 
     it('1 - level of multiple', () => {
@@ -145,7 +145,7 @@ describe('flatten', () => {
             flatten([[1, [2, 3]], [4, [5, [6, 7]]]], 1)
 
         ).toEqual([1, [2, 3], 4, [5, [6, 7]]])
-    });
+    })
 
 
     it('2 - levels', () => {
@@ -167,7 +167,7 @@ describe('flatten', () => {
             flatten([[1, [2, 3]], [4, [5, [6, 7]]]], 2)
 
         ).toEqual([1, 2, 3, 4, 5, [6, 7]])
-    });
+    })
 
 
     it('3 - levels', () => {
@@ -184,7 +184,7 @@ describe('flatten', () => {
             flatten([[1, [2, [3, 4]]], [5, [6, [7, 8]]]], 3)
 
         ).toEqual([1, 2, 3, 4, 5, 6, 7, 8])
-    });
+    })
 
 
     it('1 - level - but not level to compress - implicitly', () =>
@@ -192,7 +192,7 @@ describe('flatten', () => {
 
             flatten([1, 2] as any)
 
-        ).toEqual([1, 2]));
+        ).toEqual([1, 2]))
 
 
     it('1 - level - but not level to compress - explicitly', () =>
@@ -200,7 +200,7 @@ describe('flatten', () => {
 
             flatten(1)([1, 2] as any)
 
-        ).toEqual([1, 2]));
+        ).toEqual([1, 2]))
 
 
     it('2 - level - but not level to compress', () =>
@@ -208,7 +208,7 @@ describe('flatten', () => {
 
             flatten([1, 2], 2)
 
-        ).toEqual([1, 2]));
+        ).toEqual([1, 2]))
 
 
     it('typing', () => {
@@ -241,4 +241,4 @@ describe('flatten', () => {
         const result9: any[] = flatten([1], 2)
         // const result: string[] = flatten([1], 2) // NOPE
     })
-});
+})
