@@ -251,6 +251,10 @@ export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => B, init: B) {
 export function flatten<U, T extends Array<U>>(as: Associative<T>): T;
 export function flatten<U, T extends Array<U>>(depth: 1, as: Associative<T>): T;
 export function flatten<U, T extends Array<U>>(as: Associative<T>, depth: 1): T;
+export function flatten<U, T extends Array<U>, K extends Array<T>>(depth: 2, as: Array<K>): T
+export function flatten<U, T extends Array<U>, K extends Array<T>>(as: Array<K>, depth: 2): T
+export function flatten<U, T extends Array<U>, K extends Array<T>, V extends Array<K>>(depth: 3, as: Array<V>): T
+export function flatten<U, T extends Array<U>, K extends Array<T>, V extends Array<K>>(as: Array<V>, depth: 3): T
 export function flatten<U, T extends Array<U>>(as: Array<T>, depth: number): T;
 export function flatten<U, T extends Array<U>>(depth: number, as: Array<T>): T;
 export function flatten<T>(as: Array<T>, depth: number): Array<unknown>;

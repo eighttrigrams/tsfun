@@ -270,6 +270,31 @@ describe('flatten', () => {
         // from two levels onwards, will only infer any[]
         const result10: any[] = flatten([[1]], 2)
         // const result: string[] = flatten([[1]], 2) // NOPE
+
+        const result11: number[] = flatten(2,
+            [
+                [[1,2], [2,4]],
+                [[1,2], [1,2]]
+            ]
+        )
+        // const result: string[] = flatten(2, // NOPE
+        //     [
+        //         [[1,2], [2,4]],
+        //         [[1,2], [1,2]]
+        //     ]
+        // )
+        const result12: number[] = flatten(3,
+            [
+                [[[1,2],[1,2]], [[1,2],[1,2]]],
+                [[[1,2],[1,2]], [[1,2],[1,2]]]
+            ]
+        )
+        // const result: string[] = flatten(3, // NOPE
+        //     [
+        //         [[[1,2],[1,2]], [[1,2],[1,2]]],
+        //         [[[1,2],[1,2]], [[1,2],[1,2]]]
+        //     ]
+        // )
     })
 
     // err cases
