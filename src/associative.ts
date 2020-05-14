@@ -1,7 +1,7 @@
 import {Predicate, Map, Associative} from './type'
 import {zip} from './list'
 import {isArray, isAssociative, isFunction, isNumber, isObject, isUndefined} from './predicate'
-import {copy} from './collection'
+import {all, copy} from './collection'
 import {flatMap, range} from './array'
 import {identity} from './core';
 
@@ -272,12 +272,20 @@ export function flatten(p1: any, ...p2: any[]): any {
     const inner = (num: number) =>
         (as: Associative) => {
 
+            if (num < 1) return as
+
+            if (num > 1 && isObject(as)) throw 'illegal arguments - in \'flatten\''
             if (p2.length === 0 && (isNumber(p1)||isUndefined(p1)) && !isAssociative(as)) {
                 throw 'illegal arguments - in \'flatten\''
             }
 
             return num === 1 || num === undefined || isObject(as)
-                ? _flatten(values(as))
+                ? isObject(as)
+                    ? (all(isArray)(values(as)))
+                        ? _flatten(values(as))
+                        : as
+                    : _flatten(values(as))
+
                 : flatten(num - 1)(_flatten(as))
         }
 

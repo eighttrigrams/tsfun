@@ -7,7 +7,7 @@ import {Associative} from '../../src/type'
 /**
  * tsfun | flatten
  */
-describe('flatten', () => {
+fdescribe('flatten', () => {
 
     it('1 level', () => {
 
@@ -186,7 +186,45 @@ describe('flatten', () => {
     })
 
 
-    it('1 - level - but not level to compress - implicitly', () => {
+    it('flatten nothing', () => {
+
+        expect(
+
+            flatten(0, [1, 2] as any)
+
+        ).toEqual([1, 2])
+
+
+        expect(
+
+            flatten(-10, [1, 2] as any)
+
+        ).toEqual([1, 2])
+
+
+        expect(
+
+            flatten(0)([1, 2] as any)
+
+        ).toEqual([1, 2])
+
+
+        expect(
+
+            flatten(0)({a: 1, b: 2} as any)
+
+        ).toEqual({a: 1, b: 2} as any)
+
+
+        expect(
+
+            flatten({a: 1, b: 2} as any, 0)
+
+        ).toEqual({a: 1, b: 2} as any)
+    })
+
+
+    it('1 - level - but not level to compress', () => {
 
         expect(
 
@@ -206,14 +244,14 @@ describe('flatten', () => {
 
             flatten(1)({a: 1, b: 2} as any)
 
-        ).toEqual([1, 2])
+        ).toEqual({a: 1, b: 2} as any)
 
 
         expect(
 
             flatten({a: 1, b: 2} as any, 1)
 
-        ).toEqual([1, 2])
+        ).toEqual({a: 1, b: 2} as any)
     })
 
 
@@ -222,12 +260,6 @@ describe('flatten', () => {
         expect(
 
             flatten([1, 2], 2)
-
-        ).toEqual([1, 2])
-
-        expect(
-
-            flatten(2, {a: 1, b: 2} as any)
 
         ).toEqual([1, 2])
     })
@@ -277,5 +309,9 @@ describe('flatten', () => {
         expect(() => (flatten as any)(2, 2, 2)).toThrow(expected)
         expect(() => flatten(1 as any)(1 as any)).toThrow(expected)
         expect(() => flatten()(1 as any)).toThrow(expected)
+
+        expect(() => flatten(2)({} as any)).toThrow(expected)
+        expect(() => flatten(2 as any, {})).toThrow(expected)
+        expect(() => flatten({}, 2 as any)).toThrow(expected)
     })
 })
