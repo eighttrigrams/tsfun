@@ -193,9 +193,7 @@ export {
     size,
     prune,
     indices,
-    remove,
     copy,
-    separate,
     any,
     all
 } from './src/collection'

@@ -158,8 +158,6 @@ import {equal} from 'tsfun';
 ###### Array & Map & string
 
 * [copy](test/collection/copy.spec.ts)
-* [remove](test/collection/remove.spec.ts)
-* [separate](test/collection/separate.spec.ts)
 * [count](test/collection/count.spec.ts)
 * [prune](test/collection/prune.spec.ts)
 * [size](test/collection/size.spec.ts)
@@ -287,6 +285,8 @@ import {filter as filterColl} from 'tsfun/collection';
 ```
 
 * [filter](test/collection/filter.spec.ts)
+* [remove](test/collection/remove.spec.ts)
+* [separate](test/collection/separate.spec.ts)
 
 ### Async
 

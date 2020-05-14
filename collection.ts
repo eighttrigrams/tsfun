@@ -1,3 +1,5 @@
 export {
-    filter
+    filter,
+    remove,
+    separate
 } from './src/collection';
