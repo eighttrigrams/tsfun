@@ -240,6 +240,10 @@ import {equal} from 'tsfun';
 * [Mapping](test/type/predicate.spec.ts)
 * [Predicate](test/type/predicate.spec.ts)
 
+* [Filter](test/type/filter.spec.ts)
+* [Effect](test/type/effect.spec.ts)
+
+
 ## Constants reference
 
 * [LEFT](test/tuple/left-constant.spec.ts)

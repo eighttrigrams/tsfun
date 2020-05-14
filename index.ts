@@ -35,7 +35,8 @@ export type {
     Associative,
     Fallible,
     Mapping,
-    Filter
+    Filter,
+    Effect
 } from './src/type'
 
 
