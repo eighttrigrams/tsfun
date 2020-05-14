@@ -12,6 +12,7 @@ export const flatMap = <A, B>(f: (_: A) => Array<B>) =>
 
 
 // TODO move to associative package
+// TODO add illegal argument guards
 export function flatten<U, T extends Array<U>>(as: Associative<T>): T;
 export function flatten<U, T extends Array<U>>(depth: 1, as: Associative<T>): T;
 export function flatten<U, T extends Array<U>>(as: Associative<T>, depth: 1): T;
