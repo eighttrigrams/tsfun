@@ -272,6 +272,8 @@ export function flatten(p1: any, ...p2: any[]): any {
     const inner = (num: number) =>
         (as: Associative) => {
 
+            if (num < 1) return as
+
             if (p2.length === 0 && (isNumber(p1)||isUndefined(p1)) && !isAssociative(as)) {
                 throw 'illegal arguments - in \'flatten\''
             }

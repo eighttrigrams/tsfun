@@ -186,6 +186,37 @@ describe('flatten', () => {
     })
 
 
+    it('0', () => {
+
+        expect(
+
+            flatten(0, [1, 2] as any)
+
+        ).toEqual([1, 2])
+
+
+        expect(
+
+            flatten(0)([1, 2] as any)
+
+        ).toEqual([1, 2])
+
+
+        expect(
+
+            flatten(0)({a: 1, b: 2} as any)
+
+        ).toEqual({a: 1, b: 2} as any)
+
+
+        expect(
+
+            flatten({a: 1, b: 2} as any, 0)
+
+        ).toEqual({a: 1, b: 2} as any)
+    })
+
+
     it('1 - level - but not level to compress - implicitly', () => {
 
         expect(
