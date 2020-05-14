@@ -13,9 +13,11 @@ export const flatMap = <A, B>(f: (_: A) => Array<B>) =>
 
 // TODO move to associative package
 export function flatten<U, T extends Array<U>>(as: Associative<T>): T;
+export function flatten<U, T extends Array<U>>(depth: 1, as: Associative<T>): T;
 export function flatten<U, T extends Array<U>>(as: Associative<T>, depth: 1): T;
 export function flatten<U, T extends Array<U>>(as: Array<T>, depth: number): T;
-export function flatten<T>(as: Array<T>, depth: number): Array<any>;
+export function flatten<U, T extends Array<U>>(depth: number, as: Array<T>): T;
+export function flatten<T>(as: Array<T>, depth: number): Array<unknown>;
 export function flatten(depth: void): <U, T extends Array<U>>(as: Associative<T>) => T;
 export function flatten(depth: 1): <U, T extends Array<U>>(as: Associative<T>) => T;
 export function flatten(depth: number): <T,R>(as: Array<T>) => Array<R>;
@@ -36,7 +38,9 @@ export function flatten(p1: any, ...p2: any[]): any {
             : p1 === undefined
                 ? inner(1)
                 : inner(1)(p1)
-        : inner(p2[0])(p1)
+        : isNumber(p1)
+            ? inner(p1)(p2[0])
+            : inner(p2[0])(p1)
 }
 
 

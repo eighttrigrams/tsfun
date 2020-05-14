@@ -27,6 +27,14 @@ describe('flatten', () => {
         ).toEqual([1, 2, 3, 4])
 
 
+        // with a single argument list and explicit argument in different order
+        expect(
+
+            flatten([[1, 2], [3, 4]], 1)
+
+        ).toEqual([1, 2, 3, 4])
+
+
         // or multiple argument lists
         expect(
 
@@ -48,7 +56,31 @@ describe('flatten', () => {
 
         expect(
 
+            flatten({ a: [1, 2], b: [3, 4] })
+
+        ).toEqual([1, 2, 3, 4])
+
+        expect(
+
             flatten()({ a: [1, 2], b: [3, 4] })
+
+        ).toEqual([1, 2, 3, 4])
+
+        expect(
+
+            flatten(1)({ a: [1, 2], b: [3, 4] })
+
+        ).toEqual([1, 2, 3, 4])
+
+        expect(
+
+            flatten(1, { a: [1, 2], b: [3, 4] })
+
+        ).toEqual([1, 2, 3, 4])
+
+        expect(
+
+            flatten({ a: [1, 2], b: [3, 4] }, 1)
 
         ).toEqual([1, 2, 3, 4])
 
@@ -98,18 +130,44 @@ describe('flatten', () => {
 
         expect(
 
-            flatten(1)([[1, [2, 3]], [4, [5, [6, 7]]]])
+            flatten()([[1, [2, 3]], [4, [5, [6, 7]]]])
+
+        ).toEqual([1, [2, 3], 4, [5, [6, 7]]])
+
+        expect(
+
+            flatten(1, [[1, [2, 3]], [4, [5, [6, 7]]]])
+
+        ).toEqual([1, [2, 3], 4, [5, [6, 7]]])
+
+        expect(
+
+            flatten([[1, [2, 3]], [4, [5, [6, 7]]]], 1)
 
         ).toEqual([1, [2, 3], 4, [5, [6, 7]]])
     });
 
 
-    it('2 - levels', () =>
+    it('2 - levels', () => {
+
         expect(
 
             flatten(2)([[1, [2, 3]], [4, [5, [6, 7]]]])
 
-        ).toEqual([1, 2, 3, 4, 5, [6, 7]]));
+        ).toEqual([1, 2, 3, 4, 5, [6, 7]])
+
+        expect(
+
+            flatten(2, [[1, [2, 3]], [4, [5, [6, 7]]]])
+
+        ).toEqual([1, 2, 3, 4, 5, [6, 7]])
+
+        expect(
+
+            flatten([[1, [2, 3]], [4, [5, [6, 7]]]], 2)
+
+        ).toEqual([1, 2, 3, 4, 5, [6, 7]])
+    });
 
 
     it('3 - levels', () => {
@@ -165,11 +223,22 @@ describe('flatten', () => {
         const result3: number[] = flatten([[1, 2], [3, 4]], 1)
         // const result: number = flatten([[1, 2], [3, 4]], 1) // NOPE
         // const result: string[] = flatten([[1, 2], [3, 4]], 1) // NOPE
+        const result4: number[] = flatten(1, [[1, 2], [3, 4]])
+        // const result: number = flatten(1, [[1, 2], [3, 4]]) // NOPE
+        // const result: string[] = flatten(1, [[1, 2], [3, 4]], 1) // NOPE
 
-        // const result: number[] = flatten(1, [[1, 2], [3, 4]]) // NOPE
-
-        const result4: number[] = flatten()({a: [1, 2], b: [3, 4]})
+        const result5: number[] = flatten({a: [1, 2], b: [3, 4]})
+        const result6: number[] = flatten()({a: [1, 2], b: [3, 4]})
+        const result7: number[] = flatten({a: [1, 2], b: [3, 4]}, 1)
+        const result8: number[] = flatten({a: [1, 2], b: [3, 4]})
+        // const result: string[] = flatten({a: [1, 2], b: [3, 4]}) // NOPE
+        // const result: number = flatten({a: [1, 2], b: [3, 4]}) // NOPE
         // const result: number[] = flatten(2)({a: [1, 2], b: [3, 4]}) // NOPE
         // const result: number[] = flatten({a: [1, 2], b: [3, 4]}, 2) // NOPE
+        // const result: number[] = flatten(2, {a: [1, 2], b: [3, 4]}) // NOPE
+
+        // from two levels onwards, can only infer any[]
+        const result9: any[] = flatten([1], 2)
+        // const result: string[] = flatten([1], 2) // NOPE
     })
 });
