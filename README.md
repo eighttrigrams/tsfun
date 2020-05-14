@@ -118,7 +118,6 @@ import {equal} from 'tsfun';
 * [range](test/array/range.spec.ts)
 * [dense](test/array/dense.spec.ts)
 * [flatMap](test/array/flat_map.spec.ts)
-* [flatten](test/array/flatten.spec.ts)
 * [zipWith](test/array/zip_with.spec.ts)
 * [reduce1](test/array/reduce1.spec.ts)
 
@@ -208,6 +207,7 @@ import {equal} from 'tsfun';
 * [forEach](test/associative/for_each.spec.ts)
 * [reduce](test/associative/reduce.spec.ts)
 * [keysAndValues](test/associative/keys_and_values.spec.ts)
+* [flatten](test/associative/flatten.spec.ts)
 
 ### Object
 

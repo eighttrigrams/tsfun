@@ -10,7 +10,8 @@ export {
     map,
     keysAndValues,
     reduce,
-    forEach
+    forEach,
+    flatten
 } from './src/associative'
 
 
@@ -142,7 +143,6 @@ export {
 
 export {
     flatMap,
-    flatten,
     range,
     zipWith,
     dense,

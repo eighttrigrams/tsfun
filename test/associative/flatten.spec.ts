@@ -1,4 +1,4 @@
-import {flatten} from '../../src/array'
+import {flatten} from '../../src/associative'
 import {flow} from '../../src/composition'
 import {map} from '../../src/associative'
 import {Associative} from '../../src/type'
