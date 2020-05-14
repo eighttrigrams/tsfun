@@ -1,6 +1,6 @@
-import {flatten} from '../../src/associative'
+import {flatten} from '../../src/array'
 import {flow} from '../../src/composition'
-import {map} from '../../src/associative'
+import {map} from '../../src/array'
 import {Associative} from '../../src/type'
 
 
@@ -51,46 +51,14 @@ describe('flatten', () => {
     })
 
 
-    it('1 level flattening can also be done with Array Maps', () => {
+    it('1 level flattening in compositions', () => {
 
+        // plays nicely with other higher order functions like 'map' in compositions
         expect(
 
-            flatten({ a: [1, 2], b: [3, 4] })
-
-        ).toEqual([1, 2, 3, 4])
-
-        expect(
-
-            flatten()({ a: [1, 2], b: [3, 4] })
-
-        ).toEqual([1, 2, 3, 4])
-
-        expect(
-
-            flatten(1)({ a: [1, 2], b: [3, 4] })
-
-        ).toEqual([1, 2, 3, 4])
-
-        expect(
-
-            flatten(1, { a: [1, 2], b: [3, 4] })
-
-        ).toEqual([1, 2, 3, 4])
-
-        expect(
-
-            flatten({ a: [1, 2], b: [3, 4] }, 1)
-
-        ).toEqual([1, 2, 3, 4])
-
-        // in addition to this functionality, it also results in a typing giving Associative,
-        // which plays nice with other higher order functions like 'map' in compositions.
-        expect(
-
-            // flow([3, 4]
-            flow({a: 3, b: 4}
-            , map(_ => [_ * 2, _ * 3]) // this gives Associative
-            , flatten                  // which flatten happily takes, without parentheses
+            flow([3, 4]
+            , map(_ => [_ * 2, _ * 3])
+            , flatten
             )
 
         ).toEqual([6, 9, 8, 12])
@@ -207,20 +175,6 @@ describe('flatten', () => {
             flatten(1)([1, 2] as any)
 
         ).toEqual([1, 2])
-
-
-        expect(
-
-            flatten(1)({a: 1, b: 2} as any)
-
-        ).toEqual([1, 2])
-
-
-        expect(
-
-            flatten({a: 1, b: 2} as any, 1)
-
-        ).toEqual([1, 2])
     })
 
 
@@ -229,12 +183,6 @@ describe('flatten', () => {
         expect(
 
             flatten([1, 2], 2)
-
-        ).toEqual([1, 2])
-
-        expect(
-
-            flatten(2, {a: 1, b: 2} as any)
 
         ).toEqual([1, 2])
     })
@@ -256,11 +204,11 @@ describe('flatten', () => {
         // const result: number = flatten(1, [[1, 2], [3, 4]]) // NOPE
         // const result: string[] = flatten(1, [[1, 2], [3, 4]], 1) // NOPE
 
-        const result5: number[] = flatten({a: [1, 2], b: [3, 4]})
-        const result6: number[] = flatten()({a: [1, 2], b: [3, 4]})
-        const result7: number[] = flatten(1)({a: [1, 2], b: [3, 4]})
-        const result8: number[] = flatten({a: [1, 2], b: [3, 4]}, 1)
-        const result9: number[] = flatten(1, {a: [1, 2], b: [3, 4]})
+        // const result5: number[] = flatten({a: [1, 2], b: [3, 4]})
+        // const result6: number[] = flatten()({a: [1, 2], b: [3, 4]})
+        // const result7: number[] = flatten(1)({a: [1, 2], b: [3, 4]})
+        // const result8: number[] = flatten({a: [1, 2], b: [3, 4]}, 1)
+        // const result9: number[] = flatten(1, {a: [1, 2], b: [3, 4]})
         // const result: string[] = flatten({a: [1, 2], b: [3, 4]}) // NOPE
         // const result: number = flatten({a: [1, 2], b: [3, 4]}) // NOPE
         // const result: number[] = flatten(2)({a: [1, 2], b: [3, 4]}) // NOPE

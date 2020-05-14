@@ -9,8 +9,7 @@ export {
     values,
     keysAndValues,
     reduce,
-    forEach,
-    flatten
+    forEach
 } from './src/associative'
 
 
@@ -146,7 +145,8 @@ export {
     range,
     zipWith,
     dense,
-    reduce1
+    reduce1,
+    flatten
 } from './src/array'
 
 
