@@ -3,5 +3,6 @@ export {
     assoc,
     update,
     dissoc,
-    get
+    get,
+    map
 } from './src/associative';

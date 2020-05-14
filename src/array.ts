@@ -1,8 +1,8 @@
-import {isArray, isAssociative, isEmpty, isNumber, isObject} from './predicate';
+import {isArray, isAssociative, isEmpty, isFunction, isNumber, isObject} from './predicate';
 import {first, rest, take} from './list';
 import {identity} from './core';
-import {Associative} from './type';
-import {values} from './associative';
+import {Associative, Map} from './type';
+import {values, map as mapAsc} from './associative';
 
 export const flatMap = <A, B>(f: (_: A) => Array<B>) =>
     (as: Array<A>): Array<B> =>
@@ -82,4 +82,12 @@ export function reduce1<T>(f: (b: T, t: T, i?: number) => T) {
             throw "illegal argument - must be array or object"
         }
     };
+}
+
+
+export function map<A = any, B = A >(f: (_: A) => B): (as: Array<A>) => Array<B>
+export function map<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
+export function map<A, B>(first: any): any {
+
+    return mapAsc(first)
 }

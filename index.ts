@@ -7,7 +7,6 @@ export {
 export {
     keys,
     values,
-    map,
     keysAndValues,
     reduce,
     forEach,
@@ -142,6 +141,7 @@ export {
 
 
 export {
+    map,
     flatMap,
     range,
     zipWith,

@@ -115,6 +115,7 @@ import {equal} from 'tsfun';
 
 ### Array
 
+* [map](test/array/map.spec.ts) 
 * [range](test/array/range.spec.ts)
 * [dense](test/array/dense.spec.ts)
 * [flatMap](test/array/flat_map.spec.ts)
@@ -200,8 +201,7 @@ import {equal} from 'tsfun';
 ### Associative
 
 ###### Array & Map
-
-* [map](test/associative/map.spec.ts)  
+ 
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
 * [forEach](test/associative/for_each.spec.ts)
@@ -259,6 +259,7 @@ import {lookup} from 'tsfun/associative';
 * [assoc](test/associative/assoc.spec.ts)
 * [update](test/associative/update.spec.ts)
 * [dissoc](test/associative/dissoc.spec.ts)
+* [map](test/associative/map.spec.ts) 
 
 ### Struct
 

@@ -5,11 +5,11 @@ import {Associative} from '../../src/type';
 
 
 /**
- * tsfun | map
+ * tsfun | associative/map
  *
  * Allows for mapping over Associative collections
  */
-describe('map', () => {
+describe('associative/map', () => {
 
     it('map', () => {
 
