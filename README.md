@@ -252,12 +252,12 @@ import {equal} from 'tsfun';
 import {lookup} from 'tsfun/associative';
 ```
 
-* [lookup](test/associative/lookup.spec.ts)
-* [get](test/associative/get.spec.ts)
-* [assoc](test/associative/assoc.spec.ts)
-* [update](test/associative/update.spec.ts)
-* [dissoc](test/associative/dissoc.spec.ts)
-* [map](test/associative/map.spec.ts) 
+* [lookup](test/associative/associative/lookup.spec.ts)
+* [get](test/associative/associative/get.spec.ts)
+* [assoc](test/associative/associative/assoc.spec.ts)
+* [update](test/associative/associative/update.spec.ts)
+* [dissoc](test/associative/associative/dissoc.spec.ts)
+* [map](test/associative/associative/map.spec.ts) 
 
 ### Struct
 
@@ -267,14 +267,14 @@ import {lookup} from 'tsfun/associative';
 import {assoc as assocOn} from 'tsfun/struct';
 ```
 
-* [path](test/struct/path.spec.ts)
-* [lookup](test/struct/lookup.spec.ts)
-* [get](test/struct/get.spec.ts)
-* [assoc](test/struct/assoc.spec.ts)
-* [dissoc](test/struct/dissoc.spec.ts)
-* [update](test/struct/update.spec.ts)
-* [clone](test/struct/clone.spec.ts)
-* [jsonClone](test/struct/json_clone.spec.ts)
+* [path](test/struct/struct/path.spec.ts)
+* [lookup](test/struct/struct/lookup.spec.ts)
+* [get](test/struct/struct/get.spec.ts)
+* [assoc](test/struct/struct/assoc.spec.ts)
+* [dissoc](test/struct/struct/dissoc.spec.ts)
+* [update](test/struct/struct/update.spec.ts)
+* [clone](test/struct/struct/clone.spec.ts)
+* [jsonClone](test/struct/struct/json_clone.spec.ts)
 
 ### Collection
 
@@ -284,9 +284,9 @@ import {assoc as assocOn} from 'tsfun/struct';
 import {filter as filterColl} from 'tsfun/collection';
 ```
 
-* [filter](test/collection/filter.spec.ts)
-* [remove](test/collection/remove.spec.ts)
-* [separate](test/collection/separate.spec.ts)
+* [filter](test/collection/collection/filter.spec.ts)
+* [remove](test/collection/collection/remove.spec.ts)
+* [separate](test/collection/collection/separate.spec.ts)
 
 ### List
 
@@ -296,14 +296,14 @@ import {filter as filterColl} from 'tsfun/collection';
 import {take as listTake} from 'tsfun/list';
 ```
 
-* [take](test/list/take.spec.ts)
-* [drop](test/list/drop.spec.ts)
-* [takeRight](test/list/take_right.spec.ts)
-* [dropRight](test/list/drop_right.spec.ts)
-* [dropRightWhile](test/list/drop_right_while.spec.ts)
-* [takeWhile](test/list/take_while.spec.ts)
-* [takeRightWhile](test/list/take_right_while.spec.ts)
-* [dropWhile](test/list/drop_while.spec.ts)
+* [take](test/list/list/take.spec.ts)
+* [drop](test/list/list/drop.spec.ts)
+* [takeRight](test/list/list/take_right.spec.ts)
+* [dropRight](test/list/list/drop_right.spec.ts)
+* [dropRightWhile](test/list/list/drop_right_while.spec.ts)
+* [takeWhile](test/list/list/take_while.spec.ts)
+* [takeRightWhile](test/list/list/take_right_while.spec.ts)
+* [dropWhile](test/list/list/drop_while.spec.ts)
 
 ### Async
 
@@ -313,15 +313,15 @@ Example:
 import {map as asyncMap} from 'tsfun/async';
 ```
 
-* [map](test/async/map.spec.ts)
-* [filter](test/async/filter.spec.ts)
-* [remove](test/async/remove.spec.ts)
-* [forEach](test/async/for_each.spec.ts)
-* [reduce](test/async/reduce.spec.ts)
-* [flow](test/async/flow.spec.ts)
-* [compose](test/async/compose.spec.ts)
-* [separate](test/async/separate.spec.ts)
-* [mcompose](test/async/mcompose.spec.ts)
+* [map](test/async/async/map.spec.ts)
+* [filter](test/async/async/filter.spec.ts)
+* [remove](test/async/async/remove.spec.ts)
+* [forEach](test/async/async/for_each.spec.ts)
+* [reduce](test/async/async/reduce.spec.ts)
+* [flow](test/async/async/flow.spec.ts)
+* [compose](test/async/async/compose.spec.ts)
+* [separate](test/async/async/separate.spec.ts)
+* [mcompose](test/async/async/mcompose.spec.ts)
 
 ### Lazy
 
@@ -331,13 +331,13 @@ Example:__
 import {zip as lZip} from 'tsfun/lazy';
 ```
 
-* [zip](test/lazy/zip.spec.ts)
-* [zipWith](test/lazy/zip_with.spec.ts)
-* [range](test/lazy/range.spec.ts)
-* [materialize](test/lazy/materialize.spec.ts)
-* [filter](test/lazy/filter.spec.ts)
-* [take](test/lazy/take.spec.ts)
-* [map](test/lazy/map.spec.ts)
+* [zip](test/lazy/lazy/zip.spec.ts)
+* [zipWith](test/lazy/lazy/zip_with.spec.ts)
+* [range](test/lazy/lazy/range.spec.ts)
+* [materialize](test/lazy/lazy/materialize.spec.ts)
+* [filter](test/lazy/lazy/filter.spec.ts)
+* [take](test/lazy/lazy/take.spec.ts)
+* [map](test/lazy/lazy/map.spec.ts)
 
 ### By
 
