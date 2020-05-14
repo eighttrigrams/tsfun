@@ -229,16 +229,17 @@ describe('flatten', () => {
 
         const result5: number[] = flatten({a: [1, 2], b: [3, 4]})
         const result6: number[] = flatten()({a: [1, 2], b: [3, 4]})
-        const result7: number[] = flatten({a: [1, 2], b: [3, 4]}, 1)
-        const result8: number[] = flatten({a: [1, 2], b: [3, 4]})
+        const result7: number[] = flatten(1)({a: [1, 2], b: [3, 4]})
+        const result8: number[] = flatten({a: [1, 2], b: [3, 4]}, 1)
+        const result9: number[] = flatten(1, {a: [1, 2], b: [3, 4]})
         // const result: string[] = flatten({a: [1, 2], b: [3, 4]}) // NOPE
         // const result: number = flatten({a: [1, 2], b: [3, 4]}) // NOPE
         // const result: number[] = flatten(2)({a: [1, 2], b: [3, 4]}) // NOPE
         // const result: number[] = flatten({a: [1, 2], b: [3, 4]}, 2) // NOPE
         // const result: number[] = flatten(2, {a: [1, 2], b: [3, 4]}) // NOPE
 
-        // from two levels onwards, can only infer any[]
-        const result9: any[] = flatten([1], 2)
-        // const result: string[] = flatten([1], 2) // NOPE
+        // from two levels onwards, will only infer any[]
+        const result10: any[] = flatten([[1]], 2)
+        // const result: string[] = flatten([[1]], 2) // NOPE
     })
 })
