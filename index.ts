@@ -1,6 +1,7 @@
 export {
     assoc,
-    dissoc
+    dissoc,
+    update
 } from './src/object'
 
 

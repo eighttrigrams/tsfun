@@ -211,9 +211,10 @@ import {equal} from 'tsfun';
 
 ### Object
 
-###### object & interface
+###### Object & interface
 
 * [assoc](test/object/assoc.spec.ts)
+* [update](test/object/update.spec.ts)
 * [dissoc](test/object/dissoc.spec.ts)
 
 ### Struct
