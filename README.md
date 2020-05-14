@@ -117,6 +117,7 @@ import {equal} from 'tsfun';
 
 * [range](test/array/range.spec.ts)
 * [dense](test/array/dense.spec.ts)
+* [filter](test/array/filter.spec.ts) 
 * [map](test/array/map.spec.ts) 
 * [flatten](test/array/flatten.spec.ts)
 * [flatMap](test/array/flat_map.spec.ts)

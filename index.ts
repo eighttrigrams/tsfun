@@ -145,6 +145,7 @@ export {
     range,
     zipWith,
     dense,
+    filter,
     reduce1,
     flatten
 } from './src/array'
@@ -192,7 +193,6 @@ export {
     size,
     prune,
     indices,
-    filter,
     remove,
     copy,
     separate,

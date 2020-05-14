@@ -4,13 +4,14 @@ import {
     isEmpty,
     isFunction,
     isNumber,
-    isObject,
+    isObject, isString,
     isUndefined
 } from './predicate';
 import {first, rest, take} from './list';
 import {identity} from './core';
-import {Associative, Map} from './type';
-import {values, map as mapAsc} from './associative';
+import {Associative, Collection, Map} from './type';
+import {values, map as mapAsc, keys} from './associative';
+import {filter as filterColl} from './collection';
 
 export const flatMap = <A, B>(f: (_: A) => Array<B>) =>
     (as: Array<A>): Array<B> =>
@@ -152,4 +153,11 @@ export function flatten(p1: any, ...p2: any[]): any {
         : isNumber(p1)
             ? inner(p1)(p2[0])
             : inner(p2[0])(p1)
+}
+
+
+export function filter<A>(p: (a: A, i?: number|string) => boolean): (_: Array<A>) => Array<A>
+export function filter<A>(p: (a: A, i?: any) => boolean): any {
+
+    return filterColl(p)
 }

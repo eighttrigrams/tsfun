@@ -4,9 +4,9 @@ import {filter} from '../../src/collection'
 
 
 /**
- * tsfun | filter
+ * tsfun | collection/filter
  */
-describe('filter', () => {
+describe('collection/filter', () => {
 
     it('array', () => {
 
