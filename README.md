@@ -157,7 +157,6 @@ import {equal} from 'tsfun';
 ###### Array & Map & string
 
 * [copy](test/collection/copy.spec.ts)
-* [filter](test/collection/filter.spec.ts)
 * [remove](test/collection/remove.spec.ts)
 * [separate](test/collection/separate.spec.ts)
 * [count](test/collection/count.spec.ts)
@@ -277,6 +276,16 @@ import {assoc as assocOn} from 'tsfun/struct';
 * [update](test/struct/update.spec.ts)
 * [clone](test/struct/clone.spec.ts)
 * [jsonClone](test/struct/json_clone.spec.ts)
+
+### Collection
+
+###### Array & Map & string
+
+```typescript
+import {filter as filterColl} from 'tsfun/collection';
+```
+
+* [filter](test/collection/filter.spec.ts)
 
 ### Async
 
