@@ -246,6 +246,8 @@ export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => B, init: B) {
 
 
 // TODO allow deeper levels to get collapsed in associative, if they all are arrays. if not, then stop at the level, it cannot get further collapsed
+// leftover: export function flatten<T>(as: Associative<T>): Array<T>;
+
 export function flatten<U, T extends Array<U>>(as: Associative<T>): T;
 export function flatten<U, T extends Array<U>>(depth: 1, as: Associative<T>): T;
 export function flatten<U, T extends Array<U>>(as: Associative<T>, depth: 1): T;
@@ -255,7 +257,6 @@ export function flatten<T>(as: Array<T>, depth: number): Array<unknown>;
 export function flatten(depth: void): <U, T extends Array<U>>(as: Associative<T>) => T;
 export function flatten(depth: 1): <U, T extends Array<U>>(as: Associative<T>) => T;
 export function flatten(depth: number): <T,R>(as: Array<T>) => Array<R>;
-// export function flatten<T>(as: Associative<T>): Array<T>;
 export function flatten(p1: any, ...p2: any[]): any {
 
     if (p2.length > 1) throw 'illegal arguments - in \'flatten\''
