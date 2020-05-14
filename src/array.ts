@@ -13,14 +13,12 @@ import {Associative, Collection, Map} from './type';
 import {values, map as mapAsc, keys} from './associative';
 import {filter as filterColl} from './collection';
 
+
 export const flatMap = <A, B>(f: (_: A) => Array<B>) =>
     (as: Array<A>): Array<B> =>
         (as.length < 1
             ? []
             : as.reduce(intoArrayWith(f as any),[])) as unknown as Array<B>;
-
-
-
 
 
 const intoArrayWith = <A>(f: (_: A) => Array<A>) =>
@@ -94,11 +92,12 @@ export function reduce1<T>(f: (b: T, t: T, i?: number) => T) {
 }
 
 
-export function map<A = any, B = A >(f: (_: A) => B): (as: Array<A>) => Array<B>
 export function map<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
-export function map<A, B>(first: any): any {
+export function map<A = any, B = A >(f: (_: A) => B): (as: Array<A>) => Array<B>
+export function map<A, B>(...args: any[]): any {
 
-    return mapAsc(first)
+    if (args.length > 1) throw 'illegal argument - in \'tsfun|map\''
+    return mapAsc(args[0])
 }
 
 
@@ -156,8 +155,10 @@ export function flatten(p1: any, ...p2: any[]): any {
 }
 
 
-export function filter<A>(p: (a: A, i?: number|string) => boolean): (_: Array<A>) => Array<A>
-export function filter<A>(p: (a: A, i?: any) => boolean): any {
+export function filter<A>(p: (a: A, i: number) => boolean): (_: Array<A>) => Array<A>
+export function filter<A>(p: (a: A) => boolean): (_: Array<A>) => Array<A>
+export function filter<A>(...args: any[]): any {
 
-    return filterColl(p)
+    if (args.length > 1) throw 'illegal argument - in \'tsfun|filter\''
+    return filterColl(args[0])
 }
