@@ -18,7 +18,6 @@ describe('flatten', () => {
 
         ).toEqual([1, 2, 3, 4])
 
-
         // with a single argument list and explicit argument
         expect(
 
@@ -264,5 +263,19 @@ describe('flatten', () => {
         // from two levels onwards, will only infer any[]
         const result10: any[] = flatten([[1]], 2)
         // const result: string[] = flatten([[1]], 2) // NOPE
+    })
+
+    // err cases
+
+    it('illegal arguments', () => {
+
+        const expected = 'illegal arguments - in \'flatten\'';
+
+        expect(() => flatten(2 as any, 2 as any)).toThrow(expected)
+        expect(() => flatten([] as any, [] as any)).toThrow(expected)
+        expect(() => flatten()(1 as any)).toThrow(expected)
+        expect(() => (flatten as any)(2, 2, 2)).toThrow(expected)
+        expect(() => flatten(1 as any)(1 as any)).toThrow(expected)
+        expect(() => flatten()(1 as any)).toThrow(expected)
     })
 })

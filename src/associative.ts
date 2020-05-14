@@ -1,6 +1,6 @@
 import {Predicate, Map, Associative} from './type'
 import {zip} from './list'
-import {isArray, isAssociative, isFunction, isNumber, isObject} from './predicate'
+import {isArray, isAssociative, isFunction, isNumber, isObject, isUndefined} from './predicate'
 import {copy} from './collection'
 import {flatMap, range} from './array'
 import {identity} from './core';
@@ -245,7 +245,6 @@ export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => B, init: B) {
 }
 
 
-// TODO add illegal argument guards
 export function flatten<U, T extends Array<U>>(as: Associative<T>): T;
 export function flatten<U, T extends Array<U>>(depth: 1, as: Associative<T>): T;
 export function flatten<U, T extends Array<U>>(as: Associative<T>, depth: 1): T;
@@ -258,13 +257,27 @@ export function flatten(depth: number): <T,R>(as: Array<T>) => Array<R>;
 // export function flatten<T>(as: Associative<T>): Array<T>;
 export function flatten(p1: any, ...p2: any[]): any {
 
+    if (p2.length > 1) throw 'illegal arguments - in \'flatten\''
+    if (p2.length === 1) {
+        if (!(
+            (isNumber(p1) && isAssociative(p2[0]))
+            || (isAssociative(p1) && isNumber(p2[0]))
+        )) throw 'illegal arguments - in \'flatten\''
+    }
+
     const _flatten = flatMap(identity as any) as any;
 
     const inner = (num: number) =>
-        (as: Associative<any>) =>
-            num === 1 || num === undefined || isObject(as)
+        (as: Associative) => {
+
+            if (p2.length === 0 && (isNumber(p1)||isUndefined(p1)) && !isAssociative(as)) {
+                throw 'illegal arguments - in \'flatten\''
+            }
+
+            return num === 1 || num === undefined || isObject(as)
                 ? _flatten(values(as))
                 : flatten(num - 1)(_flatten(as))
+        }
 
     return p2.length === 0
         ? isNumber(p1)
