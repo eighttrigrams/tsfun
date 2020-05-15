@@ -1,9 +1,9 @@
-import {Either, List, Mapping, Maybe, Predicate} from './type';
-import {is, on} from './comparator';
-import {first} from './list';
-import {map, reduce} from './associative';
-import {flow} from './composition';
-import {filter, size} from './collection';
+import {Either, List, Mapping, Maybe, Predicate} from './type'
+import {is, on} from './comparator'
+import {first} from './list'
+import {map, reduce} from './associative'
+import {flow} from './composition'
+import {filter, size} from './collection'
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -11,46 +11,46 @@ import {filter, size} from './collection';
 
 export function isDefined(_: any) {
 
-    return _ !== undefined;
+    return _ !== undefined
 }
 
 
 export function isNot<A>(f: Predicate<A>) {
 
-    return (a: A) => flip(f(a));
+    return (a: A) => flip(f(a))
 }
 
 
 export function isUndefined(what: any) {
 
-    return isNot(isDefined)(what);
+    return isNot(isDefined)(what)
 }
 
 
 export function not<T>(p: Predicate<T>) {
 
-    return isNot(p);
+    return isNot(p)
 }
 
 
 export function defined(what: any) {
 
-    return isDefined(what);
+    return isDefined(what)
 }
 
 
-const Undefined = isUndefined;
+const Undefined = isUndefined
 
 
 export function undefinedOrEmpty(what: any) {
 
-    return isUndefinedOrEmpty(what);
+    return isUndefinedOrEmpty(what)
 }
 
 
 export function empty(what: any) {
 
-    return isEmpty(what);
+    return isEmpty(what)
 }
 
 
