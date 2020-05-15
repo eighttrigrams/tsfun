@@ -6,9 +6,9 @@ import {flow} from './composition'
 import {filter, size} from './collection'
 
 
-export function isDefined(_: any) {
+export function isDefined($) {
 
-    return _ !== undefined
+    return $ !== undefined
 }
 
 
@@ -18,9 +18,9 @@ export function isNot<A>(f: Predicate<A>) {
 }
 
 
-export function isUndefined(what: any) {
+export function isUndefined($) {
 
-    return isNot(isDefined)(what)
+    return isNot(isDefined)($)
 }
 
 
@@ -30,24 +30,24 @@ export function not<T>(p: Predicate<T>) {
 }
 
 
-export function defined(what: any) {
+export function defined($) {
 
-    return isDefined(what)
+    return isDefined($)
 }
 
 
 const Undefined = isUndefined
 
 
-export function undefinedOrEmpty(what: any) {
+export function undefinedOrEmpty($) {
 
-    return isUndefinedOrEmpty(what)
+    return isUndefinedOrEmpty($)
 }
 
 
-export function empty(what: any) {
+export function empty($) {
 
-    return isEmpty(what)
+    return isEmpty($)
 }
 
 
@@ -61,7 +61,7 @@ export const hasnt = (path: string|Array<string|number>|number) => (o: Object) =
 
 export function and(...preds: Array<Predicate<any>>) {
 
-    return (argument: any): boolean => {
+    return (argument): boolean => {
 
         return reduce((acc: boolean, p: Predicate<any>) => acc && p(argument), true)(preds)
     }
@@ -70,7 +70,7 @@ export function and(...preds: Array<Predicate<any>>) {
 
 export function or(...preds: Array<Predicate<any>>) {
 
-    return (argument: any): any => {
+    return (argument): boolean => {
 
         return reduce((acc: boolean, p: Predicate<any>) => acc || p(argument), false)(preds)
     }
@@ -118,31 +118,31 @@ export function isEmpty<T>(coll: Object|Array<T>): boolean {
 export const flip = (v: boolean) => !v
 
 
-export const isArray: Predicate = (as: any) => as instanceof Array
+export const isArray: Predicate = as => as instanceof Array
 
 // TODO rename to isMap or make alias
-export const isObject: Predicate = (o: any) => o instanceof Object && o.constructor === Object
+export const isObject: Predicate = o => o instanceof Object && o.constructor === Object
 
 
-export const isAssociative: Predicate = (a: any) => isObject(a) || isArray(a)
+export const isAssociative: Predicate = $ => isObject($) || isArray($)
 
 
-export const isCollection: Predicate = (a: any) => isObject(a) || isArray(a) || isString(a)
+export const isCollection: Predicate = $ => isObject($) || isArray($) || isString($)
 
 
-export const isList: Predicate = (a: any) => isArray(a) || isString(a)
+export const isList: Predicate = $ => isArray($) || isString($)
 
 
-export const isString: Predicate = (as: any) => typeof as === 'string'
+export const isString: Predicate = $ => typeof $ === 'string'
 
 
-export const isNumber: Predicate = (as: any) => typeof as === 'number'
+export const isNumber: Predicate = $ => typeof $ === 'number'
 
 
-export const isBoolean: Predicate<any> = (as: any) => typeof as === 'boolean'
+export const isBoolean: Predicate = $ => typeof $ === 'boolean'
 
 
-export const isFunction: Predicate<any> = (as: any) => typeof as === 'function'
+export const isFunction: Predicate = $ => typeof $ === 'function'
 
 
 export function isSuccess<E,T>(m: Maybe<T>|Either<E,T>): boolean {
