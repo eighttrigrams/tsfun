@@ -1,9 +1,9 @@
-import {Pair, Map, Either, Maybe} from './type';
-import {isArray, isFailure, isObject, isString} from './predicate';
-import {keys, keysAndValues} from './associative';
-import {getSuccess} from './tuple';
-import {first, rest} from './list';
-import {convert} from './composition';
+import {Pair, Map, Either, Maybe} from './type'
+import {isArray, isFailure, isObject, isString} from './predicate'
+import {keys, keysAndValues} from './associative'
+import {getSuccess} from './tuple'
+import {first, rest} from './list'
+import {convert} from './composition'
 
 
 export function forEach<A>(f: (_: A, i?: number|string) => Promise<void>): {
@@ -16,22 +16,22 @@ export function forEach<A>(f: (_: A, i?: number|string) => Promise<void>) {
 
         if (isArray(as)) {
 
-            let i = 0;
+            let i = 0
             for (let item of as) {
-                await (f as any)(item, i);
-                i++;
+                await (f as any)(item, i)
+                i++
             }
-            return as as Array<A>;
+            return as as Array<A>
 
         } else if (isObject(as)) {
 
             for (let item of keysAndValues(as as any)) {
-                await (f as any)(item[1], item[0]);
+                await (f as any)(item[1], item[0])
             }
-            return as as Map<A>;
+            return as as Map<A>
 
         }
-    };
+    }
 }
 
 
@@ -46,40 +46,40 @@ export function filter<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
 
         if (isArray(as)) {
 
-            const as1 = [];
-            let i = 0;
+            const as1 = []
+            let i = 0
             for (let a of as) {
-                if (await p(a as any, i)) as1.push(a as never);
-                i++;
+                if (await p(a as any, i)) as1.push(a as never)
+                i++
             }
 
             return as1 as Array<T>
 
         } else if (isObject(as)) {
 
-            const o = as as Map<T>;
+            const o = as as Map<T>
 
-            const o1: any = {};
-            let i = 0;
+            const o1: any = {}
+            let i = 0
             for (let k of keys(o)) {
-                if (await p(o[k], k)) o1[k] = o[k];
-                i++;
+                if (await p(o[k], k)) o1[k] = o[k]
+                i++
             }
 
-            return o1 as Map<T>;
+            return o1 as Map<T>
 
         } else if (isString(as)) {
 
-            const s = (as as any).split('');
+            const s = (as as any).split('')
 
-            const s1: any = [];
-            let i = 0;
+            const s1: any = []
+            let i = 0
             for (let k of keys(s)) {
-                if (await p(s[k], k)) s1[k] = s[k];
-                i++;
+                if (await p(s[k], k)) s1[k] = s[k]
+                i++
             }
 
-            return (s1.join('')) as string;
+            return (s1.join('')) as string
 
         } else {
 
@@ -104,21 +104,21 @@ export function separate<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
             return [
                 await filter(p)(as as Array<T>),
                 await remove(p)(as as Array<T>)
-            ] as Pair<Array<T>, Array<T>>;
+            ] as Pair<Array<T>, Array<T>>
 
         } else if (isObject(as)) {
 
             return [
                 await filter(p)(as as Map<T>),
                 await remove(p)(as as Map<T>)
-            ] as Pair<Map<T>, Map<T>>;
+            ] as Pair<Map<T>, Map<T>>
 
         } else if (isString(as)) {
 
             return [
                 await filter(p)(as as any),
                 await remove(p)(as as any)
-            ] as unknown as Pair<string, string>;
+            ] as unknown as Pair<string, string>
 
         } else {
 
@@ -169,7 +169,7 @@ export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => Promise<B>, i
 
         } else {
 
-            throw "illegal argument - must be array or object"
+            throw 'illegal argument - must be array or object'
         }
     };
 }
@@ -214,22 +214,22 @@ export function map<A, B>(f: (_: A, i?: any) => Promise<B>, as?: any): any {
 
 export async function flow(a: any, ...b: any[]) {
 
-    let currentA = a;
-    for (let currentB of b) currentA = await currentB(currentA);
-    return currentA;
+    let currentA = a
+    for (let currentB of b) currentA = await currentB(currentA)
+    return currentA
 }
 
 
 export function compose(...b: any[]) {
 
-    return async (a: any) => flow(a, ...b);
+    return async (a: any) => flow(a, ...b)
 }
 
 
 export function mcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Promise<Either<any, T>>|Either<any, T>>)
-    : (seed: Either<any, T>) => Promise<Either<any, R>>;
+    : (seed: Either<any, T>) => Promise<Either<any, R>>
 export function mcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Promise<Maybe<T>>|Maybe<T>>)
-    : (seed: Maybe<T>) => Promise<Maybe<R>>;
+    : (seed: Maybe<T>) => Promise<Maybe<R>>
 export function mcompose<T, R>(...fs: Array<
                                    (x: T, ...xs: Array<T>) =>
                                        Promise<Either<any, T>>
@@ -239,15 +239,15 @@ export function mcompose<T, R>(...fs: Array<
                                    >) {
 
     return async (seed: Maybe<T>|Either<any, T>) => {
-        if (isFailure(seed)) return seed as any;
+        if (isFailure(seed)) return seed as any
 
-        let results = [getSuccess(seed)] as Array<T>;
+        let results = [getSuccess(seed)] as Array<T>
         for (let f of fs) {
 
-            const res = await f(first(results) as T, ...rest(results));
-            if (isFailure(res)) return res as any;
-            results = [getSuccess(res)].concat(results);
+            const res = await f(first(results) as T, ...rest(results))
+            if (isFailure(res)) return res as any
+            results = [getSuccess(res)].concat(results)
         }
-        return convert(first(results), seed) as any;
+        return convert(first(results), seed) as any
     }
 }
