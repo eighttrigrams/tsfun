@@ -180,8 +180,10 @@ export function map<A, B>(f: (_: A, i?: string|number) => Promise<B>): {
     (as: Array<A>): Promise<Array<B>>
     (os: Map<A>): Promise<Map<B>>
 }
-export function map<A, B>(f: (_: A, i?: number) => Promise<B>, as: Array<A>): Promise<Array<B>>
-export function map<A, B>(f: (_: A, i?: string) => Promise<B>, as: Map<A>): Promise<Map<B>>
+export function map<A, B>(f: (_: A, i: number) => Promise<B>, as: Array<A>): Promise<Array<B>>
+export function map<A, B>(f: (_: A) => Promise<B>, as: Array<A>): Promise<Array<B>>
+export function map<A, B>(f: (_: A, k: string) => Promise<B>, as: Map<A>): Promise<Map<B>>
+export function map<A, B>(f: (_: A) => Promise<B>, as: Map<A>): Promise<Map<B>>
 export function map<A, B>(f: (_: A, i?: any) => Promise<B>, as?: any): any {
 
     const inner = async (as: any) => {
