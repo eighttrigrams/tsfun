@@ -29,7 +29,6 @@ export function forEach<A>(f: (_: A, i?: number|string) => Promise<void>) {
                 await (f as any)(item[1], item[0])
             }
             return as as Map<A>
-
         }
     }
 }

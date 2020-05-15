@@ -1,4 +1,4 @@
-import {Either, List, Maybe, Predicate} from './type';
+import {Either, List, Mapping, Maybe, Predicate} from './type';
 import {is, on} from './comparator';
 import {first} from './list';
 import {map, reduce} from './associative';
@@ -80,15 +80,22 @@ export function or(...preds: Array<Predicate<any>>) {
 }
 
 
-export function xor(...preds: Array<Predicate<any>>) {
+// TODO move
+function applyTo<A>(arg: A) {
 
-    return (argument: any): any => {
+    return <B>(f: Mapping<A,B>) => f(arg)
+}
+
+
+export function xor<A = any>(...preds: Array<Predicate<A>>) {
+
+    return (argument: A): boolean => {
 
         return flow(preds,
-            map((p: Predicate): boolean => p(argument)),
+            map(applyTo(argument)),
             filter(is(true)),
             size,
-            is(1));
+            is(1))
     }
 }
 
