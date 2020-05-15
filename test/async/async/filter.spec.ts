@@ -1,14 +1,12 @@
-import {filter as asyncFilter} from '../../../src/async';
+import {filter as asyncFilter} from '../../../src/async'
 
-
-const asyncSmaller4 = (_: number) => Promise.resolve(_ < 4);
 
 /**
- * tsfun | async/filter
+ * tsfun/async | filter
  *
- * @author Daniel de Oliveira
+ * asynchronous function for filtering items from Collection by a given predicate
  */
-describe('async/filter', () => {
+describe('asyncFilter', () => {
 
     it('array', async done => {
 
@@ -16,10 +14,10 @@ describe('async/filter', () => {
 
             await asyncFilter(asyncSmaller4)([2, 4, 3]))
 
-            .toEqual([2, 3]);
+            .toEqual([2, 3])
 
-        done();
-    });
+        done()
+    })
 
 
     it('object', async done => {
@@ -28,10 +26,10 @@ describe('async/filter', () => {
 
             await asyncFilter(asyncSmaller4)({a: 2, b: 4, c: 3}))
 
-            .toEqual({a: 2, c: 3});
+            .toEqual({a: 2, c: 3})
 
-        done();
-    });
+        done()
+    })
 
 
     it('string', async done => {
@@ -40,8 +38,14 @@ describe('async/filter', () => {
 
             await asyncFilter((a: string) => Promise.resolve(a > 'a'))('abad'))
 
-            .toEqual('bd');
+            .toEqual('bd')
 
-        done();
-    });
-});
+        done()
+    })
+
+
+    // typing - see comments in asyncMap typing test
+})
+
+
+const asyncSmaller4 = _ => Promise.resolve(_ < 4)
