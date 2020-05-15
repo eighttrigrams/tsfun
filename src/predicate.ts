@@ -1,12 +1,9 @@
-import {Either, List, Mapping, Maybe, Predicate} from './type'
+import {Either, Mapping, Maybe, Predicate} from './type'
 import {is, on} from './comparator'
 import {first} from './list'
 import {map, reduce} from './associative'
 import {flow} from './composition'
 import {filter, size} from './collection'
-
-
-// ------------ @author Daniel de Oliveira -----------------
 
 
 export function isDefined(_: any) {
