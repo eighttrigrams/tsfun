@@ -80,7 +80,7 @@ export function or(...preds: Array<Predicate<any>>) {
 }
 
 
-// TODO move
+// TODO move, review and, or etc.
 function applyTo<A>(arg: A) {
 
     return <B>(f: Mapping<A,B>) => f(arg)
