@@ -102,98 +102,98 @@ export function xor<A = any>(...preds: Array<Predicate<A>>) {
 
 export function isUndefinedOrEmpty<T>(coll: Object|Array<T>|string|undefined): boolean {
 
-    if (coll === undefined) return true;
+    if (coll === undefined) return true
     if (!isObject(coll)
         && !isArray(coll)
-        && !isString(coll)) throw 'illegal argument - must be string, object or array';
+        && !isString(coll)) throw 'illegal argument - must be string, object or array'
 
     return coll instanceof Array
         ? coll.length === 0
-        : Object.keys(coll).length === 0;
+        : Object.keys(coll).length === 0
 }
 
 
 export function isEmpty<T>(coll: Object|Array<T>): boolean {
 
-    if (coll === undefined) throw 'illegal argument - arg must not be undefined';
-    return isUndefinedOrEmpty(coll);
+    if (coll === undefined) throw 'illegal argument - arg must not be undefined'
+    return isUndefinedOrEmpty(coll)
 }
 
 
-export const flip = (v: boolean) => !v;
+export const flip = (v: boolean) => !v
 
 
-export const isArray: Predicate = (as: any) => as instanceof Array;
+export const isArray: Predicate = (as: any) => as instanceof Array
 
 // TODO rename to isMap or make alias
-export const isObject: Predicate = (o: any) => o instanceof Object && o.constructor === Object;
+export const isObject: Predicate = (o: any) => o instanceof Object && o.constructor === Object
 
 
-export const isAssociative: Predicate = (a: any) => isObject(a) || isArray(a);
+export const isAssociative: Predicate = (a: any) => isObject(a) || isArray(a)
 
 
-export const isCollection: Predicate = (a: any) => isObject(a) || isArray(a) || isString(a);
+export const isCollection: Predicate = (a: any) => isObject(a) || isArray(a) || isString(a)
 
 
-export const isList: Predicate = (a: any) => isArray(a) || isString(a);
+export const isList: Predicate = (a: any) => isArray(a) || isString(a)
 
 
-export const isString: Predicate = (as: any) => typeof as === 'string';
+export const isString: Predicate = (as: any) => typeof as === 'string'
 
 
-export const isNumber: Predicate = (as: any) => typeof as === 'number';
+export const isNumber: Predicate = (as: any) => typeof as === 'number'
 
 
-export const isBoolean: Predicate<any> = (as: any) => typeof as === 'boolean';
+export const isBoolean: Predicate<any> = (as: any) => typeof as === 'boolean'
 
 
-export const isFunction: Predicate<any> = (as: any) => typeof as === 'function';
+export const isFunction: Predicate<any> = (as: any) => typeof as === 'function'
 
 
 export function isSuccess<E,T>(m: Maybe<T>|Either<E,T>): boolean {
 
-    if (!isEither(m) && !isMaybe(m)) throw 'illegal argument';
-    if (m.length === 0) return false;
-    if (m.length === 1) return true;
-    if (m.length === 2) return first(m as any) === undefined;
-    throw 'illegal argument - array too long';
+    if (!isEither(m) && !isMaybe(m)) throw 'illegal argument'
+    if (m.length === 0) return false
+    if (m.length === 1) return true
+    if (m.length === 2) return first(m as any) === undefined
+    throw 'illegal argument - array too long'
 }
 
 
 export function isFailure<T, E = any>(m: Maybe<T>|Either<E,T>) {
 
-    return !isSuccess(m);
+    return !isSuccess(m)
 }
 
 
 export function isPair(pair: any) {
 
-    if (!isArray(pair)) return false;
-    if (pair.length !== 2) return false;
-    return true;
+    if (!isArray(pair)) return false
+    if (pair.length !== 2) return false
+    return true
 }
 
 
 export function isSingleton(l: Array<any>) {
 
-    if (!isArray(l)) throw 'illegal argument - array expected';
-    if (l.length !== 1) return false;
-    return true;
+    if (!isArray(l)) throw 'illegal argument - array expected'
+    if (l.length !== 1) return false
+    return true
 }
 
 
 export function isEither(either: any) {
 
-    if (!isArray(either)) return false;
-    if (either.length !== 2) return false;
-    if (either.filter(isDefined).length !== 1) return false;
-    return true;
+    if (!isArray(either)) return false
+    if (either.length !== 2) return false
+    if (either.filter(isDefined).length !== 1) return false
+    return true
 }
 
 
 export function isMaybe(maybe: any) {
 
-    if (!isArray(maybe)) return false;
-    if (maybe.length > 1) return false;
-    return true;
+    if (!isArray(maybe)) return false
+    if (maybe.length > 1) return false
+    return true
 }
