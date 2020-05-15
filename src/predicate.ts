@@ -87,16 +87,14 @@ function applyTo<A>(arg: A) {
 }
 
 
-export function xor<A = any>(...preds: Array<Predicate<A>>) {
+export function xor<A>(...preds: Array<Predicate<A>>) {
 
-    return (argument: A): boolean => {
-
-        return flow(preds,
-            map(applyTo(argument)),
-            filter(is(true)),
-            size,
-            is(1))
-    }
+    return (argument: A): boolean =>
+        flow(preds
+        , map(applyTo(argument))
+        , filter(is(true))
+        , size
+        , is(1))
 }
 
 
