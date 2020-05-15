@@ -103,7 +103,7 @@ export function isUndefinedOrEmpty<T>(coll: Object|Array<T>|string|undefined): b
     if (coll === undefined) return true
     if (!isObject(coll)
         && !isArray(coll)
-        && !isString(coll)) throw 'illegal argument - must be string, object or array'
+        && !isString(coll)) throw 'illegal argument - in \'isUndefinedOrEmpty\' - must be string, object or array'
 
     return coll instanceof Array
         ? coll.length === 0
@@ -113,7 +113,7 @@ export function isUndefinedOrEmpty<T>(coll: Object|Array<T>|string|undefined): b
 
 export function isEmpty<T>(coll: Object|Array<T>): boolean {
 
-    if (coll === undefined) throw 'illegal argument - arg must not be undefined'
+    if (coll === undefined) throw 'illegal argument - in \'isEmpty\' - arg must not be undefined'
     return isUndefinedOrEmpty(coll)
 }
 
@@ -150,11 +150,11 @@ export const isFunction: Predicate<any> = (as: any) => typeof as === 'function'
 
 export function isSuccess<E,T>(m: Maybe<T>|Either<E,T>): boolean {
 
-    if (!isEither(m) && !isMaybe(m)) throw 'illegal argument'
+    if (!isEither(m) && !isMaybe(m)) throw 'illegal argument - in \'isSuccess\''
     if (m.length === 0) return false
     if (m.length === 1) return true
     if (m.length === 2) return first(m as any) === undefined
-    throw 'illegal argument - array too long'
+    throw 'illegal argument - in \'isSuccess\' - array too long'
 }
 
 
@@ -174,7 +174,7 @@ export function isPair(pair: any) {
 
 export function isSingleton(l: Array<any>) {
 
-    if (!isArray(l)) throw 'illegal argument - array expected'
+    if (!isArray(l)) throw 'illegal argument - in \'isSingleton\' - array expected'
     if (l.length !== 1) return false
     return true
 }
