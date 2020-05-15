@@ -55,18 +55,18 @@ export function empty(what: any) {
 
 
 export const has = (path: string|Array<string|number>|number) => (o: Object) =>
-    on((isNumber(path) ? [path] : path) as any, isDefined)(o);
+    on((isNumber(path) ? [path] : path) as any, isDefined)(o)
 
 
 export const hasnt = (path: string|Array<string|number>|number) => (o: Object) =>
-    not(on((isNumber(path) ? [path] : path) as any, isDefined))(o);
+    not(on((isNumber(path) ? [path] : path) as any, isDefined))(o)
 
 
 export function and(...preds: Array<Predicate<any>>) {
 
     return (argument: any): boolean => {
 
-        return reduce((acc: boolean, p: Predicate<any>) => acc && p(argument), true)(preds);
+        return reduce((acc: boolean, p: Predicate<any>) => acc && p(argument), true)(preds)
     }
 }
 
@@ -75,7 +75,7 @@ export function or(...preds: Array<Predicate<any>>) {
 
     return (argument: any): any => {
 
-        return reduce((acc: boolean, p: Predicate<any>) => acc || p(argument), false)(preds);
+        return reduce((acc: boolean, p: Predicate<any>) => acc || p(argument), false)(preds)
     }
 }
 
