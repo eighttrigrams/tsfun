@@ -59,10 +59,11 @@ describe('asyncMap', () => {
     })
 
 
-    it('make an AsyncMapping', async done => {
+    const doubleArray: AsyncMapping<number[]> =
+        _ => /* make sure to not forget this await */ asyncMap(delayedTimes2, _)
 
-        const doubleArray: AsyncMapping<number[]> =
-            await /* make sure to not forget this await */ asyncMap(delayedTimes2)
+
+    it('make an AsyncMapping', async done => {
 
         expect(
 
