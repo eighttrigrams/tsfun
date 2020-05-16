@@ -175,15 +175,15 @@ export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => Promise<B>, i
 
 
 
-export function map<A, B>(f: (_: A, i?: string|number) => Promise<B>): {
+export function map<A, B>(f: (_: A, i?: string|number) => Promise<B>): Promise<{
     (as: Array<A>): Promise<Array<B>>
     (os: Map<A>): Promise<Map<B>>
-}
-export function map<A, B>(f: (_: A, i: number) => Promise<B>, as: Array<A>): Promise<Array<B>>
-export function map<A, B>(f: (_: A) => Promise<B>, as: Array<A>): Promise<Array<B>>
-export function map<A, B>(f: (_: A, k: string) => Promise<B>, as: Map<A>): Promise<Map<B>>
-export function map<A, B>(f: (_: A) => Promise<B>, as: Map<A>): Promise<Map<B>>
-export function map<A, B>(f: (_: A, i?: any) => Promise<B>, as?: any): any {
+}>
+export async function map<A, B>(f: (_: A, i: number) => Promise<B>, as: Array<A>): Promise<Array<B>>
+export async function map<A, B>(f: (_: A) => Promise<B>, as: Array<A>): Promise<Array<B>>
+export async function map<A, B>(f: (_: A, k: string) => Promise<B>, as: Map<A>): Promise<Map<B>>
+export async function map<A, B>(f: (_: A) => Promise<B>, as: Map<A>): Promise<Map<B>>
+export async function map<A, B>(f: (_: A, i?: any) => Promise<B>, as?: any): Promise<any> {
 
     const inner = async (as: any) => {
 
@@ -205,16 +205,16 @@ export function map<A, B>(f: (_: A, i?: any) => Promise<B>, as?: any): any {
         }
     }
 
-    return (as === undefined
+    return as === undefined
         ? inner
-        : inner(as)) as any
+        : inner(as)
 }
 
 
 export async function flow(a: any, ...b: any[]) {
 
     let currentA = a
-    for (let currentB of b) currentA = await currentB(currentA)
+    for (let currentB of b) currentA = await ((await currentB)(currentA))
     return currentA
 }
 

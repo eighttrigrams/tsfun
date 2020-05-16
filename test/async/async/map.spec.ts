@@ -3,6 +3,7 @@ import {
     map as asyncMap /* use an alias if you want to disambiguate */,
     flow as asyncFlow
 } from '../../../src/async'
+import {map} from '../../../src/array';
 
 
 /**
@@ -33,7 +34,7 @@ describe('asyncMap', () => {
 
     it('multiple param lists for use in composition', async done => {
 
-        expect(await asyncMap(delayedTimes2)([1, 2])).toEqual([2, 4])
+        expect(await (await asyncMap(delayedTimes2))([1, 2])).toEqual([2, 4])
         done()
     })
 
@@ -53,8 +54,8 @@ describe('asyncMap', () => {
         // of Associatives (in addition to there being
         // restrictions of type inference between parameter lists)
         // in a context where typing is checked in compositions
-        const result3: Array<number> = await asyncMap(delayedTimes2)([1, 2])
-        const result4: Map<number> = await asyncMap(delayedTimes2)({a: 1, b: 2})
+        const result3: Array<number> = await (await asyncMap(delayedTimes2))([1, 2])
+        const result4: Map<number> = await (await asyncMap(delayedTimes2))({a: 1, b: 2})
 
         // whereas here everything is typed to any, for reasons of simplicity.
         await asyncFlow( // gives us just Promise<any>
@@ -65,6 +66,28 @@ describe('asyncMap', () => {
     })
 
 
+    it('usage with flow', async done => {
+
+        expect(
+
+            await asyncFlow([1, 2]
+            , asyncMap(delayedTimes2)
+            , map(times2)
+            , delay
+            , asyncMap(delayedTimes2))
+
+        ).toEqual([8,16])
+
+        done()
+    })
+
+
+    const times2 =
+        _ => _ * 2
+
     const delayedTimes2 =
-        (_: number) => new Promise<any>(resolve => setTimeout(() => resolve(_ * 2), 50))
+        _ => new Promise<any>(resolve => setTimeout(() => resolve(_ * 2), 50))
+
+    const delay =
+        _ => new Promise<any>(resolve => setTimeout(() => resolve(_), 50))
 })
