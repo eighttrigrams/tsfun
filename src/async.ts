@@ -225,6 +225,7 @@ export function compose(...b: any[]) {
 }
 
 
+// TODO review if we need the double await (like in flow here too, now since we allow single as well as multiparam lists in functions like asyncMap
 export function mcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Promise<Either<any, T>>|Either<any, T>>)
     : (seed: Either<any, T>) => Promise<Either<any, R>>
 export function mcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Promise<Maybe<T>>|Maybe<T>>)
