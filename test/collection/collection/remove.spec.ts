@@ -4,9 +4,9 @@ import {Map} from '../../../src/type';
 
 
 /**
- * tsfun | remove
+ * tsfun/collection | remove
  */
-describe('remove', () => {
+describe('collection/remove', () => {
 
     it('array', () => {
 

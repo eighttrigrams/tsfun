@@ -1,6 +1,9 @@
-import {Associative, Collection, Map, Pair, Predicate} from './type'
+import {Collection, Map, Mapping, Pair, Predicate} from './type'
 import {and, isArray, isDefined, isObject, isString} from './predicate'
 import {keys, reduce, values} from './associative'
+
+
+export type Filter<T = any> = Mapping<Collection<T>>
 
 
 export function copy<T>(struct: Array<T>): Array<T>

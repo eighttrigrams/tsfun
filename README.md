@@ -293,6 +293,10 @@ import {filter as filterColl} from 'tsfun/collection';
 * [remove](test/collection/collection/remove.spec.ts)
 * [separate](test/collection/collection/separate.spec.ts)
 
+###### Types
+
+* [Filter](test/collection/collection/filter.type.spec.ts)
+
 ### List
 
 ### Array & string

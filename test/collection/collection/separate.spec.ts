@@ -3,7 +3,10 @@ import {separate} from '../../../src/collection';
 import {Map, Pair} from '../../../src/type';
 
 
-describe('separate', () => {
+/**
+ * tsfun/collection | separate
+ */
+describe('collection/separate', () => {
 
     it('array', () => {
 

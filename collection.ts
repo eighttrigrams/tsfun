@@ -2,4 +2,9 @@ export {
     filter,
     remove,
     separate
-} from './src/collection';
+} from './src/collection'
+
+
+export type {
+    Filter
+} from './src/collection'
