@@ -211,7 +211,7 @@ export async function map<A, B>(f: (_: A, i?: any) => Promise<B>, as?: any): Pro
 }
 
 
-export async function flow(a: any, ...b: Array<Function|Promise<Function>>) {
+export async function flow(a: any, ...b: Array<Function|Promise<Function>>): Promise<any> {
 
     let currentA = a
     for (let currentB of b) currentA = await ((await currentB)(currentA))
@@ -219,9 +219,9 @@ export async function flow(a: any, ...b: Array<Function|Promise<Function>>) {
 }
 
 
-export function compose(...b: any[]) {
+export function compose(...b: Array<Function|Promise<Function>>) {
 
-    return async (a: any) => flow(a, ...b)
+    return async /* TODO review use of async here, maybe replace by Promise return value annotation */ (a: any) => flow(a, ...b)
 }
 
 
