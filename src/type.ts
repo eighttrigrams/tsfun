@@ -69,3 +69,6 @@ export type PredicateProducer = <A>(_: Predicate<A>) => Predicate<A>
 type ArrayMinLength1<T> = {
     0: T
 } & Array<T>
+
+
+export type AsyncMapping<A = any, B = A> = (_: A) => Promise<B>

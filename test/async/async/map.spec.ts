@@ -1,4 +1,4 @@
-import {Map} from '../../../src/type'
+import {AsyncMapping, Map} from '../../../src/type'
 import {
     map as asyncMap /* use an alias if you want to disambiguate */,
     flow as asyncFlow
@@ -34,7 +34,42 @@ describe('asyncMap', () => {
 
     it('multiple param lists for use in composition', async done => {
 
-        expect(await (await asyncMap(delayedTimes2))([1, 2])).toEqual([2, 4])
+        expect(
+
+            await (await /* ! */ asyncMap(delayedTimes2))([1, 2])
+
+        ).toEqual([2, 4])
+        done()
+    })
+
+
+    it('usage with flow', async done => {
+
+        expect(
+
+            await asyncFlow([1, 2]
+                , asyncMap(delayedTimes2)
+                , map(times2)
+                , delay
+                , asyncMap(delayedTimes2))
+
+        ).toEqual([8,16])
+
+        done()
+    })
+
+
+    it('make an AsyncMapping', async done => {
+
+        const doubleArray: AsyncMapping<number[]> =
+            await /* make sure to not forget this await */ asyncMap(delayedTimes2)
+
+        expect(
+
+            await doubleArray([1, 2])
+
+        ).toEqual([2, 4])
+
         done()
     })
 
@@ -61,22 +96,6 @@ describe('asyncMap', () => {
         await asyncFlow( // gives us just Promise<any>
             [1,2],
             asyncMap(delayedTimes2)) // not typechecked
-
-        done()
-    })
-
-
-    it('usage with flow', async done => {
-
-        expect(
-
-            await asyncFlow([1, 2]
-            , asyncMap(delayedTimes2)
-            , map(times2)
-            , delay
-            , asyncMap(delayedTimes2))
-
-        ).toEqual([8,16])
 
         done()
     })
