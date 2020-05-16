@@ -134,7 +134,7 @@ export function remove<A>(p: (a: A, i?: string|number) => Promise<boolean>): {
 }
 export function remove<A>(p: (a: A, i?: string|number) => Promise<boolean>) {
 
-    return filter(async (a: any, i?: string|number) => !(await p(a, i)));
+    return filter(async (a: any, i?: string|number) => !(await p(a, i)))
 }
 
 
@@ -148,23 +148,23 @@ export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => Promise<B>, i
 
         if (isArray(ts)) {
 
-            let acc = init;
-            let i = 0;
+            let acc = init
+            let i = 0
             for (let a of ts) {
-                acc = await f(acc, a, i);
+                acc = await f(acc, a, i)
                 i++;
             }
-            return acc;
+            return acc
 
         } else if (isObject(ts)) {
 
-            const o = ts as Map<T>;
+            const o = ts as Map<T>
 
-            let acc = init;
+            let acc = init
             for (let k of keys(ts)) {
-                acc = await f(acc, o[k], k);
+                acc = await f(acc, o[k], k)
             }
-            return acc;
+            return acc
 
         } else {
 
