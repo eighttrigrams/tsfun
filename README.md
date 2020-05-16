@@ -312,8 +312,6 @@ import {take as listTake} from 'tsfun/list';
 
 ### Async
 
-Example:
-
 ```typescript
 import {map as asyncMap} from 'tsfun/async';
 ```
