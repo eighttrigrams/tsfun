@@ -1,9 +1,9 @@
-import {copy} from "./collection";
-import {Mapping} from "./type";
+import {copy} from './collection'
+import {Mapping} from './type'
 
 
-export function assoc<T, K extends keyof T>(key: keyof T, val: T[K]): <T>(o: T) => T;
-export function assoc<T, K extends keyof T>(key: keyof T, val: T[K], o: T): T;
+export function assoc<T, K extends keyof T>(key: keyof T, val: T[K]): <T>(o: T) => T
+export function assoc<T, K extends keyof T>(key: keyof T, val: T[K], o: T): T
 export function assoc<T, K extends keyof T>(key: keyof T, val: T[K], o?: T): T {
 
     const inner = <T>(o: T) => {
@@ -15,12 +15,12 @@ export function assoc<T, K extends keyof T>(key: keyof T, val: T[K], o?: T): T {
 
     return (o === undefined
         ? inner
-        : inner(o)) as T;
+        : inner(o)) as T
 }
 
 
-export function update<T, K extends keyof T>(key: keyof T, f: Mapping<T[K]>): <T>(o: T) => T;
-export function update<T, K extends keyof T>(key: keyof T, f: Mapping<T[K]>, o: T): T;
+export function update<T, K extends keyof T>(key: keyof T, f: Mapping<T[K]>): <T>(o: T) => T
+export function update<T, K extends keyof T>(key: keyof T, f: Mapping<T[K]>, o: T): T
 export function update<T, K extends keyof T>(key: keyof T, f: any, o?: T): T {
 
     const inner = <T>(o: T) => {
@@ -32,13 +32,13 @@ export function update<T, K extends keyof T>(key: keyof T, f: any, o?: T): T {
 
     return (o === undefined
         ? inner
-        : inner(o)) as T;
+        : inner(o)) as T
 }
 
 
 
-export function dissoc<T, K extends keyof T>(key: keyof T): <T>(o: T) => T;
-export function dissoc<T, K extends keyof T>(key: keyof T, o: T): T;
+export function dissoc<T, K extends keyof T>(key: keyof T): <T>(o: T) => T
+export function dissoc<T, K extends keyof T>(key: keyof T, o: T): T
 export function dissoc<T, K extends keyof T>(key: keyof T, o?: T): T {
 
     const inner = <T>(o: T) => {
@@ -50,5 +50,5 @@ export function dissoc<T, K extends keyof T>(key: keyof T, o?: T): T {
 
     return (o === undefined
         ? inner
-        : inner(o)) as T;
+        : inner(o)) as T
 }
