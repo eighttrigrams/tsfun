@@ -328,6 +328,10 @@ import {map as asyncMap} from 'tsfun/async';
 * [separate](test/async/async/separate.spec.ts)
 * [mcompose](test/async/async/mcompose.spec.ts)
 
+###### Types
+
+* AsyncMapping
+
 ### Lazy
 
 Example:__
