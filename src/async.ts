@@ -211,7 +211,7 @@ export async function map<A, B>(f: (_: A, i?: any) => Promise<B>, as?: any): Pro
 }
 
 
-export async function flow(a: any, ...b: any[]) {
+export async function flow(a: any, ...b: Array<Function|Promise<Function>>) {
 
     let currentA = a
     for (let currentB of b) currentA = await ((await currentB)(currentA))
