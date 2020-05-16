@@ -332,8 +332,6 @@ import {map as asyncMap} from 'tsfun/async';
 
 ### Lazy
 
-Example:__
-
 ```typescript
 import {zip as lZip} from 'tsfun/lazy';
 ```
@@ -347,8 +345,6 @@ import {zip as lZip} from 'tsfun/lazy';
 * [map](test/lazy/lazy/map.spec.ts)
 
 ### By
-
-Example:
 
 ```typescript
 import {samesetBy} from 'tsfun/by';
