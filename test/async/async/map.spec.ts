@@ -60,7 +60,7 @@ describe('asyncMap', () => {
 
 
     const doubleArray: AsyncMapping<number[]> =
-        _ => /* make sure to not forget this await */ asyncMap(delayedTimes2, _)
+        _ => asyncMap(delayedTimes2, _) // we have to use the single arg list version here since we cant use await to unpack the promise
 
 
     it('make an AsyncMapping', async done => {
