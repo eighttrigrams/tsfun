@@ -4,7 +4,7 @@ import {filter} from '../../../src/collection'
 
 
 /**
- * tsfun | collection/filter
+ * tsfun/collection | filter
  */
 describe('collection/filter', () => {
 

@@ -1,43 +1,51 @@
-import {separate} from '../../../src/async';
+import {separate as asyncSeparate} from '../../../src/async'
 
 
-const asyncSmaller4 = (_: number) => Promise.resolve(_ < 4);
-
-
-describe('async/separate', () => {
+/**
+ * tsfun/async | separate
+ *
+ * asynchronous function for separating items from Collection by a given Predicate
+ */
+describe('asyncSeparate', () => {
 
     it('array', async done => {
 
         expect(
 
-            await separate(asyncSmaller4)([2, 4, 3]))
+            await asyncSeparate(asyncSmaller4)([2, 4, 3]))
 
-            .toEqual([[2, 3], [4]]);
+            .toEqual([[2, 3], [4]])
 
-        done();
-    });
+        done()
+    })
 
 
     it('object', async done => {
 
         expect(
 
-            await separate(asyncSmaller4)({a: 2, b: 4, c: 3}))
+            await asyncSeparate(asyncSmaller4)({a: 2, b: 4, c: 3}))
 
-            .toEqual([{a: 2, c: 3}, {b: 4}]);
+            .toEqual([{a: 2, c: 3}, {b: 4}])
 
-        done();
-    });
+        done()
+    })
 
 
     it('string', async done => {
 
         expect(
 
-            await separate((s: string) => Promise.resolve(s > 'b'))('ddebca'))
+            await asyncSeparate((s: string) => Promise.resolve(s > 'b'))('ddebca'))
 
-            .toEqual(['ddec', 'ba']);
+            .toEqual(['ddec', 'ba'])
 
-        done();
-    });
-});
+        done()
+    })
+
+
+    // typing - see comments in asyncMap typing test
+})
+
+
+const asyncSmaller4 = (_: number) => Promise.resolve(_ < 4)

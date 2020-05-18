@@ -15,16 +15,17 @@ import {
     dropWhile as listDropWhile,
     takeWhile as listTakeWhile,
     takeRightWhile as listTakeRightWhile,
-    dropRightWhile as listDropRightWhile
+    dropRightWhile as listDropRightWhile, zip,
 } from './list'
-import {identity} from './core'
+import {identity, uncurry2} from './core'
 import {Associative, Mapping, Pair, Predicate} from './type'
-import {values, map as mapAsc} from './associative';
+import {values, map as mapAsc} from './associative'
 import {
     filter as filterColl, 
     remove as removeColl,
     separate as separateColl
 } from './collection'
+import {pair} from './tuple'
 
 
 export const flatMap = <A, B>(f: (_: A) => Array<B>) =>
@@ -66,26 +67,26 @@ export function range(a: number, b?: number, stepSize: number = 1): number[] {
 }
 
 
-export function zipWith<A,B,C> (f: (a: A, b: B) => C, as: Array<A>) {
 
-    return (bs: Array<B>): Array<C> => {
+export function zipWith<A,B,C> (f: (a: A, b: B) => C, as: Array<A>): (as2: Array<B>) => Array<C>
+export function zipWith<A,B,C> (f: (a: A, b: B) => C, as: A[], bs: B[]): Array<C>
+export function zipWith<A,B,C,D>(f: (a: A, b: B, c: C) => D, as: A[], bs: B[], cs: C[]): Array<D>
+export function zipWith<A>(f: (...a) => A, ...as: any[][]): A[]
+export function zipWith<A,B,C> (f, ...aas): any {
 
-        const minimumLength = Math.min(as.length, bs.length)
-        const _as = take(minimumLength)(as)
-        const _bs = take(minimumLength)(bs)
+    const inner = aas => reduce1(uncurry2(zip))(aas)
+        .map(flatten(aas.length-1))
+        .map(_ => f.apply(null, _))
 
-        const zipped: Array<C> = []
-        for (let i = 0; i < minimumLength; i++) {
-            zipped.push(f((_as as any)[i] as A, (_bs as any)[i] as B))
-        }
-        return zipped
-    }
+    return aas.length === 1
+        ? bs => inner(pair(aas[0],bs))
+        : inner(aas)
 }
 
 
 export function reduce1<T>(f: (b: T, t: T, i?: number) => T) {
 
-    return (ts: Array<T>): T => {
+    return (ts: T[]): T => {
 
         if (isArray(ts) && !isEmpty(ts)) {
 
@@ -115,21 +116,21 @@ export function map<A, B>(...args: any[]): any {
 
 
 // TODO allow deeper levels to get collapsed in associative, if they all are arrays. if not, then stop at the level, it cannot get further collapsed
-// leftover: export function flatten<T>(as: Associative<T>): Array<T>;
+// leftover: export function flatten<T>(as: Associative<T>): Array<T>
 
-export function flatten<U, T extends Array<U>>(as: Array<T>): T;
-export function flatten<U, T extends Array<U>>(depth: 1, as: Array<T>): T;
-export function flatten<U, T extends Array<U>>(as: Array<T>, depth: 1): T;
+export function flatten<U, T extends Array<U>>(as: Array<T>): T
+export function flatten<U, T extends Array<U>>(depth: 1, as: Array<T>): T
+export function flatten<U, T extends Array<U>>(as: Array<T>, depth: 1): T
 export function flatten<U, T extends Array<U>, K extends Array<T>>(depth: 2, as: Array<K>): T
 export function flatten<U, T extends Array<U>, K extends Array<T>>(as: Array<K>, depth: 2): T
 export function flatten<U, T extends Array<U>, K extends Array<T>, V extends Array<K>>(depth: 3, as: Array<V>): T
 export function flatten<U, T extends Array<U>, K extends Array<T>, V extends Array<K>>(as: Array<V>, depth: 3): T
-export function flatten<U, T extends Array<U>>(as: Array<T>, depth: number): T;
-export function flatten<U, T extends Array<U>>(depth: number, as: Array<T>): T;
-export function flatten<T>(as: Array<T>, depth: number): Array<unknown>;
-export function flatten(depth: void): <U, T extends Array<U>>(as: Array<T>) => T;
-export function flatten(depth: 1): <U, T extends Array<U>>(as: Array<T>) => T;
-export function flatten(depth: number): <T,R>(as: Array<T>) => Array<R>;
+export function flatten<U, T extends Array<U>>(as: Array<T>, depth: number): T
+export function flatten<U, T extends Array<U>>(depth: number, as: Array<T>): T
+export function flatten<T>(as: Array<T>, depth: number): Array<unknown>
+export function flatten(depth: void): <U, T extends Array<U>>(as: Array<T>) => T
+export function flatten(depth: 1): <U, T extends Array<U>>(as: Array<T>) => T
+export function flatten(depth: number): <T,R>(as: Array<T>) => Array<R>
 export function flatten(p1: any, ...p2: any[]): any {
 
     if (p2.length > 1) throw 'illegal arguments - in \'flatten\''
@@ -140,7 +141,7 @@ export function flatten(p1: any, ...p2: any[]): any {
         )) throw 'illegal arguments - in \'flatten\''
     }
 
-    const _flatten = flatMap(identity as any) as any;
+    const _flatten = flatMap(identity as any) as any
 
     const inner = (num: number) =>
         (as: Associative) => {

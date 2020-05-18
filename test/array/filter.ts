@@ -1,6 +1,6 @@
-import {Collection, Map} from '../../src/type'
-import {greaterThan, lessThan} from '../../src/comparator'
+import {lessThan} from '../../src/comparator'
 import {filter} from '../../src/array'
+import {flow} from '../../src/composition';
 
 
 /**
@@ -8,7 +8,7 @@ import {filter} from '../../src/array'
  */
 describe('filter', () => {
 
-    it('array', () =>
+    it('multiple argument lists', () =>
         expect(
 
             filter(lessThan(4))([2, 4, 3])
@@ -17,11 +17,23 @@ describe('filter', () => {
     )
 
 
-    it('array i', () => {
+    it('to be used in composition', () =>
+        expect(
+
+            flow(
+            [2, 4, 3]
+            , filter(lessThan(4))
+            )
+
+        ).toEqual([2, 3])
+    )
+
+
+    it('index provided as second parameter', () => {
 
         expect(
 
-            filter((_, i: number) => i !== 1)([17, 19, 22]))
+            filter((_, i) => i !== 1)([17, 19, 22]))
 
             .toEqual([17, 22])
     })
@@ -29,19 +41,8 @@ describe('filter', () => {
 
     it('typing', () => {
 
-        const result1: Collection = filter(_ => true)
-        // const result2: Collection = filter(_ => true)('a')
+        const result1 = filter(_ => true)
         // const result: number = filter(_ => true)('a') // WRONG
-        // const result: Collection = filter(_ => true)('a') as number // WRONG
-        // const result: Collection = filter(_ => true) as number// WRONG
         // const result: number = filter(_ => true) // WRONG
-
-        // const result3: string = filter((a, b: number) => true, 'a')
-        // const result: string = filter((a, b: string) => true, 'a') // WRONG
-        // const result4: Array<number> = filter((a, b: number) => true, [1,2])
-        // const result5: Array<string> = filter((a, b: number) => true, ['a','b'])
-        // const result: Array<number> = filter((a, b: string) => true, [1,2]) // WRONG
-        // const result6: Map = filter((a, b: string) => true, {a: 3, b: 4})
-        // const result: Map = filter((a, b: number) => true, {a: 3, b: 4}) // WRONG
     })
 })

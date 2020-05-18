@@ -3,7 +3,7 @@ import {has} from '../../src/predicate';
 /**
  * tsfun | has
  *
- * @author Daniel de Oliveira
+ * also see: Map.prototype.has()
  */
 describe('has', () => {
 

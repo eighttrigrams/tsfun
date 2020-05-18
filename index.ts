@@ -1,6 +1,7 @@
 export {
     assoc,
-    dissoc
+    dissoc,
+    update
 } from './src/object'
 
 
@@ -34,7 +35,8 @@ export type {
     Associative,
     Fallible,
     Mapping,
-    Filter
+    Filter,
+    Effect
 } from './src/type'
 
 

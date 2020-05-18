@@ -211,9 +211,10 @@ import {equal} from 'tsfun';
 
 ### Object
 
-###### object & interface
+###### Object & interface
 
 * [assoc](test/object/assoc.spec.ts)
+* [update](test/object/update.spec.ts)
 * [dissoc](test/object/dissoc.spec.ts)
 
 ### Struct
@@ -238,6 +239,8 @@ import {equal} from 'tsfun';
 * [Collection](test/type/collection.spec.ts)
 * [Mapping](test/type/predicate.spec.ts)
 * [Predicate](test/type/predicate.spec.ts)
+* [Filter](test/type/filter.spec.ts)
+* [Effect](test/type/effect.spec.ts)
 
 ## Constants reference
 
@@ -290,6 +293,10 @@ import {filter as filterColl} from 'tsfun/collection';
 * [remove](test/collection/collection/remove.spec.ts)
 * [separate](test/collection/collection/separate.spec.ts)
 
+###### Types
+
+* [Filter](test/collection/collection/filter.type.spec.ts)
+
 ### List
 
 ### Array & string
@@ -309,8 +316,6 @@ import {take as listTake} from 'tsfun/list';
 
 ### Async
 
-Example:
-
 ```typescript
 import {map as asyncMap} from 'tsfun/async';
 ```
@@ -325,9 +330,11 @@ import {map as asyncMap} from 'tsfun/async';
 * [separate](test/async/async/separate.spec.ts)
 * [mcompose](test/async/async/mcompose.spec.ts)
 
-### Lazy
+###### Types
 
-Example:__
+* AsyncMapping
+
+### Lazy
 
 ```typescript
 import {zip as lZip} from 'tsfun/lazy';
@@ -342,8 +349,6 @@ import {zip as lZip} from 'tsfun/lazy';
 * [map](test/lazy/lazy/map.spec.ts)
 
 ### By
-
-Example:
 
 ```typescript
 import {samesetBy} from 'tsfun/by';
