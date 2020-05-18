@@ -1,20 +1,45 @@
 import {assoc} from "../../src/object";
+import {flow} from '../../src/composition';
 
 /**
  * tsfun | assoc
  */
 describe('assoc', () => {
 
-    it('assoc', () => {
+    interface A { a: number, b: string }
+    const object: A = { a: 4, b: 'four' }
 
-        expect(assoc('a', 3)({ a: 4 })).toEqual({ a: 3 })
-        expect(assoc('a', 3, { a: 4 })).toEqual({ a: 3 })
-    })
+
+    it('single param list', () =>
+        expect(
+
+            assoc('a', 3, object)
+
+        ).toEqual({ a: 3, b: 'four' })
+    )
+
+
+    it('multiple parameter lists', () =>
+        expect(
+
+            assoc('a', 3)(object)
+
+        ).toEqual({ a: 3, b: 'four' })
+    )
+
+
+    it('for use in composition', () =>
+        expect(
+
+            flow(object
+            , assoc('a', 3))
+
+        ).toEqual({ a: 3, b: 'four' })
+    )
 
 
     it('typing', () => {
 
-        interface A { a: number, b: string }
         interface C { c: number }
 
         const result1: A = assoc('a', 3, { a: 7, b: '7' })
