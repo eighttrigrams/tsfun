@@ -1,15 +1,15 @@
-import {map} from '../../../src/associative';
+import {map /* as mapAssociative, if you want to disambiguate */} from '../../../src/associative';
 import {to} from '../../../src/struct';
 import {flow, nop} from '../../../src/composition';
 import {Associative} from '../../../src/type';
 
 
 /**
- * tsfun | associative/map
+ * tsfun/associative | map
  *
  * Allows for mapping over Associative collections
  */
-describe('associative/map', () => {
+describe('mapAssociative', () => {
 
     it('map', () => {
 
