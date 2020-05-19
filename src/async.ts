@@ -6,6 +6,21 @@ import {first, rest} from './list'
 import {convert} from './composition'
 
 
+/*
+ * Implementation note regarding the multi argument list cases:
+ * In contrast to the other functions, say, for example, 'map' of
+ * the 'associative' package, the multi argument versions here type correctly,
+ * for example from Array<A> to Array<B> and from Map<A> to Map<B>.
+ * This is not the case there (in the other packages), because there
+ * we focus on their typing characteristics in composition contexts.
+ * For example in a typed flow, we want to have a filter after a map,
+ * the 'map' giving an Associative and the filter taking 'one'.
+ * This however, does not play a role in an async composition context,
+ * because async compositions are simply typed to 'any' in all cases, for
+ * the sake of simplicity.
+ */
+
+
 export function forEach<A>(f: (_: A, i?: number|string) => Promise<void>): {
     (as: Array<A>): Promise<Array<A>>
     (os: Map<A>): Promise<Map<A>>
