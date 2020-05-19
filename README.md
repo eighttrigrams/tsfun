@@ -244,8 +244,14 @@ import {equal} from 'tsfun';
 
 ## Constants reference
 
-* [LEFT](test/tuple/left-constant.spec.ts)
-* [RIGHT](test/tuple/right-constant.spec.ts)
+###### List
+
+* [FIRST](test/tuple/first.constant.spec.ts)
+
+###### Tuple
+
+* [LEFT](test/tuple/left.constant.spec.ts)
+* [RIGHT](test/tuple/right.constant.spec.ts)
 
 ## Extra packages reference
 

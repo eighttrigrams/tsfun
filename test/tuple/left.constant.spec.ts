@@ -3,8 +3,6 @@ import {is, on} from '../../src/comparator';
 
 /**
  * tsfun | LEFT
- *
- * @author Daniel de Oliveira
  */
 describe('LEFT', () => {
 

@@ -5,6 +5,11 @@ import {copy} from './collection'
 
 // ------------ @author Daniel de Oliveira -----------------
 
+
+export const FIRST = 0;
+
+
+
 export function reverse<A>(as: string): string
 export function reverse<A>(as: Array<A>): Array<A>
 export function reverse<A>(as: Array<A>|string): Array<A>|string {

@@ -173,7 +173,8 @@ export {
     takeUntil, // TODO document in readme
     takeNth,
     zip,
-    sort
+    sort,
+    FIRST
 } from './src/list'
 
 
