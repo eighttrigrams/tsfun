@@ -118,7 +118,11 @@ export function isEmpty<T>(coll: Object|Array<T>): boolean {
 export const flip = (v: boolean) => !v
 
 
-export const isArray: Predicate = as => as instanceof Array
+export const isArray: Predicate = $ => {
+
+    return Array.isArray($)
+    // as instanceof Array <- previously we did it like this, but typescript can check types when we use Array.isArray instead
+}
 
 // TODO rename to isMap or make alias
 export const isObject: Predicate = o => o instanceof Object && o.constructor === Object
