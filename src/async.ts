@@ -75,7 +75,7 @@ export function filter(...args) {
             const as1 = []
             let i = 0
             for (let a of as) {
-                if (await p(a as any, i)) as1.push(a as never)
+                if (await p(a, i)) as1.push(a as never)
                 i++
             }
 
@@ -85,7 +85,7 @@ export function filter(...args) {
 
             const o = as
 
-            const o1: any = {}
+            const o1 = {}
             let i = 0
             for (let k of keys(o)) {
                 if (await p(o[k], k)) o1[k] = o[k]
@@ -96,16 +96,16 @@ export function filter(...args) {
 
         } else if (isString(as)) {
 
-            const s = (as as any).split('')
+            const s = as.split('')
 
-            const s1: any = []
+            const s1 = []
             let i = 0
             for (let k of keys(s)) {
-                if (await p(s[k], k)) s1[k] = s[k]
+                if (await p(s[k], k)) (s1 as any)[k] = s[k]
                 i++
             }
 
-            return (s1.join('')) as string
+            return (s1.join(''))
 
         } else {
 
