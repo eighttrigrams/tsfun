@@ -247,9 +247,11 @@ export function separate<A>(as: Array<A>, p: (a: A, i: number) => boolean): Pair
 export function separate<A>(as: Array<A>, p: (a: A) => boolean): Pair<Array<A>>
 export function separate<A>(...args): any {
 
-    return isFunction(args[0])
-        ? separateColl(args[0], args[1])
-        : separateColl(args[1], args[0])
+    return args.length === 1
+        ? separateColl(args[0])
+        : isFunction(args[0])
+            ? separateColl(args[0], args[1])
+            : separateColl(args[1], args[0])
 }
 
 
