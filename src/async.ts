@@ -1,5 +1,5 @@
 import {Pair, Map, Either, Maybe} from './type'
-import {isArray, isFailure, isObject, isString} from './predicate'
+import {isArray, isFailure, isFunction, isObject, isString} from './predicate'
 import {keys, keysAndValues} from './associative'
 import {getSuccess} from './tuple'
 import {first, rest} from './list'
@@ -153,30 +153,38 @@ export function remove<A>(p: (a: A, i?: string|number) => Promise<boolean>) {
 }
 
 
-export function reduce<A, B>(f: (b: B, a: A, i?: number|string) => Promise<B>, init: B): {
+export function reduce<A, B>(f: (b: B, a: A, i?: number|string) => Promise<B>, init: B): Promise<{
     (as: Array<A>): Promise<B>
     (os: Map<A>): Promise<B>
-}
-export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => Promise<B>, init: B) {
+}>
+export function reduce<A, B>(f: (b: B, a: A, i: number) => Promise<B>, init: B, as: Array<A>): Promise<B>
+export function reduce<A, B>(f: (b: B, a: A) => Promise<B>, init: B, as: Array<A>): Promise<B>
+export function reduce<A, B>(as: Array<A>, f: (b: B, a: A, i: number) => Promise<B>, init: B, ): Promise<B>
+export function reduce<A, B>(as: Array<A>, f: (b: B, a: A) => Promise<B>, init: B): Promise<B>
+export function reduce<A, B>(f: (b: B, a: A, i: string) => Promise<B>, init: B, as: Map<A>): Promise<B>
+export function reduce<A, B>(f: (b: B, a: A) => Promise<B>, init: B, as: Map<A>): Promise<B>
+export function reduce<A, B>(as: Map<A>, f: (b: B, a: A, i: string) => Promise<B>, init: B): Promise<B>
+export function reduce<A, B>(as: Map<A>, f: (b: B, a: A) => Promise<B>, init: B): Promise<B>
+export function reduce<T, B>(...params): Promise<any> {
 
-    return async (ts: any): Promise<B> => {
+    const inner = (f, init) => async (coll) => {
 
-        if (isArray(ts)) {
+        if (isArray(coll)) {
 
             let acc = init
             let i = 0
-            for (let a of ts) {
+            for (let a of coll) {
                 acc = await f(acc, a, i)
                 i++;
             }
             return acc
 
-        } else if (isObject(ts)) {
+        } else if (isObject(coll)) {
 
-            const o = ts as Map<T>
+            const o = coll as Map<T>
 
             let acc = init
-            for (let k of keys(ts)) {
+            for (let k of keys(coll)) {
                 acc = await f(acc, o[k], k)
             }
             return acc
@@ -185,7 +193,13 @@ export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => Promise<B>, i
 
             throw 'illegal argument - must be array or object'
         }
-    };
+    }
+
+    return params.length === 2
+            ? inner(params[0], params[1])
+            : isFunction(params[0])
+                 ? inner(params[0], params[1])(params[2])
+                 : inner(params[1], params[2])(params[0]) as any
 }
 
 
