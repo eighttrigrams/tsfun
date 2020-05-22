@@ -12,6 +12,7 @@ describe('collection/filter', () => {
 
         expect(filter(lessThan(4))([2, 4, 3])).toEqual([2, 3])
         expect(filter(lessThan(4), [2, 4, 3])).toEqual([2, 3])
+        expect(filter([2, 4, 3], lessThan(4))).toEqual([2, 3])
     })
 
 

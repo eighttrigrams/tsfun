@@ -1,5 +1,5 @@
 import {Collection, Map, Mapping, Pair, Predicate} from './type'
-import {and, isArray, isDefined, isObject, isString} from './predicate'
+import {and, isArray, isDefined, isFunction, isObject, isString} from './predicate'
 import {keys, reduce, values} from './associative'
 
 
@@ -45,12 +45,21 @@ export function prune<T>(ts: Array<T>|Map<T>|string) {
 
 
 export function filter<A>(p: (a: A, i?: number|string) => boolean): (_: Collection<A>) => Collection<A>
-export function filter<A>(p: (a: A, i?: number) => boolean, as: Array<A>): Array<A>
-export function filter<A>(p: (a: A, i?: string) => boolean, as: Map<A>): Map<A>
-export function filter<A>(p: (a: A, i?: number) => boolean, as: string): string
-export function filter<A>(p: (a: A, i?: any) => boolean, as?: any): any {
+export function filter<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
+export function filter<A>(p: (a: A) => boolean, as: Array<A>): Array<A>
+export function filter<A>(as: Array<A>, p: (a: A, i: number) => boolean): Array<A>
+export function filter<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
+export function filter<A>(p: (a: A, i: string) => boolean, as: Map<A>): Map<A>
+export function filter<A>(p: (a: A) => boolean, as: Map<A>): Map<A>
+export function filter<A>(as: Map<A>, p: (a: A, i: string) => boolean): Map<A>
+export function filter<A>(as: Map<A>, p: (a: A) => boolean): Map<A>
+export function filter<A>(p: (a: A, i: number) => boolean, as: string): string
+export function filter<A>(p: (a: A) => boolean, as: string): string
+export function filter<A>(as: string, p: (a: A, i: number) => boolean): string
+export function filter<A>(as: string, p: (a: A) => boolean): string
+export function filter<A>(...args): any {
 
-    const inner = as => {
+    const $ = p => as => {
 
         if (isArray(as)) {
 
@@ -95,9 +104,11 @@ export function filter<A>(p: (a: A, i?: any) => boolean, as?: any): any {
         }
     }
 
-    return as === undefined
-        ? inner
-        : inner(as)
+    return args.length === 1
+        ? $(args[0])
+        : isFunction(args[0])
+            ? $(args[0])(args[1])
+            : $(args[1])(args[0])
 }
 
 
@@ -142,20 +153,31 @@ export function size<T>(o: string|Array<T>|Map<T>): number {
 
 
 export function remove<A>(p: (a: A, i?: number|string) => boolean): (as: Collection) => Collection
-export function remove<A>(p: (a: A, i?: number) => boolean, as: Array<A>): Array<A>
-export function remove<A>(p: (a: A, i?: number) => boolean, as: string): string
-export function remove<A>(p: (a: A, i?: string) => boolean, as: Map<A>): Map<A>
-export function remove<A>(p: (a: A, i?: any) => boolean, as?: any): any {
-    const inner = filter((a: any, i: number|string) => !p(a, i))
-    return as === undefined
-        ? inner
-        : inner(as)
+export function remove<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
+export function remove<A>(p: (a: A) => boolean, as: Array<A>): Array<A>
+export function remove<A>(as: Array<A>, p: (a: A, i: number) => boolean): Array<A>
+export function remove<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
+export function remove<A>(p: (a: A, i: number) => boolean, as: string): string
+export function remove<A>(p: (a: A) => boolean, as: string): string
+export function remove<A>(as: string, p: (a: A, i: number) => boolean): string
+export function remove<A>(as: string, p: (a: A) => boolean): string
+export function remove<A>(p: (a: A, i: string) => boolean, as: Map<A>): Map<A>
+export function remove<A>(p: (a: A) => boolean, as: Map<A>): Map<A>
+export function remove<A>(as: Map<A>, p: (a: A, i: string) => boolean): Map<A>
+export function remove<A>(as: Map<A>, p: (a: A) => boolean): Map<A>
+export function remove<A>(...args): any {
+
+    const inner = p => filter((a: any, i: number|string) => !p(a, i))
+
+    return args.length === 1
+        ? inner(args[0])
+        : isFunction(args[0])
+            ? inner(args[0])(args[1])
+            : inner(args[1])(args[0]) as any
 }
 
 
-export function separate<A>(p: (a: A, i?: number|string) => boolean): {
-    (as: Collection<A>): Pair<Collection<A>>
-}
+export function separate<A>(p: (a: A, i?: number|string) => boolean): (as: Collection<A>) => Pair<Collection<A>>
 export function separate<A>(p: (a: A, i?: number) => boolean, as: string): Pair<string>
 export function separate<A>(p: (a: A, i?: number) => boolean, as: Array<A>): Pair<Array<A>>
 export function separate<A>(p: (a: A, i?: string) => boolean, as: Map<A>): Pair<Map<A>>

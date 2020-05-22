@@ -12,6 +12,7 @@ describe('remove', () => {
 
         expect(remove(lessThan(4))([2, 4])).toEqual([4])
         expect(remove(lessThan(4), [2, 4])).toEqual([4])
+        expect(remove([2, 4], lessThan(4))).toEqual([4])
     })
 
 

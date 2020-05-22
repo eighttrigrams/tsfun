@@ -12,6 +12,7 @@ describe('separate', () => {
 
         expect(separate(lessThan(3))([2, 3, 1, 3, 4])).toEqual([[2, 1], [3, 3, 4]])
         expect(separate(lessThan(3), [2, 3, 1, 3, 4])).toEqual([[2, 1], [3, 3, 4]])
+        expect(separate([2, 3, 1, 3, 4], lessThan(3))).toEqual([[2, 1], [3, 3, 4]])
     })
 
 

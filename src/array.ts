@@ -1,8 +1,8 @@
 import {
     isArray,
-    isEmpty,
+    isEmpty, isFunction,
     isNumber,
-    isObject, 
+    isObject,
     isUndefined
 } from './predicate'
 import {
@@ -239,21 +239,31 @@ export function takeWhile<A>(p1, p2?): any {
 }
 
 
-
-
 export function separate<A>(p: (a: A, i: number) => boolean): (as: Array<A>) => Pair<Array<A>>
 export function separate<A>(p: (a: A) => boolean): (as: Array<A>) => Pair<Array<A>>
-export function separate<A>(p: (a: A, i?: number) => boolean, as: Array<A>): Pair<Array<A>>
-export function separate<A>(p1, p2?): any {
+export function separate<A>(p: (a: A, i: number) => boolean, as: Array<A>): Pair<Array<A>>
+export function separate<A>(p: (a: A) => boolean, as: Array<A>): Pair<Array<A>>
+export function separate<A>(as: Array<A>, p: (a: A, i: number) => boolean): Pair<Array<A>>
+export function separate<A>(as: Array<A>, p: (a: A) => boolean): Pair<Array<A>>
+export function separate<A>(...args): any {
 
-    return separateColl(p1, p2)
+    return isFunction(args[0])
+        ? separateColl(args[0], args[1])
+        : separateColl(args[1], args[0])
 }
 
 
 export function remove<A>(p: (a: A, i: number) => boolean): (as: Array<A>) => Array<A>
 export function remove<A>(p: (a: A) => boolean): (as: Array<A>) => Array<A>
-export function remove<A>(p: (a: A, i?: number) => boolean, as: Array<A>): Array<A>
-export function remove<A>(p1, p2?): any {
+export function remove<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
+export function remove<A>(p: (a: A) => boolean, as: Array<A>): Array<A>
+export function remove<A>(as: Array<A>, p: (a: A, i: number) => boolean): Array<A>
+export function remove<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
+export function remove(...args): any {
     
-    return removeColl(p1, p2)
+    return args.length === 1
+        ? removeColl(args[0])
+        : isFunction(args[0])
+            ? removeColl(args[0], args[1])
+            : removeColl(args[1], args[0])
 }
