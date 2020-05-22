@@ -49,14 +49,26 @@ export function forEach<A>(f: (_: A, i?: number|string) => Promise<void>) {
 }
 
 
-export function filter<T>(p: (a: T, i?: string|number) => Promise<boolean>): {
+export function filter<T>(p: (a: T, i?: string|number) => Promise<boolean>): Promise<{
     (as: Array<T>): Promise<Array<T>>
     (os: Map<T>): Promise<Map<T>>
     (s: string): Promise<string>
-}
-export function filter<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
+}>
+export function filter<T>(p: (t: T, i: number) => Promise<boolean>, as: Array<T>): Promise<Array<T>>
+export function filter<T>(p: (t: T) => Promise<boolean>, as: Array<T>): Promise<Array<T>>
+export function filter<T>(as: Array<T>, p: (t: T, i: number) => Promise<boolean>): Promise<Array<T>>
+export function filter<T>(as: Array<T>, p: (t: T) => Promise<boolean>): Promise<Array<T>>
+export function filter<T>(p: (t: T, i: string) => Promise<boolean>, as: Map<T>): Promise<Map<T>>
+export function filter<T>(p: (t: T) => Promise<boolean>, as: Map<T>): Promise<Map<T>>
+export function filter<T>(as: Map<T>, p: (t: T, i: string) => Promise<boolean>): Promise<Map<T>>
+export function filter<T>(as: Map<T>, p: (t: T) => Promise<boolean>): Promise<Map<T>>
+export function filter<T>(p: (t: T, i: string) => Promise<boolean>, as: string): Promise<string>
+export function filter<T>(p: (t: T) => Promise<boolean>, as: string): Promise<string>
+export function filter<T>(as: string, p: (t: T, i: string) => Promise<boolean>): Promise<string>
+export function filter<T>(as: string, p: (t: T) => Promise<boolean>): Promise<string>
+export function filter(...args) {
 
-    return async (as) => {
+    const $ = p => async (as) => {
 
         if (isArray(as)) {
 
@@ -67,11 +79,11 @@ export function filter<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
                 i++
             }
 
-            return as1 as Array<T>
+            return as1
 
         } else if (isObject(as)) {
 
-            const o = as as Map<T>
+            const o = as
 
             const o1: any = {}
             let i = 0
@@ -80,7 +92,7 @@ export function filter<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
                 i++
             }
 
-            return o1 as Map<T>
+            return o1
 
         } else if (isString(as)) {
 
@@ -100,6 +112,12 @@ export function filter<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
             throw 'illegal argument - must be array or object'
         }
     }
+
+    return args.length === 1
+        ? $(args[0])
+        : isFunction(args[0])
+            ? $(args[0])(args[1])
+            : $(args[1])(args[0]) as any
 }
 
 
@@ -116,21 +134,21 @@ export function separate<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
         if (isArray(as)) {
 
             return [
-                await filter(p)(as as Array<T>),
+                await (await filter(p))(as as Array<T>),
                 await remove(p)(as as Array<T>)
             ] as Pair<Array<T>, Array<T>>
 
         } else if (isObject(as)) {
 
             return [
-                await filter(p)(as as Map<T>),
+                await (await filter(p))(as as Map<T>),
                 await remove(p)(as as Map<T>)
             ] as Pair<Map<T>, Map<T>>
 
         } else if (isString(as)) {
 
             return [
-                await filter(p)(as as any),
+                await (await filter(p))(as as any),
                 await remove(p)(as as any)
             ] as unknown as Pair<string, string>
 
@@ -149,7 +167,7 @@ export function remove<A>(p: (a: A, i?: string|number) => Promise<boolean>): {
 }
 export function remove<A>(p: (a: A, i?: string|number) => Promise<boolean>) {
 
-    return filter(async (a: any, i?: string|number) => !(await p(a, i)))
+    return _ => filter(async (a: any, i?: string|number) => !(await p(a, i)), _)
 }
 
 

@@ -8,13 +8,37 @@ import {filter as asyncFilter} from '../../../src/async'
  */
 describe('asyncFilter', () => {
 
-    it('array', async done => {
+    it('array, multiple argument lists', async done => {
 
         expect(
 
-            await asyncFilter(asyncSmaller4)([2, 4, 3]))
+            await (await asyncFilter(delayedSmaller4))([2, 4, 3]))
 
             .toEqual([2, 3])
+
+        done()
+    })
+
+
+    it('array, multiple argument list', async done => {
+
+        expect(
+
+            await asyncFilter(delayedSmaller4, [2, 4, 3])
+
+        ).toEqual([2, 3])
+
+        done()
+    })
+
+
+    it('array, multiple argument list, different order', async done => {
+
+        expect(
+
+            await asyncFilter([2, 4, 3], delayedSmaller4)
+
+        ).toEqual([2, 3])
 
         done()
     })
@@ -24,7 +48,7 @@ describe('asyncFilter', () => {
 
         expect(
 
-            await asyncFilter(asyncSmaller4)({a: 2, b: 4, c: 3}))
+            await asyncFilter(delayedSmaller4, {a: 2, b: 4, c: 3}))
 
             .toEqual({a: 2, c: 3})
 
@@ -36,7 +60,7 @@ describe('asyncFilter', () => {
 
         expect(
 
-            await asyncFilter((a: string) => Promise.resolve(a > 'a'))('abad'))
+            await asyncFilter((a: string) => Promise.resolve(a > 'a'), 'abad'))
 
             .toEqual('bd')
 
@@ -48,4 +72,6 @@ describe('asyncFilter', () => {
 })
 
 
-const asyncSmaller4 = _ => Promise.resolve(_ < 4)
+const delayedSmaller4 =
+    _ => new Promise<any>(resolve => setTimeout(() => resolve(_ < 4), 50))
+
