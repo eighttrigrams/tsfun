@@ -8,11 +8,35 @@ import {remove as asyncRemove} from '../../../src/async'
  */
 describe('asyncRemove', () => {
 
+    it('array - single param list', async done => {
+
+        expect(
+
+            await asyncRemove([2, 4, 3], delayedSmaller4))
+
+            .toEqual([4])
+
+        done()
+    })
+
+
+    it('array - single param list, different order', async done => {
+
+        expect(
+
+            await asyncRemove(delayedSmaller4, [2, 4, 3]))
+
+            .toEqual([4])
+
+        done()
+    })
+
+
     it('array', async done => {
 
         expect(
 
-            await asyncRemove((_: any) => Promise.resolve(_ < 4))([2, 4, 3]))
+            await (await asyncRemove(delayedSmaller4))([2, 4, 3]))
 
             .toEqual([4])
 
@@ -24,7 +48,7 @@ describe('asyncRemove', () => {
 
         expect(
 
-            await asyncRemove((_: any) => Promise.resolve(_ < 4))({a: 2, b: 4, c: 3}))
+            await (await asyncRemove(delayedSmaller4))({a: 2, b: 4, c: 3}))
 
             .toEqual({ b: 4 })
 
@@ -36,7 +60,7 @@ describe('asyncRemove', () => {
 
         expect(
 
-            await asyncRemove((_: any, i: number) => Promise.resolve(i === 1))([2, 4, 3]))
+            await (await asyncRemove((_: any, i: number) => Promise.resolve(i === 1)))([2, 4, 3]))
 
             .toEqual([2, 3])
 
@@ -48,7 +72,7 @@ describe('asyncRemove', () => {
 
         expect(
 
-            await asyncRemove((_: any, k: string) => Promise.resolve(k === 'b'))({a: 2, b: 4, c: 3}))
+            await (await asyncRemove((_: any, k: string) => Promise.resolve(k === 'b')))({a: 2, b: 4, c: 3}))
 
             .toEqual({ a: 2, c: 3 })
 
@@ -60,7 +84,7 @@ describe('asyncRemove', () => {
 
         expect(
 
-            await asyncRemove((a: string) => Promise.resolve(a > 'a'))('abde'))
+            await (await asyncRemove((a: string) => Promise.resolve(a > 'a')))('abde'))
 
             .toEqual('a')
 
@@ -70,3 +94,8 @@ describe('asyncRemove', () => {
 
     // typing - see comments in asyncMap typing test
 })
+
+
+
+const delayedSmaller4 =
+    _ => new Promise<any>(resolve => setTimeout(() => resolve(_ < 4), 50))
