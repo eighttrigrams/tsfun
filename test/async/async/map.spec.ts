@@ -32,6 +32,23 @@ describe('asyncMap', () => {
     });
 
 
+    it('async map over associative - reverse argument order', async done => {
+
+        expect(
+
+            await asyncMap([1, 2], delayedTimes2)
+
+        ).toEqual([2, 4])
+
+        expect(
+
+            await asyncMap({a: 1, b: 2}, delayedTimes2, )
+
+        ).toEqual({a: 2, b: 4})
+        done()
+    })
+
+
     it('multiple param lists for use in composition', async done => {
 
         expect(

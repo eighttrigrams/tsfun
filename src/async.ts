@@ -210,11 +210,15 @@ export function map<A, B>(f: (_: A, i?: string|number) => Promise<B>): Promise<{
 }>
 export async function map<A, B>(f: (_: A, i: number) => Promise<B>, as: Array<A>): Promise<Array<B>>
 export async function map<A, B>(f: (_: A) => Promise<B>, as: Array<A>): Promise<Array<B>>
+export async function map<A, B>(as: Array<A>, f: (_: A, i: number) => Promise<B>): Promise<Array<B>>
+export async function map<A, B>(as: Array<A>, f: (_: A) => Promise<B>): Promise<Array<B>>
 export async function map<A, B>(f: (_: A, k: string) => Promise<B>, as: Map<A>): Promise<Map<B>>
 export async function map<A, B>(f: (_: A) => Promise<B>, as: Map<A>): Promise<Map<B>>
-export async function map<A, B>(f: (_: A, i?: any) => Promise<B>, as?: any): Promise<any> {
+export async function map<A, B>(as: Map<A>, f: (_: A, k: string) => Promise<B>): Promise<Map<B>>
+export async function map<A, B>(as: Map<A>, f: (_: A) => Promise<B>): Promise<Map<B>>
+export async function map<A, B>(...args): Promise<any> {
 
-    const inner = async (as: any) => {
+    const inner = f => async (as: any) => {
 
         if (isArray(as)) {
 
@@ -234,9 +238,11 @@ export async function map<A, B>(f: (_: A, i?: any) => Promise<B>, as?: any): Pro
         }
     }
 
-    return as === undefined
-        ? inner
-        : inner(as)
+    return args.length === 1
+        ? inner(args[0])
+        : isFunction(args[0])
+            ? inner(args[0])(args[1])
+            : inner(args[1])(args[0])
 }
 
 
