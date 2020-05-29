@@ -159,14 +159,14 @@ export {
     dropWhile,
     dropRightWhile,
     dropRight,
-    drop
+    drop,
+    append,
+    prepend
 } from './src/array'
 
 
 export {
     reverse,
-    append,
-    prepend,
     first,
     rest,
     last,

@@ -2,7 +2,7 @@ import {
     isArray,
     isEmpty, isFunction,
     isNumber,
-    isObject,
+    isObject, isString,
     isUndefined
 } from './predicate'
 import {
@@ -18,7 +18,7 @@ import {
     dropRightWhile as listDropRightWhile, zip,
 } from './list'
 import {identity, uncurry2} from './core'
-import {Associative, Mapping, Pair, Predicate} from './type'
+import {Associative, List, Mapping, Pair, Predicate} from './type'
 import {values, map as mapAsc} from './associative'
 import {
     filter as filterColl, 
@@ -268,4 +268,33 @@ export function remove(...args): any {
         : isFunction(args[0])
             ? removeColl(args[0], args[1])
             : removeColl(args[1], args[0])
+}
+
+
+export function append<A>(...as2: Array<A>): Mapping<Array<A>>
+export function append<A>(...as2: Array<A>) {
+
+    return (as: Array<A>) => {
+
+        if (isArray(as) && isArray(as2)) {
+
+            return as.concat(as2 as any) as Array<A>
+
+        } else throw 'illegal argument - in \'append\''
+    }
+}
+
+
+
+export function prepend<A>(...as2: Array<A>): Mapping<Array<A>>
+export function prepend<A>(...as2: Array<A>) {
+
+    return (as: Array<A>) => {
+
+        if (isArray(as) && isArray(as2)) {
+
+            return as2.concat(as as any) as Array<A>
+
+        } else throw 'illegal argument - in \'prepend\''
+    }
 }

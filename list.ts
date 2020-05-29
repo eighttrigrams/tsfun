@@ -6,5 +6,7 @@ export {
     dropWhile,
     dropRight,
     dropRightWhile,
-    drop
+    drop,
+    prepend,
+    append
 } from './src/list'
