@@ -136,7 +136,7 @@ import {equal} from 'tsfun';
 * [append](test/array/append.spec.ts) 
 * [prepend](test/array/prepend.spec.ts) 
 
-### String
+### string
 
 * [join](test/string/join.spec.ts)
 * [split](test/string/split.spec.ts)
@@ -321,6 +321,11 @@ import {take as listTake} from 'tsfun/list';
 * [dropWhile](test/list/list/drop_while.spec.ts)
 * [append](test/list/list/append.spec.ts) 
 * [prepend](test/list/list/prepend.spec.ts) 
+
+### string
+
+* [append](test/string/string/append.spec.ts) 
+* [prepend](test/string/string/prepend.spec.ts) 
 
 ### Async
 
