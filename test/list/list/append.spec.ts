@@ -2,7 +2,7 @@ import {append} from '../../../src/list'
 
 
 /**
- * tsfun | list/append
+ * tsfun/list | append
  */
 describe('listAppend', () => {
 

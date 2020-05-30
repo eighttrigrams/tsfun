@@ -2,7 +2,7 @@ import {prepend} from '../../src/array'
 
 
 /**
- * tsfun | list/prepend
+ * tsfun/list | prepend
  */
 describe('listPrepend', () => {
 

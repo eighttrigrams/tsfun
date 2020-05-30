@@ -2,7 +2,7 @@ import {append} from '../../../src/string'
 
 
 /**
- * tsfun | string/append
+ * tsfun/append | append
  */
 describe('stringAppend', () => {
 
