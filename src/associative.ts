@@ -207,10 +207,18 @@ export function forEach<A>(f: (_: A, i?: number|string) => void) {
 }
 
 
+export function reduce<A, B>(f: (b: B, a: A, i: string) => B, init: B, as: Map<A>): B
+export function reduce<A, B>(f: (b: B, a: A) => B, init: B, as: Map<A>): B
+export function reduce<A, B>(f: (b: B, a: A, i: number) => B, init: B, as: Array<A>): B
+export function reduce<A, B>(f: (b: B, a: A) => B, init: B, as: Array<A>): B
+export function reduce<A, B>(as: Map<A>, f: (b: B, a: A, i: string) => B, init: B): B
+export function reduce<A, B>(as: Map<A>, f: (b: B, a: A, i) => B, init: B): B
+export function reduce<A, B>(as: Array<A>, f: (b: B, a: A, i: number) => B, init: B): B
+export function reduce<A, B>(as: Array<A>, f: (b: B, a: A, i) => B, init: B): B
 export function reduce<A, B>(f: (b: B, a: A, i?: number|string) => B, init: B): (as: Associative<A>) => B
-export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => B, init: B) {
+export function reduce(...args): any {
 
-    return (ts: any): B => {
+    const inner = (f, init) => (ts: any) => {
 
         if (isArray(ts)) {
 
@@ -224,7 +232,7 @@ export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => B, init: B) {
 
         } else if (isObject(ts)) {
 
-            const o = ts as Map<T>
+            const o = ts
 
             let acc = init
             for (let k of keys(ts)) {
@@ -237,4 +245,10 @@ export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => B, init: B) {
             throw 'illegal argument - must be array or object'
         }
     }
+
+    return args.length === 2
+        ? inner(args[0], args[1])
+        : isFunction(args[0])
+            ? inner(args[0], args[1])(args[2])
+            : inner(args[1], args[2])(args[0])
 }

@@ -14,6 +14,22 @@ describe('reduce', () => {
             .toBe(12))
 
 
+    it('single param list', () =>
+        expect(
+
+            reduce((b: number, a: number) => b + a, 0, [1, 5, 6]))
+
+            .toBe(12))
+
+
+    it('single param list - variant', () =>
+        expect(
+
+            reduce([1, 5, 6], (b: number, a: number) => b + a, 0))
+
+            .toBe(12))
+
+
     it('object', () =>
         expect(
 
