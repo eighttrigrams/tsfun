@@ -209,7 +209,7 @@ export function all<T>(p: Predicate<T>) {
 
         return (isString(as))
             ? (as as any).split('').every(p)
-            : (values(as as any)).every(p)
+            : (values(as as any) as any).every(p)
     }
 }
 
@@ -220,6 +220,6 @@ export function any<T>(p: Predicate<T>) {
 
         return (isString(as))
             ? (as as any).split('').some(p)
-            : (values(as as any)).some(p)
+            : (values(as as any) as any).some(p)
     }
 }

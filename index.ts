@@ -6,8 +6,6 @@ export {
 
 
 export {
-    keys,
-    values,
     keysAndValues,
     reduce,
     forEach

@@ -81,13 +81,12 @@ export function keysAndValues<A>(as: Array<A>): Array<[number, A]>;
 export function keysAndValues<T>(o: Map<T>): Array<[string, T]>;
 export function keysAndValues<T>(o: Map<T>|Array<T>): Array<[string|number, T]> {
 
-    return zip(keys(o))(Object.values(o)) as Array<[string, T]>
+    return zip(keys(o) as any)(Object.values(o)) as Array<[string, T]>
 }
 
 
-export function keys<T>(as: Array<T>): number[];
-export function keys(o: Map<any>): string[];
-export function keys<T>(t: Array<T>|Map<any>): number[]|string[] {
+export function keys<T>(o: Associative<T>): number[]|string[]
+export function keys(t) {
 
     return isArray(t)
         ? range(t.length)
@@ -95,8 +94,6 @@ export function keys<T>(t: Array<T>|Map<any>): number[]|string[] {
 }
 
 
-export function values<A>(as: Array<A>): Array<A>;
-export function values<T>(o: Map<T>): Array<T>;
 export function values<T>(o: Associative<T>): Associative<T>;
 export function values<T>(t) {
 

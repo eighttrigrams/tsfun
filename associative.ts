@@ -4,5 +4,7 @@ export {
     update,
     dissoc,
     get,
-    map
+    map,
+    keys,
+    values
 } from './src/associative';
