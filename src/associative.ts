@@ -97,7 +97,8 @@ export function keys<T>(t: Array<T>|Map<any>): number[]|string[] {
 
 export function values<A>(as: Array<A>): Array<A>;
 export function values<T>(o: Map<T>): Array<T>;
-export function values<T>(t: Map<T>|Array<T>): Array<T> {
+export function values<T>(o: Associative<T>): Associative<T>;
+export function values<T>(t) {
 
     return isArray(t)
         ? t as Array<T>
