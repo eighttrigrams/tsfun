@@ -199,12 +199,6 @@ import {equal} from 'tsfun';
 * [value](test/tuple/value.spec.ts)
 * [getSuccess](test/tuple/get_success.spec.ts)
 
-### Associative
-
-###### Array & Map
- 
-* [keysAndValues](test/associative/keys_and_values.spec.ts)
-
 ### Object
 
 ###### Object & interface
@@ -212,6 +206,12 @@ import {equal} from 'tsfun';
 * [assoc](test/object/assoc.spec.ts)
 * [update](test/object/update.spec.ts)
 * [dissoc](test/object/dissoc.spec.ts)
+
+### Associative
+
+###### Array & Map
+ 
+* [keysAndValues](test/associative/keys_and_values.spec.ts)
 
 ### Struct
 
