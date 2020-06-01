@@ -19,7 +19,7 @@ import {
 } from './list'
 import {identity, uncurry2} from './core'
 import {Associative, List, Map, Mapping, Pair, Predicate} from './type'
-import {values, map as mapAsc, keysAndValues} from './associative'
+import {values, map as mapAsc, keysAndValues, keys} from './associative'
 import {
     filter as filterColl, 
     remove as removeColl,
@@ -317,7 +317,32 @@ export function forEach<A>(f) {
 
         } else {
 
-            throw 'illegal argument - must be array or object'
+            throw 'illegal argument - in \'forEach\', must be array'
+        }
+    }
+}
+
+
+
+export function reduce<A, B>(f: (b: B, a: A, i: number) => B, init: B): (as: Array<A>) => B
+export function reduce<A, B>(f: (b: B, a: A) => B, init: B): (as: Array<A>) => B
+export function reduce<T, B>(f, init) {
+
+    return (ts: any): B => {
+
+        if (isArray(ts)) {
+
+            let acc = init;
+            let i = 0;
+            for (let a of ts) {
+                acc = f(acc, a, i)
+                i++
+            }
+            return acc
+
+        } else {
+
+            throw 'illegal argument - in \'reduce\', must be array'
         }
     }
 }

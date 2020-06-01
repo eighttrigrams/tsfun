@@ -1,4 +1,4 @@
-import {reduce} from '../../../src/associative';
+import {reduce} from '../../../src/associative'
 
 
 /**
@@ -11,7 +11,7 @@ describe('reduce', () => {
 
             reduce((b: number, a: number) => b + a, 0)([1, 5, 6]))
 
-            .toBe(12));
+            .toBe(12))
 
 
     it('object', () =>
@@ -19,5 +19,5 @@ describe('reduce', () => {
 
             reduce((acc: string, b: string, k: string) => acc + b + k, '.')({a: '3', b: '7', c: '5'}))
 
-            .toBe('.3a7b5c'));
-});
+            .toBe('.3a7b5c'))
+})

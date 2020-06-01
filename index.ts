@@ -158,7 +158,8 @@ export {
     drop,
     append,
     prepend,
-    forEach
+    forEach,
+    reduce,
 } from './src/array'
 
 
