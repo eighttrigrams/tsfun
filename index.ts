@@ -157,7 +157,8 @@ export {
     dropRight,
     drop,
     append,
-    prepend
+    prepend,
+    forEach
 } from './src/array'
 
 

@@ -18,8 +18,8 @@ import {
     dropRightWhile as listDropRightWhile, zip,
 } from './list'
 import {identity, uncurry2} from './core'
-import {Associative, List, Mapping, Pair, Predicate} from './type'
-import {values, map as mapAsc} from './associative'
+import {Associative, List, Map, Mapping, Pair, Predicate} from './type'
+import {values, map as mapAsc, keysAndValues} from './associative'
 import {
     filter as filterColl, 
     remove as removeColl,
@@ -296,5 +296,28 @@ export function prepend<A>(...as2: Array<A>) {
             return as2.concat(as as any) as Array<A>
 
         } else throw 'illegal argument - in \'prepend\''
+    }
+}
+
+
+export function forEach<A>(f: (_: A, i: number) => void): (as: Array<A>) => Array<A>
+export function forEach<A>(f: (_: A) => void): (as: Array<A>) => Array<A>
+export function forEach<A>(f) {
+
+    return (as: any) => {
+
+        if (isArray(as)) {
+
+            let i = 0;
+            for (let item of as) {
+                (f as any)(item, i)
+                i++
+            }
+            return as as Array<A>
+
+        } else {
+
+            throw 'illegal argument - must be array or object'
+        }
     }
 }

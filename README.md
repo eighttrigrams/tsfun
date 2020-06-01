@@ -121,6 +121,7 @@ import {equal} from 'tsfun';
 * [remove](test/array/remove.spec.ts) 
 * [separate](test/array/separate.spec.ts) 
 * [map](test/array/map.spec.ts) 
+* [forEach](test/array/for_each.spec.ts)
 * [flatten](test/array/flatten.spec.ts)
 * [flatMap](test/array/flat_map.spec.ts)
 * [zipWith](test/array/zip_with.spec.ts)

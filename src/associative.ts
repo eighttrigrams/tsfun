@@ -207,10 +207,7 @@ export function forEach<A>(f: (_: A, i?: number|string) => void) {
 }
 
 
-export function reduce<A, B>(f: (b: B, a: A, i?: number|string) => B, init: B): {
-    (as: Array<A>): B
-    (os: Map<A>): B
-}
+export function reduce<A, B>(f: (b: B, a: A, i?: number|string) => B, init: B): (as: Associative<A>) => B
 export function reduce<T, B>(f: (b: B, t: T, i?: number|string) => B, init: B) {
 
     return (ts: any): B => {
