@@ -1,8 +1,10 @@
-import {reduce} from '../../src/associative';
+import {reduce} from '../../../src/associative';
 
 
+/**
+ * tsfun/associative | reduce
+ */
 describe('reduce', () => {
-
 
     it('array', () =>
         expect(

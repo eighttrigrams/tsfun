@@ -6,9 +6,7 @@ export {
 
 
 export {
-    keysAndValues,
-    reduce,
-    forEach
+    keysAndValues
 } from './src/associative'
 
 

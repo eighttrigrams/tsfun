@@ -203,8 +203,6 @@ import {equal} from 'tsfun';
 
 ###### Array & Map
  
-* [forEach](test/associative/for_each.spec.ts)
-* [reduce](test/associative/reduce.spec.ts)
 * [keysAndValues](test/associative/keys_and_values.spec.ts)
 
 ### Object
@@ -269,6 +267,8 @@ import {lookup} from 'tsfun/associative';
 * [map](test/associative/associative/map.spec.ts) 
 * [keys](test/associative/associative/keys.spec.ts)
 * [values](test/associative/associative/values.spec.ts)
+* [forEach](test/associative/associative/for_each.spec.ts)
+* [reduce](test/associative/associative/reduce.spec.ts)
 
 ### Struct
 

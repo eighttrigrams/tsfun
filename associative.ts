@@ -6,5 +6,7 @@ export {
     get,
     map,
     keys,
-    values
+    values,
+    reduce,
+    forEach
 } from './src/associative';

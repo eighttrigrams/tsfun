@@ -1,6 +1,9 @@
-import {forEach} from '../../src/associative';
+import {forEach} from '../../../src/associative';
 
 
+/**
+ * tsfun/associative | forEach
+ */
 describe('forEach', () => {
 
     it('forEach', () => {
