@@ -1,4 +1,4 @@
-import {Map} from './type';
+import {Map, Path} from './type';
 import {val} from './composition';
 import {isArray, isFunction, isObject, isString} from './predicate';
 import {reverseUncurry2} from './core';
@@ -44,7 +44,7 @@ export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function
 }
 
 
-export function get<T>(path: string|Array<string|number>, alternative?: any) {
+export function get<T>(path: Path, alternative?: any) {
 
     return (ds: Object) => {
 
@@ -60,19 +60,19 @@ export const lookup = <T>(ds: Object, alternative?: T) => (path: string|Array<st
 }
 
 
-export function update(path_: string|Array<string|number>, update_fun?: (val: any) => any) {
+export function update(path_: Path, update_fun?: (val: any) => any) {
 
     return (struct: Object): any => _update(path_, struct, update_fun)
 }
 
 
-export const assoc = (path: string|Array<string|number>, v: any) => update(path, val(v));
+export const assoc = (path: Path, v: any) => update(path, val(v));
 
 
-export const dissoc = (path: string|Array<string|number>) => update(path);
+export const dissoc = (path: Path) => update(path);
 
 
-function _update(path_: string|Array<string|number>,
+function _update(path_: Path,
                  struct: Object,
                  update_fun?: (val: any) => any) {
 
@@ -97,7 +97,7 @@ function _update(path_: string|Array<string|number>,
 }
 
 
-export function to<T = any>(path: string|Array<string|number>) {
+export function to<T = any>(path: Path) {
 
     return (s: any) => (reverseUncurry2(getElForPathIn))(path)(s) as T;
 }
@@ -117,7 +117,7 @@ const isObject_ = (o: any) => o instanceof Object;
 
 
 // library internal
-export function getElForPathIn(object: any, path_: string|Array<string|number>): any {
+export function getElForPathIn(object: any, path_: Path): any {
 
     if (!path_ || path_.length < 1) return undefined;
 
@@ -146,7 +146,7 @@ export function _getElForPathIn(object: any, path: Array<string|number>): any {
 
 export function path(path: string): Array<number|string>;
 export function path(path: Array<number|string>): string;
-export function path(path: string|Array<number|string>): string|Array<number|string> {
+export function path(path: Path): Path {
 
     if (isString(path)) {
 

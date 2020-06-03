@@ -32,7 +32,8 @@ export type {
     Fallible,
     Mapping,
     Filter,
-    Effect
+    Effect,
+    Path
 } from './src/type'
 
 

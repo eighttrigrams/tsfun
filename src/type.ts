@@ -1,6 +1,9 @@
 // ------------ @author Daniel de Oliveira -----------------
 
 
+export type Path = string|Array<string|number>;
+
+
 export type Effect<T = any> = (_: T) => void
 
 
