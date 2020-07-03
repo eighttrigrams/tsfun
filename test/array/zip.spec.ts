@@ -1,5 +1,5 @@
-import {zip} from "../../src/array";
-import {collect, flow} from '../../src/composition';
+import {zip} from "../../src/array"
+import {collect, flow} from '../../src/composition'
 
 /**
  * tsfun | zip
@@ -12,7 +12,7 @@ describe('zip', () => {
             zip([1,2,4])([3,4,5])
 
         ).toEqual([[1,3],[2,4],[4,5]])
-    );
+    )
 
 
     it('shorter', () =>
@@ -21,7 +21,7 @@ describe('zip', () => {
             zip([1,2])([3,4,5])
 
         ).toEqual([[1,3],[2,4]])
-    );
+    )
 
 
     it('one argument list', () =>
@@ -30,7 +30,7 @@ describe('zip', () => {
             zip([1,2], [3,4])
 
         ).toEqual([[1,3],[2,4]])
-    );
+    )
 
 
     it('variable argument lists', () =>
@@ -39,7 +39,7 @@ describe('zip', () => {
             zip(...[[1,2], [3,4]])
 
         ).toEqual([[1,3],[2,4]])
-    );
+    )
 
 
     // TODO move to composition
@@ -52,8 +52,8 @@ describe('zip', () => {
     }
     it('spread - typing', () => {
 
-        const result: Array<Array<number>> = flow([[1,2],[3,4]], spread(zip));
-    });
+        const result: Array<Array<number>> = flow([[1,2],[3,4]], spread(zip))
+    })
 
 
     it('composition 1', () =>
@@ -62,7 +62,7 @@ describe('zip', () => {
             flow([[1,2],[3,4]], spread(zip))
 
         ).toEqual([[1,3],[2,4]])
-    );
+    )
 
     it('composition 2', () =>
         expect(
@@ -70,5 +70,5 @@ describe('zip', () => {
             flow([3,4], zip([1,2]))
 
         ).toEqual([[1,3],[2,4]])
-    );
-});
+    )
+})
