@@ -55,10 +55,19 @@ describe('zip', () => {
         const result: Array<Array<number>> = flow([[1,2],[3,4]], spread(zip));
     });
 
-    it('composition', () =>
+
+    it('composition 1', () =>
         expect(
 
             flow([[1,2],[3,4]], spread(zip))
+
+        ).toEqual([[1,3],[2,4]])
+    );
+
+    it('composition 2', () =>
+        expect(
+
+            flow([3,4], zip([1,2]))
 
         ).toEqual([[1,3],[2,4]])
     );
