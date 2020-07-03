@@ -22,9 +22,9 @@ import {identity, uncurry2} from './core'
 import {Associative, List, Map, Mapping, Pair, Predicate} from './type'
 import {values, map as mapAsc, keysAndValues, keys} from './associative'
 import {
-    filter as filterColl, 
+    filter as filterColl,
     remove as removeColl,
-    separate as separateColl
+    separate as separateColl, size
 } from './collection'
 import {pair} from './tuple'
 import {to} from './struct';
@@ -359,12 +359,12 @@ export function zip<A,B,C>(as: Array<A>, bs: Array<B>, cs: Array<C>): Array<[A,B
 export function zip<A,B,C,D>(as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Array<D>): Array<[A,B,C,D]>;
 export function zip<A,B,C,D,E>(as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Array<D>, es: Array<E>): Array<[A,B,C,D,E]>;
 export function zip(...fs: Array<Array<any>>): Array<Array<any>>;
-export function zip<A>(...args: any): any {
+export function zip<A>(...args): any {
 
-    const $ = (ls: Array<Array<any>>) => {
+    const $ = ls => {
 
         const zipped: any = [];
-        for (let i = 0; i < Math.min(...ls.map(to('length'))); i++) {
+        for (let i = 0; i < Math.min(...ls.map(size)); i++) {
             const took: any = [];
             for (let j = 0; j < ls.length; j++) took.push(ls[j][i]);
             zipped.push(took)
