@@ -358,7 +358,7 @@ export function zip<A,B>(as: Array<A>, bs: Array<B>): Array<[A,B]>;
 export function zip<A,B,C>(as: Array<A>, bs: Array<B>, cs: Array<C>): Array<[A,B,C]>;
 export function zip<A,B,C,D>(as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Array<D>): Array<[A,B,C,D]>;
 export function zip<A,B,C,D,E>(as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Array<D>, es: Array<E>): Array<[A,B,C,D,E]>;
-export function zip<A,B,C,D,E,F>(as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Array<D>, es: Array<E>, ...fs: Array<Array<F>>): Array<Array<any>>;
+export function zip(...fs: Array<Array<any>>): Array<Array<any>>;
 export function zip<A>(...args: any): any {
 
     const $ = (ls: Array<Array<any>>) => {

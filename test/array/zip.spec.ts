@@ -30,4 +30,13 @@ describe('zip', () => {
 
         ).toEqual([[1,3],[2,4]])
     );
+
+
+    it('variable argument lists', () =>
+        expect(
+
+            zip(...[[1,2], [3,4]])
+
+        ).toEqual([[1,3],[2,4]])
+    );
 });
