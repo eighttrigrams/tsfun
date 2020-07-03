@@ -1,5 +1,5 @@
 import {zip} from "../../src/array"
-import {collect, flow} from '../../src/composition'
+import {flow} from '../../src/composition'
 
 /**
  * tsfun | zip
@@ -9,7 +9,7 @@ describe('zip', () => {
     it('base', () =>
         expect(
 
-            zip([1,2,4])([3,4,5])
+            zip([1,2,4], [3,4,5])
 
         ).toEqual([[1,3],[2,4],[4,5]])
     )
@@ -18,13 +18,13 @@ describe('zip', () => {
     it('shorter', () =>
         expect(
 
-            zip([1,2])([3,4,5])
+            zip([1,2], [3,4,5])
 
         ).toEqual([[1,3],[2,4]])
     )
 
 
-    it('one argument list', () =>
+    it('two args', () =>
         expect(
 
             zip([1,2], [3,4])
@@ -33,42 +33,90 @@ describe('zip', () => {
     )
 
 
-    it('variable argument lists', () =>
+    it('one argument list', () =>
         expect(
 
-            zip(...[[1,2], [3,4]])
+            zip([[1,2], [3,4]])
 
         ).toEqual([[1,3],[2,4]])
     )
 
 
-    // TODO move to composition
-    function spread<A,B>(f: (_: Array<Array<A>>) => B) {
+    it('two argument lists', () =>
+        expect(
 
-        return (as: Array<Array<A>>): B => {
+            zip<number>((x,y) => x + y)([[1,2], [3,4]])
 
-            return (f as any)(...as)
-        }
-    }
-    it('spread - typing', () => {
+        ).toEqual([4,6])
+    )
 
-        const result: Array<Array<number>> = flow([[1,2],[3,4]], spread(zip))
+
+    it('empty argument lists', () =>
+        expect(
+
+            zip<number>()([[1,2], [3,4]])
+
+        ).toEqual([[1,3],[2,4]])
+    )
+
+
+    it('typing', () => {
+
+        const result1: Array<Array<number>> = zip([[1,2],[3,4]])
+        const result2: Array<Array<number>> = flow([[1,2],[3,4]], zip())
+        const result3: Array<number> = flow([[1,2],[3,4]], zip((x,y) => x + y))
     })
 
 
     it('composition 1', () =>
         expect(
 
-            flow([[1,2],[3,4]], spread(zip))
+            flow([[1,2],[3,4]], zip)
 
         ).toEqual([[1,3],[2,4]])
     )
+
 
     it('composition 2', () =>
         expect(
 
-            flow([3,4], zip([1,2]))
+            flow([[3,4], [5,7]], zip((x,y) => x + y))
 
-        ).toEqual([[1,3],[2,4]])
+        ).toEqual([8,11])
     )
+
+
+    it('with - multiple argument lists', () => expect(
+
+        zip((x: number, y: number) => x + y, [[1, 2], [3, 4, 5]])
+
+    ).toEqual([4, 6]))
+
+
+    it('with - single argument list - 2', () => expect(
+
+        zip((x: number, y: number) => x + y, [1, 2], [3, 4, 5])
+
+    ).toEqual([4, 6]))
+
+
+    it('with - 3 arguments', () => expect(
+
+        zip((x: number, y: number, z: number) => x + y + z, [1, 2], [3, 4, 5], [1, 1, 1])
+
+    ).toEqual([5, 7]))
+
+
+    it('with - 4 arguments or more', () => expect(
+
+        zip((x: number, y: number, z: number, a: number) => x + y + z + a, [1, 2], [3, 4, 5], [1, 1, 1], [1, 1, 1])
+
+    ).toEqual([6, 8]))
+
+
+    // it('with - 5 arguments', () => expect(
+    //
+    //     zip((x: number, y: number, z: number, a: number, b: number) => x + y + z + a + b, [1, 2], [3, 4, 5], [1, 1, 1], [1, 1, 1], [1])
+    //
+    // ).toEqual([7]))
 })

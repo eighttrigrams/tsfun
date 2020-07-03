@@ -69,23 +69,6 @@ export function range(a: number, b?: number, stepSize: number = 1): number[] {
 }
 
 
-
-export function zipWith<A,B,C> (f: (a: A, b: B) => C, as: Array<A>): (as2: Array<B>) => Array<C>
-export function zipWith<A,B,C> (f: (a: A, b: B) => C, as: A[], bs: B[]): Array<C>
-export function zipWith<A,B,C,D>(f: (a: A, b: B, c: C) => D, as: A[], bs: B[], cs: C[]): Array<D>
-export function zipWith<A>(f: (...a) => A, ...as: any[][]): A[]
-export function zipWith<A,B,C> (f, ...aas): any {
-
-    const inner = aas => reduce1(uncurry2(listZip))(aas)
-        .map(flatten(aas.length-1))
-        .map(_ => f.apply(null, _))
-
-    return aas.length === 1
-        ? bs => inner(pair(aas[0],bs))
-        : inner(aas)
-}
-
-
 export function reduce1<T>(f: (b: T, t: T, i?: number) => T) {
 
     return (ts: T[]): T => {
@@ -353,26 +336,56 @@ export function reduce<T, B>(f, init) {
 /**
  * tsfun | zip
  */
-export function zip<A>(as: Array<A>): <B>(_: Array<B>) => Array<[A,B]>;
+//export function zip<A>(as: Array<A>): <B>(_: Array<B>) => Array<[A,B]>;
+
+export function zip<A>(f: (...as: Array<A>) => A): (aas: Array<Array<A>>) => Array<A>;
+export function zip<A>(): (aas: Array<Array<A>>) => Array<Array<A>>;
+export function zip<A>(aas: Array<Array<A>>): Array<Array<A>>;
+export function zip<A>(f: (...as: Array<A>) => A, aas: Array<Array<A>>): Array<A>;
 export function zip<A,B>(as: Array<A>, bs: Array<B>): Array<[A,B]>;
+export function zip<A,B,C>(f: (a: A, b: B) => C, as: Array<A>, bs: Array<B>): Array<C>;
 export function zip<A,B,C>(as: Array<A>, bs: Array<B>, cs: Array<C>): Array<[A,B,C]>;
+export function zip<A,B,C,D>(f: (a: A, b: B, c: C) => D, as: Array<A>, bs: Array<B>, cs: Array<C>): Array<D>;
 export function zip<A,B,C,D>(as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Array<D>): Array<[A,B,C,D]>;
+export function zip<A,B,C,D,E>(f: (a: A, b: B, c: C, d: D) => E, as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Array<D>): Array<E>;
 export function zip<A,B,C,D,E>(as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Array<D>, es: Array<E>): Array<[A,B,C,D,E]>;
-export function zip(...fs: Array<Array<any>>): Array<Array<any>>;
+export function zip<A>(...as: Array<Array<A>>): Array<Array<A>>;
 export function zip<A>(...args): any {
 
-    const $ = ls => {
+    function $$(f, aas): any {
+
+        return reduce1(uncurry2(listZip))(aas)
+            .map(flatten(aas.length-1))
+            .map(_ => f.apply(null, _))
+    }
+
+    const $ = aas => {
 
         const zipped: any = [];
-        for (let i = 0; i < Math.min(...ls.map(size)); i++) {
+        for (let i = 0; i < Math.min(...aas.map(size)); i++) {
             const took: any = [];
-            for (let j = 0; j < ls.length; j++) took.push(ls[j][i]);
+            for (let j = 0; j < aas.length; j++) took.push(aas[j][i]);
             zipped.push(took)
         }
         return zipped;
     }
 
-    return (args.length === 1)
-        ? (other: any) => $([args[0],other])
-        : $(args);
+    return args.length === 0
+        ? aas => $(aas)
+        : args.length > 1 && isFunction(args[0])
+            ? args.length === 2
+                ? $$(args[0], drop(1)(args)[0])
+                : $$(args[0], drop(1)(args))
+            : args.length === 1
+                ? isFunction(args[0])
+                    ? aas => $$(args[0], aas)
+                    : $(args[0])
+                : $(args)
+}
+
+
+export function zipWith<A>( as: Array<A>): <B>(bs: Array<B>) => Array<[A,B]>
+export function zipWith(as): any {
+
+    return bs => zip([bs, as])
 }

@@ -142,7 +142,6 @@ export {
     map,
     flatMap,
     range,
-    zipWith,
     dense,
     filter,
     remove,
@@ -161,7 +160,8 @@ export {
     prepend,
     forEach,
     reduce,
-    zip
+    zip,
+    zipWith
 } from './src/array'
 
 
