@@ -1,5 +1,5 @@
 import {zip} from "../../src/array"
-import {flow} from '../../src/composition'
+import {collect, flow} from '../../src/composition'
 
 /**
  * tsfun | zip
@@ -65,7 +65,34 @@ describe('zip', () => {
         const result1: Array<Array<number>> = zip([[1,2],[3,4]])
         const result2: Array<Array<number>> = flow([[1,2],[3,4]], zip())
         const result3: Array<number> = flow([[1,2],[3,4]], zip(([x,y]) => x + y))
+
+        const result5: Array<number> = flow([[1,2],[3,4]], zip(_two((x: number, y: number) => x + y)))
     })
+
+
+    // TODO useful?
+    function _two<X,Y,Z>(f: (x: X,y: Y) => Z) {
+
+        return ([x,y]) => f(x,y)
+    }
+
+
+    it('composition - _two', () =>
+        expect(
+
+            flow([[1,2],[3,4]], zip(_two((x: number, y: number) => x + y)))
+
+        ).toEqual([4,6])
+    )
+
+
+    it('composition 1a', () =>
+        expect(
+
+            flow([[1,2],[3,4]], zip())
+
+        ).toEqual([[1,3],[2,4]])
+    )
 
 
     it('composition 1', () =>
