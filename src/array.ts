@@ -338,10 +338,10 @@ export function reduce<T, B>(f, init) {
  */
 //export function zip<A>(as: Array<A>): <B>(_: Array<B>) => Array<[A,B]>;
 
-export function zip<A>(f: (...as: Array<A>) => A): (aas: Array<Array<A>>) => Array<A>;
+export function zip<A>(f: (as: Array<A>) => A): (aas: Array<Array<A>>) => Array<A>;
 export function zip<A>(): (aas: Array<Array<A>>) => Array<Array<A>>;
 export function zip<A>(aas: Array<Array<A>>): Array<Array<A>>;
-export function zip<A>(f: (...as: Array<A>) => A, aas: Array<Array<A>>): Array<A>;
+export function zip<A>(f: (as: Array<A>) => A, aas: Array<Array<A>>): Array<A>;
 export function zip<A,B>(as: Array<A>, bs: Array<B>): Array<[A,B]>;
 export function zip<A,B,C>(f: (a: A, b: B) => C, as: Array<A>, bs: Array<B>): Array<C>;
 export function zip<A,B,C>(as: Array<A>, bs: Array<B>, cs: Array<C>): Array<[A,B,C]>;
@@ -352,11 +352,11 @@ export function zip<A,B,C,D,E>(as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Arr
 export function zip<A>(...as: Array<Array<A>>): Array<Array<A>>;
 export function zip<A>(...args): any {
 
-    function $$(f, aas): any {
+    function $$(f, aas, spread = true): any {
 
         return reduce1(uncurry2(listZip))(aas)
             .map(flatten(aas.length-1))
-            .map(_ => f.apply(null, _))
+            .map(_ => spread ? f.apply(null, _) : f(_))
     }
 
     const $ = aas => {
@@ -374,11 +374,11 @@ export function zip<A>(...args): any {
         ? aas => $(aas)
         : args.length > 1 && isFunction(args[0])
             ? args.length === 2
-                ? $$(args[0], drop(1)(args)[0])
+                ? $$(args[0], drop(1)(args)[0], false)
                 : $$(args[0], drop(1)(args))
             : args.length === 1
                 ? isFunction(args[0])
-                    ? aas => $$(args[0], aas)
+                    ? aas => $$(args[0], aas, false)
                     : $(args[0])
                 : $(args)
 }

@@ -42,10 +42,10 @@ describe('zip', () => {
     )
 
 
-    it('two argument lists', () =>
+    it('zipper - two argument lists', () =>
         expect(
 
-            zip<number>((x,y) => x + y)([[1,2], [3,4]])
+            zip<number>(([x,y]) => x + y)([[1,2], [3,4]])
 
         ).toEqual([4,6])
     )
@@ -64,7 +64,7 @@ describe('zip', () => {
 
         const result1: Array<Array<number>> = zip([[1,2],[3,4]])
         const result2: Array<Array<number>> = flow([[1,2],[3,4]], zip())
-        const result3: Array<number> = flow([[1,2],[3,4]], zip((x,y) => x + y))
+        const result3: Array<number> = flow([[1,2],[3,4]], zip(([x,y]) => x + y))
     })
 
 
@@ -80,20 +80,20 @@ describe('zip', () => {
     it('composition 2', () =>
         expect(
 
-            flow([[3,4], [5,7]], zip((x,y) => x + y))
+            flow([[3,4], [5,7]], zip(([x,y]) => x + y))
 
         ).toEqual([8,11])
     )
 
 
-    it('with - multiple argument lists', () => expect(
+    it('zipper - single collection', () => expect(
 
-        zip((x: number, y: number) => x + y, [[1, 2], [3, 4, 5]])
+        zip(([x, y]) => x + y, [[1, 2], [3, 4, 5]])
 
     ).toEqual([4, 6]))
 
 
-    it('with - single argument list - 2', () => expect(
+    it('zipper - multiple collections', () => expect(
 
         zip((x: number, y: number) => x + y, [1, 2], [3, 4, 5])
 
