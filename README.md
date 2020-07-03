@@ -153,7 +153,6 @@ import {equal} from 'tsfun';
 * [rest](test/list/rest.spec.ts)
 * [last](test/list/last.spec.ts)
 * [reverse](test/list/reverse.spec.ts)
-* [zip](test/list/zip.spec.ts)
 * [sort](test/list/sort.spec.ts)
 * [takeNth](test/list/take_nth.spec.ts)
 
@@ -322,7 +321,8 @@ import {take as listTake} from 'tsfun/list';
 * [takeRightWhile](test/list/list/take_right_while.spec.ts)
 * [dropWhile](test/list/list/drop_while.spec.ts)
 * [append](test/list/list/append.spec.ts) 
-* [prepend](test/list/list/prepend.spec.ts) 
+* [prepend](test/list/list/prepend.spec.ts)
+* [zip](test/list/list/zip.spec.ts) 
 
 ### string
 

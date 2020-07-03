@@ -1,4 +1,4 @@
-import {zip} from "../../src/list";
+import {zip} from "../../../src/list";
 
 
 describe('zip', () => {

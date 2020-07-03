@@ -8,5 +8,6 @@ export {
     dropRightWhile,
     drop,
     prepend,
-    append
+    append,
+    zip
 } from './src/list'

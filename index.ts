@@ -171,7 +171,6 @@ export {
     last,
     takeUntil, // TODO document in readme
     takeNth,
-    zip,
     sort,
     FIRST
 } from './src/list'
