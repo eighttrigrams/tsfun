@@ -137,6 +137,7 @@ import {equal} from 'tsfun';
 * [dropWhile](test/array/drop_while.spec.ts)
 * [append](test/array/append.spec.ts) 
 * [prepend](test/array/prepend.spec.ts) 
+* [zip](test/array/zip.spec.ts)
 
 ### string
 

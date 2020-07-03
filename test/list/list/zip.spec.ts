@@ -1,6 +1,9 @@
 import {zip} from "../../../src/list";
 
 
+/**
+ * tsfun/list  | zip
+ */
 describe('zip', () => {
 
     it('base case', () => expect(

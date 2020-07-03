@@ -15,7 +15,8 @@ import {
     dropWhile as listDropWhile,
     takeWhile as listTakeWhile,
     takeRightWhile as listTakeRightWhile,
-    dropRightWhile as listDropRightWhile, zip,
+    dropRightWhile as listDropRightWhile,
+    zip as listZip,
 } from './list'
 import {identity, uncurry2} from './core'
 import {Associative, List, Map, Mapping, Pair, Predicate} from './type'
@@ -26,6 +27,7 @@ import {
     separate as separateColl
 } from './collection'
 import {pair} from './tuple'
+import {to} from './struct';
 
 
 export const flatMap = <A, B>(f: (_: A) => Array<B>) =>
@@ -74,7 +76,7 @@ export function zipWith<A,B,C,D>(f: (a: A, b: B, c: C) => D, as: A[], bs: B[], c
 export function zipWith<A>(f: (...a) => A, ...as: any[][]): A[]
 export function zipWith<A,B,C> (f, ...aas): any {
 
-    const inner = aas => reduce1(uncurry2(zip))(aas)
+    const inner = aas => reduce1(uncurry2(listZip))(aas)
         .map(flatten(aas.length-1))
         .map(_ => f.apply(null, _))
 
@@ -345,4 +347,32 @@ export function reduce<T, B>(f, init) {
             throw 'illegal argument - in \'reduce\', must be array'
         }
     }
+}
+
+
+/**
+ * tsfun | zip
+ */
+export function zip<A>(as: Array<A>): <B>(_: Array<B>) => Array<[A,B]>;
+export function zip<A,B>(as: Array<A>, bs: Array<B>): Array<[A,B]>;
+export function zip<A,B,C>(as: Array<A>, bs: Array<B>, cs: Array<C>): Array<[A,B,C]>;
+export function zip<A,B,C,D>(as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Array<D>): Array<[A,B,C,D]>;
+export function zip<A,B,C,D,E>(as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Array<D>, es: Array<E>): Array<[A,B,C,D,E]>;
+export function zip<A,B,C,D,E,F>(as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Array<D>, es: Array<E>, ...fs: Array<Array<F>>): Array<Array<any>>;
+export function zip<A>(...args: any): any {
+
+    const $ = (ls: Array<Array<any>>) => {
+
+        const zipped: any = [];
+        for (let i = 0; i < Math.min(...ls.map(to('length'))); i++) {
+            const took: any = [];
+            for (let j = 0; j < ls.length; j++) took.push(ls[j][i]);
+            zipped.push(took)
+        }
+        return zipped;
+    }
+
+    return (args.length === 1)
+        ? (other: any) => $([args[0],other])
+        : $(args);
 }
