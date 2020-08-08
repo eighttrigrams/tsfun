@@ -66,21 +66,23 @@ describe('zip', () => {
         const result2: Array<Array<number>> = flow([[1,2],[3,4]], zip())
         const result3: Array<number> = flow([[1,2],[3,4]], zip(([x,y]) => x + y))
 
-        const result5: Array<number> = flow([[1,2],[3,4]], zip(_two((x: number, y: number) => x + y)))
+        const result5: Array<number> = flow([[1,2],[3,4]], zip(apply((x: number, y: number) => x + y)))
     })
 
 
-    // TODO useful?
-    function _two<X,Y,Z>(f: (x: X,y: Y) => Z) {
+    // TODO maybe make public, make typed version for various numbers of parameters
+    function apply(f: any) {
 
-        return ([x,y]) => f(x,y)
+        return (args: any[]) => f.apply(undefined, args)
     }
 
 
-    it('composition - _two', () =>
+    it('composition - apply', () =>
         expect(
 
-            flow([[1,2],[3,4]], zip(_two((x: number, y: number) => x + y)))
+            flow(
+                [[1,2],[3,4]],
+                zip(apply((x: number, y: number) => x + y)))
 
         ).toEqual([4,6])
     )
