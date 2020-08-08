@@ -205,7 +205,6 @@ import {equal} from 'tsfun';
 
 ###### Object & interface
 
-* [assoc](test/object/assoc.spec.ts)
 * [update](test/object/update.spec.ts)
 * [dissoc](test/object/dissoc.spec.ts)
 
@@ -263,7 +262,6 @@ import {lookup} from 'tsfun/associative';
 
 * [lookup](test/associative/associative/lookup.spec.ts)
 * [get](test/associative/associative/get.spec.ts)
-* [assoc](test/associative/associative/assoc.spec.ts)
 * [update](test/associative/associative/update.spec.ts)
 * [dissoc](test/associative/associative/dissoc.spec.ts)
 * [map](test/associative/associative/map.spec.ts) 
@@ -283,9 +281,8 @@ import {assoc as assocOn} from 'tsfun/struct';
 * [path](test/struct/struct/path.spec.ts)
 * [lookup](test/struct/struct/lookup.spec.ts)
 * [get](test/struct/struct/get.spec.ts)
-* [assoc](test/struct/struct/assoc.spec.ts)
-* [dissoc](test/struct/struct/dissoc.spec.ts)
 * [update](test/struct/struct/update.spec.ts)
+* [dissoc](test/struct/struct/dissoc.spec.ts)
 * [clone](test/struct/struct/clone.spec.ts)
 * [jsonClone](test/struct/struct/json_clone.spec.ts)
 

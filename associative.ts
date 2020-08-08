@@ -1,6 +1,5 @@
 export {
     lookup,
-    assoc,
     update,
     dissoc,
     get,

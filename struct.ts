@@ -3,7 +3,6 @@ export {
     lookup,
     get,
     clone,
-    assoc,
     dissoc,
     update,
     getElForPathIn,

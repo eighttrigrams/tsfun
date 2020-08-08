@@ -60,21 +60,19 @@ export const lookup = <T>(ds: Object, alternative?: T) => (path: string|Array<st
 }
 
 
-export function update(path_: Path, update_fun?: (val: any) => any) {
+export function update(path_: Path, update_fun: ((val: any) => any)|any) {
 
-    return (struct: Object): any => _update(path_, struct, update_fun)
+    return (struct: Object): any => _update(path_, struct, update_fun, true)
 }
 
 
-export const assoc = (path: Path, v: any) => update(path, val(v));
-
-
-export const dissoc = (path: Path) => update(path);
+export const dissoc = (path: Path) => (struct: Object) => _update(path, struct, undefined, false);
 
 
 function _update(path_: Path,
                  struct: Object,
-                 update_fun?: (val: any) => any) {
+                 update_fun: ((val: any) => any)|any,
+                 update = true) {
 
     const pathSegments = (isString(path_) ? path(path_ as any) : path_) as Array<string|number>;
 
@@ -82,14 +80,14 @@ function _update(path_: Path,
     const copied = copy(struct) as Map;
 
     if (pathSegments.length === 1) {
-        if (update_fun) {
-            const updateFunResult =  update_fun(copied[pathSegment]);
+        if (update) {
+            const updateFunResult =  isFunction(update_fun) ? update_fun(copied[pathSegment]) : update_fun;
             copied[pathSegment] = isFunction(updateFunResult) ? updateFunResult() : updateFunResult;
         }
         else delete copied[pathSegment];
     } else {
         pathSegments.shift();
-        if (update_fun || copied[pathSegment] !== undefined) {
+        if (update || copied[pathSegment] !== undefined) {
             copied[pathSegment] = _update(pathSegments, copied[pathSegment], update_fun);
         }
     }
