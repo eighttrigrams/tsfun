@@ -1,4 +1,4 @@
-import {zip} from "../../src/array"
+import {map, zip} from "../../src/array"
 import {collect, flow} from '../../src/composition'
 
 /**
@@ -77,7 +77,7 @@ describe('zip', () => {
     }
 
 
-    it('composition - apply', () =>
+    it('composition - apply with zip', () =>
         expect(
 
             flow(
@@ -85,6 +85,17 @@ describe('zip', () => {
                 zip(apply((x: number, y: number) => x + y)))
 
         ).toEqual([4,6])
+    )
+
+
+    it('composition - apply with map', () =>
+        expect(
+
+            flow(
+                [[1,2],[3,4]],
+                map(apply((x: number, y: number) => x + y)))
+
+        ).toEqual([3,7])
     )
 
 
