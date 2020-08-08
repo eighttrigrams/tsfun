@@ -382,10 +382,3 @@ export function zip<A>(...args): any {
                     : $(args[0])
                 : $(args)
 }
-
-
-export function zipWith<A>( as: Array<A>): <B>(bs: Array<B>) => Array<[A,B]>
-export function zipWith(as): any {
-
-    return bs => zip([bs, as])
-}

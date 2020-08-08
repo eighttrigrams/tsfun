@@ -161,8 +161,7 @@ export {
     prepend,
     forEach,
     reduce,
-    zip,
-    zipWith
+    zip
 } from './src/array'
 
 
