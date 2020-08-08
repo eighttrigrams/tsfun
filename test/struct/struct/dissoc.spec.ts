@@ -1,11 +1,21 @@
 import {dissoc} from '../../../src/struct';
 
 /**
- * tsfun | struct/dissoc
+ * tsfun/struct | dissoc
  */
 describe('struct/dissoc', () => {
 
-    it('dissoc - first layer', () => {
+    it('simple case', () => {
+
+        const objectStruct = { a: { b: 'c' }};
+        const resultStruct = dissoc('a.b')(objectStruct);
+
+        expect(resultStruct).not.toBe(objectStruct);
+        expect(resultStruct['a']['b']).toBeUndefined();
+    });
+
+
+    it('first layer', () => {
 
         const embeddedStruct = { d: 'd_val' };
 
@@ -19,7 +29,7 @@ describe('struct/dissoc', () => {
     });
 
 
-    it('dissoc - first layer - by array', () => {
+    it('first layer - by array', () => {
 
         const embeddedStruct = { d: 'd_val' };
 

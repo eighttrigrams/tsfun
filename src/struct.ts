@@ -88,7 +88,7 @@ function _update(path_: Path,
     } else {
         pathSegments.shift();
         if (update || copied[pathSegment] !== undefined) {
-            copied[pathSegment] = _update(pathSegments, copied[pathSegment], update_fun);
+            copied[pathSegment] = _update(pathSegments, copied[pathSegment], update_fun, update);
         }
     }
     return copied;
