@@ -1,5 +1,5 @@
-import {map, zip} from "../../src/array"
-import {apply, collect, flow} from '../../src/composition'
+import {zip} from "../../src/array"
+import {apply, flow} from '../../src/composition'
 
 /**
  * tsfun | zip
@@ -143,4 +143,17 @@ describe('zip', () => {
     //     zip((x: number, y: number, z: number, a: number, b: number) => x + y + z + a + b, [1, 2], [3, 4, 5], [1, 1, 1], [1, 1, 1], [1])
     //
     // ).toEqual([7]))
+
+
+    it('unzip', () => {
+
+        expect(
+            zip(zip([[1, 3, 5], [2, 4, 6]]))
+        ).toEqual([[1, 3, 5], [2, 4, 6]])
+
+
+        expect(
+            zip(zip([[1, 3, 5, 18], [2, 4, 6]]))
+        ).toEqual([[1, 3, 5], [2, 4, 6]])
+    })
 })
