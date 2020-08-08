@@ -105,7 +105,8 @@ export {
     throws,
     collect,
     mcompose,
-    mmatch
+    mmatch,
+    apply
 } from './src/composition'
 
 

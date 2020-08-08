@@ -1,5 +1,5 @@
 import {map, zip} from "../../src/array"
-import {collect, flow} from '../../src/composition'
+import {apply, collect, flow} from '../../src/composition'
 
 /**
  * tsfun | zip
@@ -70,35 +70,6 @@ describe('zip', () => {
     })
 
 
-    // TODO maybe make public, make typed version for various numbers of parameters
-    function apply(f: any) {
-
-        return (args: any[]) => f.apply(undefined, args)
-    }
-
-
-    it('composition - apply with zip', () =>
-        expect(
-
-            flow(
-                [[1,2],[3,4]],
-                zip(apply((x: number, y: number) => x + y)))
-
-        ).toEqual([4,6])
-    )
-
-
-    it('composition - apply with map', () =>
-        expect(
-
-            flow(
-                [[1,2],[3,4]],
-                map(apply((x: number, y: number) => x + y)))
-
-        ).toEqual([3,7])
-    )
-
-
     it('composition 1a', () =>
         expect(
 
@@ -120,9 +91,22 @@ describe('zip', () => {
     it('composition 2', () =>
         expect(
 
-            flow([[3,4], [5,7]], zip(([x,y]) => x + y))
+            flow(
+                [[3,4], [5,7]],
+                zip(([x,y]) => x + y))
 
         ).toEqual([8,11])
+    )
+
+
+    it('composition 2 - with apply', () =>
+        expect(
+
+            flow(
+                [[1,2],[3,4]],
+                zip(apply((x: number, y: number) => x + y)))
+
+        ).toEqual([4,6])
     )
 
 

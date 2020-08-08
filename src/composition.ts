@@ -140,3 +140,16 @@ export function conds(...cs: Array<Pair>) {
 
 
 export const otherwise = val(true)
+
+
+export function apply<A,B,C>(f: (a: A, b: B) => C): (args: any) => C;
+export function apply<A,B,C,D>(f: (a: A, b: B, c: C) => D): (args: any) => D;
+export function apply<A,B,C,D,E>(f: (a: A, b: B, c: C, d: D) => E): (args: any) => E;
+export function apply<A,B,C,D,E,F>(f: (a: A, b: B, c: C, d: D, e: E) => F): (args: any) => F;
+export function apply<A,B,C,D,E,F,G>(f: (a: A, b: B, c: C, d: D, e: E, f: F) => G): (args: any) => G;
+export function apply<A,B,C,D,E,F,G,H>(f: (a: A, b: B, c: C, d: D, e: E, f: F, g: G) => H): (args: any) => G;
+export function apply<A,B,C,D,E,F,G,H,I>(f: (a: A, b: B, c: C, d: D, e: E, f: F, g: G, ...hs: any) => I): (args: any) => I;
+export function apply(f: any) {
+
+    return (args: any[]) => f.apply(undefined, args)
+}
