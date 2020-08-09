@@ -135,6 +135,7 @@ import {equal} from 'tsfun';
 * [takeWhile](test/array/take_while.spec.ts)
 * [takeRightWhile](test/array/take_right_while.spec.ts)
 * [dropWhile](test/array/drop_while.spec.ts)
+* [takeUntil](test/array/take_until.spec.ts)
 * [append](test/array/append.spec.ts) 
 * [prepend](test/array/prepend.spec.ts) 
 * [zip](test/array/zip.spec.ts)

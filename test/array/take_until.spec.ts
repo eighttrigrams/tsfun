@@ -1,4 +1,4 @@
-/*import {takeUntil} from '../../src/list';
+import {takeUntil} from '../../src/array';
 import {greaterThan} from '../../src/comparator';
 
 
@@ -38,4 +38,3 @@ describe('takeUntil', () => {
         ).toEqual([])
     );
 });
-*/

@@ -90,15 +90,6 @@ export function takeNth(n: number) {
 }
 
 
-// TODO remove
-// export const takeUntil = <A>(predicate: Predicate<A>) =>
-//     (as: Array<A>) =>
-//         (found => found ?
-//                 takeWhile(isNot(predicate))(as).concat([found])
-//                 : as
-//         )(as.find(predicate))
-
-
 // export function zip<A>(as: string): {
 //     <B>(bs: Array<B>): Array<Pair<string, B>>
 //     (bs: string): Array<string>

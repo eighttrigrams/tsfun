@@ -1,6 +1,6 @@
 import {
     isArray,
-    isEmpty, isFunction,
+    isEmpty, isFunction, isNot,
     isNumber,
     isObject,
     isUndefined
@@ -500,5 +500,13 @@ export function zip<A>(...args): any {
                     : $(args[0])
                 : $(args)
 }
+
+
+export const takeUntil = <A>(predicate: Predicate<A>) =>
+    (as: Array<A>) =>
+        (found => found ?
+                takeWhile(isNot(predicate))(as).concat([found])
+                : as
+        )(as.find(predicate))
 
 
