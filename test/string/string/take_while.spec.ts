@@ -1,50 +1,11 @@
-import {greaterThan, lessThan} from '../../../src/comparator';
-import {takeWhile} from '../../../src/list';
+import {greaterThan} from '../../../src/comparator';
+import {takeWhile} from '../../../src/string';
 
 
 /**
- * tsfun | list/takeWhile
+ * tsfun/string | takeWhile
  */
-describe('list/takeWhile', () => {
-
-    it('take five', () => {
-
-        expect(takeWhile(lessThan(20))([7, 9, 10, 13, 17, 20])).toEqual([7, 9, 10, 13, 17])
-        expect(takeWhile(lessThan(20), [7, 9, 10, 13, 17, 20])).toEqual([7, 9, 10, 13, 17])
-    })
-
-
-    it('take none', () =>
-
-        expect(
-
-            takeWhile(greaterThan(23))
-            ([7, 9, 10, 13, 17, 20])
-
-        ).toEqual([])
-    )
-
-
-    it('take all', () =>
-
-        expect(
-
-            takeWhile(greaterThan(1))
-            ([7, 9])
-
-        ).toEqual([7, 9])
-    )
-
-
-    it('empty', () =>
-
-        expect(
-
-            takeWhile(greaterThan(23))([])
-
-        ).toEqual([])
-    )
-
+describe('string/takeWhile', () => {
 
     it('string', () =>
 
@@ -58,7 +19,8 @@ describe('list/takeWhile', () => {
 
     it('typing', () => {
 
-        const result1: number[] = takeWhile((_: number) => _ > 3)([3])
+        // REMOVE const result1: number[] = takeWhile((_: number) => _ > 3)([3])
+
         // const result: string[] = takeWhile((_: number) => _ > 3)([3]) // WRONG
         const result2: string[] = takeWhile((_: string) => true)(['a']) as string[] // of string[]|string
         // const result2: string[] = takeWhile((_: string) => true)(['a']) as number[] // WRONG, because not of of string[]|string
@@ -73,7 +35,9 @@ describe('list/takeWhile', () => {
         // const result = takeWhile((_: number) => true)(['']) as number[]
         // const result = takeWhile((_: number) => true)('') as number[]
         // const result = takeWhile((_: string) => true)('') as number[]
-        const result6 = takeWhile((_: number) => true)([3]) as number[]
+
+        // REMOVE const result6 = takeWhile((_: number) => true)([3]) as number[]
+
         // const result = takeWhile((_: number) => true)([3]) as string // WRONG
     })
 })

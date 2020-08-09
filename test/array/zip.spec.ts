@@ -1,6 +1,7 @@
 import {zip} from "../../src/array"
 import {apply, flow} from '../../src/composition'
 
+
 /**
  * tsfun | zip
  */

@@ -1,11 +1,8 @@
-import {zip} from "../../../src/list";
 
 
-/**
- * tsfun/list  | zip
- */
 describe('zip', () => {
 
+/*
     it('base case', () => expect(
 
         zip([1, 2])(['a', 'b'])
@@ -39,4 +36,5 @@ describe('zip', () => {
         zip('fg')([3, 4])
 
     ).toEqual([['f', 3], ['g', 4]]));
+*/
 });

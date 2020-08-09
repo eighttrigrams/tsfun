@@ -1,4 +1,4 @@
-import {first, last} from '../../src/list';
+import {last} from '../../src/list';
 
 
 describe('last', () => {

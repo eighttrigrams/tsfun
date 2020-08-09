@@ -6,28 +6,16 @@ import {
     isUndefined
 } from './predicate'
 import {
-    first,
-    rest,
-    take as listTake,
-    drop as listDrop,
-    dropRight as listDropRight,
-    takeRight as listTakeRight,
-    dropWhile as listDropWhile,
-    takeWhile as listTakeWhile,
-    takeRightWhile as listTakeRightWhile,
-    dropRightWhile as listDropRightWhile,
-    zip as listZip,
+    first, rest
 } from './list'
 import {identity, uncurry2} from './core'
-import {Associative, List, Map, Mapping, Pair, Predicate} from './type'
-import {values, map as mapAsc, keysAndValues, keys} from './associative'
+import {Associative, Mapping, Pair, Predicate} from './type'
+import {values, map as mapAsc} from './associative'
 import {
     filter as filterColl,
     remove as removeColl,
     separate as separateColl, size
 } from './collection'
-import {pair} from './tuple'
-import {to} from './struct';
 
 
 export const flatMap = <A, B>(f: (_: A) => Array<B>) =>
@@ -165,62 +153,175 @@ export function filter<A>(...args: any[]): any {
 
 export function drop(n: number): <A>(as: Array<A>) => Array<A>
 export function drop<A>(n: number, as: Array<A>): Array<A>
-export function drop(p1: number, p2?: any): any {
+export function drop(n: number, p2?: any): any {
 
-    return listDrop(p1, p2)
+    const inner = <A>(as: any) => {
+
+        if (isArray(as)) {
+
+            const as_ = as as Array<A>
+            return n < 1 ? as_ :
+                as.slice(n)
+
+        } else {
+
+            throw 'illegal argument - must be array'
+        }
+    }
+
+    return p2 === undefined
+        ? inner
+        : inner(p2)
 }
 
 
 export function take(n: number): <A>(_: Array<A>) => Array<A>
 export function take<A>(n: number, as: Array<A>): Array<A>
-export function take<A>(p1: number, p2?: any): any {
+export function take<A>(n: number, list?: any): any {
 
-    return listTake(p1, p2)
+    function inner(as: Array<A>): Array<A> {
+
+        if (isArray(as)) {
+
+            const as_ = as as Array<A>
+            return n < 0 ? [] :
+                as_.reduce((acc: Array<A>, val, i) =>
+                        i < n ? acc.concat([val]) : acc
+                    , []) as Array<A>
+
+        } else {
+
+            throw 'illegal argument - must be array';
+        }
+    }
+
+    return list === undefined
+        ? inner as any
+        : inner(list as any) as any
 }
 
 
 export function dropRight(n: number): <A>(as: Array<A>) => Array<A>
 export function dropRight<A>(n: number, as: Array<A>): Array<A>
-export function dropRight(p1: number, p2?: any): any {
+export function dropRight(n: number, as?: any): any {
 
-    return listDropRight(p1, p2)
+    const inner = <A>(as: any): any => {
+
+        if (isArray(as)) {
+
+            return (as as Array<A>).slice(0, Math.max(0, as.length-n)) as Array<A>
+
+        } else {
+
+            throw 'illegal argument - must be array'
+        }
+    }
+
+    return as === undefined
+        ? inner
+        : inner(as)
 }
 
 
 export function dropWhile<A>(predicate: Predicate<A>): Mapping<Array<A>>
 export function dropWhile<A>(predicate: Predicate<A>, as: Array<A>): Array<A>
-export function dropWhile<A>(p1: any, p2?: any): any {
+export function dropWhile<A>(predicate: any, as?: any): any {
 
-    return listDropWhile(p1, p2)
+    const inner = (as: Array<A>) => {
+
+        const as1 = as
+
+        let go = false
+        const result = as1.reduce((acc: Array<A>, a: any) =>
+            go || !predicate(a) ? (go = true, acc.concat([a])) : acc, [])
+
+        return result
+    }
+
+    return as === undefined
+        ? inner
+        : inner(as)
 }
 
 
 export function dropRightWhile<A>(predicate: Predicate<A>): Mapping<Array<A>>
 export function dropRightWhile<A>(predicate: Predicate<A>, as: Array<A>): Array<A>
-export function dropRightWhile<A>(p1: any, p2?: any): any {
+export function dropRightWhile<A>(predicate: any, as?: any): any {
 
-    return listDropRightWhile(p1, p2)
+    const inner = (as: any): any => {
+
+        const as1 = as
+
+        let go = false
+        const result = as1.reduceRight((acc: Array<A>, a: any) =>
+            go || !predicate(a) ? (go = true, [a].concat(acc)) : acc, [])
+
+        return result
+    }
+
+    return as === undefined
+        ? inner
+        : inner(as)
 }
 
 
 export function takeRightWhile<A>(predicate: Predicate<A>): Mapping<Array<A>>
 export function takeRightWhile<A>(predicate: Predicate<A>) {
 
-    return listTakeRightWhile(predicate)
+    return (as: Array<A>) => {
+
+        const as1 = as
+
+        let go = true;
+        const result = as1.reduceRight((acc: Array<A>, a: any) =>
+            go && predicate(a) ? [a].concat(acc) : (go = false, acc), [])
+
+        return result
+    };
 }
 
 export function takeRight(n: number): <A>(as: Array<A>) => Array<A>
 export function takeRight(n: number): <A>(as: Array<A>) => Array<A> {
 
-    return listTakeRight(n)
+    function inner<A>(as: Array<A>): Array<A>
+    function inner(as: string): string
+    function inner<A>(as: Array<A>|string): Array<A>|string {
+
+        if (isArray(as)) {
+
+            return n < 0 ? [] :
+                (as as Array<A>).reduceRight((acc: Array<A>, val, i) =>
+                        (as.length - i) <= n ? [val].concat(acc) : acc
+                    , [])
+
+        } else {
+
+            throw 'illegal argument - must be array'
+        }
+    }
+
+    return inner
 }
 
 
 export function takeWhile<A>(predicate: Predicate<A>): Mapping<Array<A>>
 export function takeWhile<A>(predicate: Predicate<A>, list: Array<A>): Array<A>
-export function takeWhile<A>(p1, p2?): any {
+export function takeWhile<A>(predicate, list?): any {
 
-    return listTakeWhile(p1, p2)
+    const inner = (list: any) => {
+
+        const as1 = list
+
+        let go = true;
+        const result = as1.reduce((acc: Array<A>, a: any) =>
+            go && predicate(a) ? acc.concat([a]) : (go = false, acc), [])
+
+        return result
+    };
+
+    return list === undefined
+        ? inner
+        : inner(list)
 }
 
 
@@ -333,6 +434,21 @@ export function reduce<T, B>(f, init) {
 }
 
 
+function listZip<A,B>(as: Array<A>, bs: Array<B>): Array<Pair<A, B>> {
+
+    const minimumLength = Math.min(as.length, bs.length)
+    const _as = take(minimumLength)(as as any)
+    const _bs = take(minimumLength)(bs as any)
+
+    const zipped: Array<[A, B]> = []
+    for (let i = 0; i < minimumLength; i++) {
+        zipped.push([_as[i] as A, _bs[i] as B])
+    }
+    return zipped;
+}
+
+
+
 /**
  * tsfun | zip
  */
@@ -352,11 +468,12 @@ export function zip<A,B,C,D,E>(as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Arr
 export function zip<A>(...as: Array<Array<A>>): Array<Array<A>>;
 export function zip<A>(...args): any {
 
+
     function $$(f, aas, spread = true): any {
 
-        return reduce1(uncurry2(listZip))(aas)
-            .map(flatten(aas.length-1))
-            .map(_ => spread ? f.apply(null, _) : f(_))
+        return (reduce1(listZip as any) as any)(aas)
+                .map(flatten(aas.length-1))
+                .map(_ => spread ? f.apply(null, _) : f(_))
     }
 
     const $ = aas => {
@@ -370,6 +487,7 @@ export function zip<A>(...args): any {
         return zipped;
     }
 
+
     return args.length === 0
         ? aas => $(aas)
         : args.length > 1 && isFunction(args[0])
@@ -382,3 +500,5 @@ export function zip<A>(...args): any {
                     : $(args[0])
                 : $(args)
 }
+
+

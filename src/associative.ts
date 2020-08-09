@@ -1,8 +1,7 @@
 import {Predicate, Map, Associative} from './type'
-import {zip} from './list'
 import {isArray, isAssociative, isFunction, isNumber, isObject, isUndefined} from './predicate'
 import {copy} from './collection'
-import {flatMap, range} from './array'
+import {flatMap, range, zip} from './array'
 import {identity} from './core';
 
 
@@ -70,7 +69,7 @@ export function keysAndValues<A>(as: Array<A>): Array<[number, A]>;
 export function keysAndValues<T>(o: Map<T>): Array<[string, T]>;
 export function keysAndValues<T>(o: Map<T>|Array<T>): Array<[string|number, T]> {
 
-    return zip(keys(o) as any)(Object.values(o)) as Array<[string, T]>
+    return zip(keys(o) as any, Object.values(o) as any) as Array<[string, T]>
 }
 
 

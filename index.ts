@@ -169,7 +169,7 @@ export {
     first,
     rest,
     last,
-    takeUntil, // TODO document in readme
+    // takeUntil, // TODO document in readme or remove
     takeNth,
     sort,
     FIRST

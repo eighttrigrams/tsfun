@@ -4,8 +4,8 @@ import {subtractBy} from './set'
 import {getElForPathIn} from './struct'
 import {flow} from './composition'
 import {remove, size} from './collection'
-import {reverse, zip} from './list'
-import {drop} from './array';
+import {reverse} from './list'
+import {zip} from './array';
 
 
 
@@ -521,8 +521,8 @@ export function startsWith<A>(that: string|Array<A>, what?:string|Array<A>): any
             return that.length > what.length
                 ? false
                 : flow(
-                    what as Array<A>,
-                    zip(that as Array<A>),
+                    [what as Array<A>, that as Array<A>],
+                    zip(),
                     remove(pairIsSame),
                     size,
                     is(0))
@@ -559,9 +559,8 @@ export function endsWith<A>(that: any, as2?: any): any {
             return that.length > what.length
                 ? false
                 : flow(
-                    (what as Array<A>),
-                    reverse,
-                    zip(reverse(that as Array<A>)),
+                    [reverse(what as Array<A>),reverse(that as Array<A>)],
+                    zip(),
                     remove(pairIsSame),
                     size,
                     is(0))

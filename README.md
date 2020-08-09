@@ -302,30 +302,18 @@ import {filter as filterColl} from 'tsfun/collection';
 
 * [Filter](test/collection/collection/filter.type.spec.ts)
 
-### List
-
-### Array & string
-
-```typescript
-import {take as listTake} from 'tsfun/list';
-```
-
-* [take](test/list/list/take.spec.ts)
-* [drop](test/list/list/drop.spec.ts)
-* [takeRight](test/list/list/take_right.spec.ts)
-* [dropRight](test/list/list/drop_right.spec.ts)
-* [dropRightWhile](test/list/list/drop_right_while.spec.ts)
-* [takeWhile](test/list/list/take_while.spec.ts)
-* [takeRightWhile](test/list/list/take_right_while.spec.ts)
-* [dropWhile](test/list/list/drop_while.spec.ts)
-* [append](test/list/list/append.spec.ts) 
-* [prepend](test/list/list/prepend.spec.ts)
-* [zip](test/list/list/zip.spec.ts) 
-
 ### string
 
 * [append](test/string/string/append.spec.ts) 
 * [prepend](test/string/string/prepend.spec.ts) 
+* [take](test/string/string/take.spec.ts)
+* [drop](test/string/string/drop.spec.ts)
+* [takeRight](test/string/string/take_right.spec.ts)
+* [dropRight](test/string/string/drop_right.spec.ts)
+* [dropRightWhile](test/string/string/drop_right_while.spec.ts)
+* [takeWhile](test/list/string/take_while.spec.ts)
+* [takeRightWhile](test/string/string/take_right_while.spec.ts)
+* [dropWhile](test/string/string/drop_while.spec.ts)
 
 ### Async
 

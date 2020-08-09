@@ -1,10 +1,11 @@
-import {dropRight, dropWhile, reverse, takeWhile} from '../../src/list';
 import {greaterThan, includedIn, lessThan} from '../../src/comparator';
 import {flow} from '../../src/composition';
 import {isNot} from '../../src/predicate';
 import {filter} from '../../src/collection';
 import {map} from '../../src/associative';
 import {Associative} from '../../src/type';
+import {dropRight, dropWhile, takeWhile} from '../../src/array';
+import {reverse} from '../../src/list';
 
 
 /**

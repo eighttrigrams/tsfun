@@ -1,5 +1,5 @@
-import {drop, dropRight, take} from '../../src/list';
 import {compose, flow} from '../../src/composition';
+import {drop, dropRight, take} from '../../src/array';
 
 
 /**
