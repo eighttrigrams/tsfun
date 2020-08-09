@@ -1,7 +1,6 @@
 export {
     materialize,
     zip,
-    zipWith,
     filter,
     take,
     map,

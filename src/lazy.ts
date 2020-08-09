@@ -33,21 +33,6 @@ export function zip(as: any) { return function* (bs: any) {
 }}
 
 
-export function zipWith(f: Function, as: any) { return function* (bs: any) {
-
-    const aIterator = as[Symbol.iterator]()
-    const bIterator = bs[Symbol.iterator]()
-
-    while (true) {
-        const aNext = aIterator.next()
-        if (aNext.done) break
-        const bNext = bIterator.next()
-        if (bNext.done) break
-        yield f(aNext.value, bNext.value)
-    }
-}}
-
-
 export function map(f: Function) {
     return function*(a: any) {
         for (let x of a) {

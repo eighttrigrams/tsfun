@@ -343,7 +343,6 @@ import {zip as lZip} from 'tsfun/lazy';
 ```
 
 * [zip](test/lazy/lazy/zip.spec.ts)
-* [zipWith](test/lazy/lazy/zip_with.spec.ts)
 * [range](test/lazy/lazy/range.spec.ts)
 * [materialize](test/lazy/lazy/materialize.spec.ts)
 * [filter](test/lazy/lazy/filter.spec.ts)
