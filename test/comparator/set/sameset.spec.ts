@@ -163,4 +163,12 @@ describe('sameset', () => {
             sameset(jsonEqual, [{c: 7}, {b: 4}])([{c: 7}])
 
         ).toEqual(false));
+
+
+    it('comparator - single param list', () =>
+        expect(
+
+            sameset(jsonEqual, [{c: 7}, {b: 4}], [{c: 7}])
+
+        ).toEqual(false));
 });

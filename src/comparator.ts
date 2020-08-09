@@ -336,7 +336,10 @@ export function sameset<A>(comp: Comparator, that: Array<A>, as2: Array<A>): boo
 export function sameset<A>(...args): any {
 
     if (args.length > 1 && isFunction(args[0])) {
-        return samesetBy(args[0])(...drop(1, args))
+
+        return args.length === 2
+            ? samesetBy(args[0])(args[1])
+            : samesetBy(args[0])(args[1])(args[2])
     }
 
     const that = args[0];
