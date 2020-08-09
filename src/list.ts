@@ -31,41 +31,6 @@ export function reverse<A>(as: Array<A>|string): Array<A>|string {
 }
 
 
-export function append<A>(...as2: Array<A>): Mapping<List<A>>
-export function append<A>(...as2: Array<A>) {
-
-    return (as: Array<A>|string) => {
-
-        if (isArray(as) && isArray(as2)) {
-
-            return as.concat(as2 as any) as Array<A>
-
-        } else if (isString(as)) {
-
-            return as.concat((as2 as any).join('')) as string
-        }
-    }
-}
-
-
-
-export function prepend<A>(...as2: Array<A>): Mapping<List<A>>
-export function prepend<A>(...as2: Array<A>) {
-
-    return (as: Array<A>|string) => {
-
-        if (isArray(as) && isArray(as2)) {
-
-            return as2.concat(as as any) as Array<A>
-
-        } else if (isString(as)) {
-
-            return (as2 as any).join('').concat(as) as string
-        }
-    }
-}
-
-
 export function takeNth(n: number): <A>(as: List<A>) => List<A>
 export function takeNth(n: number) {
 
@@ -88,44 +53,6 @@ export function takeNth(n: number) {
         }
     }
 }
-
-
-// export function zip<A>(as: string): {
-//     <B>(bs: Array<B>): Array<Pair<string, B>>
-//     (bs: string): Array<string>
-// }
-// export function zip<A>(as: Array<A>): {
-//     <B>(bs: Array<B>): Array<Pair<A, B>>
-//     (bs: string): Array<Pair<A, string>>
-// }
-/*
-export function zip<A>(as: string): {
-    <B>(bs: Array<B>): Array<Pair<string, B>>
-    (bs: string): Array<string>
-}
-export function zip<A>(as: Array<A>): {
-    <B>(bs: Array<B>): Array<Pair<A, B>>
-    (bs: string): Array<Pair<A, string>>
-}
-export function zip<A>(as: Array<A>|string) {
-
-    return <B>(bs: Array<B>|string): Array<Pair<A, B>>|Array<string> => {
-
-        const asAndBsStrings = isString(as) && isString(bs)
-        const as1 = isString(as) ? (as as string).split('') : as
-        const bs1 = isString(bs) ? (bs as string).split('') : bs
-
-        const minimumLength = Math.min(as.length, bs.length)
-        const _as = take(minimumLength)(as as any)
-        const _bs = take(minimumLength)(bs as any)
-
-        const zipped: Array<[A, B]> = []
-        for (let i = 0; i < minimumLength; i++) {
-            zipped.push([_as[i] as A, _bs[i] as B])
-        }
-        return asAndBsStrings ? zipped.map(item => item.join('')) : zipped
-    }
-}*/
 
 
 export function sort(s: string): string

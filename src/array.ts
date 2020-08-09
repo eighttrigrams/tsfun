@@ -434,19 +434,6 @@ export function reduce<T, B>(f, init) {
 }
 
 
-function listZip<A,B>(as: Array<A>, bs: Array<B>): Array<Pair<A, B>> {
-
-    const minimumLength = Math.min(as.length, bs.length)
-    const _as = take(minimumLength)(as as any)
-    const _bs = take(minimumLength)(bs as any)
-
-    const zipped: Array<[A, B]> = []
-    for (let i = 0; i < minimumLength; i++) {
-        zipped.push([_as[i] as A, _bs[i] as B])
-    }
-    return zipped;
-}
-
 
 
 /**
@@ -468,10 +455,23 @@ export function zip<A,B,C,D,E>(as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Arr
 export function zip<A>(...as: Array<Array<A>>): Array<Array<A>>;
 export function zip<A>(...args): any {
 
+    function zip2<A,B>(as: Array<A>, bs: Array<B>): Array<Pair<A, B>> {
+
+        const minimumLength = Math.min(as.length, bs.length)
+        const _as = take(minimumLength)(as as any)
+        const _bs = take(minimumLength)(bs as any)
+
+        const zipped: Array<[A, B]> = []
+        for (let i = 0; i < minimumLength; i++) {
+            zipped.push([_as[i] as A, _bs[i] as B])
+        }
+        return zipped;
+    }
+
 
     function $$(f, aas, spread = true): any {
 
-        return (reduce1(listZip as any) as any)(aas)
+        return (reduce1(zip2 as any) as any)(aas)
                 .map(flatten(aas.length-1))
                 .map(_ => spread ? f.apply(null, _) : f(_))
     }
