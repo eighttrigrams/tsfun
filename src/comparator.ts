@@ -327,8 +327,15 @@ export function includes<A>(...args) {
 }
 
 
-export function arrayEqual<A>(that: Array<A>) {
+export function arrayEqual<A>(comp: Comparator, that: Array<A>): (_: Array<A>) => boolean
+export function arrayEqual<A>(that: Array<A>): (_: Array<A>) => boolean
+export function arrayEqual<A>(...args) {
 
+    if (args.length > 1 && isFunction(args[0])) {
+        return arrayEqualBy(args[0])(args[1])
+    }
+
+    const that = args[0]
     return arrayEqualBy(undefined as any)(that)
 }
 
@@ -448,8 +455,15 @@ export function supersetOf<A>(that: any, as2?: any): any {
 }
 
 
-export function objectEqual(o1: Object) {
+export function objectEqual(comp: Comparator, o1: Object): (o2: Object) => boolean
+export function objectEqual(o1: Object): (o2: Object) => boolean
+export function objectEqual(...args) {
 
+    if (args.length > 0 && isFunction(args[0])) {
+        return objectEqualBy(args[0])(args[1])
+    }
+
+    const o1 = args[0]
     return objectEqualBy(arrayEqual as any)(o1)
 }
 

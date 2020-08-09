@@ -1,4 +1,4 @@
-import {arrayEqual} from "../../../src/comparator";
+import {arrayEqual, arrayEqualBy, jsonEqual} from "../../../src/comparator";
 
 /**
  * tsfun | arrayEqual
@@ -12,7 +12,7 @@ describe('arrayEqual', () => {
 
             arrayEqual([1, 2])([1, 2])
 
-        ).toEqual(true));
+        ).toEqual(true))
 
     // and the order in which there are stored are equal. Thus
 
@@ -21,7 +21,7 @@ describe('arrayEqual', () => {
 
             arrayEqual([1, 2])([2, 1])
 
-        ).toEqual(false));
+        ).toEqual(false))
 
     // arrayEqual also works for nested structures
     // going deeper, embedded arrays getOn compared with arrayEqual again
@@ -31,7 +31,7 @@ describe('arrayEqual', () => {
 
             arrayEqual([1, [2, [3, 4]]])([1, [2, [3, 4]]])
 
-        ).toEqual(true));
+        ).toEqual(true))
 
     // the default object comparison method is objectEqual
 
@@ -40,7 +40,7 @@ describe('arrayEqual', () => {
 
             arrayEqual([1, {b: 2, c: 3}])([1, {b: 2, c: 3}])
 
-        ).toEqual(true));
+        ).toEqual(true))
 
     // this also means the order of keys does not matter
 
@@ -49,7 +49,7 @@ describe('arrayEqual', () => {
 
             arrayEqual([1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
 
-        ).toEqual(true));
+        ).toEqual(true))
 
     // strings and numbers getOn compared with ===
 
@@ -58,7 +58,7 @@ describe('arrayEqual', () => {
 
             arrayEqual([{a: 1}, 3, 't'])([{a: 1}, 3, 't'])
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('using objectEqual', () =>
@@ -66,7 +66,7 @@ describe('arrayEqual', () => {
 
             arrayEqual([1, {c: [1, 2], b: 2}])([1, {b: 2, c: [1, 2]}])
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('using objectEqual order matters', () =>
@@ -74,7 +74,7 @@ describe('arrayEqual', () => {
 
             arrayEqual([1, {c: [1, 2], b: 2}])([1, {b: 2, c: [2, 1]}])
 
-        ).toEqual(false));
+        ).toEqual(false))
 
 
     // edge cases
@@ -86,7 +86,7 @@ describe('arrayEqual', () => {
             ([1, 2])
             ([1])
 
-        ).toEqual(false));
+        ).toEqual(false))
 
 
     it('size does matter - second bigger (first elem equal)', () =>
@@ -96,5 +96,17 @@ describe('arrayEqual', () => {
             ([1])
             ([1, 2])
 
+        ).toEqual(false))
+
+
+    // comparator
+
+    // the default object comparison method can be overridden using the producer version
+
+    it('override objectEquivalent default - key order matters', () =>
+        expect(
+
+            arrayEqual(jsonEqual, [1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
+
         ).toEqual(false));
-});
+})

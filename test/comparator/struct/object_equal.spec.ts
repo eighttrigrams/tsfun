@@ -1,4 +1,4 @@
-import {objectEqual} from '../../../src/comparator';
+import {arrayEqualBy, objectEqual, objectEqualBy, samesetBy} from '../../../src/comparator';
 
 /**
  * tsfun | objectEqual
@@ -22,7 +22,7 @@ describe('objectEqual', () => {
 
             objectEqual({a: 1, b: 2})({b: 2, a: 1})
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('left side less keys', () =>
@@ -30,7 +30,7 @@ describe('objectEqual', () => {
 
             objectEqual({a: 1})({b: 2, a: 1})
 
-        ).toEqual(false));
+        ).toEqual(false))
 
 
     it('right side less keys', () =>
@@ -38,7 +38,7 @@ describe('objectEqual', () => {
 
             objectEqual({a: 1, b: 2})({a: 1})
 
-        ).toEqual(false));
+        ).toEqual(false))
 
 
     it('different keys', () =>
@@ -46,7 +46,7 @@ describe('objectEqual', () => {
 
             objectEqual({a: 1, b: 2})({a: 1, c:2})
 
-        ).toEqual(false));
+        ).toEqual(false))
 
 
     it('different values', () =>
@@ -54,7 +54,7 @@ describe('objectEqual', () => {
 
             objectEqual({a: 1, b: 2})({a: 1, b: 3})
 
-        ).toEqual(false));
+        ).toEqual(false))
 
 
     it('objectEqual - different values in different order', () =>
@@ -62,7 +62,7 @@ describe('objectEqual', () => {
 
             objectEqual({a: 1, b: 2})({b: 3, a: 1})
 
-        ).toEqual(false));
+        ).toEqual(false))
 
 
     it('objectEqual - recursive, keys in different order', () =>
@@ -70,7 +70,7 @@ describe('objectEqual', () => {
 
             objectEqual({e: 0, a: {d: 2, c: 1}})({a: {c: 1, d: 2}, e: 0})
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('objectEqual - work with Date, equal', () =>
@@ -79,7 +79,7 @@ describe('objectEqual', () => {
             objectEqual({a: new Date(2018, 11, 24)})
             ({a: new Date(2018, 11, 24)})
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('objectEqual - work with Date, not equal', () =>
@@ -133,4 +133,61 @@ describe('objectEqual', () => {
             objectEqual({a: [{b: 4, a: 3}, 2], c: 5})({c: 5, a: [2, {a: 3, b: 4}]})
 
         ).toEqual(false));
+
+
+    // with comparator
+
+    // objectEqualBy is used to override the default behaviour of objectEqual
+    // objectEqualBy produces a Comparator by feeding it an Array Comparator.
+    // so that neither the order of the array elements nor the order of the keys does
+    // matter in any way.
+    // This works also when nesting Objects and Arrays deeply, like this
+
+    it('comparator - make that order does not matter in array when nested', () =>
+        expect(
+
+            objectEqual(samesetBy(undefined as any),
+            {a: [{b: 4, a: [2, 1]}, 2], c: 5})({c: 5, a: [2, {a: [1, 2], b: 4}]})
+
+        ).toEqual(true));
+
+
+    it('comparator - with arrayEquivalent', () =>
+        expect(
+
+            objectEqual(samesetBy(undefined as any),
+            {a: [2, 1]})
+            ({a: [1, 2]})
+
+        ).toEqual(true));
+
+
+    it('comparator - with arrayEquivalent nested', () =>
+        expect(
+
+            objectEqual(samesetBy(undefined as any),
+            {a: [2, {a: 3, b: [3, 1]}]})
+            ({a: [{a: 3, b: [1, 3]}, 2]})
+
+        ).toEqual(true));
+
+
+    it('comparator - object equivalent - order on keys and arrays does not matter', () =>
+        expect(
+
+            objectEqual(samesetBy(undefined as any),
+            {a: [2, 1], b: 0})
+            ({b: 0, a: [1, 2]})
+
+        ).toEqual(true));
+
+
+    it('comparator - object equivalent - use with arrayEquivalentBy', () =>
+        expect(
+
+            objectEqual(arrayEqualBy(objectEqualBy(undefined as any)) as any,
+            {a: [{e: 5, c: 4}, 2], b: 0})
+            ({b: 0, a: [{c: 4, e: 5}, 2]})
+
+        ).toEqual(true));
 });

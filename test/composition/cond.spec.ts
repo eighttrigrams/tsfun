@@ -1,8 +1,8 @@
 import {map} from '../../src/associative';
 import {cond, val} from '../../src/composition';
 import {greaterThan, includedIn, is} from '../../src/comparator';
-import {identity} from '../../by';
 import {filter} from '../../src/collection';
+import {identity} from '../../src/core';
 
 
 /**

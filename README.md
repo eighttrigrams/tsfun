@@ -361,17 +361,6 @@ import {zip as lZip} from 'tsfun/lazy';
 * [take](test/lazy/lazy/take.spec.ts)
 * [map](test/lazy/lazy/map.spec.ts)
 
-### By
-
-```typescript
-import {equalBy} from 'tsfun/by';
-```
-
-##### Comparator
-
-* [arrayEqualBy](test/comparator/struct/array_equal_by.spec.ts)
-* [objectEqualBy](test/comparator/struct/object_equal_by.spec.ts)
-
 ## Credits 
  
 Ascii Art generated with http://www.patorjk.com/software/taag
