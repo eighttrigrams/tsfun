@@ -13,7 +13,5 @@ export {
 
 export {
     arrayEqualBy,
-    equalBy,
-    objectEqualBy,
-    differentFromBy,
+    objectEqualBy
 } from './src/comparator';

@@ -1,9 +1,9 @@
+import {differentFrom, jsonEqual} from "../../../src/comparator";
+
+
 /**
- * @author Daniel de Oliveira
+ * tsfun | differentFrom
  */
-import {differentFrom} from "../../../src/comparator";
-
-
 describe('differentFrom', () => {
 
 
@@ -12,5 +12,13 @@ describe('differentFrom', () => {
 
             differentFrom({a: 1})({a: 1})
 
-        ).toEqual(true));
-});
+        ).toEqual(true))
+
+
+    it('comparator', () =>
+        expect(
+
+            differentFrom(jsonEqual, {a: {b: 2, c: 3}})({a: {b: 2, c: 3}})
+
+        ).toEqual(false))
+})

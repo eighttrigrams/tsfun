@@ -122,7 +122,7 @@ export function jsonEqual(l: any, ...r: any[]): any {
 }
 
 
-export const differentFromBy: ComparatorProducer = (compare: Comparator) => <A>(a:A) =>
+const differentFromBy: ComparatorProducer = (compare: Comparator) => <A>(a:A) =>
     isNot(compare(a));
 
 
@@ -256,8 +256,15 @@ export const on = (path: Path, compare: Function = tripleEqual) =>
 export const by = <A>(p: Predicate<A>) => p
 
 
-export function differentFrom(that: any) {
+export function differentFrom(comp: Comparator, that: any): (_: any) => boolean
+export function differentFrom(that: any): (_: any) => boolean
+export function differentFrom(...args) {
 
+    if (args.length > 0 && isFunction(args[0])) {
+        return differentFromBy(args[0])(args[1])
+    }
+
+    const that = args[0]
     return differentFromBy(tripleEqual as any)(that)
 }
 
@@ -448,6 +455,13 @@ export function objectEqual(o1: Object) {
 
 
 export function equal(o1: undefined, o2: undefined): true
+export function equal(comp: Comparator, o1: undefined, o2: undefined): true
+export function equal<T>(comp: Comparator, o1: T, o2: T): boolean
+export function equal(comp: Comparator, o1: undefined): {
+    (o2: undefined): true
+    (o2: any): false
+};
+export function equal<T>(comp: Comparator, o1: T): (o2: T) => boolean
 export function equal<T>(o1: T, o2: T): boolean
 export function equal(o1: undefined): {
     (o2: undefined): true
@@ -455,6 +469,14 @@ export function equal(o1: undefined): {
 };
 export function equal<T>(o1: T): (o2: T) => boolean;
 export function equal(o1: any, ...os: any[]): any {
+
+    if (isFunction(o1)) {
+        return (os.length === 1)
+            ? equalBy(o1)(os[0])
+            : equalBy(o1)(os[0])(os[1])
+    }
+
+
     if (os.length > 1) throw 'illegal argument - equal expects 1 or 2 arguments in first parameter list'
     return os.length === 0
         ? (o2: any) => equalBy(arrayEqual as any)(o2)(o1)

@@ -369,8 +369,6 @@ import {equalBy} from 'tsfun/by';
 
 ##### Comparator
 
-* [equalBy](test/comparator/struct/equal_by.spec.ts)
-* [differentFromBy](test/comparator/reference/different_from_by.spec.ts)
 * [arrayEqualBy](test/comparator/struct/array_equal_by.spec.ts)
 * [objectEqualBy](test/comparator/struct/object_equal_by.spec.ts)
 

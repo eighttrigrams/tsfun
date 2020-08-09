@@ -1,4 +1,4 @@
-import {equal} from "../../../src/comparator";
+import {equal, sameset, samesetBy} from "../../../src/comparator";
 
 /**
  * tsfun | equal
@@ -123,6 +123,38 @@ describe('equal', () => {
         // const result = equal(new Date(2018, 11), {}) // WRONG
         // const result = equal(new Date(2018, 11))({}) // WRONG
     })
+
+
+    it('comparator - Object - recursive Object Array Nesting', () =>
+        expect(
+
+            equal(sameset,
+                {a: [2, {b: 4, a: [1, {f: [1, 2], e: 7}]}], c: 5})
+            ({c: 5, a: [2, {a: [1, {e: 7, f: [2, 1]}], b: 4}]})
+
+        ).toEqual(true))
+
+
+    it('comparator - Object - one param list - recursive Object Array Nesting', () =>
+        expect(
+
+            equal(
+                sameset,
+                {a: [2, {b: 4, a: [1, {f: [1, 2], e: 7}]}], c: 5},
+                {c: 5, a: [2, {a: [1, {e: 7, f: [2, 1]}], b: 4}]})
+
+        ).toEqual(true))
+
+
+    it('comparator - Array - recursive Object Array Nesting', () =>
+        expect(
+
+            equal(
+                sameset,
+                [2, {b: 4, a: [1, {f: [2, 1], e: 7}]}])
+            ([2, {a: [1, {e: 7, f: [1, 2]}], b: 4}])
+
+        ).toEqual(true));
 
 
     // err case
