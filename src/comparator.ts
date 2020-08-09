@@ -1,10 +1,11 @@
 import {Comparator, ComparatorProducer, List, Pair, Predicate, Path} from './type'
-import {isArray, isNot, isObject, isString} from './predicate'
+import {isArray, isFunction, isNot, isObject, isString} from './predicate'
 import {subtractBy} from './set'
 import {getElForPathIn} from './struct'
 import {flow} from './composition'
 import {remove, size} from './collection'
 import {reverse, zip} from './list'
+import {drop} from './array';
 
 
 
@@ -315,8 +316,17 @@ export function arrayEqual<A>(that: Array<A>) {
 export function sameset(that: string): (as2: string) => boolean
 export function sameset(that: string, as2: string):  boolean
 export function sameset<A>(that: Array<A>): (as2: Array<A>) => boolean
+export function sameset<A>(comp: Comparator, that: Array<A>): (as2: Array<A>) => boolean
 export function sameset<A>(that: Array<A>, as2: Array<A>): boolean
-export function sameset<A>(that: Array<A>|string, as2?: Array<A>|string): any {
+export function sameset<A>(comp: Comparator, that: Array<A>, as2: Array<A>): boolean
+export function sameset<A>(...args): any {
+
+    if (args.length > 1 && isFunction(args[0])) {
+        return samesetBy(args[0])(...drop(1, args))
+    }
+
+    const that = args[0];
+    const as2  = args.length > 1 ? args[1] : undefined;
 
     const inner = (as2: Array<A>|string) => {
 
@@ -340,13 +350,26 @@ export function sameset<A>(that: Array<A>|string, as2?: Array<A>|string): any {
 }
 
 
+export function subsetOf<A>(comp: Comparator, that: Array<A>|string): {
+    (as2: string): boolean
+    (as2: Array<A>): boolean
+}
 export function subsetOf<A>(that: Array<A>|string): {
     (as2: string): boolean
     (as2: Array<A>): boolean
 }
 export function subsetOf<A>(that: Array<A>, as2: Array<A>): boolean
-export function subsetOf<A>(that: Array<A>, as2: Array<A>): boolean
-export function subsetOf<A>(that: any, as2?: any): any {
+export function subsetOf<A>(comp: Comparator, that: Array<A>, as2: Array<A>): boolean
+export function subsetOf<A>(...args): any {
+
+    if (args.length > 1 && isFunction(args[0])) {
+        return args.length === 2
+            ? subsetOfBy(args[0])(args[1])
+            : subsetOfBy(args[0])(args[1])(args[2])
+    }
+
+    const that = args[0];
+    const as2 = args[1];
 
     const inner = (as2: any): any => {
 

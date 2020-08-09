@@ -1,4 +1,4 @@
-import {subsetOf} from "../../../src/comparator";
+import {on, subsetOf, subsetOfBy} from "../../../src/comparator";
 
 /**
  * tsfun | subsetOf
@@ -41,5 +41,21 @@ describe('subsetOf', () => {
 
             subsetOf([1])([1, 1, 1])
 
-        ).toEqual(true));
-});
+        ).toEqual(true))
+
+
+    it('comparator', () =>
+        expect(
+
+            subsetOf(on('a'), [{a: 3}, {a: 4}], [{a: 4}])
+
+        ).toEqual(true))
+
+
+    it('comparator - 2 param lists', () =>
+        expect(
+
+            subsetOf(on('a'), [{a: 3}, {a: 4}])([{a: 4}])
+
+        ).toEqual(true))
+})

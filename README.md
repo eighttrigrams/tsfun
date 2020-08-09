@@ -364,7 +364,7 @@ import {zip as lZip} from 'tsfun/lazy';
 ### By
 
 ```typescript
-import {samesetBy} from 'tsfun/by';
+import {equalBy} from 'tsfun/by';
 ```
 
 ##### Comparator
@@ -373,8 +373,6 @@ import {samesetBy} from 'tsfun/by';
 * [differentFromBy](test/comparator/reference/different_from_by.spec.ts)
 * [includesBy](test/comparator/set/includes_by.spec.ts)
 * [includedInBy](test/comparator/set/included_in_by.spec.ts)
-* [subsetOfBy](test/comparator/set/subset_of_by.spec.ts)
-* [samesetBy](test/comparator/set/sameset_by.spec.ts)
 * [arrayEqualBy](test/comparator/struct/array_equal_by.spec.ts)
 * [objectEqualBy](test/comparator/struct/object_equal_by.spec.ts)
 

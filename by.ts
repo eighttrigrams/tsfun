@@ -13,12 +13,9 @@ export {
 
 export {
     arrayEqualBy,
-    samesetBy,
     equalBy,
     objectEqualBy,
     includedInBy,
     includesBy,
     differentFromBy,
-    subsetOfBy,
-    supersetOfBy
 } from './src/comparator';

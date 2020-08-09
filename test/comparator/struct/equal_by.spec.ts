@@ -6,7 +6,6 @@ import {samesetBy, equalBy} from "../../../src/comparator";
 
 describe('equalBy', () => {
 
-
     it('Object - recursive Object Array Nesting', () =>
         expect(
 

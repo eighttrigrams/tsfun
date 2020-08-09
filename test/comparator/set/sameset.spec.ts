@@ -1,4 +1,4 @@
-import {sameset} from "../../../src/comparator";
+import {jsonEqual, sameset} from "../../../src/comparator";
 
 
 /**
@@ -131,4 +131,36 @@ describe('sameset', () => {
         // sameset(['1'])([3]) // WRONG
         // sameset(['1'], [3]) // WRONG
     })
+
+
+    it('comparator - equivalent in different order', () =>
+        expect(
+
+            sameset(jsonEqual, [{a: 9}, {c: 7}, {b: 4}])([{b: 4}, {a: 9}, {c: 7}])
+
+        ).toEqual(true));
+
+
+    it('comparator - different property value in same order', () =>
+        expect(
+
+            sameset(jsonEqual, [{a: 10}, {c: 7}, {b: 4}])([{a: 9}, {c: 7}, {b: 4}])
+
+        ).toEqual(false));
+
+
+    it('comparator - left list smaller', () =>
+        expect(
+
+            sameset<any>(jsonEqual, [{c: 7}])([{c: 7}, {b: 4}])
+
+        ).toEqual(false));
+
+
+    it('comparator - right list smaller', () =>
+        expect(
+
+            sameset(jsonEqual, [{c: 7}, {b: 4}])([{c: 7}])
+
+        ).toEqual(false));
 });
