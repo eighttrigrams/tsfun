@@ -2,7 +2,7 @@ import {
     isArray,
     isEmpty, isFunction,
     isNumber,
-    isObject, isString,
+    isObject,
     isUndefined
 } from './predicate'
 import {

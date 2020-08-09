@@ -264,7 +264,14 @@ export function differentFrom(that: any) {
 
 export function includedIn(as: string): (a: string) => boolean
 export function includedIn<A>(as: Array<A>): (a: A) => boolean
-export function includedIn<A>(as: Array<A>|string) {
+export function includedIn<A>(comp: Comparator, as: Array<A>): (a: A) => boolean
+export function includedIn<A>(...args) {
+
+    if (args.length > 1 && isFunction(args[0])) {
+        return includedInBy(args[0])(args[1])
+    }
+
+    const as = args[0]
 
     return (a: A) => {
 
@@ -286,7 +293,14 @@ export function includedIn<A>(as: Array<A>|string) {
 
 export function includes(as: string): (a: string) => boolean;
 export function includes<A>(a: A): (as: Array<A>) => boolean;
-export function includes<A>(a: Array<A>|string) {
+export function includes<A>(comp: Comparator, a: A): (as: Array<A>) => boolean;
+export function includes<A>(...args) {
+
+    if (args.length > 1 && isFunction(args[0])) {
+        return includesBy(args[0])(args[1])
+    }
+
+    const a = args[0]
 
     return (as: Array<A>|string) => {
 

@@ -1,10 +1,8 @@
-import {includes} from "../../../src/comparator";
+import {includes, includesBy, on} from "../../../src/comparator";
 
 
 /**
  * tsfun | includes
- *
- * @author Daniel de Oliveira
  */
 describe('includes', () => {
 
@@ -45,5 +43,13 @@ describe('includes', () => {
 
             () => includes('ab')('abc')
 
-        ).toThrow());
+        ).toThrow())
+
+
+    it('includesBy', () =>
+        expect(
+
+            includes<any>(on('a'), {a: 1})([{a: 1}, {a: 2}])
+
+        ).toEqual(true))
 });

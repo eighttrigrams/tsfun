@@ -1,10 +1,8 @@
-import {includedIn} from "../../../src/comparator";
+import {includedIn, includedInBy, jsonEqual} from "../../../src/comparator";
 
 
 /**
  * tsfun | includedIn
- *
- * @author Daniel de Oliveira
  */
 describe('includedIn', () => {
 
@@ -46,4 +44,12 @@ describe('includedIn', () => {
             () => includedIn('251')('25')
 
         ).toThrow());
-});
+
+
+    it('includedInBy', () =>
+        expect(
+
+            includedIn<any>(jsonEqual, [{a: 1}, {a: 2}])({a: 1})
+
+        ).toEqual(true))
+})
