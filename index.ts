@@ -32,7 +32,8 @@ export type {
     Mapping,
     Filter,
     Effect,
-    Path
+    Path,
+    Comparator
 } from './src/type'
 
 
