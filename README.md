@@ -369,24 +369,14 @@ import {samesetBy} from 'tsfun/by';
 
 ##### Comparator
 
+* [equalBy](test/comparator/struct/equal_by.spec.ts)
 * [differentFromBy](test/comparator/reference/different_from_by.spec.ts)
-* [includedInBy](test/comparator/set/included_in_by.spec.ts)
 * [includesBy](test/comparator/set/includes_by.spec.ts)
+* [includedInBy](test/comparator/set/included_in_by.spec.ts)
 * [subsetOfBy](test/comparator/set/subset_of_by.spec.ts)
-* [supersetOfBy](test/comparator/set/superset_of_by.spec.ts)
 * [samesetBy](test/comparator/set/sameset_by.spec.ts)
 * [arrayEqualBy](test/comparator/struct/array_equal_by.spec.ts)
 * [objectEqualBy](test/comparator/struct/object_equal_by.spec.ts)
-* [equalBy](test/comparator/struct/equal_by.spec.ts)
-
-##### Set
-
-* [intersectionBy](test/set/intersection_by.spec.ts)
-* [intersectBy](test/set/intersect_by.spec.ts)
-* [subtractBy](test/set/subtract_by.spec.ts)
-* [unionBy](test/set/union_by.spec.ts)
-* [uniteBy](test/set/unite_by.spec.ts)
-* [setBy](test/set/set_by.spec.ts)
 
 ## Credits 
  

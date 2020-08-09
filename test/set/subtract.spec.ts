@@ -1,7 +1,8 @@
 import {subtract} from "../../src/set";
+import {jsonEqual} from '../../src/comparator';
 
 /**
- * @author Daniel de Oliveira
+ * tsfun | subtract
  */
 describe('subtract', () => {
 
@@ -60,4 +61,12 @@ describe('subtract', () => {
             subtract('456')('12332'))
 
             .toEqual('123'));
+
+
+    it('comparator ', () =>
+        expect(
+
+            subtract<any>(jsonEqual, [{a: 'a'}])([{a: 'a'}, {c: 'c'}]))
+
+            .toEqual([{c: 'c'}]));
 });

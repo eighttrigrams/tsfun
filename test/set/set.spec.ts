@@ -1,7 +1,8 @@
 import {set} from "../../src/set";
+import {jsonEqual, on} from '../../src/comparator';
 
 /**
- * @author Daniel de Oliveira
+ * tsfun | set
  */
 describe('set', () => {
 
@@ -18,7 +19,7 @@ describe('set', () => {
 
             set([]))
 
-            .toEqual([]));
+            .toEqual([]))
 
 
     it('set', () =>
@@ -26,5 +27,20 @@ describe('set', () => {
 
             set('117871')
 
-        ).toEqual('178'));
-});
+        ).toEqual('178'))
+
+
+    it('comparator with on', () =>
+        expect(
+            set(on('a'), [{a: 1}, {a: 2}, {a: 1}])
+        ).toEqual([{a: 1}, {a: 2}])
+    )
+
+
+    it('comparator', () =>
+        expect(
+
+            set(jsonEqual, [{a: 'c'}, {a: 'c'}]))
+
+            .toEqual([{a: 'c'}]))
+})

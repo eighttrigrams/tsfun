@@ -22,12 +22,3 @@ export {
     subsetOfBy,
     supersetOfBy
 } from './src/comparator';
-
-export {
-    intersectionBy,
-    unionBy,
-    intersectBy,
-    subtractBy,
-    uniteBy,
-    setBy,
-} from './src/set';

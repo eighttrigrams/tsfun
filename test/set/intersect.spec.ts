@@ -1,4 +1,5 @@
 import {intersect} from "../../src/set";
+import {jsonEqual} from '../../src/comparator';
 
 /**
  * tsfun | intersect
@@ -71,6 +72,13 @@ describe('intersect', () => {
         const result11: string[] = intersect(['1'], ['2'], ['3'])
         const result12: string = intersect('1', '2', '3')
     })
+
+    it('intersect with comparator', () =>
+        expect(
+
+            intersect<any>(jsonEqual, [{a: 'a'}, {c: 'c'}])([{c: 'c'}, {d: 'd'}]))
+
+            .toEqual([{c: 'c'}]))
 
     // err cases
 

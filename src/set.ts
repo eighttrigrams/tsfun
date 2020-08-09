@@ -1,8 +1,8 @@
 import {uncurry2} from './core'
 import {Comparator} from './type'
-import {isEmpty, isNot, isString} from './predicate'
+import {isEmpty, isFunction, isNot, isString} from './predicate'
 import {includedInBy} from './comparator'
-import {reduce1} from './array'
+import {drop, reduce1} from './array'
 
 // ------------ @author Daniel de Oliveira -----------------
 
@@ -34,7 +34,7 @@ export function duplicates<A>(as: Array<A>|string) {
         : inner(as as any)
 }
 
-export const intersectionBy =
+const intersectionBy =
     (compare?: Comparator) =>
         <A>(aas: Array<Array<A>>): Array<A> => {
 
@@ -70,7 +70,7 @@ export const intersectBy =
             (as2: Array<A>): Array<A> => intersectionBy(compare)<A>([as1, as2])
 
 
-export const uniteBy = (compare?: Comparator) => <A>(as1: Array<A>) =>
+const uniteBy = (compare?: Comparator) => <A>(as1: Array<A>) =>
     (as2: Array<A>): Array<A> => unionBy(compare)([as1, as2])
 
 
@@ -117,25 +117,41 @@ const _intersectBy = (compare: Comparator) => <A>(as1: Array<A>) =>
 
 export function intersection(aas: Array<string>): Array<string>;
 export function intersection<A>(aas: Array<Array<A>>): Array<A>;
-export function intersection<A>(aas: Array<Array<A>>|Array<string>) {
+export function intersection<A>(comparator: Comparator, aas: Array<Array<A>>): Array<A>;
+export function intersection<A>(a, b?) {
+
+    const comp =
+        isFunction(a)
+            ? a
+            : undefined;
+
+    const aas =
+        isFunction(a)
+            ? b
+            : a;
 
     if (isEmpty(aas)) return []
     return isString(aas[0])
-        ? (intersectionBy()((aas as any).map((as: any) => as.split('')))).join('')
-        : intersectionBy()(aas as any)
+        ? (intersectionBy(comp)((aas as any).map((as: any) => as.split('')))).join('')
+        : intersectionBy(comp)(aas as any)
 }
 
-// TODO remove intersection function then, but consider intersectBy and intersectionBy
 
 export function intersect(set1: string): (as2: string) => string
 export function intersect<A>(set1: Array<A>): (set2: Array<A>) => Array<A>
+export function intersect<A>(comp: Comparator, set1: Array<A>): (set2: Array<A>) => Array<A>
 export function intersect(...sets: string[]): string
 export function intersect<A>(...sets: Array<Array<A>>): Array<A>
-export function intersect<A>(...sets: any[]): any {
+export function intersect<A>(...args): any {
 
+    if (args.length > 1 && isFunction(args[0])) {
+       return intersectBy(args[0])(args[1]);
+    }
+
+    const sets = args;
     if (sets.length === 0) throw 'illegal argument - intersect expects at least one argument in first parameter list'
 
-    const inner = (set1: any) => (set2: any) =>  // TODO add Set type to type.ts
+    const inner = set1 => set2 =>
         isEmpty(set1) || isEmpty(set2)
             ? []
             : isString(set1)
@@ -150,8 +166,14 @@ export function intersect<A>(...sets: any[]): any {
 
 export function union(aas: Array<string>): Array<string>
 export function union<A>(aas: Array<Array<A>>): Array<A>
-export function union<A>(aas: Array<Array<A>>|Array<string>) {
+export function union<A>(comp: Comparator, aas: Array<Array<A>>): Array<A>
+export function union<A>(...args) {
 
+    if (args.length > 1 && isFunction(args[0])) {
+        return unionBy(args[0])(args[1]);
+    }
+
+    const aas = args[0];
     if (isEmpty(aas)) return [];
     return isString(aas[0])
         ? (unionBy()((aas as any).map((as: any) => as.split('')))).join('')
@@ -161,7 +183,14 @@ export function union<A>(aas: Array<Array<A>>|Array<string>) {
 
 export function unite(as1: string): (as2: string) => string;
 export function unite<A>(as1: Array<A>): (as2: Array<A>) => Array<A>;
-export function unite<A>(as1: Array<A>|string) {
+export function unite<A>(comp: Comparator, as1: Array<A>): (as2: Array<A>) => Array<A>;
+export function unite<A>(...args) {
+
+    if (args.length > 1 && isFunction(args[0])) {
+        return uniteBy(args[0])(args[1]);
+    }
+
+    const as1 = args[0];
     return (as2: Array<A>|string) => {
 
         return isString(as1) || isString(as2)
@@ -174,7 +203,15 @@ export function unite<A>(as1: Array<A>|string) {
 // Generate a new list with elements which are contained in as but not in subtrahend
 export function subtract(as1: string): (as2: string) => string
 export function subtract<A>(as1: Array<A>): (as2: Array<A>) => Array<A>
-export function subtract<A>(as1: Array<A>|string) {
+export function subtract<A>(comp: Comparator, as1: Array<A>): (as2: Array<A>) => Array<A>
+export function subtract<A>(...args) {
+
+    if (args.length > 1 && isFunction(args[0])) {
+        return subtractBy(args[0])(args[1]);
+    }
+
+    const as1 = args[0];
+
     return (as2: Array<A>|string) => {
 
         return isString(as1) || isString(as2)
@@ -186,7 +223,14 @@ export function subtract<A>(as1: Array<A>|string) {
 
 export function set(as: string): string
 export function set<A>(as: Array<A>): Array<A>
-export function set<A>(as: Array<A>|string) {
+export function set<A>(comp: Comparator, as: Array<A>): Array<A>
+export function set<A>(...args) {
+
+    if (args.length > 0 && isFunction(args[0])) {
+        return setBy(args[0])(args[1])
+    }
+
+    const as = args[0]
 
     if (isEmpty(as)) return []
 
