@@ -164,17 +164,21 @@ export function map<A, B>(first: any, ...rest: any[]): any {
 }
 
 
+export function forEach<A>(as: Array<A>, f: (_: A, i: number) => void): Array<A>
 export function forEach<A>(f: (_: A, i: number) => void, as: Array<A>): Array<A>
+export function forEach<A>(as: Array<A>, f: (_: A) => void): Array<A>
 export function forEach<A>(f: (_: A) => void, as: Array<A>): Array<A>
+export function forEach<A>(as: Map<A>, f: (_: A, i: string) => void): Map<A>
 export function forEach<A>(f: (_: A, i: string) => void, as: Map<A>): Map<A>
+export function forEach<A>(as: Map<A>, f: (_: A) => void): Map<A>
 export function forEach<A>(f: (_: A) => void, as: Map<A>): Map<A>
 export function forEach<A>(f: (_: A, i?: number|string) => void): {
     (as: Array<A>): Array<A>
     (os: Map<A>): Map<A>
 }
-export function forEach<A>(f, as?) {
+export function forEach<A>(a, b?) {
 
-    const $ = (as: any) => {
+    const $ = f => (as: any) => {
 
         if (isArray(as)) {
 
@@ -197,9 +201,11 @@ export function forEach<A>(f, as?) {
         }
     }
 
-    return as
-        ? $(as)
-        : $
+    return b === undefined
+        ? $(a)
+        : isFunction(a)
+            ? $(a)(b)
+            : $(b)(a)
 }
 
 

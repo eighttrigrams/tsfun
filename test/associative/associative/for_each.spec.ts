@@ -46,17 +46,28 @@ describe('forEach', () => {
             acc += k
         })({a: 3, b: 7});
 
-        expect(acc).toEqual('ab');
+        expect(acc).toEqual('ab')
     })
 
 
     it('single param list', () => {
 
-        let acc = '';
+        let acc = ''
         forEach((item, k: string) => {
             acc += k
-        }, {a: 3, b: 7});
+        }, {a: 3, b: 7})
 
-        expect(acc).toEqual('ab');
+        expect(acc).toEqual('ab')
+    })
+
+
+    it('single param list - different order', () => {
+
+        let acc = ''
+        forEach({a: 3, b: 7}, (item, k: string) => {
+            acc += k
+        })
+
+        expect(acc).toEqual('ab')
     })
 })
