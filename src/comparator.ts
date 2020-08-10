@@ -559,7 +559,7 @@ export function endsWith<A>(that, as2?) {
             return that.length > what.length
                 ? false
                 : flow(
-                    [ what as Array<A>, that as Array<A>],
+                    [ what as Array<A>, that as Array<A> ],
                     map(reverse),
                     zip(),
                     remove(pairIsSame),
