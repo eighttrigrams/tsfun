@@ -1,4 +1,4 @@
-import {keysAndValues} from '../../src/associative';
+import {keysAndValues} from '../../../src/associative';
 
 
 describe('keysAndValues', () => {

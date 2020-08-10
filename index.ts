@@ -5,11 +5,6 @@ export {
 
 
 export {
-    keysAndValues
-} from './src/associative'
-
-
-export {
     to
 } from './src/struct'
 
