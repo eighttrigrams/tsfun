@@ -36,7 +36,7 @@ describe('forEach', () => {
 
         expect(items).toEqual({a: 3, b: 7});
         expect(acc).toEqual(10);
-    });
+    })
 
 
     it('object, with key', () => {
@@ -47,5 +47,16 @@ describe('forEach', () => {
         })({a: 3, b: 7});
 
         expect(acc).toEqual('ab');
-    });
-});
+    })
+
+
+    it('single param list', () => {
+
+        let acc = '';
+        forEach((item, k: string) => {
+            acc += k
+        }, {a: 3, b: 7});
+
+        expect(acc).toEqual('ab');
+    })
+})

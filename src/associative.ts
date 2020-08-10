@@ -164,13 +164,17 @@ export function map<A, B>(first: any, ...rest: any[]): any {
 }
 
 
+export function forEach<A>(f: (_: A, i: number) => void, as: Array<A>): Array<A>
+export function forEach<A>(f: (_: A) => void, as: Array<A>): Array<A>
+export function forEach<A>(f: (_: A, i: string) => void, as: Map<A>): Map<A>
+export function forEach<A>(f: (_: A) => void, as: Map<A>): Map<A>
 export function forEach<A>(f: (_: A, i?: number|string) => void): {
     (as: Array<A>): Array<A>
     (os: Map<A>): Map<A>
 }
-export function forEach<A>(f: (_: A, i?: number|string) => void) {
+export function forEach<A>(f, as?) {
 
-    return (as: any) => {
+    const $ = (as: any) => {
 
         if (isArray(as)) {
 
@@ -192,6 +196,10 @@ export function forEach<A>(f: (_: A, i?: number|string) => void) {
             throw 'illegal argument - must be array or object'
         }
     }
+
+    return as
+        ? $(as)
+        : $
 }
 
 
