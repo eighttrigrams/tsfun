@@ -5,7 +5,7 @@ import {getElForPathIn} from './struct'
 import {flow} from './composition'
 import {remove, size} from './collection'
 import {reverse} from './list'
-import {zip} from './array';
+import {map, zip} from './array';
 
 
 
@@ -508,7 +508,7 @@ export function startsWith<A>(s1: string, s2: string): boolean
 export function startsWith<A>(s1: string): (s2: string) => boolean;
 export function startsWith<A>(as1: Array<A>, as2: Array<A>): boolean;
 export function startsWith<A>(as1: Array<A>): (as2: Array<A>) => boolean;
-export function startsWith<A>(that: string|Array<A>, what?:string|Array<A>): any {
+export function startsWith<A>(that: string|Array<A>, what?:string|Array<A>) {
 
     const compare = (that: string|Array<A>, what: string|Array<A>) => {
 
@@ -543,23 +543,24 @@ const pairIsSame = <A>([a, b]: Pair<A, A>) => a === b
 
 
 export function endsWith<A>(s1: string, s2: string): boolean
-export function endsWith<A>(s1: string): (s2: string) => boolean;
-export function endsWith<A>(as1: Array<A>, as2: Array<A>): boolean;
-export function endsWith<A>(as1: Array<A>): (as2: Array<A>) => boolean;
-export function endsWith<A>(that: any, as2?: any): any {
+export function endsWith<A>(s1: string): (s2: string) => boolean
+export function endsWith<A>(as1: Array<A>, as2: Array<A>): boolean
+export function endsWith<A>(as1: Array<A>): (as2: Array<A>) => boolean
+export function endsWith<A>(that, as2?) {
 
-    const inner = (what: any) => {
+    const inner = what => {
 
         if (isString(what) && isString(that)) {
 
-            return (what as any).endsWith(that)
+            return what.endsWith(that)
 
         } else if (isArray(what) && isArray(that)) {
 
             return that.length > what.length
                 ? false
                 : flow(
-                    [reverse(what as Array<A>),reverse(that as Array<A>)],
+                    [ what as Array<A>, that as Array<A>],
+                    map(reverse),
                     zip(),
                     remove(pairIsSame),
                     size,
