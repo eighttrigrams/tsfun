@@ -121,6 +121,7 @@ import {equal} from 'tsfun';
 * [filter](test/array/filter.spec.ts) 
 * [remove](test/array/remove.spec.ts) 
 * [separate](test/array/separate.spec.ts) 
+* [distribute](test/array/distribute.spec.ts)
 * [map](test/array/map.spec.ts) 
 * [forEach](test/array/for_each.spec.ts)
 * [reduce](test/array/reduce.spec.ts)

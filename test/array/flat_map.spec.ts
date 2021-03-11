@@ -4,7 +4,7 @@ import {flatMap} from '../../src/array';
 /**
  * @author Daniel de Oliveira
  */
-fdescribe('flatMap', () => {
+describe('flatMap', () => {
 
     it('basic', () =>
         expect(
