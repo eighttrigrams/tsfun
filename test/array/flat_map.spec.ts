@@ -4,8 +4,7 @@ import {flatMap} from '../../src/array';
 /**
  * @author Daniel de Oliveira
  */
-describe('flatMap', () => {
-
+fdescribe('flatMap', () => {
 
     it('basic', () =>
         expect(
@@ -43,6 +42,22 @@ describe('flatMap', () => {
         expect(
 
             flatMap((_: number) => ['l', 'l'])([3, 4]))
+
+            .toEqual(['l', 'l', 'l', 'l']));
+
+
+    it('single argument list', () =>
+        expect(
+
+            flatMap([3, 4], _ => ['l', 'l']))
+
+            .toEqual(['l', 'l', 'l', 'l']));
+
+
+    it('single argument list - different order', () =>
+        expect(
+
+            flatMap(_ => ['l', 'l'], [3, 4]))
 
             .toEqual(['l', 'l', 'l', 'l']));
 });

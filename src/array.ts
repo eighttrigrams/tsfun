@@ -8,7 +8,7 @@ import {
 import {
     first, rest
 } from './list'
-import {identity, uncurry2} from './core'
+import {identity} from './core'
 import {Associative, Mapping, Pair, Predicate} from './type'
 import {values, map as mapAsc} from './associative'
 import {
@@ -18,11 +18,23 @@ import {
 } from './collection'
 
 
-export const flatMap = <A, B>(f: (_: A) => Array<B>) =>
-    (as: Array<A>): Array<B> =>
-        (as.length < 1
-            ? []
-            : as.reduce(intoArrayWith(f as any),[])) as unknown as Array<B>
+
+export function flatMap<A,B>(as: Array<A>, f: (_: A) => Array<B>): Array<B>;
+export function flatMap<A,B>(f: (_: A) => Array<B>, as: Array<A>): Array<B>;
+export function flatMap<A,B>(f: (_: A) => Array<B>): (as: Array<A>) => Array<B>;
+export function flatMap<A,B>(arg, arg2?): any {
+
+    const $ = f => (as: Array<A>): Array<B> =>
+            (as.length < 1
+                ? []
+                : as.reduce(intoArrayWith(f as any),[])) as unknown as Array<B>
+        
+    return arg2 === undefined
+        ? $(arg)
+        : isFunction(arg)
+            ? $(arg)(arg2)
+            : $(arg2)(arg);
+}
 
 
 const intoArrayWith = <A>(f: (_: A) => Array<A>) =>
