@@ -28,7 +28,8 @@ export type {
     Filter,
     Effect,
     Path,
-    Comparator
+    Comparator,
+    KWList
 } from './src/type'
 
 
@@ -197,3 +198,9 @@ export {
     any,
     all
 } from './src/collection'
+
+
+export {
+    distribute,
+    kwlistToMap
+} from './src/kwlist'

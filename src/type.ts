@@ -19,6 +19,9 @@ export type Singleton<T = any> = [T]
 export type Pair<A = any, B = A> = [A, B]
 
 
+export type KWList<A,B> = Array<Pair<A, B>>
+
+
 export type Failure<T = any> = [T, undefined]
 
 

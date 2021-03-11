@@ -1,13 +1,13 @@
 import {greaterThan, lessThan} from '../../src/comparator'
-import {distribute} from '../../src/array'
 import {Map, Pair} from '../../src/type'
 import { identity } from '../../src/core'
+import { distribute } from '../../src/kwlist'
 
 
 /**
  * tsfun | distribute
  */
-fdescribe('distribute', () => {
+describe('distribute', () => {
 
     it('numbers', () => 
 
