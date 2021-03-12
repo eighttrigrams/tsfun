@@ -17,6 +17,7 @@ import {
     separate as separateColl, size
 } from './collection'
 import { RIGHT } from './tuple'
+import {Map} from './type'
 
 
 
@@ -335,6 +336,31 @@ export function takeWhile<A>(predicate, list?): any {
     return list === undefined
         ? inner
         : inner(list)
+}
+
+
+export function distribute<A>(f: (a: A) => A): (as: Array<string>) => Map<Array<string>>
+export function distribute<A>(f: (a: A) => string): (as: Array<A>) => Map<Array<A>>
+export function distribute<A>(f: (a: A) => string, as: Array<A>): Map<Array<A>>
+export function distribute<A>(as: Array<A>, f: (a: A) => string): Map<Array<A>>
+export function distribute(arg, arg2?) {
+
+    const $ = f => as =>
+        as.reduce((acc, a) => {
+
+            const r = f(a)
+            if (acc[r]) acc[r].push(a)
+            else acc[r] = [a]
+
+            return acc
+
+        }, {})
+
+    return arg2 === undefined
+        ? $(arg)
+        : isFunction(arg)
+            ? $(arg)(arg2)
+            : $(arg2)(arg)
 }
 
 

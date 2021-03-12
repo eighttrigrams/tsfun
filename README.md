@@ -121,6 +121,7 @@ import {equal} from 'tsfun';
 * [filter](test/array/filter.spec.ts) 
 * [remove](test/array/remove.spec.ts) 
 * [separate](test/array/separate.spec.ts) 
+* [distribute](test/array/distribute.spec.ts)
 * [map](test/array/map.spec.ts) 
 * [forEach](test/array/for_each.spec.ts)
 * [reduce](test/array/reduce.spec.ts)
@@ -215,13 +216,6 @@ import {equal} from 'tsfun';
 
 * [to](test/struct/to.spec.ts)
 
-### Keyword-List
-
-###### Array
-
-* [distribute](test/kwlist/distribute.spec.ts)
-* [kwlistToMap](test/kwlist/kwlist_to_map.spec.ts)
-
 ## Types reference 
 
 * [Singleton](test/type/singleton.spec.ts)
@@ -240,7 +234,6 @@ import {equal} from 'tsfun';
 * [Predicate](test/type/predicate.spec.ts)
 * [Filter](test/type/filter.spec.ts)
 * [Effect](test/type/effect.spec.ts)
-* [KWList](test/type/kwlist.spec.ts)
 
 ## Constants reference
 
