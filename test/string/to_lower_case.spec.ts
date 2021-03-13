@@ -1,4 +1,4 @@
-import {toLowerCase} from '../../src/string';
+import {toLowerCase} from '../../src/string'
 
 describe('toLowerCase', () => {
 
@@ -7,5 +7,5 @@ describe('toLowerCase', () => {
 
             toLowerCase('ABC')
 
-        ).toEqual('abc'));
-});
+        ).toEqual('abc'))
+})

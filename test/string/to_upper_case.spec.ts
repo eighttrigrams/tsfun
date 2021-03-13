@@ -1,11 +1,14 @@
-import {toUpperCase} from '../../src/string';
+import {toUpperCase} from '../../src/string'
 
-describe('toUpperCase', () => {
+/**
+ * tsfun/string | toUpperCase
+ */
+describe('string/toUpperCase', () => {
 
     it('toUpperCase', () =>
         expect(
 
             toUpperCase('abc')
 
-        ).toEqual('ABC'));
-});
+        ).toEqual('ABC'))
+})

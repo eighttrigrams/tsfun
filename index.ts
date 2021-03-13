@@ -8,7 +8,7 @@ export {
     update,
     $getElForPathIn,
     path
-} from './src/struct';
+} from './src/struct'
 
 export type {
     Map,
