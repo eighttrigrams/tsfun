@@ -118,9 +118,9 @@ export function isEmpty<T>(coll: Object|Array<T>): boolean {
 export const flip = (v: boolean) => !v
 
 
-export const isArray: Predicate = $ => {
+export function isArray<T = any, V = any>(t: T|Array<V>): t is Array<V> {
 
-    return Array.isArray($)
+    return Array.isArray(t)
     // as instanceof Array <- previously we did it like this, but typescript can check types when we use Array.isArray instead
 }
 
@@ -137,11 +137,14 @@ export const isCollection: Predicate = $ => isObject($) || isArray($) || isStrin
 export const isList: Predicate = $ => isArray($) || isString($)
 
 
-export const isString: Predicate = $ => typeof $ === 'string'
+export function isString<T = any>(t: T|string): t is string {
+    return typeof t === 'string'
+}
 
 
-export const isNumber: Predicate = $ => typeof $ === 'number'
-
+export function isNumber<T = any>(t: T|number): t is number {
+    return typeof t === 'number'
+}
 
 export const isBoolean: Predicate = $ => typeof $ === 'boolean'
 

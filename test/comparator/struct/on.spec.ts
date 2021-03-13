@@ -1,12 +1,10 @@
-import {samesetBy, by, is, jsonEqual, on} from '../../../src/comparator';
-import {isArray, isDefined, isEmpty, isNot, isUndefined, isUndefinedOrEmpty} from '../../../src/predicate';
-import {intersectBy} from '../../../src/set';
+import {samesetBy, by, is, jsonEqual, on} from '../../../src/comparator'
+import {isArray, isDefined, isEmpty, isNot, isUndefined, isUndefinedOrEmpty} from '../../../src/predicate'
+import {intersectBy} from '../../../src/set'
 
 
 /**
  * tsfun | on
- *
- * Used for ObjectStructs in Arrays
  *
  * @author Daniel de Oliveira
  */
@@ -17,7 +15,7 @@ describe('on (by)', () => {
 
             on(1, is(7))([4, 7]))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('array - first level - path by array', () =>
@@ -25,7 +23,7 @@ describe('on (by)', () => {
 
             on(1, is(7))([4, 7]))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('array - second level', () =>
@@ -33,7 +31,7 @@ describe('on (by)', () => {
 
             on([1, 1], is(7))([3, [2, 7]]))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('object - first level',() =>
@@ -41,7 +39,7 @@ describe('on (by)', () => {
 
             on('a', is(3))({ a: 3 }))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('object - second level',() =>
@@ -49,7 +47,7 @@ describe('on (by)', () => {
 
             on(['a', 'b'], is(3))({ a: { b: 3 }}))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('object - second level - path by array',() =>
@@ -57,7 +55,7 @@ describe('on (by)', () => {
 
             on(['a', 'b'], is(3))({ a: { b: 3 }}))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('first level object - second level array',() =>
@@ -65,7 +63,7 @@ describe('on (by)', () => {
 
             on(['a',1], is(3))({ a: [7, 3]}))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('first level array - second level object',() =>
@@ -73,7 +71,7 @@ describe('on (by)', () => {
 
             on([1,'a'], is(15))([7, { a: 15 }]))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('first level object - second level object - third level array',() =>
@@ -81,7 +79,7 @@ describe('on (by)', () => {
 
             on(['a','b',1], is(3))({ a: { b: [7, 3]}}))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('first level array - second level array - third level object',() =>
@@ -89,7 +87,7 @@ describe('on (by)', () => {
 
             on([1,1,'a'], is(3))([ 0, [ 3, { a: 3 }]]))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('first level array - second level object - third level object',() =>
@@ -97,7 +95,7 @@ describe('on (by)', () => {
 
             on([1,'a',1], is(3))([ 0, { a: [1, 3] }]))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('first level object - second level array - third level object',() =>
@@ -105,7 +103,7 @@ describe('on (by)', () => {
 
             on(['a',1,'a'], is(3))({ a: [1, { a: 3 }]}))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('unknown object key', () =>
@@ -113,7 +111,7 @@ describe('on (by)', () => {
 
             on(['a','b'], is(15))({ c: { a: 1 }}))
 
-            .toEqual(false));
+            .toEqual(false))
 
 
     // resiliency
@@ -123,7 +121,7 @@ describe('on (by)', () => {
 
             on([10,'a'], is(15))([7, 19, { a: 3 }]))
 
-            .toEqual(false));
+            .toEqual(false))
 
 
     it('unknown object key', () =>
@@ -131,7 +129,7 @@ describe('on (by)', () => {
 
             on('a', is(15))({ b: 10 }))
 
-            .toEqual(false));
+            .toEqual(false))
 
 
     it('is not an object', () =>
@@ -139,7 +137,7 @@ describe('on (by)', () => {
 
             on(['a',3], is(15))([]))
 
-            .toEqual(false));
+            .toEqual(false))
 
 
     it('is not an array', () =>
@@ -147,7 +145,7 @@ describe('on (by)', () => {
 
             on([10,'a'], is(15))({ a: 'b' }))
 
-            .toEqual(false));
+            .toEqual(false))
 
 
     // it('on - with find and isNot - isUndefinedOrEmpty predicate works with undefined', () =>
@@ -156,7 +154,7 @@ describe('on (by)', () => {
     //         [{a: [1, 2, 4]}, {b: undefined}] <- make that work with path not matching
     //             .filter(isNot(on('a')(isUndefinedOrEmpty)))
     //
-    //     ).toEqual([{a: [1, 2, 4]}] as any));
+    //     ).toEqual([{a: [1, 2, 4]}] as any))
 
     // use cases
 
@@ -166,7 +164,7 @@ describe('on (by)', () => {
             [{a: {b: 4}}, {a: {b: 5}}]
                 .find(on(['a','b'])({a: {b: 5}})))
 
-            .toEqual({a: {b: 5}} as any));
+            .toEqual({a: {b: 5}} as any))
 
 
     it('on - with filter and isNot - symmetric', () =>
@@ -175,7 +173,7 @@ describe('on (by)', () => {
             [{a: {b: 4}}, {a: {b: 5}}]
                 .filter(isNot(on(['a','b'])({a: {b: 5}}))))
 
-            .toEqual([{a: {b: 4}} as any]));
+            .toEqual([{a: {b: 4}} as any]))
 
 
     it('on - with intersectBy - symmetric',() =>
@@ -184,7 +182,7 @@ describe('on (by)', () => {
             intersectBy(on(['a', 'b']))([{a: {b: 4}}, {a: {b: 5}}])
             ([{a: {b: 5}}]))
 
-            .toEqual([{a: {b: 5}} as any]));
+            .toEqual([{a: {b: 5}} as any]))
 
 
     it('on - with find - isUndefined predicate', () =>
@@ -193,7 +191,7 @@ describe('on (by)', () => {
             [{a: {b: 4}}, {a: {c: 5}}]
                 .filter(on(['a','b'], isUndefined))
 
-        ).toEqual([{a: {c: 5}}] as any));
+        ).toEqual([{a: {c: 5}}] as any))
 
 
     it('on - with find and isNot - isUndefined predicate', () =>
@@ -202,7 +200,7 @@ describe('on (by)', () => {
             [{a: {b: 4}}, {a: {c: 5}}]
                 .filter(isNot(on(['a','b'], isUndefined)))
 
-        ).toEqual([{a: {b: 4}}] as any));
+        ).toEqual([{a: {b: 4}}] as any))
 
 
     it('on - with find - isDefined predicate', () =>
@@ -211,7 +209,7 @@ describe('on (by)', () => {
             [{a: {b: 4}}, {a: {c: 5}}]
                 .filter(on(['a','b'], isDefined))
 
-        ).toEqual([{a: {b: 4}}] as any));
+        ).toEqual([{a: {b: 4}}] as any))
 
 
     it('on - with find - isEmpty predicate', () =>
@@ -220,7 +218,7 @@ describe('on (by)', () => {
             [{a: [1, 2, 4]}, {a: []}]
                 .filter(on('a', isEmpty))
 
-        ).toEqual([{a: []}] as any));
+        ).toEqual([{a: []}] as any))
 
 
     it('on - with find and isNot - isEmpty predicate', () =>
@@ -229,7 +227,7 @@ describe('on (by)', () => {
             [{a: [1, 2, 4]}, {a: []}]
                 .filter(isNot(on('a', isEmpty)))
 
-        ).toEqual([{a: [1, 2, 4]}] as any));
+        ).toEqual([{a: [1, 2, 4]}] as any))
 
 
     it('on - with find and isNot - isUndefinedOrEmpty predicate works with undefined', () =>
@@ -238,7 +236,7 @@ describe('on (by)', () => {
             [{a: [1, 2, 4]}, {a: undefined}]
                 .filter(isNot(on('a', isUndefinedOrEmpty)))
 
-        ).toEqual([{a: [1, 2, 4]}] as any));
+        ).toEqual([{a: [1, 2, 4]}] as any))
 
 
     // it('on - with find and isNot - partial arrayEquivalent as predicate, without path match', () =>
@@ -247,7 +245,7 @@ describe('on (by)', () => {
     //         [{a: {b: [2, 1]}}, {a: {b: [2, 7]}}]
     //             .filter(on('a.b:', arrayEquivalent)([1, 2]))
     //
-    //     ).toEqual([{a: {b: [2, 1]}}] as any));
+    //     ).toEqual([{a: {b: [2, 1]}}] as any))
 
 
     it('on - with find and isArray', () =>
@@ -256,7 +254,7 @@ describe('on (by)', () => {
             [{a: {b: [2, 1]}}, {c: {a: 1}}, {}]
                 .filter(on(['a','b'], isArray))
 
-        ).toEqual([{a: {b: [2, 1]}}] as any));
+        ).toEqual([{a: {b: [2, 1]}}] as any))
 
 
 
@@ -268,7 +266,7 @@ describe('on (by)', () => {
             [{a: {b: [2, 1]}}, {a: {b: [2, 7]}}]
                 .filter(on(['a','b'], samesetBy(undefined as any))({a: {b: [1, 2]}}))
 
-        ).toEqual([{a: {b: [2, 1]}}] as any));
+        ).toEqual([{a: {b: [2, 1]}}] as any))
 
 
     it('intersectBy onBy equalTo - symmetric',() =>
@@ -277,7 +275,7 @@ describe('on (by)', () => {
             intersectBy(on(['a','b'], by(jsonEqual as any)))([{a: {b: {c: 'e'}}}, {a: {b: 'c'}}])
             ([{a: {b: {c: 'e'}}}]))
 
-            .toEqual([{a: {b: {c: 'e'}}} as any]));
+            .toEqual([{a: {b: {c: 'e'}}} as any]))
 
 
     it('find onBy equalTo - symmetric',() =>
@@ -286,7 +284,7 @@ describe('on (by)', () => {
             [{a: {b: {c: 4}}}, {a: {b: {d: 5}}}]
                 .find(on(['a','b'], jsonEqual)({a: {b: {c: 4}}})))
 
-            .toEqual({a: {b: {c: 4}}} as any));
+            .toEqual({a: {b: {c: 4}}} as any))
 
 
     // regression prevention
@@ -296,5 +294,5 @@ describe('on (by)', () => {
 
             on('a.b', is(3))({ 'a.b': 3 }))
 
-            .toEqual(true));
-});
+            .toEqual(true))
+})

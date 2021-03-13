@@ -1,14 +1,14 @@
-import {List, Mapping, Pair, Predicate} from './type'
-import {isArray, isNot, isString} from './predicate'
+import {List} from './type'
+import {isArray, isString} from './predicate'
 import {copy} from './collection'
-import {drop as stringDrop} from './string';
-import {drop} from './array';
+import {drop as stringDrop} from './string'
+import {drop} from './array'
 
 
 // ------------ @author Daniel de Oliveira -----------------
 
 
-export const FIRST = 0;
+export const FIRST = 0
 
 
 
@@ -35,7 +35,7 @@ export function takeNth(n: number): <A>(as: List<A>) => List<A>
 export function takeNth(n: number) {
 
     const reducer = <A>(acc: Array<A>, val: any, i: number) =>
-        i % n === 0 ? acc.concat([val]) : acc;
+        i % n === 0 ? acc.concat([val]) : acc
 
     return <A>(as: Array<A>|string) => {
 
@@ -92,8 +92,8 @@ export function sort<A>(f: string|Array<number>|((a: A, b: A) => number)) {
 }
 
 
-export function first<T>(as: string): string|undefined;
-export function first<T>(as: Array<T>): T|undefined;
+export function first<T>(as: string): string|undefined
+export function first<T>(as: Array<T>): T|undefined
 export function first<T>(as: Array<T>|string): string|T|undefined {
 
     return as.length === 0

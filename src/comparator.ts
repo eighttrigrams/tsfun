@@ -236,26 +236,41 @@ export const objectEqualBy =
 
 export const equalBy =
     (arrayComparator: Comparator) =>
-        (o1: any) =>
-            (o2: any): boolean => compare(arrayComparator,
+        o1 => (o2): boolean => 
+            compare(arrayComparator,
                 objectEqualBy(arrayComparator))(o1)(o2)
 
 
-const onBy = (compare: Function) => (path: SPath) => 
-    (l: any) => (r: any) => { 
+const onBy = (compare: Function) => 
+    (path: SPath) => 
+        (l: any) => (r: any) => { 
 
-        if (isString(path) && (path as string).length === 0) throw 'illegal argument - string path must not be empty'
-        if (isArray(path) && (path as Array<any>).length < 2) throw 'illegal argument - array path must have min length 2'
-        
-        if (isString(path)||isNumber(path)) return compare(l[path as any])(r[path as any]) 
-        return compare(getElForPathIn(l, path as any))(getElForPathIn(r, path as any))
+        if (isString(path) || isNumber(path)) {
+
+            if (isString(path) && path.length === 0) throw 'illegal argument - string path must not be empty'
+            return compare(l[path as any])(r[path as any]) 
+
+        } else if (isArray(path)) {
+
+            if ((path as Array<any>).length < 2) throw 'illegal argument - array path must have min length 2'
+            return compare(getElForPathIn(l, path as any))(getElForPathIn(r, path as any))
+
+        } else {
+
+            throw 'illegal argument - path must be string, number, or array'
+        }
 }
 
 
 export const on = (path: SPath, compare: Function = tripleEqual) => {
 
-    if (isString(path)||isNumber(path)) {/*OK*/}
-    else if (isArray(path) && (path as any).length >= 2) {/*OK*/}
+    if (isNumber(path)) {/*OK*/}
+    else if (isString(path)) {
+        if (path.length === 0) throw 'string path must not be empty'
+    }
+    else if (isArray(path)) { 
+        if ((path as any).length < 2) throw 'illegal argument - array path must be at least of length 2'
+    }
     else throw 'illegal argument - path must be one of string, number, array of length 2'
     
     return (l: any) => { 
