@@ -1,4 +1,4 @@
-import {Mapping, Path} from './type'
+import {Array2, Mapping, Path, SPath} from './type'
 import {isArray, isFunction, isNumber, isObject, isString} from './predicate'
 import {reverseUncurry2} from './core'
 import {copy} from './collection'
@@ -43,7 +43,7 @@ export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function
 }
 
 
-export function get<V>(path: Array<string|number>, alternative?: V): <T>(o: T) => V
+export function get<V>(path: Array2<string|number>, alternative?: V): <T>(o: T) => V
 export function get<V>(path: string, alternative?: V): <T>(o: T) => V
 export function get(path: number, alternative?: any): <T>(as: Array<T>) => Array<T>
 export function get(path_, alternative?: any) {
@@ -59,7 +59,7 @@ export function get(path_, alternative?: any) {
 }
 
 
-export function lookup<T, V>(ds: T, alternative?: V): (path: Array<string|number>|string|number) => V
+export function lookup<T, V>(ds: T, alternative?: V): (path: SPath) => V
 export function lookup<T>(ds: Array<T>, alternative?: T): (path: number) => T
 export function lookup<T, V>(ds: T, alternative?: V): (path: string) => V
 export function lookup(ds, alternative?) {
@@ -72,15 +72,15 @@ export function lookup(ds, alternative?) {
 }
 
 
-export function update<T>(k: Array<string|number>, update_fun: ((val: T) => T)|T, as: Array<T>): Array<T>
-export function update<U, T>(k: Array<string|number>, update_fun: ((val: U) => U)|U, o: T): T
+export function update<T>(k: Array2<string|number>, update_fun: ((val: T) => T)|T, as: Array<T>): Array<T>
+export function update<U, T>(k: Array2<string|number>, update_fun: ((val: U) => U)|U, o: T): T
 export function update<U>(k: number, update_fun: ((val: U) => U)|U, s: Array<U>): Array<U>
 export function update<T, K extends keyof T>(key: keyof T, f: Mapping<T[K]>|T[K], o: T): T
 
 export function update<U>(k: number, update_fun: ((val: U) => U)|U): <T extends U>(s: Array<T>) => Array<T>
 export function update<T, K extends keyof T>(key: keyof T, f: Mapping<T[K]>|T[K]): <T1>(o: T1) => T1
 export function update<U>(k: string, update_fun: ((val: U) => U)|U): <T,V extends T>(s: T) => V
-export function update<U>(k: Array<string|number>, update_fun: ((val: U) => U)|U): <T,V extends T>(s: T) => V
+export function update<U>(k: Array2<string|number>, update_fun: ((val: U) => U)|U): <T,V extends T>(s: T) => V
 
 export function update(path, update_fun, o?) {
 
@@ -195,7 +195,7 @@ export function getElForPathIn(object: any, path_: Path): any {
     if (!path_ || path_.length < 1) return undefined
 
     return $getElForPathIn1(object,
-        (isString(path_) ? path(path_ as string) : path_) as Array<string|number>)
+        (isString(path_) ? $path1(path_ as string, true) : path_) as Array<string|number>)
 }
 
 
@@ -217,7 +217,13 @@ export function $getElForPathIn1(object: any, path: Array<string|number>): any {
 }
 
 
-export function path(path: string): Array<number|string> {
+export function path(path: string): Array2<string|number> {
+
+    return $path1(path, false) as unknown as Array2<string|number>
+}
+
+
+function $path1(path: string, suppressCheck?) {
 
     if (isString(path)) {
 
@@ -236,6 +242,7 @@ export function path(path: string): Array<number|string> {
             }
         }
         if (current) segments.push(current as never)
+        if (!suppressCheck && segments.length < 2) throw 'illegal argument - path expected to yield 2 segments'
         return segments
     } 
     throw 'illegal arguments - must be string'

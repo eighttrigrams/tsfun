@@ -28,8 +28,10 @@ export type {
     Mapping,
     Filter,
     Effect,
+    Array2,
     Path,
-    Comparator
+    SPath,
+    Comparator,
 } from './src/type'
 
 

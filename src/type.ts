@@ -1,6 +1,15 @@
 // ------------ @author Daniel de Oliveira -----------------
 
 
+export type Array2<T> = {
+    0: T
+    1: T
+} & Array<T>
+
+
+export type SPath = string|number|Array2<string|number>
+
+
 export type Path = string|Array<string|number>;
 
 
@@ -65,13 +74,6 @@ export type ComparatorProducer = (_: Comparator) => Comparator
 
 
 export type PredicateProducer = <A>(_: Predicate<A>) => Predicate<A>
-
-
-// see https://stackoverflow.com/questions/49910889/typescript-array-with-minimum-length
-// for a discussion
-type ArrayMinLength1<T> = {
-    0: T
-} & Array<T>
 
 
 export type AsyncMapping<A = any, B = A> = (_: A) => Promise<B>
