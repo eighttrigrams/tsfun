@@ -8,5 +8,6 @@ export {
     values,
     reduce,
     forEach,
-    keysAndValues
+    keysAndValues,
+    Filter
 } from './src/associative';

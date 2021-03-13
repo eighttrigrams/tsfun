@@ -1,8 +1,10 @@
-import {Predicate, Map, Associative} from './type'
-import {isArray, isAssociative, isFunction, isNumber, isObject, isUndefined} from './predicate'
+import {Predicate, Map, Associative, Mapping} from './type'
+import {isArray, isAssociative, isFunction, isObject} from './predicate'
 import {copy} from './collection'
-import {flatMap, range, zip} from './array'
-import {identity} from './core';
+import {range, zip} from './array'
+
+
+export type Filter<T = any> = Mapping<Associative<T>>
 
 
 // Written with Thomas Kleinke

@@ -1,9 +1,10 @@
-import {filter, Filter} from '../../../src/collection';
+import {Filter} from '../../../src/collection';
+import { filter } from '../../../src/collection';
 
 /**
- * tsfun/collection | Filter
+ * tsfun/associative | Filter
  */
-describe('collection/Filter', () => {
+describe('associative/Filter', () => {
 
     it('Filter', () => {
 
