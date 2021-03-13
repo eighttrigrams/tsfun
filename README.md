@@ -212,9 +212,9 @@ import {equal} from 'tsfun';
 * [path](test/struct/path.spec.ts)
 * [clone](test/struct/clone.spec.ts)
 * [jsonClone](test/struct/json_clone.spec.ts)
-* [lookup](test/struct/struct/lookup.spec.ts)
-* [get](test/struct/struct/get.spec.ts)
-* [dissoc](test/struct/struct/dissoc.spec.ts)
+* [lookup](test/struct/lookup.spec.ts)
+* [get](test/struct/get.spec.ts)
+* [dissoc](test/struct/dissoc.spec.ts)
 
 ## Types reference 
 
