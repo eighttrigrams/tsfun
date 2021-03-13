@@ -5,7 +5,7 @@ import {getElForPathIn} from './struct'
 import {flow} from './composition'
 import {remove, size} from './collection'
 import {reverse} from './list'
-import {map, zip} from './array';
+import {map, zip} from './array'
 
 
 
@@ -123,50 +123,50 @@ export function jsonEqual(l: any, ...r: any[]): any {
 
 
 const differentFromBy: ComparatorProducer = (compare: Comparator) => <A>(a:A) =>
-    isNot(compare(a));
+    isNot(compare(a))
 
 
 export const includedInBy = (compare: Comparator) => <A>(as: Array<A>) =>
     (a: A): boolean => {
 
-        if (!isArray(as)) throw 'illegal argument - includedInBy: expected an Array';
+        if (!isArray(as)) throw 'illegal argument - includedInBy: expected an Array'
 
-        return includesBy(compare)(a)(as);
-    };
+        return includesBy(compare)(a)(as)
+    }
 
 
 export const includesBy =
     (compare: Comparator = tripleEqual as any) =>
         <A>(a: A) => (as: Array<A>) =>
-            as.filter(compare(a)).length > 0;
+            as.filter(compare(a)).length > 0
 
 
 export const subsetOfBy = (compare: Comparator) => <A>(superset: Array<A>) =>
     (subset: Array<A>): boolean => {
 
         if (!isArray(subset) || !isArray(superset))
-            throw 'illegal argument - containedInBy: expected Arrays';
+            throw 'illegal argument - containedInBy: expected Arrays'
 
         return subset
             .filter(includedInBy(compare)(superset))
-            .length === subset.length;
-    };
+            .length === subset.length
+    }
 
 
 export const supersetOfBy = (compare: Comparator) => <A>(subset: Array<A>) =>
-    (superset: Array<A>): boolean => subsetOfBy(compare)(superset)(subset);
+    (superset: Array<A>): boolean => subsetOfBy(compare)(superset)(subset)
 
 
 const compare = (acomparator: Comparator, ocomparator: Comparator) => (l: any) =>
     (r: any): boolean => {
 
         // Array
-        if (isArray(l) && isArray(r)) return acomparator(l)(r);
+        if (isArray(l) && isArray(r)) return acomparator(l)(r)
 
         // {} or Object
         if (isObject(l) && isObject(r)) {
-            if (!samesetBy(undefined as any)(Object.keys(l))(Object.keys(r))) return false;
-            return ocomparator(l)(r);
+            if (!samesetBy(undefined as any)(Object.keys(l))(Object.keys(r))) return false
+            return ocomparator(l)(r)
         }
 
         return l instanceof Object && r instanceof Object
@@ -175,25 +175,25 @@ const compare = (acomparator: Comparator, ocomparator: Comparator) => (l: any) =
             ? jsonEqual(l)(r)
 
             // numbers, strings
-            : typeof l === typeof r && l === r;
-    };
+            : typeof l === typeof r && l === r
+    }
 
 
 const c = (acomparator: Comparator, ocomparator: Comparator) => (l: any) =>
-    (r: any): boolean => compare(acomparator, ocomparator)(l)(r);
+    (r: any): boolean => compare(acomparator, ocomparator)(l)(r)
 
 
 export const arrayEqualBy = (objectComparator?: Comparator) =>
     <A>(as1: Array<A>) => (as2: Array<A>): boolean => {
 
-        const ocmp = objectComparator ? objectComparator : objectEqualBy(arrayEqualBy() as any);
+        const ocmp = objectComparator ? objectComparator : objectEqualBy(arrayEqualBy() as any)
 
         return as1.length !== as2.length
             ? false
             : as1
             .filter((a, i) => compare(equalBy(arrayEqualBy() as any) as any, ocmp)(a)(as2[i]))
-            .length === as2.length;
-    };
+            .length === as2.length
+    }
 
 
 // Compares 2 arrays where elements order does not matter
@@ -202,12 +202,12 @@ export const samesetBy: (_: Comparator) => any =
         <A>(as1: Array<A>) =>
             (as2: Array<A>) => {
 
-                const ocmp = objectComparator ? objectComparator : objectEqualBy(samesetBy(undefined as any));
-                const acmp = objectComparator ? samesetBy(ocmp): samesetBy(undefined as any);
+                const ocmp = objectComparator ? objectComparator : objectEqualBy(samesetBy(undefined as any))
+                const acmp = objectComparator ? samesetBy(ocmp): samesetBy(undefined as any)
 
                 return subtractBy(c(acmp, ocmp))(as1)(as2).length === 0
-                    && subtractBy(c(acmp, ocmp))(as2)(as1).length === 0;
-            };
+                    && subtractBy(c(acmp, ocmp))(as2)(as1).length === 0
+            }
 
 
 export const objectEqualBy =
@@ -231,7 +231,7 @@ export const objectEqualBy =
                         ((o2 as any)[key])
                     })
                     .length === Object.keys(o1).length
-            };
+            }
 
 
 export const equalBy =
@@ -245,7 +245,7 @@ const onBy = (compare: Function) => (path: SPath) =>
     (l: any) => (r: any) => { 
 
         if (isString(path) && (path as string).length === 0) throw 'illegal argument - string path must not be empty'
-        if (isArray(path) && (path as Array<any>).length < 2) throw 'illegal argument - array path must have min length 2';
+        if (isArray(path) && (path as Array<any>).length < 2) throw 'illegal argument - array path must have min length 2'
         
         if (isString(path)||isNumber(path)) return compare(l[path as any])(r[path as any]) 
         return compare(getElForPathIn(l, path as any))(getElForPathIn(r, path as any))
@@ -312,9 +312,9 @@ export function includedIn<A>(...args) {
 }
 
 
-export function includes(as: string): (a: string) => boolean;
-export function includes<A>(a: A): (as: Array<A>) => boolean;
-export function includes<A>(comp: Comparator, a: A): (as: Array<A>) => boolean;
+export function includes(as: string): (a: string) => boolean
+export function includes<A>(a: A): (as: Array<A>) => boolean
+export function includes<A>(comp: Comparator, a: A): (as: Array<A>) => boolean
 export function includes<A>(...args) {
 
     if (args.length > 1 && isFunction(args[0])) {
@@ -370,8 +370,8 @@ export function sameset<A>(...args): any {
             : samesetBy(args[0])(args[1])(args[2])
     }
 
-    const that = args[0];
-    const as2  = args.length > 1 ? args[1] : undefined;
+    const that = args[0]
+    const as2  = args.length > 1 ? args[1] : undefined
 
     const inner = (as2: Array<A>|string) => {
 
@@ -413,8 +413,8 @@ export function subsetOf<A>(...args): any {
             : subsetOfBy(args[0])(args[1])(args[2])
     }
 
-    const that = args[0];
-    const as2 = args[1];
+    const that = args[0]
+    const as2 = args[1]
 
     const inner = (as2: any): any => {
 
@@ -488,14 +488,14 @@ export function equal<T>(comp: Comparator, o1: T, o2: T): boolean
 export function equal(comp: Comparator, o1: undefined): {
     (o2: undefined): true
     (o2: any): false
-};
+}
 export function equal<T>(comp: Comparator, o1: T): (o2: T) => boolean
 export function equal<T>(o1: T, o2: T): boolean
 export function equal(o1: undefined): {
     (o2: undefined): true
     (o2: any): false
-};
-export function equal<T>(o1: T): (o2: T) => boolean;
+}
+export function equal<T>(o1: T): (o2: T) => boolean
 export function equal(o1: any, ...os: any[]): any {
 
     if (isFunction(o1)) {
@@ -519,9 +519,9 @@ export function equalTo(o1: any) {
 
 
 export function startsWith<A>(s1: string, s2: string): boolean
-export function startsWith<A>(s1: string): (s2: string) => boolean;
-export function startsWith<A>(as1: Array<A>, as2: Array<A>): boolean;
-export function startsWith<A>(as1: Array<A>): (as2: Array<A>) => boolean;
+export function startsWith<A>(s1: string): (s2: string) => boolean
+export function startsWith<A>(as1: Array<A>, as2: Array<A>): boolean
+export function startsWith<A>(as1: Array<A>): (as2: Array<A>) => boolean
 export function startsWith<A>(that: string|Array<A>, what?:string|Array<A>) {
 
     const compare = (that: string|Array<A>, what: string|Array<A>) => {
