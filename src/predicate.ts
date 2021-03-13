@@ -1,4 +1,4 @@
-import {Either, Mapping, Maybe, Predicate} from './type'
+import {Either, Mapping, Maybe, Predicate, SPath} from './type'
 import {is, on} from './comparator'
 import {first} from './list'
 import {map, reduce} from './associative'
@@ -51,12 +51,12 @@ export function empty($) {
 }
 
 
-export const has = (path: string|Array<string|number>|number) => (o: Object) =>
-    on((isNumber(path) ? [path] : path) as any, isDefined)(o)
+export const has = (path: SPath) => (o: Object) =>
+    on(path as any, isDefined)(o)
 
 
-export const hasnt = (path: string|Array<string|number>|number) => (o: Object) =>
-    not(on((isNumber(path) ? [path] : path) as any, isDefined))(o)
+export const hasnt = (path: SPath) => (o: Object) =>
+    not(on(path as any, isDefined))(o)
 
 
 export function and(...preds: Array<Predicate<any>>) {

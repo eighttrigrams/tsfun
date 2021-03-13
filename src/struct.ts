@@ -48,7 +48,8 @@ export function get<V>(path: string, alternative?: V): <T>(o: T) => V
 export function get(path: number, alternative?: any): <T>(as: Array<T>) => Array<T>
 export function get(path_, alternative?: any) {
 
-    if (isArray(path_) && path_.length < 2) throw 'illegal argument - array path must be at least of length 2'
+    if (isArray(path_)) { if (path_.length < 2) throw 'illegal argument - array path must be at least of length 2' }
+    else if (!isString(path_)&&!isNumber(path_)) throw 'illegal argument - path must be string, number, or array of at least 2'
 
     return ds => {
         const path = isString(path_)||isNumber(path_) ? [path_] : path_
@@ -64,11 +65,7 @@ export function lookup<T>(ds: Array<T>, alternative?: T): (path: number) => T
 export function lookup<T, V>(ds: T, alternative?: V): (path: string) => V
 export function lookup(ds, alternative?) {
 
-    return path => {
-        
-        if (isArray(path) && path.length < 2) throw 'illegal argument - array path must be at least of length 2'
-        return get(path, alternative)(ds)
-    }
+    return path => get(path, alternative)(ds)
 }
 
 
@@ -176,11 +173,11 @@ function $update1(path_ /*mut inplace*/, struct, update_fun, update = true) {
 }
 
 
-export function to<T = any>(path: Path) {
+export function to<T = any>(path: SPath) {
 
     if (isString(path)||isNumber(path)) return _ => _[path as any]
     if (!isArray(path)) throw 'illegal argument - if not string or number, then array expected'
-    if (path.length < 2) throw 'illegal argument - array path must be at least of length 2'
+    if ((path as any).length < 2) throw 'illegal argument - array path must be at least of length 2'
 
     return s => (reverseUncurry2(getElForPathIn))(path)(s) as T
 }

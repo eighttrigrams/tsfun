@@ -1,5 +1,5 @@
-import {Comparator, ComparatorProducer, List, Pair, Predicate, Path} from './type'
-import {isArray, isFunction, isNot, isObject, isString} from './predicate'
+import {Comparator, ComparatorProducer, List, Pair, Predicate, Path, SPath} from './type'
+import {isArray, isFunction, isNot, isNumber, isObject, isString} from './predicate'
 import {subtractBy} from './set'
 import {getElForPathIn} from './struct'
 import {flow} from './composition'
@@ -247,10 +247,19 @@ const onBy = (compare: Function) => (path: string|Array<number|string>) =>
         : compare(getElForPathIn(l, path))(getElForPathIn(r, path))
 
 
-export const on = (path: Path, compare: Function = tripleEqual) =>
-    (l: any) => typeof compare(l) === 'function'
-        ? (r: any) => onBy(compare)(path as any)(l)(r)
-        : compare(getElForPathIn(l, path as any))
+export const on = (path: SPath, compare: Function = tripleEqual) => {
+
+    if (isString(path)||isNumber(path)) {/*OK*/}
+    else if (isArray(path) && (path as any).length >= 2) {/*OK*/}
+    else throw 'illegal argument - path must be one of string, number, array of length 2'
+    
+    return (l: any) => { 
+
+        if (isFunction(compare(l))) return (r: any) => onBy(compare)(path as any)(l)(r)
+        if (isString(path)||isNumber(path)) return compare((l as any)[path as any]) 
+        else return compare(getElForPathIn(l, path as any)) 
+    }
+}
 
 
 export const by = <A>(p: Predicate<A>) => p

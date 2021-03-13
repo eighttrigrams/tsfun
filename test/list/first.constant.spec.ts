@@ -9,7 +9,7 @@ describe('FIRST', () => {
     it('FIRST', () =>
         expect(
 
-            on([FIRST], is(4))([4, 1])
+            on(FIRST, is(4))([4, 1])
 
         ).toEqual(true));
 

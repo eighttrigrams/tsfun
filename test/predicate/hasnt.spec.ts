@@ -10,7 +10,7 @@ describe('hasnt', () => {
     it('true', () =>
         expect(
 
-            hasnt('a.c')({a: {b: 1}}))
+            hasnt(['a','c'])({a: {b: 1}}))
 
             .toEqual(true));
 
@@ -34,7 +34,7 @@ describe('hasnt', () => {
     it('false', () =>
         expect(
 
-            hasnt('a.b')({a: {b: 1}}))
+            hasnt(['a','b'])({a: {b: 1}}))
 
             .toEqual(false));
 

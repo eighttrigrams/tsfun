@@ -9,7 +9,7 @@ describe('LEFT', () => {
     it('LEFT', () =>
         expect(
 
-            on([LEFT], is(4))([4, 1])
+            on(LEFT, is(4))([4, 1])
 
         ).toEqual(true));
 

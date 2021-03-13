@@ -46,11 +46,11 @@ describe('lookup', () => {
 
 
     it('undefined as key',() =>
-        expect(
+        expect(() =>
 
             lookup([4, [7, 8]])(undefined as any))
 
-            .toBeUndefined())
+            .toThrow())
 
 
     it('nothing array', () =>

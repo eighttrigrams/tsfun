@@ -12,11 +12,10 @@ import {intersectBy} from '../../../src/set';
  */
 describe('on (by)', () => {
 
-
     it('array - first level', () =>
         expect(
 
-            on('[1]', is(7))([4, 7]))
+            on(1, is(7))([4, 7]))
 
             .toEqual(true));
 
@@ -24,20 +23,12 @@ describe('on (by)', () => {
     it('array - first level - path by array', () =>
         expect(
 
-            on([1], is(7))([4, 7]))
+            on(1, is(7))([4, 7]))
 
             .toEqual(true));
 
 
     it('array - second level', () =>
-        expect(
-
-            on('[1][1]', is(7))([3, [2, 7]]))
-
-            .toEqual(true));
-
-
-    it('array - second level - path by array', () =>
         expect(
 
             on([1, 1], is(7))([3, [2, 7]]))
@@ -56,7 +47,7 @@ describe('on (by)', () => {
     it('object - second level',() =>
         expect(
 
-            on('a.b', is(3))({ a: { b: 3 }}))
+            on(['a', 'b'], is(3))({ a: { b: 3 }}))
 
             .toEqual(true));
 
@@ -72,7 +63,7 @@ describe('on (by)', () => {
     it('first level object - second level array',() =>
         expect(
 
-            on('a[1]', is(3))({ a: [7, 3]}))
+            on(['a',1], is(3))({ a: [7, 3]}))
 
             .toEqual(true));
 
@@ -80,7 +71,7 @@ describe('on (by)', () => {
     it('first level array - second level object',() =>
         expect(
 
-            on('[1].a', is(15))([7, { a: 15 }]))
+            on([1,'a'], is(15))([7, { a: 15 }]))
 
             .toEqual(true));
 
@@ -88,7 +79,7 @@ describe('on (by)', () => {
     it('first level object - second level object - third level array',() =>
         expect(
 
-            on('a.b[1]', is(3))({ a: { b: [7, 3]}}))
+            on(['a','b',1], is(3))({ a: { b: [7, 3]}}))
 
             .toEqual(true));
 
@@ -96,7 +87,7 @@ describe('on (by)', () => {
     it('first level array - second level array - third level object',() =>
         expect(
 
-            on('[1][1].a', is(3))([ 0, [ 3, { a: 3 }]]))
+            on([1,1,'a'], is(3))([ 0, [ 3, { a: 3 }]]))
 
             .toEqual(true));
 
@@ -104,7 +95,7 @@ describe('on (by)', () => {
     it('first level array - second level object - third level object',() =>
         expect(
 
-            on('[1].a[1]', is(3))([ 0, { a: [1, 3] }]))
+            on([1,'a',1], is(3))([ 0, { a: [1, 3] }]))
 
             .toEqual(true));
 
@@ -112,7 +103,7 @@ describe('on (by)', () => {
     it('first level object - second level array - third level object',() =>
         expect(
 
-            on('a[1].a', is(3))({ a: [1, { a: 3 }]}))
+            on(['a',1,'a'], is(3))({ a: [1, { a: 3 }]}))
 
             .toEqual(true));
 
@@ -120,7 +111,7 @@ describe('on (by)', () => {
     it('unknown object key', () =>
         expect(
 
-            on('a.b', is(15))({ c: { a: 1 }}))
+            on(['a','b'], is(15))({ c: { a: 1 }}))
 
             .toEqual(false));
 
@@ -130,7 +121,7 @@ describe('on (by)', () => {
     it('unknown array key', () =>
         expect(
 
-            on('[10].a', is(15))([7, 19, { a: 3 }]))
+            on([10,'a'], is(15))([7, 19, { a: 3 }]))
 
             .toEqual(false));
 
@@ -146,7 +137,7 @@ describe('on (by)', () => {
     it('is not an object', () =>
         expect(
 
-            on('a[3]', is(15))([]))
+            on(['a',3], is(15))([]))
 
             .toEqual(false));
 
@@ -154,7 +145,7 @@ describe('on (by)', () => {
     it('is not an array', () =>
         expect(
 
-            on('[10].a', is(15))({ a: 'b' }))
+            on([10,'a'], is(15))({ a: 'b' }))
 
             .toEqual(false));
 
@@ -173,7 +164,7 @@ describe('on (by)', () => {
         expect(
 
             [{a: {b: 4}}, {a: {b: 5}}]
-                .find(on('a.b')({a: {b: 5}})))
+                .find(on(['a','b'])({a: {b: 5}})))
 
             .toEqual({a: {b: 5}} as any));
 
@@ -182,7 +173,7 @@ describe('on (by)', () => {
         expect(
 
             [{a: {b: 4}}, {a: {b: 5}}]
-                .filter(isNot(on('a.b')({a: {b: 5}}))))
+                .filter(isNot(on(['a','b'])({a: {b: 5}}))))
 
             .toEqual([{a: {b: 4}} as any]));
 
@@ -190,7 +181,7 @@ describe('on (by)', () => {
     it('on - with intersectBy - symmetric',() =>
         expect(
 
-            intersectBy(on('a.b'))([{a: {b: 4}}, {a: {b: 5}}])
+            intersectBy(on(['a', 'b']))([{a: {b: 4}}, {a: {b: 5}}])
             ([{a: {b: 5}}]))
 
             .toEqual([{a: {b: 5}} as any]));
@@ -200,7 +191,7 @@ describe('on (by)', () => {
         expect(
 
             [{a: {b: 4}}, {a: {c: 5}}]
-                .filter(on('a.b', isUndefined))
+                .filter(on(['a','b'], isUndefined))
 
         ).toEqual([{a: {c: 5}}] as any));
 
@@ -209,7 +200,7 @@ describe('on (by)', () => {
         expect(
 
             [{a: {b: 4}}, {a: {c: 5}}]
-                .filter(isNot(on('a.b', isUndefined)))
+                .filter(isNot(on(['a','b'], isUndefined)))
 
         ).toEqual([{a: {b: 4}}] as any));
 
@@ -218,7 +209,7 @@ describe('on (by)', () => {
         expect(
 
             [{a: {b: 4}}, {a: {c: 5}}]
-                .filter(on('a.b', isDefined))
+                .filter(on(['a','b'], isDefined))
 
         ).toEqual([{a: {b: 4}}] as any));
 
@@ -263,7 +254,7 @@ describe('on (by)', () => {
         expect(
 
             [{a: {b: [2, 1]}}, {c: {a: 1}}, {}]
-                .filter(on('a.b', isArray))
+                .filter(on(['a','b'], isArray))
 
         ).toEqual([{a: {b: [2, 1]}}] as any));
 
@@ -275,7 +266,7 @@ describe('on (by)', () => {
         expect(
 
             [{a: {b: [2, 1]}}, {a: {b: [2, 7]}}]
-                .filter(on('a.b', samesetBy(undefined as any))({a: {b: [1, 2]}}))
+                .filter(on(['a','b'], samesetBy(undefined as any))({a: {b: [1, 2]}}))
 
         ).toEqual([{a: {b: [2, 1]}}] as any));
 
@@ -283,7 +274,7 @@ describe('on (by)', () => {
     it('intersectBy onBy equalTo - symmetric',() =>
         expect(
 
-            intersectBy(on('a.b', by(jsonEqual as any)))([{a: {b: {c: 'e'}}}, {a: {b: 'c'}}])
+            intersectBy(on(['a','b'], by(jsonEqual as any)))([{a: {b: {c: 'e'}}}, {a: {b: 'c'}}])
             ([{a: {b: {c: 'e'}}}]))
 
             .toEqual([{a: {b: {c: 'e'}}} as any]));
@@ -293,7 +284,17 @@ describe('on (by)', () => {
         expect(
 
             [{a: {b: {c: 4}}}, {a: {b: {d: 5}}}]
-                .find(on('a.b', jsonEqual)({a: {b: {c: 4}}})))
+                .find(on(['a','b'], jsonEqual)({a: {b: {c: 4}}})))
 
             .toEqual({a: {b: {c: 4}}} as any));
+
+
+    // regression prevention
+
+    it('object - see path',() =>
+        expect(
+
+            on('a.b', is(3))({ 'a.b': 3 }))
+
+            .toEqual(true));
 });
