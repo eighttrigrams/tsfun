@@ -12,7 +12,7 @@ describe('hasnt', () => {
 
             hasnt(['a','c'])({a: {b: 1}}))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('true - path given as array', () =>
@@ -20,7 +20,7 @@ describe('hasnt', () => {
 
             hasnt([0, 'a'])([]))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('true - path given as singleton', () =>
@@ -28,7 +28,7 @@ describe('hasnt', () => {
 
             hasnt(1)([]))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('false', () =>
@@ -36,7 +36,7 @@ describe('hasnt', () => {
 
             hasnt(['a','b'])({a: {b: 1}}))
 
-            .toEqual(false));
+            .toEqual(false))
 
 
     it('false - path given as array', () =>
@@ -44,7 +44,7 @@ describe('hasnt', () => {
 
             hasnt([0, 'a'])([{a: '3'}]))
 
-            .toEqual(false));
+            .toEqual(false))
 
 
     it('false - path given as singleton', () =>
@@ -52,5 +52,5 @@ describe('hasnt', () => {
 
             hasnt(0)(['a'])
 
-            ).toEqual(false));
-});
+            ).toEqual(false))
+})
