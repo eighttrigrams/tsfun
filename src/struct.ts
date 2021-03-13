@@ -115,12 +115,21 @@ export function dissoc(path, o?) {
     const $ = struct => {
 
         if (isString(path)||isNumber(path)) {
+            
             const c = copy(struct)
             delete c[path]
             return c
+
+        } else if (isArray(path)) {
+
+            if (path.length < 2) throw 'illegal argument - array path should have min length 2'
+            return $update1(clone(path), struct, undefined, false)
+
+        } else {
+
+            throw 'illegal argument - path expected to be one of array, number, string'
         }
         
-        return $update1(clone(path), struct, undefined, false)
     }
 
     return o === undefined

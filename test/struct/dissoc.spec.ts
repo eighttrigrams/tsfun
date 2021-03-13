@@ -6,6 +6,16 @@ import {dissoc, path} from '../../src/struct'
  */
 describe('dissoc', () => {
 
+    interface A { a?: number, b?: string }
+    
+
+    it('dissoc', () => {
+
+        expect(dissoc('a')({ a: 4 } as A)).toEqual({ })
+        expect(dissoc('a', { a: 4 } as A)).toEqual({ })
+    })
+
+
     it('simple case', () => {
 
         const objectStruct = { a: { b: 'c' }}
@@ -22,20 +32,6 @@ describe('dissoc', () => {
 
         const objectStruct = { a: 'a_val', c: embeddedStruct }
         const resultStruct = dissoc('c')(objectStruct)
-
-        expect(resultStruct).not.toBe(objectStruct)
-        expect(embeddedStruct['d']).toBe('d_val')
-        expect(objectStruct['a']).toBe('a_val')
-        expect(resultStruct['c']).toBeUndefined()
-    })
-
-
-    it('first layer - by array', () => {
-
-        const embeddedStruct = { d: 'd_val' }
-
-        const objectStruct = { a: 'a_val', c: embeddedStruct }
-        const resultStruct = dissoc(['c'])(objectStruct)
 
         expect(resultStruct).not.toBe(objectStruct)
         expect(embeddedStruct['d']).toBe('d_val')
@@ -67,15 +63,6 @@ describe('dissoc', () => {
 
         // does not create the a property, just to get to the 'c' property
         expect(resultStruct).toEqual({})
-    })
-
-
-    interface A { a?: number, b?: string }
-
-    it('dissoc', () => {
-
-        expect(dissoc('a')({ a: 4 } as A)).toEqual({ })
-        expect(dissoc('a', { a: 4 } as A)).toEqual({ })
     })
 
 
