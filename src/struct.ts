@@ -97,10 +97,17 @@ export function update(path_, update_fun, o?) {
 export function dissoc<T, K extends keyof T>(key: keyof T): <T>(o: T) => T
 export function dissoc(path: string|Array<string|number>): <T>(o: T) => T
 export function dissoc<T, K extends keyof T>(key: keyof T, o: T): T
-export function dissoc(path, o?) {
+export function dissoc(path_, o?) {
 
     const $ = struct => {
+
+        if (isString(path_)||isNumber(path_)) {
+            const c = copy(struct)
+            delete c[path_]
+            return c
+        }
         
+        const path = clone(path_)
         return $update1(path, struct, undefined, false)
     }
 

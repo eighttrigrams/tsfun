@@ -1,5 +1,5 @@
 import { flow } from '../../src/composition'
-import {dissoc} from '../../src/struct'
+import {dissoc, path} from '../../src/struct'
 
 /**
  * tsfun | dissoc
@@ -9,7 +9,7 @@ describe('dissoc', () => {
     it('simple case', () => {
 
         const objectStruct = { a: { b: 'c' }}
-        const resultStruct = dissoc('a.b')(objectStruct)
+        const resultStruct = dissoc(path('a.b'))(objectStruct)
 
         expect(resultStruct).not.toBe(objectStruct)
         expect(resultStruct['a']['b']).toBeUndefined()
@@ -49,7 +49,7 @@ describe('dissoc', () => {
         const embeddedStruct = { e: 'e_val' }
 
         const objectStruct = { a: { b: 'b_val', c: embeddedStruct}, d: embeddedStruct }
-        const resultStruct = dissoc('a.c')(objectStruct)
+        const resultStruct = dissoc(path('a.c'))(objectStruct)
 
         expect(resultStruct).not.toBe(objectStruct)
         expect(resultStruct['d']).toBe(embeddedStruct)
@@ -63,7 +63,7 @@ describe('dissoc', () => {
     it('do not create anything', () => {
 
         const objectStruct = {}
-        const resultStruct = dissoc('a.c')(objectStruct)
+        const resultStruct = dissoc(path('a.c'))(objectStruct)
 
         // does not create the a property, just to get to the 'c' property
         expect(resultStruct).toEqual({})
@@ -110,5 +110,15 @@ describe('dissoc', () => {
             = flow({ a: 7 }
             , dissoc('a')
             )
+    })
+
+
+    it('simple case - see path', () => {
+
+        const objectStruct = { 'a.b': 'c' }
+        const resultStruct = dissoc('a.b')(objectStruct)
+
+        expect(resultStruct).not.toBe(objectStruct)
+        expect(resultStruct['a.b']).toBeUndefined()
     })
 })
