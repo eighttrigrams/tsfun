@@ -1,4 +1,4 @@
-import {path} from '../../../src/struct';
+import { path } from "../../struct";
 
 /**
  * tsfun | path

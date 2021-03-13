@@ -1,9 +1,9 @@
-import {lookup} from "../../../src/struct"
+import {lookup} from "../../src/struct"
 
 /**
- * tsfun | struct/lookup
+ * tsfun | lookup
  */
-describe('struct/lookup', () => {
+describe('lookup', () => {
 
     it('first level object - second level object',() =>
         expect(

@@ -1,4 +1,4 @@
-import {get} from '../../../src/struct'
+import { get } from "../../struct";
 
 
 /**

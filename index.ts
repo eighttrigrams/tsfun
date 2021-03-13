@@ -1,6 +1,5 @@
 export {
-    dissoc,
-    update
+    dissoc
 } from './src/object'
 
 

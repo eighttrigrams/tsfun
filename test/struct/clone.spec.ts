@@ -1,5 +1,5 @@
-import {clone} from "../../../src/struct";
-import {isArray, isObject} from '../../../src/predicate';
+import { isArray, isObject } from "../..";
+import { clone } from "../../struct";
 
 describe('clone', () => {
 

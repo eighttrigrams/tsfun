@@ -1,6 +1,6 @@
-import {Map, Path} from './type';
+import {Map, Mapping, Path} from './type';
 import {val} from './composition';
-import {isArray, isFunction, isObject, isString} from './predicate';
+import {isArray, isFunction, isNumber, isObject, isString} from './predicate';
 import {reverseUncurry2} from './core';
 import {copy} from './collection';
 import {rest} from './list';
@@ -60,19 +60,84 @@ export const lookup = <T>(ds: Object, alternative?: T) => (path: string|Array<st
 }
 
 
-export function update(path_: Path, update_fun: ((val: any) => any)|any) {
+export function update<T>(k: Array<string|number>, update_fun: ((val: T) => T)|T, as: Array<T>): Array<T>;
+export function update<U, T>(k: Array<string|number>, update_fun: ((val: U) => U)|U, o: T): T;
+export function update<U>(k: number, update_fun: ((val: U) => U)|U, s: Array<U>): Array<U>;
+export function update<T, K extends keyof T>(key: keyof T, f: Mapping<T[K]>|T[K], o: T): T
 
-    return (struct: Object): any => _update(path_, struct, update_fun, true)
+export function update<U>(k: number, update_fun: ((val: U) => U)|U): <T extends U>(s: Array<T>) => Array<T>;
+export function update<T, K extends keyof T>(key: keyof T, f: Mapping<T[K]>|T[K]): <T1>(o: T1) => T1
+export function update<U>(k: string, update_fun: ((val: U) => U)|U): <T,V extends T>(s: T) => V;
+export function update<U>(k: Array<string|number>, update_fun: ((val: U) => U)|U): <T,V extends T>(s: T) => V;
+
+export function update(path_, update_fun, o?) {
+
+    const $ = struct => {
+        
+        const path = clone(path_);
+
+        return isString(path) || isNumber(path)
+            ? $updateO(path, update_fun, struct)
+            : $update1(path, struct, update_fun, true)
+    }
+
+    return o !== undefined
+        ? $(o)
+        : $
 }
 
 
-export const dissoc = (path: Path) => (struct: Object) => _update(path, struct, undefined, false);
+export function dissoc<T, K extends keyof T>(key: keyof T): <T>(o: T) => T
+export function dissoc(path: string|Array<string|number>): <T>(o: T) => T
+export function dissoc<T, K extends keyof T>(key: keyof T, o: T): T
+export function dissoc(path, o?) {
+
+    const $ = (struct: Object) => {
+        
+        return $update1(path, struct, undefined, false)
+    }
+
+    return o === undefined
+        ? $
+        : $(o)
+} 
 
 
-function _update(path_: Path,
-                 struct: Object,
-                 update_fun: ((val: any) => any)|any,
-                 update = true) {
+export function $dissoc1(key, o?) {
+
+    const $ = o => {
+
+        const c: any = copy(o as any)
+        delete c[key]
+        return c
+    }
+
+    return o === undefined
+        ? $
+        : $(o)
+}
+
+
+
+export function $updateO(key, f: any, o?) { 
+
+    const $ = o => {
+
+        const c: any = copy(o as any)
+        c[key] = isFunction(f) ? f(c[key]) : f;
+        return c
+    }
+
+    return o === undefined
+        ? $
+        : $(o)
+}
+
+
+function $update1(path_: Path,
+                  struct: Object,
+                  update_fun: ((val: any) => any)|any,
+                  update = true) {
 
     const pathSegments = (isString(path_) ? path(path_ as any) : path_) as Array<string|number>;
 
@@ -88,7 +153,7 @@ function _update(path_: Path,
     } else {
         pathSegments.shift();
         if (update || copied[pathSegment] !== undefined) {
-            copied[pathSegment] = _update(pathSegments, copied[pathSegment], update_fun, update);
+            copied[pathSegment] = $update1(pathSegments, copied[pathSegment], update_fun, update);
         }
     }
     return copied;

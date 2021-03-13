@@ -203,18 +203,18 @@ import {equal} from 'tsfun';
 * [value](test/tuple/value.spec.ts)
 * [getSuccess](test/tuple/get_success.spec.ts)
 
-### Object
-
-###### Object & interface
-
-* [update](test/object/update.spec.ts)
-* [dissoc](test/object/dissoc.spec.ts)
-
 ### Struct
 
-###### Array & Map
+###### Array & Object
 
 * [to](test/struct/to.spec.ts)
+* [update](test/struct/update.spec.ts)
+* [path](test/struct/path.spec.ts)
+* [clone](test/struct/clone.spec.ts)
+* [jsonClone](test/struct/json_clone.spec.ts)
+* [lookup](test/struct/struct/lookup.spec.ts)
+* [get](test/struct/struct/get.spec.ts)
+* [dissoc](test/struct/struct/dissoc.spec.ts)
 
 ## Types reference 
 
@@ -266,22 +266,6 @@ import {lookup} from 'tsfun/associative';
 * [forEach](test/associative/associative/for_each.spec.ts)
 * [reduce](test/associative/associative/reduce.spec.ts)
 * [keysAndValues](test/associative/associative/keys_and_values.spec.ts)
-
-### Struct
-
-###### Array & Map
-
-```typescript
-import {assoc as assocOn} from 'tsfun/struct';
-```
-
-* [path](test/struct/struct/path.spec.ts)
-* [lookup](test/struct/struct/lookup.spec.ts)
-* [get](test/struct/struct/get.spec.ts)
-* [update](test/struct/struct/update.spec.ts)
-* [dissoc](test/struct/struct/dissoc.spec.ts)
-* [clone](test/struct/struct/clone.spec.ts)
-* [jsonClone](test/struct/struct/json_clone.spec.ts)
 
 ### Collection
 

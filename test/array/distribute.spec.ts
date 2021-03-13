@@ -7,7 +7,7 @@ import { distribute } from '../../src/array'
 /**
  * tsfun | distribute
  */
-fdescribe('distribute', () => {
+describe('distribute', () => {
 
     it('base case', () => 
 
