@@ -83,9 +83,20 @@ export function update(path_, update_fun, o?) {
         
         const path = clone(path_)
 
-        return isString(path) || isNumber(path)
-            ? $updateO(path, update_fun, struct)
-            : $update1(path, struct, update_fun, true)
+        if (isString(path) || isNumber(path)) {
+
+            return $update0(path, update_fun, struct)
+
+        } else if (isArray(path)) {
+
+            if (path.length === 0) return struct
+            if (path.length === 1) return $update0(path[0], update_fun, struct)
+            return $update1(path, struct, update_fun, true)
+
+        } else {
+            
+            throw 'illegal argument - must be one of Array<string|number>, string, number'
+        }
     }
 
     return o !== undefined
@@ -117,7 +128,7 @@ export function dissoc(path_, o?) {
 } 
 
 
-function $updateO(key, f: any, o?) { 
+function $update0(key, f: any, o?) { 
 
     const $ = o => {
 
