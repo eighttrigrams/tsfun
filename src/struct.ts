@@ -1,4 +1,4 @@
-import {Map, Mapping, Path} from './type'
+import {Mapping, Path} from './type'
 import {isArray, isFunction, isNumber, isObject, isString} from './predicate'
 import {reverseUncurry2} from './core'
 import {copy} from './collection'
