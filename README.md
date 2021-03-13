@@ -261,27 +261,16 @@ import {lookup} from 'tsfun/associative';
 * [update](test/associative/associative/update.spec.ts)
 * [dissoc](test/associative/associative/dissoc.spec.ts)
 * [map](test/associative/associative/map.spec.ts) 
+* [filter](test/associative/associative/filter.spec.ts)
 * [keys](test/associative/associative/keys.spec.ts)
 * [values](test/associative/associative/values.spec.ts)
 * [forEach](test/associative/associative/for_each.spec.ts)
 * [reduce](test/associative/associative/reduce.spec.ts)
 * [keysAndValues](test/associative/associative/keys_and_values.spec.ts)
 
-### Collection
-
-###### Array & Map & string
-
-```typescript
-import {filter as filterColl} from 'tsfun/collection';
-```
-
-* [filter](test/collection/collection/filter.spec.ts)
-* [remove](test/collection/collection/remove.spec.ts)
-* [separate](test/collection/collection/separate.spec.ts)
-
 ###### Types
 
-* [Filter](test/collection/collection/filter.type.spec.ts)
+* [Filter](test/associative/associative/filter.type.spec.ts)
 
 ### string
 
@@ -295,6 +284,7 @@ import {filter as filterColl} from 'tsfun/collection';
 * [takeWhile](test/list/string/take_while.spec.ts)
 * [takeRightWhile](test/string/string/take_right_while.spec.ts)
 * [dropWhile](test/string/string/drop_while.spec.ts)
+* [filter](test/collection/collection/filter.spec.ts)
 
 ### Async
 
