@@ -145,15 +145,12 @@ function $update0(key, f: any, o?) {
 }
 
 
-function $update1(path_: Path,
-                  struct: Object,
-                  update_fun: ((val: any) => any)|any,
-                  update = true) {
+function $update1(path_ /*mut inplace*/, struct, update_fun, update = true) {
 
     const pathSegments = (isString(path_) ? path(path_ as any) : path_) as Array<string|number>
 
     const pathSegment = pathSegments[0]
-    const copied = copy(struct) as Map
+    const copied = copy(struct)
 
     if (pathSegments.length === 1) {
         if (update) {
@@ -171,23 +168,13 @@ function $update1(path_: Path,
 }
 
 
-export function to<T = any>(path_: Path) {
+export function to<T = any>(path: Path) {
 
-    if (isArray(path_) && path_.length < 2) throw 'illegal argument - array path must be at least of length 2'
+    if (isString(path)||isNumber(path)) return _ => _[path as any]
+    if (!isArray(path)) throw 'illegal argument - if not string or number, then array expected'
+    if (path.length < 2) throw 'illegal argument - array path must be at least of length 2'
 
-    const path = isString(path_)||isNumber(path_) ? [path_] : path_
-
-    return (s: any) => (reverseUncurry2(getElForPathIn))(path)(s) as T
-}
-
-
-function makeValueForCurrentKey(resultSegment: any) {
-    return (resultSegment
-        || resultSegment === ''
-        || resultSegment === 0
-        || resultSegment === false)
-        ? resultSegment
-        : undefined
+    return s => (reverseUncurry2(getElForPathIn))(path)(s) as T
 }
 
 
@@ -244,6 +231,16 @@ export function path(path: string): Array<number|string> {
         return segments
     } 
     throw 'illegal arguments - must be string'
+}
+
+
+function makeValueForCurrentKey(resultSegment: any) {
+    return (resultSegment
+        || resultSegment === ''
+        || resultSegment === 0
+        || resultSegment === false)
+        ? resultSegment
+        : undefined
 }
 
 
