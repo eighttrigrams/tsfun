@@ -258,7 +258,7 @@ function makeValueForCurrentKey(resultSegment: any) {
 
 function _back(path: Array<number|string>): string {
 
-    if (!isString(path)) {
+    if (isArray(path)) {
 
         let joined = (path as Array<number|string>).map((segment: any) => {
 
