@@ -1,4 +1,4 @@
-import {Array2, Mapping, Path, SPath} from './type'
+import {Array2, Mapping, SPath} from './type'
 import {isArray, isFunction, isNumber, isObject, isString} from './predicate'
 import {reverseUncurry2} from './core'
 import {copy} from './collection'
@@ -52,9 +52,9 @@ export function get(path_, alternative?: any) {
     else if (!isString(path_)&&!isNumber(path_)) throw 'illegal argument - path must be string, number, or array of at least 2'
 
     return ds => {
-        const path = isString(path_)||isNumber(path_) ? [path_] : path_
-
-        const result = getElForPathIn(ds as Object, path)
+        const result = (isString(path_) || isNumber(path_)) 
+            ? ds[path_]
+            : getElForPathIn(ds as Object, path_ as any)
         return result !== undefined ? result : alternative
     }
 }
@@ -187,12 +187,14 @@ const isObject_ = (o: any) => o instanceof Object
 
 
 // library internal
-export function getElForPathIn(object: any, path_: Path): any {
+export function getElForPathIn(object: any, path_: Array2<string|number>): any {
 
-    if (!path_ || path_.length < 1) return undefined
+    if (!path_ || path_.length < 2) {
+        throw 'illegal argument in getElForPathIn'
+    }
 
     return $getElForPathIn1(object,
-        (isString(path_) ? $path1(path_ as string, true) : path_) as Array<string|number>)
+        (isString(path_) ? path(path_ as string) : path_) as Array<string|number>)
 }
 
 
@@ -216,12 +218,6 @@ export function $getElForPathIn1(object: any, path: Array<string|number>): any {
 
 export function path(path: string): Array2<string|number> {
 
-    return $path1(path, false) as unknown as Array2<string|number>
-}
-
-
-function $path1(path: string, suppressCheck?) {
-
     if (isString(path)) {
 
         const segments = []
@@ -239,8 +235,8 @@ function $path1(path: string, suppressCheck?) {
             }
         }
         if (current) segments.push(current as never)
-        if (!suppressCheck && segments.length < 2) throw 'illegal argument - path expected to yield 2 segments'
-        return segments
+        if (segments.length < 2) throw 'illegal argument - path expected to yield 2 segments'
+        return segments as unknown as Array2<string|number> // TODO remove with type guard for Array2
     } 
     throw 'illegal arguments - must be string'
 }
