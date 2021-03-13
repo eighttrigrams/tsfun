@@ -7,7 +7,7 @@ export type Path = string|Array<string|number>;
 export type Effect<T = any> = (_: T) => void
 
 
-export type Map<T = any> = Record<string, T>
+export type Map<T = any> = {[_:string]:T}
 
 
 export type Mapping<A = any, B = A> = (_: A) => B
