@@ -48,8 +48,9 @@ export function get<V>(path: string, alternative?: V): <T>(o: T) => V
 export function get(path: number, alternative?: any): <T>(as: Array<T>) => Array<T>
 export function get(path_, alternative?: any) {
 
-    return ds => {
+    if (isArray(path_) && path_.length < 2) throw 'illegal argument - array path must be at least of length 2'
 
+    return ds => {
         const path = isString(path_)||isNumber(path_) ? [path_] : path_
 
         const result = getElForPathIn(ds as Object, path)
@@ -63,7 +64,11 @@ export function lookup<T>(ds: Array<T>, alternative?: T): (path: number) => T
 export function lookup<T, V>(ds: T, alternative?: V): (path: string) => V
 export function lookup(ds, alternative?) {
 
-    return path => get(path, alternative)(ds)
+    return path => {
+        
+        if (isArray(path) && path.length < 2) throw 'illegal argument - array path must be at least of length 2'
+        return get(path, alternative)(ds)
+    }
 }
 
 
@@ -169,6 +174,9 @@ function $update1(path_: Path,
 
 
 export function to<T = any>(path_: Path) {
+
+    if (isArray(path_) && path_.length < 2) throw 'illegal argument - array path must be at least of length 2'
+
     const path = isString(path_)||isNumber(path_) ? [path_] : path_
 
     return (s: any) => (reverseUncurry2(getElForPathIn))(path)(s) as T

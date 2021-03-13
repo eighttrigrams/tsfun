@@ -56,7 +56,7 @@ describe('lookup', () => {
     it('nothing array', () =>
         expect(
 
-            lookup([4])(path('[5]')))
+            lookup([4])(5))
 
             .toBeUndefined())
 
@@ -72,7 +72,7 @@ describe('lookup', () => {
     it('alternative',() =>
         expect(
 
-            lookup([4], 7)(path('[5]')))
+            lookup([4], 7)(5))
 
             .toEqual(7))
 
