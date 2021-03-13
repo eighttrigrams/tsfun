@@ -82,12 +82,10 @@ export function update<T, K extends keyof T>(key: keyof T, f: Mapping<T[K]>|T[K]
 export function update<U>(k: string, update_fun: ((val: U) => U)|U): <T,V extends T>(s: T) => V
 export function update<U>(k: Array<string|number>, update_fun: ((val: U) => U)|U): <T,V extends T>(s: T) => V
 
-export function update(path_, update_fun, o?) {
+export function update(path, update_fun, o?) {
 
     const $ = struct => {
         
-        const path = clone(path_)
-
         if (isString(path) || isNumber(path)) {
 
             return $update0(path, update_fun, struct)
@@ -95,7 +93,7 @@ export function update(path_, update_fun, o?) {
         } else if (isArray(path)) {
 
             if (path.length < 2) throw 'illegal argument - path must be at least be of length 2'
-            return $update1(path, struct, update_fun, true)
+            return $update1(clone(path), struct, update_fun, true)
 
         } else {
 
