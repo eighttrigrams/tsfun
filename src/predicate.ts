@@ -1,4 +1,4 @@
-import {Either, Mapping, Maybe, Predicate, SPath} from './type'
+import {Array2, Either, Mapping, Maybe, Pair, Predicate, Singleton, SPath} from './type'
 import {is, on} from './comparator'
 import {first} from './list'
 import {map, reduce} from './associative'
@@ -124,6 +124,12 @@ export function isArray<T = any, V = any>(t: T|Array<V>): t is Array<V> {
     // as instanceof Array <- previously we did it like this, but typescript can check types when we use Array.isArray instead
 }
 
+
+export function isArray2<T = any, V = any>(t: T|Array2<V>): t is Array2<V> {
+    return Array.isArray(t) && t.length > 1;
+}
+
+
 // TODO rename to isMap or make alias
 export const isObject: Predicate = o => o instanceof Object && o.constructor === Object
 
@@ -168,7 +174,7 @@ export function isFailure<T, E = any>(m: Maybe<T>|Either<E,T>) {
 }
 
 
-export function isPair(pair: any) {
+export function isPair(pair: any): pair is Pair {
 
     if (!isArray(pair)) return false
     if (pair.length !== 2) return false
@@ -176,7 +182,7 @@ export function isPair(pair: any) {
 }
 
 
-export function isSingleton(l: Array<any>) {
+export function isSingleton(l: Array<any>): l is Singleton {
 
     if (!isArray(l)) throw 'illegal argument - in \'isSingleton\' - array expected'
     if (l.length !== 1) return false

@@ -1,5 +1,5 @@
 import {Array2, Mapping, SPath} from './type'
-import {isArray, isFunction, isNumber, isObject, isString} from './predicate'
+import {isArray, isArray2, isFunction, isNumber, isObject, isString} from './predicate'
 import {reverseUncurry2} from './core'
 import {copy} from './collection'
 import {rest} from './list'
@@ -233,8 +233,9 @@ export function path(path: string): Array2<string|number> {
             }
         }
         if (current) segments.push(current as never)
-        if (segments.length < 2) throw 'illegal argument - path expected to yield 2 segments'
-        return segments as unknown as Array2<string|number> // TODO remove with type guard for Array2
+
+        if (!isArray2(segments)) throw 'illegal argument - path expected to yield 2 segments'
+        return segments
     } 
     throw 'illegal arguments - must be string'
 }
