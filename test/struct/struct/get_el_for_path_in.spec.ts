@@ -1,4 +1,4 @@
-import {getElForPathIn} from "../../../src/struct";
+import {getElForPathIn} from '../../../src/struct'
 
 
 describe('getElForPathIn - internal', () => {
@@ -8,7 +8,7 @@ describe('getElForPathIn - internal', () => {
 
             getElForPathIn({a:{ b: { c: 'a'}}}, 'a.b.c'))
 
-            .toEqual('a'));
+            .toEqual('a'))
 
 
     it('getElForPathIn - returns undefined', () =>
@@ -16,7 +16,7 @@ describe('getElForPathIn - internal', () => {
 
             getElForPathIn({a:{ }}, 'a.b.c'))
 
-            .toEqual(undefined));
+            .toEqual(undefined))
 
 
     it('getElForPathIn - does not return undefined on empty string', () =>
@@ -24,7 +24,7 @@ describe('getElForPathIn - internal', () => {
 
             getElForPathIn({a: ''}, 'a'))
 
-            .not.toEqual(undefined));
+            .not.toEqual(undefined))
 
 
     it('getElForPathIn - does not return undefined on 0', () =>
@@ -32,5 +32,5 @@ describe('getElForPathIn - internal', () => {
 
             getElForPathIn({a: 0}, 'a'))
 
-            .not.toEqual(undefined));
-});
+            .not.toEqual(undefined))
+})
