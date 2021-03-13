@@ -73,14 +73,14 @@ describe('update', () => {
         expect($2).toEqual([8])
         expect($2).not.toBe(a)             // <-
 
-        
+
         // While we end up with new box structures, 
         // that however does not mean that we deep copy,
         // like the following example shows
 
         const original = { a: 4 }
         const b: Array<any> = [{ a: 3 }, original]
-        const $3 = update(0, { a: 5}, b)
+        const $3 = update(0, { a: 5 }, b)
         expect($3[1]).toBe(original)       // <- 
     })
     
