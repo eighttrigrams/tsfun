@@ -206,9 +206,7 @@ export function _getElForPathIn(object: any, path: Array<string|number>): any {
 }
 
 
-export function path(path: string): Array<number|string>
-export function path(path: Array<number|string>): string
-export function path(path: Path): Path {
+export function path(path: string): Array<number|string> {
 
     if (isString(path)) {
 
@@ -228,8 +226,14 @@ export function path(path: Path): Path {
         }
         if (current) segments.push(current as never)
         return segments
+    } 
+    throw 'illegal arguments - must be string'
+}
 
-    } else {
+
+function _back(path: Array<number|string>): string {
+
+    if (!isString(path)) {
 
         let joined = (path as Array<number|string>).map((segment: any) => {
 
@@ -243,4 +247,5 @@ export function path(path: Path): Path {
         if (joined.endsWith('.')) joined = joined.slice(0, joined.length-1)
         return joined
     }
+    throw 'illegal arguments - must be Array<number|string>'
 }
