@@ -1,73 +1,73 @@
-import { get } from "../../struct";
+import { get, path } from "../../src/struct";
 
 
 /**
- * tsfun | struct/get
+ * tsfun | get
  */
-describe('struct/get', () => {
-
+describe('get', () => {
 
     it('first level object - second level object',() =>
         expect(
 
-            get('a.b', undefined)({a: {b: 4}}))
+            get(path('a.b'))({a: {b: 4}}))
 
-            .toEqual(4));
+            .toEqual(4))
 
 
     it('first level object - second level object - by array',() =>
         expect(
 
-            get(['a','b'], undefined)({a: {b: 4}}))
+            get(['a','b'])({a: {b: 4}}))
 
-            .toEqual(4));
+            .toEqual(4))
 
 
     it('first level object - second level key missing',() =>
         expect(
 
-            get('a.c', undefined)({a: {b: 4}}))
+            get(path('a.c'), undefined)({a: {b: 4}}))
 
-            .toEqual(undefined));
+            .toEqual(undefined))
 
 
     it('first level object - second level object - third level key missing',() =>
         expect(
 
-            get('a.c.e', undefined)({a: {c: {c: 7}}}))
+            get(path('a.c.e'), undefined)({a: {c: {c: 7}}}))
 
-            .toEqual(undefined));
+            .toEqual(undefined))
 
 
     it('first level object key missing - second level object key missing - third level key missing',() =>
         expect(
 
-            get('e.e.e', undefined)({c: {c: {c: 7}}}))
+            get(path('e.e.e'))({c: {c: {c: 7}}}))
 
-            .toEqual(undefined));
+            .toEqual(undefined))
 
 
     it('getOr - undefined',() =>
         expect(
 
-            get('c.d', undefined)({a: {b: 4}}))
+            get(path('c.d'), undefined)({a: {b: 4}}))
 
-            .toEqual(undefined));
+            .toEqual(undefined))
 
 
     it('get - alternative',() =>
         expect(
 
-            get('c.d', 8)({a: {b: 4}}))
+            get(path('c.d'), 8)({a: {b: 4}}))
 
-            .toEqual(8));
+            .toEqual(8))
+
 
     it('wrap - with getElForPathIn and false',() =>
         expect(
 
-            get('a', undefined)({a: false}))
+            get('a')({a: false}))
 
-            .toEqual(false));
+            .toEqual(false))
 
 
     it('nothing',() =>
@@ -75,5 +75,13 @@ describe('struct/get', () => {
 
             get('[3]')([1, 2]))
 
-            .toBeUndefined());
-});
+            .toBeUndefined())
+
+
+    it('first level object - second level object - see path',() =>
+        expect(
+
+            get('a.b')({'a.b': 4}))
+
+            .toEqual(4))
+})

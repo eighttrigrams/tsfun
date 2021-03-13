@@ -1,4 +1,4 @@
-import { clone, jsonClone } from "../../struct";
+import { clone, jsonClone } from "../../src/struct";
 
 describe('jsonClone', () => {
 

@@ -1,4 +1,4 @@
-import {to} from '../../src/struct';
+import {path, to} from '../../src/struct';
 
 
 describe('to', () => {
@@ -19,23 +19,14 @@ describe('to', () => {
     it('to', () =>
         expect(
 
-            to('a.b')({a: {b: {c: 'd'}}}))
+            to(path('a.b'))({a: {b: {c: 'd'}}}))
 
             .toEqual({c: 'd'}));
-
-
-    it('to - by array', () =>
-        expect(
-
-            to(['a', 'b'])({a: {b: {c: 'd'}}}))
-
-            .toEqual({c: 'd'}));
-
 
     it('to with map', () =>
         expect(
 
-            [{a: {b: {c: 'd'}}}].map(to('a.b')))
+            [{a: {b: {c: 'd'}}}].map(to(path('a.b'))))
 
             .toEqual([{c: 'd'}]));
 
@@ -43,7 +34,7 @@ describe('to', () => {
     it('to - 1 does not exist', () =>
         expect(
 
-            [{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}].map(to('a.c')))
+            [{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}].map(to(path('a.c'))))
 
             .toEqual([undefined, {d: 'e'}]));
 
@@ -54,4 +45,12 @@ describe('to', () => {
             [{c: 'd'}, {c: 'e'}].map(to<string>('c')))
 
             .toEqual(['d', 'e']));
+
+
+    it('to - see path', () =>
+        expect(
+    
+            to('a.b')({'a.b': {c: 'd'}}))
+    
+            .toEqual({c: 'd'}));
 });

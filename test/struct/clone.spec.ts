@@ -1,5 +1,5 @@
-import { isArray, isObject } from "../..";
-import { clone } from "../../struct";
+import { clone, isArray, isObject } from "../..";
+
 
 describe('clone', () => {
 

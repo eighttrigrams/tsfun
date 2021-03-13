@@ -1,4 +1,4 @@
-import {lookup} from "../../src/struct"
+import {lookup, path} from "../../src/struct"
 
 /**
  * tsfun | lookup
@@ -8,7 +8,7 @@ describe('lookup', () => {
     it('first level object - second level object',() =>
         expect(
 
-            lookup({a: {b: 4}})('a.b'))
+            lookup({a: {b: 4}})(path('a.b')))
 
             .toEqual(4));
 
@@ -24,7 +24,7 @@ describe('lookup', () => {
     it('first level object - second level array',() =>
         expect(
 
-            lookup({a: [4, 5]})('a[1]'))
+            lookup({a: [4, 5]})(path('a[1]')))
 
             .toEqual(5));
 
@@ -32,7 +32,7 @@ describe('lookup', () => {
     it('fist level array - second level object',() =>
         expect(
 
-            lookup([4, {d: 7}])('[1].d'))
+            lookup([4, {d: 7}])(path('[1].d')))
 
             .toEqual(7));
 
@@ -40,7 +40,7 @@ describe('lookup', () => {
     it('fist level array - second level array',() =>
         expect(
 
-            lookup([4, [7, 8]])('[1][0]'))
+            lookup([4, [7, 8]])(path('[1][0]')))
 
             .toEqual(7));
 
@@ -56,7 +56,7 @@ describe('lookup', () => {
     it('nothing array', () =>
         expect(
 
-            lookup([4])('[5]'))
+            lookup([4])(path('[5]')))
 
             .toBeUndefined());
 
@@ -64,7 +64,7 @@ describe('lookup', () => {
     it('nothing object',() =>
         expect(
 
-            lookup({a: {b: 4}})('c.d'))
+            lookup({a: {b: 4}})(path('c.d')))
 
             .toBeUndefined());
 
@@ -72,7 +72,15 @@ describe('lookup', () => {
     it('alternative',() =>
         expect(
 
-            lookup([4], 7)('[5]'))
+            lookup([4], 7)(path('[5]')))
 
             .toEqual(7));
+
+
+    it('first level object - second level object - see path',() =>
+        expect(
+
+            lookup({'a.b': 4})('a.b'))
+
+            .toEqual(4));
 });

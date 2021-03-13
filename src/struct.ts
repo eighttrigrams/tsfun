@@ -44,9 +44,14 @@ export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function
 }
 
 
-export function get<T>(path: Path, alternative?: any) {
+export function get<V>(path: Array<string|number>, alternative?: V): <T>(o: T) => V;
+export function get<V>(path: string, alternative?: V): <T>(o: T) => V;
+export function get(path: number, alternative?: any): <T>(as: Array<T>) => Array<T>;
+export function get<T>(path_, alternative?: any) {
 
-    return (ds: Object) => {
+    return ds => {
+
+        const path = isString(path_)||isNumber(path_) ? [path_] : path_;
 
         const result = getElForPathIn(ds as Object, path);
         return result !== undefined ? result : alternative;
@@ -54,9 +59,13 @@ export function get<T>(path: Path, alternative?: any) {
 }
 
 
-export const lookup = <T>(ds: Object, alternative?: T) => (path: string|Array<string|number>) => {
+export function lookup<T, V>(ds: T, alternative?: V): (path: Array<string|number>|string|number) => V
+export function lookup<T>(ds: Array<T>, alternative?: T): (path: number) => T;
+export function lookup<T, V>(ds: T, alternative?: V): (path: string) => V
+export function lookup(ds, alternative?) {
 
-    return get(path, alternative)(ds)
+    return path =>
+         get(path, alternative)(ds)
 }
 
 
@@ -160,9 +169,10 @@ function $update1(path_: Path,
 }
 
 
-export function to<T = any>(path: Path) {
-
-    return (s: any) => (reverseUncurry2(getElForPathIn))(path)(s) as T;
+export function to<T = any>(path_: Path) {
+    const path = isString(path_)||isNumber(path_) ? [path_] : path_
+    
+    return (s: any) => (reverseUncurry2(getElForPathIn))(path)(s) as T
 }
 
 
