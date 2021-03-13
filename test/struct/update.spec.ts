@@ -1,4 +1,4 @@
-import {path, update} from '../../src/struct'
+import {update} from '../../src/struct'
 import {equal} from '../../src/comparator'
 import {map} from '../../src/associative'
 import {Map} from '../../src/type'
@@ -132,6 +132,8 @@ describe('update', () => {
     // The struct use case allows for 'deep' updates
     // of data structures. It is active when the path
     // parameter is an array
+    // 
+    // See also: path()
 
     it('object-struct - update - first level - curried', () => {
 
@@ -150,7 +152,7 @@ describe('update', () => {
     })
 
 
-    it('object-struct - update - first level - 1 param list', () => {
+    it('object-struct - update - first level', () => {
 
         const embeddedStruct = { d: 'd_val' }
 
@@ -172,7 +174,7 @@ describe('update', () => {
         const embeddedStruct = { d: 'd_val' }
 
         const objectStruct = { a: 'a_val', c: embeddedStruct }
-        const resultStruct = update(path('a'), 'a_val_new', objectStruct)
+        const resultStruct = update(['a'], 'a_val_new', objectStruct)
 
         expect(resultStruct).not.toBe(objectStruct)
         expect(resultStruct['a']).toBe('a_val_new')
@@ -184,12 +186,12 @@ describe('update', () => {
     })
 
 
-    it('object-struct - assoc - first level - 1 param list', () => {
+    it('object-struct - assoc - first level', () => {
 
         const embeddedStruct = { d: 'd_val' }
 
         const objectStruct = { a: 'a_val', c: embeddedStruct }
-        const resultStruct = update(path('a'), 'a_val_new', objectStruct)
+        const resultStruct = update(['a'], 'a_val_new', objectStruct)
 
         expect(resultStruct).not.toBe(objectStruct)
         expect(resultStruct['a']).toBe('a_val_new')
@@ -201,12 +203,12 @@ describe('update', () => {
     })
 
 
-    it('array-struct - assoc - first level - 1 param list', () => {
+    it('array-struct - assoc - first level', () => {
 
         const embeddedStruct = { d: 'd_val'}
 
         const arrayStruct = ['a_val', embeddedStruct]
-        const resultStruct = update(path('0'), 'a_val_new', arrayStruct)
+        const resultStruct = update([0], 'a_val_new', arrayStruct)
 
         expect(resultStruct).not.toBe(arrayStruct)
         expect(resultStruct[0]).toBe('a_val_new')
@@ -218,12 +220,12 @@ describe('update', () => {
     })
 
 
-    it('object-struct - update - second level - 2 param lists', () => {
+    it('object-struct - update - second level - curried', () => {
 
         const embeddedStruct = { e: 'e_val' }
 
         const objectStruct = { a: { b: 'b_val', c: embeddedStruct}, d: embeddedStruct }
-        const resultStruct = update(path('a.b'), (val: string) => val + '_new')(objectStruct)
+        const resultStruct = update(['a','b'], (val: string) => val + '_new')(objectStruct)
 
         expect(resultStruct).not.toBe(objectStruct)
         expect(resultStruct['d']).toBe(embeddedStruct)
@@ -238,11 +240,11 @@ describe('update', () => {
     })
 
 
-    it('object-struct - update - third layer - 2 param lists', () => {
+    it('object-struct - update - third layer - curried', () => {
 
 
         const objectStruct = { a: { b: { c: 'c_val'} }}
-        const resultStruct = update(path('a.b.c'), (val: string) => val + '_new')(objectStruct)
+        const resultStruct = update(['a','b','c'], (val: string) => val + '_new')(objectStruct)
 
         expect(resultStruct['a']['b']['c']).toBe('c_val_new')
     })
@@ -251,7 +253,7 @@ describe('update', () => {
     it('object-struct - create path', () =>
         expect(
 
-            equal({ a: { b: { c: 3 }}})(update(path('a.b.c'), 3)({}))
+            equal({ a: { b: { c: 3 }}})(update(['a','b','c'], 3)({}))
 
         ).toBeTruthy())
 
@@ -261,7 +263,7 @@ describe('update', () => {
         const embeddedStruct = { d: 'd_val' }
 
         const objectStruct = ['a_val', embeddedStruct]
-        const resultStruct = update(path('0'), 'a_val_new')(objectStruct)
+        const resultStruct = update([0], 'a_val_new')(objectStruct)
 
         expect(resultStruct).not.toBe(objectStruct)
         expect(resultStruct[0]).toBe('a_val_new')
@@ -278,7 +280,7 @@ describe('update', () => {
         const embeddedStruct = { e: 'e_val' }
 
         const objectStruct = { a: { b: 'b_val', c: embeddedStruct}, d: embeddedStruct }
-        const resultStruct = update(path('a.b'), 'b_val_new')(objectStruct)
+        const resultStruct = update(['a', 'b'], 'b_val_new')(objectStruct)
 
         expect(resultStruct).not.toBe(objectStruct)
         expect(resultStruct['d']).toBe(embeddedStruct)
@@ -298,7 +300,7 @@ describe('update', () => {
         const embeddedStruct = { e: 'e_val' }
 
         const objectStruct: any = [{ b: 'b_val', c: embeddedStruct}, embeddedStruct]
-        const resultStruct = update(path('[0].b'), 'b_val_new')(objectStruct)
+        const resultStruct = update([0, 'b'], 'b_val_new')(objectStruct)
 
         expect(resultStruct).not.toBe(objectStruct)
         expect(resultStruct[1]).toBe(embeddedStruct)
@@ -318,7 +320,7 @@ describe('update', () => {
         const embeddedStruct = { e: 'e_val' }
 
         const objectStruct: any = [['b_val', embeddedStruct], embeddedStruct]
-        const resultStruct = update(path('[0][0]'), 'b_val_new')(objectStruct)
+        const resultStruct = update([0, 0], 'b_val_new')(objectStruct)
 
         expect(resultStruct).not.toBe(objectStruct)
         expect(resultStruct[1]).toBe(embeddedStruct)
@@ -337,7 +339,7 @@ describe('update', () => {
 
 
         const objectStruct = { a: { b: { c: 'c_val'} }}
-        const resultStruct = update(path('a.b.c'), 'c_val_new')(objectStruct)
+        const resultStruct = update(['a', 'b', 'c'], 'c_val_new')(objectStruct)
 
         expect(resultStruct['a']['b']['c']).toBe('c_val_new')
     })
@@ -348,7 +350,7 @@ describe('update', () => {
         const embeddedStruct = { e: 'e_val' }
 
         const objectStruct: any = { a: [{f: 'f_val', g: embeddedStruct}, embeddedStruct], d: embeddedStruct }
-        const resultStruct = update(path('a[0].f'), 'f_val_new')(objectStruct)
+        const resultStruct = update(['a',0, 'f'], 'f_val_new')(objectStruct)
 
         expect(resultStruct).not.toBe(objectStruct)
         expect(resultStruct['d']).toBe(embeddedStruct)
@@ -370,7 +372,7 @@ describe('update', () => {
         const embeddedStruct = { e: 'e_val' }
 
         const objectStruct: any = [{f: ['f_val', embeddedStruct], g: embeddedStruct}, embeddedStruct ]
-        const resultStruct = update(path('[0].f[0]'), 'f_val_new')(objectStruct)
+        const resultStruct = update([0, 'f', 0], 'f_val_new')(objectStruct)
 
         expect(resultStruct).not.toBe(objectStruct)
         expect(resultStruct[1]).toBe(embeddedStruct)
@@ -389,11 +391,11 @@ describe('update', () => {
 
     it('pitfall', () => {
 
-        const result = map(update(path('a.b'), {}))([{a: {b: 1}}, {a: {b: 1}}]) as Array<Map>
+        const result = map(update(['a', 'b'], {}))([{a: {b: 1}}, {a: {b: 1}}]) as Array<Map>
         expect(result[0].a.b).toBe(result[1].a.b) // this is possibly not be what one wants
 
         // to circumvent this, we use it like this
-        const result2 = map(update(path('a.b'), () => ({})))([{a: {b: 1}}, {a: {b: 1}}]) as Array<Map>
+        const result2 = map(update(['a', 'b'], () => ({})))([{a: {b: 1}}, {a: {b: 1}}]) as Array<Map>
         expect(result2[0].a.b).toEqual({})
         expect(result2[0].a.b).not.toBe(result[1].a.b)
     })
@@ -402,7 +404,7 @@ describe('update', () => {
     it('set undefined', () => {
 
         type A = { a: number|undefined }
-        const result = update(path('a'), undefined)({ a: 3 } as A)
+        const result = update(['a'], undefined)({ a: 3 } as A)
         expect(result).toEqual({ a: undefined })
     })
 
