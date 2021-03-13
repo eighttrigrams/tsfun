@@ -1,12 +1,14 @@
 export {
-    dissoc
-} from './src/object'
-
-
-export {
-    to
-} from './src/struct'
-
+    jsonClone,
+    lookup,
+    get,
+    clone,
+    dissoc,
+    to,
+    update,
+    getElForPathIn,
+    path
+} from './src/struct';
 
 export type {
     Map,
