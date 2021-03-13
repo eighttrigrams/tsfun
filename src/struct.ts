@@ -186,12 +186,12 @@ export function getElForPathIn(object: any, path_: Path): any {
 
     if (!path_ || path_.length < 1) return undefined
 
-    return _getElForPathIn(object,
+    return $getElForPathIn0(object,
         (isString(path_) ? path(path_ as string) : path_) as Array<string|number>)
 }
 
 
-export function _getElForPathIn(object: any, path: Array<string|number>): any {
+export function $getElForPathIn0(object: any, path: Array<string|number>): any {
 
     const key = path[0]
 
@@ -204,7 +204,7 @@ export function _getElForPathIn(object: any, path: Array<string|number>): any {
                 ? makeValueForCurrentKey(object[key])
                 : undefined
         : object[key]
-            ? _getElForPathIn(object[key], rest(path))
+            ? $getElForPathIn0(object[key], rest(path))
             : undefined
 }
 
