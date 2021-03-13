@@ -9,5 +9,6 @@ export {
     reduce,
     forEach,
     keysAndValues,
-    Filter
+    Filter,
+    filter
 } from './src/associative';

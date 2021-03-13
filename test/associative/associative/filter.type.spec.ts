@@ -1,5 +1,5 @@
-import {Filter} from '../../../src/collection';
-import { filter } from '../../../src/collection';
+import {Filter} from '../../../src/associative';
+import { filter } from '../../../src/associative';
 
 /**
  * tsfun/associative | Filter
@@ -13,8 +13,5 @@ describe('associative/Filter', () => {
 
         const f2: Filter<string> = filter(_ => _.length > 1)
         const result2 = f2(['a', 'ab']) as string[]
-
-        const f3: Filter = filter(_ => _ > 'a')
-        const result3 = f3('abc') as string
     })
 })

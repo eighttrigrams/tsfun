@@ -284,7 +284,7 @@ import {lookup} from 'tsfun/associative';
 * [takeWhile](test/list/string/take_while.spec.ts)
 * [takeRightWhile](test/string/string/take_right_while.spec.ts)
 * [dropWhile](test/string/string/drop_while.spec.ts)
-* [filter](test/collection/collection/filter.spec.ts)
+* [filter](test/string/string/filter.spec.ts)
 
 ### Async
 

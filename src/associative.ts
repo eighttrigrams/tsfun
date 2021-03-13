@@ -1,6 +1,6 @@
 import {Predicate, Map, Associative, Mapping} from './type'
 import {isArray, isAssociative, isFunction, isObject} from './predicate'
-import {copy} from './collection'
+import {copy, filter as filterCollection} from './collection'
 import {range, zip} from './array'
 
 
@@ -256,3 +256,36 @@ export function reduce(...args): any {
             ? inner(args[0], args[1])(args[2])
             : inner(args[1], args[2])(args[0])
 }
+
+
+export function filter<A>(p: (a: A, i?: number|string) => boolean): (_: Associative<A>) => Associative<A>
+export function filter<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
+export function filter<A>(p: (a: A) => boolean, as: Array<A>): Array<A>
+export function filter<A>(as: Array<A>, p: (a: A, i: number) => boolean): Array<A>
+export function filter<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
+export function filter<A>(p: (a: A, i: string) => boolean, as: Map<A>): Map<A>
+export function filter<A>(p: (a: A) => boolean, as: Map<A>): Map<A>
+export function filter<A>(as: Map<A>, p: (a: A, i: string) => boolean): Map<A>
+export function filter<A>(as: Map<A>, p: (a: A) => boolean): Map<A>
+export function filter<A>(...args): any {
+
+    const $ = p => as => {
+
+        if (isArray(as)||isObject(as)) {
+
+            return filterCollection(p)(as)
+
+        } else {
+
+            throw 'illegal argument - must be array or object'
+        }
+    }
+
+    return args.length === 1
+        ? $(args[0])
+        : isFunction(args[0])
+            ? $(args[0])(args[1])
+            : $(args[1])(args[0])
+}
+
+

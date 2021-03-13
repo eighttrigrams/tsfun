@@ -1,27 +1,29 @@
-import {List, Mapping, Predicate} from './type';
-import {isArray, isString} from './predicate';
+import {List, Mapping, Predicate} from './type'
+import {isFunction, isString} from './predicate'
+import {filter as filterCollection} from './collection'
+
 
 export function split(pattern: any) {
 
-    return (content: string) => content.split(pattern);
+    return (content: string) => content.split(pattern)
 }
 
 
 export function join(pattern: any) {
 
-    return <A>(content: Array<A>): string => content.join(pattern);
+    return <A>(content: Array<A>): string => content.join(pattern)
 }
 
 
 export function toLowerCase(s: string) {
 
-    return s.toLowerCase();
+    return s.toLowerCase()
 }
 
 
 export function toUpperCase(s: string) {
 
-    return s.toUpperCase();
+    return s.toUpperCase()
 }
 
 
@@ -47,8 +49,8 @@ export function take(n: number): <A>(_: string) => string
 export function take<A>(n: number, s: string): string
 export function take<A>(n: number, list?: string|Array<A>): any {
 
-    function inner(as: Array<A>): Array<A>;
-    function inner(as: string): string;
+    function inner(as: Array<A>): Array<A>
+    function inner(as: string): string
     function inner(as: Array<A>|string): Array<A>|string {
 
         if (isString(as)) {
@@ -60,7 +62,7 @@ export function take<A>(n: number, list?: string|Array<A>): any {
 
         } else {
 
-            throw 'illegal argument - must be array or string';
+            throw 'illegal argument - must be array or string'
         }
     }
 
@@ -188,12 +190,12 @@ export function takeRightWhile<A>(predicate: Predicate<A>) {
 
         const as1 = isString(as) ? (as as any).split('') : as
 
-        let go = true;
+        let go = true
         const result = as1.reduceRight((acc: Array<A>, a: any) =>
             go && predicate(a) ? [a].concat(acc) : (go = false, acc), [])
 
         return isString(as) ? result.join('') : result
-    };
+    }
 }
 
 
@@ -206,14 +208,41 @@ export function takeWhile<A>(predicate: Predicate<A>|Predicate<string>, list?: a
 
         const as1 = isString(list) ? (list as any).split('') : list
 
-        let go = true;
+        let go = true
         const result = as1.reduce((acc: Array<A>, a: any) =>
             go && predicate(a) ? acc.concat([a]) : (go = false, acc), [])
 
         return isString(list) ? result.join('') : result
-    };
+    }
 
     return list === undefined
         ? inner
         : inner(list)
+}
+
+
+export function filter<A>(p: (a: A, i?: number|string) => boolean): (_: string) => string
+export function filter<A>(p: (a: A, i: number) => boolean, as: string): string
+export function filter<A>(p: (a: A) => boolean, as: string): string
+export function filter<A>(as: string, p: (a: A, i: number) => boolean): string
+export function filter<A>(as: string, p: (a: A) => boolean): string
+export function filter<A>(...args): any {
+
+    const $ = p => as => {
+
+        if (isString(as)) {
+
+            return filterCollection(p)(as)
+
+        } else {
+
+            throw 'illegal argument - must be array or object'
+        }
+    }
+
+    return args.length === 1
+        ? $(args[0])
+        : isFunction(args[0])
+            ? $(args[0])(args[1])
+            : $(args[1])(args[0])
 }
