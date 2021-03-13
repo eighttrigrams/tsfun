@@ -10,7 +10,7 @@ describe('lookup', () => {
 
             lookup({a: {b: 4}})(path('a.b')))
 
-            .toEqual(4));
+            .toEqual(4))
 
 
     it('first level object - second level object - by array',() =>
@@ -18,7 +18,7 @@ describe('lookup', () => {
 
             lookup({a: {b: 4}})(['a', 'b']))
 
-            .toEqual(4));
+            .toEqual(4))
 
 
     it('first level object - second level array',() =>
@@ -26,7 +26,7 @@ describe('lookup', () => {
 
             lookup({a: [4, 5]})(path('a[1]')))
 
-            .toEqual(5));
+            .toEqual(5))
 
 
     it('fist level array - second level object',() =>
@@ -34,7 +34,7 @@ describe('lookup', () => {
 
             lookup([4, {d: 7}])(path('[1].d')))
 
-            .toEqual(7));
+            .toEqual(7))
 
 
     it('fist level array - second level array',() =>
@@ -42,7 +42,7 @@ describe('lookup', () => {
 
             lookup([4, [7, 8]])(path('[1][0]')))
 
-            .toEqual(7));
+            .toEqual(7))
 
 
     it('undefined as key',() =>
@@ -50,7 +50,7 @@ describe('lookup', () => {
 
             lookup([4, [7, 8]])(undefined as any))
 
-            .toBeUndefined());
+            .toBeUndefined())
 
 
     it('nothing array', () =>
@@ -58,7 +58,7 @@ describe('lookup', () => {
 
             lookup([4])(path('[5]')))
 
-            .toBeUndefined());
+            .toBeUndefined())
 
 
     it('nothing object',() =>
@@ -66,7 +66,7 @@ describe('lookup', () => {
 
             lookup({a: {b: 4}})(path('c.d')))
 
-            .toBeUndefined());
+            .toBeUndefined())
 
 
     it('alternative',() =>
@@ -74,7 +74,7 @@ describe('lookup', () => {
 
             lookup([4], 7)(path('[5]')))
 
-            .toEqual(7));
+            .toEqual(7))
 
 
     it('first level object - second level object - see path',() =>
@@ -82,5 +82,5 @@ describe('lookup', () => {
 
             lookup({'a.b': 4})('a.b'))
 
-            .toEqual(4));
-});
+            .toEqual(4))
+})
