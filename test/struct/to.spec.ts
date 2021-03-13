@@ -1,4 +1,4 @@
-import {path, to} from '../../src/struct';
+import {path, to} from '../../src/struct'
 
 
 describe('to', () => {
@@ -21,14 +21,14 @@ describe('to', () => {
 
             to(path('a.b'))({a: {b: {c: 'd'}}}))
 
-            .toEqual({c: 'd'}));
+            .toEqual({c: 'd'}))
 
     it('to with map', () =>
         expect(
 
             [{a: {b: {c: 'd'}}}].map(to(path('a.b'))))
 
-            .toEqual([{c: 'd'}]));
+            .toEqual([{c: 'd'}]))
 
 
     it('to - 1 does not exist', () =>
@@ -36,7 +36,7 @@ describe('to', () => {
 
             [{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}].map(to(path('a.c'))))
 
-            .toEqual([undefined, {d: 'e'}]));
+            .toEqual([undefined, {d: 'e'}]))
 
 
     it('generic default type param', () =>
@@ -44,7 +44,7 @@ describe('to', () => {
 
             [{c: 'd'}, {c: 'e'}].map(to<string>('c')))
 
-            .toEqual(['d', 'e']));
+            .toEqual(['d', 'e']))
 
 
     it('to - see path', () =>
@@ -52,5 +52,5 @@ describe('to', () => {
     
             to('a.b')({'a.b': {c: 'd'}}))
     
-            .toEqual({c: 'd'}));
-});
+            .toEqual({c: 'd'}))
+})
