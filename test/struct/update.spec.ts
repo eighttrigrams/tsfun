@@ -131,7 +131,7 @@ describe('update', () => {
     // 
     // The struct use case allows for 'deep' updates
     // of data structures. It is active when the path
-    // parameter is an array
+    // parameter is an array (of at least length 2)
     // 
     // See also: path()
 
