@@ -61,7 +61,7 @@ describe('lookup', () => {
             .toBeUndefined())
 
 
-    it('nothing object',() =>
+    it('nothing object', () =>
         expect(
 
             lookup({a: {b: 4}})(path('c.d')))
@@ -69,7 +69,7 @@ describe('lookup', () => {
             .toBeUndefined())
 
 
-    it('alternative',() =>
+    it('alternative', () =>
         expect(
 
             lookup([4], 7)(5))
@@ -77,10 +77,26 @@ describe('lookup', () => {
             .toEqual(7))
 
 
-    it('first level object - second level object - see path',() =>
+    it('first level object - second level object - see path', () =>
         expect(
 
             lookup({'a.b': 4})('a.b'))
 
             .toEqual(4))
+
+
+    it('do not return undefined except when specified', () => {
+
+        expect(lookup([0])(0)).toBe(0)
+        expect(lookup([''])(0)).toBe('')
+        expect(lookup([false])(0)).toBe(false)
+        expect(lookup([null])(0)).toBe(null)
+        expect(lookup([undefined])(0)).toBe(undefined)
+
+        expect(lookup([[0]])([0,0])).toBe(0)
+        expect(lookup([['']])([0,0])).toBe('')
+        expect(lookup([[false]])([0,0])).toBe(false)
+        expect(lookup([[null]])([0,0])).toBe(null)
+        expect(lookup([[undefined]])([0,0])).toBe(undefined)
+    })
 })

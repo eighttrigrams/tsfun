@@ -84,4 +84,20 @@ describe('get', () => {
             get('a.b')({'a.b': 4}))
 
             .toEqual(4))
+
+
+    it('do not return undefined except when specified',() => {
+        
+        expect(get(0)([0])).toBe(0)
+        expect(get(0)([''])).toBe('')
+        expect(get(0)([false])).toBe(false)
+        expect(get(0)([null])).toBe(null)
+        expect(get(0)([undefined])).toBe(undefined)
+
+        expect(get([0,0])([[0]])).toBe(0)
+        expect(get([0,0])([['']])).toBe('')
+        expect(get([0,0])([[false]])).toBe(false)
+        expect(get([0,0])([[null]])).toBe(null)
+        expect(get([0,0])([[undefined]])).toBe(undefined)
+    })
 })

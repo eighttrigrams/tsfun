@@ -45,7 +45,7 @@ export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function
 
 export function get<V>(path: Array2<string|number>, alternative?: V): <T>(o: T) => V
 export function get<V>(path: string, alternative?: V): <T>(o: T) => V
-export function get(path: number, alternative?: any): <T>(as: Array<T>) => Array<T>
+export function get(path: number, alternative?: any): <T>(as: Array<T>) => T
 export function get(path_, alternative?: any) {
 
     if (isArray(path_)) { if (path_.length < 2) throw 'illegal argument - array path must be at least of length 2' }
@@ -198,13 +198,9 @@ export function $getElForPathIn(object: any, path: Array2<string|number>): any {
         const key = path[0]
     
         return path.length === 1
-            ? isString(key)
-                ? isObject_(object)
-                    ? makeValueForCurrentKey(object[key])
-                    : undefined
-                : isArray(object)
-                    ? makeValueForCurrentKey(object[key])
-                    : undefined
+            ? isString(key)||isObject_(object)||isArray(object)
+                ? makeValueForCurrentKey(object[key])
+                : undefined
             : object[key]
                 ? $(object[key], rest(path) as any)
                 : undefined
@@ -244,7 +240,8 @@ function makeValueForCurrentKey(resultSegment: any) {
     return (resultSegment
         || resultSegment === ''
         || resultSegment === 0
-        || resultSegment === false)
+        || resultSegment === false
+        || resultSegment === null)
         ? resultSegment
         : undefined
 }
