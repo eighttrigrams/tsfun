@@ -304,16 +304,12 @@ describe('update', () => {
     it('set undefined', () => {
 
         type A = { a: number|undefined }
-        const result = update('a', undefined)({ a: 3 } as A)
-        expect(result).toEqual({ a: undefined })
-    })
+        const $1 = update('a', undefined)({ a: 3 } as A)
+        expect($1).toEqual({ a: undefined })
 
-
-    it('set undefined 2', () => {
-
-        type A = { a: { b: number|undefined } }
-        const result = update(['a', 'b'], undefined)({ a: { b: 3 } } as A)
-        expect(result).toEqual({ a: { b: undefined } })
+        type B = { a: { b: number|undefined } }
+        const $2 = update(['a', 'b'], undefined)({ a: { b: 3 } } as B)
+        expect($2).toEqual({ a: { b: undefined } })
     })
 
 
