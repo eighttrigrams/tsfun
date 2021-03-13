@@ -12,7 +12,7 @@ describe('update', () => {
 
     const times2 = x => x * 2
 
-    it('object - update - single param list', () =>
+    it('object - update - 1 param list', () =>
         expect(
 
             update('a', times2, { a: 4 })
@@ -20,7 +20,7 @@ describe('update', () => {
         ).toEqual({ a: 8 }))
 
 
-    it('record - update - single param list', () =>
+    it('record - update - 1 param list', () =>
         expect(
 
             update('a', times2, { a: 4, b: 3 } as Record<string, number>)
@@ -28,7 +28,7 @@ describe('update', () => {
         ).toEqual({ a: 8, b: 3 }))
 
 
-    it('map - update - single param list', () =>
+    it('map - update - 1 param list', () =>
         expect(
 
             update('a', times2, { a: 4, b: 3 } as {[_:string]: number})
@@ -36,7 +36,7 @@ describe('update', () => {
         ).toEqual({ a: 8, b: 3 }))
 
     
-    it('array - update - single param list', () =>
+    it('array - update - 1 param list', () =>
         expect(
 
             update(0, times2, [4])
@@ -44,7 +44,7 @@ describe('update', () => {
         ).toEqual([8]))
 
 
-    it('object - update - multiple param lists', () =>
+    it('object - update - 2 param lists', () =>
         expect(
 
             update('a', times2)({ a: 4 })
@@ -52,7 +52,7 @@ describe('update', () => {
         ).toEqual({ a: 8 }))
 
     
-    it('array - update - multiple param lists', () =>
+    it('array - update - 2 param lists', () =>
         expect(
 
             update(0, times2)([4])
