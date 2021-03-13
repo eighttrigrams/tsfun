@@ -89,12 +89,11 @@ export function update(path_, update_fun, o?) {
 
         } else if (isArray(path)) {
 
-            if (path.length === 0) return struct
-            if (path.length === 1) return $update0(path[0], update_fun, struct)
+            if (path.length < 2) throw 'illegal argument - path must be at least be of length 2'
             return $update1(path, struct, update_fun, true)
 
         } else {
-            
+
             throw 'illegal argument - must be one of Array<string|number>, string, number'
         }
     }

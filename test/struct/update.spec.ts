@@ -135,90 +135,6 @@ describe('update', () => {
     // 
     // See also: path()
 
-    it('object-struct - update - first level - curried', () => {
-
-        const embeddedStruct = { d: 'd_val' }
-
-        const objectStruct = { a: 'a_val', c: embeddedStruct }
-        const resultStruct = update(['a'], (val: string) => val + '_new')(objectStruct)
-
-        expect(resultStruct).not.toBe(objectStruct)
-        expect(resultStruct['a']).toBe('a_val_new')
-        expect(resultStruct['c']).toBe(embeddedStruct)
-
-        // changes
-        resultStruct['a'] = 'a_val_changed'
-        expect(objectStruct['a']).toBe('a_val')
-    })
-
-
-    it('object-struct - update - first level', () => {
-
-        const embeddedStruct = { d: 'd_val' }
-
-        const objectStruct = { a: 'a_val', c: embeddedStruct }
-        const resultStruct = update(['a'], (val: string) => val + '_new', objectStruct)
-
-        expect(resultStruct).not.toBe(objectStruct)
-        expect(resultStruct['a']).toBe('a_val_new')
-        expect(resultStruct['c']).toBe(embeddedStruct)
-
-        // changes
-        resultStruct['a'] = 'a_val_changed'
-        expect(objectStruct['a']).toBe('a_val')
-    })
-
-
-    it('object-struct - assoc - first level', () => {
-
-        const embeddedStruct = { d: 'd_val' }
-
-        const objectStruct = { a: 'a_val', c: embeddedStruct }
-        const resultStruct = update(['a'], 'a_val_new', objectStruct)
-
-        expect(resultStruct).not.toBe(objectStruct)
-        expect(resultStruct['a']).toBe('a_val_new')
-        expect(resultStruct['c']).toBe(embeddedStruct)
-
-        // changes do not affect original
-        resultStruct['a'] = 'a_val_changed'
-        expect(objectStruct['a']).toBe('a_val')
-    })
-
-
-    it('object-struct - assoc - first level', () => {
-
-        const embeddedStruct = { d: 'd_val' }
-
-        const objectStruct = { a: 'a_val', c: embeddedStruct }
-        const resultStruct = update(['a'], 'a_val_new', objectStruct)
-
-        expect(resultStruct).not.toBe(objectStruct)
-        expect(resultStruct['a']).toBe('a_val_new')
-        expect(resultStruct['c']).toBe(embeddedStruct)
-
-        // changes do not affect original
-        resultStruct['a'] = 'a_val_changed'
-        expect(objectStruct['a']).toBe('a_val')
-    })
-
-
-    it('array-struct - assoc - first level', () => {
-
-        const embeddedStruct = { d: 'd_val'}
-
-        const arrayStruct = ['a_val', embeddedStruct]
-        const resultStruct = update([0], 'a_val_new', arrayStruct)
-
-        expect(resultStruct).not.toBe(arrayStruct)
-        expect(resultStruct[0]).toBe('a_val_new')
-        expect(resultStruct[1]).toBe(embeddedStruct)
-
-        // changes do not affect original
-        resultStruct[0] = 'a_val_changed'
-        expect(arrayStruct[0]).toBe('a_val')
-    })
-
 
     it('object-struct - update - second level - curried', () => {
 
@@ -256,23 +172,6 @@ describe('update', () => {
             equal({ a: { b: { c: 3 }}})(update(['a','b','c'], 3)({}))
 
         ).toBeTruthy())
-
-
-    it('array - first level', () => {
-
-        const embeddedStruct = { d: 'd_val' }
-
-        const objectStruct = ['a_val', embeddedStruct]
-        const resultStruct = update([0], 'a_val_new')(objectStruct)
-
-        expect(resultStruct).not.toBe(objectStruct)
-        expect(resultStruct[0]).toBe('a_val_new')
-        expect(resultStruct[1]).toBe(embeddedStruct)
-
-        // changes do not affect original
-        resultStruct[0] = 'a_val_changed'
-        expect(objectStruct[0]).toBe('a_val')
-    })
 
 
     it('first level object - second level object', () => {
@@ -401,11 +300,20 @@ describe('update', () => {
     })
 
 
+
     it('set undefined', () => {
 
         type A = { a: number|undefined }
-        const result = update(['a'], undefined)({ a: 3 } as A)
+        const result = update('a', undefined)({ a: 3 } as A)
         expect(result).toEqual({ a: undefined })
+    })
+
+
+    it('set undefined 2', () => {
+
+        type A = { a: { b: number|undefined } }
+        const result = update(['a', 'b'], undefined)({ a: { b: 3 } } as A)
+        expect(result).toEqual({ a: { b: undefined } })
     })
 
 
