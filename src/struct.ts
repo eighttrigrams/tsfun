@@ -110,18 +110,17 @@ export function update(path, update_fun, o?) {
 export function dissoc<T, K extends keyof T>(key: keyof T): <T>(o: T) => T
 export function dissoc(path: string|Array<string|number>): <T>(o: T) => T
 export function dissoc<T, K extends keyof T>(key: keyof T, o: T): T
-export function dissoc(path_, o?) {
+export function dissoc(path, o?) {
 
     const $ = struct => {
 
-        if (isString(path_)||isNumber(path_)) {
+        if (isString(path)||isNumber(path)) {
             const c = copy(struct)
-            delete c[path_]
+            delete c[path]
             return c
         }
         
-        const path = clone(path_)
-        return $update1(path, struct, undefined, false)
+        return $update1(clone(path), struct, undefined, false)
     }
 
     return o === undefined
@@ -186,12 +185,12 @@ export function getElForPathIn(object: any, path_: Path): any {
 
     if (!path_ || path_.length < 1) return undefined
 
-    return $getElForPathIn0(object,
+    return $getElForPathIn1(object,
         (isString(path_) ? path(path_ as string) : path_) as Array<string|number>)
 }
 
 
-export function $getElForPathIn0(object: any, path: Array<string|number>): any {
+export function $getElForPathIn1(object: any, path: Array<string|number>): any {
 
     const key = path[0]
 
@@ -204,7 +203,7 @@ export function $getElForPathIn0(object: any, path: Array<string|number>): any {
                 ? makeValueForCurrentKey(object[key])
                 : undefined
         : object[key]
-            ? $getElForPathIn0(object[key], rest(path))
+            ? $getElForPathIn1(object[key], rest(path))
             : undefined
 }
 
