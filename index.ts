@@ -6,7 +6,7 @@ export {
     dissoc,
     to,
     update,
-    getElForPathIn,
+    $getElForPathIn,
     path
 } from './src/struct';
 

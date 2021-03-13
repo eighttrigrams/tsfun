@@ -1,7 +1,7 @@
-import {Comparator, ComparatorProducer, List, Pair, Predicate, Path, SPath, Array2} from './type'
+import {Comparator, ComparatorProducer, List, Pair, Predicate, SPath} from './type'
 import {isArray, isFunction, isNot, isNumber, isObject, isString} from './predicate'
 import {subtractBy} from './set'
-import {getElForPathIn} from './struct'
+import {$getElForPathIn} from './struct'
 import {flow} from './composition'
 import {remove, size} from './collection'
 import {reverse} from './list'
@@ -253,7 +253,7 @@ const onBy = (compare: Function) =>
         } else if (isArray(path)) {
 
             if ((path as Array<any>).length < 2) throw 'illegal argument - array path must have min length 2'
-            return compare(getElForPathIn(l, path as any))(getElForPathIn(r, path as any))
+            return compare($getElForPathIn(l, path as any))($getElForPathIn(r, path as any))
 
         } else {
 
@@ -277,7 +277,7 @@ export const on = (path: SPath, compare: Function = tripleEqual) => {
 
         if (isFunction(compare(l))) return (r: any) => onBy(compare)(path as any)(l)(r)
         if (isString(path)||isNumber(path)) return compare((l as any)[path as any]) 
-        return compare(getElForPathIn(l, path as any)) 
+        return compare($getElForPathIn(l, path as any)) 
     }
 }
 

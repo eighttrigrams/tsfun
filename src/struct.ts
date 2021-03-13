@@ -54,7 +54,7 @@ export function get(path_, alternative?: any) {
     return ds => {
         const result = (isString(path_) || isNumber(path_)) 
             ? ds[path_]
-            : getElForPathIn(ds as Object, path_ as any)
+            : $getElForPathIn(ds as Object, path_ as any)
         return result !== undefined ? result : alternative
     }
 }
@@ -179,7 +179,7 @@ export function to<T = any>(path: SPath) {
     if (!isArray(path)) throw 'illegal argument - if not string or number, then array expected'
     if ((path as any).length < 2) throw 'illegal argument - array path must be at least of length 2'
 
-    return s => (reverseUncurry2(getElForPathIn))(path)(s) as T
+    return s => (reverseUncurry2($getElForPathIn))(path)(s) as T
 }
 
 
@@ -187,13 +187,13 @@ const isObject_ = (o: any) => o instanceof Object
 
 
 // library internal
-export function getElForPathIn(object: any, path: Array2<string|number>): any {
+export function $getElForPathIn(object: any, path: Array2<string|number>): any {
 
     if (!path) throw 'illegal argument - path not set'
     if (isString(path)||isNumber(path)) throw 'illegal argument - getElForPathIn expects array'
     if (path.length < 2) throw 'illegal argument in getElForPathIn - expected min length 2'
 
-    const $ = (object: any, path: Array<string|number>) => {
+    return (function $(object, path) {
     
         const key = path[0]
     
@@ -206,11 +206,10 @@ export function getElForPathIn(object: any, path: Array2<string|number>): any {
                     ? makeValueForCurrentKey(object[key])
                     : undefined
             : object[key]
-                ? $(object[key], rest(path))
+                ? $(object[key], rest(path) as any)
                 : undefined
-    }
 
-    return $(object, path) as Array<string|number>
+    })(object, path)
 }
 
 
