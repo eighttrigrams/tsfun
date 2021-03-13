@@ -187,32 +187,30 @@ const isObject_ = (o: any) => o instanceof Object
 
 
 // library internal
-export function getElForPathIn(object: any, path_: Array2<string|number>): any {
+export function getElForPathIn(object: any, path: Array2<string|number>): any {
 
-    if (!path_ || path_.length < 2) {
-        throw 'illegal argument in getElForPathIn'
+    if (!path) throw 'illegal argument - path not set'
+    if (isString(path)||isNumber(path)) throw 'illegal argument - getElForPathIn expects array'
+    if (path.length < 2) throw 'illegal argument in getElForPathIn - expected min length 2'
+
+    const $ = (object: any, path: Array<string|number>) => {
+    
+        const key = path[0]
+    
+        return path.length === 1
+            ? isString(key)
+                ? isObject_(object)
+                    ? makeValueForCurrentKey(object[key])
+                    : undefined
+                : isArray(object)
+                    ? makeValueForCurrentKey(object[key])
+                    : undefined
+            : object[key]
+                ? $(object[key], rest(path))
+                : undefined
     }
 
-    return $getElForPathIn1(object,
-        (isString(path_) ? path(path_ as string) : path_) as Array<string|number>)
-}
-
-
-export function $getElForPathIn1(object: any, path: Array<string|number>): any {
-
-    const key = path[0]
-
-    return path.length === 1
-        ? isString(key)
-            ? isObject_(object)
-                ? makeValueForCurrentKey(object[key])
-                : undefined
-            : isArray(object)
-                ? makeValueForCurrentKey(object[key])
-                : undefined
-        : object[key]
-            ? $getElForPathIn1(object[key], rest(path))
-            : undefined
+    return $(object, path) as Array<string|number>
 }
 
 
