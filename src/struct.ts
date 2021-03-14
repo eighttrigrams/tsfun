@@ -1,5 +1,5 @@
 import {Array2, Mapping, SPath} from './type'
-import {isArray, isArray2, isFunction, isNumber, isObject, isString} from './predicate'
+import {isArray, isArray2, isAssociative, isFunction, isNumber, isObject, isString} from './predicate'
 import {reverseUncurry2} from './core'
 import {copy} from './collection'
 import {rest} from './list'
@@ -186,20 +186,16 @@ export function to<T = any>(path: SPath) {
 // library internal
 export function $getElForPathIn(object: any, path: Array2<string|number>): any {
 
-    if (!path) throw 'illegal argument - path not set'
-    if (isString(path)||isNumber(path)) throw 'illegal argument - getElForPathIn expects array'
-    if (path.length < 2) throw 'illegal argument in getElForPathIn - expected min length 2'
+    if (!isArray2(path)) throw 'illegal argument in getElForPathIn - expected path as array with min length 2'
 
     return (function $(object, path) {
     
-        const key = path[0]
+        const next = object[path[0]]
     
         return path.length === 1
-            ? object instanceof Object||isArray(object)
-                ? object[key]
-                : undefined
-            : object[key]
-                ? $(object[key], rest(path) as any)
+            ? next
+            : isAssociative(next)
+                ? $(next, rest(path) as any)
                 : undefined
 
     })(object, path)
