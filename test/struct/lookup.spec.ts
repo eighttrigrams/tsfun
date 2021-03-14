@@ -84,7 +84,7 @@ describe('lookup', () => {
 
             .toEqual(4))
 
-
+    
     it('do not return undefined except when specified', () => {
 
         expect(lookup([0])(0)).toBe(0)

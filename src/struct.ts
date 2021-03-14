@@ -183,9 +183,6 @@ export function to<T = any>(path: SPath) {
 }
 
 
-const isObject_ = (o: any) => o instanceof Object
-
-
 // library internal
 export function $getElForPathIn(object: any, path: Array2<string|number>): any {
 
@@ -198,8 +195,8 @@ export function $getElForPathIn(object: any, path: Array2<string|number>): any {
         const key = path[0]
     
         return path.length === 1
-            ? isString(key)||isObject_(object)||isArray(object)
-                ? makeValueForCurrentKey(object[key])
+            ? object instanceof Object||isArray(object)
+                ? object[key]
                 : undefined
             : object[key]
                 ? $(object[key], rest(path) as any)
@@ -233,17 +230,6 @@ export function path(path: string): Array2<string|number> {
         return segments
     } 
     throw 'illegal arguments - must be string'
-}
-
-
-function makeValueForCurrentKey(resultSegment: any) {
-    return (resultSegment
-        || resultSegment === ''
-        || resultSegment === 0
-        || resultSegment === false
-        || resultSegment === null)
-        ? resultSegment
-        : undefined
 }
 
 
