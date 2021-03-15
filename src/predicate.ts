@@ -1,4 +1,4 @@
-import {Array2, Either, Mapping, Maybe, Pair, Predicate, Singleton, SPath} from './type'
+import {Array2, Either, Mapping, Maybe, Pair, Predicate, Singleton, Path} from './type'
 import {is, on} from './comparator'
 import {first} from './list'
 import {map, reduce} from './associative'
@@ -51,11 +51,11 @@ export function empty($) {
 }
 
 
-export const has = (path: SPath) => (o: Object) =>
+export const has = (path: Path) => (o: Object) =>
     on(path as any, isDefined)(o)
 
 
-export const hasnt = (path: SPath) => (o: Object) =>
+export const hasnt = (path: Path) => (o: Object) =>
     not(on(path as any, isDefined))(o)
 
 

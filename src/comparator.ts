@@ -1,4 +1,4 @@
-import {Comparator, ComparatorProducer, List, Pair, Predicate, SPath} from './type'
+import {Comparator, ComparatorProducer, List, Pair, Predicate, Path} from './type'
 import {isArray, isFunction, isNot, isNumber, isObject, isString} from './predicate'
 import {subtractBy} from './set'
 import {$getElForPathIn} from './struct'
@@ -242,7 +242,7 @@ export const equalBy =
 
 
 const onBy = (compare: Function) => 
-    (path: SPath) => 
+    (path: Path) => 
         (l: any) => (r: any) => { 
 
         if (isString(path) || isNumber(path)) {
@@ -262,7 +262,7 @@ const onBy = (compare: Function) =>
 }
 
 
-export const on = (path: SPath, compare: Function = tripleEqual) => {
+export const on = (path: Path, compare: Function = tripleEqual) => {
 
     if (isNumber(path)) {/*OK*/}
     else if (isString(path)) {

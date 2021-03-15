@@ -30,7 +30,7 @@ export type {
     Effect,
     Array2,
     Key,
-    SPath,
+    Path,
     Comparator,
 } from './src/type'
 

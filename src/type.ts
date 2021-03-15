@@ -10,7 +10,7 @@ export type Array2<T> = {
 export type Key = string|number
 
 
-export type SPath = Key|Array2<Key>
+export type Path = Key|Array2<Key>
 
 
 export type Effect<T = any> = (_: T) => void

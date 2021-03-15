@@ -1,4 +1,4 @@
-import {Array2, Mapping, SPath} from './type'
+import {Array2, Mapping, Path} from './type'
 import {isArray, isArray2, isAssociative, isFunction, isNumber, isObject, isString} from './predicate'
 import {reverseUncurry2} from './core'
 import {copy} from './collection'
@@ -60,7 +60,7 @@ export function get(path_, alternative?: any) {
 }
 
 
-export function lookup<T, V>(ds: T, alternative?: V): (path: SPath) => V
+export function lookup<T, V>(ds: T, alternative?: V): (path: Path) => V
 export function lookup<T>(ds: Array<T>, alternative?: T): (path: number) => T
 export function lookup<T, V>(ds: T, alternative?: V): (path: string) => V
 export function lookup(ds, alternative?) {
@@ -173,7 +173,7 @@ function $update1(path_ /*mut inplace*/, struct, update_fun, update = true) {
 }
 
 
-export function to<T = any>(path: SPath) {
+export function to<T = any>(path: Path) {
 
     if (isString(path)||isNumber(path)) return _ => _[path as any]
     if (!isArray(path)) throw 'illegal argument - if not string or number, then array expected'
