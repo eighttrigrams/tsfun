@@ -29,7 +29,7 @@ export type {
     Filter,
     Effect,
     Array2,
-    Path,
+    Key,
     SPath,
     Comparator,
 } from './src/type'
