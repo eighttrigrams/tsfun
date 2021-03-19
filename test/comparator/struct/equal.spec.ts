@@ -1,4 +1,4 @@
-import {equal, sameset, samesetBy} from "../../../src/comparator";
+import {equal, sameset, samesetBy} from '../../../src/comparator'
 
 /**
  * tsfun | equal
@@ -74,7 +74,7 @@ describe('equal', () => {
             ({a: [2, {b: 4, a: [1, {f: [1, 2], e: 7}]}], c: 5})
             ({c: 5, a: [2, {a: [1, {e: 7, f: [1, 2]}], b: 4}]})
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('Array - recursive Object Array Nesting', () =>
@@ -84,7 +84,7 @@ describe('equal', () => {
             ([2, {b: 4, a: [1, {f: [1, 2], e: 7}]}])
             ([2, {a: [1, {e: 7, f: [1, 2]}], b: 4}])
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('Array - recursive Object Array Nesting - Array order matters!', () =>
@@ -94,7 +94,7 @@ describe('equal', () => {
             ([2, {b: 4, a: [1, {f: [2, 1], e: 7}]}])
             ([2, {a: [1, {e: 7, f: [1, 2]}], b: 4}])
 
-        ).toEqual(false));
+        ).toEqual(false))
 
 
     it('equal - single- or multiparameter-list', () => {
@@ -106,22 +106,22 @@ describe('equal', () => {
         expect(equal(undefined, undefined)).toEqual(true)
         expect(equal(undefined, 1)).toEqual(false)
         expect(equal(1, undefined)).toEqual(false)
-    });
+    })
 
 
     it('typing', () => {
 
-        const result1: true = equal(undefined, undefined);
-        const result2: true = equal(undefined)(undefined);
-        const result3: boolean = equal(2, undefined);
-        const result5: boolean = equal(undefined)(2);
-        const result6: boolean = equal(undefined)(2);
+        const $1: true = equal(undefined, undefined)
+        const $2: true = equal(undefined)(undefined)
+        const $3: boolean = equal(2, undefined)
+        const $4: boolean = equal(undefined)(2)
+        const $5: boolean = equal(undefined)(2)
 
-        // const result: boolean = equal(2)(undefined); // WRONG
-        // const result: boolean = equal(2)('2');       // WRONG
-        // const result: boolean = equal('1', 1)) // WRONG
-        // const result = equal(new Date(2018, 11), {}) // WRONG
-        // const result = equal(new Date(2018, 11))({}) // WRONG
+        // const $: boolean = equal(2)(undefined) // WRONG
+        // const $: boolean = equal(2)('2')       // WRONG
+        // const $: boolean = equal('1', 1)) // WRONG
+        // const $ = equal(new Date(2018, 11), {}) // WRONG
+        // const $ = equal(new Date(2018, 11))({}) // WRONG
     })
 
 
@@ -154,7 +154,7 @@ describe('equal', () => {
                 [2, {b: 4, a: [1, {f: [2, 1], e: 7}]}])
             ([2, {a: [1, {e: 7, f: [1, 2]}], b: 4}])
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     // err case
@@ -164,5 +164,5 @@ describe('equal', () => {
 
             () => (equal as any)(1, 2, 3)
 
-        ).toThrow());
-});
+        ).toThrow())
+})
