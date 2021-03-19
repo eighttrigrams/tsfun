@@ -188,7 +188,7 @@ export function conds(...args) {
 }
 
 
-export const otherwise = val(true)
+export const otherwise: any = val(true)
 
 
 export function apply<A,B,C>(f: (a: A, b: B) => C): (args: any) => C;

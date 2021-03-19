@@ -241,19 +241,24 @@ describe('conds', () => {
     })
 
 
-    // pairs
+    it('otherwise', () => {
 
-    it('otherwise', () =>
         expect(
-
             conds(
-                is(3), 5,
-                is(5), 6,
-                otherwise, 7)
-            (8)
+                    is(3), 5,
+                    is(5), 6,
+                    otherwise, 7)
+                (8)
+            ).toEqual(7)
 
-        ).toEqual(7)
-    )
+        expect(
+            conds(
+                    3, 5,
+                    3, 6,
+                    otherwise as any, 7)
+                (8)
+            ).toEqual(7)
+    })
 
 
     it('default', () =>
