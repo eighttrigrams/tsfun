@@ -42,6 +42,17 @@ export function compose(...transformations: Array<Function>) {
 }
 
 
+
+export function curry<A,B,C>(f: (a: A, b: B) => C, b: B): (a: A) => C;
+export function curry<A,B,C,D>(f: (a: A, b: B, c: C) => D, b: B, c: C): (a: A) => D;
+export function curry<A,B,C,D,E>(f: (a: A, b: B, c: C, d: D) => E, b: B, c: C, d: D): (a: A) => E;
+export function curry(f, ...args) {
+
+    return a => f(a, ...args)
+}
+
+
+
 export function cond<A, B, C>(
     p: boolean|Predicate<A>,
     f: Mapping<A, B>|B,
