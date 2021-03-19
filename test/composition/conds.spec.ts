@@ -288,6 +288,10 @@ describe('conds', () => {
 
     it('condsBy', () => {
 
+        // If one does not pass functions to the left-hand-sides,
+        // and also does not want to compare by ===, one can 
+        // construct conds with a comparator of choice.
+
         const $conds = condsBy(equal);
       
         expect(
