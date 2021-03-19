@@ -255,7 +255,7 @@ describe('conds', () => {
             conds(
                     3, 5,
                     3, 6,
-                    otherwise as any, 7)
+                    otherwise, 7)
                 (8)
             ).toEqual(7)
     })
