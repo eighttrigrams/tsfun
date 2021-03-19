@@ -290,7 +290,7 @@ describe('conds', () => {
 
         // If one does not pass functions to the left-hand-sides,
         // and also does not want to compare by ===, one can 
-        // construct conds with a comparator of choice.
+        // construct conds with a comparator of choice
 
         const $conds = condsBy(equal);
       
@@ -303,10 +303,13 @@ describe('conds', () => {
 
         expect(
             $conds(
-                    { a: 3 }, 5,
-                    { a: 4 }, 6,
-                    { a: 5 }, 7)
+                    { a: 3 }, to('a'),
+                    { a: 4 }, to('a'),
+                    { a: 5 }, to('a'))
                 ({ a: 5 })
-            ).toEqual(7)
+            ).toEqual(5)
+
+        // When using it, avoid passing functions to the left hand side,
+        // since this won't be ruled out by typechecking.
     })
 })
