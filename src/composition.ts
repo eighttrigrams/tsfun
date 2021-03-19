@@ -1,6 +1,6 @@
 import {identity} from './core'
-import {Either, Fallible, Mapping, Maybe, Pair, Predicate} from './type'
-import {isEither, isFailure, isFunction, isMaybe, isSuccess} from './predicate'
+import {Comparator, Either, Fallible, Mapping, Maybe, Pair, Predicate} from './type'
+import {isEither, isFailure, isFunction, isMaybe, isPair, isSuccess} from './predicate'
 import {first, rest} from './list'
 import {success, getSuccess, left, just, right} from './tuple'
 
@@ -129,9 +129,47 @@ export function mmatch<T, R>(onSuccess: (x: T) => R,
 }
 
 
-export function conds(...cs: Array<Pair>) {
+export type Array6<T> = {
+    0: T
+    1: T,
+    2: T,
+    3: T,
+    4: T,
+    5: T,
+} & Array<T>
+export function conds<A,B>(...cs: Array6<Pair<Predicate<A>, Mapping<A,B>>>): (what: A) => B
+export function conds<A,B>(...cs: Array6<Pair<Predicate<A>,B>>): (what: A) => B
+export function conds<A,B>(...cs: Array6<Pair<A,Mapping<A,B>>>): (what: A) => B
+export function conds<A,B>(...cs: Array6<Pair<A,B>>): (what: A) => B
+export function conds<A,B>(c1: Predicate<A>, d1: Mapping<A,B>, c2: Predicate<A>, d2: Mapping<A,B>, c3: Predicate<A>, d3: Mapping<A,B>, c4: Predicate<A>, d4: Mapping<A,B>, c5: Predicate<A>, d5: Mapping<A,B>): (what: A) => B
+export function conds<A,B>(c1: Predicate<A>, d1: Mapping<A,B>, c2: Predicate<A>, d2: Mapping<A,B>, c3: Predicate<A>, d3: Mapping<A,B>, c4: Predicate<A>, d4: Mapping<A,B>): (what: A) => B
+export function conds<A,B>(c1: Predicate<A>, d1: Mapping<A,B>, c2: Predicate<A>, d2: Mapping<A,B>, c3: Predicate<A>, d3: Mapping<A,B>): (what: A) => B
+export function conds<A,B>(c1: Predicate<A>, d1: Mapping<A,B>, c2: Predicate<A>, d2: Mapping<A,B>): (what: A) => B
+export function conds<A,B>(c1: Predicate<A>, d1: B, c2: Predicate<A>, d2: B, c3: Predicate<A>, d3: B, c4: Predicate<A>, d4: B, c5: Predicate<A>, d5: B): (what: A) => B
+export function conds<A,B>(c1: Predicate<A>, d1: B, c2: Predicate<A>, d2: B, c3: Predicate<A>, d3: B, c4: Predicate<A>, d4: B): (what: A) => B
+export function conds<A,B>(c1: Predicate<A>, d1: B, c2: Predicate<A>, d2: B, c3: Predicate<A>, d3: B): (what: A) => B
+export function conds<A,B>(c1: Predicate<A>, d1: B, c2: Predicate<A>, d2: B): (what: A) => B
+export function conds<A,B>(c1: A, d1: Mapping<A,B>, c2: A, d2: Mapping<A,B>, c3: A, d3: Mapping<A,B>, c4: A, d4: Mapping<A,B>, c5: A, d5: Mapping<A,B>): (what: A) => B
+export function conds<A,B>(c1: A, d1: Mapping<A,B>, c2: A, d2: Mapping<A,B>, c3: A, d3: Mapping<A,B>, c4: A, d4: Mapping<A,B>): (what: A) => B
+export function conds<A,B>(c1: A, d1: Mapping<A,B>, c2: A, d2: Mapping<A,B>, c3: A, d3: Mapping<A,B>): (what: A) => B
+export function conds<A,B>(c1: A, d1: Mapping<A,B>, c2: A, d2: Mapping<A,B>): (what: A) => B
+export function conds<A,B>(c1: A, d1: B, c2: A, d2: B, c3: A, d3: B, c4: A, d4: B, c5: A, d5: B): (what: A) => B
+export function conds<A,B>(c1: A, d1: B, c2: A, d2: B, c3: A, d3: B, c4: A, d4: B): (what: A) => B
+export function conds<A,B>(c1: A, d1: B, c2: A, d2: B, c3: A, d3: B): (what: A) => B
+export function conds<A,B>(c1: A, d1: B, c2: A, d2: B): (what: A) => B
+export function conds(...args) {
 
     return (what: any) => {
+
+        let cs: Array<Pair> = [];
+        if (args.filter(isPair).length === args.length) {
+            cs = args;
+        } else {
+            if (args.length % 2 !== 0) throw 'illegal args - arguments must come pairwise'
+            for (let i = 0; i < args.length; i=i+2) {
+                cs.push([args[i], args[i+1]])
+            }
+        }
 
         for (let c of cs) {
 
