@@ -1,5 +1,5 @@
-import {is, jsonEqual, on} from '../../src/comparator'
-import {conds, flow, otherwise} from '../../src/composition'
+import {equal, is, jsonEqual, on} from '../../src/comparator'
+import {conds, condsBy, flow, otherwise} from '../../src/composition'
 import {to} from '../../src/struct'
 
 /**
@@ -284,4 +284,25 @@ describe('conds', () => {
 
         ).toEqual(49)
     )
+
+
+    it('condsBy', () => {
+
+        const $conds = condsBy(equal);
+      
+        expect(
+            $conds(
+                    { a: 3 }, 5,
+                    { a: 4 }, 6)
+                ({ a: 3 })
+            ).toEqual(5)
+
+        expect(
+            $conds(
+                    { a: 3 }, 5,
+                    { a: 4 }, 6,
+                    { a: 5 }, 7)
+                ({ a: 5 })
+            ).toEqual(7)
+    })
 })

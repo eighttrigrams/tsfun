@@ -3,6 +3,7 @@ import {Comparator, Either, Fallible, Mapping, Maybe, Pair, Predicate} from './t
 import {isEither, isFailure, isFunction, isMaybe, isPair, isSuccess} from './predicate'
 import {first, rest} from './list'
 import {success, getSuccess, left, just, right} from './tuple'
+import { tripleEqual } from './comparator'
 
 
 
@@ -159,6 +160,18 @@ export function conds<A,B>(c1: A, d1: B, c2: A, d2: B, c3: A, d3: B): (what: A) 
 export function conds<A,B>(c1: A, d1: B, c2: A, d2: B): (what: A) => B
 export function conds(...args) {
 
+    return $conds(tripleEqual, ...args)
+}
+
+
+export function condsBy(comp) {
+
+    return ((...args) => $conds(comp, ...args)) as typeof conds;
+}
+
+
+function $conds(comp, ...args) { 
+    
     return (what: any) => {
 
         let cs: Array<Pair> = [];
@@ -180,7 +193,7 @@ export function conds(...args) {
             if (isFunction(leftC)) {
                 if (leftC(what)) return r()
             } else {
-                if (leftC === what) return r()
+                if (comp(leftC)(what)) return r()
             }
         }
         throw 'case exception - try using \'otherwise\' in conds'
