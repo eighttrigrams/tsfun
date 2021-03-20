@@ -244,7 +244,7 @@ export const equalBy =
 
 export function on<T1, T2>(path: Mapping<T1,T2>): Comparator<T1>
 export function on<T1, T2>(path: Mapping<T1,T2>, compare: Comparator<T2,T2>): Comparator<T1, T1>
-export function on<T1, T2>(path: Mapping<T1,T2>, compare: Predicate<T2>): Predicate<T1> // TODO fix: only T
+export function on<T1, T2>(path: Mapping<T1,T2>, compare: Predicate<T2>): Predicate<T1>
 export function on<T1,T2>(path: Mapping<T1,T2>, compare: T2): Predicate<T1>
 export function on(path: Path): <T1, T2>(l: T1) => (r: T2) => boolean // TODO fix: only T
 export function on<T1,T2>(path: Path, compare: Predicate<T1>): Predicate<T2>
