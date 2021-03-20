@@ -91,41 +91,41 @@ describe('on', () => {
 
     it('you can also construct more powerful on functions, by giving a comparator which is applied after the path', () => {
 
-        const $on0 = onBy(a => b => a !== b)
+        const $on1 = onBy(a => b => a !== b)
 
         expect(
-            $on0('a')({a: 4})({a: 3}))
+            $on1('a')({a: 4})({a: 3}))
             .toEqual(true)
 
         expect(
-            $on0('a')({a: 4})({a: 4}))
+            $on1('a')({a: 4})({a: 4}))
             .toEqual(false)
 
 
-        const $on1 = onBy(on('b'))
+        const $on2 = onBy(on('b'))
         
         expect(
-            $on1('a')({a: {b: 3, c: 5}})({a: { b: 3, c: 7}}))
+            $on2('a')({a: {b: 3, c: 5}})({a: { b: 3, c: 7}}))
             .toEqual(true)
             
             expect(
-                $on1('a')({a: {b: 3, c: 7}})({a: { b: 4, c: 7}}))
+                $on2('a')({a: {b: 3, c: 7}})({a: { b: 4, c: 7}}))
                 .toEqual(false)
 
 
         // combine a mapping path with onBy
-        const $on2 = onBy<any,any>(on(count))
+        const $on3 = onBy<any,any>(on(count))
 
         expect(
-            $on2('a')({a: [3, 3]})({a: [3, 4]}))
+            $on3('a')({a: [3, 3]})({a: [3, 4]}))
             .toEqual(true)
 
         expect(
-            $on2('a')({a: [3, 3, 3]})({a: [3, 4]}))
+            $on3('a')({a: [3, 3, 3]})({a: [3, 4]}))
             .toEqual(false)
     })
 
-    
+
     // use cases
 
     it('on - with find - symmetric',() =>
