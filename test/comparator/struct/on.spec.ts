@@ -88,47 +88,7 @@ describe('on', () => {
             .toEqual([{a: 4}])
     })
 
-
-    // onBy
-
-    it('on - with find and isNot - user arrayEquivalent with By when you want to match path', () =>
-        expect(
-
-            [{a: {b: [2, 1]}}, {a: {b: [2, 7]}}]
-                .filter(onBy(samesetBy(undefined as any))(['a','b'])({a: {b: [1, 2]}}))
-
-        ).toEqual([{a: {b: [2, 1]}}] as any))
-
-
-        
-    it('intersectBy onBy equalTo - symmetric',() => {
-
-        const $on = onBy(jsonEqual)
-        const $intersect = intersectBy($on(['a', 'b']))
-
-        expect(
-
-            $intersect
-                ([{a: {b: {c: 'e'}}}, {a: {b: 'c'}}])
-                ([{a: {b: {c: 'e'}}}]))
-
-            .toEqual([{a: {b: {c: 'e'}}} as any])
-    })
-
-
-    it('find onBy equalTo - symmetric',() => {
-
-        const $on = onBy(jsonEqual)
-
-        expect(
-
-            [{a: {b: {c: 4}}}, {a: {b: {d: 5}}}]
-                .find($on(['a','b'])({a: {b: {c: 4}}})))
-
-            .toEqual({a: {b: {c: 4}}} as any)
-    })
-
-
+    
     it('you can also construct more powerful on functions, by giving a comparator which is applied after the path', () => {
 
         const $on0 = onBy(a => b => a !== b)
@@ -255,6 +215,43 @@ describe('on', () => {
                 .filter(on(['a','b'], isArray))
 
         ).toEqual([{a: {b: [2, 1]}}] as any))
+
+        it('on - with find and isNot - user arrayEquivalent with By when you want to match path', () =>
+        expect(
+
+            [{a: {b: [2, 1]}}, {a: {b: [2, 7]}}]
+                .filter(onBy(samesetBy(undefined as any))(['a','b'])({a: {b: [1, 2]}}))
+
+        ).toEqual([{a: {b: [2, 1]}}] as any))
+
+
+        
+    it('intersectBy onBy equalTo - symmetric',() => {
+
+        const $on = onBy(jsonEqual)
+        const $intersect = intersectBy($on(['a', 'b']))
+
+        expect(
+
+            $intersect
+                ([{a: {b: {c: 'e'}}}, {a: {b: 'c'}}])
+                ([{a: {b: {c: 'e'}}}]))
+
+            .toEqual([{a: {b: {c: 'e'}}} as any])
+    })
+
+
+    it('find onBy equalTo - symmetric',() => {
+
+        const $on = onBy(jsonEqual)
+
+        expect(
+
+            [{a: {b: {c: 4}}}, {a: {b: {d: 5}}}]
+                .find($on(['a','b'])({a: {b: {c: 4}}})))
+
+            .toEqual({a: {b: {c: 4}}} as any)
+    })            
 
     // resiliency
 
