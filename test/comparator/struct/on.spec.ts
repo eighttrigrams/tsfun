@@ -101,8 +101,8 @@ describe('on', () => {
             .toBe(true)
 
         expect(
-            on(count, isnt)([1, 2])([1, 2]))
-            .toBe(false)
+            on(count, is)([1, 2])([1, 2]))
+            .toBe(true)
 
         // As the next examples show, this can also be achieved on a less ad-hoc basis.
     })
