@@ -1,5 +1,9 @@
-import {lookup, map} from '../../../src/associative';
+import {lookup, map} from '../../../src/associative'
 
+
+/**
+ * tsfun/associative | lookup
+ */
 describe('lookup', () => {
 
     it('lookup', () =>
@@ -7,7 +11,7 @@ describe('lookup', () => {
 
             lookup({a: 9, b: 10})('a')
 
-        ).toEqual(9));
+        ).toEqual(9))
 
 
     it('lookup in array', () =>
@@ -15,7 +19,7 @@ describe('lookup', () => {
 
             lookup([3, 5, 7])(1)
 
-        ).toEqual(5));
+        ).toEqual(5))
 
 
     it('lookup with map', () =>
@@ -23,7 +27,7 @@ describe('lookup', () => {
 
             map(lookup({a: 9, b: 10}))(['a', 'b'])
 
-        ).toEqual([9, 10]));
+        ).toEqual([9, 10]))
 
 
     it('nothing', () =>
@@ -31,7 +35,7 @@ describe('lookup', () => {
 
             map(lookup({a: 9}))(['d'])
 
-        ).toEqual([undefined]));
+        ).toEqual([undefined]))
 
 
     it('alternative', () =>
@@ -39,5 +43,5 @@ describe('lookup', () => {
 
             map(lookup({a: 9}, 13))(['d'])
 
-        ).toEqual([13]));
-});
+        ).toEqual([13]))
+})

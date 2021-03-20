@@ -1,4 +1,4 @@
-import {take} from '../../../src/string';
+import {take} from '../../../src/string'
 
 
 /**
@@ -38,6 +38,6 @@ describe('string/take', () => {
         // const result: string= take(5, [1, 2, 7, 7, 8, 9, 11]) // WRONG - types do not match
         // const result: Array<string> = take(5)([1, 2, 7, 7, 8, 9, 11]) // WRONG - Array types do not match
 
-        const result3: string = take(5)("abc") as string
-    });
-});
+        const result3: string = take(5)('abc') as string
+    })
+})

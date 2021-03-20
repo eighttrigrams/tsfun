@@ -1,12 +1,12 @@
-import {filter, map, take, materialize} from '../../../src/lazy';
-import {flow} from '../../../src/composition';
+import {filter, map, take, materialize} from '../../../src/lazy'
+import {flow} from '../../../src/composition'
 
 
 
 /**
- * @author Daniel de Oliveira
+ * tsfun/lazy | materialize
  */
-describe('materialize', () => {
+describe('lazy/materialize', () => {
 
     it('use case', () =>
         expect(
@@ -17,5 +17,5 @@ describe('materialize', () => {
                 take(1),
                 materialize))
 
-            .toEqual([6]));
-});
+            .toEqual([6]))
+})

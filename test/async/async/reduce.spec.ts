@@ -4,7 +4,7 @@ import {reduce as asyncReduce} from '../../../src/async';
 /**
  * tsfun/async | reduce
  */
-describe('asyncReduce', () => {
+describe('async/reduce', () => {
 
     it('array - single parameter list', async done => {
 

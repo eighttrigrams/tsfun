@@ -1,11 +1,9 @@
-import {filter as lFilter, materialize} from '../../../src/lazy';
-import {greaterThan} from '../../../src/comparator';
+import {filter as lFilter, materialize} from '../../../src/lazy'
+import {greaterThan} from '../../../src/comparator'
 
 
 /**
  * tsfun | lazy/filter
- *
- * @author Daniel de Oliveira
  */
 describe('lazy/filter', () => {
 
@@ -13,5 +11,5 @@ describe('lazy/filter', () => {
 
         materialize(lFilter(greaterThan(3))([4, 2, 1]))
 
-    ).toEqual([4]));
-});
+    ).toEqual([4]))
+})

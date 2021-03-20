@@ -1,10 +1,8 @@
-import {flow as asyncFlow} from '../../../src/async';
+import {flow as asyncFlow} from '../../../src/async'
 
 
 /**
- * tsfun | async/flow
- *
- * @author Daniel de Oliveira
+ * tsfun/async | flow
  */
 describe('async/flow', () => {
 
@@ -18,8 +16,8 @@ describe('async/flow', () => {
                 (itm: any) => itm + 'ee'
             )
 
-        ).toEqual('abcdee');
+        ).toEqual('abcdee')
 
-        done();
-    });
-});
+        done()
+    })
+})

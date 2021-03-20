@@ -1,17 +1,17 @@
-import {range, zip, materialize} from '../../../src/lazy';
+import {range, zip, materialize} from '../../../src/lazy'
 
 
 /**
- * @author Daniel de Oliveira
+ * tsfun/lazy | range
  */
-describe('lazy/Range', () => {
+describe('lazy/range', () => {
 
     it('up to', () =>
         expect(
 
             materialize(range(0, 3))
 
-        ).toEqual([0, 1, 2]));
+        ).toEqual([0, 1, 2]))
 
 
     it('from to', () =>
@@ -19,7 +19,7 @@ describe('lazy/Range', () => {
 
             materialize(range(3, 7))
 
-        ).toEqual([3, 4, 5, 6]));
+        ).toEqual([3, 4, 5, 6]))
 
 
     it('step size', () =>
@@ -27,7 +27,7 @@ describe('lazy/Range', () => {
 
             materialize(range(3, 7, 3))
 
-        ).toEqual([3, 6]));
+        ).toEqual([3, 6]))
 
 
     it('use case', () =>
@@ -36,4 +36,4 @@ describe('lazy/Range', () => {
             materialize(zip(range(10))(['a', 'b', 'c']))
 
         ).toEqual([[0, 'a'], [1, 'b'], [2, 'c']]))
-});
+})

@@ -1,6 +1,9 @@
-import {keysAndValues} from '../../../src/associative';
+import {keysAndValues} from '../../../src/associative'
 
 
+/**
+ * tsfun/associative | keysAndValues
+ */
 describe('keysAndValues', () => {
 
     it('array', () =>
@@ -8,7 +11,7 @@ describe('keysAndValues', () => {
 
             keysAndValues({a: 3, b: 4})
 
-        ).toEqual([['a', 3], ['b', 4]]));
+        ).toEqual([['a', 3], ['b', 4]]))
 
 
     it('array', () =>
@@ -17,4 +20,4 @@ describe('keysAndValues', () => {
             keysAndValues(['a', 'b'])
 
         ).toEqual([[0, 'a'], [1, 'b']]))
-});
+})

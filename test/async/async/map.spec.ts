@@ -3,7 +3,7 @@ import {
     map as asyncMap /* use an alias if you want to disambiguate */,
     flow as asyncFlow
 } from '../../../src/async'
-import {map} from '../../../src/array';
+import {map} from '../../../src/array'
 
 
 /**
@@ -11,7 +11,7 @@ import {map} from '../../../src/array';
  *
  * asynchronous map for mapping over Associative
  */
-describe('asyncMap', () => {
+describe('async/map', () => {
 
     it('async map over associative', async done => {
 
@@ -29,7 +29,7 @@ describe('asyncMap', () => {
 
         ).toEqual({a: 2, b: 4})
         done()
-    });
+    })
 
 
     it('async map over associative - reverse argument order', async done => {

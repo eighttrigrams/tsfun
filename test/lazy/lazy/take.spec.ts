@@ -1,12 +1,10 @@
-import {take as lTake, filter as lFilter, materialize} from '../../../src/lazy';
-import {flow} from '../../../src/composition';
-import {greaterThan} from '../../../src/comparator';
+import {take as lTake, filter as lFilter, materialize} from '../../../src/lazy'
+import {flow} from '../../../src/composition'
+import {greaterThan} from '../../../src/comparator'
 
 
 /**
- * tsfun | lazy/take
- *
- * @author Daniel de Oliveira
+ * tsfun/lazy | take
  */
 describe('lazy/take', () => {
 
@@ -14,7 +12,7 @@ describe('lazy/take', () => {
 
         materialize(lTake(1)([4, 2, 1]))
 
-    ).toEqual([4]));
+    ).toEqual([4]))
 
 
     it('use case', () => expect(
@@ -25,5 +23,5 @@ describe('lazy/take', () => {
             lTake(2),
             materialize)
 
-    ).toEqual([4, 7]));
-});
+    ).toEqual([4, 7]))
+})

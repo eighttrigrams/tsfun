@@ -1,13 +1,17 @@
-import {not} from '../../src/predicate';
-import {tripleEqual} from '../../src/comparator';
+import {not} from '../../src/predicate'
+import {tripleEqual} from '../../src/comparator'
 
+
+/**
+ * tsfun | not
+ */
 describe('not', () => {
 
 
-    it('not',() =>
+    it('not', () =>
         expect(
 
             not(tripleEqual('a'))('a'))
 
-            .toEqual(false));
-});
+            .toEqual(false))
+})

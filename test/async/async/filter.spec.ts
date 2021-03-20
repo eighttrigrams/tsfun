@@ -6,7 +6,7 @@ import {filter as asyncFilter} from '../../../src/async'
  *
  * asynchronous function for filtering items from Collection by a given predicate
  */
-describe('asyncFilter', () => {
+describe('async/filter', () => {
 
     it('array, multiple argument lists', async done => {
 

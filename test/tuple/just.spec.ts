@@ -1,6 +1,9 @@
-import {just} from '../../src/tuple';
+import {just} from '../../src/tuple'
 
 
+/**
+ * tsfun | just
+ */
 describe('just', () => {
 
     it('just', () =>
@@ -8,14 +11,14 @@ describe('just', () => {
 
             just(4)
 
-        ).toEqual([4]));
+        ).toEqual([4]))
 
 
     it('typing', () => {
 
-        const e1  = just(4);
-        e1[0] = 3;
+        const e1  = just(4)
+        e1[0] = 3
 
         // wrong - e1[0] = 'abc'
-    });
-});
+    })
+})
