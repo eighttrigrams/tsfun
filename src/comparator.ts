@@ -264,26 +264,26 @@ export function on(path, compare?) {
     }
     else throw 'illegal argument - path must be one of string, number, array of length 2'
     
-    const lrCase = (l, r, compare) => {
-        if (isString(path)||isNumber(path)) return compare(l[path])(r[path])
-        if (mapping !== undefined) return compare(mapping(l))(mapping(r))
-        return compare($getElForPathIn(l, path))($getElForPathIn(r, path)) 
+    const lrCase = (l, r, comparator) => {
+        if (isString(path)||isNumber(path)) return comparator(l[path])(r[path])
+        if (mapping !== undefined) return comparator(mapping(l))(mapping(r))
+        return comparator($getElForPathIn(l, path))($getElForPathIn(r, path)) 
+    }
+
+    const lCase = (l, predicate) => {
+        if (isString(path)||isNumber(path)) return predicate((l as any)[path])
+        if (mapping !== undefined) return predicate(mapping(l))
+        return predicate($getElForPathIn(l, path as any))
     }
 
     return l => { 
         if (compare === undefined) return r => lrCase(l, r, tripleEqual)
-
         if (isFunction(compare)) {
-            if (isFunction(compare(l))) return r => lrCase(l, r, compare)
-            
-            if (isString(path)||isNumber(path)) return compare((l as any)[path as any]) 
-            if (mapping !== undefined) return compare(mapping(l))
-            return compare($getElForPathIn(l, path)) 
+            return isFunction(compare(l))
+                ? r => lrCase(l, r, compare)
+                : lCase(l, compare)
         }
-
-        if (isString(path)||isNumber(path)) return (l as any)[path as any] === compare 
-        if (mapping !== undefined) return mapping(l) === compare
-        return $getElForPathIn(l, path as any) === compare
+        return lCase(l, is(compare))   
     }
 }
 
