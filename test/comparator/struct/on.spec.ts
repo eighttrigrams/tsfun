@@ -252,7 +252,7 @@ describe('on', () => {
             [{a: {b: 4}}, {a: {c: 5}}]
                 .filter(on(['a','b'], isDefined))
 
-        ).toEqual([{a: {b: 4}}] as any))
+        ).toEqual([{a: {b: 4}}]))
 
 
     it('on - with find - isEmpty predicate', () =>
@@ -261,7 +261,7 @@ describe('on', () => {
             [{a: [1, 2, 4]}, {a: []}]
                 .filter(on('a', isEmpty))
 
-        ).toEqual([{a: []}] as any))
+        ).toEqual([{a: []}]))
 
 
     it('on - with find and isNot - isEmpty predicate', () =>
@@ -270,7 +270,7 @@ describe('on', () => {
             [{a: [1, 2, 4]}, {a: []}]
                 .filter(isNot(on('a', isEmpty)))
 
-        ).toEqual([{a: [1, 2, 4]}] as any))
+        ).toEqual([{a: [1, 2, 4]}]))
 
 
     it('on - with find and isNot - isUndefinedOrEmpty predicate works with undefined', () =>
@@ -279,7 +279,7 @@ describe('on', () => {
             [{a: [1, 2, 4]}, {a: undefined}]
                 .filter(isNot(on('a', isUndefinedOrEmpty)))
 
-        ).toEqual([{a: [1, 2, 4]}] as any))
+        ).toEqual([{a: [1, 2, 4]}]))
 
 
     it('on - with find and isArray', () =>
@@ -288,7 +288,7 @@ describe('on', () => {
             [{a: {b: [2, 1]}}, {c: {a: 1}}, {}]
                 .filter(on(['a','b'], isArray))
 
-        ).toEqual([{a: {b: [2, 1]}}] as any))
+        ).toEqual([{a: {b: [2, 1]}}]))
 
         it('on - with find and isNot - user arrayEquivalent with By when you want to match path', () =>
         expect(
@@ -296,7 +296,7 @@ describe('on', () => {
             [{a: {b: [2, 1]}}, {a: {b: [2, 7]}}]
                 .filter(onBy(samesetBy(undefined as any))(['a','b'])({a: {b: [1, 2]}}))
 
-        ).toEqual([{a: {b: [2, 1]}}] as any))
+        ).toEqual([{a: {b: [2, 1]}}]))
 
         
     it('intersectBy onBy equalTo - symmetric',() => {
@@ -310,7 +310,7 @@ describe('on', () => {
                 ([{a: {b: {c: 'e'}}}, {a: {b: 'c'}}])
                 ([{a: {b: {c: 'e'}}}]))
 
-            .toEqual([{a: {b: {c: 'e'}}} as any])
+            .toEqual([{a: {b: {c: 'e'}}}])
     })
 
 
@@ -323,9 +323,10 @@ describe('on', () => {
             [{a: {b: {c: 4}}}, {a: {b: {d: 5}}}]
                 .find($on(['a','b'])({a: {b: {c: 4}}})))
 
-            .toEqual({a: {b: {c: 4}}} as any)
+            .toEqual({a: {b: {c: 4}}})
     })            
 
+    
     // resiliency
 
     it('unknown object key', () =>
@@ -365,6 +366,7 @@ describe('on', () => {
             on([10,'a'], is(15))({ a: 'b' }))
 
             .toEqual(false))
+
 
     // regression prevention
 
