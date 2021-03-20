@@ -1,4 +1,4 @@
-import {samesetBy, is, jsonEqual, on, onBy, isnt} from '../../../src/comparator'
+import {samesetBy, is, jsonEqual, on, onBy, isnt, lessThan} from '../../../src/comparator'
 import { identity } from '../../../src/core'
 import {isArray, isDefined, isEmpty, isNot, isUndefined, isUndefinedOrEmpty} from '../../../src/predicate'
 import {intersectBy} from '../../../src/set'
@@ -104,7 +104,19 @@ describe('on', () => {
             on(count, is)([1, 2])([1, 2]))
             .toBe(true)
 
-        // As the next examples show, this can also be achieved on a less ad-hoc basis.
+        // One use case would be to write this
+        expect(
+            on(count, lessThan(3))([1, 2]))
+            .toBe(true)
+        
+        // which can be expressed in terms of another data structure of the same time
+        
+        expect(
+            on(count, lessThan)([1, 2, 3])([1, 2]))
+            .toBe(true)
+
+        // As the next examples show, passing comparators to yield comparators
+        // for symmetric comparisons can also be achieved on a less ad-hoc basis.
     })
 
 
