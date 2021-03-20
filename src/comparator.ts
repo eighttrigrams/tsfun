@@ -1,7 +1,7 @@
 import {Comparator, ComparatorProducer, List, Pair, Predicate, Path, Mapping} from './type'
-import {isArray, isFunction, isNot, isNumber, isObject, isString} from './predicate'
+import {isArray, isArray2, isFunction, isNot, isNumber, isObject, isString} from './predicate'
 import {subtractBy} from './set'
-import {$getElForPathIn} from './struct'
+import {$getElForPathIn, to} from './struct'
 import {flow} from './composition'
 import {remove, size} from './collection'
 import {reverse} from './list'
@@ -253,38 +253,22 @@ export function on(path, compare?) {
 
     let mapping: any = undefined;
 
-    if (isNumber(path)) {/*OK*/}
-    else if (isString(path)) {
+    if (isString(path)) {
         if (path.length === 0) throw 'string path must not be empty'
+        mapping = to(path)
     }
-    else if (isArray(path)) { 
-        if ((path as any).length < 2) throw 'illegal argument - array path must be at least of length 2'
-    }
-    else if (isFunction(path)) {
-        mapping = path;
-    }
+    else if (isNumber(path) || isArray2(path)) mapping = to(path)
+    else if (isFunction(path)) mapping = path;
     else throw 'illegal argument - path must be one of string, number, array of length 2 or function'
     
-    const lrCase = (l, r, comparator) => {
-        if (isString(path)||isNumber(path)) return comparator(l[path])(r[path])
-        if (mapping !== undefined) return comparator(mapping(l))(mapping(r))
-        return comparator($getElForPathIn(l, path))($getElForPathIn(r, path)) 
-    }
-
-    const lCase = (l, predicate) => {
-        if (isString(path)||isNumber(path)) return predicate((l as any)[path])
-        if (mapping !== undefined) return predicate(mapping(l))
-        return predicate($getElForPathIn(l, path as any))
-    }
-
     return l => 
         compare === undefined
-            ? r => lrCase(l, r, tripleEqual)
+            ? r => mapping(l) === mapping(r)
             : isFunction(compare)
                 ? isFunction(compare(l))
-                    ? r => lrCase(l, r, compare)
-                    : lCase(l, compare)
-                : lCase(l, is(compare))   
+                    ? r => compare(mapping(l))(mapping(r))
+                    : compare(mapping(l))
+                : is(compare)(mapping(l))   
 }
 
 
