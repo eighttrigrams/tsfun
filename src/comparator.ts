@@ -252,24 +252,24 @@ export function on<T1,T2>(path: Path, comparator: Comparator<T1,T2>): Comparator
 export function on<T1,T2>(path: Path, compare: T1): Predicate<T2>
 export function on(path, compare?) {
 
-    const mapping = 
+    return flow(
+        path, 
         conds(
             or(and(isString, isNot(empty)), isNumber, isArray2),
             to,
             isFunction,
             identity,
             otherwise,
-            throws('illegal argument - path must be one of string, number, array of length 2 or function'))
-        (path)
-        
-    return l => 
-        compare === undefined
-            ? r => mapping(l) === mapping(r)
-            : isFunction(compare)
-                ? isFunction(compare(l))
-                    ? r => compare(mapping(l))(mapping(r))
-                    : compare(mapping(l))
-                : is(compare)(mapping(l))   
+            throws('illegal argument - path must be one of string, number, array of length 2 or function')),
+        mapping => 
+            l => 
+                compare === undefined
+                    ? r => mapping(l) === mapping(r)
+                    : isFunction(compare)
+                        ? isFunction(compare(l))
+                            ? r => compare(mapping(l))(mapping(r))
+                            : compare(mapping(l))
+                        : is(compare)(mapping(l)))
 }
 
 
