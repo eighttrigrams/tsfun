@@ -298,7 +298,6 @@ describe('on', () => {
 
         ).toEqual([{a: {b: [2, 1]}}] as any))
 
-
         
     it('intersectBy onBy equalTo - symmetric',() => {
 
@@ -416,7 +415,7 @@ describe('on', () => {
 
             .toEqual(true))
 
-            
+
     // it('on - with find and isNot - isUndefinedOrEmpty predicate works with undefined', () =>
     //     expect(
     //
