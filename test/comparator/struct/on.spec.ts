@@ -1,9 +1,7 @@
-import { size } from '../../../src/collection'
-import {samesetBy, by, is, jsonEqual, on, onBy, isnt} from '../../../src/comparator'
+import {samesetBy, is, jsonEqual, on, onBy, isnt} from '../../../src/comparator'
 import { identity } from '../../../src/core'
 import {isArray, isDefined, isEmpty, isNot, isUndefined, isUndefinedOrEmpty} from '../../../src/predicate'
 import {intersectBy} from '../../../src/set'
-import { to } from '../../../src/struct'
 
 
 /**
@@ -96,6 +94,14 @@ describe('on', () => {
 
         expect(
             on('a', isnt)({a: 8})({a: 8}))
+            .toBe(false)
+
+        expect(
+            on(count, isnt)([1, 2, 3])([1, 2]))
+            .toBe(true)
+
+        expect(
+            on(count, isnt)([1, 2])([1, 2]))
             .toBe(false)
 
         // As the next examples show, this can also be achieved on a less ad-hoc basis.

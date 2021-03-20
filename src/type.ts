@@ -64,7 +64,7 @@ export type Predicate<A = any> = (_: A) => boolean
 
 //////// Internal or experimental ///////////////
 
-export type Comparator = <A, B>(_: A) => Predicate<B>
+export type Comparator<A = any, B = A> = (_: A) => Predicate<B>
 
 
 export type Fallible<T> = Either<any, T> | Maybe<T>
