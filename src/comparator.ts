@@ -264,38 +264,26 @@ export function on(path, compare?) {
     }
     else throw 'illegal argument - path must be one of string, number, array of length 2'
     
+    const lrCase = (l, r, compare) => {
+        if (isString(path)||isNumber(path)) return compare(l[path])(r[path])
+        if (mapping !== undefined) return compare(mapping(l))(mapping(r))
+        return compare($getElForPathIn(l, path))($getElForPathIn(r, path)) 
+    }
+
     return l => { 
+        if (compare === undefined) return r => lrCase(l, r, tripleEqual)
 
-        if (compare !== undefined) {
-
-            if (!isFunction(compare)) {
-                if (isString(path)||isNumber(path)) return (l as any)[path as any] === compare 
-                if (mapping !== undefined) return mapping(l) === compare
-                return $getElForPathIn(l, path as any) === compare
-            }
-            else if (isFunction(compare(l))) {
-                return r => {
-                    if (isString(path)||isNumber(path)) return compare(l[path])(r[path])
-                    if (mapping !== undefined) return compare(mapping(l))(mapping(r))
-                    return compare($getElForPathIn(l, path))($getElForPathIn(r, path)) 
-                }
-                
-            } 
-            else {
-                if (isString(path)||isNumber(path)) return compare((l as any)[path as any]) 
-                if (mapping !== undefined) return compare(mapping(l))
-                return compare($getElForPathIn(l, path)) 
-            }
-
-        }  
-        else {
-            return r => {
-
-                if (isString(path)||isNumber(path)) return l[path] === r[path]
-                if (mapping !== undefined) return mapping(l) === mapping(r)
-                return $getElForPathIn(l, path) === $getElForPathIn(r, path)
-            }
+        if (isFunction(compare)) {
+            if (isFunction(compare(l))) return r => lrCase(l, r, compare)
+            
+            if (isString(path)||isNumber(path)) return compare((l as any)[path as any]) 
+            if (mapping !== undefined) return compare(mapping(l))
+            return compare($getElForPathIn(l, path)) 
         }
+
+        if (isString(path)||isNumber(path)) return (l as any)[path as any] === compare 
+        if (mapping !== undefined) return mapping(l) === compare
+        return $getElForPathIn(l, path as any) === compare
     }
 }
 
