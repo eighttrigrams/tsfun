@@ -1,4 +1,4 @@
-import {Comparator, ComparatorProducer, List, Pair, Predicate, Path} from './type'
+import {Comparator, ComparatorProducer, List, Pair, Predicate, Path, Mapping} from './type'
 import {isArray, isFunction, isNot, isNumber, isObject, isString} from './predicate'
 import {subtractBy} from './set'
 import {$getElForPathIn} from './struct'
@@ -241,28 +241,14 @@ export const equalBy =
                 objectEqualBy(arrayComparator))(o1)(o2)
 
 
-const onBy = (compare: Function) => 
-    (path: Path) => 
-        (l: any) => (r: any) => { 
+export function on<T1, T2>(path: Mapping<T1,T2>): (l: T1) => (r: T1) => boolean
+export function on<T1, T2>(path: Mapping<T1,T2>, compare: (r: T2) => boolean): (r: T1) => boolean // TODO fix: only T
+export function on(path: Path): <T1, T2>(l: T1) => (r: T2) => boolean // TODO fix: only T
+export function on<T1,T2>(path: Path, compare: (r: T1) => boolean): <T>(l: T2) => boolean
+export function on<T1,T2>(path: Path, comparator: (r: T1) => (l: T2) => boolean): (l: T1) => (r: T2) => boolean // TODO write test which uses it, also add variant where path is mapping instead
+export function on(path, compare?) {
 
-        if (isString(path) || isNumber(path)) {
-
-            if (isString(path) && path.length === 0) throw 'illegal argument - string path must not be empty'
-            return compare(l[path as any])(r[path as any]) 
-
-        } else if (isArray(path)) {
-
-            if ((path as Array<any>).length < 2) throw 'illegal argument - array path must have min length 2'
-            return compare($getElForPathIn(l, path as any))($getElForPathIn(r, path as any))
-
-        } else {
-
-            throw 'illegal argument - path must be string, number, or array'
-        }
-}
-
-
-export const on = (path: Path, compare: Function = tripleEqual) => {
+    let mapping: any = undefined;
 
     if (isNumber(path)) {/*OK*/}
     else if (isString(path)) {
@@ -271,14 +257,45 @@ export const on = (path: Path, compare: Function = tripleEqual) => {
     else if (isArray(path)) { 
         if ((path as any).length < 2) throw 'illegal argument - array path must be at least of length 2'
     }
+    else if (isFunction(path)) {
+        mapping = path;
+    }
     else throw 'illegal argument - path must be one of string, number, array of length 2'
     
-    return (l: any) => { 
+    return l => { 
 
-        if (isFunction(compare(l))) return (r: any) => onBy(compare)(path as any)(l)(r)
-        if (isString(path)||isNumber(path)) return compare((l as any)[path as any]) 
-        return compare($getElForPathIn(l, path as any)) 
+        if (compare !== undefined) {
+
+            if (isFunction(compare(l))) {
+
+                return r => {
+                    if (isString(path)||isNumber(path)) return compare(l[path])(r[path])
+                    if (mapping !== undefined) return compare(mapping(l))(mapping(r))
+                    return compare($getElForPathIn(l, path))($getElForPathIn(r, path)) 
+                }
+
+            } else {
+                if (isString(path)||isNumber(path)) return compare((l as any)[path as any]) 
+                if (mapping !== undefined) return compare(mapping(l))
+                return compare($getElForPathIn(l, path as any)) 
+            }
+
+        }  else {
+            return r => {
+
+                if (isString(path)||isNumber(path)) return l[path] === r[path]
+                if (mapping !== undefined) return mapping(l) === mapping(r) // TODO make also work with custom comparators
+                return $getElForPathIn(l, path) === $getElForPathIn(r, path)
+            }
+        }
     }
+}
+
+
+export function onBy<T1,T2>(compare: (l: T1) => (r: T2) => boolean): (path: Path|Mapping) => (l: T1) => (r: T2) => boolean;
+export function onBy(compare) {
+
+    return path => (on as any)(path, compare)
 }
 
 

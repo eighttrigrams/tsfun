@@ -279,7 +279,7 @@ describe('conds', () => {
             flow(
                 {a: 7}, 
                 conds( // TODO review seleted overload, should be first, not third
-                    on('a', is(7)), on('a', square),
+                    on('a', is(7)), on('a', square as any), // TODO
                     jsonEqual({a: 7}), to('a')))
 
         ).toEqual(49)
