@@ -303,9 +303,9 @@ export function on(path, compare?) {
 export function onBy<T1,T2>(compare: (l: T1) => (r: T2) => boolean): (path: Path|Mapping, cmp?: T1) => (l: T1) => (r: T2) => boolean;
 export function onBy(compare) {
 
-    return (path,cmp) => {
+    return (path, cmp) => {
         
-        if (cmp !== undefined && !isFunction(cmp)) return (on as any)(path, compare(cmp))
+        if (cmp !== undefined && !isFunction(cmp)) return on(path, compare(cmp))
         else return (on as any)(path, compare)
     }
 }
