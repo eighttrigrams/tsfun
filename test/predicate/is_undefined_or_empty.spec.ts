@@ -1,13 +1,7 @@
-/**
- * @author Daniel de Oliveira
- */
-
-
-
-import {isUndefinedOrEmpty} from "../../src/predicate";
+import {isUndefinedOrEmpty} from '../../src/predicate'
 
 /**
- * @author Daniel de Oliveira
+ * tsfun | isUndefinedOrEmpty
  */
 describe('isUndefinedOrEmpty', () => {
 
@@ -17,7 +11,7 @@ describe('isUndefinedOrEmpty', () => {
 
             isUndefinedOrEmpty({a: 1}))
 
-            .toEqual(false));
+            .toEqual(false))
 
 
     it('is an Object', () =>
@@ -25,7 +19,7 @@ describe('isUndefinedOrEmpty', () => {
 
             isUndefinedOrEmpty({}))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('is an non-empty Array ', () =>
@@ -33,7 +27,7 @@ describe('isUndefinedOrEmpty', () => {
 
             isUndefinedOrEmpty([1]))
 
-            .toEqual(false));
+            .toEqual(false))
 
 
     it('is an Array ', () =>
@@ -41,7 +35,7 @@ describe('isUndefinedOrEmpty', () => {
 
             isUndefinedOrEmpty([]))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('is undefined ', () =>
@@ -49,14 +43,14 @@ describe('isUndefinedOrEmpty', () => {
 
             isUndefinedOrEmpty(undefined as any))
 
-            .toEqual(true));
+            .toEqual(true))
 
     it('is a string non-empty string', () =>
         expect(
 
             isUndefinedOrEmpty('a'))
 
-            .toEqual(false));
+            .toEqual(false))
 
 
     it('is a string ', () =>
@@ -64,7 +58,7 @@ describe('isUndefinedOrEmpty', () => {
 
             isUndefinedOrEmpty(''))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('a number', () =>
@@ -72,5 +66,5 @@ describe('isUndefinedOrEmpty', () => {
 
             () => isUndefinedOrEmpty(1))
 
-            .toThrow());
-});
+            .toThrow())
+})

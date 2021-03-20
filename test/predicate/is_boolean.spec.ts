@@ -1,20 +1,23 @@
-import {isBoolean} from '../../src/predicate';
+import {isBoolean} from '../../src/predicate'
 
 
+/**
+ * tsfun | isBoolean
+ */
 describe('isBoolean', () => {
 
-    it('true',() =>
+    it('true', () =>
         expect(
 
             isBoolean(false))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
-    it('false',() =>
+    it('false', () =>
         expect(
 
             isBoolean(3))
 
-            .toEqual(false));
-});
+            .toEqual(false))
+})

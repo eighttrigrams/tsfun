@@ -292,7 +292,7 @@ describe('conds', () => {
         // and also does not want to compare by ===, one can 
         // construct conds with a comparator of choice
 
-        const $conds = condsBy(equal);
+        const $conds = condsBy(equal)
       
         expect(
             $conds(

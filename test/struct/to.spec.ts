@@ -1,20 +1,10 @@
 import {path, to} from '../../src/struct'
 
 
+/**
+ * tsfun | to
+ */
 describe('to', () => {
-
-    // [{a: {b: {c: 'd'}}}].map(to('a.b'))
-    // -> {c: 'd'}
-    //
-    // combined with map and filter
-    //
-    // [{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}]
-    //     .map(to('a.c'))
-    //     .filter(isDefined)
-    // -> [{d: 'e'}]
-
-
-    // to
 
     it('to', () =>
         expect(
@@ -22,6 +12,7 @@ describe('to', () => {
             to(path('a.b'))({a: {b: {c: 'd'}}}))
 
             .toEqual({c: 'd'}))
+
 
     it('to with map', () =>
         expect(
@@ -46,6 +37,18 @@ describe('to', () => {
 
             .toEqual(['d', 'e']))
 
+
+    // [{a: {b: {c: 'd'}}}].map(to('a.b'))
+    // -> {c: 'd'}
+    //
+    // combined with map and filter
+    //
+    // [{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}]
+    //     .map(to('a.c'))
+    //     .filter(isDefined)
+    // -> [{d: 'e'}]
+
+    // Regression prevention
 
     it('to - see path', () =>
         expect(

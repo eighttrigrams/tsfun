@@ -1,6 +1,9 @@
-import {isCollection} from '../../src/predicate';
+import {isCollection} from '../../src/predicate'
 
 
+/** 
+ * tsfun | isCollection
+ */
 describe('isCollection', () => {
 
     it('object',() =>
@@ -8,29 +11,29 @@ describe('isCollection', () => {
 
             isCollection({}))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
-    it('array',() =>
+    it('array', () =>
         expect(
 
             isCollection([]))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
-    it('string',() =>
+    it('string', () =>
         expect(
 
             isCollection(''))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
-    it('null',() =>
+    it('null', () =>
         expect(
 
             isCollection(null))
 
-            .toEqual(false));
-});
+            .toEqual(false))
+})

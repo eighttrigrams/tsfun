@@ -1,5 +1,9 @@
-import {isSuccess} from '../../src/predicate';
+import {isSuccess} from '../../src/predicate'
 
+
+/**
+ * tsfun | isSuccess
+ */
 describe('isSuccess', () => {
 
     it('isSuccess - Maybe - true', () =>
@@ -9,7 +13,7 @@ describe('isSuccess', () => {
             isSuccess([1])
 
         ).toEqual(true)
-    );
+    )
 
 
     it('isSuccess - Maybe - false', () =>
@@ -19,7 +23,7 @@ describe('isSuccess', () => {
             isSuccess([])
 
         ).toEqual(false)
-    );
+    )
 
 
     it('isSuccess - Either - true', () =>
@@ -29,7 +33,7 @@ describe('isSuccess', () => {
             isSuccess([undefined, 1])
 
         ).toEqual(true)
-    );
+    )
 
 
     it('isSuccess - Either - false', () =>
@@ -39,5 +43,5 @@ describe('isSuccess', () => {
             isSuccess([1, undefined])
 
         ).toEqual(false)
-    );
-});
+    )
+})

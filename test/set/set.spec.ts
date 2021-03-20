@@ -1,5 +1,5 @@
-import {set} from "../../src/set";
-import {jsonEqual, on} from '../../src/comparator';
+import {set} from '../../src/set'
+import {jsonEqual, on} from '../../src/comparator'
 
 /**
  * tsfun | set
@@ -11,7 +11,7 @@ describe('set', () => {
 
             set([1, 1, 7, 8, 7, 1]))
 
-            .toEqual([1, 7, 8]));
+            .toEqual([1, 7, 8]))
 
 
     it('of none', () =>

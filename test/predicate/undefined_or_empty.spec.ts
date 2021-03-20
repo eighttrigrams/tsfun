@@ -1,13 +1,6 @@
 /**
- * @author Daniel de Oliveira
+ * tsfun | undefinedOrEmpty
+ * 
+ * see isUndefinedOrEmpty
  */
-
-
-/**
- * @author Daniel de Oliveira
- */
-describe('undefinedOrEmpty', () => {
-
-
-
-});
+describe('undefinedOrEmpty', () => {})

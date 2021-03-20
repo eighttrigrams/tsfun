@@ -1,16 +1,18 @@
-import {isArray} from "../../src/predicate";
+import {isArray} from '../../src/predicate'
 
 /**
+ * tsfun | isArray
+ * 
  * If an entity is an Array is determined
  * by checking
  * Array.isArray
  */
 describe('isArray', () => {
 
-    it('isArray',() =>
+    it('isArray', () =>
         expect(
 
             isArray([]))
 
-            .toEqual(true));
-});
+            .toEqual(true))
+})
