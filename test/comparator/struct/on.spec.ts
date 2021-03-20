@@ -1,5 +1,6 @@
 import { size } from '../../../src/collection'
 import {samesetBy, by, is, jsonEqual, on, onBy} from '../../../src/comparator'
+import { identity } from '../../../src/core'
 import {isArray, isDefined, isEmpty, isNot, isUndefined, isUndefinedOrEmpty} from '../../../src/predicate'
 import {intersectBy} from '../../../src/set'
 import { to } from '../../../src/struct'
@@ -164,30 +165,31 @@ describe('on', () => {
 
         
         // This of course not only works, but is especially useful with customized on
-        const $on = onBy(a => b => a !== b);
+        const differentOn = onBy(a => b => a !== b);
+        const from = identity;
 
         expect(
-            $on(0, 3)([3,8]))
+            differentOn(0, from(3))([3,8]))
             .toBe(false)
 
         expect(
-            $on(0, 3)([4,8]))
+            differentOn(0, from(3))([4,8]))
             .toBe(true)
 
         expect(
-            $on(count, 3)([2, 3]))
+            differentOn(count, from(3))([2, 3]))
             .toBe(true)
 
         expect(
-            $on(count, 2)([2, 3]))
+            differentOn(count, from(2))([2, 3]))
             .toBe(false)
 
         expect(
-            $on(['a', 'b'], 3)({a: {b: 4 }}))
+            differentOn(['a', 'b'], from(3))({a: {b: 4 }}))
             .toBe(true)
     
         expect(
-            $on(['a', 'b'], 4)({a: {b: 4 }}))
+            differentOn(['a', 'b'], from(4))({a: {b: 4 }}))
             .toBe(false)
     })
 
