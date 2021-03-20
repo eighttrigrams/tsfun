@@ -134,6 +134,11 @@ describe('on', () => {
         expect(
             $on1(to('a'))({a: 3})({a: 3}))
             .toEqual(false)
+
+
+        // Note that there is no option like $on1('a', is(3) <- this here),
+        // because we already have baked in a comparator. 
+        // However, see the next example.
     })
 
 
