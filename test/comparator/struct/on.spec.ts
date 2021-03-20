@@ -128,11 +128,11 @@ describe('on', () => {
 
         // see also this, where a custom on is combined with a path mapping
         expect(
-            $on1(to('a'))({a: 3})({a: 4}))
+            $on1(JSON.stringify)({a: 3})({a: 4}))
             .toEqual(true)
             
         expect(
-            $on1(to('a'))({a: 3})({a: 3}))
+            $on1(JSON.stringify)({a: 3})({a: 3}))
             .toEqual(false)
 
 
