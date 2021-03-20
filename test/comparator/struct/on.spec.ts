@@ -88,7 +88,7 @@ describe('on', () => {
             .toEqual([{a: 4}])
     })
 
-    
+
     it('you can also construct more powerful on functions, by giving a comparator which is applied after the path', () => {
 
         const $on0 = onBy(a => b => a !== b)
@@ -125,6 +125,7 @@ describe('on', () => {
             .toEqual(false)
     })
 
+    
     // use cases
 
     it('on - with find - symmetric',() =>
