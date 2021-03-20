@@ -108,9 +108,9 @@ describe('on', () => {
             $on2('a')({a: {b: 3, c: 5}})({a: { b: 3, c: 7}}))
             .toEqual(true)
             
-            expect(
-                $on2('a')({a: {b: 3, c: 7}})({a: { b: 4, c: 7}}))
-                .toEqual(false)
+        expect(
+            $on2('a')({a: {b: 3, c: 7}})({a: { b: 4, c: 7}}))
+            .toEqual(false)
 
 
         // combine a mapping path with onBy
@@ -122,6 +122,16 @@ describe('on', () => {
 
         expect(
             $on3('a')({a: [3, 3, 3]})({a: [3, 4]}))
+            .toEqual(false)
+
+        // see also this, where a custom on is combined with a path mapping
+        
+        expect(
+            $on1(to('a'))({a: 3})({a: 4}))
+            .toEqual(true)
+            
+        expect(
+            $on1(to('a'))({a: 3})({a: 3}))
             .toEqual(false)
     })
 
