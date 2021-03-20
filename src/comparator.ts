@@ -262,7 +262,7 @@ export function on(path, compare?) {
     else if (isFunction(path)) {
         mapping = path;
     }
-    else throw 'illegal argument - path must be one of string, number, array of length 2'
+    else throw 'illegal argument - path must be one of string, number, array of length 2 or function'
     
     const lrCase = (l, r, comparator) => {
         if (isString(path)||isNumber(path)) return comparator(l[path])(r[path])
