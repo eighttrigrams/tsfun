@@ -1,11 +1,12 @@
 import {Comparator, ComparatorProducer, List, Pair, Predicate, Path, Mapping} from './type'
-import {isArray, isArray2, isFunction, isNot, isNumber, isObject, isString} from './predicate'
+import {and, empty, isArray, isArray2, isFunction, isNot, isNumber, isObject, isString, or} from './predicate'
 import {subtractBy} from './set'
 import {$getElForPathIn, to} from './struct'
-import {flow} from './composition'
+import {conds, flow, otherwise, throws} from './composition'
 import {remove, size} from './collection'
 import {reverse} from './list'
 import {map, zip} from './array'
+import { identity } from './core'
 
 
 
@@ -251,16 +252,16 @@ export function on<T1,T2>(path: Path, comparator: Comparator<T1,T2>): Comparator
 export function on<T1,T2>(path: Path, compare: T1): Predicate<T2>
 export function on(path, compare?) {
 
-    let mapping: any = undefined;
-
-    if (isString(path)) {
-        if (path.length === 0) throw 'string path must not be empty'
-        mapping = to(path)
-    }
-    else if (isNumber(path) || isArray2(path)) mapping = to(path)
-    else if (isFunction(path)) mapping = path;
-    else throw 'illegal argument - path must be one of string, number, array of length 2 or function'
-    
+    const mapping = 
+        conds(
+            or(and(isString, isNot(empty)), isNumber, isArray2),
+            to,
+            isFunction,
+            identity,
+            otherwise,
+            throws('illegal argument - path must be one of string, number, array of length 2 or function'))
+        (path)
+        
     return l => 
         compare === undefined
             ? r => mapping(l) === mapping(r)
@@ -626,4 +627,8 @@ export function sameLength<T>(as: List<T>) {
     return (what: List<T>) => what.length === as.length
 }
 
+
+function isNotEmpty(isString: <T = any>(t: string | T) => t is string, isNotEmpty: any) {
+    throw new Error('Function not implemented.')
+}
 
