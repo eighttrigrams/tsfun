@@ -243,8 +243,10 @@ export const equalBy =
 
 export function on<T1, T2>(path: Mapping<T1,T2>): (l: T1) => (r: T1) => boolean
 export function on<T1, T2>(path: Mapping<T1,T2>, compare: (r: T2) => boolean): (r: T1) => boolean // TODO fix: only T
+export function on<T1,T2>(path: Mapping<T1,T2>, compare: T2): <T>(l: T1) => boolean
 export function on(path: Path): <T1, T2>(l: T1) => (r: T2) => boolean // TODO fix: only T
 export function on<T1,T2>(path: Path, compare: (r: T1) => boolean): <T>(l: T2) => boolean
+export function on<T1,T2>(path: Path, compare: T1): <T>(l: T2) => boolean
 export function on<T1,T2>(path: Path, comparator: (r: T1) => (l: T2) => boolean): (l: T1) => (r: T2) => boolean // TODO write test which uses it, also add variant where path is mapping instead
 export function on(path, compare?) {
 
@@ -266,21 +268,27 @@ export function on(path, compare?) {
 
         if (compare !== undefined) {
 
-            if (isFunction(compare(l))) {
-
+            if (!isFunction(compare)) {
+                if (isString(path)||isNumber(path)) return (l as any)[path as any] === compare 
+                if (mapping !== undefined) return mapping(l) === compare
+                return $getElForPathIn(l, path as any) === compare
+            }
+            else if (isFunction(compare(l))) {
                 return r => {
                     if (isString(path)||isNumber(path)) return compare(l[path])(r[path])
                     if (mapping !== undefined) return compare(mapping(l))(mapping(r))
                     return compare($getElForPathIn(l, path))($getElForPathIn(r, path)) 
                 }
-
-            } else {
+                
+            } 
+            else {
                 if (isString(path)||isNumber(path)) return compare((l as any)[path as any]) 
                 if (mapping !== undefined) return compare(mapping(l))
-                return compare($getElForPathIn(l, path as any)) 
+                return compare($getElForPathIn(l, path)) 
             }
 
-        }  else {
+        }  
+        else {
             return r => {
 
                 if (isString(path)||isNumber(path)) return l[path] === r[path]
@@ -292,10 +300,14 @@ export function on(path, compare?) {
 }
 
 
-export function onBy<T1,T2>(compare: (l: T1) => (r: T2) => boolean): (path: Path|Mapping) => (l: T1) => (r: T2) => boolean;
+export function onBy<T1,T2>(compare: (l: T1) => (r: T2) => boolean): (path: Path|Mapping, cmp?: T1) => (l: T1) => (r: T2) => boolean;
 export function onBy(compare) {
 
-    return path => (on as any)(path, compare)
+    return (path,cmp) => {
+        
+        if (cmp !== undefined && !isFunction(cmp)) return (on as any)(path, compare(cmp))
+        else return (on as any)(path, compare)
+    }
 }
 
 

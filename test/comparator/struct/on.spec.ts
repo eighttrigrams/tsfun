@@ -124,7 +124,7 @@ describe('on', () => {
             $on3('a')({a: [3, 3, 3]})({a: [3, 4]}))
             .toEqual(false)
 
-            
+
         // see also this, where a custom on is combined with a path mapping
         expect(
             $on1(to('a'))({a: 3})({a: 4}))
@@ -133,6 +133,62 @@ describe('on', () => {
         expect(
             $on1(to('a'))({a: 3})({a: 3}))
             .toEqual(false)
+    })
+
+
+    it('one can also directly compare to values', () => {
+
+        // Where one might prefer for readability do this
+        expect(
+            on('a', is(3))({a: 3}))
+            .toBe(true)
+
+        // one also can do this directly like this
+
+        expect(
+            on('a', 3)({a: 3}))
+            .toBe(true)
+        
+        expect(
+            on('a', 4)({a: 3}))
+            .toBe(false)
+
+        expect(
+            on(['a','b'], 3)({a: {b: 3}}))
+            .toBe(true)
+        
+        expect(
+            on(count, 2)([2, 3]))
+            .toBe(true)
+
+
+        
+        // This of course also works with customized on
+        const $on = onBy(a => b => a !== b);
+
+        expect(
+            $on(0, 3)([3,8]))
+            .toBe(false)
+
+        expect(
+            $on(0, 3)([4,8]))
+            .toBe(true)
+
+        expect(
+            $on(count, 3)([2, 3]))
+            .toBe(true)
+
+        expect(
+            $on(count, 2)([2, 3]))
+            .toBe(false)
+
+        expect(
+            $on(['a', 'b'], 3)({a: {b: 4 }}))
+            .toBe(true)
+    
+        expect(
+            $on(['a', 'b'], 4)({a: {b: 4 }}))
+            .toBe(false)
     })
 
 
