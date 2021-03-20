@@ -276,15 +276,14 @@ export function on(path, compare?) {
         return predicate($getElForPathIn(l, path as any))
     }
 
-    return l => { 
-        if (compare === undefined) return r => lrCase(l, r, tripleEqual)
-        if (isFunction(compare)) {
-            return isFunction(compare(l))
-                ? r => lrCase(l, r, compare)
-                : lCase(l, compare)
-        }
-        return lCase(l, is(compare))   
-    }
+    return l => 
+        compare === undefined
+            ? r => lrCase(l, r, tripleEqual)
+            : isFunction(compare)
+                ? isFunction(compare(l))
+                    ? r => lrCase(l, r, compare)
+                    : lCase(l, compare)
+                : lCase(l, is(compare))   
 }
 
 
