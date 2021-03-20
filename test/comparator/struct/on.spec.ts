@@ -129,16 +129,39 @@ describe('on', () => {
     })
 
 
-    it('combine mapping path with onBy', () => {
+    it('you can also construct more powerful on functions, by giving a comparator which is applied after the path', () => {
 
-        const $on = onBy(on('b'))
+        const $on0 = onBy(a => b => a !== b)
 
         expect(
-            $on('a')({a: {b: 3, c: 5}})({a: { b: 3, c: 7}}))
+            $on0('a')({a: 4})({a: 3}))
             .toEqual(true)
 
         expect(
-            $on('a')({a: {b: 3, c: 7}})({a: { b: 4, c: 7}}))
+            $on0('a')({a: 4})({a: 4}))
+            .toEqual(false)
+
+
+        const $on1 = onBy(on('b'))
+        
+        expect(
+            $on1('a')({a: {b: 3, c: 5}})({a: { b: 3, c: 7}}))
+            .toEqual(true)
+            
+            expect(
+                $on1('a')({a: {b: 3, c: 7}})({a: { b: 4, c: 7}}))
+                .toEqual(false)
+
+
+        // combine a mapping path with onBy
+        const $on2 = onBy<any,any>(on(count))
+
+        expect(
+            $on2('a')({a: [3, 3]})({a: [3, 4]}))
+            .toEqual(true)
+
+        expect(
+            $on2('a')({a: [3, 3, 3]})({a: [3, 4]}))
             .toEqual(false)
     })
 
