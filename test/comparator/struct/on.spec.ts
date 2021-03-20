@@ -124,8 +124,8 @@ describe('on', () => {
             $on3('a')({a: [3, 3, 3]})({a: [3, 4]}))
             .toEqual(false)
 
+            
         // see also this, where a custom on is combined with a path mapping
-        
         expect(
             $on1(to('a'))({a: 3})({a: 4}))
             .toEqual(true)
