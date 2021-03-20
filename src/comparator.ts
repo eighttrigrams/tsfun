@@ -246,8 +246,8 @@ export function on<T1, T2>(path: Mapping<T1,T2>, compare: (r: T2) => boolean): (
 export function on<T1,T2>(path: Mapping<T1,T2>, compare: T2): <T>(l: T1) => boolean
 export function on(path: Path): <T1, T2>(l: T1) => (r: T2) => boolean // TODO fix: only T
 export function on<T1,T2>(path: Path, compare: (r: T1) => boolean): <T>(l: T2) => boolean
-export function on<T1,T2>(path: Path, compare: T1): <T>(l: T2) => boolean
 export function on<T1,T2>(path: Path, comparator: (r: T1) => (l: T2) => boolean): (l: T1) => (r: T2) => boolean // TODO write test which uses it, also add variant where path is mapping instead
+export function on<T1,T2>(path: Path, compare: T1): <T>(l: T2) => boolean
 export function on(path, compare?) {
 
     let mapping: any = undefined;

@@ -1,5 +1,5 @@
 import { size } from '../../../src/collection'
-import {samesetBy, by, is, jsonEqual, on, onBy} from '../../../src/comparator'
+import {samesetBy, by, is, jsonEqual, on, onBy, isnt} from '../../../src/comparator'
 import { identity } from '../../../src/core'
 import {isArray, isDefined, isEmpty, isNot, isUndefined, isUndefinedOrEmpty} from '../../../src/predicate'
 import {intersectBy} from '../../../src/set'
@@ -87,12 +87,24 @@ describe('on', () => {
         expect(
             [{a: 3},{a: 4}].filter(on('a')({a: 4})))
             .toEqual([{a: 4}])
+
+
+        // One can pass down another comparator, which applies after the path or mapping
+        expect(
+            on('a', isnt)({a: 8})({a: 9}))
+            .toBe(true)
+
+        expect(
+            on('a', isnt)({a: 8})({a: 8}))
+            .toBe(false)
+
+        // As the next examples show, this can also be achieved on a less ad-hoc basis.
     })
 
 
     it('you can also construct more powerful on functions, by giving a comparator which is applied after the path', () => {
 
-        const $on1 = onBy(a => b => a !== b)
+        const $on1 = onBy(isnt)
 
         expect(
             $on1('a')({a: 4})({a: 3}))
@@ -326,7 +338,7 @@ describe('on', () => {
             .toEqual({a: {b: {c: 4}}})
     })            
 
-    
+
     // resiliency
 
     it('unknown object key', () =>
