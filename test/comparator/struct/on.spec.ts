@@ -163,7 +163,7 @@ describe('on', () => {
 
 
         
-        // This of course also works with customized on
+        // This of course not only works, but is especially useful with customized on
         const $on = onBy(a => b => a !== b);
 
         expect(
