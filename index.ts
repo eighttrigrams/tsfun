@@ -147,7 +147,7 @@ export {
     remove,
     separate,
     distribute,
-    reduce1,
+    reduce0,
     flatten,
     take,
     takeRight,

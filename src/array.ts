@@ -71,7 +71,7 @@ export function range(a: number, b?: number, stepSize: number = 1): number[] {
 }
 
 
-export function reduce1<T>(f: (b: T, t: T, i?: number) => T) {
+export function reduce0<T>(f: (b: T, t: T, i?: number) => T) {
 
     return (ts: T[]): T => {
 
@@ -87,7 +87,7 @@ export function reduce1<T>(f: (b: T, t: T, i?: number) => T) {
 
         } else {
 
-            throw 'illegal argument in "tsfun|reduce1" - array or object expected'
+            throw 'illegal argument in "tsfun|reduce0" - array or object expected'
         }
     }
 }
@@ -506,7 +506,7 @@ export function zip<A>(...args): any {
 
     function $$(f, aas, spread = true): any {
 
-        return (reduce1(zip2 as any) as any)(aas)
+        return (reduce0(zip2 as any) as any)(aas)
                 .map(flatten(aas.length-1))
                 .map(_ => spread ? f.apply(null, _) : f(_))
     }

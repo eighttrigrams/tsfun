@@ -1,15 +1,15 @@
-import {reduce1} from '../../src/array'
+import {reduce0} from '../../src/array'
 
 
 /**
- * tsfun | reduce1
+ * tsfun | reduce0
  */
-describe('reduce1', () => {
+describe('reduce0', () => {
 
-   it('reduce1', () =>
+   it('reduce0', () =>
        expect(
 
-           reduce1((x: number, y: number) => x + y)([2, 3, 4])
+           reduce0((x: number, y: number) => x + y)([2, 3, 4])
 
        ).toEqual(9))
 
@@ -17,7 +17,7 @@ describe('reduce1', () => {
    it('too few elements', () =>
        expect(
 
-           () => reduce1((x: number, y: number) => x + y)([])
+           () => reduce0((x: number, y: number) => x + y)([])
 
        ).toThrow())
 })
