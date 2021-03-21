@@ -209,6 +209,8 @@ export {
     map1,
     filter1,
     forEach1,
+    get1,
+    lookup1,
     keys,
     values,
     keysAndValues

@@ -8,15 +8,15 @@ export type Filter<T = any> = Mapping<Associative<T>>
 
 
 // Written with Thomas Kleinke
-export function get<A>(i: number, defaultValue?: A|undefined): (as: Array<A>) => A|undefined;
-export function get<T>(i: string, defaultValue?: T|undefined): (as: Map<T>) => T|undefined;
-export function get<T>(i: number|string, alternative?: T|undefined) {
+export function get1<A>(i: number, defaultValue?: A|undefined): (as: Array<A>) => A|undefined;
+export function get1<T>(i: string, defaultValue?: T): (as: Map<T>) => T|undefined;
+export function get1<T>(i: number|string, alternative?: T|undefined) {
 
     return (as: Array<T>|Map<T>): T|undefined => {
 
         const result = (as as any)[i]
         return result !== undefined ? result : alternative
-    };
+    }
 }
 
 
@@ -60,9 +60,9 @@ export function update1<T>(key, arg, arg2?): any {
 }
 
 
-export function lookup<T>(struct: Map<T>, alternative?: T): (targetId: string) => T|undefined;
-export function lookup<A>(struct: Array<A>, alternative?: A): (targetId: number) => A|undefined;
-export function lookup<A>(struct: Map<A>|Array<A>, alternative?: any) {
+export function lookup1<T>(struct: Map<T>, alternative?: T): (targetId: string) => T|undefined;
+export function lookup1<A>(struct: Array<A>, alternative?: A): (targetId: number) => A|undefined;
+export function lookup1<A>(struct: Map<A>|Array<A>, alternative?: any) {
 
     return (targetId: string|number): A|undefined => {
 
