@@ -87,7 +87,7 @@ export function reduce1<T>(f: (b: T, t: T, i?: number) => T) {
 
         } else {
 
-            throw "illegal argument - must be array or object"
+            throw 'illegal argument in "tsfun|reduce1" - array or object expected'
         }
     }
 }
@@ -97,7 +97,7 @@ export function map<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) =
 export function map<A = any, B = A >(f: (_: A) => B): (as: Array<A>) => Array<B>
 export function map<A, B>(...args: any[]): any {
 
-    if (args.length > 1) throw 'illegal argument - in \'tsfun|map\''
+    if (args.length > 1) throw 'illegal argument in "tsfun|map"'
     return mapAsc(args[0])
 }
 
@@ -467,7 +467,7 @@ export function reduce<T, B>(f, init) {
 
         } else {
 
-            throw 'illegal argument - in \'reduce\', must be array'
+            throw 'illegal argument in "tsfun|reduce" - array excpected'
         }
     }
 }
@@ -547,5 +547,3 @@ export const takeUntil = <A>(predicate: Predicate<A>) =>
                 takeWhile(isNot(predicate))(as).concat([found])
                 : as
         )(as.find(predicate))
-
-
