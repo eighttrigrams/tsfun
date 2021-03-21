@@ -31,7 +31,7 @@ describe('dissoc', () => {
         // To signal a Struct, use a path
         const a /*{ a: number, b: string }*/ = { a: 3, b: '4' }
 
-        const $5 /*: unknown*/ = dissoc(['a'])(a)
+        const $5 /*: unknown*/ = dissoc(['a'])(a) // Usually 1-element paths are not used, here however they do
         expect($5).toEqual({ b: '4' })
 
         const $6 /*: unknown*/ = dissoc(['a'], a)
