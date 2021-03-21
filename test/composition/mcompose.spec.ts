@@ -1,7 +1,7 @@
 import {liftE, getSuccess, liftM, success, just, right, left} from '../../src/tuple';
 import {Either, Mapping, Maybe} from '../../src/type';
 import {collect, cond, flow, mcompose, throws, val} from '../../src/composition';
-import {map, update1} from '../../src/associative';
+import {map1, update1} from '../../src/associative';
 import {isSuccess} from '../../src/predicate';
 import {filter, separate} from '../../src/collection';
 import {lessThan} from '../../src/comparator';
@@ -267,14 +267,14 @@ describe('mcompose', () => {
 
                 flow(
                     [3, 0, 4, 2],
-                    map(just),
-                    map(
+                    map1(just),
+                    map1(
                         mcompose(
                             safedivM(6),
                             liftM(cond(lessThan(2), throws('')) as any),
                             liftM(square))),
                     filter(isSuccess as any),
-                    map(getSuccess))
+                    map1(getSuccess))
 
             ).toEqual([4, 9])
         );
@@ -286,14 +286,14 @@ describe('mcompose', () => {
 
                 flow(
                     [3, 0, 4, 2],
-                    map(success),
-                    map(
+                    map1(success),
+                    map1(
                         mcompose(
                             safedivE(6),
                             liftE(cond(lessThan(2), throws('e1')) as any),
                             squareE)),
                     filter(isSuccess as any),
-                    map(getSuccess))
+                    map1(getSuccess))
 
             ).toEqual([4, 9])
         );
@@ -304,11 +304,11 @@ describe('mcompose', () => {
             expect(
                 flow(
                     [0, 3, 1],
-                    map(success),
-                    map(mcompose(safedivE(3), decE, squareE)),
+                    map1(success),
+                    map1(mcompose(safedivE(3), decE, squareE)),
                     separate(isSuccess),
-                    update1(0, map(right) as Mapping),
-                    update1(1, map(left) as Mapping))
+                    update1(0, map1(right) as Mapping),
+                    update1(1, map1(left) as Mapping))
 
             ).toEqual([
                 [4],

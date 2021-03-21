@@ -1,4 +1,4 @@
-import {lookup, map} from '../../../src/associative'
+import {lookup, map1} from '../../../src/associative'
 
 
 /**
@@ -25,7 +25,7 @@ describe('lookup', () => {
     it('lookup with map', () =>
         expect(
 
-            map(lookup({a: 9, b: 10}))(['a', 'b'])
+            map1(lookup({a: 9, b: 10}))(['a', 'b'])
 
         ).toEqual([9, 10]))
 
@@ -33,7 +33,7 @@ describe('lookup', () => {
     it('nothing', () =>
         expect(
 
-            map(lookup({a: 9}))(['d'])
+            map1(lookup({a: 9}))(['d'])
 
         ).toEqual([undefined]))
 
@@ -41,7 +41,7 @@ describe('lookup', () => {
     it('alternative', () =>
         expect(
 
-            map(lookup({a: 9}, 13))(['d'])
+            map1(lookup({a: 9}, 13))(['d'])
 
         ).toEqual([13]))
 })

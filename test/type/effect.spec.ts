@@ -1,5 +1,5 @@
 import {Effect} from '../../src/type';
-import {forEach} from '../../src/associative';
+import {forEach1} from '../../src/associative';
 
 /**
  * tsfun | Effect
@@ -10,6 +10,6 @@ describe('Effect', () => {
 
         const e: Effect<number> = (_: number) => { }
 
-        forEach(e)([1, 2, 3])
-    });
-});
+        forEach1(e)([1, 2, 3])
+    })
+})

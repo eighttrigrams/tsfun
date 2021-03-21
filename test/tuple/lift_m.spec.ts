@@ -1,7 +1,7 @@
-import {liftM} from '../../src/tuple';
-import {cond, mcompose, throws, val} from '../../src/composition';
-import {map} from '../../src/associative';
-import {is} from '../../src/comparator';
+import {liftM} from '../../src/tuple'
+import {cond, mcompose, throws, val} from '../../src/composition'
+import {map1} from '../../src/associative'
+import {is} from '../../src/comparator'
 
 
 /**
@@ -11,7 +11,7 @@ import {is} from '../../src/comparator';
  */
 describe('liftM', () => {
 
-    const square = (x: number) => x * x;
+    const square = (x: number) => x * x
 
     it('success', () =>
 
@@ -20,7 +20,7 @@ describe('liftM', () => {
             liftM(val(3))(17)
 
         ).toEqual([3])
-    );
+    )
 
 
     it('failure', () =>
@@ -30,7 +30,7 @@ describe('liftM', () => {
             liftM(throws(3))(19)
 
         ).toEqual([])
-    );
+    )
 
 
     it('varargs', () =>
@@ -40,16 +40,16 @@ describe('liftM', () => {
             liftM((x: number, y: number) => x + y)(17, 19)
 
         ).toEqual([36])
-    );
+    )
 
 
     it('use with mcompose', () =>
 
         expect(
 
-            map(mcompose(liftM(cond(is(1.5), throws(3))), liftM(square)))
+            map1(mcompose(liftM(cond(is(1.5), throws(3))), liftM(square)))
             ([[1.5], [0], [2]])
 
         ).toEqual([[],[0],[4]])
-    );
-});
+    )
+})

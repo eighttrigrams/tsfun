@@ -117,14 +117,14 @@ const filterObj = <T>(predicate: Predicate<T>): (_: Map<T>) => Map<T> =>
             }, {})
 
 
-export function map<A = any, B = A >(f: (_: A) => B): (as: Associative<A>) => Associative<B> // TODO maybe remove any casts in subsequent examples, it seems to not bring many benefits and maybe drawbacks, as the flatten example showed
-export function map<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
-export function map<A = any, B = A>(f: (_: A, key: string) => B): (as: Map<A>) => Map<B>
-export function map<A = any, B = A>(f: (_: A, i: number) => B, as: Array<A>): Array<B>
-export function map<A = any, B = A>(as: Array<A>, f: (_: A, i: number) => B): Array<B>
-export function map<A = any, B = A>(f: (_: A, i: string) => B, as: {[prop: string]: A}): Map<B>
-export function map<A = any, B = A>(as: {[prop: string]: A}, f: (_: A, i: string) => B): Map<B>
-export function map<A, B>(first: any, ...rest: any[]): any {
+export function map1<A = any, B = A >(f: (_: A) => B): (as: Associative<A>) => Associative<B> // TODO maybe remove any casts in subsequent examples, it seems to not bring many benefits and maybe drawbacks, as the flatten example showed
+export function map1<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
+export function map1<A = any, B = A>(f: (_: A, key: string) => B): (as: Map<A>) => Map<B>
+export function map1<A = any, B = A>(f: (_: A, i: number) => B, as: Array<A>): Array<B>
+export function map1<A = any, B = A>(as: Array<A>, f: (_: A, i: number) => B): Array<B>
+export function map1<A = any, B = A>(f: (_: A, i: string) => B, as: {[prop: string]: A}): Map<B>
+export function map1<A = any, B = A>(as: {[prop: string]: A}, f: (_: A, i: string) => B): Map<B>
+export function map1<A, B>(first: any, ...rest: any[]): any {
 
     if (rest.length > 1) {
         throw 'illegal argument - in \'map\': first argument list can have at most two arguments'
@@ -171,19 +171,19 @@ export function map<A, B>(first: any, ...rest: any[]): any {
 }
 
 
-export function forEach<A>(as: Array<A>, f: (_: A, i: number) => void): Array<A>
-export function forEach<A>(f: (_: A, i: number) => void, as: Array<A>): Array<A>
-export function forEach<A>(as: Array<A>, f: (_: A) => void): Array<A>
-export function forEach<A>(f: (_: A) => void, as: Array<A>): Array<A>
-export function forEach<A>(as: Map<A>, f: (_: A, i: string) => void): Map<A>
-export function forEach<A>(f: (_: A, i: string) => void, as: Map<A>): Map<A>
-export function forEach<A>(as: Map<A>, f: (_: A) => void): Map<A>
-export function forEach<A>(f: (_: A) => void, as: Map<A>): Map<A>
-export function forEach<A>(f: (_: A, i?: number|string) => void): {
+export function forEach1<A>(as: Array<A>, f: (_: A, i: number) => void): Array<A>
+export function forEach1<A>(f: (_: A, i: number) => void, as: Array<A>): Array<A>
+export function forEach1<A>(as: Array<A>, f: (_: A) => void): Array<A>
+export function forEach1<A>(f: (_: A) => void, as: Array<A>): Array<A>
+export function forEach1<A>(as: Map<A>, f: (_: A, i: string) => void): Map<A>
+export function forEach1<A>(f: (_: A, i: string) => void, as: Map<A>): Map<A>
+export function forEach1<A>(as: Map<A>, f: (_: A) => void): Map<A>
+export function forEach1<A>(f: (_: A) => void, as: Map<A>): Map<A>
+export function forEach1<A>(f: (_: A, i?: number|string) => void): {
     (as: Array<A>): Array<A>
     (os: Map<A>): Map<A>
 }
-export function forEach<A>(a, b?) {
+export function forEach1<A>(a, b?) {
 
     const $ = f => (as: any) => {
 
@@ -263,16 +263,16 @@ export function reduce(...args): any {
 }
 
 
-export function filter<A>(p: (a: A, i?: number|string) => boolean): (_: Associative<A>) => Associative<A>
-export function filter<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
-export function filter<A>(p: (a: A) => boolean, as: Array<A>): Array<A>
-export function filter<A>(as: Array<A>, p: (a: A, i: number) => boolean): Array<A>
-export function filter<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
-export function filter<A>(p: (a: A, i: string) => boolean, as: Map<A>): Map<A>
-export function filter<A>(p: (a: A) => boolean, as: Map<A>): Map<A>
-export function filter<A>(as: Map<A>, p: (a: A, i: string) => boolean): Map<A>
-export function filter<A>(as: Map<A>, p: (a: A) => boolean): Map<A>
-export function filter<A>(...args): any {
+export function filter1<A>(p: (a: A, i?: number|string) => boolean): (_: Associative<A>) => Associative<A>
+export function filter1<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
+export function filter1<A>(p: (a: A) => boolean, as: Array<A>): Array<A>
+export function filter1<A>(as: Array<A>, p: (a: A, i: number) => boolean): Array<A>
+export function filter1<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
+export function filter1<A>(p: (a: A, i: string) => boolean, as: Map<A>): Map<A>
+export function filter1<A>(p: (a: A) => boolean, as: Map<A>): Map<A>
+export function filter1<A>(as: Map<A>, p: (a: A, i: string) => boolean): Map<A>
+export function filter1<A>(as: Map<A>, p: (a: A) => boolean): Map<A>
+export function filter1<A>(...args): any {
 
     const $ = p => as => {
 

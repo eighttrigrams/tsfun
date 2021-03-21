@@ -1,4 +1,4 @@
-import {map, update1} from '../../src/associative'
+import {map1, update1} from '../../src/associative'
 import { flow } from '../../src/composition'
 
 
@@ -69,11 +69,11 @@ describe('update1', () => {
 
     it('pitfall', () => {
 
-        const result = map(update1('a', {}))([{a: 1}, {a: 1}]) as Array<{a: number}>
+        const result = map1(update1('a', {}))([{a: 1}, {a: 1}]) as Array<{a: number}>
         expect(result[0].a).toBe(result[1].a) // this is possibly not be what one wants
 
         // to circumvent this, we use it like this
-        const result2 = map(update1('a', () => ({})))([{a: 1}, {a: 1}]) as Array<{a: any}>
+        const result2 = map1(update1('a', () => ({})))([{a: 1}, {a: 1}]) as Array<{a: any}>
         expect(result2[0].a).toEqual({})
         expect(result2[0].a).not.toBe(result[1].a)
     })

@@ -206,6 +206,9 @@ export {
 
 export {
     update1,
+    map1,
+    filter1,
+    forEach1,
     keys,
     values,
     keysAndValues

@@ -1,18 +1,17 @@
-import {liftM, just} from '../../src/tuple';
-import {flow, mcompose, mmatch, val} from '../../src/composition';
-import {map} from '../../src/associative';
-import {Maybe} from '../../src/type';
+import {liftM, just} from '../../src/tuple'
+import {flow, mcompose, mmatch, val} from '../../src/composition'
+import {map1} from '../../src/associative'
+import {Maybe} from '../../src/type'
+
 
 /**
  * tsfun | mmatch
- *
- * @author Daniel de Oliveira
  */
 describe('mmatch', () => {
 
-    const safediv = (x: number) => (y: number) => (y === 0 ? [] : [x / y]) as Maybe<number>;
-    const div = (x: number) => (y: number) => x / y;
-    const square = (x: number) => x * x;
+    const safediv = (x: number) => (y: number) => (y === 0 ? [] : [x / y]) as Maybe<number>
+    const div = (x: number) => (y: number) => x / y
+    const square = (x: number) => x * x
 
 
     it('success', () =>
@@ -22,7 +21,7 @@ describe('mmatch', () => {
             mmatch(square, val(17))([3])
 
         ).toEqual(9)
-    );
+    )
 
 
     it('failure', () =>
@@ -32,7 +31,7 @@ describe('mmatch', () => {
             mmatch(square, val(17))([])
 
         ).toEqual(17)
-    );
+    )
 
 
     it('use with mcompose', () =>
@@ -41,10 +40,10 @@ describe('mmatch', () => {
 
             flow(
                 [1.5, 0.0, 2.0],
-                map(just),
-                map(mcompose(safediv(3), liftM(div(6)), liftM(square))),
-                map(mmatch(square, val(4))))
+                map1(just),
+                map1(mcompose(safediv(3), liftM(div(6)), liftM(square))),
+                map1(mmatch(square, val(4))))
 
         ).toEqual([81, 4, 256])
-    );
-});
+    )
+})

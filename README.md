@@ -150,6 +150,9 @@ import {equal} from 'tsfun';
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
 * [keysAndValues](test/associative/keys_and_values.spec.ts)
+* [map1](test/associative/map1.spec.ts) 
+* [filter1](test/associative/filter1.spec.ts)
+* [forEach1](test/associative/for_each1.spec.ts)
 
 ### string
 
@@ -269,9 +272,6 @@ import {lookup} from 'tsfun/associative';
 * [lookup](test/associative/associative/lookup.spec.ts)
 * [get](test/associative/associative/get.spec.ts)
 * [dissoc](test/associative/associative/dissoc.spec.ts)
-* [map](test/associative/associative/map.spec.ts) 
-* [filter](test/associative/associative/filter.spec.ts)
-* [forEach](test/associative/associative/for_each.spec.ts)
 * [reduce](test/associative/associative/reduce.spec.ts)
 
 ###### Types

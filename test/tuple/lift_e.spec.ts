@@ -1,17 +1,17 @@
-import {liftE} from '../../src/tuple';
-import {cond, mcompose, throws, val} from '../../src/composition';
-import {map} from '../../src/associative';
-import {is} from '../../src/comparator';
+import {liftE} from '../../src/tuple'
+import {cond, mcompose, throws, val} from '../../src/composition'
+import {map1} from '../../src/associative'
+import {is} from '../../src/comparator'
 
 
 /**
- * tsfun | eitherlift
- *
- * @author Daniel de Oliveira
+ * tsfun | liftE
+ * 
+ * liftEither
  */
 describe('liftE', () => {
 
-    const square = (x: number) => x * x;
+    const square = (x: number) => x * x
 
     it('success', () =>
 
@@ -20,7 +20,7 @@ describe('liftE', () => {
             liftE(val(3))(17)
 
         ).toEqual([undefined, 3])
-    );
+    )
 
 
     it('failure', () =>
@@ -30,7 +30,7 @@ describe('liftE', () => {
             liftE(throws(3))(19)
 
         ).toEqual([3, undefined])
-    );
+    )
 
 
     it('accept varargs', () =>
@@ -40,16 +40,16 @@ describe('liftE', () => {
             liftE((x: number, y: number) => x + y)(17, 19)
 
         ).toEqual([undefined, 36])
-    );
+    )
 
 
     it('use with mcompose', () =>
 
         expect(
 
-            map(mcompose(liftE(cond(is(1.5), throws(3))), liftE(square)))
+            map1(mcompose(liftE(cond(is(1.5), throws(3))), liftE(square)))
             ([[undefined, 1.5], [undefined, 0], [undefined, 2]])
 
         ).toEqual([[3, undefined],[undefined, 0],[undefined, 4]])
-    );
-});
+    )
+})

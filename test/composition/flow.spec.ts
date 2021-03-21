@@ -2,7 +2,7 @@ import {greaterThan, includedIn, lessThan} from '../../src/comparator';
 import {flow} from '../../src/composition';
 import {isNot} from '../../src/predicate';
 import {filter} from '../../src/collection';
-import {map} from '../../src/associative';
+import {map1} from '../../src/associative';
 import {Associative} from '../../src/type';
 import {dropRight, dropWhile, takeWhile} from '../../src/array';
 import {reverse} from '../../src/list';
@@ -301,11 +301,11 @@ describe('flow', () => {
 
         const result20: Associative<string> = flow([3],
             filter(_ => _ > 2),
-            map(_ => _.toString()))
+            map1(_ => _.toString()))
 
         const result21: Associative<string> = flow([3],
             filter(_ => _ > 2),
-            map(_ => _.toString())) as Array<string>
+            map1(_ => _.toString())) as Array<string>
 
         // const result = flow([3], // WRONG
         //     filter(_ => _ > 2),
@@ -313,7 +313,7 @@ describe('flow', () => {
 
         const result22 = flow([''],
             filter(_ => true),
-            map(_ => _.toLowerCase()))
+            map1(_ => _.toLowerCase()))
 
         // const result = flow([3], // WRONG
         //     filter(_ => true),

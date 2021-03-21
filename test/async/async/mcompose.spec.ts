@@ -1,7 +1,7 @@
 import {flow as asyncFlow, map as asyncMap, mcompose as asyncMcompose} from '../../../src/async';
 import {Either, Mapping, Maybe} from '../../../src/type';
 import {success, left, right, LEFT, RIGHT} from '../../../src/tuple';
-import {map, update1} from '../../../src/associative';
+import {map1, update1} from '../../../src/associative';
 import {isSuccess} from '../../../src/predicate';
 import {separate} from '../../../src/collection';
 
@@ -104,11 +104,11 @@ describe('async/mcompose', () => {
         expect(
             await asyncFlow(
                 [0, 3, 1],
-                map(success),
+                map1(success),
                 asyncMap(asyncMcompose(safedivE(3), decE, squareE)),
                 separate(isSuccess),
-                update1(LEFT, map(right) as Mapping),
-                update1(RIGHT, map(left) as Mapping))
+                update1(LEFT, map1(right) as Mapping),
+                update1(RIGHT, map1(left) as Mapping))
 
         ).toEqual([
             [4],
