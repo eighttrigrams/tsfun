@@ -130,7 +130,7 @@ export function flatten(p1: any, ...p2: any[]): any {
 
     const _flatten = flatMap(identity as any) as any
 
-    const inner = (num: number) =>
+    const $ = (num: number) =>
         (as: Associative) => {
 
             if (num < 1) throw 'illegal argument in "tsfun|flatten"'
@@ -146,13 +146,13 @@ export function flatten(p1: any, ...p2: any[]): any {
 
     return p2.length === 0
         ? isNumber(p1)
-            ? inner(p1)
+            ? $(p1)
             : p1 === undefined
-                ? inner(1)
-                : inner(1)(p1)
+                ? $(1)
+                : $(1)(p1)
         : isNumber(p1)
-            ? inner(p1)(p2[0])
-            : inner(p2[0])(p1)
+            ? $(p1)(p2[0])
+            : $(p2[0])(p1)
 }
 
 
@@ -169,7 +169,7 @@ export function drop(n: number): <A>(as: Array<A>) => Array<A>
 export function drop<A>(n: number, as: Array<A>): Array<A>
 export function drop(n: number, p2?: any): any {
 
-    const inner = <A>(as: any) => {
+    const $ = <A>(as: any) => {
 
         if (!isArray(as)) throw 'illegal argument in "tsfun|drop" - array expected'
 
@@ -179,8 +179,8 @@ export function drop(n: number, p2?: any): any {
     }
 
     return p2 === undefined
-        ? inner
-        : inner(p2)
+        ? $
+        : $(p2)
 }
 
 
@@ -222,7 +222,7 @@ export function dropRight(n: number): <A>(as: Array<A>) => Array<A>
 export function dropRight<A>(n: number, as: Array<A>): Array<A>
 export function dropRight(n: number, as?: any): any {
 
-    const inner = <A>(as: any): any => {
+    const $ = <A>(as: any): any => {
 
         if (!isArray(as)) throw 'illegal argument in "tsfun|dropRight" - array expected'
 
@@ -230,8 +230,8 @@ export function dropRight(n: number, as?: any): any {
     }
 
     return as === undefined
-        ? inner
-        : inner(as)
+        ? $
+        : $(as)
 }
 
 
@@ -239,7 +239,7 @@ export function dropWhile<A>(predicate: Predicate<A>): Mapping<Array<A>>
 export function dropWhile<A>(predicate: Predicate<A>, as: Array<A>): Array<A>
 export function dropWhile<A>(predicate: any, as?: any): any {
 
-    const inner = (as: Array<A>) => {
+    const $ = (as: Array<A>) => {
 
         const as1 = as
 
@@ -251,8 +251,8 @@ export function dropWhile<A>(predicate: any, as?: any): any {
     }
 
     return as === undefined
-        ? inner
-        : inner(as)
+        ? $
+        : $(as)
 }
 
 
@@ -260,7 +260,7 @@ export function dropRightWhile<A>(predicate: Predicate<A>): Mapping<Array<A>>
 export function dropRightWhile<A>(predicate: Predicate<A>, as: Array<A>): Array<A>
 export function dropRightWhile<A>(predicate: any, as?: any): any {
 
-    const inner = (as: any): any => {
+    const $ = (as: any): any => {
 
         const as1 = as
 
@@ -272,8 +272,8 @@ export function dropRightWhile<A>(predicate: any, as?: any): any {
     }
 
     return as === undefined
-        ? inner
-        : inner(as)
+        ? $
+        : $(as)
 }
 
 
@@ -292,12 +292,13 @@ export function takeRightWhile<A>(predicate: Predicate<A>) {
     }
 }
 
+
 export function takeRight(n: number): <A>(as: Array<A>) => Array<A>
 export function takeRight(n: number): <A>(as: Array<A>) => Array<A> {
 
-    function inner<A>(as: Array<A>): Array<A>
-    function inner(as: string): string
-    function inner<A>(as: Array<A>|string): Array<A>|string {
+    function $<A>(as: Array<A>): Array<A>
+    function $(as: string): string
+    function $<A>(as: Array<A>|string): Array<A>|string {
 
         if (isArray(as)) {
 
@@ -312,7 +313,7 @@ export function takeRight(n: number): <A>(as: Array<A>) => Array<A> {
         }
     }
 
-    return inner
+    return $
 }
 
 
@@ -320,7 +321,7 @@ export function takeWhile<A>(predicate: Predicate<A>): Mapping<Array<A>>
 export function takeWhile<A>(predicate: Predicate<A>, list: Array<A>): Array<A>
 export function takeWhile<A>(predicate, list?): any {
 
-    const inner = (list: any) => {
+    const $ = (list: any) => {
 
         const as1 = list
 
@@ -332,10 +333,9 @@ export function takeWhile<A>(predicate, list?): any {
     }
 
     return list === undefined
-        ? inner
-        : inner(list)
+        ? $
+        : $(list)
 }
-
 
 
 export function distribute<A>(f: (a: A) => A): (as: Array<string>) => Map<Array<string>>
@@ -410,7 +410,6 @@ export function append<A>(...as2: Array<A>) {
 }
 
 
-
 export function prepend<A>(...as2: Array<A>): Mapping<Array<A>>
 export function prepend<A>(...as2: Array<A>) {
 
@@ -448,7 +447,6 @@ export function forEach<A>(f) {
 }
 
 
-
 export function reduce<A, B>(f: (b: B, a: A, i: number) => B, init: B): (as: Array<A>) => B
 export function reduce<A, B>(f: (b: B, a: A) => B, init: B): (as: Array<A>) => B
 export function reduce<T, B>(f, init) {
@@ -471,8 +469,6 @@ export function reduce<T, B>(f, init) {
         }
     }
 }
-
-
 
 
 /**
