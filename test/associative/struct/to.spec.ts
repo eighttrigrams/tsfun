@@ -1,4 +1,4 @@
-import {path, to} from '../../src/struct'
+import {path, to} from '../../../src/struct'
 
 
 /**

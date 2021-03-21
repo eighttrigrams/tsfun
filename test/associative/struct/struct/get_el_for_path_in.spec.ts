@@ -1,4 +1,4 @@
-import {$getElForPathIn} from '../../../src/struct'
+import {$getElForPathIn} from '../../../../src/struct'
 
 
 describe('getElForPathIn - internal', () => {

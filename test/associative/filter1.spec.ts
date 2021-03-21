@@ -1,6 +1,6 @@
-import {Collection, Map} from '../../../src/type'
-import {lessThan} from '../../../src/comparator'
-import {filter1} from '../../../src/associative'
+import {Collection, Map} from '../../src/type'
+import {lessThan} from '../../src/comparator'
+import {filter1} from '../../src/associative'
 
 
 /**

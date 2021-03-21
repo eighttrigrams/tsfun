@@ -1,5 +1,5 @@
-import { flow } from '../../src/composition'
-import {dissoc, path} from '../../src/struct'
+import { flow } from '../../../src/composition'
+import {dissoc, path} from '../../../src/struct'
 
 /**
  * tsfun | dissoc

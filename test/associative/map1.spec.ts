@@ -1,7 +1,7 @@
-import {map1} from '../../../src/associative';
-import {to} from '../../../src/struct';
-import {flow, nop} from '../../../src/composition';
-import {Associative} from '../../../src/type';
+import {map1} from '../../src/associative';
+import {to} from '../../src/struct';
+import {flow, nop} from '../../src/composition';
+import {Associative} from '../../src/type';
 
 
 /**

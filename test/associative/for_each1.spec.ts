@@ -1,4 +1,4 @@
-import {forEach1} from '../../../src/associative'
+import {forEach1} from '../../src/associative'
 
 
 /**

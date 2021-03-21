@@ -1,8 +1,8 @@
-import {update} from '../../src/struct'
-import {equal} from '../../src/comparator'
-import {map1} from '../../src/associative'
-import {Map} from '../../src/type'
-import {flow} from '../../src/composition'
+import {update} from '../../../src/struct'
+import {equal} from '../../../src/comparator'
+import {map1} from '../../../src/associative'
+import {Map} from '../../../src/type'
+import {flow} from '../../../src/composition'
 
 
 /**

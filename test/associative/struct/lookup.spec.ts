@@ -1,4 +1,4 @@
-import {lookup, path} from "../../src/struct"
+import {lookup, path} from "../../../src/struct"
 
 /**
  * tsfun | lookup
