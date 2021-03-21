@@ -1,8 +1,8 @@
-import {keys} from '../../../src/associative';
+import {keys} from '../../src/associative';
 
 
 /**
- * tsfun/associative | keys
+ * tsfun | keys
  */
 describe('keys', () => {
 

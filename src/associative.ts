@@ -42,16 +42,21 @@ export function dissoc<T>(key: any, as?: any): any {
 }
 
 
-export function update<T>(key: string, v: T|((...args) => T)): (struct: Map<T>) => Map<T>;
-export function update<T>(key: number, v: T|((...args) => T)): (struct: Array<T>) => Array<T>;
-export function update<T>(key, f) {
+export function update1<T>(key: string, v: T|((...args) => T), m: Map<T>): Map<T>
+export function update1<T>(key: string, v: T|((...args) => T)): (struct: Map<T>) => Map<T>
+export function update1<T>(key: number, v: T|((...args) => T)): (struct: Array<T>) => Array<T>
+export function update1<T>(key, arg, arg2?): any {
 
-    return (struct): any => {
+    const $ = f => asc => {
 
-        const newStruct = copy(struct as any);
+        const newStruct = copy(asc);
         (newStruct as any)[key] = isFunction(f) ? f((newStruct as any)[key]) : f
         return newStruct
     }
+
+    return arg2 === undefined
+        ? $(arg)
+        : $(arg)(arg2)
 }
 
 

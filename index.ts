@@ -202,4 +202,12 @@ export {
     any,
     all
 } from './src/collection'
+
+
+export {
+    update1,
+    keys,
+    values,
+    keysAndValues
+} from './src/associative'
 	

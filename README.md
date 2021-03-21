@@ -142,6 +142,15 @@ import {equal} from 'tsfun';
 * [prepend](test/array/prepend.spec.ts) 
 * [zip](test/array/zip.spec.ts)
 
+### Map & Associative
+
+###### Array & Object
+
+* [update1](test/associative/update1.spec.ts)
+* [keys](test/associative/keys.spec.ts)
+* [values](test/associative/values.spec.ts)
+* [keysAndValues](test/associative/keys_and_values.spec.ts)
+
 ### string
 
 * [join](test/string/join.spec.ts)
@@ -259,15 +268,11 @@ import {lookup} from 'tsfun/associative';
 
 * [lookup](test/associative/associative/lookup.spec.ts)
 * [get](test/associative/associative/get.spec.ts)
-* [update](test/associative/associative/update.spec.ts)
 * [dissoc](test/associative/associative/dissoc.spec.ts)
 * [map](test/associative/associative/map.spec.ts) 
 * [filter](test/associative/associative/filter.spec.ts)
-* [keys](test/associative/associative/keys.spec.ts)
-* [values](test/associative/associative/values.spec.ts)
 * [forEach](test/associative/associative/for_each.spec.ts)
 * [reduce](test/associative/associative/reduce.spec.ts)
-* [keysAndValues](test/associative/associative/keys_and_values.spec.ts)
 
 ###### Types
 

@@ -1,8 +1,8 @@
-import {values} from '../../../src/associative';
+import {values} from '../../src/associative'
 
 
 /**
- * tsfun/associative | values
+ * tsfun | values
  */
 describe('values', () => {
 

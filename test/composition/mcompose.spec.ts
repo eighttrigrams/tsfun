@@ -1,7 +1,7 @@
 import {liftE, getSuccess, liftM, success, just, right, left} from '../../src/tuple';
 import {Either, Mapping, Maybe} from '../../src/type';
 import {collect, cond, flow, mcompose, throws, val} from '../../src/composition';
-import {map, update} from '../../src/associative';
+import {map, update1} from '../../src/associative';
 import {isSuccess} from '../../src/predicate';
 import {filter, separate} from '../../src/collection';
 import {lessThan} from '../../src/comparator';
@@ -307,8 +307,8 @@ describe('mcompose', () => {
                     map(success),
                     map(mcompose(safedivE(3), decE, squareE)),
                     separate(isSuccess),
-                    update(0, map(right) as Mapping),
-                    update(1, map(left) as Mapping))
+                    update1(0, map(right) as Mapping),
+                    update1(1, map(left) as Mapping))
 
             ).toEqual([
                 [4],
