@@ -129,14 +129,14 @@ describe('update', () => {
 
         const $9 /*: Array<number>*/ = update(0, times2)(a)
         expect($9).toEqual([8])
-        
+
         const $10 /*: unknown*/ = update('a', (x: number) => x.toString())({ a: 7 })
     })
         
 
-    // struct use case
+    // Struct use case
     // 
-    // The struct use case allows for 'deep' updates
+    // The Struct use case allows for 'deep' updates
     // of data structures. It is active when the path
     // parameter is an array (of at least length 2)
     // 
