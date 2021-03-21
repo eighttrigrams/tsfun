@@ -21,9 +21,9 @@ import {Map} from './type'
 
 
 
-export function flatMap<A,B>(as: Array<A>, f: (_: A) => Array<B>): Array<B>;
-export function flatMap<A,B>(f: (_: A) => Array<B>, as: Array<A>): Array<B>;
-export function flatMap<A,B>(f: (_: A) => Array<B>): (as: Array<A>) => Array<B>;
+export function flatMap<A,B>(as: Array<A>, f: (_: A) => Array<B>): Array<B>
+export function flatMap<A,B>(f: (_: A) => Array<B>, as: Array<A>): Array<B>
+export function flatMap<A,B>(f: (_: A) => Array<B>): (as: Array<A>) => Array<B>
 export function flatMap<A,B>(arg, arg2?): any {
 
     const $ = f => (as: Array<A>): Array<B> =>
@@ -35,7 +35,7 @@ export function flatMap<A,B>(arg, arg2?): any {
         ? $(arg)
         : isFunction(arg)
             ? $(arg)(arg2)
-            : $(arg2)(arg);
+            : $(arg2)(arg)
 }
 
 
@@ -205,7 +205,7 @@ export function take<A>(n: number, list?: any): any {
 
         } else {
 
-            throw 'illegal argument - must be array';
+            throw 'illegal argument - must be array'
         }
     }
 
@@ -286,7 +286,7 @@ export function takeRightWhile<A>(predicate: Predicate<A>) {
 
         const as1 = as
 
-        let go = true;
+        let go = true
         const result = as1.reduceRight((acc: Array<A>, a: any) =>
             go && predicate(a) ? [a].concat(acc) : (go = false, acc), [])
 
@@ -326,17 +326,18 @@ export function takeWhile<A>(predicate, list?): any {
 
         const as1 = list
 
-        let go = true;
+        let go = true
         const result = as1.reduce((acc: Array<A>, a: any) =>
             go && predicate(a) ? acc.concat([a]) : (go = false, acc), [])
 
         return result
-    };
+    }
 
     return list === undefined
         ? inner
         : inner(list)
 }
+
 
 
 export function distribute<A>(f: (a: A) => A): (as: Array<string>) => Map<Array<string>>
@@ -365,7 +366,7 @@ export function distribute(arg, arg2?) {
 
 
 export function separate<A>(p: (a: A, i: number) => boolean): (as: Array<A>) => Pair<Array<A>>
-export function separate<A,B>(f: (a: A, i: number) => B): (as: Array<A>) => Array<Pair<B, Array<A>>>;
+export function separate<A,B>(f: (a: A, i: number) => B): (as: Array<A>) => Array<Pair<B, Array<A>>>
 export function separate<A>(p: (a: A) => boolean): (as: Array<A>) => Pair<Array<A>>
 export function separate<A>(p: (a: A, i: number) => boolean, as: Array<A>): Pair<Array<A>>
 export function separate<A>(p: (a: A) => boolean, as: Array<A>): Pair<Array<A>>
@@ -434,7 +435,7 @@ export function forEach<A>(f) {
 
         if (isArray(as)) {
 
-            let i = 0;
+            let i = 0
             for (let item of as) {
                 (f as any)(item, i)
                 i++
@@ -458,8 +459,8 @@ export function reduce<T, B>(f, init) {
 
         if (isArray(ts)) {
 
-            let acc = init;
-            let i = 0;
+            let acc = init
+            let i = 0
             for (let a of ts) {
                 acc = f(acc, a, i)
                 i++
@@ -479,20 +480,20 @@ export function reduce<T, B>(f, init) {
 /**
  * tsfun | zip
  */
-//export function zip<A>(as: Array<A>): <B>(_: Array<B>) => Array<[A,B]>;
+//export function zip<A>(as: Array<A>): <B>(_: Array<B>) => Array<[A,B]>
 
-export function zip<A>(f: (as: Array<A>) => A): (aas: Array<Array<A>>) => Array<A>;
-export function zip<A>(): (aas: Array<Array<A>>) => Array<Array<A>>;
-export function zip<A>(aas: Array<Array<A>>): Array<Array<A>>;
-export function zip<A>(f: (as: Array<A>) => A, aas: Array<Array<A>>): Array<A>;
-export function zip<A,B>(as: Array<A>, bs: Array<B>): Array<[A,B]>;
-export function zip<A,B,C>(f: (a: A, b: B) => C, as: Array<A>, bs: Array<B>): Array<C>;
-export function zip<A,B,C>(as: Array<A>, bs: Array<B>, cs: Array<C>): Array<[A,B,C]>;
-export function zip<A,B,C,D>(f: (a: A, b: B, c: C) => D, as: Array<A>, bs: Array<B>, cs: Array<C>): Array<D>;
-export function zip<A,B,C,D>(as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Array<D>): Array<[A,B,C,D]>;
-export function zip<A,B,C,D,E>(f: (a: A, b: B, c: C, d: D) => E, as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Array<D>): Array<E>;
-export function zip<A,B,C,D,E>(as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Array<D>, es: Array<E>): Array<[A,B,C,D,E]>;
-export function zip<A>(...as: Array<Array<A>>): Array<Array<A>>;
+export function zip<A>(f: (as: Array<A>) => A): (aas: Array<Array<A>>) => Array<A>
+export function zip<A>(): (aas: Array<Array<A>>) => Array<Array<A>>
+export function zip<A>(aas: Array<Array<A>>): Array<Array<A>>
+export function zip<A>(f: (as: Array<A>) => A, aas: Array<Array<A>>): Array<A>
+export function zip<A,B>(as: Array<A>, bs: Array<B>): Array<[A,B]>
+export function zip<A,B,C>(f: (a: A, b: B) => C, as: Array<A>, bs: Array<B>): Array<C>
+export function zip<A,B,C>(as: Array<A>, bs: Array<B>, cs: Array<C>): Array<[A,B,C]>
+export function zip<A,B,C,D>(f: (a: A, b: B, c: C) => D, as: Array<A>, bs: Array<B>, cs: Array<C>): Array<D>
+export function zip<A,B,C,D>(as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Array<D>): Array<[A,B,C,D]>
+export function zip<A,B,C,D,E>(f: (a: A, b: B, c: C, d: D) => E, as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Array<D>): Array<E>
+export function zip<A,B,C,D,E>(as: Array<A>, bs: Array<B>, cs: Array<C>, ds: Array<D>, es: Array<E>): Array<[A,B,C,D,E]>
+export function zip<A>(...as: Array<Array<A>>): Array<Array<A>>
 export function zip<A>(...args): any {
 
     function zip2<A,B>(as: Array<A>, bs: Array<B>): Array<Pair<A, B>> {
@@ -505,7 +506,7 @@ export function zip<A>(...args): any {
         for (let i = 0; i < minimumLength; i++) {
             zipped.push([_as[i] as A, _bs[i] as B])
         }
-        return zipped;
+        return zipped
     }
 
 
@@ -518,13 +519,13 @@ export function zip<A>(...args): any {
 
     const $ = aas => {
 
-        const zipped: any = [];
+        const zipped: any = []
         for (let i = 0; i < Math.min(...aas.map(size)); i++) {
-            const took: any = [];
-            for (let j = 0; j < aas.length; j++) took.push(aas[j][i]);
+            const took: any = []
+            for (let j = 0; j < aas.length; j++) took.push(aas[j][i])
             zipped.push(took)
         }
-        return zipped;
+        return zipped
     }
 
 
