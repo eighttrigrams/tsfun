@@ -27,7 +27,6 @@ describe('update', () => {
         // types, so if one has Array<number>, the replacement must result
         // in a number, wheter it is by association or via update.
 
-        
         type O = { a: number }
         const o: O = { a: 4 }
         const $1 /*: O*/ = update('a', times2 /* update */, o)
@@ -55,6 +54,12 @@ describe('update', () => {
         expect($5).toEqual([8])
         const $6 /*: Array<number>*/ = update(0, 2, a)
         expect($6).toEqual([2])
+
+
+        // If the mapping is done by a type altering function, i.e. number => string,
+        // then we treat the object as a Struct and the final type is unknown.
+        const $7 /*: unknown*/ = update('a', (x: number) => x.toString())({ a: 7 })
+        const $8 /*: unknown*/ = update('a', (x: number) => x.toString(), { a: 7 })
     })
 
 
@@ -124,6 +129,8 @@ describe('update', () => {
 
         const $9 /*: Array<number>*/ = update(0, times2)(a)
         expect($9).toEqual([8])
+        
+        const $10 /*: unknown*/ = update('a', (x: number) => x.toString())({ a: 7 })
     })
         
 
@@ -166,6 +173,8 @@ describe('update', () => {
         expect($7[0].a).toBe(4)
         const $8 /*: S2*/ = update([0, 'a'], $times2 /* update */, s2)
         expect($8[0].a).toBe(4)
+
+        const $9 /*: unknown*/ = update(['a', 'b'], (x: number) => x.toString(), { a: { b: 7} })
     })
 
 
@@ -179,7 +188,10 @@ describe('update', () => {
         expect($2.a.b).toBe(6)
         const $3 /*: S*/ = flow(s, update(['a', 'b'], times2))
         expect($3.a.b).toBe(6)
+
+        const $10 /*: unknown*/ = update(['a', 'b'], (x: number) => x.toString(), { a: { b: 7} })
     })
+
 
     it('structs - create path', () =>
         expect(
