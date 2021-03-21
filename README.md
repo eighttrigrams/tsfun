@@ -272,8 +272,6 @@ import {equal} from 'tsfun';
 import {lookup} from 'tsfun/associative';
 ```
 
-* [dissoc](test/associative/associative/dissoc.spec.ts)
-
 ###### Types
 
 * [Filter](test/associative/associative/filter.type.spec.ts)

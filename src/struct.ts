@@ -1,4 +1,4 @@
-import {Array2, Mapping, Path} from './type'
+import {Array2, Mapping, Path, Map} from './type'
 import {isArray, isArray2, isAssociative, isFunction, isNumber, isObject, isString} from './predicate'
 import {reverseUncurry2} from './core'
 import {copy} from './collection'
@@ -104,22 +104,44 @@ export function update(path, update_fun, o?) {
 }
 
 
-export function dissoc<T, K extends keyof T>(key: keyof T): <T>(o: T) => T
+export function $dissoc<T>(key: any, as?: any): any {
+
+    const $ = struct => {
+
+        const newStruct = copy(struct as any)
+        if (isArray(struct)) (newStruct as any).splice(key, 1)
+        else delete (newStruct as any)[key]
+        return newStruct
+    }
+
+    return as === undefined
+        ? $
+        : $(as)
+}
+
+
+export function dissoc(k: string): <T>(as: Map<T>) => Map<T>
+export function dissoc(k: number): <T>(as: Array<T>) => Array<T>
+export function dissoc(path: Array<string|number>): <T extends any, V extends any>(t: T) => V
 export function dissoc(path: string|Array<string|number>): <T>(o: T) => T
-export function dissoc<T, K extends keyof T>(key: keyof T, o: T): T
+export function dissoc<T>(k: string, m: Map<T>): Map<T>
+export function dissoc<T>(k: string, as: Array<T>): Array<T>
+export function dissoc<T>(path: string|number|Array<string|number>, o: T): unknown
 export function dissoc(path, o?) {
 
     const $ = struct => {
 
         if (isString(path)||isNumber(path)) {
             
+            if (isArray(struct)) return $dissoc(path, struct)
+
             const c = copy(struct)
             delete c[path]
             return c
 
         } else if (isArray(path)) {
 
-            if (path.length < 2) throw 'illegal argument - array path should have min length 2'
+            if (path.length < 1) throw 'illegal argument - array path should have min length 1'
             return $update1(clone(path), struct, undefined, false)
 
         } else {
