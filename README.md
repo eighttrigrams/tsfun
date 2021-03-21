@@ -154,7 +154,8 @@ import {equal} from 'tsfun';
 * [filter1](test/associative/filter1.spec.ts)
 * [forEach1](test/associative/for_each1.spec.ts)
 * [get1](test/associative/get1.spec.ts)
-* [lookup](test/associative/lookup1.spec.ts)
+* [lookup1](test/associative/lookup1.spec.ts)
+* [reduce1](test/associative/reduce1.spec.ts)
 
 ### string
 
@@ -272,7 +273,6 @@ import {lookup} from 'tsfun/associative';
 ```
 
 * [dissoc](test/associative/associative/dissoc.spec.ts)
-* [reduce](test/associative/associative/reduce.spec.ts)
 
 ###### Types
 

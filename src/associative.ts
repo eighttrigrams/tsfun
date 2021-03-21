@@ -216,16 +216,16 @@ export function forEach1<A>(a, b?) {
 }
 
 
-export function reduce<A, B>(f: (b: B, a: A, i: string) => B, init: B, as: Map<A>): B
-export function reduce<A, B>(f: (b: B, a: A) => B, init: B, as: Map<A>): B
-export function reduce<A, B>(f: (b: B, a: A, i: number) => B, init: B, as: Array<A>): B
-export function reduce<A, B>(f: (b: B, a: A) => B, init: B, as: Array<A>): B
-export function reduce<A, B>(as: Map<A>, f: (b: B, a: A, i: string) => B, init: B): B
-export function reduce<A, B>(as: Map<A>, f: (b: B, a: A, i) => B, init: B): B
-export function reduce<A, B>(as: Array<A>, f: (b: B, a: A, i: number) => B, init: B): B
-export function reduce<A, B>(as: Array<A>, f: (b: B, a: A, i) => B, init: B): B
-export function reduce<A, B>(f: (b: B, a: A, i?: number|string) => B, init: B): (as: Associative<A>) => B
-export function reduce(...args): any {
+export function reduce1<A, B>(f: (b: B, a: A, i: string) => B, init: B, as: Map<A>): B
+export function reduce1<A, B>(f: (b: B, a: A) => B, init: B, as: Map<A>): B
+export function reduce1<A, B>(f: (b: B, a: A, i: number) => B, init: B, as: Array<A>): B
+export function reduce1<A, B>(f: (b: B, a: A) => B, init: B, as: Array<A>): B
+export function reduce1<A, B>(as: Map<A>, f: (b: B, a: A, i: string) => B, init: B): B
+export function reduce1<A, B>(as: Map<A>, f: (b: B, a: A, i) => B, init: B): B
+export function reduce1<A, B>(as: Array<A>, f: (b: B, a: A, i: number) => B, init: B): B
+export function reduce1<A, B>(as: Array<A>, f: (b: B, a: A, i) => B, init: B): B
+export function reduce1<A, B>(f: (b: B, a: A, i?: number|string) => B, init: B): (as: Associative<A>) => B
+export function reduce1(...args): any {
 
     const inner = (f, init) => (ts: any) => {
 

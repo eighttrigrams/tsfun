@@ -211,6 +211,7 @@ export {
     forEach1,
     get1,
     lookup1,
+    reduce1,
     keys,
     values,
     keysAndValues
