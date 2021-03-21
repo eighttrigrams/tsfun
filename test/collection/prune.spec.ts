@@ -1,9 +1,9 @@
+import {prune} from '../../src/collection'
+
+
 /**
- * @author Daniel de Oliveira
+ * tsfun | prune
  */
-import {prune} from '../../src/collection';
-
-
 describe('prune', () => {
 
     it('object', () =>
@@ -11,7 +11,7 @@ describe('prune', () => {
 
             prune({a: 1, b: undefined})
 
-        ).toEqual({a: 1}));
+        ).toEqual({a: 1}))
 
 
     it('array', () =>
@@ -19,7 +19,7 @@ describe('prune', () => {
 
             prune([1, undefined, 2])
 
-        ).toEqual([1, 2]));
+        ).toEqual([1, 2]))
 
 
     it('string', () =>
@@ -27,5 +27,5 @@ describe('prune', () => {
 
             prune('a b')
 
-        ).toEqual('ab'));
-});
+        ).toEqual('ab'))
+})

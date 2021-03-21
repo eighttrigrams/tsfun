@@ -1,6 +1,9 @@
-import {greaterOrEqualThan} from '../../../src/comparator';
+import {greaterOrEqualThan} from '../../../src/comparator'
 
 
+/**
+ * tsfun | greaterOrEqualThan
+ */
 describe('greaterOrEqualThan', () => {
 
     it('true', () =>
@@ -10,7 +13,7 @@ describe('greaterOrEqualThan', () => {
             greaterOrEqualThan(3)(4)
 
         ).toEqual(true)
-    );
+    )
 
     it('equal', () =>
 
@@ -19,7 +22,7 @@ describe('greaterOrEqualThan', () => {
             greaterOrEqualThan(4)(4)
 
         ).toEqual(true)
-    );
+    )
 
 
     it('false', () =>
@@ -29,7 +32,7 @@ describe('greaterOrEqualThan', () => {
             greaterOrEqualThan(4)(3)
 
         ).toEqual(false)
-    );
+    )
 
 
     it('string', () =>
@@ -39,7 +42,7 @@ describe('greaterOrEqualThan', () => {
             greaterOrEqualThan('a')('b')
 
         ).toEqual(true)
-    );
+    )
 
 
     it('string - equal', () =>
@@ -49,7 +52,7 @@ describe('greaterOrEqualThan', () => {
             greaterOrEqualThan('a')('a')
 
         ).toEqual(true)
-    );
+    )
 
 
 
@@ -60,7 +63,7 @@ describe('greaterOrEqualThan', () => {
             greaterOrEqualThan('b')('a')
 
         ).toEqual(false)
-    );
+    )
 
 
     it('compares only single letters', () =>
@@ -70,5 +73,5 @@ describe('greaterOrEqualThan', () => {
             () => greaterOrEqualThan('b')('ab')
 
         ).toThrow()
-    );
-});
+    )
+})

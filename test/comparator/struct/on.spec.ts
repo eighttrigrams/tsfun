@@ -200,8 +200,8 @@ describe('on', () => {
 
         
         // This of course not only works, but is especially useful with customized on
-        const differentOn = onBy(a => b => a !== b);
-        const from = identity;
+        const differentOn = onBy(a => b => a !== b)
+        const from = identity
 
         expect(
             differentOn(0, from(3))([3,8]))

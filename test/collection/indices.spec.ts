@@ -1,5 +1,5 @@
-import {indices} from '../../src/collection';
-import {greaterThan, is} from '../../src/comparator';
+import {indices} from '../../src/collection'
+import {greaterThan, is} from '../../src/comparator'
 
 
 /**

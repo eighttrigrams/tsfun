@@ -249,7 +249,7 @@ describe('flatten', () => {
 
     it('illegal arguments', () => {
 
-        const expected = 'illegal arguments - in \'flatten\'';
+        const expected = 'illegal argument in "tsfun|flatten"';
 
         expect(() => flatten(2 as any, 2 as any)).toThrow(expected)
         expect(() => flatten([] as any, [] as any)).toThrow(expected)

@@ -1,5 +1,5 @@
 import {identity} from './core'
-import {Comparator, Either, Fallible, Mapping, Maybe, Pair, Predicate} from './type'
+import {Either, Fallible, Mapping, Maybe, Pair, Predicate} from './type'
 import {isEither, isFailure, isFunction, isMaybe, isPair, isSuccess} from './predicate'
 import {first, rest} from './list'
 import {success, getSuccess, left, just, right} from './tuple'

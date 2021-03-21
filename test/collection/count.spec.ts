@@ -1,12 +1,9 @@
-import {greaterThan} from '../../src/comparator';
-import {count} from '../../src/collection';
+import {greaterThan} from '../../src/comparator'
+import {count} from '../../src/collection'
 
 
 /**
  * tsfun | count
- *
- * It can be used in a flow context, where the arguments are given as separate argument lists,
- * as well as in a standard context, where the arguments are given in a single argument list.
  */
 describe('count', () => {
 
@@ -29,4 +26,4 @@ describe('count', () => {
         expect(count(greaterThan('d'))('abede')).toEqual(2)
         expect(count(greaterThan('d'), 'abede')).toEqual(2)
     })
-});
+})

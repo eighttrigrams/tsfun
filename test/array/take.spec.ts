@@ -1,15 +1,10 @@
-import {take} from '../../src/array';
+import {map, take} from '../../src/array'
+import { greaterThan } from '../../src/comparator'
+import { flow } from '../../src/composition'
 
 
 /**
  * tsfun | take
- *
- * Takes a number of items from a List and returns a List of the same type.
- *
- * takes operates on the List abstraction over Arrays and strings.
- *
- * It can be used in a flow context, where the arguments are given as separate argument lists,
- * as well as in a standard context, where the arguments are given in a single argument list.
  */
 describe('take', () => {
 
@@ -17,32 +12,39 @@ describe('take', () => {
 
         expect(take(5)([1, 2, 7, 7, 8, 9, 11])).toEqual([1, 2, 7, 7, 8])
         expect(take(5, [1, 2, 7, 7, 8, 9, 11])).toEqual([1, 2, 7, 7, 8])
-    });
+    })
 
 
-    it('0', () =>
-
+    it('try to take more than items available', () =>
+    
         expect(
-
-            take(0)
-            ([1, 2, 7, 7, 8, 9, 11])
-
-        ).toEqual([])
-    );
-
-
-    it('more', () =>
-
-        expect(
-
+        
             take(3)
             ([1, 2])
-
+        
         ).toEqual([1, 2])
-    );
+    )
 
 
-    it('from empty', () =>
+    it('filter', () => {
+    
+        expect(
+            take(3, greaterThan(3), [1, 7, 9, 20, 3])
+        ).toEqual([7, 9, 20])
+
+        expect(
+            take(3, greaterThan(3))([1, 7, 9, 20, 3])
+        ).toEqual([7, 9, 20])
+
+        expect(
+            flow([1, 7, 9, 20, 3],
+                take(3, greaterThan(3)),
+                map(_ => _ * 2))
+        ).toEqual([14, 18, 40])
+    })
+
+
+    it('edge cases', () => {
 
         expect(
 
@@ -50,10 +52,11 @@ describe('take', () => {
             ([])
 
         ).toEqual([])
-    );
 
-
-    it('negative n', () =>
+        expect(
+            take(0)
+            ([1, 2, 7, 7, 8, 9, 11])
+        ).toEqual([])
 
         expect(
 
@@ -61,7 +64,7 @@ describe('take', () => {
             ([1, 2])
 
         ).toEqual([])
-    );
+    })
 
 
     it('typing', () => {
@@ -74,5 +77,21 @@ describe('take', () => {
         // const result: Array<string> = take(5)([1, 2, 7, 7, 8, 9, 11]) // WRONG - Array types do not match
 
         // const result3: string = take(5)("abc") as string
-    });
-});
+    })
+
+
+    it('filter - edge cases', () => {
+    
+        expect(
+            take(0, greaterThan(3), [1, 7, 9, 20, 3])
+        ).toEqual([])
+
+        expect(
+            take(4, greaterThan(3))([1, 7, 9, 20, 3])
+        ).toEqual([7, 9, 20])
+
+        expect(
+            take(-1, greaterThan(3), [1, 7, 9, 20, 3])
+        ).toEqual([])
+    })
+})

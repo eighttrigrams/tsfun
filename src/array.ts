@@ -16,8 +16,8 @@ import {
     remove as removeColl,
     separate as separateColl, size
 } from './collection'
-import { RIGHT } from './tuple'
 import {Map} from './type'
+import { flow, throws, val } from './composition'
 
 
 
@@ -120,12 +120,12 @@ export function flatten(depth: 1): <U, T extends Array<U>>(as: Array<T>) => T
 export function flatten(depth: number): <T,R>(as: Array<T>) => Array<R>
 export function flatten(p1: any, ...p2: any[]): any {
 
-    if (p2.length > 1) throw 'illegal arguments - in \'flatten\''
+    if (p2.length > 1) throw 'illegal argument in "tsfun|flatten"'
     if (p2.length === 1) {
         if (!(
             (isNumber(p1) && isArray(p2[0]))
             || (isArray(p1) && isNumber(p2[0]))
-        )) throw 'illegal arguments - in \'flatten\''
+        )) throw 'illegal argument in "tsfun|flatten"'
     }
 
     const _flatten = flatMap(identity as any) as any
@@ -133,10 +133,10 @@ export function flatten(p1: any, ...p2: any[]): any {
     const inner = (num: number) =>
         (as: Associative) => {
 
-            if (num < 1) throw 'illegal arguments - in \'flatten\''
+            if (num < 1) throw 'illegal argument in "tsfun|flatten"'
 
             if (p2.length === 0 && (isNumber(p1)||isUndefined(p1)) && !isArray(as)) {
-                throw 'illegal arguments - in \'flatten\''
+                throw 'illegal argument in "tsfun|flatten"'
             }
 
             return num === 1 || num === undefined || isObject(as)
@@ -160,7 +160,7 @@ export function filter<A>(p: (a: A, i: number) => boolean): (_: Array<A>) => Arr
 export function filter<A>(p: (a: A) => boolean): (_: Array<A>) => Array<A>
 export function filter<A>(...args: any[]): any {
 
-    if (args.length > 1) throw 'illegal argument - in \'tsfun|filter\''
+    if (args.length > 1) throw 'illegal argument in "tsfun|filter"'
     return filterColl(args[0])
 }
 
@@ -171,16 +171,11 @@ export function drop(n: number, p2?: any): any {
 
     const inner = <A>(as: any) => {
 
-        if (isArray(as)) {
+        if (!isArray(as)) throw 'illegal argument in "tsfun|drop" - array expected'
 
-            const as_ = as as Array<A>
-            return n < 1 ? as_ :
-                as.slice(n)
-
-        } else {
-
-            throw 'illegal argument - must be array'
-        }
+        const as_ = as as Array<A>
+        return n < 1 ? as_ :
+            as.slice(n)
     }
 
     return p2 === undefined
@@ -190,28 +185,36 @@ export function drop(n: number, p2?: any): any {
 
 
 export function take(n: number): <A>(_: Array<A>) => Array<A>
+export function take<A>(n: number, p: Predicate<A>): (_: Array<A>) => Array<A>
 export function take<A>(n: number, as: Array<A>): Array<A>
-export function take<A>(n: number, list?: any): any {
+export function take<A>(n: number, p: Predicate<A>, as: Array<A>): Array<A>
+export function take<A>(n: number, ...args): any {
 
-    function inner(as: Array<A>): Array<A> {
+    const $ = p => as => {
+        if (!isArray(as)) throw 'illegal argument in "tsfun|take" - array expected'
 
-        if (isArray(as)) {
+        let items = []
+        let i = 0
+        while (items.length < n && i < as.length) {
 
-            const as_ = as as Array<A>
-            return n < 0 ? [] :
-                as_.reduce((acc: Array<A>, val, i) =>
-                        i < n ? acc.concat([val]) : acc
-                    , []) as Array<A>
-
-        } else {
-
-            throw 'illegal argument - must be array'
+            if (p(as[i])) items.push(as[i] as never)
+            i++
         }
+        return items
     }
 
-    return list === undefined
-        ? inner as any
-        : inner(list as any) as any
+    return flow(
+        args.length === 2 
+            ? [args[0], args[1]] 
+            : args.length === 1 && isFunction(args[0]) 
+                ? [args[0], undefined] 
+                : [val(true), args[0]],
+        ([p, list]) => 
+            list === undefined
+                ? $(p)
+                : isArray(list)
+                    ? $(p)(list)
+                    : throws('illegal argument in "tsfun|take" - array expexted'))
 }
 
 
@@ -221,14 +224,9 @@ export function dropRight(n: number, as?: any): any {
 
     const inner = <A>(as: any): any => {
 
-        if (isArray(as)) {
+        if (!isArray(as)) throw 'illegal argument in "tsfun|dropRight" - array expected'
 
-            return (as as Array<A>).slice(0, Math.max(0, as.length-n)) as Array<A>
-
-        } else {
-
-            throw 'illegal argument - must be array'
-        }
+        return (as as Array<A>).slice(0, Math.max(0, as.length-n)) as Array<A>
     }
 
     return as === undefined

@@ -1,6 +1,9 @@
-import {size} from '../../src/collection';
+import {size} from '../../src/collection'
 
 
+/**
+ * tsfun | size
+ */
 describe('size', () => {
 
     it('object', () =>
@@ -8,7 +11,7 @@ describe('size', () => {
 
             size({a: 3, b: 4})
 
-        ).toEqual(2));
+        ).toEqual(2))
 
 
     it('array', () =>
@@ -16,7 +19,7 @@ describe('size', () => {
 
             size(['a', 'b'])
 
-        ).toEqual(2));
+        ).toEqual(2))
 
 
     it('string', () =>
@@ -25,4 +28,4 @@ describe('size', () => {
             size('abc')
 
         ).toEqual(3))
-});
+})

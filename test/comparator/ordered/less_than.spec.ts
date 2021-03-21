@@ -1,6 +1,9 @@
-import {lessThan} from '../../../src/comparator';
+import {lessThan} from '../../../src/comparator'
 
 
+/**
+ * tsfun | lessThan
+ */
 describe('lessThan', () => {
 
     it('false', () =>
@@ -10,7 +13,7 @@ describe('lessThan', () => {
             lessThan(3)(4)
 
         ).toEqual(false)
-    );
+    )
 
 
     it('true', () =>
@@ -20,7 +23,7 @@ describe('lessThan', () => {
             lessThan(4)(3)
 
         ).toEqual(true)
-    );
+    )
 
 
     it('ltring - false', () =>
@@ -30,7 +33,7 @@ describe('lessThan', () => {
             lessThan('a')('b')
 
         ).toEqual(false)
-    );
+    )
 
 
     it('ltring', () =>
@@ -40,7 +43,7 @@ describe('lessThan', () => {
             lessThan('b')('a')
 
         ).toEqual(true)
-    );
+    )
 
 
     it('compares only single letters', () =>
@@ -50,5 +53,5 @@ describe('lessThan', () => {
             () => lessThan('b')('ab')
 
         ).toThrow()
-    );
-});
+    )
+})
