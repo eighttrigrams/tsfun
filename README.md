@@ -250,31 +250,6 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 
 ## Extra packages reference
 
-### string
-
-```typescript
-import {take} from 'tsfun/string'
-```
-
-* [append](test/string/append.spec.ts)
-* [prepend](test/string/prepend.spec.ts)
-* [take](test/string/take.spec.ts)
-* [drop](test/string/drop.spec.ts)
-* [takeRight](test/string/take_right.spec.ts)
-* [dropRight](test/string/drop_right.spec.ts)
-* [dropRightWhile](test/string/drop_right_while.spec.ts)
-* [takeWhile](test/list/string/take_while.spec.ts)
-* [takeRightWhile](test/string/take_right_while.spec.ts)
-* [dropWhile](test/string/drop_while.spec.ts)
-* [filter](test/string/filter.spec.ts)
-
-* [toUpperCase](test/string/to_upper_case.spec.ts)
-* [toLowerCase](test/string/to_lower_case.spec.ts)
-* [first](test/string/first.spec.ts)
-* [rest](test/string/rest.spec.ts)
-* [last](test/string/last.spec.ts)
-* [reverse](test/string/reverse.spec.ts)
-
 ### Async
 
 ```typescript
