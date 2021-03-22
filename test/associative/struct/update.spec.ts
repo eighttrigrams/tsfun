@@ -4,6 +4,7 @@ import {map1} from '../../../src/associative'
 import {Map} from '../../../src/type'
 import {flow, val} from '../../../src/composition'
 import { map } from '../../../src/array'
+import { LEFT, RIGHT } from '../../../src/tuple'
 
 
 /**
@@ -111,15 +112,15 @@ describe('update', () => {
 
 
         // Pair special typing
-        const $11 /*: [number,{b: number}]*/ = update([0, 0], 3 /* assoc */, [[1],{b:5}])
-        const $12 /*: [number[],number]*/ = update([1, 'b'], 3 /* assoc */, [[1],{b:5}])
-        const $13 /*: [unknown,{b: number}]*/ = update([0, 0], toString /* update */, [[1],{b:5}])
-        const $14 /*: [number[],unknown]*/ = update([1, 'b'], toString /* update */, [[1],{b:5}])
+        const $11 /*: [number,{b: number}]*/ = update([LEFT, 0], 3 /* assoc */, [[1],{b:5}])
+        const $12 /*: [number[],number]*/ = update([RIGHT, 'b'], 3 /* assoc */, [[1],{b:5}])
+        const $13 /*: [unknown,{b: number}]*/ = update([LEFT, 0], toString /* update */, [[1],{b:5}])
+        const $14 /*: [number[],unknown]*/ = update([RIGHT, 'b'], toString /* update */, [[1],{b:5}])
 
-        const $15 /*: [number,{b: number}]*/ = update([0], 3 /* assoc */, [[1],{b:5}])
-        const $16 /*: [number[],number]*/ = update([1], 3 /* assoc */, [[1],{b:5}])
-        const $17 /*: [unknown,{b: number}]*/ = update([0], toString /* update */, [[1],{b:5}])
-        const $18 /*: [number[],unknown]*/ = update([1], toString /* update */, [[1],{b:5}])
+        const $15 /*: [number,{b: number}]*/ = update([LEFT], 3 /* assoc */, [[1],{b:5}])
+        const $16 /*: [number[],number]*/ = update([RIGHT], 3 /* assoc */, [[1],{b:5}])
+        const $17 /*: [unknown,{b: number}]*/ = update([LEFT], toString /* update */, [[1],{b:5}])
+        const $18 /*: [number[],unknown]*/ = update([RIGHT], toString /* update */, [[1],{b:5}])
     })
 
 
@@ -134,17 +135,17 @@ describe('update', () => {
         const $3 /*: S*/ = flow(s, update(['a', 'b'], times2))
         expect($3.a.b).toBe(6)
 
-        
-        // Pair special typing
-        const $11 /*: [number,{b: number}]*/ = update([0, 0], 3 /* assoc */)([[1],{b:5}])
-        const $12 /*: [number[],number]*/ = update([1, 'b'], 3 /* assoc */)([[1],{b:5}])
-        const $13 /*: [unknown,{b: number}]*/ = update([0, 0], toString /* update */)([[1],{b:5}])
-        const $14 /*: [number[],unknown]*/ = update([1, 'b'], toString /* update */)([[1],{b:5}])
 
-        const $15 /*: [number,{b: number}]*/ = update([0], 3 /* assoc */)([[1],{b:5}])
-        const $16 /*: [number[],number]*/ = update([1], 3 /* assoc */)([[1],{b:5}])
-        const $17 /*: [unknown,{b: number}]*/ = update([0], toString /* update */)([[1],{b:5}])
-        const $18 /*: [number[],unknown]*/ = update([1], toString /* update */)([[1],{b:5}])
+        // Pair special typing
+        const $11 /*: [number,{b: number}]*/ = update([LEFT, 0], 3 /* assoc */)([[1],{b:5}])
+        const $12 /*: [number[],number]*/ = update([RIGHT, 'b'], 3 /* assoc */)([[1],{b:5}])
+        const $13 /*: [unknown,{b: number}]*/ = update([LEFT, 0], toString /* update */)([[1],{b:5}])
+        const $14 /*: [number[],unknown]*/ = update([RIGHT, 'b'], toString /* update */)([[1],{b:5}])
+
+        const $15 /*: [number,{b: number}]*/ = update([LEFT], 3 /* assoc */)([[1],{b:5}])
+        const $16 /*: [number[],number]*/ = update([RIGHT], 3 /* assoc */)([[1],{b:5}])
+        const $17 /*: [unknown,{b: number}]*/ = update([LEFT], toString /* update */)([[1],{b:5}])
+        const $18 /*: [number[],unknown]*/ = update([RIGHT], toString /* update */)([[1],{b:5}])
     })
 
 
