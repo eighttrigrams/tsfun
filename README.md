@@ -189,6 +189,8 @@ Map-s (JavaScript-Objects).
 
 ### Tuple
 
+JavaScript-Arrays, typed as TypeScript-Tuples.
+
 * [tuplify](test/tuple/tuplify.spec.ts)
 * [pairWith](test/tuple/pair-with.spec.ts)
 * [swap](test/tuple/swap.spec.ts)
@@ -206,6 +208,8 @@ Map-s (JavaScript-Objects).
 * [getSuccess](test/tuple/get_success.spec.ts)
 
 ### Set
+
+JavaScript-Arrays, viewed as sets.
 
 * [set](test/set/set.spec.ts)
 * [intersection](test/set/intersection.spec.ts)
