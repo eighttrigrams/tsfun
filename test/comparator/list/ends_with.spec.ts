@@ -6,23 +6,6 @@ import {endsWith} from '../../../src/comparator'
  */
 describe('endsWith', () => {
 
-    it('string - true', () => {
-
-        expect(endsWith('efg')('defg')).toBe(true)
-        expect(endsWith('efg', 'defg')).toBe(true)
-    })
-
-
-    it('string - false', () =>
-
-        expect(
-
-            endsWith('def')('dae')
-
-        ).toBe(false)
-    )
-
-
     it('array - true', () =>
 
         expect(

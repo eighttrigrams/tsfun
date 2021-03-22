@@ -24,34 +24,4 @@ describe('lessThan', () => {
 
         ).toEqual(true)
     )
-
-
-    it('ltring - false', () =>
-
-        expect(
-
-            lessThan('a')('b')
-
-        ).toEqual(false)
-    )
-
-
-    it('ltring', () =>
-
-        expect(
-
-            lessThan('b')('a')
-
-        ).toEqual(true)
-    )
-
-
-    it('compares only single letters', () =>
-
-        expect(
-
-            () => lessThan('b')('ab')
-
-        ).toThrow()
-    )
 })

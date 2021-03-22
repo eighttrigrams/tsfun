@@ -12,15 +12,6 @@ import {startsWith} from '../../../src/comparator'
  */
 describe('startsWith', () => {
 
-    it('string', () => {
-
-        expect(startsWith('def')('def')).toBe(true)
-        expect(startsWith('def', 'def')).toBe(true)
-        expect(startsWith('def')('dae')).toBe(false)
-        expect(startsWith('def', 'dae')).toBe(false)
-    })
-
-
     it('array', () => {
 
         expect(startsWith([1, 2, 3])([1, 2, 3, 4])).toBe(true)
@@ -61,10 +52,6 @@ describe('startsWith', () => {
 
 
     it('typing', () => {
-
-        const result1: boolean = startsWith('def')('def')
-        const result2: boolean = startsWith('def', 'def')
-        // WRONG - const result: boolean = startsWith('def') - second parameter list expected, to give a boolean
 
         const result3: boolean = startsWith([1, 2])([1, 2])
         const result4: boolean = startsWith([1, 2], [1, 2])

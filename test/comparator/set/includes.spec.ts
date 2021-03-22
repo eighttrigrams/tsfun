@@ -19,31 +19,7 @@ describe('includes', () => {
 
             includes(7)([2, 5, 1])
 
-        ).toEqual(false));
-
-
-    it('string - true', () =>
-        expect(
-
-            includes('a')('abc')
-
-        ).toEqual(true));
-
-
-    it('string - false', () =>
-        expect(
-
-            includes('d')('abc')
-
-        ).toEqual(false));
-
-
-    it('string - illegal argument - must be only one letter', () =>
-        expect(
-
-            () => includes('ab')('abc')
-
-        ).toThrow())
+        ).toEqual(false))
 
 
     it('includesBy', () =>

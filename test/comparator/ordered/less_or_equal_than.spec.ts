@@ -1,6 +1,9 @@
-import {lessOrEqualThan} from '../../../src/comparator';
+import {lessOrEqualThan} from '../../../src/comparator'
 
 
+/**
+ * tsfun | lessOrEqualThan
+ */
 describe('lessOrEqualThan', () => {
 
     it('false', () =>
@@ -29,46 +32,5 @@ describe('lessOrEqualThan', () => {
             lessOrEqualThan(4)(3)
 
         ).toEqual(true)
-    );
-
-
-    it('string - false', () =>
-
-        expect(
-
-            lessOrEqualThan('a')('b')
-
-        ).toEqual(false)
-    );
-
-
-    it('string - equal', () =>
-
-        expect(
-
-            lessOrEqualThan('a')('a')
-
-        ).toEqual(true)
-    );
-
-
-
-    it('string', () =>
-
-        expect(
-
-            lessOrEqualThan('b')('a')
-
-        ).toEqual(true)
-    );
-
-
-    it('compares only single letters', () =>
-
-        expect(
-
-            () => lessOrEqualThan('b')('ab')
-
-        ).toThrow()
-    );
-});
+    )
+})

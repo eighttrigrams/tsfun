@@ -24,34 +24,4 @@ describe('greaterThan', () => {
 
         ).toEqual(false)
     )
-
-
-    it('string', () =>
-
-        expect(
-
-            greaterThan('a')('b')
-
-        ).toEqual(true)
-    )
-
-
-    it('string - false', () =>
-
-        expect(
-
-            greaterThan('b')('a')
-
-        ).toEqual(false)
-    )
-
-
-    it('compares only single letters', () =>
-
-        expect(
-
-            () => greaterThan('b')('ab')
-
-        ).toThrow()
-    )
 })
