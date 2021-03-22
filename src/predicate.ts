@@ -1,7 +1,7 @@
 import {Array2, Either, Mapping, Maybe, Pair, Predicate, Singleton, Path} from './type'
 import {is, on} from './comparator'
 import {first} from './array'
-import {map_a, reduce_a} from './associative'
+import {map_a, $reduce_a} from './associative'
 import {flow} from './composition'
 import {filter} from './collection'
 import {size} from './associative'
@@ -64,7 +64,7 @@ export function and(...preds: Array<Predicate<any>>) {
 
     return (argument): boolean => {
 
-        return reduce_a((acc: boolean, p: Predicate<any>) => acc && p(argument), true)(preds)
+        return $reduce_a((acc: boolean, p: Predicate<any>) => acc && p(argument), true)(preds)
     }
 }
 
@@ -73,7 +73,7 @@ export function or(...preds: Array<Predicate<any>>) {
 
     return (argument): boolean => {
 
-        return reduce_a((acc: boolean, p: Predicate<any>) => acc || p(argument), false)(preds)
+        return $reduce_a((acc: boolean, p: Predicate<any>) => acc || p(argument), false)(preds)
     }
 }
 

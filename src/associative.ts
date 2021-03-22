@@ -208,16 +208,17 @@ export function forEach_a<A>(a, b?) {
 }
 
 
-export function reduce_a<A, B>(f: (b: B, a: A, i: string) => B, init: B, as: Map<A>): B
-export function reduce_a<A, B>(f: (b: B, a: A) => B, init: B, as: Map<A>): B
-export function reduce_a<A, B>(f: (b: B, a: A, i: number) => B, init: B, as: Array<A>): B
-export function reduce_a<A, B>(f: (b: B, a: A) => B, init: B, as: Array<A>): B
-export function reduce_a<A, B>(as: Map<A>, f: (b: B, a: A, i: string) => B, init: B): B
-export function reduce_a<A, B>(as: Map<A>, f: (b: B, a: A, i) => B, init: B): B
-export function reduce_a<A, B>(as: Array<A>, f: (b: B, a: A, i: number) => B, init: B): B
-export function reduce_a<A, B>(as: Array<A>, f: (b: B, a: A, i) => B, init: B): B
-export function reduce_a<A, B>(f: (b: B, a: A, i?: number|string) => B, init: B): (as: Associative<A>) => B
-export function reduce_a(...args): any {
+// Library Internal
+export function $reduce_a<A, B>(f: (b: B, a: A, i: string) => B, init: B, as: Map<A>): B
+export function $reduce_a<A, B>(f: (b: B, a: A) => B, init: B, as: Map<A>): B
+export function $reduce_a<A, B>(f: (b: B, a: A, i: number) => B, init: B, as: Array<A>): B
+export function $reduce_a<A, B>(f: (b: B, a: A) => B, init: B, as: Array<A>): B
+export function $reduce_a<A, B>(as: Map<A>, f: (b: B, a: A, i: string) => B, init: B): B
+export function $reduce_a<A, B>(as: Map<A>, f: (b: B, a: A, i) => B, init: B): B
+export function $reduce_a<A, B>(as: Array<A>, f: (b: B, a: A, i: number) => B, init: B): B
+export function $reduce_a<A, B>(as: Array<A>, f: (b: B, a: A, i) => B, init: B): B
+export function $reduce_a<A, B>(f: (b: B, a: A, i?: number|string) => B, init: B): (as: Associative<A>) => B
+export function $reduce_a(...args): any {
 
     const inner = (f, init) => (ts: any) => {
 
@@ -345,7 +346,7 @@ export function indices<A>(p: Predicate<A>, as?: any): any {
 
     const inner = (as: any): any => {
 
-        return reduce_a(
+        return $reduce_a(
             (indices: number[], a: A, i: number|string) => p(a)
                 ? indices.concat([i] as any)
                 : indices

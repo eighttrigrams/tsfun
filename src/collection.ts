@@ -1,6 +1,6 @@
 import {Collection, Map, Mapping, Pair, Predicate} from './type'
 import {isArray, isDefined, isFunction, isObject, isString} from './predicate'
-import {keys, reduce_a, values} from './associative'
+import {keys, $reduce_a, values} from './associative'
 
 
 export type Filter<T = any> = Mapping<Collection<T>>

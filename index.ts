@@ -191,7 +191,6 @@ export {
     forEach_a,
     to_a,
     lookup_a,
-    reduce_a,
     keys,
     values,
     keysAndValues,
