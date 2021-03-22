@@ -1,15 +1,15 @@
-import {get1} from '../../src/associative'
+import {get_a} from '../../src/associative'
 
 
 /**
- * tsfun | get1
+ * tsfun | get_a
  */
-describe('get1', () => {
+describe('get_a', () => {
 
     it('object',() =>
         expect(
 
-            get1('a')({a: 'b', c: 'd'}))
+            get_a('a')({a: 'b', c: 'd'}))
 
             .toEqual('b'))
 
@@ -17,7 +17,7 @@ describe('get1', () => {
     it('array',() =>
         expect(
 
-            get1(0)([1, 2]))
+            get_a(0)([1, 2]))
 
             .toEqual(1))
 
@@ -25,7 +25,7 @@ describe('get1', () => {
     it('nothing',() =>
         expect(
 
-            get1(3)([1, 2]))
+            get_a(3)([1, 2]))
 
             .toBeUndefined())
 
@@ -33,7 +33,7 @@ describe('get1', () => {
     it('alternative - from object',() =>
         expect(
 
-            get1('a', undefined as any)({a: 'b', c: 'd'}))
+            get_a('a', undefined as any)({a: 'b', c: 'd'}))
 
             .toEqual('b'))
 
@@ -41,7 +41,7 @@ describe('get1', () => {
     it('alternative',() =>
         expect(
 
-            get1(0, undefined as any)([1, 2]))
+            get_a(0, undefined as any)([1, 2]))
 
             .toEqual(1))
 
@@ -49,7 +49,7 @@ describe('get1', () => {
     it('alternative - undefined',() =>
         expect(
 
-            get1(3, undefined as any)([1, 2]))
+            get_a(3, undefined as any)([1, 2]))
 
             .toEqual(undefined))
 
@@ -57,7 +57,7 @@ describe('get1', () => {
     it('alternative - alternative',() =>
         expect(
 
-            get1(7, 7)([1, 2]))
+            get_a(7, 7)([1, 2]))
 
             .toEqual(7))
 })

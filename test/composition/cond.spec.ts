@@ -1,4 +1,4 @@
-import {map1} from '../../src/associative';
+import {map_a} from '../../src/associative';
 import {cond, val} from '../../src/composition';
 import {greaterThan, includedIn, is} from '../../src/comparator';
 import {filter} from '../../src/collection';
@@ -14,7 +14,7 @@ describe('cond', () => {
 
     it('cond', () =>
         expect(
-            map1(cond(
+            map_a(cond(
                 greaterThan(3),
                 times(2),
                 val(18)))
@@ -24,7 +24,7 @@ describe('cond', () => {
 
     it('pass through', () =>
         expect(
-            map1(cond(
+            map_a(cond(
                 greaterThan(3),
                 times(2)))
             ([3, 4, 5])
@@ -33,7 +33,7 @@ describe('cond', () => {
 
     it('boolean', () =>
         expect(
-            map1(cond(
+            map_a(cond(
                 true,
                 times(2)))
             ([3, 4, 5])
@@ -42,7 +42,7 @@ describe('cond', () => {
 
     it('value', () =>
         expect(
-            map1(cond(
+            map_a(cond(
                 true,
                 0))
             ([3, 4, 5])
@@ -51,7 +51,7 @@ describe('cond', () => {
 
     it('value on false', () =>
         expect(
-            map1(cond(
+            map_a(cond(
                 is(17),
                 identity,
                 3))

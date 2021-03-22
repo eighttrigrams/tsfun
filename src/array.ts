@@ -10,7 +10,7 @@ import {
 } from './list'
 import {identity} from './core'
 import {Associative, Mapping, Pair, Predicate} from './type'
-import {values, map1 as mapAsc} from './associative'
+import {values, map_a as mapAsc} from './associative'
 import {
     filter as filterColl,
     remove as removeColl,

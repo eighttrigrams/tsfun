@@ -1,6 +1,6 @@
 import {Collection, Map, Mapping, Pair, Predicate} from './type'
-import {and, isArray, isDefined, isFunction, isObject, isString} from './predicate'
-import {keys, reduce1, values} from './associative'
+import {isArray, isDefined, isFunction, isObject, isString} from './predicate'
+import {keys, reduce_a, values} from './associative'
 
 
 export type Filter<T = any> = Mapping<Collection<T>>
@@ -128,7 +128,7 @@ export function indices<A>(p: Predicate<A>, as?: any): any {
 
     const inner = (as: any): any => {
 
-        return reduce1(
+        return reduce_a(
             (indices: number[], a: A, i: number|string) => p(a)
                 ? indices.concat([i] as any)
                 : indices

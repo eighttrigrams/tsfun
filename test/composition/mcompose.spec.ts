@@ -1,10 +1,10 @@
-import {liftE, getSuccess, liftM, success, just, right, left} from '../../src/tuple';
-import {Either, Mapping, Maybe} from '../../src/type';
-import {collect, cond, flow, mcompose, throws, val} from '../../src/composition';
-import {map1, update1} from '../../src/associative';
-import {isSuccess} from '../../src/predicate';
-import {filter, separate} from '../../src/collection';
-import {lessThan} from '../../src/comparator';
+import {liftE, getSuccess, liftM, success, just, right, left} from '../../src/tuple'
+import {Either, Mapping, Maybe} from '../../src/type'
+import {collect, cond, flow, mcompose, throws, val} from '../../src/composition'
+import {map_a, update_a} from '../../src/associative'
+import {isSuccess} from '../../src/predicate'
+import {filter, separate} from '../../src/collection'
+import {lessThan} from '../../src/comparator'
 
 
 /**
@@ -15,16 +15,16 @@ import {lessThan} from '../../src/comparator';
  */
 describe('mcompose', () => {
 
-    const zero = (_: any) => [0] as Maybe<number>;
-    const zeroE = (_: any) => [undefined, 0] as Either<string, number>;
-    const decM = (x: number) => (x-1 === 0 ? [] : [x-1]) as Maybe<number>;
-    const decE = (x: number) => (x-1 === 0 ? ['decfailed', undefined] : [undefined, x-1]) as Either<string, number>;
-    const safedivM = (x: number) => (y: number) => (y === 0 ? [] : [x / y]) as Maybe<number>;
-    const safedivE = (x: number) => (y: number) => (y === 0 ? ['safedivfail', undefined] : [undefined, x / y]) as Either<string, number>;
-    const add = (x: number, y: number) => x + y;
-    const square = (x: number) => x * x;
-    const squareE = liftE(square);
-    const squareM = liftM(square);
+    const zero = (_: any) => [0] as Maybe<number>
+    const zeroE = (_: any) => [undefined, 0] as Either<string, number>
+    const decM = (x: number) => (x-1 === 0 ? [] : [x-1]) as Maybe<number>
+    const decE = (x: number) => (x-1 === 0 ? ['decfailed', undefined] : [undefined, x-1]) as Either<string, number>
+    const safedivM = (x: number) => (y: number) => (y === 0 ? [] : [x / y]) as Maybe<number>
+    const safedivE = (x: number) => (y: number) => (y === 0 ? ['safedivfail', undefined] : [undefined, x / y]) as Either<string, number>
+    const add = (x: number, y: number) => x + y
+    const square = (x: number) => x * x
+    const squareE = liftE(square)
+    const squareM = liftM(square)
 
 
     it('success - Maybe', () =>
@@ -35,7 +35,7 @@ describe('mcompose', () => {
             ([3])
 
         ).toEqual([4])
-    );
+    )
 
 
     it('success - Either', () =>
@@ -46,7 +46,7 @@ describe('mcompose', () => {
             ([undefined, 3])
 
         ).toEqual([undefined, 4])
-    );
+    )
 
 
     it('failure - Maybe', () =>
@@ -57,7 +57,7 @@ describe('mcompose', () => {
             ([1])
 
         ).toEqual([])
-    );
+    )
 
 
     it('failure - Either', () =>
@@ -67,7 +67,7 @@ describe('mcompose', () => {
             mcompose(decE, squareE)([undefined, 1])
 
         ).toEqual(['decfailed', undefined])
-    );
+    )
 
 
     it('use previous value - Either', () =>
@@ -77,7 +77,7 @@ describe('mcompose', () => {
             mcompose(decM, decM, liftM(add))([4])
 
         ).toEqual([5])
-    );
+    )
 
 
     it('use previous value - Maybe', () =>
@@ -87,7 +87,7 @@ describe('mcompose', () => {
             mcompose(decE, decE, liftE(add))([undefined, 4])
 
         ).toEqual([undefined, 5])
-    );
+    )
 
 
     it('access previous value - Maybe', () =>
@@ -98,7 +98,7 @@ describe('mcompose', () => {
             ([4])
 
         ).toEqual([4])
-    );
+    )
 
 
     it('access previous value - Either', () =>
@@ -109,7 +109,7 @@ describe('mcompose', () => {
             ([undefined, 4])
 
         ).toEqual([undefined, 4])
-    );
+    )
 
 
     it('failure at second step - Maybe', () =>
@@ -120,7 +120,7 @@ describe('mcompose', () => {
             ([2])
 
         ).toEqual([])
-    );
+    )
 
 
     it('failure at second step - Either', () =>
@@ -131,7 +131,7 @@ describe('mcompose', () => {
             ([undefined, 2])
 
         ).toEqual(['decfailed', undefined])
-    );
+    )
 
 
     it('pass success values to final function - Maybe', () =>
@@ -142,7 +142,7 @@ describe('mcompose', () => {
             ([0])
 
         ).toEqual([6])
-    );
+    )
 
 
     it('pass success values to final function - Either', () =>
@@ -153,7 +153,7 @@ describe('mcompose', () => {
             ([undefined, 0])
 
         ).toEqual([undefined, 6])
-    );
+    )
 
 
     it('get all intermediate values, youngest first - Maybe', () =>
@@ -164,7 +164,7 @@ describe('mcompose', () => {
             ([3])
 
         ).toEqual([[1, 2, 3]])
-    );
+    )
 
 
     it('get all intermediate values, youngest first - Either', () =>
@@ -175,7 +175,7 @@ describe('mcompose', () => {
             ([undefined, 3])
 
         ).toEqual([undefined, [1, 2, 3]])
-    );
+    )
 
 
     it('dont even start - Maybe', () =>
@@ -185,7 +185,7 @@ describe('mcompose', () => {
             mcompose(decM, safedivM(3), liftM(add))([])
 
         ).toEqual([])
-    );
+    )
 
 
     it('dont even start - Either', () =>
@@ -195,7 +195,7 @@ describe('mcompose', () => {
             mcompose(decE, safedivE(3), liftE(add))(['didntstart', undefined])
 
         ).toEqual(['didntstart', undefined])
-    );
+    )
 
 
     it('dont get to savediv - Maybe', () =>
@@ -206,7 +206,7 @@ describe('mcompose', () => {
             ([1])
 
         ).toEqual([])
-    );
+    )
 
 
     it('dont get to savediv - Either', () =>
@@ -217,7 +217,7 @@ describe('mcompose', () => {
             ([undefined, 1])
 
         ).toEqual(['decfailed', undefined])
-    );
+    )
 
 
     it('(3 / 0) - Maybe', () =>
@@ -228,7 +228,7 @@ describe('mcompose', () => {
             ([6])
 
         ).toEqual([])
-    );
+    )
 
 
     it('(3 / 0) - Either', () =>
@@ -238,7 +238,7 @@ describe('mcompose', () => {
             mcompose(zeroE, safedivE(3))([undefined, 6])
 
         ).toEqual(['safedivfail', undefined])
-    );
+    )
 
 
     it('(3 / 2)^2 - Maybe', () =>
@@ -248,7 +248,7 @@ describe('mcompose', () => {
             mcompose(decM, safedivM(6), squareM)([2])
 
         ).toEqual([36])
-    );
+    )
 
 
         it('(3 / 2)^2 - Either', () =>
@@ -258,7 +258,7 @@ describe('mcompose', () => {
                 mcompose(decE, safedivE(6), squareE)([undefined, 2])
 
             ).toEqual([undefined, 36])
-        );
+        )
 
 
         it('use with flow - Maybe', () =>
@@ -267,17 +267,17 @@ describe('mcompose', () => {
 
                 flow(
                     [3, 0, 4, 2],
-                    map1(just),
-                    map1(
+                    map_a(just),
+                    map_a(
                         mcompose(
                             safedivM(6),
                             liftM(cond(lessThan(2), throws('')) as any),
                             liftM(square))),
                     filter(isSuccess as any),
-                    map1(getSuccess))
+                    map_a(getSuccess))
 
             ).toEqual([4, 9])
-        );
+        )
 
 
         it('use with flow - Either', () =>
@@ -286,17 +286,17 @@ describe('mcompose', () => {
 
                 flow(
                     [3, 0, 4, 2],
-                    map1(success),
-                    map1(
+                    map_a(success),
+                    map_a(
                         mcompose(
                             safedivE(6),
                             liftE(cond(lessThan(2), throws('e1')) as any),
                             squareE)),
                     filter(isSuccess as any),
-                    map1(getSuccess))
+                    map_a(getSuccess))
 
             ).toEqual([4, 9])
-        );
+        )
 
 
         it('use case', () =>
@@ -304,15 +304,15 @@ describe('mcompose', () => {
             expect(
                 flow(
                     [0, 3, 1],
-                    map1(success),
-                    map1(mcompose(safedivE(3), decE, squareE)),
+                    map_a(success),
+                    map_a(mcompose(safedivE(3), decE, squareE)),
                     separate(isSuccess),
-                    update1(0, map1(right) as Mapping),
-                    update1(1, map1(left) as Mapping))
+                    update_a(0, map_a(right) as Mapping),
+                    update_a(1, map_a(left) as Mapping))
 
             ).toEqual([
                 [4],
                 ['safedivfail', 'decfailed']
             ])
-        );
-});
+        )
+})

@@ -1,5 +1,5 @@
 import {val} from '../../src/composition'
-import {map1} from '../../src/associative'
+import {map_a} from '../../src/associative'
 import {pairWith} from '../../src/tuple'
 
 
@@ -18,7 +18,7 @@ describe('val', () => {
     it('use case', () =>
         expect(
 
-            map1(pairWith(val(5)))([3, 7])
+            map_a(pairWith(val(5)))([3, 7])
 
         ).toEqual([[3, 5], [7, 5]]))
 })

@@ -1,7 +1,7 @@
 import {Array2, Either, Mapping, Maybe, Pair, Predicate, Singleton, Path} from './type'
 import {is, on} from './comparator'
 import {first} from './list'
-import {map1, reduce1} from './associative'
+import {map_a, reduce_a} from './associative'
 import {flow} from './composition'
 import {filter, size} from './collection'
 
@@ -63,7 +63,7 @@ export function and(...preds: Array<Predicate<any>>) {
 
     return (argument): boolean => {
 
-        return reduce1((acc: boolean, p: Predicate<any>) => acc && p(argument), true)(preds)
+        return reduce_a((acc: boolean, p: Predicate<any>) => acc && p(argument), true)(preds)
     }
 }
 
@@ -72,7 +72,7 @@ export function or(...preds: Array<Predicate<any>>) {
 
     return (argument): boolean => {
 
-        return reduce1((acc: boolean, p: Predicate<any>) => acc || p(argument), false)(preds)
+        return reduce_a((acc: boolean, p: Predicate<any>) => acc || p(argument), false)(preds)
     }
 }
 
@@ -88,7 +88,7 @@ export function xor<A>(...preds: Array<Predicate<A>>) {
 
     return (argument: A): boolean =>
         flow(preds
-        , map1(applyTo(argument))
+        , map_a(applyTo(argument))
         , filter(is(true))
         , size
         , is(1))

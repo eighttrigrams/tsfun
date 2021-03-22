@@ -1,6 +1,6 @@
 import {liftE} from '../../src/tuple'
 import {cond, mcompose, throws, val} from '../../src/composition'
-import {map1} from '../../src/associative'
+import {map_a} from '../../src/associative'
 import {is} from '../../src/comparator'
 
 
@@ -47,7 +47,7 @@ describe('liftE', () => {
 
         expect(
 
-            map1(mcompose(liftE(cond(is(1.5), throws(3))), liftE(square)))
+            map_a(mcompose(liftE(cond(is(1.5), throws(3))), liftE(square)))
             ([[undefined, 1.5], [undefined, 0], [undefined, 2]])
 
         ).toEqual([[3, undefined],[undefined, 0],[undefined, 4]])

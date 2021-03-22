@@ -162,13 +162,13 @@ import {equal} from 'tsfun';
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
 * [keysAndValues](test/associative/keys_and_values.spec.ts)
-* [map1](test/associative/map1.spec.ts) 
-* [filter1](test/associative/filter1.spec.ts)
-* [forEach1](test/associative/for_each1.spec.ts)
-* [reduce1](test/associative/reduce1.spec.ts)
-* [get1](test/associative/get1.spec.ts)
-* [lookup1](test/associative/lookup1.spec.ts)
-* [update1](test/associative/update1.spec.ts)
+* [map_a](test/associative/map_a.spec.ts) 
+* [filter_a](test/associative/filter_a.spec.ts)
+* [forEach_a](test/associative/for_each_a.spec.ts)
+* [reduce1](test/associative/reduce_a.spec.ts)
+* [get_a](test/associative/get_a.spec.ts)
+* [lookup_a](test/associative/lookup_a.spec.ts)
+* [update_a](test/associative/update_a.spec.ts)
 
 ### Tuple
 

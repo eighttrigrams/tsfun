@@ -1,15 +1,15 @@
-import {forEach1} from '../../src/associative'
+import {forEach_a} from '../../src/associative'
 
 
 /**
- * tsfun | forEach1
+ * tsfun | forEach_a
  */
-describe('forEach1', () => {
+describe('forEach_a', () => {
 
-    it('forEach1', () => {
+    it('forEach_a', () => {
 
         let acc = 1
-        const items = forEach1((item: number) => {
+        const items = forEach_a((item: number) => {
             acc += item
         })([2, 4, 3])
         expect(items).toEqual([2, 4, 3])
@@ -17,20 +17,20 @@ describe('forEach1', () => {
     })
 
 
-    it('forEach1 with i', () => {
+    it('forEach_a with i', () => {
 
         let acc = 1
-        forEach1((item, i: number) => {
+        forEach_a((item, i: number) => {
             acc += i
         })([2, 4, 3])
         expect(acc).toEqual(4)
     })
 
 
-    it('forEach1 - object', () => {
+    it('forEach_a - object', () => {
 
         let acc = 0
-        const items = forEach1( (item: number) => {
+        const items = forEach_a( (item: number) => {
             acc += item
         })({a: 3, b: 7})
 
@@ -42,7 +42,7 @@ describe('forEach1', () => {
     it('object, with key', () => {
 
         let acc = ''
-        forEach1((item, k: string) => {
+        forEach_a((item, k: string) => {
             acc += k
         })({a: 3, b: 7})
 
@@ -53,7 +53,7 @@ describe('forEach1', () => {
     it('single param list', () => {
 
         let acc = ''
-        forEach1((item, k: string) => {
+        forEach_a((item, k: string) => {
             acc += k
         }, {a: 3, b: 7})
 
@@ -64,7 +64,7 @@ describe('forEach1', () => {
     it('single param list - different order', () => {
 
         let acc = ''
-        forEach1({a: 3, b: 7}, (item, k: string) => {
+        forEach_a({a: 3, b: 7}, (item, k: string) => {
             acc += k
         })
 

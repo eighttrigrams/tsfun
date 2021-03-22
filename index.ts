@@ -197,13 +197,13 @@ export {
 
 
 export {
-    update1,
-    map1,
-    filter1,
-    forEach1,
-    get1,
-    lookup1,
-    reduce1,
+    update_a as update1,
+    map_a as map1,
+    filter_a as filter1,
+    forEach_a as forEach1,
+    get_a as get1,
+    lookup_a as lookup1,
+    reduce_a as reduce1,
     keys,
     values,
     keysAndValues,

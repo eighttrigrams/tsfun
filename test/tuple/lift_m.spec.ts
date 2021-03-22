@@ -1,13 +1,13 @@
 import {liftM} from '../../src/tuple'
 import {cond, mcompose, throws, val} from '../../src/composition'
-import {map1} from '../../src/associative'
+import {map_a} from '../../src/associative'
 import {is} from '../../src/comparator'
 
 
 /**
- * tsfun | maybelift
- *
- * @author Daniel de Oliveira
+ * tsfun | liftM
+ * 
+ * maybelift
  */
 describe('liftM', () => {
 
@@ -47,7 +47,7 @@ describe('liftM', () => {
 
         expect(
 
-            map1(mcompose(liftM(cond(is(1.5), throws(3))), liftM(square)))
+            map_a(mcompose(liftM(cond(is(1.5), throws(3))), liftM(square)))
             ([[1.5], [0], [2]])
 
         ).toEqual([[],[0],[4]])

@@ -8,9 +8,9 @@ export type Filter1<T = any> = Mapping<Associative<T>>
 
 
 // Written with Thomas Kleinke
-export function get1<A>(i: number, defaultValue?: A|undefined): (as: Array<A>) => A|undefined;
-export function get1<T>(i: string, defaultValue?: T): (as: Map<T>) => T|undefined;
-export function get1<T>(i: number|string, alternative?: T|undefined) {
+export function get_a<A>(i: number, defaultValue?: A|undefined): (as: Array<A>) => A|undefined;
+export function get_a<T>(i: string, defaultValue?: T): (as: Map<T>) => T|undefined;
+export function get_a<T>(i: number|string, alternative?: T|undefined) {
 
     return (as: Array<T>|Map<T>): T|undefined => {
 
@@ -20,20 +20,20 @@ export function get1<T>(i: number|string, alternative?: T|undefined) {
 }
 
 
-export function update1<T>(key: string, v: T|Mapping<T>, m: Map<T>): Map<T>
-export function update1<T>(key: number, v: T|Mapping<T>, m: Array<T>): Array<T>
-export function update1<T,V>(key: string, v: V|Mapping<T,V>, m: Map<T>): Map<any>
-export function update1<T,V>(key: number, v: V|Mapping<T,V>, m: Array<T>): Array<any>
+export function update_a<T>(key: string, v: T|Mapping<T>, m: Map<T>): Map<T>
+export function update_a<T>(key: number, v: T|Mapping<T>, m: Array<T>): Array<T>
+export function update_a<T,V>(key: string, v: V|Mapping<T,V>, m: Map<T>): Map<any>
+export function update_a<T,V>(key: number, v: V|Mapping<T,V>, m: Array<T>): Array<any>
 
-export function update1<T>(key: string, f: Mapping<T>): (m: Map<T>) => Map<T>
-export function update1<T>(key: number, f: Mapping<T>): (m: Array<T>) => Array<T>
+export function update_a<T>(key: string, f: Mapping<T>): (m: Map<T>) => Map<T>
+export function update_a<T>(key: number, f: Mapping<T>): (m: Array<T>) => Array<T>
 
-export function update1<T>(key: string, f: any): (m: Map<any>) => Map<unknown>
-export function update1<T>(key: number, f: any): (m: Array<any>) => Array<unknown>
-export function update1<A,B>(key: string, f: Mapping<A,B>): (m: Map<any>) => Map<unknown>
-export function update1<A,B>(key: number, f: Mapping<A,B>): (m: Array<any>) => Array<unknown>
+export function update_a<T>(key: string, f: any): (m: Map<any>) => Map<unknown>
+export function update_a<T>(key: number, f: any): (m: Array<any>) => Array<unknown>
+export function update_a<A,B>(key: string, f: Mapping<A,B>): (m: Map<any>) => Map<unknown>
+export function update_a<A,B>(key: number, f: Mapping<A,B>): (m: Array<any>) => Array<unknown>
 
-export function update1<T>(key, arg, arg2?): any {
+export function update_a<T>(key, arg, arg2?): any {
 
     const $ = f => asc => {
 
@@ -48,9 +48,9 @@ export function update1<T>(key, arg, arg2?): any {
 }
 
 
-export function lookup1<T>(struct: Map<T>, alternative?: T): (targetId: string) => T|undefined;
-export function lookup1<A>(struct: Array<A>, alternative?: A): (targetId: number) => A|undefined;
-export function lookup1<A>(struct: Map<A>|Array<A>, alternative?: any) {
+export function lookup_a<T>(struct: Map<T>, alternative?: T): (targetId: string) => T|undefined;
+export function lookup_a<A>(struct: Array<A>, alternative?: A): (targetId: number) => A|undefined;
+export function lookup_a<A>(struct: Map<A>|Array<A>, alternative?: any) {
 
     return (targetId: string|number): A|undefined => {
 
@@ -105,14 +105,14 @@ const filterObj = <T>(predicate: Predicate<T>): (_: Map<T>) => Map<T> =>
             }, {})
 
 
-export function map1<A = any, B = A >(f: (_: A) => B): (as: Associative<A>) => Associative<B> // TODO maybe remove any casts in subsequent examples, it seems to not bring many benefits and maybe drawbacks, as the flatten example showed
-export function map1<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
-export function map1<A = any, B = A>(f: (_: A, key: string) => B): (as: Map<A>) => Map<B>
-export function map1<A = any, B = A>(f: (_: A, i: number) => B, as: Array<A>): Array<B>
-export function map1<A = any, B = A>(as: Array<A>, f: (_: A, i: number) => B): Array<B>
-export function map1<A = any, B = A>(f: (_: A, i: string) => B, as: {[prop: string]: A}): Map<B>
-export function map1<A = any, B = A>(as: {[prop: string]: A}, f: (_: A, i: string) => B): Map<B>
-export function map1<A, B>(first: any, ...rest: any[]): any {
+export function map_a<A = any, B = A >(f: (_: A) => B): (as: Associative<A>) => Associative<B> // TODO maybe remove any casts in subsequent examples, it seems to not bring many benefits and maybe drawbacks, as the flatten example showed
+export function map_a<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
+export function map_a<A = any, B = A>(f: (_: A, key: string) => B): (as: Map<A>) => Map<B>
+export function map_a<A = any, B = A>(f: (_: A, i: number) => B, as: Array<A>): Array<B>
+export function map_a<A = any, B = A>(as: Array<A>, f: (_: A, i: number) => B): Array<B>
+export function map_a<A = any, B = A>(f: (_: A, i: string) => B, as: {[prop: string]: A}): Map<B>
+export function map_a<A = any, B = A>(as: {[prop: string]: A}, f: (_: A, i: string) => B): Map<B>
+export function map_a<A, B>(first: any, ...rest: any[]): any {
 
     if (rest.length > 1) {
         throw 'illegal argument - in \'map\': first argument list can have at most two arguments'
@@ -159,19 +159,19 @@ export function map1<A, B>(first: any, ...rest: any[]): any {
 }
 
 
-export function forEach1<A>(as: Array<A>, f: (_: A, i: number) => void): Array<A>
-export function forEach1<A>(f: (_: A, i: number) => void, as: Array<A>): Array<A>
-export function forEach1<A>(as: Array<A>, f: (_: A) => void): Array<A>
-export function forEach1<A>(f: (_: A) => void, as: Array<A>): Array<A>
-export function forEach1<A>(as: Map<A>, f: (_: A, i: string) => void): Map<A>
-export function forEach1<A>(f: (_: A, i: string) => void, as: Map<A>): Map<A>
-export function forEach1<A>(as: Map<A>, f: (_: A) => void): Map<A>
-export function forEach1<A>(f: (_: A) => void, as: Map<A>): Map<A>
-export function forEach1<A>(f: (_: A, i?: number|string) => void): {
+export function forEach_a<A>(as: Array<A>, f: (_: A, i: number) => void): Array<A>
+export function forEach_a<A>(f: (_: A, i: number) => void, as: Array<A>): Array<A>
+export function forEach_a<A>(as: Array<A>, f: (_: A) => void): Array<A>
+export function forEach_a<A>(f: (_: A) => void, as: Array<A>): Array<A>
+export function forEach_a<A>(as: Map<A>, f: (_: A, i: string) => void): Map<A>
+export function forEach_a<A>(f: (_: A, i: string) => void, as: Map<A>): Map<A>
+export function forEach_a<A>(as: Map<A>, f: (_: A) => void): Map<A>
+export function forEach_a<A>(f: (_: A) => void, as: Map<A>): Map<A>
+export function forEach_a<A>(f: (_: A, i?: number|string) => void): {
     (as: Array<A>): Array<A>
     (os: Map<A>): Map<A>
 }
-export function forEach1<A>(a, b?) {
+export function forEach_a<A>(a, b?) {
 
     const $ = f => (as: any) => {
 
@@ -204,16 +204,16 @@ export function forEach1<A>(a, b?) {
 }
 
 
-export function reduce1<A, B>(f: (b: B, a: A, i: string) => B, init: B, as: Map<A>): B
-export function reduce1<A, B>(f: (b: B, a: A) => B, init: B, as: Map<A>): B
-export function reduce1<A, B>(f: (b: B, a: A, i: number) => B, init: B, as: Array<A>): B
-export function reduce1<A, B>(f: (b: B, a: A) => B, init: B, as: Array<A>): B
-export function reduce1<A, B>(as: Map<A>, f: (b: B, a: A, i: string) => B, init: B): B
-export function reduce1<A, B>(as: Map<A>, f: (b: B, a: A, i) => B, init: B): B
-export function reduce1<A, B>(as: Array<A>, f: (b: B, a: A, i: number) => B, init: B): B
-export function reduce1<A, B>(as: Array<A>, f: (b: B, a: A, i) => B, init: B): B
-export function reduce1<A, B>(f: (b: B, a: A, i?: number|string) => B, init: B): (as: Associative<A>) => B
-export function reduce1(...args): any {
+export function reduce_a<A, B>(f: (b: B, a: A, i: string) => B, init: B, as: Map<A>): B
+export function reduce_a<A, B>(f: (b: B, a: A) => B, init: B, as: Map<A>): B
+export function reduce_a<A, B>(f: (b: B, a: A, i: number) => B, init: B, as: Array<A>): B
+export function reduce_a<A, B>(f: (b: B, a: A) => B, init: B, as: Array<A>): B
+export function reduce_a<A, B>(as: Map<A>, f: (b: B, a: A, i: string) => B, init: B): B
+export function reduce_a<A, B>(as: Map<A>, f: (b: B, a: A, i) => B, init: B): B
+export function reduce_a<A, B>(as: Array<A>, f: (b: B, a: A, i: number) => B, init: B): B
+export function reduce_a<A, B>(as: Array<A>, f: (b: B, a: A, i) => B, init: B): B
+export function reduce_a<A, B>(f: (b: B, a: A, i?: number|string) => B, init: B): (as: Associative<A>) => B
+export function reduce_a(...args): any {
 
     const inner = (f, init) => (ts: any) => {
 
@@ -251,16 +251,16 @@ export function reduce1(...args): any {
 }
 
 
-export function filter1<A>(p: (a: A, i?: number|string) => boolean): (_: Associative<A>) => Associative<A>
-export function filter1<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
-export function filter1<A>(p: (a: A) => boolean, as: Array<A>): Array<A>
-export function filter1<A>(as: Array<A>, p: (a: A, i: number) => boolean): Array<A>
-export function filter1<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
-export function filter1<A>(p: (a: A, i: string) => boolean, as: Map<A>): Map<A>
-export function filter1<A>(p: (a: A) => boolean, as: Map<A>): Map<A>
-export function filter1<A>(as: Map<A>, p: (a: A, i: string) => boolean): Map<A>
-export function filter1<A>(as: Map<A>, p: (a: A) => boolean): Map<A>
-export function filter1<A>(...args): any {
+export function filter_a<A>(p: (a: A, i?: number|string) => boolean): (_: Associative<A>) => Associative<A>
+export function filter_a<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
+export function filter_a<A>(p: (a: A) => boolean, as: Array<A>): Array<A>
+export function filter_a<A>(as: Array<A>, p: (a: A, i: number) => boolean): Array<A>
+export function filter_a<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
+export function filter_a<A>(p: (a: A, i: string) => boolean, as: Map<A>): Map<A>
+export function filter_a<A>(p: (a: A) => boolean, as: Map<A>): Map<A>
+export function filter_a<A>(as: Map<A>, p: (a: A, i: string) => boolean): Map<A>
+export function filter_a<A>(as: Map<A>, p: (a: A) => boolean): Map<A>
+export function filter_a<A>(...args): any {
 
     const $ = p => as => {
 
@@ -280,5 +280,3 @@ export function filter1<A>(...args): any {
             ? $(args[0])(args[1])
             : $(args[1])(args[0])
 }
-
-
