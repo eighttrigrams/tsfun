@@ -153,9 +153,9 @@ import {equal} from 'tsfun';
 * [map1](test/associative/map1.spec.ts) 
 * [filter1](test/associative/filter1.spec.ts)
 * [forEach1](test/associative/for_each1.spec.ts)
+* [reduce1](test/associative/reduce1.spec.ts)
 * [get1](test/associative/get1.spec.ts)
 * [lookup1](test/associative/lookup1.spec.ts)
-* [reduce1](test/associative/reduce1.spec.ts)
 
 ### Struct
 
