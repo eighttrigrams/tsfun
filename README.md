@@ -183,6 +183,18 @@ Map-s (JavaScript-Objects).
 * [lookup_a](test/associative/lookup_a.spec.ts)
 * [update_a](test/associative/update_a.spec.ts)
 
+### Set
+
+JavaScript-Arrays, viewed as sets.
+
+* [set](test/set/set.spec.ts)
+* [intersection](test/set/intersection.spec.ts)
+* [intersect](test/set/intersect.spec.ts)
+* [subtract](test/set/subtract.spec.ts)
+* [union](test/set/union.spec.ts)
+* [unite](test/set/unite.spec.ts)
+* [duplicates](test/set/duplicates.spec.ts)
+
 ### Tuple
 
 JavaScript-Arrays, typed as TypeScript-Tuples.
@@ -202,18 +214,6 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 * [right](test/tuple/right.spec.ts)
 * [value](test/tuple/value.spec.ts)
 * [getSuccess](test/tuple/get_success.spec.ts)
-
-### Set
-
-JavaScript-Arrays, viewed as sets.
-
-* [set](test/set/set.spec.ts)
-* [intersection](test/set/intersection.spec.ts)
-* [intersect](test/set/intersect.spec.ts)
-* [subtract](test/set/subtract.spec.ts)
-* [union](test/set/union.spec.ts)
-* [unite](test/set/unite.spec.ts)
-* [duplicates](test/set/duplicates.spec.ts)
 
 ## Types reference
 
