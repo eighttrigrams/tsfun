@@ -283,6 +283,10 @@ import {zip as lZip} from 'tsfun/lazy'
 * [take](test/lazy/lazy/take.spec.ts)
 * [map](test/lazy/lazy/map.spec.ts)
 
+## Build & Test
+
+    $ npm run build && npm t
+
 ## Credits
 
 Ascii Art generated with http://www.patorjk.com/software/taag
