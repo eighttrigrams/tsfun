@@ -158,7 +158,9 @@ export {
     rest,
     last,
     takeNth,
-    sort
+    sort,
+    join,
+    split
 } from './src/array'
 
 

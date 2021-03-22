@@ -1,10 +1,10 @@
-import {join} from '../../src/string'
+import {join} from '../../src/array'
 
 
 /**
- * tsfun/string | join
+ * tsfun | join
  */
-describe('string/join', () => {
+describe('join', () => {
 
     it('join', () =>
         expect(

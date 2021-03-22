@@ -616,3 +616,16 @@ export function sort<A>(f: Array<number>|((a: A, b: A) => number)) {
         }
     }
 }
+
+
+export function split(pattern: any) {
+
+    return (content: string) => content.split(pattern)
+}
+
+
+export function join(pattern: any) {
+
+    return <A>(content: Array<A>): string => content.join(pattern)
+}
+

@@ -1,10 +1,10 @@
-import {split} from '../../src/string'
+import {split} from '../../src/array'
 
 
 /**
- * tsfun/string | split
+ * tsfun | split
  */
-describe('string/split', () => {
+describe('split', () => {
 
     it('split', () =>
         expect(

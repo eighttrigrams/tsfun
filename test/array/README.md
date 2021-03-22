@@ -42,8 +42,10 @@ import {on, equal, take, update, flow} from 'tsfun'
 * [rest](test/array/rest.spec.ts)
 * [last](test/array/last.spec.ts)
 * [reverse](test/array/reverse.spec.ts)
-* [sort](test/list/sort.spec.ts)
-* [takeNth](test/list/take_nth.spec.ts)
+* [takeNth](test/array/take_nth.spec.ts)
+* [sort](test/array/sort.spec.ts)
+* [join](test/array/join.spec.ts)
+* [split](test/array/split.spec.ts)
 
 ### Composition
 
@@ -265,8 +267,7 @@ import {take} from 'tsfun/string'
 * [takeRightWhile](test/string/take_right_while.spec.ts)
 * [dropWhile](test/string/drop_while.spec.ts)
 * [filter](test/string/filter.spec.ts)
-* [join](test/string/join.spec.ts)
-* [split](test/string/split.spec.ts)
+
 * [toUpperCase](test/string/to_upper_case.spec.ts)
 * [toLowerCase](test/string/to_lower_case.spec.ts)
 * [first](test/string/first.spec.ts)
