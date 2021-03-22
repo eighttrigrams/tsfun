@@ -5,6 +5,7 @@ import {Map} from '../../../src/type'
 import {flow, val} from '../../../src/composition'
 import { map } from '../../../src/array'
 import { LEFT, RIGHT } from '../../../src/tuple'
+import { identity } from '../../../src/core'
 
 
 /**
@@ -19,53 +20,69 @@ describe('update', () => {
     const times2 = x => x * 2
     const $times2 = (x: number) => x * 2
     const toString = (x: number) => x.toString()
+    const fromString = (x: string) => parseInt(x)
+
+    it('Interfaces, Tuples', () => {
+
+        interface A {
+            name: string,
+            age: number
+        }
+
+        const a: A = { name: 'Daniel', age: 40 }
+
+        const $1 /*: A*/ = update('age', $times2, a)
+        const $2 /*: A*/= update('name', 'asd', a)
+        const $3 /*: unknown*/ = update('name', 3, a)
+        const $4 /*: unknown*/ = update('age', toString, a)
+        const $5 /*: A*/ = update('age', $times2)(a)     // curried, no key checking available
+        const $6 /*: unknown*/= update('name', 'asd')(a) // curried, can't say definitely that it's of the same type
+        const $7 /*: unknown*/ = update('name', 3)(a)
+        const $8 /*: unknown*/ = update('age', toString)(a)
 
 
-    it('Arrays, Maps', () => {
+        type B = [string, number, string]
 
-        // We can replace (update, associate) items and the resulting
-        // type gets inferred so that we end up with the original type.
-        // if Mapping<T>, i.e. T => T  or a value of type T is passed.
+        const b: B = ['Daniel', 40, 'Hallo']
 
-        const m: Map<number> = { a: 4, b: 3}
-        
-        const $1 /*: Map<number>*/ = update('a', $times2 /*update*/, m)
-        expect($1).toEqual({ a: 8, b:3 })
-        const $2 /*: Map<number>*/ = update('a', 6 /*assoc*/, m)
-        expect($2).toEqual({ a: 6, b:3 })
+        const $9 /*: B*/ = update(1, $times2, b)
+        const $10 /*: unknown*/= update(1, toString, b)
+        const $12 /*: B*/ = update(0, 'O', b)
+        const $13 /*: B*/ = update(1, 39, b)
+        const $11 /*: unknown*/ = update(1, 'O', b)
+        const $14 /*: B*/ = update(1, $times2)(b)      
+        // const $15 /*: unknown*/= update('name', 'asd')(b)      // key not checked
+        // const $16 /*: unknown*/ = update('name', 3)(b)         // key not checked
+        // const $17 /*: unknown*/ = update('age', toString)(b)   // key not checked
 
-        const a: Array<number> = [4]
 
-        const $5 /*: Array<number>*/ = update(0, $times2 /*update*/, a)
-        expect($5).toEqual([8])
-        const $6 /*: Array<number>*/ = update(0, 2 /*assoc*/, a)
-        expect($6).toEqual([2])
+        type C = [string, number] // Pair
+
+        const c: C = ['Daniel', 40]
+
+        const $18 /*: [string,number]*/ = update(RIGHT, $times2, c)
+        const $19 /*: [string,string]*/= update(RIGHT, toString, c)
+        const $20 /*: [string,number]*/ = update(LEFT, identity, c)
+        const $21 /*: [number,string]*/= update(LEFT, fromString, c)
+
+        const $22 /*: [string,number]*/ = update(RIGHT, $times2)(c)
+        const $23 /*: [string,string]*/= update(RIGHT, toString)(c)
+        const $24 /*: C*/ = update(LEFT, identity)(c)
+        const $25 /*: [number,number]*/= update(LEFT, fromString)(c)
+
+        const $26 /*: [string,number]*/ = update(RIGHT, 41, c)
+        const $27 /*: [string,string]*/= update(RIGHT, 'a', c)
+        const $28 /*: [string,number]*/ = update(LEFT, 'a', c)
+        const $29 /*: [number,string]*/= update(LEFT, 0, c)
+
+        const $30 /*: [string,number]*/ = update(RIGHT, 41)(c)
+        const $31 /*: [string,string]*/= update(RIGHT, 'a')(c)
+        const $32 /*: [string,number]*/ = update(LEFT, 'a')(c)
+        const $33 /*: [number,number]*/= update(LEFT, 0)(c)
     })
 
 
-    it('curried', () => {
-
-        // There is a curried version
-        // for use in compositions
-        
-        const $1 /*: Map<number>*/ = update('a', $times2 /* update*/)({a: 4, b: 5})
-        expect($1).toEqual({ a: 8, b: 5 })
-        const $2 /*: Map<any>*/ = update('a', 5 /*assoc*/)({a: 4, b: 5})
-        expect($2).toEqual({ a: 5, b: 5 })
-
-        const $3 /*: Map<number>*/ = flow({a: 4, b: 5}, update('a', $times2))
-        expect($3).toEqual({a : 8, b: 5})
-        const $4 /*: Map<any>*/ = flow({a: 4, b: 5}, update('a', 5))
-        expect($4).toEqual({ a: 5, b: 5})
-
-        const a: Array<number> = [4]
-
-        const $9 /*: Array<number>*/ = update(0, times2)(a)
-        expect($9).toEqual([8])
-    })
-        
-
-    it('structs', () => {
+    it('Structs', () => {
 
         // Struct use case
         // 
@@ -110,17 +127,11 @@ describe('update', () => {
         const $10 /*: S3*/ = update([1, 'b'], $times2 /* update */, s3)
         expect($10[1].b).toBe(4) 
 
-
         // Pair special typing
         const $11 /*: [number,{b: number}]*/ = update([LEFT, 0], 3 /* assoc */, [[1],{b:5}])
         const $12 /*: [number[],number]*/ = update([RIGHT, 'b'], 3 /* assoc */, [[1],{b:5}])
         const $13 /*: [unknown,{b: number}]*/ = update([LEFT, 0], toString /* update */, [[1],{b:5}])
         const $14 /*: [number[],unknown]*/ = update([RIGHT, 'b'], toString /* update */, [[1],{b:5}])
-
-        const $15 /*: [number,{b: number}]*/ = update([LEFT], 3 /* assoc */, [[1],{b:5}])
-        const $16 /*: [number[],number]*/ = update([RIGHT], 3 /* assoc */, [[1],{b:5}])
-        const $17 /*: [unknown,{b: number}]*/ = update([LEFT], toString /* update */, [[1],{b:5}])
-        const $18 /*: [number[],unknown]*/ = update([RIGHT], toString /* update */, [[1],{b:5}])
     })
 
 
@@ -141,11 +152,39 @@ describe('update', () => {
         const $12 /*: [number[],number]*/ = update([RIGHT, 'b'], 3 /* assoc */)([[1],{b:5}])
         const $13 /*: [unknown,{b: number}]*/ = update([LEFT, 0], toString /* update */)([[1],{b:5}])
         const $14 /*: [number[],unknown]*/ = update([RIGHT, 'b'], toString /* update */)([[1],{b:5}])
+    })
 
-        const $15 /*: [number,{b: number}]*/ = update([LEFT], 3 /* assoc */)([[1],{b:5}])
-        const $16 /*: [number[],number]*/ = update([RIGHT], 3 /* assoc */)([[1],{b:5}])
-        const $17 /*: [unknown,{b: number}]*/ = update([LEFT], toString /* update */)([[1],{b:5}])
-        const $18 /*: [number[],unknown]*/ = update([RIGHT], toString /* update */)([[1],{b:5}])
+
+    it('Arrays, Maps', () => {
+
+        const m: Map<number> = { a: 4, b: 3}
+        
+        const $1 /*: Map<number>*/ = update('a', $times2 /*update*/, m)
+        expect($1).toEqual({ a: 8, b:3 })
+        const $2 /*: Map<number>*/ = update('a', 6 /*assoc*/, m)
+        expect($2).toEqual({ a: 6, b:3 })
+
+        const a: Array<number> = [4]
+
+        const $5 /*: Array<number>*/ = update(0, $times2 /*update*/, a)
+        expect($5).toEqual([8])
+        const $6 /*: Array<number>*/ = update(0, 2 /*assoc*/, a)
+        expect($6).toEqual([2])
+        
+        const $7 /*: Map<number>*/ = update('a', $times2 /* update*/)({a: 4, b: 5})
+        expect($7).toEqual({ a: 8, b: 5 })
+        const $8 /*: Map<any>*/ = update('a', 5 /*assoc*/)({a: 4, b: 5})
+        expect($8).toEqual({ a: 5, b: 5 })
+
+        const $9 /*: Map<number>*/ = flow({a: 4, b: 5}, update('a', $times2))
+        expect($9).toEqual({a : 8, b: 5})
+        const $10 /*: Map<any>*/ = flow({a: 4, b: 5}, update('a', 5))
+        expect($10).toEqual({ a: 5, b: 5})
+
+        const b: Array<number> = [4]
+
+        const $11 /*: Array<number>*/ = update(0, times2)(b)
+        expect($11).toEqual([8])
     })
 
 
@@ -154,23 +193,17 @@ describe('update', () => {
         // If the mapping is done by a type altering function, i.e. number => string,
         // then we treat the object as a Struct and the final type is unknown.
         // We then also pass the path as an 1-elemnt-array to indicate where we use Struct, not Map, as input.
-        const $1 /*: unknown*/ = update(['a'], (x: number) => x.toString(), { a: 7 })
-        const $2 /*: unknown*/ = update(['a'], (x: number) => x.toString())({ a: 7 })
+        const $1 /*: unknown*/ = update('a', (x: number) => x.toString(), { a: 7 })
+        const $2 /*: unknown*/ = update('a', (x: number) => x.toString())({ a: 7 })
         const $4 /*: unknown*/ = update(['a', 'b'], (x: number) => x.toString(), { a: { b: 7} })
         const $5 /*: unknown*/ = update(['a', 'b'], (x: number) => x.toString(), { a: { b: 7} })
         
-        const $8 /*: unknown*/ = update(['a'], '3', { a: 7 })
-        const $9 /*: unknown*/ = update(['a'], '3')({ a: 7 })
-
         const $10 /*: Map<any>*/ = update('a', '3', { a: 3 })
         const $11 /*: Map<any>*/ = update('a', '3')({ a: 3 }) 
 
         const $11a /*: Map<any>*/ = update('a', 3)({ a: 3 })        // isn't matched when curried
         const $13 /*: Map<number>*/ = update('a', val(3))({ a: 7 }) // use val to say its of the same type
         
-        const $14 /*: { a: number }*/ = update(['a'], val(3), { a: 7 }) // with Structs, also
-        const $15 /*: { a: number }*/ = update(['a'], val(3))({ a: 7 }) // use val to say its of the same type
-
         const $16 /*: Map<any>*/ = update('a', (x: number) => x.toString(), { a: 7 }) 
         const $17 /*: Map<any>*/ = update('a', (x: number) => x.toString())({ a: 7 }) 
 
@@ -190,10 +223,6 @@ describe('update', () => {
         const $1 /*: Array<Array<number>> */ = 
             flow([[1,2], [3,4]],
                 map(update(0, val(3))))
-
-        const $2 /*: Array<{ a: number }> */ = 
-            flow([{a: 5}, {a: 4}],
-                map(update(['a'], val(3))))
     })
 
 
@@ -238,7 +267,7 @@ describe('update', () => {
     it('set undefined', () => {
 
         type A = { a: number|undefined }
-        const $1 = update(['a'], undefined)({ a: 3 } as A)
+        const $1 = update('a', undefined)({ a: 3 } as A)
         expect($1).toEqual({ a: undefined })
 
         type B = { a: { b: number|undefined } }
