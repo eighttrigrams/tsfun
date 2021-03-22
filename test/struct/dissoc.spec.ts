@@ -1,12 +1,12 @@
-import {Map} from '../../../src/type'
-import { flow } from '../../../src/composition'
-import {dissoc, path} from '../../../src/struct'
+import {Map} from '../../src/type'
+import { flow } from '../../src/composition'
+import {dissoc, path} from '../../src/struct'
 
 /**
  * tsfun | dissoc
- * 
+ *
  * Dissoc from a Map, an Array, or a Struct.
- * 
+ *
  * Typewise dissocing from a record is not supported,
  * because it would change the record type.
  */
@@ -27,7 +27,7 @@ describe('dissoc', () => {
         expect($4).toEqual([2])
 
 
-        
+
         // To signal a Struct, use a path
         const a /*{ a: number, b: string }*/ = { a: 3, b: '4' }
 

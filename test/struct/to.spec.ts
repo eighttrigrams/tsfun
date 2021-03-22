@@ -1,4 +1,4 @@
-import {path, to} from '../../../src/struct'
+import {path, to} from '../../src/struct'
 
 
 /**
@@ -52,8 +52,8 @@ describe('to', () => {
 
     it('to - see path', () =>
         expect(
-    
+
             to('a.b')({'a.b': {c: 'd'}}))
-    
+
             .toEqual({c: 'd'}))
 })

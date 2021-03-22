@@ -1,18 +1,18 @@
-import {update} from '../../../src/struct'
-import {equal} from '../../../src/comparator'
-import {map_a} from '../../../src/associative'
-import {Map} from '../../../src/type'
-import {flow, val} from '../../../src/composition'
-import { map } from '../../../src/array'
-import { LEFT, RIGHT } from '../../../src/tuple'
-import { identity } from '../../../src/core'
+import {update} from '../../src/struct'
+import {equal} from '../../src/comparator'
+import {map_a} from '../../src/associative'
+import {Map} from '../../src/type'
+import {flow, val} from '../../src/composition'
+import { map } from '../../src/array'
+import { LEFT, RIGHT } from '../../src/tuple'
+import { identity } from '../../src/core'
 
 
 /**
  * tsfun | update
- * 
+ *
  * Allows for replacing items in data structures.
- * The resulting structure is always a newly created one, so that 
+ * The resulting structure is always a newly created one, so that
  * holders of the original reference will retain their original view on the data.
  */
 describe('update', () => {
@@ -50,7 +50,7 @@ describe('update', () => {
         const $12 /*: B*/ = update(0, 'O', b)
         const $13 /*: B*/ = update(1, 39, b)
         const $11 /*: unknown*/ = update(1, 'O', b)
-        const $14 /*: B*/ = update(1, $times2)(b)      
+        const $14 /*: B*/ = update(1, $times2)(b)
         // const $15 /*: unknown*/= update('name', 'asd')(b)      // key not checked
         // const $16 /*: unknown*/ = update('name', 3)(b)         // key not checked
         // const $17 /*: unknown*/ = update('age', toString)(b)   // key not checked
@@ -85,11 +85,11 @@ describe('update', () => {
     it('Structs', () => {
 
         // Struct use case
-        // 
+        //
         // The Struct use case allows for 'deep' updates
         // of data structures. It is active when the path
         // parameter is an array (of at least length 2)
-        // 
+        //
         // See also: path()
 
         type S = { a: { b: number } }
@@ -118,14 +118,14 @@ describe('update', () => {
         const $7 /*: S2*/ = update([0, 'a'], val(4) /* assoc */, s2)
         expect($7[0].a).toBe(4)
         const $8 /*: S2*/ = update([0, 'a'], $times2 /* update */, s2)
-        expect($8[0].a).toBe(4)        
+        expect($8[0].a).toBe(4)
 
         type S3 = [number[],{b: number}]
         const s3: S3 = [[1],{b:2}]
         const $9 /*: S3*/ = update([1, 'b'], val(4) /* assoc */, s3)
         expect($9[1].b).toBe(4)
         const $10 /*: S3*/ = update([1, 'b'], $times2 /* update */, s3)
-        expect($10[1].b).toBe(4) 
+        expect($10[1].b).toBe(4)
 
         // Pair special typing
         const $11 /*: [number,{b: number}]*/ = update([LEFT, 0], 3 /* assoc */, [[1],{b:5}])
@@ -158,7 +158,7 @@ describe('update', () => {
     it('Arrays, Maps', () => {
 
         const m: Map<number> = { a: 4, b: 3}
-        
+
         const $1 /*: Map<number>*/ = update('a', $times2 /*update*/, m)
         expect($1).toEqual({ a: 8, b:3 })
         const $2 /*: Map<number>*/ = update('a', 6 /*assoc*/, m)
@@ -170,7 +170,7 @@ describe('update', () => {
         expect($5).toEqual([8])
         const $6 /*: Array<number>*/ = update(0, 2 /*assoc*/, a)
         expect($6).toEqual([2])
-        
+
         const $7 /*: Map<number>*/ = update('a', $times2 /* update*/)({a: 4, b: 5})
         expect($7).toEqual({ a: 8, b: 5 })
         const $8 /*: Map<any>*/ = update('a', 5 /*assoc*/)({a: 4, b: 5})
@@ -197,15 +197,15 @@ describe('update', () => {
         const $2 /*: unknown*/ = update('a', (x: number) => x.toString())({ a: 7 })
         const $4 /*: unknown*/ = update(['a', 'b'], (x: number) => x.toString(), { a: { b: 7} })
         const $5 /*: unknown*/ = update(['a', 'b'], (x: number) => x.toString(), { a: { b: 7} })
-        
+
         const $10 /*: Map<any>*/ = update('a', '3', { a: 3 })
-        const $11 /*: Map<any>*/ = update('a', '3')({ a: 3 }) 
+        const $11 /*: Map<any>*/ = update('a', '3')({ a: 3 })
 
         const $11a /*: Map<any>*/ = update('a', 3)({ a: 3 })        // isn't matched when curried
         const $13 /*: Map<number>*/ = update('a', val(3))({ a: 7 }) // use val to say its of the same type
-        
-        const $16 /*: Map<any>*/ = update('a', (x: number) => x.toString(), { a: 7 }) 
-        const $17 /*: Map<any>*/ = update('a', (x: number) => x.toString())({ a: 7 }) 
+
+        const $16 /*: Map<any>*/ = update('a', (x: number) => x.toString(), { a: 7 })
+        const $17 /*: Map<any>*/ = update('a', (x: number) => x.toString())({ a: 7 })
 
         const $18 /*: Array<any>*/ = update(0, (x: number) => x.toString(), [1, 2]);
         const $19 /*: Array<any>*/ = update(0, (x: number) => x.toString())([1, 2]);
@@ -220,7 +220,7 @@ describe('update', () => {
         // If one has a homogeneous array, the resulting array can than be said to
         // be of the same type.
 
-        const $1 /*: Array<Array<number>> */ = 
+        const $1 /*: Array<Array<number>> */ =
             flow([[1,2], [3,4]],
                 map(update(0, val(3))))
     })
@@ -236,7 +236,7 @@ describe('update', () => {
         const $1 = update('a', times2, m)
         expect($1).toEqual({ a: 8, b:3 })
         expect($1).not.toBe(m)             // <-
-        
+
 
         const a: Array<number> = [4]
 
@@ -245,14 +245,14 @@ describe('update', () => {
         expect($2).not.toBe(a)             // <-
 
 
-        // While we end up with new box structures, 
+        // While we end up with new box structures,
         // that however does not mean that we deep copy,
         // like the following example shows
 
         const original = { a: 4 }
         const b: Array<any> = [{ a: 3 }, original]
         const $3 = update(0, { a: 5 }, b)
-        expect($3[1]).toBe(original)       // <- 
+        expect($3[1]).toBe(original)       // <-
     })
 
 
@@ -300,7 +300,7 @@ describe('update', () => {
     })
 
 
-    // The following cases demonstrate how always new instances are created 
+    // The following cases demonstrate how always new instances are created
     // along the given paths
 
     it('object-struct - update - second level - curried', () => {

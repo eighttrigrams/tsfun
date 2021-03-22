@@ -1,4 +1,4 @@
-import { clone, isArray, isObject } from "../../..";
+import { clone, isArray, isObject } from "../..";
 
 
 describe('clone', () => {

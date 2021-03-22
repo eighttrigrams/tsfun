@@ -1,4 +1,4 @@
-import { get, path } from "../../../src/struct";
+import { get, path } from "../../src/struct";
 
 
 /**
@@ -87,7 +87,7 @@ describe('get', () => {
 
 
     it('do not return undefined except when specified',() => {
-        
+
         expect(get(0)([0])).toBe(0)
         expect(get(0)([''])).toBe('')
         expect(get(0)([false])).toBe(false)
