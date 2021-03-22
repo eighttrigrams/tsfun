@@ -1,4 +1,4 @@
-import {equal, sameset, samesetBy} from '../../../src/comparator'
+import {equal, sameset} from '../../../src/comparator'
 
 /**
  * tsfun | equal

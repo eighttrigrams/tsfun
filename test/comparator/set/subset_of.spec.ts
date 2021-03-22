@@ -1,4 +1,5 @@
-import {on, subsetOf, subsetOfBy} from "../../../src/comparator";
+import {on, subsetOf, subsetOfBy} from '../../../src/comparator'
+
 
 /**
  * tsfun | subsetOf

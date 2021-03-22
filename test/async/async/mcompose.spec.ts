@@ -1,25 +1,23 @@
-import {flow as asyncFlow, map as asyncMap, mcompose as asyncMcompose} from '../../../src/async';
-import {Either, Mapping, Maybe} from '../../../src/type';
-import {success, left, right, LEFT, RIGHT} from '../../../src/tuple';
-import {map1, update1} from '../../../src/associative';
-import {isSuccess} from '../../../src/predicate';
-import {separate} from '../../../src/collection';
+import {flow as asyncFlow, map as asyncMap, mcompose as asyncMcompose} from '../../../src/async'
+import {Either, Mapping, Maybe} from '../../../src/type'
+import {success, left, right, LEFT, RIGHT} from '../../../src/tuple'
+import {map1, update1} from '../../../src/associative'
+import {isSuccess} from '../../../src/predicate'
+import {separate} from '../../../src/collection'
 
 
 /**
- * tsfun | async/mcompose
- *
- * @author Daniel de Oliveira
+ * tsfun/async | mcompose
  */
 describe('async/mcompose', () => {
 
-    const decM = async (x: number) => (x-1 === 0 ? [] : [x-1]) as Maybe<number>;
-    const syncDecM = (x: number) => (x-1 === 0 ? [] : [x-1]) as Maybe<number>;
-    const decE = async (x: number) => (x-1 === 0 ? ['decfailed', undefined] : [undefined, x-1]) as Either<string, number>;
-    const safedivE = (x: number) => async (y: number) => (y === 0 ? ['safedivfail', undefined] : [undefined, x / y]) as Either<string, number>;
-    const squareM = async (x: number): Promise<Maybe<number>> => [x * x];
-    const squareE = async (x: number): Promise<Either<any, number>> => [undefined, x * x];
-    const syncSquareM = (x: number): Maybe<number> => [x * x];
+    const decM = async (x: number) => (x-1 === 0 ? [] : [x-1]) as Maybe<number>
+    const syncDecM = (x: number) => (x-1 === 0 ? [] : [x-1]) as Maybe<number>
+    const decE = async (x: number) => (x-1 === 0 ? ['decfailed', undefined] : [undefined, x-1]) as Either<string, number>
+    const safedivE = (x: number) => async (y: number) => (y === 0 ? ['safedivfail', undefined] : [undefined, x / y]) as Either<string, number>
+    const squareM = async (x: number): Promise<Maybe<number>> => [x * x]
+    const squareE = async (x: number): Promise<Either<any, number>> => [undefined, x * x]
+    const syncSquareM = (x: number): Maybe<number> => [x * x]
 
     it('success - Maybe', async () =>
 
@@ -29,7 +27,7 @@ describe('async/mcompose', () => {
             ([3])
 
         ).toEqual([4])
-    );
+    )
 
 
     it('success - Maybe - with synchronous square function', async () =>
@@ -40,7 +38,7 @@ describe('async/mcompose', () => {
             ([3])
 
         ).toEqual([4])
-    );
+    )
 
 
     it('success - Maybe - with synchronous decM function', async () =>
@@ -51,7 +49,7 @@ describe('async/mcompose', () => {
             ([3])
 
         ).toEqual([4])
-    );
+    )
 
 
     it('success - Either', async () =>
@@ -62,7 +60,7 @@ describe('async/mcompose', () => {
             ([undefined, 3])
 
         ).toEqual([undefined, 4])
-    );
+    )
 
 
     it('failure - Maybe', async () =>
@@ -73,7 +71,7 @@ describe('async/mcompose', () => {
             ([1])
 
         ).toEqual([])
-    );
+    )
 
 
     it('failure - Either', async () =>
@@ -84,7 +82,7 @@ describe('async/mcompose', () => {
             ([undefined, 1])
 
         ).toEqual(['decfailed', undefined])
-    );
+    )
 
 
     it('use with asyncFlow', async () =>
@@ -96,7 +94,7 @@ describe('async/mcompose', () => {
                 asyncMcompose(decM, squareM))
 
         ).toEqual([])
-    );
+    )
 
 
     it('use case', async () =>
@@ -114,5 +112,5 @@ describe('async/mcompose', () => {
             [4],
             ['safedivfail', 'decfailed']
         ])
-    );
-});
+    )
+})

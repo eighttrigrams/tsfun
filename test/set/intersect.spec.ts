@@ -1,5 +1,5 @@
-import {intersect} from "../../src/set";
-import {jsonEqual} from '../../src/comparator';
+import {intersect} from '../../src/set'
+import {jsonEqual} from '../../src/comparator'
 
 /**
  * tsfun | intersect
@@ -22,7 +22,7 @@ describe('intersect', () => {
             .toEqual('2'))
 
 
-    it('multiple arguments in single parameter list',() => {
+    it('multiple arguments in single parameter list', () => {
 
         expect(
 
@@ -38,7 +38,7 @@ describe('intersect', () => {
     })
 
 
-    it('multiple parameter lists',() => {
+    it('multiple parameter lists', () => {
 
         expect(
 

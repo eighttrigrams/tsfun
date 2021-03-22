@@ -1,11 +1,11 @@
-import {is, isnt, tripleEqual} from '../../../src/comparator';
+import {tripleEqual} from '../../../src/comparator'
 
 
 /**
+ * tsfun | tripleEqual
+ * 
  * tripleEqual unsurprisingly uses comparison via `===`.
  * and can for example be used with filter
- *
- * @author Daniel de Oliveira
  */
 describe('tripleEqual', () => {
 
@@ -15,7 +15,7 @@ describe('tripleEqual', () => {
 
             tripleEqual('a')('a'))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('tripleEqual not equal',() =>
@@ -23,5 +23,5 @@ describe('tripleEqual', () => {
 
             tripleEqual('a')('b'))
 
-            .toEqual(false));
-});
+            .toEqual(false))
+})

@@ -1,9 +1,7 @@
-import {longerThan} from '../../../src/comparator';
+import {longerThan} from '../../../src/comparator'
 
 /**
  * tsfun | longerThan
- *
- * @author Daniel de Oliveira
  */
 describe('longerThan', () => {
 
@@ -12,7 +10,7 @@ describe('longerThan', () => {
 
            longerThan('abc')('dddef')
 
-       ).toEqual(true));
+       ).toEqual(true))
 
 
     it('array', () =>
@@ -20,7 +18,7 @@ describe('longerThan', () => {
 
             longerThan([1, 6])([7, 9, 10])
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('string', () =>
@@ -28,5 +26,5 @@ describe('longerThan', () => {
 
             longerThan([1, 6])('abc')
 
-        ).toEqual(true));
-});
+        ).toEqual(true))
+})

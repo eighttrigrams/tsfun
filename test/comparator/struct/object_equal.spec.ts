@@ -1,4 +1,4 @@
-import {arrayEqualBy, objectEqual, objectEqualBy, samesetBy} from '../../../src/comparator';
+import {arrayEqualBy, objectEqual, objectEqualBy, samesetBy} from '../../../src/comparator'
 
 /**
  * tsfun | objectEqual
@@ -88,7 +88,7 @@ describe('objectEqual', () => {
             objectEqual({a: new Date(2018, 11, 24)})
             ({a: new Date(2018, 11, 25)})
 
-        ).toEqual(false));
+        ).toEqual(false))
 
     // If the value of a certain key on both Objects is of type `Array`, the default
     // comparison is done with `arrayEqual`, which in turn uses `objectEqual`, such that
@@ -106,7 +106,7 @@ describe('objectEqual', () => {
 
             objectEqual({a: [2, 1]})({a: [1, 2]})
 
-        ).toEqual(false));
+        ).toEqual(false))
 
 
     it('objectEqual - mutual default nesting', () =>
@@ -114,7 +114,7 @@ describe('objectEqual', () => {
 
             objectEqual({a: [2, {a: 3, b: 4}]})({a: [2, {a: 3, b: 4}]})
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('objectEqual - mutual default nesting, order matters in arrays, but not for keys', () =>
@@ -124,7 +124,7 @@ describe('objectEqual', () => {
             ({a: [2, {b: 4, a: [1, {f: [1, 2], e: 7}]}], c: 5})
             ({c: 5, a: [2, {a: [1, {e: 7, f: [1, 2]}], b: 4}]})
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('mutual default nesting, order matters in arrays!', () =>
@@ -132,7 +132,7 @@ describe('objectEqual', () => {
 
             objectEqual({a: [{b: 4, a: 3}, 2], c: 5})({c: 5, a: [2, {a: 3, b: 4}]})
 
-        ).toEqual(false));
+        ).toEqual(false))
 
 
     // with comparator
@@ -149,7 +149,7 @@ describe('objectEqual', () => {
             objectEqual(samesetBy(undefined as any),
             {a: [{b: 4, a: [2, 1]}, 2], c: 5})({c: 5, a: [2, {a: [1, 2], b: 4}]})
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('comparator - with arrayEquivalent', () =>
@@ -159,7 +159,7 @@ describe('objectEqual', () => {
             {a: [2, 1]})
             ({a: [1, 2]})
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('comparator - with arrayEquivalent nested', () =>
@@ -169,7 +169,7 @@ describe('objectEqual', () => {
             {a: [2, {a: 3, b: [3, 1]}]})
             ({a: [{a: 3, b: [1, 3]}, 2]})
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('comparator - object equivalent - order on keys and arrays does not matter', () =>
@@ -179,7 +179,7 @@ describe('objectEqual', () => {
             {a: [2, 1], b: 0})
             ({b: 0, a: [1, 2]})
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('comparator - object equivalent - use with arrayEquivalentBy', () =>
@@ -189,5 +189,5 @@ describe('objectEqual', () => {
             {a: [{e: 5, c: 4}, 2], b: 0})
             ({b: 0, a: [{c: 4, e: 5}, 2]})
 
-        ).toEqual(true));
-});
+        ).toEqual(true))
+})

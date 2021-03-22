@@ -1,9 +1,7 @@
-import {pair} from '../../src/tuple';
+import {pair} from '../../src/tuple'
 
 /**
  * tsfun | pair
- *
- * @author Daniel de Oliveira
  */
 describe('pair', () => {
 
@@ -13,5 +11,5 @@ describe('pair', () => {
             pair(3, 'a')
 
         ).toEqual([3, 'a'])
-    );
-});
+    )
+})

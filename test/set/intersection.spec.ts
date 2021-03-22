@@ -1,8 +1,8 @@
-import {intersection} from "../../src/set";
-import {jsonEqual} from '../../src/comparator';
+import {intersection} from '../../src/set'
+import {jsonEqual} from '../../src/comparator'
 
 /**
- * @author Daniel de Oliveira
+ * tsfun | intersection
  */
 describe('intersection', () => {
 
@@ -11,7 +11,7 @@ describe('intersection', () => {
 
             intersection([[1,2,2,3],[2,3,4,5]]))
 
-            .toEqual([2,3]));
+            .toEqual([2,3]))
 
 
     it('intersection',() =>
@@ -19,7 +19,7 @@ describe('intersection', () => {
 
             intersection([[1,2],[2,3],[2,4]]))
 
-            .toEqual([2]));
+            .toEqual([2]))
 
 
     it('no intersection',() =>
@@ -27,7 +27,7 @@ describe('intersection', () => {
 
             intersection([[1,2],[3,4],[5,6]]))
 
-            .toEqual([]));
+            .toEqual([]))
 
 
     it('no intersection where only partial intersection',() =>
@@ -35,7 +35,7 @@ describe('intersection', () => {
 
             intersection([[1,2],[2,3],[3,4]]))
 
-            .toEqual([]));
+            .toEqual([]))
 
 
     it('empty array',() =>
@@ -43,7 +43,7 @@ describe('intersection', () => {
 
             intersection([]))
 
-            .toEqual([]));
+            .toEqual([]))
 
 
     it('string',() =>
@@ -51,7 +51,7 @@ describe('intersection', () => {
 
             intersection(['def', 'deg']))
 
-            .toEqual('de'));
+            .toEqual('de'))
 
 
     it('intersectionBy', () =>
@@ -59,5 +59,5 @@ describe('intersection', () => {
 
             intersection<any>(jsonEqual, [[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]]))
 
-            .toEqual([{c: 'c'}]));
-});
+            .toEqual([{c: 'c'}]))
+})

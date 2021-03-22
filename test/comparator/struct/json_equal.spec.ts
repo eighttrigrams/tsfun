@@ -1,4 +1,4 @@
-import {jsonEqual} from '../../../src/comparator';
+import {jsonEqual} from '../../../src/comparator'
 
 
 /**

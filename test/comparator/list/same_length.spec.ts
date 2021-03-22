@@ -1,9 +1,8 @@
-import {sameLength} from '../../../src/comparator';
+import {sameLength} from '../../../src/comparator'
+
 
 /**
  * tsfun | sameLength
- *
- * @author Daniel de Oliveira
  */
 describe('sameLength', () => {
 
@@ -12,7 +11,7 @@ describe('sameLength', () => {
 
             sameLength('abc')('ddd')
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('array', () =>
@@ -20,7 +19,7 @@ describe('sameLength', () => {
 
             sameLength([1, 6, 9])([7, 9, 10])
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('string', () =>
@@ -28,5 +27,5 @@ describe('sameLength', () => {
 
             sameLength([1, 6])('ab')
 
-        ).toEqual(true));
-});
+        ).toEqual(true))
+})

@@ -1,4 +1,4 @@
-import {arrayEqual, arrayEqualBy, jsonEqual} from "../../../src/comparator";
+import {arrayEqual, jsonEqual} from '../../../src/comparator'
 
 /**
  * tsfun | arrayEqual
@@ -108,5 +108,5 @@ describe('arrayEqual', () => {
 
             arrayEqual(jsonEqual, [1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
 
-        ).toEqual(false));
+        ).toEqual(false))
 })

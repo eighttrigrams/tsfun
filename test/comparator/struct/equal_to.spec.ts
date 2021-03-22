@@ -1,4 +1,4 @@
-import {equalTo} from "../../../src/comparator";
+import {equalTo} from '../../../src/comparator'
 
 /**
  * tsfun | equalTo
@@ -6,4 +6,4 @@ import {equalTo} from "../../../src/comparator";
 describe('equalTo', () => {
 
     // see equal, except for equalTo must be called with 2 param lists every time
-});
+})

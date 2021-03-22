@@ -1,9 +1,8 @@
-import {shorterThan} from '../../../src/comparator';
+import {shorterThan} from '../../../src/comparator'
+
 
 /**
  * tsfun | shorterThan
- *
- * @author Daniel de Oliveira
  */
 describe('shorterThan', () => {
 
@@ -12,7 +11,7 @@ describe('shorterThan', () => {
 
             shorterThan('abceea')('dae')
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('array', () =>
@@ -20,7 +19,7 @@ describe('shorterThan', () => {
 
             shorterThan([1, 6, 7])([7, 9])
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('list', () =>
@@ -28,5 +27,5 @@ describe('shorterThan', () => {
 
             shorterThan([1, 6, 7])('ab')
 
-        ).toEqual(true));
-});
+        ).toEqual(true))
+})

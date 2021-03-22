@@ -1,4 +1,4 @@
-import {startsWith} from '../../../src/comparator';
+import {startsWith} from '../../../src/comparator'
 
 
 /**
@@ -18,7 +18,7 @@ describe('startsWith', () => {
         expect(startsWith('def', 'def')).toBe(true)
         expect(startsWith('def')('dae')).toBe(false)
         expect(startsWith('def', 'dae')).toBe(false)
-    });
+    })
 
 
     it('array', () => {
@@ -27,7 +27,7 @@ describe('startsWith', () => {
         expect(startsWith([1, 2, 3], [1, 2, 3, 4])).toBe(true)
         expect(startsWith(['a', 'b', 'c'])(['a', 'b', 'c'])).toBe(true)
         expect(startsWith(['a', 'b', 'c'], ['a', 'b', 'c'])).toBe(true)
-    });
+    })
 
 
     it('array - false - too short', () =>
@@ -37,7 +37,7 @@ describe('startsWith', () => {
             startsWith([1, 2, 3], [1, 2])
 
         ).toBe(false)
-    );
+    )
 
 
     it('array - wrong', () =>
@@ -47,7 +47,7 @@ describe('startsWith', () => {
             startsWith([1, 2], [3])
 
         ).toBe(false)
-    );
+    )
 
 
     it('array - zero length', () =>
@@ -57,26 +57,26 @@ describe('startsWith', () => {
             startsWith([], [])
 
         ).toBe(true)
-    );
+    )
 
 
     it('typing', () => {
 
-        const result1: boolean = startsWith('def')('def');
-        const result2: boolean = startsWith('def', 'def');
-        // WRONG - const result: boolean = startsWith('def'); - second parameter list expected, to give a boolean
+        const result1: boolean = startsWith('def')('def')
+        const result2: boolean = startsWith('def', 'def')
+        // WRONG - const result: boolean = startsWith('def') - second parameter list expected, to give a boolean
 
-        const result3: boolean = startsWith([1, 2])([1, 2]);
-        const result4: boolean = startsWith([1, 2], [1, 2]);
-        // WRONG - const result: boolean = startsWith([1, 2]); - second parameter list expected, to give a boolean
+        const result3: boolean = startsWith([1, 2])([1, 2])
+        const result4: boolean = startsWith([1, 2], [1, 2])
+        // WRONG - const result: boolean = startsWith([1, 2]) - second parameter list expected, to give a boolean
 
         // incompatible types
-        // WRONG const result: boolean = startsWith([1, 2], 'abc');
-        // WRONG const result: boolean = startsWith([1, 2])('abc');
-        // WRONG const result: boolean = startsWith('abc', [1, 2]);
-        // WRONG const result: boolean = startsWith('abc')([1, 2]);
+        // WRONG const result: boolean = startsWith([1, 2], 'abc')
+        // WRONG const result: boolean = startsWith([1, 2])('abc')
+        // WRONG const result: boolean = startsWith('abc', [1, 2])
+        // WRONG const result: boolean = startsWith('abc')([1, 2])
 
         // incompatible array types
-        // WRONG const result: boolean = startsWith([1, 2], ['a', 'b']);
-    });
-});
+        // WRONG const result: boolean = startsWith([1, 2], ['a', 'b'])
+    })
+})

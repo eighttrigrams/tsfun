@@ -1,4 +1,4 @@
-import {supersetOf} from "../../../src/comparator";
+import {supersetOf} from '../../../src/comparator'
 
 
 /**
@@ -11,14 +11,14 @@ describe('supersetOf', () => {
 
             supersetOf([])([])
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('one entry', () => {
 
         expect(supersetOf([3])([3])).toEqual(true)
         expect(supersetOf([3], [3])).toEqual(true)
-    });
+    })
 
 
     it('string - one entry', () =>
@@ -26,7 +26,7 @@ describe('supersetOf', () => {
 
             supersetOf('3')('3')
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('superset', () =>
@@ -34,7 +34,7 @@ describe('supersetOf', () => {
 
             supersetOf([3])([3, 1, 1])
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('superset', () =>
@@ -42,7 +42,7 @@ describe('supersetOf', () => {
 
             supersetOf('3')('311')
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('subset false', () =>
@@ -50,7 +50,7 @@ describe('supersetOf', () => {
 
             supersetOf([3, 1])([1])
 
-        ).toEqual(false));
+        ).toEqual(false))
 
 
     it('subset false - string', () =>
@@ -58,7 +58,7 @@ describe('supersetOf', () => {
 
             supersetOf('31')('1')
 
-        ).toEqual(false));
+        ).toEqual(false))
 
 
     it('superset is empty', () =>
@@ -66,7 +66,7 @@ describe('supersetOf', () => {
 
             supersetOf([3, 1])([])
 
-        ).toEqual(false));
+        ).toEqual(false))
 
 
     it('different order', () =>
@@ -74,7 +74,7 @@ describe('supersetOf', () => {
 
             supersetOf([3, 1, 3, 1])([1, 3, 1, 3])
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('length does not matter', () =>
@@ -82,5 +82,5 @@ describe('supersetOf', () => {
 
             supersetOf([3, 1, 3])([1, 3])
 
-        ).toEqual(true));
-});
+        ).toEqual(true))
+})

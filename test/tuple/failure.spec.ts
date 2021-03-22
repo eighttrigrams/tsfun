@@ -1,7 +1,10 @@
-import {failure} from '../../src/tuple';
-import {Either} from '../../src/type';
+import {failure} from '../../src/tuple'
+import {Either} from '../../src/type'
 
 
+/**
+ * tsfun | failure
+ */
 describe('failure', () => {
 
     it('success', () =>
@@ -9,13 +12,13 @@ describe('failure', () => {
 
             failure(4)
 
-        ).toEqual([4, undefined]));
+        ).toEqual([4, undefined]))
 
 
     it('failure', () => {
 
-        const e1: Either<number>  = failure(4);
+        const e1: Either<number>  = failure(4)
         e1[0] = 5
         // wrong - e1[0] = '3'
-    });
-});
+    })
+})

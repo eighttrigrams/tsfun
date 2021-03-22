@@ -1,8 +1,8 @@
-import {is} from '../../../src/comparator';
+import {is} from '../../../src/comparator'
 
 
 /**
- * @author Daniel de Oliveira
+ * tsfun | is
  */
 describe('is', () => {
 
@@ -12,5 +12,5 @@ describe('is', () => {
 
             is('a')('a'))
 
-            .toEqual(true));
-});
+            .toEqual(true))
+})

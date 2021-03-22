@@ -1,4 +1,4 @@
-import {jsonEqual, sameset} from "../../../src/comparator";
+import {jsonEqual, sameset} from '../../../src/comparator'
 
 
 /**
@@ -171,4 +171,4 @@ describe('sameset', () => {
             sameset(jsonEqual, [{c: 7}, {b: 4}], [{c: 7}])
 
         ).toEqual(false));
-});
+})

@@ -1,5 +1,5 @@
-import {union} from "../../src/set";
-import {jsonEqual} from '../../src/comparator';
+import {union} from '../../src/set'
+import {jsonEqual} from '../../src/comparator'
 
 /**
  * tsfun | union

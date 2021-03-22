@@ -1,8 +1,8 @@
-import {isnt} from '../../../src/comparator';
+import {isnt} from '../../../src/comparator'
 
 
 /**
- * @author Daniel de Oliveira
+ * tsfun | isnt
  */
 describe('isnt', () => {
 
@@ -11,5 +11,5 @@ describe('isnt', () => {
 
             isnt('a')('a'))
 
-            .toEqual(false));
-});
+            .toEqual(false))
+})

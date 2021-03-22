@@ -1,4 +1,4 @@
-import {includes, includesBy, on} from "../../../src/comparator";
+import {includes, on} from '../../../src/comparator'
 
 
 /**
@@ -52,4 +52,4 @@ describe('includes', () => {
             includes<any>(on('a'), {a: 1})([{a: 1}, {a: 2}])
 
         ).toEqual(true))
-});
+})

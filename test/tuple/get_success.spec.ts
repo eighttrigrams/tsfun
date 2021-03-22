@@ -1,5 +1,9 @@
-import {getSuccess} from '../../src/tuple';
+import {getSuccess} from '../../src/tuple'
 
+
+/**
+ * tsfun | getSuccess
+ */
 describe('getSuccess', () => {
 
     it('Maybe', () =>
@@ -8,7 +12,7 @@ describe('getSuccess', () => {
             getSuccess([3])
 
         ).toEqual(3)
-    );
+    )
 
 
     it('Either', () =>
@@ -17,7 +21,7 @@ describe('getSuccess', () => {
             getSuccess([undefined, 3])
 
         ).toEqual(3)
-    );
+    )
 
 
     it('Maybe - illegal argument', () =>
@@ -26,7 +30,7 @@ describe('getSuccess', () => {
             () => getSuccess([])
 
         ).toThrow()
-    );
+    )
 
 
     it('Either illegal argument', () =>
@@ -35,5 +39,5 @@ describe('getSuccess', () => {
             () => getSuccess([3, undefined])
 
         ).toThrow()
-    );
-});
+    )
+})

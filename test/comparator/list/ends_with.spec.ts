@@ -1,4 +1,4 @@
-import {endsWith} from '../../../src/comparator';
+import {endsWith} from '../../../src/comparator'
 
 
 /**
@@ -10,7 +10,7 @@ describe('endsWith', () => {
 
         expect(endsWith('efg')('defg')).toBe(true)
         expect(endsWith('efg', 'defg')).toBe(true)
-    });
+    })
 
 
     it('string - false', () =>
@@ -20,7 +20,7 @@ describe('endsWith', () => {
             endsWith('def')('dae')
 
         ).toBe(false)
-    );
+    )
 
 
     it('array - true', () =>
@@ -30,7 +30,7 @@ describe('endsWith', () => {
             endsWith([2, 3, 4])([1, 2, 3, 4])
 
         ).toBe(true)
-    );
+    )
 
 
     it('array - same elements, same size', () =>
@@ -40,7 +40,7 @@ describe('endsWith', () => {
             endsWith(['a', 'b', 'c'])(['a', 'b', 'c'])
 
         ).toBe(true)
-    );
+    )
 
 
     it('array - false - too short', () =>
@@ -50,7 +50,7 @@ describe('endsWith', () => {
             endsWith([2, 3, 4])([1, 2])
 
         ).toBe(false)
-    );
+    )
 
 
     it('array - wrong', () =>
@@ -60,7 +60,7 @@ describe('endsWith', () => {
             endsWith([1, 2])([3])
 
         ).toBe(false)
-    );
+    )
 
 
     it('array - zero length', () =>
@@ -70,5 +70,5 @@ describe('endsWith', () => {
             endsWith([])([])
 
         ).toBe(true)
-    );
-});
+    )
+})
