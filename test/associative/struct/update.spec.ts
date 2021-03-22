@@ -84,7 +84,7 @@ describe('update', () => {
         const a: A = [[2]]
         const $3 /*: A*/ = update([0, 0], val(4) /* assoc */, a)
         expect($3[0][0]).toBe(4)
-        const $4 /*: A*/ = update([0, 0], times2 /* update */, a)
+        const $4 /*: A*/ = update([0, 0], $times2 /* update */, a)
         expect($4[0][0]).toBe(4)
 
         type S1 = { a: Array<number> }
@@ -94,14 +94,19 @@ describe('update', () => {
         const $6 /*: S1*/ = update(['a', 0], times2 /* update */, s1)
         expect($6.a[0]).toBe(4)
 
-        const $times2 = (x: number) => x * 2
-
         type S2 = Array<{ a: number }>
         const s2: S2 = [{a: 2}]
         const $7 /*: S2*/ = update([0, 'a'], val(4) /* assoc */, s2)
         expect($7[0].a).toBe(4)
         const $8 /*: S2*/ = update([0, 'a'], $times2 /* update */, s2)
         expect($8[0].a).toBe(4)        
+
+        type S3 = [number[],{b: number}]
+        const s3: S3 = [[1],{b:2}]
+        const $9 /*: S3*/ = update([1, 'a'], val(4) /* assoc */, s3)
+        expect($9[1].b).toBe(4)
+        const $10 /*: S3*/ = update([1, 'a'], $times2 /* update */, s3)
+        expect($10[1].b).toBe(4) 
     })
 
 
