@@ -202,13 +202,6 @@ import {equal} from 'tsfun';
 * [unite](test/set/unite.spec.ts)
 * [duplicates](test/set/duplicates.spec.ts)
 
-### string
-
-* [join](test/string/join.spec.ts)
-* [split](test/string/split.spec.ts)
-* [toUpperCase](test/string/to_upper_case.spec.ts)
-* [toLowerCase](test/string/to_lower_case.spec.ts)
-
 ### List
 
 ###### Array & string
@@ -282,6 +275,10 @@ import {take} from 'tsfun/string';
 * [takeRightWhile](test/string/string/take_right_while.spec.ts)
 * [dropWhile](test/string/string/drop_while.spec.ts)
 * [filter](test/string/string/filter.spec.ts)
+* [join](test/string/string/join.spec.ts)
+* [split](test/string/string/split.spec.ts)
+* [toUpperCase](test/string/string/to_upper_case.spec.ts)
+* [toLowerCase](test/string/string/to_lower_case.spec.ts)
 
 ### Async
 

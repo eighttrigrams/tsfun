@@ -9,5 +9,9 @@ export {
     drop,
     prepend,
     append,
-    filter
+    filter,
+    toUpperCase,
+    toLowerCase,
+    join,
+    split
 } from './src/string'

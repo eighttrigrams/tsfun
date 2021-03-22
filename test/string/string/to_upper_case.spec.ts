@@ -1,4 +1,5 @@
-import {toUpperCase} from '../../src/string'
+import {toUpperCase} from '../../../src/string'
+
 
 /**
  * tsfun/string | toUpperCase

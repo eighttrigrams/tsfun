@@ -103,9 +103,9 @@ describe('update', () => {
 
         type S3 = [number[],{b: number}]
         const s3: S3 = [[1],{b:2}]
-        const $9 /*: S3*/ = update([1, 'a'], val(4) /* assoc */, s3)
+        const $9 /*: S3*/ = update([1, 'b'], val(4) /* assoc */, s3)
         expect($9[1].b).toBe(4)
-        const $10 /*: S3*/ = update([1, 'a'], $times2 /* update */, s3)
+        const $10 /*: S3*/ = update([1, 'b'], $times2 /* update */, s3)
         expect($10[1].b).toBe(4) 
     })
 

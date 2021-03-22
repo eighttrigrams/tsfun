@@ -110,14 +110,6 @@ export {
 
 
 export {
-    toUpperCase,
-    toLowerCase,
-    join,
-    split
-} from './src/string'
-
-
-export {
     left,
     right,
     value,
