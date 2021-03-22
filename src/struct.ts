@@ -69,8 +69,13 @@ export function lookup(ds, alternative?) {
 }
 
 
+
 export function update<T>(k: Array1<string|number>, f: ((val: T) => T), as: Array<T>): Array<T>
 export function update<U, T>(k: Array1<string|number>, f: Mapping<U>, o: T): T
+export function update<A,B,C,D,E>(k: [0, string|number], f: (a: A)=>B, o: [D, C]): [E, C]
+export function update<A,B,C,D,E>(k: [1, string|number], f: (a: A)=>B, o: [C, D]): [C, E]
+export function update<A,B,C>(k: [0, string|number], f: A, o: [B, C]): [A, C]
+export function update<A,B,C>(k: [1, string|number], f: A, o: [B, C]): [B, A]
 export function update(k: Array1<string|number>, v: any, o: any): unknown
 export function update<U, T, V>(k: Array1<string|number>, f: ((val: U) => V)|V, o: T): unknown
 export function update<U, T>(k: Array1<string|number>, f: U, o: T): T
@@ -92,6 +97,10 @@ export function update<T, V, K extends keyof T>(key: keyof T, v: any): <T1>(o: T
 export function update<T, K extends keyof T>(key: keyof T, f: Mapping<T[K]>): <T1>(o: T1) => T1
 export function update<T, V, K extends keyof T>(key: keyof T, f: Mapping<T[K]|any>): <T1>(o: T1) => V
 export function update<U>(k: string, update_fun: ((val: U) => U)|U): <T,V extends T>(s: T) => V
+export function update<A,B>(k: [0, string|number], f: (a: A)=>B): <C,D,E>(o: [D, C]) => [E, C]
+export function update<A,B>(k: [1, string|number], f: (a: A)=>B): <C,D,E>(o: [C, D]) => [C, E]
+export function update<A>(k: [0, string|number], f: A): <B,C>(o: [B, C]) => [A, C]
+export function update<A>(k: [1, string|number], f: A): <B,C>(o: [B, C]) => [B, A]
 export function update<U>(k: Array1<string|number>, f: Mapping<U>): <T,V extends T>(s: T) => V
 export function update<U>(k: Array1<string|number>, f: U): (s: any) => unknown
 export function update<U,V>(k: Array1<string|number>, f: ((val: U) => V)|V): (s: any) => unknown

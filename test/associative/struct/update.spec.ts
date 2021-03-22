@@ -17,6 +17,7 @@ describe('update', () => {
 
     const times2 = x => x * 2
     const $times2 = (x: number) => x * 2
+    const toString = (x: number) => x.toString()
 
 
     it('Arrays, Maps', () => {
@@ -48,7 +49,7 @@ describe('update', () => {
         
         const $1 /*: Map<number>*/ = update('a', $times2 /* update*/)({a: 4, b: 5})
         expect($1).toEqual({ a: 8, b: 5 })
-        const $2 /*: Map<number>*/ = update('a', 5 /*assoc*/)({a: 4, b: 5})
+        const $2 /*: Map<any>*/ = update('a', 5 /*assoc*/)({a: 4, b: 5})
         expect($2).toEqual({ a: 5, b: 5 })
 
         const $3 /*: Map<number>*/ = flow({a: 4, b: 5}, update('a', $times2))
@@ -107,6 +108,13 @@ describe('update', () => {
         expect($9[1].b).toBe(4)
         const $10 /*: S3*/ = update([1, 'b'], $times2 /* update */, s3)
         expect($10[1].b).toBe(4) 
+
+
+        // Pair special typing
+        const $11 /*: [number,{b: number}]*/ = update([0, 0], 3 /* assoc */, [[1],{b:5}])
+        const $12 /*: [number[],number]*/ = update([1, 'b'], 3 /* assoc */, [[1],{b:5}])
+        const $13 /*: [unknown,{b: number}]*/ = update([0, 0], toString /* update */, [[1],{b:5}])
+        const $14 /*: [number[],unknown]*/ = update([1, 'b'], toString /* update */, [[1],{b:5}])
     })
 
 
@@ -120,6 +128,12 @@ describe('update', () => {
         expect($2.a.b).toBe(6)
         const $3 /*: S*/ = flow(s, update(['a', 'b'], times2))
         expect($3.a.b).toBe(6)
+
+        // Pair special typing
+        const $11 /*: [number,{b: number}]*/ = update([0, 0], 3 /* assoc */)([[1],{b:5}])
+        const $12 /*: [number[],number]*/ = update([1, 'b'], 3 /* assoc */)([[1],{b:5}])
+        const $13 /*: [unknown,{b: number}]*/ = update([0, 0], toString /* update */)([[1],{b:5}])
+        const $14 /*: [number[],unknown]*/ = update([1, 'b'], toString /* update */)([[1],{b:5}])
     })
 
 
