@@ -146,7 +146,6 @@ import {equal} from 'tsfun';
 
 ###### Array & Object
 
-* [update1](test/associative/update1.spec.ts)
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
 * [keysAndValues](test/associative/keys_and_values.spec.ts)
@@ -156,6 +155,7 @@ import {equal} from 'tsfun';
 * [reduce1](test/associative/reduce1.spec.ts)
 * [get1](test/associative/get1.spec.ts)
 * [lookup1](test/associative/lookup1.spec.ts)
+* [update1](test/associative/update1.spec.ts)
 
 ### Struct
 
