@@ -5,14 +5,17 @@ import { flow } from '../../src/composition'
 /**
  * tsfun | update1
  * 
- * The regular update function infers from { a: VALUE } a result of type { a: T },
- * wheras this version will say it is Map<T>.
+ * As opposed to *update*, which views its data as
+ * Struct, i.e. as Tuple, Interface or nested structure,
+ * *update1* works with homogeneous Map-s and Array-s.
  */
 describe('update1', () => {
 
+    const toString = (x: number) => x.toString()
     const inc = (x: number) => x + 1
 
-    it('Map', () => {
+
+    it('Map and Array', () => {
     
         const $1 /*: Map<number>*/ = update1('b', inc /*update*/, {a: 4, b: 7})
         expect($1).toEqual({a: 4, b: 8})
@@ -25,6 +28,48 @@ describe('update1', () => {
 
         const $4 /*: Map<number>*/ = update1('b', 8 /*assoc*/)({a: 4, b: 7})
         expect($4).toEqual({a: 4, b: 8})
+
+
+        const $5 /*: Array<number>*/ = update1(1, inc /*update*/, [4, 7])
+        expect($5).toEqual([4, 8])
+
+        const $6 /*: Array<number>*/ = update1(1, 8 /*assoc*/, [4, 7])
+        expect($6).toEqual([4, 8])
+
+        const $7 /*: Array<number>*/ = update1(1, inc /*update*/)([4, 7])
+        expect($7).toEqual([4, 8])
+
+        const $8 /*: Array<number>*/ = update1(1, 8 /*assoc*/)([4, 7])
+        expect($8).toEqual([4, 8])
+    })
+
+
+    it('Types changed', () => {
+    
+        const $1 /*: Map<any>*/ = update1('b', toString /*update*/, {a: 4, b: 7})
+        expect($1).toEqual({a: 4, b: '7'})
+
+        const $2 /*: Map<any>*/ = update1('b', 'a' /*assoc*/, {a: 4, b: 7})
+        expect($2).toEqual({a: 4, b: 'a'})
+
+        const $3 /*: Map<unknown>*/ = update1('b', toString /*update*/)({a: 4, b: 7})
+        expect($3).toEqual({a: 4, b: '7'})
+
+        const $4 /*: Map<unknown>*/ = update1('b', 'a' /*assoc*/)({a: 4, b: 7})
+        expect($4).toEqual({a: 4, b: 'a'})
+
+
+        const $5 /*: Array<any>*/ = update1(1, toString /*update*/, [4, 7])
+        expect($5).toEqual([4, '7'])
+
+        const $6 /*: Array<any>*/ = update1(1, 'a' /*assoc*/, [4, 7])
+        expect($6).toEqual([4, 'a'])
+
+        const $7 /*: Array<unknown>*/ = update1(1, toString /*update*/)([4, 7])
+        expect($7).toEqual([4, '7'])
+
+        const $8 /*: Array<number>*/ = update1(1, 'a' /*assoc*/)([4, 7])
+        expect($8).toEqual([4, 'a'])
     })
 
 

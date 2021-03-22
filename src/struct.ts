@@ -134,10 +134,8 @@ export function update(path, update_fun, o?) {
 
         } else if (isArray(path)) {
 
-            if (path.length < 1) throw 'illegal argument - path must be at least be of length 2'
-            return path.length === 1
-                ? $update0(path, update_fun, struct)
-                : $update1(clone(path), struct, update_fun, true)
+            if (path.length < 2) throw 'illegal argument - path must be at least be of length 2'
+            return $update1(clone(path), struct, update_fun, true)
 
         } else {
 

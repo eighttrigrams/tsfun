@@ -20,9 +20,19 @@ export function get1<T>(i: number|string, alternative?: T|undefined) {
 }
 
 
-export function update1<T>(key: string, v: T|((...args) => T), m: Map<T>): Map<T>
-export function update1<T>(key: string, v: T|((...args) => T)): (struct: Map<T>) => Map<T>
-export function update1<T>(key: number, v: T|((...args) => T)): (struct: Array<T>) => Array<T>
+export function update1<T>(key: string, v: T|Mapping<T>, m: Map<T>): Map<T>
+export function update1<T>(key: number, v: T|Mapping<T>, m: Array<T>): Array<T>
+export function update1<T,V>(key: string, v: V|Mapping<T,V>, m: Map<T>): Map<any>
+export function update1<T,V>(key: number, v: V|Mapping<T,V>, m: Array<T>): Array<any>
+
+export function update1<T>(key: string, f: Mapping<T>): (m: Map<T>) => Map<T>
+export function update1<T>(key: number, f: Mapping<T>): (m: Array<T>) => Array<T>
+
+export function update1<T>(key: string, f: any): (m: Map<any>) => Map<unknown>
+export function update1<T>(key: number, f: any): (m: Array<any>) => Array<unknown>
+export function update1<A,B>(key: string, f: Mapping<A,B>): (m: Map<any>) => Map<unknown>
+export function update1<A,B>(key: number, f: Mapping<A,B>): (m: Array<any>) => Array<unknown>
+
 export function update1<T>(key, arg, arg2?): any {
 
     const $ = f => asc => {
