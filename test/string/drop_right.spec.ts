@@ -1,4 +1,4 @@
-import {dropRight} from '../../../src/string';
+import {dropRight} from '../../src/string'
 
 
 /**

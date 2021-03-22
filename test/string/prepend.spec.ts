@@ -1,10 +1,10 @@
-import {prepend} from '../../../src/string'
+import {prepend} from '../../src/string'
 
 
 /**
  * tsfun/string | prepend
  */
-describe('stringPrepend', () => {
+describe('string/prepend', () => {
 
     it('string', () =>
 

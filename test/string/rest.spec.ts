@@ -1,4 +1,4 @@
-import { rest } from '../../../string'
+import { rest } from '../../string'
 
 
 /**

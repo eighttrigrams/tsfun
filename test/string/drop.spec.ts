@@ -1,4 +1,4 @@
-import {drop} from '../../../src/string';
+import {drop} from '../../src/string'
 
 /**
  * tsfun/string | drop

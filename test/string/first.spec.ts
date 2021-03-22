@@ -1,4 +1,4 @@
-import { first } from '../../../string'
+import { first } from '../../string'
 
 
 /**

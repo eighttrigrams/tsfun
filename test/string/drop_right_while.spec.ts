@@ -1,5 +1,5 @@
-import {greaterThan, lessThan} from '../../../src/comparator';
-import {dropRightWhile} from '../../../src/string';
+import {greaterThan, lessThan} from '../../src/comparator';
+import {dropRightWhile} from '../../src/string';
 
 
 /**

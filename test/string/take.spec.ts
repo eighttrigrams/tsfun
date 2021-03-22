@@ -1,4 +1,4 @@
-import {take} from '../../../src/string'
+import {take} from '../../src/string'
 
 
 /**

@@ -1,4 +1,4 @@
-import {toUpperCase} from '../../../src/string'
+import {toUpperCase} from '../../src/string'
 
 
 /**

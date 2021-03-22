@@ -1,6 +1,6 @@
-import {Collection} from '../../../src/type'
-import {greaterThan} from '../../../src/comparator'
-import {filter} from '../../../src/string'
+import {Collection} from '../../src/type'
+import {greaterThan} from '../../src/comparator'
+import {filter} from '../../src/string'
 
 
 /**

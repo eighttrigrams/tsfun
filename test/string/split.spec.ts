@@ -1,4 +1,4 @@
-import {split} from '../../../src/string'
+import {split} from '../../src/string'
 
 
 /**

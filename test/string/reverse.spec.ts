@@ -1,4 +1,4 @@
-import { reverse } from '../../../string'
+import { reverse } from '../../string'
 
 
 /**

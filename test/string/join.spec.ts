@@ -1,4 +1,4 @@
-import {join} from '../../../src/string'
+import {join} from '../../src/string'
 
 
 /**

@@ -1,10 +1,10 @@
-import {append} from '../../../src/string'
+import {append} from '../../src/string'
 
 
 /**
- * tsfun/append | append
+ * tsfun/string | append
  */
-describe('stringAppend', () => {
+describe('string/append', () => {
 
     it('string', () =>
 

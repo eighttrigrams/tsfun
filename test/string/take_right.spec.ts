@@ -1,4 +1,4 @@
-import {takeRight} from '../../../src/string';
+import {takeRight} from '../../src/string'
 
 
 /**
