@@ -1,4 +1,4 @@
-import {indices} from '../../src/collection'
+import {indices} from '../../src/associative'
 import {greaterThan, is} from '../../src/comparator'
 
 
@@ -28,12 +28,4 @@ describe('indices', () => {
             indices(greaterThan(2))({a: 3, b: 1, c: 7})
 
         ).toEqual(['a', 'c']))
-
-
-    it('string', () =>
-        expect(
-
-            indices(is('d'))('dded')
-
-        ).toEqual([0, 1, 3]))
 })

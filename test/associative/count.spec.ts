@@ -1,5 +1,5 @@
+import { count } from '../../src/associative'
 import {greaterThan} from '../../src/comparator'
-import {count} from '../../src/collection'
 
 
 /**
@@ -18,12 +18,5 @@ describe('count', () => {
 
         expect(count(greaterThan(2))({a: 3, b: 2, c: 7})).toEqual(2)
         expect(count(greaterThan(2), {a: 3, b: 2, c: 7})).toEqual(2)
-    })
-
-
-    it('string', () => {
-
-        expect(count(greaterThan('d'))('abede')).toEqual(2)
-        expect(count(greaterThan('d'), 'abede')).toEqual(2)
     })
 })

@@ -1,7 +1,7 @@
 import {Array2, Mapping, Path, Map, Array1} from './type'
 import {isArray, isArray2, isAssociative, isFunction, isNumber, isObject, isString} from './predicate'
 import {reverseUncurry2} from './core'
-import {copy} from './collection'
+import {copy} from './associative'
 import {rest} from './array'
 
 
@@ -52,7 +52,7 @@ export function get(path_, alternative?: any) {
     else if (!isString(path_)&&!isNumber(path_)) throw 'illegal argument - path must be string, number, or array of at least 2'
 
     return ds => {
-        const result = (isString(path_) || isNumber(path_)) 
+        const result = (isString(path_) || isNumber(path_))
             ? ds[path_]
             : $getElForPathIn(ds as Object, path_ as any)
         return result !== undefined ? result : alternative
@@ -127,7 +127,7 @@ export function update<U>(k: string, f: ((val: U) => U)|U): <T,V extends T>(s: T
 export function update(path, update_fun, o?) {
 
     const $ = struct => {
-        
+
         if (isString(path) || isNumber(path)) {
 
             return $update0(path, update_fun, struct)
@@ -177,7 +177,7 @@ export function dissoc(path, o?) {
     const $ = struct => {
 
         if (isString(path)||isNumber(path)) {
-            
+
             if (isArray(struct)) return $dissoc(path, struct)
 
             const c = copy(struct)
@@ -193,16 +193,16 @@ export function dissoc(path, o?) {
 
             throw 'illegal argument - path expected to be one of array, number, string'
         }
-        
+
     }
 
     return o === undefined
         ? $
         : $(o)
-} 
+}
 
 
-function $update0(key, f: any, o?) { 
+function $update0(key, f: any, o?) {
 
     const $ = o => {
 
@@ -256,9 +256,9 @@ export function $getElForPathIn(object: any, path: Array2<string|number>): any {
     if (!isArray2(path)) throw 'illegal argument in getElForPathIn - expected path as array with min length 2'
 
     return (function $(object, path) {
-    
+
         const next = object[path[0]]
-    
+
         return path.length === 1
             ? next
             : isAssociative(next)
@@ -291,7 +291,7 @@ export function path(path: string): Array2<string|number> {
 
         if (!isArray2(segments)) throw 'illegal argument - path expected to yield 2 segments'
         return segments
-    } 
+    }
     throw 'illegal arguments - must be string'
 }
 

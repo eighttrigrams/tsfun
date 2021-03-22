@@ -1,6 +1,6 @@
 import {Predicate, Map, Associative, Mapping} from './type'
-import {isArray, isAssociative, isFunction, isObject} from './predicate'
-import {copy, filter as filterCollection} from './collection'
+import {isArray, isAssociative, isDefined, isFunction, isObject} from './predicate'
+import {filter as filterCollection} from './collection'
 import {range, zip} from './array'
 
 
@@ -279,4 +279,86 @@ export function filter_a<A>(...args): any {
         : isFunction(args[0])
             ? $(args[0])(args[1])
             : $(args[1])(args[0])
+}
+
+
+export function copy<T>(struct: Array<T>): Array<T>
+export function copy<T>(struct: Map<T>): Map<T>
+export function copy<T>(struct: any) {
+
+    return isArray(struct)
+            ? [...struct]
+            : {...struct as any}
+}
+
+
+export function count<A>(p: Predicate<A>): {
+    (as: Array<A>): number
+    (os: Map<A>): number
+}
+export function count<A>(p: Predicate<A>, as: Array<A>|Map<A>|string): number
+export function count<A>(p: Predicate<A>, as?: any): any {
+    const inner = (as: Array<A>|Map<A>|string): number => size(filterCollection(p)(as as any) as any)
+    return as === undefined
+        ? inner
+        : inner(as)
+}
+
+
+export function all<T>(p: Predicate<T>) {
+
+    return (as: Array<T>|Map<T>): boolean => {
+
+        return (values(as as any) as any).every(p)
+    }
+}
+
+
+export function any<T>(p: Predicate<T>) {
+
+    return (as: Array<T>|Map<T>): boolean => {
+
+        return (values(as as any) as any).some(p)
+    }
+}
+
+
+export function prune<T>(o: Map<T>): Map<T>
+export function prune<A>(as: Array<A>): Array<A>
+export function prune<T>(ts: Array<T>|Map<T>) {
+
+    return filterCollection(isDefined)(ts as any)
+}
+
+
+export function indices<A>(p: Predicate<A>): {
+    (as: Array<A>): number[]
+    (as: Map<A>): string[]
+}
+export function indices<A>(p: Predicate<A>, as: Array<A>): number[]
+export function indices<A>(p: Predicate<A>, as: Map<A>): number[]
+export function indices<A>(p: Predicate<A>, as?: any): any {
+
+    const inner = (as: any): any => {
+
+        return reduce_a(
+            (indices: number[], a: A, i: number|string) => p(a)
+                ? indices.concat([i] as any)
+                : indices
+            , [])(as)
+    }
+
+    return as === undefined
+        ? inner
+        : inner(as)
+}
+
+
+export function size<A>(as: Array<A>): number
+export function size<T>(o: Map<T>): number
+export function size<T>(o: Array<T>|Map<T>): number {
+
+    return (isArray(o)
+        ? o.length
+        : keys(o as any).length) as number
 }

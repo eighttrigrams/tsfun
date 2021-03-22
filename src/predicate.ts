@@ -3,7 +3,8 @@ import {is, on} from './comparator'
 import {first} from './array'
 import {map_a, reduce_a} from './associative'
 import {flow} from './composition'
-import {filter, size} from './collection'
+import {filter} from './collection'
+import {size} from './associative'
 
 
 export function isDefined($) {

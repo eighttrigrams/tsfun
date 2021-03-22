@@ -3,7 +3,8 @@ import {and, empty, isArray, isArray2, isFunction, isNot, isNumber, isObject, is
 import {subtractBy} from './set'
 import {to} from './struct'
 import {conds, flow, otherwise, throws} from './composition'
-import {remove, size} from './collection'
+import {remove} from './collection'
+import {size} from './associative'
 import {reverse} from './array'
 import {map, zip} from './array'
 import { identity } from './core'
@@ -237,7 +238,7 @@ export const objectEqualBy =
 
 export const equalBy =
     (arrayComparator: Comparator) =>
-        o1 => (o2): boolean => 
+        o1 => (o2): boolean =>
             compare(arrayComparator,
                 objectEqualBy(arrayComparator))(o1)(o2)
 
@@ -253,7 +254,7 @@ export function on<T1,T2>(path: Path, value: T1): Predicate<T2>
 export function on(path, compare?) {
 
     return flow(
-        path, 
+        path,
         conds(
             or(and(isString, isNot(empty)), isNumber, isArray2),
             to,
@@ -261,8 +262,8 @@ export function on(path, compare?) {
             identity,
             otherwise,
             throws('illegal argument - path must be one of string, number, array of length 2 or function')),
-        mapping => 
-            l => 
+        mapping =>
+            l =>
                 compare === undefined
                     ? r => mapping(l) === mapping(r)
                     : isFunction(compare)
@@ -277,7 +278,7 @@ export function onBy<T1,T2>(compare: (l: T1) => (r: T2) => boolean): (path: Path
 export function onBy(compare) {
 
     return (path, cmp) => {
-        
+
         if (cmp !== undefined && !isFunction(cmp)) return on(path, compare(cmp))
         else return (on as any)(path, compare)
     }

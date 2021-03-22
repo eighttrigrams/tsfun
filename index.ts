@@ -186,6 +186,17 @@ export {
 
 
 export {
+    update_a,
+    map_a as map1,
+    filter_a,
+    forEach_a,
+    get_a as get1,
+    lookup_a,
+    reduce_a,
+    keys,
+    values,
+    keysAndValues,
+    Filter1,
     count,
     size,
     prune,
@@ -193,20 +204,4 @@ export {
     copy,
     any,
     all
-} from './src/collection'
-
-
-export {
-    update_a as update1,
-    map_a as map1,
-    filter_a as filter1,
-    forEach_a as forEach1,
-    get_a as get1,
-    lookup_a as lookup1,
-    reduce_a as reduce1,
-    keys,
-    values,
-    keysAndValues,
-    Filter1
 } from './src/associative'
-	

@@ -1,4 +1,4 @@
-![alt](README_splash.png)                                            
+![alt](README_splash.png)
 
 **tsfun - functional combinator library for TypeScript**
 
@@ -55,8 +55,8 @@ import {equal} from 'tsfun';
 
 ###### Struct & Associative
 
-* [has](test/predicate/has.spec.ts) 
-* [hasnt](test/predicate/hasnt.spec.ts) 
+* [has](test/predicate/has.spec.ts)
+* [hasnt](test/predicate/hasnt.spec.ts)
 
 ### Comparator
 
@@ -119,11 +119,11 @@ import {equal} from 'tsfun';
 
 * [range](test/array/range.spec.ts)
 * [dense](test/array/dense.spec.ts)
-* [filter](test/array/filter.spec.ts) 
-* [remove](test/array/remove.spec.ts) 
-* [separate](test/array/separate.spec.ts) 
+* [filter](test/array/filter.spec.ts)
+* [remove](test/array/remove.spec.ts)
+* [separate](test/array/separate.spec.ts)
 * [distribute](test/array/distribute.spec.ts)
-* [map](test/array/map.spec.ts) 
+* [map](test/array/map.spec.ts)
 * [forEach](test/array/for_each.spec.ts)
 * [reduce](test/array/reduce.spec.ts)
 * [reduce0](test/array/reduce0.spec.ts)
@@ -138,8 +138,8 @@ import {equal} from 'tsfun';
 * [takeRightWhile](test/array/take_right_while.spec.ts)
 * [dropWhile](test/array/drop_while.spec.ts)
 * [takeUntil](test/array/take_until.spec.ts)
-* [append](test/array/append.spec.ts) 
-* [prepend](test/array/prepend.spec.ts) 
+* [append](test/array/append.spec.ts)
+* [prepend](test/array/prepend.spec.ts)
 * [zip](test/array/zip.spec.ts)
 * [first](test/array/first.spec.ts)
 * [rest](test/array/rest.spec.ts)
@@ -166,7 +166,14 @@ import {equal} from 'tsfun';
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
 * [keysAndValues](test/associative/keys_and_values.spec.ts)
-* [map_a](test/associative/map_a.spec.ts) 
+* [copy](test/associative/copy.spec.ts)
+* [count](test/associative/count.spec.ts)
+* [prune](test/associative/prune.spec.ts)
+* [size](test/associative/size.spec.ts)
+* [indices](test/associative/indices.spec.ts)
+* [all](test/associative/all.spec.ts)
+* [any](test/associative/any.spec.ts)
+* [map_a](test/associative/map_a.spec.ts)
 * [filter_a](test/associative/filter_a.spec.ts)
 * [forEach_a](test/associative/for_each_a.spec.ts)
 * [reduce1](test/associative/reduce_a.spec.ts)
@@ -206,18 +213,6 @@ import {equal} from 'tsfun';
 * [unite](test/set/unite.spec.ts)
 * [duplicates](test/set/duplicates.spec.ts)
 
-### Collection
-
-###### Array & Map & string
-
-* [copy](test/collection/copy.spec.ts)
-* [count](test/collection/count.spec.ts)
-* [prune](test/collection/prune.spec.ts)
-* [size](test/collection/size.spec.ts)
-* [indices](test/collection/indices.spec.ts)
-* [all](test/collection/all.spec.ts)
-* [any](test/collection/any.spec.ts)
-
 ### List
 
 ###### Array & string
@@ -225,7 +220,7 @@ import {equal} from 'tsfun';
 * [sort](test/list/sort.spec.ts)
 * [takeNth](test/list/take_nth.spec.ts)
 
-## Types reference 
+## Types reference
 
 * [Singleton](test/type/singleton.spec.ts)
 * [Pair](test/type/pair.spec.ts)
@@ -264,8 +259,8 @@ import {equal} from 'tsfun';
 import {take} from 'tsfun/string';
 ```
 
-* [append](test/string/string/append.spec.ts) 
-* [prepend](test/string/string/prepend.spec.ts) 
+* [append](test/string/string/append.spec.ts)
+* [prepend](test/string/string/prepend.spec.ts)
 * [take](test/string/string/take.spec.ts)
 * [drop](test/string/string/drop.spec.ts)
 * [takeRight](test/string/string/take_right.spec.ts)
@@ -317,8 +312,8 @@ import {zip as lZip} from 'tsfun/lazy';
 * [take](test/lazy/lazy/take.spec.ts)
 * [map](test/lazy/lazy/map.spec.ts)
 
-## Credits 
- 
+## Credits
+
 Ascii Art generated with http://www.patorjk.com/software/taag
 
 

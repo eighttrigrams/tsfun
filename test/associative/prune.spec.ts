@@ -1,4 +1,4 @@
-import {prune} from '../../src/collection'
+import { prune } from "../../src/associative"
 
 
 /**
@@ -20,12 +20,4 @@ describe('prune', () => {
             prune([1, undefined, 2])
 
         ).toEqual([1, 2]))
-
-
-    it('string', () =>
-        expect(
-
-            prune('a b')
-
-        ).toEqual('ab'))
 })

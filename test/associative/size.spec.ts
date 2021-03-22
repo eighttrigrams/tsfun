@@ -1,4 +1,4 @@
-import {size} from '../../src/collection'
+import { size } from '../../src/associative'
 
 
 /**
@@ -20,12 +20,4 @@ describe('size', () => {
             size(['a', 'b'])
 
         ).toEqual(2))
-
-
-    it('string', () =>
-        expect(
-
-            size('abc')
-
-        ).toEqual(3))
 })

@@ -3,16 +3,15 @@ import {
     isEmpty, isFunction, isNot,
     isNumber,
     isObject,
-    isString,
     isUndefined
 } from './predicate'
 import {identity} from './core'
 import {Associative, Mapping, Pair, Predicate} from './type'
-import {values, map_a as mapAsc} from './associative'
+import {values, map_a, size} from './associative'
 import {
     filter as filterColl,
     remove as removeColl,
-    separate as separateColl, size
+    separate as separateColl
 } from './collection'
 import {Map} from './type'
 import { flow, throws, val } from './composition'
@@ -28,7 +27,7 @@ export function flatMap<A,B>(arg, arg2?): any {
             (as.length < 1
                 ? []
                 : as.reduce(intoArrayWith(f as any),[])) as unknown as Array<B>
-        
+
     return arg2 === undefined
         ? $(arg)
         : isFunction(arg)
@@ -96,7 +95,7 @@ export function map<A = any, B = A >(f: (_: A) => B): (as: Array<A>) => Array<B>
 export function map<A, B>(...args: any[]): any {
 
     if (args.length > 1) throw 'illegal argument in "tsfun|map"'
-    return mapAsc(args[0])
+    return map_a(args[0])
 }
 
 
@@ -202,12 +201,12 @@ export function take<A>(n: number, ...args): any {
     }
 
     return flow(
-        args.length === 2 
-            ? [args[0], args[1]] 
-            : args.length === 1 && isFunction(args[0]) 
-                ? [args[0], undefined] 
+        args.length === 2
+            ? [args[0], args[1]]
+            : args.length === 1 && isFunction(args[0])
+                ? [args[0], undefined]
                 : [val(true), args[0]],
-        ([p, list]) => 
+        ([p, list]) =>
             list === undefined
                 ? $(p)
                 : isArray(list)
@@ -385,7 +384,7 @@ export function remove<A>(p: (a: A) => boolean, as: Array<A>): Array<A>
 export function remove<A>(as: Array<A>, p: (a: A, i: number) => boolean): Array<A>
 export function remove<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
 export function remove(...args): any {
-    
+
     return args.length === 1
         ? removeColl(args[0])
         : isFunction(args[0])
@@ -542,7 +541,7 @@ export const takeUntil = <A>(predicate: Predicate<A>) =>
                 : as
         )(as.find(predicate))
 
-        
+
 export function reverse<A>(as: Array<A>): Array<A> {
 
     if (isArray(as)) {
