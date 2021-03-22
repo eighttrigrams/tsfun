@@ -115,6 +115,11 @@ describe('update', () => {
         const $12 /*: [number[],number]*/ = update([1, 'b'], 3 /* assoc */, [[1],{b:5}])
         const $13 /*: [unknown,{b: number}]*/ = update([0, 0], toString /* update */, [[1],{b:5}])
         const $14 /*: [number[],unknown]*/ = update([1, 'b'], toString /* update */, [[1],{b:5}])
+
+        const $15 /*: [number,{b: number}]*/ = update([0], 3 /* assoc */, [[1],{b:5}])
+        const $16 /*: [number[],number]*/ = update([1], 3 /* assoc */, [[1],{b:5}])
+        const $17 /*: [unknown,{b: number}]*/ = update([0], toString /* update */, [[1],{b:5}])
+        const $18 /*: [number[],unknown]*/ = update([1], toString /* update */, [[1],{b:5}])
     })
 
 
@@ -129,11 +134,17 @@ describe('update', () => {
         const $3 /*: S*/ = flow(s, update(['a', 'b'], times2))
         expect($3.a.b).toBe(6)
 
+        
         // Pair special typing
         const $11 /*: [number,{b: number}]*/ = update([0, 0], 3 /* assoc */)([[1],{b:5}])
         const $12 /*: [number[],number]*/ = update([1, 'b'], 3 /* assoc */)([[1],{b:5}])
         const $13 /*: [unknown,{b: number}]*/ = update([0, 0], toString /* update */)([[1],{b:5}])
         const $14 /*: [number[],unknown]*/ = update([1, 'b'], toString /* update */)([[1],{b:5}])
+
+        const $15 /*: [number,{b: number}]*/ = update([0], 3 /* assoc */)([[1],{b:5}])
+        const $16 /*: [number[],number]*/ = update([1], 3 /* assoc */)([[1],{b:5}])
+        const $17 /*: [unknown,{b: number}]*/ = update([0], toString /* update */)([[1],{b:5}])
+        const $18 /*: [number[],unknown]*/ = update([1], toString /* update */)([[1],{b:5}])
     })
 
 
