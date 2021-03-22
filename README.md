@@ -9,95 +9,8 @@
 Example:
 
 ```typescript
-import {equal} from 'tsfun';
+import {on, equal, update} from 'tsfun';
 ```
-
-### Predicate
-
-###### Composition
-
-* [isNot](test/predicate/is_not.spec.ts)
-* [not](test/predicate/not.spec.ts)
-* [and](test/predicate/and.spec.ts)
-* [or](test/predicate/or.spec.ts)
-* [xor](test/predicate/xor.spec.ts)
-
-###### Defined & Empty
-
-* [isEmpty](test/predicate/is_empty.spec.ts)
-* [empty](test/predicate/empty.spec.ts)
-* [isUndefinedOrEmpty](test/predicate/is_undefined_or_empty.spec.ts)
-* [undefinedOrEmpty](test/predicate/undefined_or_empty.spec.ts)
-* [isDefined](test/predicate/is_defined.spec.ts)
-* [defined](test/predicate/defined.spec.ts)
-* [isUndefined](test/predicate/is_undefined.spec.ts)
-
-###### Types
-
-* [isArray](test/predicate/is_array.spec.ts)
-* [isObject](test/predicate/is_object.spec.ts)
-* [isString](test/predicate/is_string.spec.ts)
-* [isNumber](test/predicate/is_number.spec.ts)
-* [isBoolean](test/predicate/is_boolean.spec.ts)
-* [isFunction](test/predicate/is_function.spec.ts)
-* [isAssociative](test/predicate/is_associative.spec.ts)
-* [isCollection](test/predicate/is_collection.spec.ts)
-* [isList](test/predicate/is_list.spec.ts)
-
-###### Tuple
-
-* [isSuccess](test/predicate/is_success.spec.ts)
-* [isFailure](test/predicate/is_failure.spec.ts)
-* [isSingleton](test/predicate/is_singleton.spec.ts)
-* [isPair](test/predicate/is_pair.spec.ts)
-* [isEither](test/predicate/is_either.spec.ts)
-* [isMaybe](test/predicate/is_maybe.spec.ts)
-
-###### Struct & Associative
-
-* [has](test/predicate/has.spec.ts)
-* [hasnt](test/predicate/hasnt.spec.ts)
-
-### Comparator
-
-###### Reference
-
-* [is](test/comparator/reference/is.spec.ts)
-* [tripleEqual](test/comparator/reference/triple_equal.spec.ts)
-* [isnt](test/comparator/reference/isnt.spec.ts)
-* [differentFrom](test/comparator/reference/different_from.spec.ts)
-
-###### Ordered
-
-* [greaterThan](test/comparator/ordered/greater_than.spec.ts)
-* [lessThan](test/comparator/ordered/less_than.spec.ts)
-* [greaterOrEqualThan](test/comparator/ordered/greater_or_equal_than.spec.ts)
-* [lessOrEqualThan](test/comparator/ordered/less_or_equal_than.spec.ts)
-
-###### Set
-
-* [subsetOf](test/comparator/set/subset_of.spec.ts)
-* [supersetOf](test/comparator/set/superset_of.spec.ts)
-* [sameset](test/comparator/set/sameset.spec.ts)
-* [includes](test/comparator/set/includes.spec.ts)
-* [includedIn](test/comparator/set/included_in.spec.ts)
-
-###### List
-
-* [startsWith](test/comparator/list/starts_with.spec.ts)
-* [endsWith](test/comparator/list/ends_with.spec.ts)
-* [shorterThan](test/comparator/list/shorter_than.spec.ts)
-* [longerThan](test/comparator/list/longer_than.spec.ts)
-* [sameLength](test/comparator/list/same_length.spec.ts)
-
-###### Struct
-
-* [jsonEqual](test/comparator/struct/json_equal.spec.ts)
-* [arrayEqual](test/comparator/struct/array_equal.spec.ts)
-* [objectEqual](test/comparator/struct/object_equal.spec.ts)
-* [equal](test/comparator/struct/equal.spec.ts)
-* [equalTo](test/comparator/struct/equal_to.spec.ts)
-* [on](test/comparator/struct/on.spec.ts)
 
 ### Composition
 
@@ -214,6 +127,93 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 * [right](test/tuple/right.spec.ts)
 * [value](test/tuple/value.spec.ts)
 * [getSuccess](test/tuple/get_success.spec.ts)
+
+### Predicate
+
+###### Composition
+
+* [isNot](test/predicate/is_not.spec.ts)
+* [not](test/predicate/not.spec.ts)
+* [and](test/predicate/and.spec.ts)
+* [or](test/predicate/or.spec.ts)
+* [xor](test/predicate/xor.spec.ts)
+
+###### Defined & Empty
+
+* [isEmpty](test/predicate/is_empty.spec.ts)
+* [empty](test/predicate/empty.spec.ts)
+* [isUndefinedOrEmpty](test/predicate/is_undefined_or_empty.spec.ts)
+* [undefinedOrEmpty](test/predicate/undefined_or_empty.spec.ts)
+* [isDefined](test/predicate/is_defined.spec.ts)
+* [defined](test/predicate/defined.spec.ts)
+* [isUndefined](test/predicate/is_undefined.spec.ts)
+
+###### Types
+
+* [isArray](test/predicate/is_array.spec.ts)
+* [isObject](test/predicate/is_object.spec.ts)
+* [isString](test/predicate/is_string.spec.ts)
+* [isNumber](test/predicate/is_number.spec.ts)
+* [isBoolean](test/predicate/is_boolean.spec.ts)
+* [isFunction](test/predicate/is_function.spec.ts)
+* [isAssociative](test/predicate/is_associative.spec.ts)
+* [isCollection](test/predicate/is_collection.spec.ts)
+* [isList](test/predicate/is_list.spec.ts)
+
+###### Tuple
+
+* [isSuccess](test/predicate/is_success.spec.ts)
+* [isFailure](test/predicate/is_failure.spec.ts)
+* [isSingleton](test/predicate/is_singleton.spec.ts)
+* [isPair](test/predicate/is_pair.spec.ts)
+* [isEither](test/predicate/is_either.spec.ts)
+* [isMaybe](test/predicate/is_maybe.spec.ts)
+
+###### Struct & Associative
+
+* [has](test/predicate/has.spec.ts)
+* [hasnt](test/predicate/hasnt.spec.ts)
+
+### Comparator
+
+###### Reference
+
+* [is](test/comparator/reference/is.spec.ts)
+* [tripleEqual](test/comparator/reference/triple_equal.spec.ts)
+* [isnt](test/comparator/reference/isnt.spec.ts)
+* [differentFrom](test/comparator/reference/different_from.spec.ts)
+
+###### Ordered
+
+* [greaterThan](test/comparator/ordered/greater_than.spec.ts)
+* [lessThan](test/comparator/ordered/less_than.spec.ts)
+* [greaterOrEqualThan](test/comparator/ordered/greater_or_equal_than.spec.ts)
+* [lessOrEqualThan](test/comparator/ordered/less_or_equal_than.spec.ts)
+
+###### Set
+
+* [subsetOf](test/comparator/set/subset_of.spec.ts)
+* [supersetOf](test/comparator/set/superset_of.spec.ts)
+* [sameset](test/comparator/set/sameset.spec.ts)
+* [includes](test/comparator/set/includes.spec.ts)
+* [includedIn](test/comparator/set/included_in.spec.ts)
+
+###### List
+
+* [startsWith](test/comparator/list/starts_with.spec.ts)
+* [endsWith](test/comparator/list/ends_with.spec.ts)
+* [shorterThan](test/comparator/list/shorter_than.spec.ts)
+* [longerThan](test/comparator/list/longer_than.spec.ts)
+* [sameLength](test/comparator/list/same_length.spec.ts)
+
+###### Struct
+
+* [jsonEqual](test/comparator/struct/json_equal.spec.ts)
+* [arrayEqual](test/comparator/struct/array_equal.spec.ts)
+* [objectEqual](test/comparator/struct/object_equal.spec.ts)
+* [equal](test/comparator/struct/equal.spec.ts)
+* [equalTo](test/comparator/struct/equal_to.spec.ts)
+* [on](test/comparator/struct/on.spec.ts)
 
 ## Types reference
 
