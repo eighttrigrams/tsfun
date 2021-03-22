@@ -142,6 +142,66 @@ import {equal} from 'tsfun';
 * [prepend](test/array/prepend.spec.ts) 
 * [zip](test/array/zip.spec.ts)
 
+### Map & Associative
+
+###### Array & Object
+
+* [update1](test/associative/update1.spec.ts)
+* [keys](test/associative/keys.spec.ts)
+* [values](test/associative/values.spec.ts)
+* [keysAndValues](test/associative/keys_and_values.spec.ts)
+* [map1](test/associative/map1.spec.ts) 
+* [filter1](test/associative/filter1.spec.ts)
+* [forEach1](test/associative/for_each1.spec.ts)
+* [get1](test/associative/get1.spec.ts)
+* [lookup1](test/associative/lookup1.spec.ts)
+* [reduce1](test/associative/reduce1.spec.ts)
+
+### Struct
+
+###### Array & Object
+
+* [to](test/struct/to.spec.ts)
+* [update](test/struct/update.spec.ts)
+* [path](test/struct/path.spec.ts)
+* [clone](test/struct/clone.spec.ts)
+* [jsonClone](test/struct/json_clone.spec.ts)
+* [lookup](test/struct/lookup.spec.ts)
+* [get](test/struct/get.spec.ts)
+* [dissoc](test/struct/dissoc.spec.ts)
+
+### Tuple
+
+###### Array
+
+* [tuplify](test/tuple/tuplify.spec.ts)
+* [pairWith](test/tuple/pair-with.spec.ts)
+* [swap](test/tuple/swap.spec.ts)
+* [singleton](test/tuple/singleton.spec.ts)
+* [pair](test/tuple/pair.spec.ts)
+* [just](test/tuple/just.spec.ts)
+* [nothing](test/tuple/nothing.spec.ts)
+* [success](test/tuple/success.spec.ts)
+* [failure](test/tuple/failure.spec.ts)
+* [liftM](test/tuple/lift_m.spec.ts)
+* [liftE](test/tuple/lift_e.spec.ts)
+* [left](test/tuple/left.spec.ts)
+* [right](test/tuple/right.spec.ts)
+* [value](test/tuple/value.spec.ts)
+* [getSuccess](test/tuple/get_success.spec.ts)
+
+### Set
+
+###### Array & string
+
+* [set](test/set/set.spec.ts)
+* [intersection](test/set/intersection.spec.ts)
+* [intersect](test/set/intersect.spec.ts)
+* [subtract](test/set/subtract.spec.ts)
+* [union](test/set/union.spec.ts)
+* [unite](test/set/unite.spec.ts)
+* [duplicates](test/set/duplicates.spec.ts)
+
 ### string
 
 * [join](test/string/join.spec.ts)
@@ -172,66 +232,6 @@ import {equal} from 'tsfun';
 * [all](test/collection/all.spec.ts)
 * [any](test/collection/any.spec.ts)
 
-### Set
-
-###### Array & string
-
-* [set](test/set/set.spec.ts)
-* [intersection](test/set/intersection.spec.ts)
-* [intersect](test/set/intersect.spec.ts)
-* [subtract](test/set/subtract.spec.ts)
-* [union](test/set/union.spec.ts)
-* [unite](test/set/unite.spec.ts)
-* [duplicates](test/set/duplicates.spec.ts)
-
-### Tuple
-
-###### Array
-
-* [tuplify](test/tuple/tuplify.spec.ts)
-* [pairWith](test/tuple/pair-with.spec.ts)
-* [swap](test/tuple/swap.spec.ts)
-* [singleton](test/tuple/singleton.spec.ts)
-* [pair](test/tuple/pair.spec.ts)
-* [just](test/tuple/just.spec.ts)
-* [nothing](test/tuple/nothing.spec.ts)
-* [success](test/tuple/success.spec.ts)
-* [failure](test/tuple/failure.spec.ts)
-* [liftM](test/tuple/lift_m.spec.ts)
-* [liftE](test/tuple/lift_e.spec.ts)
-* [left](test/tuple/left.spec.ts)
-* [right](test/tuple/right.spec.ts)
-* [value](test/tuple/value.spec.ts)
-* [getSuccess](test/tuple/get_success.spec.ts)
-
-### Map & Associative
-
-###### Array & Object
-
-* [update1](test/associative/update1.spec.ts)
-* [keys](test/associative/keys.spec.ts)
-* [values](test/associative/values.spec.ts)
-* [keysAndValues](test/associative/keys_and_values.spec.ts)
-* [map1](test/associative/map1.spec.ts) 
-* [filter1](test/associative/filter1.spec.ts)
-* [forEach1](test/associative/for_each1.spec.ts)
-* [get1](test/associative/get1.spec.ts)
-* [lookup1](test/associative/lookup1.spec.ts)
-* [reduce1](test/associative/reduce1.spec.ts)
-
-### Struct
-
-###### Array & Object
-
-* [to](test/struct/to.spec.ts)
-* [update](test/struct/update.spec.ts)
-* [path](test/struct/path.spec.ts)
-* [clone](test/struct/clone.spec.ts)
-* [jsonClone](test/struct/json_clone.spec.ts)
-* [lookup](test/struct/lookup.spec.ts)
-* [get](test/struct/get.spec.ts)
-* [dissoc](test/struct/dissoc.spec.ts)
-
 ## Types reference 
 
 * [Singleton](test/type/singleton.spec.ts)
@@ -250,6 +250,7 @@ import {equal} from 'tsfun';
 * [Predicate](test/type/predicate.spec.ts)
 * [Filter](test/type/filter.spec.ts)
 * [Effect](test/type/effect.spec.ts)
+* [Filter1](test/associative/filter.type.spec.ts)
 
 ## Constants reference
 
@@ -264,19 +265,11 @@ import {equal} from 'tsfun';
 
 ## Extra packages reference
 
-### Associative
-
-###### Array & Map
+### string
 
 ```typescript
-import {lookup} from 'tsfun/associative';
+import {take} from 'tsfun/string';
 ```
-
-###### Types
-
-* [Filter](test/associative/associative/filter.type.spec.ts)
-
-### string
 
 * [append](test/string/string/append.spec.ts) 
 * [prepend](test/string/string/prepend.spec.ts) 

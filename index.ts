@@ -214,6 +214,7 @@ export {
     reduce1,
     keys,
     values,
-    keysAndValues
+    keysAndValues,
+    Filter1
 } from './src/associative'
 	

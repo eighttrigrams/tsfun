@@ -4,7 +4,7 @@ import {copy, filter as filterCollection} from './collection'
 import {range, zip} from './array'
 
 
-export type Filter<T = any> = Mapping<Associative<T>>
+export type Filter1<T = any> = Mapping<Associative<T>>
 
 
 // Written with Thomas Kleinke
