@@ -3,6 +3,7 @@ import {isArray, isArray2, isAssociative, isFunction, isNumber, isObject, isStri
 import {reverseUncurry2} from './core'
 import {copy} from './associative'
 import {rest} from './array'
+import { flow, throws } from './composition'
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -43,20 +44,29 @@ export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function
 }
 
 
-export function get<V>(path: Array2<string|number>, alternative?: V): <T>(o: T) => V
-export function get<V>(path: string, alternative?: V): <T>(o: T) => V
-export function get(path: number, alternative?: any): <T>(as: Array<T>) => T
-export function get(path_, alternative?: any) {
+export function to<T = unknown>(path: number): Mapping<Array<any>, T>
+export function to<T = unknown>(path: string): (t: Map<any>) => T
+export function to<T = unknown>(path: Array2<string|number>): {
+    (t: Array<any>): T
+    (t: Map<any>): T
+}
+export function to<T = unknown>(path: number, alternative?: T): Mapping<Array<any>, T>
+export function to<T = unknown>(path: string, alternative?: T): (t: Map<any>) => T
+export function to<T = unknown>(path: Array2<string|number>, alternative?: T): {
+    (t: Array<any>): T
+    (t: Map<any>): T
+}
+export function to(path: Path, alternative?) {
 
-    if (isArray(path_)) { if (path_.length < 2) throw 'illegal argument - array path must be at least of length 2' }
-    else if (!isString(path_)&&!isNumber(path_)) throw 'illegal argument - path must be string, number, or array of at least 2'
+    return !isString(path)&&!isNumber(path)&&!isArray2(path)
+        ? throws('illegal argument - array path must be string, number, or array of at least of length 2')
+        : ds => {
+            const result = (isString(path) || isNumber(path))
+                ? ds[path]
+                : $getElForPathIn(ds as Object, path as any)
 
-    return ds => {
-        const result = (isString(path_) || isNumber(path_))
-            ? ds[path_]
-            : $getElForPathIn(ds as Object, path_ as any)
-        return result !== undefined ? result : alternative
-    }
+            return result !== undefined ? result : alternative
+        }
 }
 
 
@@ -65,9 +75,8 @@ export function lookup<T>(ds: Array<T>, alternative?: T): (path: number) => T
 export function lookup<T, V>(ds: T, alternative?: V): (path: string) => V
 export function lookup(ds, alternative?) {
 
-    return path => get(path, alternative)(ds)
+    return path => (to as any)(path, alternative)(ds)
 }
-
 
 
 export function update<T, K extends keyof T>(k: K, f: (val: T[K])=>T[K], o: T): T
@@ -237,16 +246,6 @@ function $update1(path_ /*mut inplace*/, struct, update_fun, update = true) {
         }
     }
     return copied
-}
-
-
-export function to<T = any>(path: Path) {
-
-    if (isString(path)||isNumber(path)) return _ => _[path as any]
-    if (!isArray(path)) throw 'illegal argument - if not string or number, then array expected'
-    if ((path as any).length < 2) throw 'illegal argument - array path must be at least of length 2'
-
-    return s => (reverseUncurry2($getElForPathIn))(path)(s) as T
 }
 
 

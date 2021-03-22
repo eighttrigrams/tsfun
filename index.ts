@@ -1,7 +1,6 @@
 export {
     jsonClone,
     lookup,
-    get,
     clone,
     dissoc,
     to,

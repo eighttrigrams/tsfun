@@ -11,6 +11,9 @@ export type Array2<T> = {
 } & Array<T>
 
 
+export type Expect<T, E> = T extends E ? (E extends T ? true : never) : never
+
+
 export type Key = string|number
 
 

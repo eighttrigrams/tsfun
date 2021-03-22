@@ -160,7 +160,6 @@ as combinations, i.e. mutual nestings, thereof.
 * [clone](test/struct/clone.spec.ts)
 * [jsonClone](test/struct/json_clone.spec.ts)
 * [lookup](test/struct/lookup.spec.ts)
-* [get](test/struct/get.spec.ts)
 * [dissoc](test/struct/dissoc.spec.ts)
 
 ### Associative
