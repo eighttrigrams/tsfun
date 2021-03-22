@@ -15,14 +15,6 @@ describe('unite', () => {
             .toEqual([1, 2, 4]))
 
 
-    it('string',() =>
-        expect(
-
-            unite('12')('24'))
-
-            .toEqual('124'))
-
-
     it('comparator ', () =>
         expect(
 

@@ -20,12 +20,4 @@ describe('duplicates', () => {
             duplicates(['3', '3', '1', '4', '3', '1'])
 
         ).toEqual(['3', '1']))
-
-
-    it('string', () =>
-        expect(
-
-            duplicates('331431')
-
-        ).toEqual('31'))
 })

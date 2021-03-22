@@ -22,14 +22,6 @@ describe('set', () => {
             .toEqual([]))
 
 
-    it('set', () =>
-        expect(
-
-            set('117871')
-
-        ).toEqual('178'))
-
-
     it('comparator with on', () =>
         expect(
             set(on('a'), [{a: 1}, {a: 2}, {a: 1}])

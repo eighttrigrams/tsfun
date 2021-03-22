@@ -56,14 +56,6 @@ describe('subtract', () => {
             .toEqual([1, 2, 3]))
 
 
-    it('string', () =>
-        expect(
-
-            subtract('456')('12332'))
-
-            .toEqual('123'))
-
-
     it('comparator ', () =>
         expect(
 

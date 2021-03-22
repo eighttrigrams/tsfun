@@ -1,6 +1,7 @@
 import {intersection} from '../../src/set'
 import {jsonEqual} from '../../src/comparator'
 
+
 /**
  * tsfun | intersection
  */
@@ -44,14 +45,6 @@ describe('intersection', () => {
             intersection([]))
 
             .toEqual([]))
-
-
-    it('string',() =>
-        expect(
-
-            intersection(['def', 'deg']))
-
-            .toEqual('de'))
 
 
     it('intersectionBy', () =>

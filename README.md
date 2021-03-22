@@ -182,7 +182,7 @@ Map-s (JavaScript-Objects).
 * [map_a](test/associative/map_a.spec.ts)
 * [filter_a](test/associative/filter_a.spec.ts)
 * [forEach_a](test/associative/for_each_a.spec.ts)
-* [reduce_1](test/associative/reduce_a.spec.ts)
+* [reduce_a](test/associative/reduce_a.spec.ts)
 * [get_a](test/associative/get_a.spec.ts)
 * [lookup_a](test/associative/lookup_a.spec.ts)
 * [update_a](test/associative/update_a.spec.ts)
