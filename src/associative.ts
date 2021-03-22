@@ -163,51 +163,6 @@ export function map_a<A, B>(first: any, ...rest: any[]): any {
 }
 
 
-export function forEach_a<A>(as: Array<A>, f: (_: A, i: number) => void): Array<A>
-export function forEach_a<A>(f: (_: A, i: number) => void, as: Array<A>): Array<A>
-export function forEach_a<A>(as: Array<A>, f: (_: A) => void): Array<A>
-export function forEach_a<A>(f: (_: A) => void, as: Array<A>): Array<A>
-export function forEach_a<A>(as: Map<A>, f: (_: A, i: string) => void): Map<A>
-export function forEach_a<A>(f: (_: A, i: string) => void, as: Map<A>): Map<A>
-export function forEach_a<A>(as: Map<A>, f: (_: A) => void): Map<A>
-export function forEach_a<A>(f: (_: A) => void, as: Map<A>): Map<A>
-export function forEach_a<A>(f: (_: A, i?: number|string) => void): {
-    (as: Array<A>): Array<A>
-    (os: Map<A>): Map<A>
-}
-export function forEach_a<A>(a, b?) {
-
-    const $ = f => (as: any) => {
-
-        if (isArray(as)) {
-
-            let i = 0;
-            for (let item of as) {
-                (f as any)(item, i)
-                i++
-            }
-            return as as Array<A>
-
-        } else if (isObject(as)) {
-
-            for (let item of keysAndValues(as as any)) {
-                (f as any)(item[1], item[0])
-            }
-            return as as Map<A>
-        } else {
-
-            throw 'illegal argument - must be array or object'
-        }
-    }
-
-    return b === undefined
-        ? $(a)
-        : isFunction(a)
-            ? $(a)(b)
-            : $(b)(a)
-}
-
-
 // Library Internal
 export function $reduce_a<A, B>(f: (b: B, a: A, i: string) => B, init: B, as: Map<A>): B
 export function $reduce_a<A, B>(f: (b: B, a: A) => B, init: B, as: Map<A>): B
