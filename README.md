@@ -9,24 +9,8 @@
 Example:
 
 ```typescript
-import {on, equal, update} from 'tsfun';
+import {on, equal, take, update, flow} from 'tsfun';
 ```
-
-### Composition
-
-* [flow](test/composition/flow.spec.ts)
-* [compose](test/composition/compose.spec.ts)
-* [curry](test/composition/curry.spec.ts)
-* [cond](test/composition/cond.spec.ts)
-* [conds](test/composition/conds.spec.ts)
-* [identity](test/composition/identity.spec.ts)
-* [apply](test/composition/apply.spec.ts)
-* [collect](test/composition/collect.spec.ts)
-* [val](test/composition/val.spec.ts)
-* [nop](test/composition/nop.spec.ts)
-* [throws](test/composition/throws.spec.ts)
-* [mcompose](test/composition/mcompose.spec.ts)
-* [mmatch](test/composition/mmatch.spec.ts)
 
 ### Array
 
@@ -60,6 +44,22 @@ import {on, equal, update} from 'tsfun';
 * [reverse](test/array/reverse.spec.ts)
 * [sort](test/list/sort.spec.ts)
 * [takeNth](test/list/take_nth.spec.ts)
+
+### Composition
+
+* [flow](test/composition/flow.spec.ts)
+* [compose](test/composition/compose.spec.ts)
+* [curry](test/composition/curry.spec.ts)
+* [cond](test/composition/cond.spec.ts)
+* [conds](test/composition/conds.spec.ts)
+* [identity](test/composition/identity.spec.ts)
+* [apply](test/composition/apply.spec.ts)
+* [collect](test/composition/collect.spec.ts)
+* [val](test/composition/val.spec.ts)
+* [nop](test/composition/nop.spec.ts)
+* [throws](test/composition/throws.spec.ts)
+* [mcompose](test/composition/mcompose.spec.ts)
+* [mmatch](test/composition/mmatch.spec.ts)
 
 ### Struct
 
