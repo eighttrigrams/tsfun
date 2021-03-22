@@ -1,6 +1,10 @@
 // ------------ @author Daniel de Oliveira -----------------
 
 
+export type Array1<T> = {
+    0: T
+} & Array<T>
+
 export type Array2<T> = {
     0: T
     1: T

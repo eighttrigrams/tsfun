@@ -2,64 +2,150 @@ import {update} from '../../../src/struct'
 import {equal} from '../../../src/comparator'
 import {map1} from '../../../src/associative'
 import {Map} from '../../../src/type'
-import {flow} from '../../../src/composition'
+import {flow, val} from '../../../src/composition'
 
 
 /**
  * tsfun | update
  * 
  * Allows for replacing items in data structures.
- * The resulting data structure is of the same type as the original,
- * but always is an entirely new structure.
+ * The resulting structure is always a newly created one, so that 
+ * holders of the original reference will retain their original view on the data.
  */
 describe('update', () => {
 
     const times2 = x => x * 2
+    const $times2 = (x: number) => x * 2
 
 
-    it('objects, arrays, records', () => {
+    it('Arrays, Maps', () => {
 
-        // We can replace (update, associate) items
-        // in different data structures and the resulting 
+        // We can replace (update, associate) items and the resulting
         // type gets inferred so that we end up with the original type.
-        
-        // As a requirement, the replacements must conform to the boxed
-        // types, so if one has Array<number>, the replacement must result
-        // in a number, wheter it is by association or via update.
+        // if Mapping<T>, i.e. T => T  or a value of type T is passed.
 
-        type O = { a: number }
-        const o: O = { a: 4 }
-        const $1 /*: O*/ = update('a', times2 /* update */, o)
-        expect($1).toEqual({ a: 8 })
-        const $2 /*: O*/ = update('a', 2 /* assoc */, o)
-        expect($2).toEqual({ a: 2 })
-        
-        
-        const r: Record<string,number> = { a: 4, b: 3 }
-        
-        const $3 /*: Record<string,number>*/ = update('a', times2, r)
-        expect($3).toEqual({ a: 8, b:3 })
-        
-        
         const m: Map<number> = { a: 4, b: 3}
         
-        const $4 /*: Map<number>*/ = update('a', times2, m)
-        expect($4).toEqual({ a: 8, b:3 })
-        
-        const $times2 = (x: number) => x * 2
+        const $1 /*: Map<number>*/ = update('a', $times2 /*update*/, m)
+        expect($1).toEqual({ a: 8, b:3 })
+        const $2 /*: Map<number>*/ = update('a', 6 /*assoc*/, m)
+        expect($2).toEqual({ a: 6, b:3 })
 
         const a: Array<number> = [4]
 
-        const $5 /*: Array<number>*/ = update(0, $times2, a)
+        const $5 /*: Array<number>*/ = update(0, $times2 /*update*/, a)
         expect($5).toEqual([8])
-        const $6 /*: Array<number>*/ = update(0, 2, a)
+        const $6 /*: Array<number>*/ = update(0, 2 /*assoc*/, a)
         expect($6).toEqual([2])
+    })
 
+
+    it('curried', () => {
+
+        // There is a curried version
+        // for use in compositions
+        
+        const $1 /*: Map<number>*/ = update('a', $times2 /* update*/)({a: 4, b: 5})
+        expect($1).toEqual({ a: 8, b: 5 })
+        const $2 /*: Map<number>*/ = update('a', 5 /*assoc*/)({a: 4, b: 5})
+        expect($2).toEqual({ a: 5, b: 5 })
+
+        const $3 /*: Map<number>*/ = flow({a: 4, b: 5}, update('a', $times2))
+        expect($3).toEqual({a : 8, b: 5})
+        const $4 /*: Map<any>*/ = flow({a: 4, b: 5}, update('a', 5))
+        expect($4).toEqual({ a: 5, b: 5})
+
+        const a: Array<number> = [4]
+
+        const $9 /*: Array<number>*/ = update(0, times2)(a)
+        expect($9).toEqual([8])
+    })
+        
+
+    it('structs', () => {
+
+        // Struct use case
+        // 
+        // The Struct use case allows for 'deep' updates
+        // of data structures. It is active when the path
+        // parameter is an array (of at least length 2)
+        // 
+        // See also: path()
+
+        type S = { a: { b: number } }
+        const s: S = { a: { b: 3 }}
+        const $1 /*: S*/ = update(['a', 'b'], val(4) /* assoc */, s)
+        expect($1.a.b).toBe(4)
+        const $2 /*: S*/ = update(['a', 'b'], times2 /* update */, s)
+        expect($2.a.b).toBe(6)
+
+        type A = Array<Array<number>>
+        const a: A = [[2]]
+        const $3 /*: A*/ = update([0, 0], val(4) /* assoc */, a)
+        expect($3[0][0]).toBe(4)
+        const $4 /*: A*/ = update([0, 0], times2 /* update */, a)
+        expect($4[0][0]).toBe(4)
+
+        type S1 = { a: Array<number> }
+        const s1: S1 = { a: [2] }
+        const $5 /*: S1*/ = update(['a', 0], val(4) /* assoc */, s1)
+        expect($5.a[0]).toBe(4)
+        const $6 /*: S1*/ = update(['a', 0], times2 /* update */, s1)
+        expect($6.a[0]).toBe(4)
+
+        const $times2 = (x: number) => x * 2
+
+        type S2 = Array<{ a: number }>
+        const s2: S2 = [{a: 2}]
+        const $7 /*: S2*/ = update([0, 'a'], val(4) /* assoc */, s2)
+        expect($7[0].a).toBe(4)
+        const $8 /*: S2*/ = update([0, 'a'], $times2 /* update */, s2)
+        expect($8[0].a).toBe(4)        
+    })
+
+
+    it('structs - curried', () => {
+
+        type S = { a: { b: number } }
+        const s: S = { a: { b: 3 }}
+        const $1 /*: S*/ = update(['a', 'b'], val(4) /* assoc */)(s)
+        expect($1.a.b).toBe(4)
+        const $2 /*: S*/ = update(['a', 'b'], times2 /* update */)(s)
+        expect($2.a.b).toBe(6)
+        const $3 /*: S*/ = flow(s, update(['a', 'b'], times2))
+        expect($3.a.b).toBe(6)
+    })
+
+
+    it('changing the type', () => {
 
         // If the mapping is done by a type altering function, i.e. number => string,
         // then we treat the object as a Struct and the final type is unknown.
-        const $7 /*: unknown*/ = update('a', (x: number) => x.toString())({ a: 7 })
-        const $8 /*: unknown*/ = update('a', (x: number) => x.toString(), { a: 7 })
+        // We then also pass the path as an 1-elemnt-array to indicate where we use Struct, not Map, as input.
+        const $1 /*: unknown*/ = update(['a'], (x: number) => x.toString(), { a: 7 })
+        const $2 /*: unknown*/ = update(['a'], (x: number) => x.toString())({ a: 7 })
+        const $4 /*: unknown*/ = update(['a', 'b'], (x: number) => x.toString(), { a: { b: 7} })
+        const $5 /*: unknown*/ = update(['a', 'b'], (x: number) => x.toString(), { a: { b: 7} })
+        
+        const $8 /*: unknown*/ = update(['a'], '3', { a: 7 })
+        const $9 /*: unknown*/ = update(['a'], '3')({ a: 7 })
+
+        const $10 /*: Map<any>*/ = update('a', '3', { a: 3 })
+        const $11 /*: Map<any>*/ = update('a', '3')({ a: 3 }) 
+
+        const $11a /*: Map<any>*/ = update('a', 3)({ a: 3 })        // isn't matched when curried
+        const $13 /*: Map<number>*/ = update('a', val(3))({ a: 7 }) // use val to say its of the same type
+        
+        const $14 /*: { a: number }*/ = update(['a'], val(3), { a: 7 }) // with Structs, also
+        const $15 /*: { a: number }*/ = update(['a'], val(3))({ a: 7 }) // use val to say its of the same type
+
+        const $16 /*: Map<any>*/ = update('a', (x: number) => x.toString(), { a: 7 }) 
+        const $17 /*: Map<any>*/ = update('a', (x: number) => x.toString())({ a: 7 }) 
+
+        const $18 /*: Array<any>*/ = update(0, (x: number) => x.toString(), [1, 2]);
+        const $19 /*: Array<any>*/ = update(0, (x: number) => x.toString())([1, 2]);
+        const $20 /*: Array<any>*/ = update(0, '3', [1, 2]);
+        const $21 /*: Array<any>*/ = update(0, '3')([1, 2]);
     })
 
 
@@ -91,112 +177,12 @@ describe('update', () => {
         const $3 = update(0, { a: 5 }, b)
         expect($3[1]).toBe(original)       // <- 
     })
-    
-
-    it('curried', () => {
-
-        // There is a curried version
-        // for use in compositions
-        
-        type O = { a: number, b: string }
-        const o: O = { a: 4, b: 'four' }
-
-        const $1 /*: O*/ = update('a', times2 /* update*/)(o)
-        expect($1).toEqual({ a: 8, b: 'four' })
-        const $2 /*: O*/ = update('a', 3 /* assoc */, o)
-        expect($2).toEqual({ a: 3, b: 'four' })
-
-        const $3 /*: O*/ = flow(o, update('a', times2))
-        expect($3).toEqual({a : 8, b: 'four'})
-        const $4 /*: O*/ = flow(o, update('a', 3))
-        expect($4).toEqual({ a: 3, b: 'four'})
-
-        const m: Map<number> = { a: 4, b: 3 }
-
-
-        const $5 /*: Map<number>*/ = update('a', times2 /* update*/)(m)
-        expect($5).toEqual({ a: 8, b: 3 })
-        const $6 /*: Map<number>*/ = update('a', 3 /* assoc */, m)
-        expect($6).toEqual({ a: 3, b: 3 })
-        
-        const $7 /*: Map<number>*/ = flow(m, update('a', times2))
-        expect($7).toEqual({ a: 8, b: 3})
-        const $8 /*: Map<number>*/ = flow(m, update('a', 3))
-        expect($8).toEqual({ a: 3, b: 3})
-
-
-        const a: Array<number> = [4]
-
-        const $9 /*: Array<number>*/ = update(0, times2)(a)
-        expect($9).toEqual([8])
-
-        const $10 /*: unknown*/ = update('a', (x: number) => x.toString())({ a: 7 })
-    })
-        
-
-    // Struct use case
-    // 
-    // The Struct use case allows for 'deep' updates
-    // of data structures. It is active when the path
-    // parameter is an array (of at least length 2)
-    // 
-    // See also: path()
-
-    it('structs', () => {
-
-        type S = { a: { b: number } }
-        const s: S = { a: { b: 3 }}
-        const $1 /*: S*/ = update(['a', 'b'], 4 /* assoc */, s)
-        expect($1.a.b).toBe(4)
-        const $2 /*: S*/ = update(['a', 'b'], times2 /* update */, s)
-        expect($2.a.b).toBe(6)
-
-        type A = Array<Array<number>>
-        const a: A = [[2]]
-        const $3 /*: A*/ = update([0, 0], 4 /* assoc */, a)
-        expect($3[0][0]).toBe(4)
-        const $4 /*: A*/ = update([0, 0], times2 /* update */, a)
-        expect($4[0][0]).toBe(4)
-
-        type S1 = { a: Array<number> }
-        const s1: S1 = { a: [2] }
-        const $5 /*: S1*/ = update(['a', 0], 4 /* assoc */, s1)
-        expect($5.a[0]).toBe(4)
-        const $6 /*: S1*/ = update(['a', 0], times2 /* update */, s1)
-        expect($6.a[0]).toBe(4)
-
-        const $times2 = (x: number) => x * 2
-
-        type S2 = Array<{ a: number }>
-        const s2: S2 = [{a: 2}]
-        const $7 /*: S2*/ = update([0, 'a'], 4 /* assoc */, s2)
-        expect($7[0].a).toBe(4)
-        const $8 /*: S2*/ = update([0, 'a'], $times2 /* update */, s2)
-        expect($8[0].a).toBe(4)
-
-        const $9 /*: unknown*/ = update(['a', 'b'], (x: number) => x.toString(), { a: { b: 7} })
-    })
-
-
-    it('structs - curried', () => {
-
-        type S = { a: { b: number } }
-        const s: S = { a: { b: 3 }}
-        const $1 /*: S*/ = update(['a', 'b'], 4 /* assoc */)(s)
-        expect($1.a.b).toBe(4)
-        const $2 /*: S*/ = update(['a', 'b'], times2 /* update */)(s)
-        expect($2.a.b).toBe(6)
-        const $3 /*: S*/ = flow(s, update(['a', 'b'], times2))
-        expect($3.a.b).toBe(6)
-
-        const $10 /*: unknown*/ = update(['a', 'b'], (x: number) => x.toString(), { a: { b: 7} })
-    })
 
 
     it('structs - create path', () =>
         expect(
 
-            equal({ a: { b: { c: 3 }}})(update(['a','b','c'], 3)({}))
+            equal({ a: { b: { c: 3 }}})(update(['a','b','c'], val(3))({}))
 
         ).toBeTruthy())
 
@@ -204,7 +190,7 @@ describe('update', () => {
     it('set undefined', () => {
 
         type A = { a: number|undefined }
-        const $1 = update('a', undefined)({ a: 3 } as A)
+        const $1 = update(['a'], undefined)({ a: 3 } as A)
         expect($1).toEqual({ a: undefined })
 
         type B = { a: { b: number|undefined } }
@@ -225,51 +211,11 @@ describe('update', () => {
     })
 
 
-    it('typing', () => {
-
-        interface A { a: number, b: string }
-
-        // 1. key checking
-
-        // When used with a single argument list, the key can get checked
-
-        const $1: A = update('a', times2, { a: 7, b: '7' })
-        const $2: A = update('a', times2, { a: 7, b: '4', c: 7 })
-        // const $: A = update('c' /*!*/, times2, {a: 4, b: '7'}) // WRONG - the given key does not exist
-
-        // With a separate argument lists, however, this gets not caught
-        const $3: A = update('c' /*!*/, times2)({a: 4, b: '7'})   // WRONG, but passes
-  
-        const object: A = { a: 4, b: 'four' }
-
-        // 1. key checking
-
-        // When used with a single argument list, the key can get checked
-
-        const $4: A = update('a', 3, { a: 7, b: '7' })
-        const $5: A = update('a', 3, { a: 7, b: '4', c: 7 })
-        // const $: A = update('c' /*!*/, '4', {a: 4, b: '7'}) // WRONG - the given key does not exist
-
-        // With a separate argument lists, however, this gets not caught
-        const $6: A = update('c' /*!*/, '4')({a: 4, b: '7'})   // WRONG, but passes
-
-        // 2. value checking
-
-        // since the second param gets inferred as union type, we can only check if the inferred param is in the union
-        const $7: A = update('a', '4', { a: 4, b: '7' })   // passes for the given reason
-        // const $: A = update('a', [], { a: 4, b: '7' }) // WRONG
-
-        // this however does not work anyway in case of multiple parameter lists, because the T gets inferred in the outer param list
-        const $8: A = update('a', '4')({a: 7, b: '7'})
-        const $9: A = update('a', [])({ a: 4, b: '7' })    // passes for the given reason
-    })
-
-
     it('three levels', () => {
 
         const objectStruct = { a: { b: { c: 'c_val'} }}
 
-        const $1 = update(['a', 'b', 'c'], 'c_val_new', objectStruct) // assoc
+        const $1: any = update(['a', 'b', 'c'], 'c_val_new', objectStruct) // assoc
         expect($1['a']['b']['c']).toBe('c_val_new')
 
         const $2 = update(['a','b','c'], (val: string) => val + '_new')(objectStruct) // curried, update
@@ -305,7 +251,7 @@ describe('update', () => {
         const embeddedStruct = { e: 'e_val' }
 
         const objectStruct = { a: { b: 'b_val', c: embeddedStruct}, d: embeddedStruct }
-        const resultStruct = update(['a', 'b'], 'b_val_new')(objectStruct)
+        const resultStruct: any = update(['a', 'b'], 'b_val_new')(objectStruct)
 
         expect(resultStruct).not.toBe(objectStruct)
         expect(resultStruct['d']).toBe(embeddedStruct)
@@ -325,7 +271,7 @@ describe('update', () => {
         const embeddedStruct = { e: 'e_val' }
 
         const objectStruct: any = [{ b: 'b_val', c: embeddedStruct}, embeddedStruct]
-        const resultStruct = update([0, 'b'], 'b_val_new')(objectStruct)
+        const resultStruct: any = update([0, 'b'], 'b_val_new')(objectStruct)
 
         expect(resultStruct).not.toBe(objectStruct)
         expect(resultStruct[1]).toBe(embeddedStruct)
@@ -345,7 +291,7 @@ describe('update', () => {
         const embeddedStruct = { e: 'e_val' }
 
         const objectStruct: any = [['b_val', embeddedStruct], embeddedStruct]
-        const resultStruct = update([0, 0], 'b_val_new')(objectStruct)
+        const resultStruct: any = update([0, 0], 'b_val_new')(objectStruct)
 
         expect(resultStruct).not.toBe(objectStruct)
         expect(resultStruct[1]).toBe(embeddedStruct)
@@ -365,7 +311,7 @@ describe('update', () => {
         const embeddedStruct = { e: 'e_val' }
 
         const objectStruct: any = { a: [{f: 'f_val', g: embeddedStruct}, embeddedStruct], d: embeddedStruct }
-        const resultStruct = update(['a',0, 'f'], 'f_val_new')(objectStruct)
+        const resultStruct: any = update(['a',0, 'f'], 'f_val_new')(objectStruct)
 
         expect(resultStruct).not.toBe(objectStruct)
         expect(resultStruct['d']).toBe(embeddedStruct)
@@ -387,7 +333,7 @@ describe('update', () => {
         const embeddedStruct = { e: 'e_val' }
 
         const objectStruct: any = [{f: ['f_val', embeddedStruct], g: embeddedStruct}, embeddedStruct ]
-        const resultStruct = update([0, 'f', 0], 'f_val_new')(objectStruct)
+        const resultStruct: any = update([0, 'f', 0], 'f_val_new')(objectStruct)
 
         expect(resultStruct).not.toBe(objectStruct)
         expect(resultStruct[1]).toBe(embeddedStruct)

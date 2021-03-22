@@ -1,4 +1,4 @@
-import {Array2, Mapping, Path, Map} from './type'
+import {Array2, Mapping, Path, Map, Array1} from './type'
 import {isArray, isArray2, isAssociative, isFunction, isNumber, isObject, isString} from './predicate'
 import {reverseUncurry2} from './core'
 import {copy} from './collection'
@@ -69,19 +69,32 @@ export function lookup(ds, alternative?) {
 }
 
 
-export function update<T>(k: Array2<string|number>, f: ((val: T) => T)|T, as: Array<T>): Array<T>
-export function update<U, T>(k: Array2<string|number>, f: ((val: U) => U)|U, o: T): T
-export function update<T, V>(k: Array2<string|number>, f: (v: any) => any, t: T): V
+export function update<T>(k: Array1<string|number>, f: ((val: T) => T), as: Array<T>): Array<T>
+export function update<U, T>(k: Array1<string|number>, f: Mapping<U>, o: T): T
+export function update(k: Array1<string|number>, v: any, o: any): unknown
+export function update<U, T, V>(k: Array1<string|number>, f: ((val: U) => V)|V, o: T): unknown
+export function update<U, T>(k: Array1<string|number>, f: U, o: T): T
+export function update<T, V>(k: Array1<string|number>, f: (v: any) => any, t: T): V
 export function update<U>(k: number, update_fun: ((val: U) => U)|U, s: Array<U>): Array<U>
-export function update<T, K extends keyof T>(key: keyof T, f: Mapping<T[K]>|T[K], o: T): T
-export function update<T, V, K extends keyof T>(key: keyof T, f: Mapping<T[K]|any>, o: T): V
-
-export function update<U>(k: number, update_fun: ((val: U) => U)|U): <T extends U>(s: Array<T>) => Array<T>
-export function update<T, K extends keyof T>(key: keyof T, f: T[K]): <T1>(o: T1) => T1
+export function update<U>(k: number, f: Mapping<U>|U, s: Array<U>): Array<U>
+export function update<U,V>(k: number, f: Mapping<U,V>|V, s: Array<U>): Array<any>
+export function update<T>(k: string, f: Mapping<T>|T, o: Map<T>): Map<T>  
+export function update<T, V>(key: string, f: Mapping<T>|T, o: Map<T>): Map<T> 
+export function update<T, V>(key: string, f: Mapping<T,V>|V, o: Map<T>): Map<any> 
+export function update<U>(k: number, f: Mapping<U>): <T extends U>(s: Array<T>) => Array<T>
+export function update<U,V>(k: number, f: V): (s: Array<U>) => Array<any>
+export function update<U,V>(k: number, f: Mapping<U,V>|U): (s: Array<any>) => Array<any>
+export function update<T>(k: string, f: Mapping<T>): (o: Map<T>) => Map<T>
+export function update<Q>(k: string, f: Mapping<Q,any>): (o: Map<Q>) => Map<any>
+export function update(k: string, t: any): (o: Map<any>) => Map<any>
+export function update<T>(k: string, f: any): (o: Map<any>) => Map<unknown>
+export function update<T, V, K extends keyof T>(key: keyof T, v: any): <T1>(o: T1) => V
 export function update<T, K extends keyof T>(key: keyof T, f: Mapping<T[K]>): <T1>(o: T1) => T1
 export function update<T, V, K extends keyof T>(key: keyof T, f: Mapping<T[K]|any>): <T1>(o: T1) => V
 export function update<U>(k: string, update_fun: ((val: U) => U)|U): <T,V extends T>(s: T) => V
-export function update<U>(k: Array2<string|number>, update_fun: ((val: U) => U)|U): <T,V extends T>(s: T) => V
+export function update<U>(k: Array1<string|number>, f: Mapping<U>): <T,V extends T>(s: T) => V
+export function update<U>(k: Array1<string|number>, f: U): (s: any) => unknown
+export function update<U,V>(k: Array1<string|number>, f: ((val: U) => V)|V): (s: any) => unknown
 
 export function update(path, update_fun, o?) {
 
@@ -93,8 +106,10 @@ export function update(path, update_fun, o?) {
 
         } else if (isArray(path)) {
 
-            if (path.length < 2) throw 'illegal argument - path must be at least be of length 2'
-            return $update1(clone(path), struct, update_fun, true)
+            if (path.length < 1) throw 'illegal argument - path must be at least be of length 2'
+            return path.length === 1
+                ? $update0(path, update_fun, struct)
+                : $update1(clone(path), struct, update_fun, true)
 
         } else {
 
