@@ -3,6 +3,7 @@ import {equal} from '../../../src/comparator'
 import {map1} from '../../../src/associative'
 import {Map} from '../../../src/type'
 import {flow, val} from '../../../src/composition'
+import { map } from '../../../src/array'
 
 
 /**
@@ -146,6 +147,22 @@ describe('update', () => {
         const $19 /*: Array<any>*/ = update(0, (x: number) => x.toString())([1, 2]);
         const $20 /*: Array<any>*/ = update(0, '3', [1, 2]);
         const $21 /*: Array<any>*/ = update(0, '3')([1, 2]);
+    })
+
+
+    it('use case: using flow, update, val', () => {
+
+        // As seen in the examples above, using val can help with typechecking.
+        // If one has a homogeneous array, the resulting array can than be said to
+        // be of the same type.
+
+        const $1 /*: Array<Array<number>> */ = 
+            flow([[1,2], [3,4]],
+                map(update(0, val(3))))
+
+        const $2 /*: Array<{ a: number }> */ = 
+            flow([{a: 5}, {a: 4}],
+                map(update(['a'], val(3))))
     })
 
 
