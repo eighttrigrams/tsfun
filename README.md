@@ -310,12 +310,3 @@ import {zip as lZip} from 'tsfun/lazy';
 ## Credits
 
 Ascii Art generated with http://www.patorjk.com/software/taag
-
-
-
-
-
-
-
-
-
