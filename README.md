@@ -150,7 +150,9 @@ import {equal} from 'tsfun';
 
 ### Struct
 
-###### Array & Object
+Structs are TypeScript-Tuples (which are JavaScript-Arrays),
+and JavaScript Objects, typed via TypeScript-Interfaces, as well
+as combinations, i.e. mutual nestings, thereof.
 
 * [to](test/struct/to.spec.ts)
 * [update](test/struct/update.spec.ts)
@@ -161,9 +163,11 @@ import {equal} from 'tsfun';
 * [get](test/struct/get.spec.ts)
 * [dissoc](test/struct/dissoc.spec.ts)
 
-### Map & Associative
+### Associative
 
-###### Array & Object
+Associative are homogeneous (i.e. all values of the same type)
+Arrays and homogeneous
+Map-s (JavaScript-Objects).
 
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
