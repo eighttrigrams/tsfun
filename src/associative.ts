@@ -8,9 +8,13 @@ export type Filter1<T = any> = Mapping<Associative<T>>
 
 
 // Written with Thomas Kleinke
-export function get_a<A>(i: number, defaultValue?: A|undefined): (as: Array<A>) => A|undefined;
-export function get_a<T>(i: string, defaultValue?: T): (as: Map<T>) => T|undefined;
-export function get_a<T>(i: number|string, alternative?: T|undefined) {
+export function to_a(i: number): <T>(as: Array<T>) => T|undefined
+export function to_a(k: string): <T>(as: Map<T>) => T|undefined
+export function to_a<T = unknown>(i: number, alternative: T): (as: Array<T>) => T|undefined
+export function to_a<T = unknown>(k: string, alternative: T): (as: Map<T>) => T|undefined
+export function to_a<A>(i: number, defaultValue?: A|undefined): (as: Array<A>) => A|undefined;
+export function to_a<T>(i: string, defaultValue?: T): (as: Map<T>) => T|undefined;
+export function to_a<T>(i: number|string, alternative?: T|undefined) {
 
     return (as: Array<T>|Map<T>): T|undefined => {
 

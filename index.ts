@@ -186,10 +186,10 @@ export {
 
 export {
     update_a,
-    map_a as map1,
+    map_a,
     filter_a,
     forEach_a,
-    get_a as get1,
+    to_a,
     lookup_a,
     reduce_a,
     keys,

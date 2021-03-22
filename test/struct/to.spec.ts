@@ -2,6 +2,7 @@ import { map } from '../../src/array'
 import { flow } from '../../src/composition'
 import {path, to} from '../../src/struct'
 import { Expect } from '../../src/type'
+import { expectType } from 'ts-expect'
 
 
 /**
@@ -67,34 +68,34 @@ describe('to', () => {
         const $$3: Expect<typeof $3, unknown> = true
 
         const $4 = to('a', 3)({a: 1, b: '3'})
-        const $$4: Expect<typeof $4, number> = true
+        expectType<number>($4)
 
         const $5 = to(0, 3)([0])
-        const $$5: Expect<typeof $6, number> = true
+        expectType<number>($5)
 
         const $6 = to([0,0], 3)([[0]])
-        const $$6: Expect<typeof $6, number> = true
+        expectType<number>($6)
 
         const $6b = to<undefined|number>([0,0], 3)([[0]])
-        const $$6b: Expect<typeof $6b, undefined|number> = true
+        expectType<number|undefined>($6b)
 
         const $7 = to<number>('a')({a: 1, b: '3'})
-        const $$7: Expect<typeof $7, number> = true
+        expectType<number>($7)
 
         const $8 = to<number>(0)([0])
-        const $$8: Expect<typeof $8, number> = true
+        expectType<number>($8)
 
         const $9 = to<number>([0,0])([[0]])
-        const $$9: Expect<typeof $9, number> = true
+        expectType<number>($9)
 
         const $10 = to<number>('a', 3)({a: 1, b: '3'})
-        const $$10: Expect<typeof $10, number> = true
+        expectType<number>($10)
 
         const $11 = to<number>(0, 3)([0])
-        const $$11: Expect<typeof $11, number> = true
+        expectType<number>($11)
 
         const $12 = to<number>([0,0], 3)([[0]])
-        const $$12: Expect<typeof $12, number> = true
+        expectType<number>($12)
     })
 
 
