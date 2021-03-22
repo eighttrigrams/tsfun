@@ -1,9 +1,12 @@
-import {sort} from '../../src/list';
+import {sort} from '../../src/list'
 
 
-const aFirst = (a: string, _: string) => a === 'a' ? -1 : 1;
+const aFirst = (a: string, _: string) => a === 'a' ? -1 : 1
 
 
+/**
+ * tsfun | sort
+ */
 describe('sort', () => {
 
     it('sort', () =>
@@ -11,7 +14,7 @@ describe('sort', () => {
 
             sort(aFirst)(['b', 'a'])
 
-        ).toEqual(['a','b']));
+        ).toEqual(['a','b']))
 
 
     it('sort - array of numbers - no param', () =>
@@ -19,7 +22,7 @@ describe('sort', () => {
 
             sort([2, 1])
 
-        ).toEqual([1, 2]));
+        ).toEqual([1, 2]))
 
 
     it('string', () =>
@@ -27,7 +30,7 @@ describe('sort', () => {
 
             sort(aFirst)('babbba')
 
-        ).toEqual('aabbbb'));
+        ).toEqual('aabbbb'))
 
 
     it('string - no param', () =>
@@ -35,5 +38,5 @@ describe('sort', () => {
 
             sort('babbba')
 
-        ).toEqual('aabbbb'));
-});
+        ).toEqual('aabbbb'))
+})

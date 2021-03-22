@@ -226,7 +226,7 @@ export function filter<A>(p: (a: A, i: number) => boolean, as: string): string
 export function filter<A>(p: (a: A) => boolean, as: string): string
 export function filter<A>(as: string, p: (a: A, i: number) => boolean): string
 export function filter<A>(as: string, p: (a: A) => boolean): string
-export function filter<A>(...args): any {
+export function filter(...args): any {
 
     const $ = p => as => {
 
@@ -245,4 +245,40 @@ export function filter<A>(...args): any {
         : isFunction(args[0])
             ? $(args[0])(args[1])
             : $(args[1])(args[0])
+}
+
+
+export function reverse(as: string): string
+export function reverse(as: string): string {
+
+    if (isString(as)) {
+
+        return (as as string).split('').reverse().join('')
+
+    } else {
+
+        throw 'illegal argument - must be string'
+    }
+}
+
+
+export function first(as: string): string|undefined {
+
+    return as.length === 0
+        ? undefined
+        : as[0]
+}
+
+
+export function rest(as: string): string {
+
+    return drop(1)(as)
+}
+
+
+export function last(as: string): string|undefined {
+
+    return as.length === 0
+        ? undefined
+        : as[as.length-1]
 }

@@ -141,6 +141,10 @@ import {equal} from 'tsfun';
 * [append](test/array/append.spec.ts) 
 * [prepend](test/array/prepend.spec.ts) 
 * [zip](test/array/zip.spec.ts)
+* [first](test/array/first.spec.ts)
+* [rest](test/array/rest.spec.ts)
+* [last](test/array/last.spec.ts)
+* [reverse](test/array/reverse.spec.ts)
 
 ### Struct
 
@@ -202,17 +206,6 @@ import {equal} from 'tsfun';
 * [unite](test/set/unite.spec.ts)
 * [duplicates](test/set/duplicates.spec.ts)
 
-### List
-
-###### Array & string
-
-* [first](test/list/first.spec.ts)
-* [rest](test/list/rest.spec.ts)
-* [last](test/list/last.spec.ts)
-* [reverse](test/list/reverse.spec.ts)
-* [sort](test/list/sort.spec.ts)
-* [takeNth](test/list/take_nth.spec.ts)
-
 ### Collection
 
 ###### Array & Map & string
@@ -224,6 +217,13 @@ import {equal} from 'tsfun';
 * [indices](test/collection/indices.spec.ts)
 * [all](test/collection/all.spec.ts)
 * [any](test/collection/any.spec.ts)
+
+### List
+
+###### Array & string
+
+* [sort](test/list/sort.spec.ts)
+* [takeNth](test/list/take_nth.spec.ts)
 
 ## Types reference 
 
@@ -279,6 +279,10 @@ import {take} from 'tsfun/string';
 * [split](test/string/string/split.spec.ts)
 * [toUpperCase](test/string/string/to_upper_case.spec.ts)
 * [toLowerCase](test/string/string/to_lower_case.spec.ts)
+* [first](test/string/first.spec.ts)
+* [rest](test/string/rest.spec.ts)
+* [last](test/string/last.spec.ts)
+* [reverse](test/string/reverse.spec.ts)
 
 ### Async
 

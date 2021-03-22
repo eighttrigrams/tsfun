@@ -1,10 +1,10 @@
 import {Comparator, ComparatorProducer, List, Pair, Predicate, Path, Mapping} from './type'
 import {and, empty, isArray, isArray2, isFunction, isNot, isNumber, isObject, isString, or} from './predicate'
 import {subtractBy} from './set'
-import {$getElForPathIn, to} from './struct'
+import {to} from './struct'
 import {conds, flow, otherwise, throws} from './composition'
 import {remove, size} from './collection'
-import {reverse} from './list'
+import {reverse} from './array'
 import {map, zip} from './array'
 import { identity } from './core'
 

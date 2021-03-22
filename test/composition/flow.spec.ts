@@ -1,11 +1,11 @@
-import {greaterThan, includedIn, lessThan} from '../../src/comparator';
-import {flow} from '../../src/composition';
-import {isNot} from '../../src/predicate';
-import {filter} from '../../src/collection';
-import {map_a} from '../../src/associative';
-import {Associative} from '../../src/type';
-import {dropRight, dropWhile, takeWhile} from '../../src/array';
-import {reverse} from '../../src/list';
+import {greaterThan, includedIn, lessThan} from '../../src/comparator'
+import {flow} from '../../src/composition'
+import {isNot} from '../../src/predicate'
+import {filter} from '../../src/collection'
+import {map_a} from '../../src/associative'
+import {Associative} from '../../src/type'
+import {dropRight, dropWhile, takeWhile} from '../../src/array'
+import {reverse} from '../../src/array'
 
 
 /**
@@ -41,7 +41,7 @@ describe('flow', () => {
             flow([5,4],
                 takeWhile(greaterThan(4))))
 
-        .toEqual([5]));
+        .toEqual([5]))
 
 
     it('flow - no steps', () =>
@@ -50,7 +50,7 @@ describe('flow', () => {
             flow(
                 [5,6]))
 
-        .toEqual([5,6]));
+        .toEqual([5,6]))
 
 
     it('reverse ', () =>
@@ -58,7 +58,7 @@ describe('flow', () => {
 
             reverse([1, 3]))
 
-        .toEqual(([3, 1])));
+        .toEqual(([3, 1])))
 
 
     it('dropWhile', () =>
@@ -69,7 +69,7 @@ describe('flow', () => {
                 dropWhile(lessThan(20)),
                 reverse))
 
-            .toEqual([20, 21]));
+            .toEqual([20, 21]))
 
 
     it('generic default type param', () =>
@@ -78,7 +78,7 @@ describe('flow', () => {
             flow<string>(
                 'a'))
 
-            .toEqual('a'));
+            .toEqual('a'))
 
 
     // intended use case
@@ -99,7 +99,7 @@ describe('flow', () => {
                 .map(x => x * 2)
                 .includes(2))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('tying', () => {
@@ -319,6 +319,6 @@ describe('flow', () => {
         //     filter(_ => true),
         //     map(_ => _.toLowerCase()))
     })
-});
+})
 
 

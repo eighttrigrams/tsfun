@@ -3,11 +3,9 @@ import {
     isEmpty, isFunction, isNot,
     isNumber,
     isObject,
+    isString,
     isUndefined
 } from './predicate'
-import {
-    first, rest
-} from './list'
 import {identity} from './core'
 import {Associative, Mapping, Pair, Predicate} from './type'
 import {values, map_a as mapAsc} from './associative'
@@ -543,3 +541,36 @@ export const takeUntil = <A>(predicate: Predicate<A>) =>
                 takeWhile(isNot(predicate))(as).concat([found])
                 : as
         )(as.find(predicate))
+
+        
+export function reverse<A>(as: Array<A>): Array<A> {
+
+    if (isArray(as)) {
+
+        return (as as Array<A>).reduce((acc: Array<A>, a) => [a].concat(acc), [])
+
+    } else {
+
+        throw 'illegal argument - must be array'
+    }
+}
+
+
+export function first<T>(as: Array<T>): T|undefined {
+
+    return as.length === 0 ? undefined : as[0]
+}
+
+
+export function rest<T>(as: Array<T>): Array<T> {
+
+    return drop(1)(as as any)
+}
+
+
+export function last<T>(as: Array<T>): T|undefined {
+
+    return as.length === 0
+        ? undefined
+        : as[as.length-1]
+}

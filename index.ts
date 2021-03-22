@@ -154,15 +154,15 @@ export {
     forEach,
     reduce,
     zip,
-    takeUntil
+    takeUntil,
+    reverse,
+    first,
+    rest,
+    last
 } from './src/array'
 
 
 export {
-    reverse,
-    first,
-    rest,
-    last,
     // takeUntil, // TODO document in readme or remove
     takeNth,
     sort,

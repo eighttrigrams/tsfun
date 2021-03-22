@@ -1,6 +1,6 @@
 import {Array2, Either, Mapping, Maybe, Pair, Predicate, Singleton, Path} from './type'
 import {is, on} from './comparator'
-import {first} from './list'
+import {first} from './array'
 import {map_a, reduce_a} from './associative'
 import {flow} from './composition'
 import {filter, size} from './collection'

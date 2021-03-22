@@ -2,7 +2,7 @@ import {Array2, Mapping, Path, Map, Array1} from './type'
 import {isArray, isArray2, isAssociative, isFunction, isNumber, isObject, isString} from './predicate'
 import {reverseUncurry2} from './core'
 import {copy} from './collection'
-import {rest} from './list'
+import {rest} from './array'
 
 
 // ------------ @author Daniel de Oliveira -----------------

@@ -2,7 +2,7 @@ import {Pair, Map, Either, Maybe} from './type'
 import {isArray, isFailure, isFunction, isObject, isString} from './predicate'
 import {keys, keysAndValues} from './associative'
 import {getSuccess} from './tuple'
-import {first, rest} from './list'
+import {first, rest} from './array'
 import {convert} from './composition'
 
 

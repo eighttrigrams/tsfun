@@ -13,5 +13,9 @@ export {
     toUpperCase,
     toLowerCase,
     join,
-    split
+    split,
+    first,
+    last,
+    rest,
+    reverse
 } from './src/string'

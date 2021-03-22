@@ -1,8 +1,6 @@
 import {List} from './type'
 import {isArray, isString} from './predicate'
 import {copy} from './collection'
-import {drop as stringDrop} from './string'
-import {drop} from './array'
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -10,25 +8,6 @@ import {drop} from './array'
 
 export const FIRST = 0
 
-
-
-export function reverse<A>(as: string): string
-export function reverse<A>(as: Array<A>): Array<A>
-export function reverse<A>(as: Array<A>|string): Array<A>|string {
-
-    if (isArray(as)) {
-
-        return (as as Array<A>).reduce((acc: Array<A>, a) => [a].concat(acc), [])
-
-    } if (isString(as)) {
-
-        return (as as string).split('').reverse().join('')
-
-    } else {
-
-        throw 'illegal argument - must be array or string'
-    }
-}
 
 
 export function takeNth(n: number): <A>(as: List<A>) => List<A>
@@ -89,34 +68,4 @@ export function sort<A>(f: string|Array<number>|((a: A, b: A) => number)) {
             throw 'illegal argument - must be array or string'
         }
     }
-}
-
-
-export function first<T>(as: string): string|undefined
-export function first<T>(as: Array<T>): T|undefined
-export function first<T>(as: Array<T>|string): string|T|undefined {
-
-    return as.length === 0
-        ? undefined
-        : as[0]
-}
-
-
-export function rest<T>(as: string): string
-export function rest<T>(as: Array<T>): Array<T>
-export function rest<T>(as: Array<T>|string): Array<T>|string {
-
-    return isString(as)
-        ? stringDrop(1)(as as any)
-        : drop(1)(as as any)
-}
-
-
-export function last<T>(as: string): string|undefined
-export function last<T>(as: Array<T>): T|undefined
-export function last<T>(as: Array<T>|string): string|T|undefined {
-
-    return as.length === 0
-        ? undefined
-        : as[as.length-1]
 }

@@ -1,7 +1,7 @@
 import {identity} from './core'
 import {Either, Fallible, Mapping, Maybe, Pair, Predicate} from './type'
 import {isEither, isFailure, isFunction, isMaybe, isPair, isSuccess} from './predicate'
-import {first, rest} from './list'
+import {first, rest} from './array'
 import {success, getSuccess, left, just, right} from './tuple'
 import { tripleEqual } from './comparator'
 
