@@ -1,4 +1,4 @@
-import {sort} from '../../src/list'
+import { sort } from "../../src/array"
 
 
 const aFirst = (a: string, _: string) => a === 'a' ? -1 : 1
@@ -23,20 +23,4 @@ describe('sort', () => {
             sort([2, 1])
 
         ).toEqual([1, 2]))
-
-
-    it('string', () =>
-        expect(
-
-            sort(aFirst)('babbba')
-
-        ).toEqual('aabbbb'))
-
-
-    it('string - no param', () =>
-        expect(
-
-            sort('babbba')
-
-        ).toEqual('aabbbb'))
 })

@@ -1,6 +1,9 @@
-import {takeNth} from '../../src/list';
+import { takeNth } from '../../src/array'
 
 
+/**
+ * tsfun | takeNth
+ */
 describe('takeNth', () => {
 
     it('2', () =>
@@ -80,55 +83,5 @@ describe('takeNth', () => {
             takeNth(-1)([1])
 
         ).toEqual([])
-    );
-
-
-    it('string', () =>
-
-        expect(
-
-            takeNth(2)('abcd')
-
-        ).toEqual('ac')
-    );
-
-
-    it('string - 0', () =>
-
-        expect(
-
-            takeNth(0)('abcd')
-
-        ).toEqual('')
-    );
-
-
-    it('string - negative', () =>
-
-        expect(
-
-            takeNth(-1)('abcd')
-
-        ).toEqual('')
-    );
-
-
-    it('string - of empty', () =>
-
-        expect(
-
-            takeNth(1)('')
-
-        ).toEqual('')
-    );
-
-
-    it('string - every', () =>
-
-        expect(
-
-            takeNth(1)('abc')
-
-        ).toEqual('abc')
-    );
-});
+    )
+})

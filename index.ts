@@ -158,14 +158,14 @@ export {
     reverse,
     first,
     rest,
-    last
+    last,
+    takeNth,
+    sort
 } from './src/array'
 
 
 export {
     // takeUntil, // TODO document in readme or remove
-    takeNth,
-    sort,
     FIRST
 } from './src/list'
 

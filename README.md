@@ -145,6 +145,8 @@ import {equal} from 'tsfun';
 * [rest](test/array/rest.spec.ts)
 * [last](test/array/last.spec.ts)
 * [reverse](test/array/reverse.spec.ts)
+* [sort](test/list/sort.spec.ts)
+* [takeNth](test/list/take_nth.spec.ts)
 
 ### Struct
 
@@ -212,13 +214,6 @@ import {equal} from 'tsfun';
 * [union](test/set/union.spec.ts)
 * [unite](test/set/unite.spec.ts)
 * [duplicates](test/set/duplicates.spec.ts)
-
-### List
-
-###### Array & string
-
-* [sort](test/list/sort.spec.ts)
-* [takeNth](test/list/take_nth.spec.ts)
 
 ## Types reference
 

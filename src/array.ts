@@ -7,7 +7,7 @@ import {
 } from './predicate'
 import {identity} from './core'
 import {Associative, Mapping, Pair, Predicate} from './type'
-import {values, map_a, size} from './associative'
+import {values, map_a, size, copy} from './associative'
 import {
     filter as filterColl,
     remove as removeColl,
@@ -572,4 +572,47 @@ export function last<T>(as: Array<T>): T|undefined {
     return as.length === 0
         ? undefined
         : as[as.length-1]
+}
+
+
+export function takeNth(n: number): <A>(as: Associative<A>) => Associative<A>
+export function takeNth(n: number) {
+
+    const reducer = <A>(acc: Array<A>, val: any, i: number) =>
+        i % n === 0 ? acc.concat([val]) : acc
+
+    return <A>(as: Array<A>) => {
+
+        if (isArray(as)) {
+
+            return n < 0 ? [] : (as as Array<A>).reduce(reducer, [])
+
+        } else {
+
+            throw 'illegal argument - must be array or string'
+        }
+    }
+}
+
+
+export function sort(s: Array<number>): Array<number>
+export function sort<A>(f: (a: A, b: A) => number): (as: Array<A>) => Array<A>
+export function sort<A>(f: Array<number>|((a: A, b: A) => number)) {
+
+    if (!isFunction(f)) {
+
+        return (f as any).sort((a: string, b: string) => {
+            if (a === b) return 0
+            if (a < b) return -1
+            return 1
+        })
+
+    } else return (as: Array<A>) => {
+
+        if (isArray(as)) {
+            return copy(as as any).sort(f as any)
+        } else {
+            throw 'illegal argument - must be array or string'
+        }
+    }
 }
