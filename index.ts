@@ -6,7 +6,6 @@ export {
     to,
     update,
     $getElForPathIn,
-    path
 } from './src/struct'
 
 export type {

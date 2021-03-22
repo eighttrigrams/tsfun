@@ -1,6 +1,6 @@
 import { map } from '../../src/array'
 import { flow } from '../../src/composition'
-import {path, to} from '../../src/struct'
+import {to} from '../../src/struct'
 import { Expect } from '../../src/type'
 import { expectType } from 'ts-expect'
 
@@ -36,11 +36,11 @@ describe('to', () => {
             .toBeUndefined()
 
         expect(
-            to(path('c.d'), 8)({a: {b: 4}}))
+            to(['c','d'], 8)({a: {b: 4}}))
             .toEqual(8)
 
         expect(
-            to(path('c.d'), undefined)({a: {b: 4}}))
+            to(['c', 'd'], undefined)({a: {b: 4}}))
             .toEqual(undefined)
     })
 
@@ -102,7 +102,7 @@ describe('to', () => {
     it('to - 1 does not exist', () =>
         expect(
 
-            [{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}].map(to(path('a.c'))))
+            [{a: {b: {c: 'd'}}}, {a: {c: {d: 'e'}}}].map(to(['a','c'])))
 
             .toEqual([undefined, {d: 'e'}]))
 
@@ -114,7 +114,7 @@ describe('to', () => {
 
             .toEqual(['d', 'e']))
 
-    it('first level object - second level object - see path',() =>
+    it('first level object - second level object - see path', () =>
         expect(
 
             to('a.b')({'a.b': 4}))
@@ -124,7 +124,7 @@ describe('to', () => {
     it('first level object - second level key missing',() =>
         expect(
 
-            to(path('a.c'), undefined)({a: {b: 4}}))
+            to(['a','c'], undefined)({a: {b: 4}}))
 
             .toEqual(undefined))
 
@@ -132,7 +132,7 @@ describe('to', () => {
     it('first level object - second level object - third level key missing',() =>
         expect(
 
-            to(path('a.c.e'), undefined)({a: {c: {c: 7}}}))
+            to(['a','c','e'], undefined)({a: {c: {c: 7}}}))
 
             .toEqual(undefined))
 
@@ -140,7 +140,7 @@ describe('to', () => {
     it('first level object key missing - second level object key missing - third level key missing',() =>
         expect(
 
-            to(path('e.e.e'))({c: {c: {c: 7}}}))
+            to(['e','e','e'])({c: {c: {c: 7}}}))
 
             .toEqual(undefined))
 
@@ -171,7 +171,7 @@ describe('to', () => {
     it('first level object - second level object',() =>
     expect(
 
-        to(path('a.b'))({a: {b: 4}}))
+        to(['a','b'])({a: {b: 4}}))
 
         .toEqual(4))
 

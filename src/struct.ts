@@ -228,7 +228,7 @@ function $update0(key, f: any, o?) {
 
 function $update1(path_ /*mut inplace*/, struct, update_fun, update = true) {
 
-    const pathSegments = (isString(path_) ? path(path_ as any) : path_) as Array<string|number>
+    const pathSegments = path_ as Array<string|number>
 
     const pathSegment = pathSegments[0]
     const copied = copy(struct)
@@ -265,51 +265,4 @@ export function $getElForPathIn(object: any, path: Array2<string|number>): any {
                 : undefined
 
     })(object, path)
-}
-
-
-export function path(path: string): Array2<string|number> {
-
-    if (isString(path)) {
-
-        const segments = []
-        let current = ''
-        for (let i = 0; i < path.length; i++) {
-            if (path[i] !== '[' && path[i] !== '.' && path[i] !== ']') {
-                current += path[i]
-            } else {
-                if (path[i] === ']') {
-                    segments.push(parseInt(current) as never)
-                } else {
-                    if (current) segments.push(current as never)
-                }
-                current = ''
-            }
-        }
-        if (current) segments.push(current as never)
-
-        if (!isArray2(segments)) throw 'illegal argument - path expected to yield 2 segments'
-        return segments
-    }
-    throw 'illegal arguments - must be string'
-}
-
-
-function _back(path: Array<number|string>): string {
-
-    if (isArray(path)) {
-
-        let joined = (path as Array<number|string>).map((segment: any) => {
-
-            return isString(segment)
-                ? '.' + segment + '.'
-                : '[' + segment.toString() + ']'
-
-        }).join('').replace('..', '.').replace('.[', '[')
-
-        if (joined.startsWith('.')) joined = joined.slice(1)
-        if (joined.endsWith('.')) joined = joined.slice(0, joined.length-1)
-        return joined
-    }
-    throw 'illegal arguments - must be Array<number|string>'
 }

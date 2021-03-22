@@ -1,6 +1,7 @@
 import {Map} from '../../src/type'
 import { flow } from '../../src/composition'
-import {dissoc, path} from '../../src/struct'
+import {dissoc} from '../../src/struct'
+
 
 /**
  * tsfun | dissoc
@@ -48,7 +49,7 @@ describe('dissoc', () => {
     it('simple case', () => {
 
         const objectStruct = { a: { b: 'c' }}
-        const $1: any = dissoc(path('a.b'))(objectStruct)
+        const $1: any = dissoc(['a', 'b'])(objectStruct)
 
         expect($1).not.toBe(objectStruct)
         expect($1).toEqual({ a: {} })
@@ -75,7 +76,7 @@ describe('dissoc', () => {
         const embeddedStruct = { e: 'e_val' }
 
         const objectStruct = { a: { b: 'b_val', c: embeddedStruct}, d: embeddedStruct }
-        const resultStruct: any = dissoc(path('a.c'))(objectStruct)
+        const resultStruct: any = dissoc(['a', 'c'])(objectStruct)
 
         expect(resultStruct).not.toBe(objectStruct)
         expect(resultStruct['d']).toBe(embeddedStruct)
@@ -89,7 +90,7 @@ describe('dissoc', () => {
     it('do not create anything', () => {
 
         const objectStruct = {}
-        const resultStruct = dissoc(path('a.c'))(objectStruct)
+        const resultStruct = dissoc(['a', 'c'])(objectStruct)
 
         // does not create the a property, just to get to the 'c' property
         expect(resultStruct).toEqual({})
