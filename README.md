@@ -9,7 +9,7 @@
 Example:
 
 ```typescript
-import {on, equal, take, update, flow} from 'tsfun';
+import {on, equal, take, update, flow} from 'tsfun'
 ```
 
 ### Array
@@ -251,7 +251,7 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 ### string
 
 ```typescript
-import {take} from 'tsfun/string';
+import {take} from 'tsfun/string'
 ```
 
 * [append](test/string/append.spec.ts)
@@ -277,7 +277,7 @@ import {take} from 'tsfun/string';
 ### Async
 
 ```typescript
-import {map as asyncMap} from 'tsfun/async';
+import {map as asyncMap} from 'tsfun/async'
 ```
 
 * [map](test/async/async/map.spec.ts)
@@ -297,7 +297,7 @@ import {map as asyncMap} from 'tsfun/async';
 ### Lazy
 
 ```typescript
-import {zip as lZip} from 'tsfun/lazy';
+import {zip as lZip} from 'tsfun/lazy'
 ```
 
 * [zip](test/lazy/lazy/zip.spec.ts)
