@@ -142,21 +142,6 @@ import {equal} from 'tsfun';
 * [prepend](test/array/prepend.spec.ts) 
 * [zip](test/array/zip.spec.ts)
 
-### Map & Associative
-
-###### Array & Object
-
-* [update1](test/associative/update1.spec.ts)
-* [keys](test/associative/keys.spec.ts)
-* [values](test/associative/values.spec.ts)
-* [keysAndValues](test/associative/keys_and_values.spec.ts)
-* [map1](test/associative/map1.spec.ts) 
-* [filter1](test/associative/filter1.spec.ts)
-* [forEach1](test/associative/for_each1.spec.ts)
-* [get1](test/associative/get1.spec.ts)
-* [lookup1](test/associative/lookup1.spec.ts)
-* [reduce1](test/associative/reduce1.spec.ts)
-
 ### string
 
 * [join](test/string/join.spec.ts)
@@ -218,6 +203,21 @@ import {equal} from 'tsfun';
 * [right](test/tuple/right.spec.ts)
 * [value](test/tuple/value.spec.ts)
 * [getSuccess](test/tuple/get_success.spec.ts)
+
+### Map & Associative
+
+###### Array & Object
+
+* [update1](test/associative/update1.spec.ts)
+* [keys](test/associative/keys.spec.ts)
+* [values](test/associative/values.spec.ts)
+* [keysAndValues](test/associative/keys_and_values.spec.ts)
+* [map1](test/associative/map1.spec.ts) 
+* [filter1](test/associative/filter1.spec.ts)
+* [forEach1](test/associative/for_each1.spec.ts)
+* [get1](test/associative/get1.spec.ts)
+* [lookup1](test/associative/lookup1.spec.ts)
+* [reduce1](test/associative/reduce1.spec.ts)
 
 ### Struct
 
