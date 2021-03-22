@@ -142,6 +142,19 @@ import {equal} from 'tsfun';
 * [prepend](test/array/prepend.spec.ts) 
 * [zip](test/array/zip.spec.ts)
 
+### Struct
+
+###### Array & Object
+
+* [to](test/struct/to.spec.ts)
+* [update](test/struct/update.spec.ts)
+* [path](test/struct/path.spec.ts)
+* [clone](test/struct/clone.spec.ts)
+* [jsonClone](test/struct/json_clone.spec.ts)
+* [lookup](test/struct/lookup.spec.ts)
+* [get](test/struct/get.spec.ts)
+* [dissoc](test/struct/dissoc.spec.ts)
+
 ### Map & Associative
 
 ###### Array & Object
@@ -156,19 +169,6 @@ import {equal} from 'tsfun';
 * [get1](test/associative/get1.spec.ts)
 * [lookup1](test/associative/lookup1.spec.ts)
 * [update1](test/associative/update1.spec.ts)
-
-### Struct
-
-###### Array & Object
-
-* [to](test/struct/to.spec.ts)
-* [update](test/struct/update.spec.ts)
-* [path](test/struct/path.spec.ts)
-* [clone](test/struct/clone.spec.ts)
-* [jsonClone](test/struct/json_clone.spec.ts)
-* [lookup](test/struct/lookup.spec.ts)
-* [get](test/struct/get.spec.ts)
-* [dissoc](test/struct/dissoc.spec.ts)
 
 ### Tuple
 
