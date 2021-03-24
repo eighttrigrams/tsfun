@@ -6,23 +6,9 @@ import {range, zip} from './array'
 
 export type Filter1<T = any> = Mapping<Associative<T>>
 
-
 // Written with Thomas Kleinke
-export function to_a(i: number): <T>(as: Array<T>) => T|undefined
-export function to_a(k: string): <T>(as: Map<T>) => T|undefined
-export function to_a<T = unknown>(i: number, alternative: T): (as: Array<T>) => T|undefined
-export function to_a<T = unknown>(k: string, alternative: T): (as: Map<T>) => T|undefined
-export function to_a<A>(i: number, defaultValue?: A|undefined): (as: Array<A>) => A|undefined;
-export function to_a<T>(i: string, defaultValue?: T): (as: Map<T>) => T|undefined;
-export function to_a<T>(i: number|string, alternative?: T|undefined) {
-
-    return (as: Array<T>|Map<T>): T|undefined => {
-
-        const result = (as as any)[i]
-        return result !== undefined ? result : alternative
-    }
-}
-
+// TODO see to, rename to get again
+// export function to_a(i: number): <T>(as: Array<T>) => T|undefined
 
 export function update_a<T>(key: string, v: T|Mapping<T>, m: Map<T>): Map<T>
 export function update_a<T>(key: number, v: T|Mapping<T>, m: Array<T>): Array<T>

@@ -189,7 +189,6 @@ export {
     update_a,
     map_a,
     filter_a,
-    to_a,
     lookup_a,
     keys,
     values,
