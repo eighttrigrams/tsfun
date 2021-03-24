@@ -38,9 +38,9 @@ export function update_a<T>(key, arg, arg2?): any {
 }
 
 
-export function lookup_a<T>(struct: Map<T>, alternative?: T): (targetId: string) => T|undefined;
-export function lookup_a<A>(struct: Array<A>, alternative?: A): (targetId: number) => A|undefined;
-export function lookup_a<A>(struct: Map<A>|Array<A>, alternative?: any) {
+export function lookup<T>(struct: Map<T>, alternative?: T): (targetId: string) => T|undefined;
+export function lookup<A>(struct: Array<A>, alternative?: A): (targetId: number) => A|undefined;
+export function lookup<A>(struct: Map<A>|Array<A>, alternative?: any) {
 
     return (targetId: string|number): A|undefined => {
 

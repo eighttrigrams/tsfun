@@ -1,6 +1,5 @@
 export {
     jsonClone,
-    lookup,
     clone,
     dissoc,
     to,
@@ -189,7 +188,7 @@ export {
     update_a,
     map_a,
     filter_a,
-    lookup_a,
+    lookup,
     keys,
     values,
     keysAndValues,

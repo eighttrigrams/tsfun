@@ -1,15 +1,15 @@
-import {lookup_a, map_a} from '../../src/associative'
+import {lookup, map_a} from '../../src/associative'
 
 
 /**
- * tsfun | lookup_a
+ * tsfun | lookup
  */
-describe('lookup_a', () => {
+describe('lookup', () => {
 
-    it('lookup_a', () =>
+    it('lookup', () =>
         expect(
 
-            lookup_a({a: 9, b: 10})('a')
+            lookup({a: 9, b: 10})('a')
 
         ).toEqual(9))
 
@@ -17,7 +17,7 @@ describe('lookup_a', () => {
     it('lookup_a in array', () =>
         expect(
 
-            lookup_a([3, 5, 7])(1)
+            lookup([3, 5, 7])(1)
 
         ).toEqual(5))
 
@@ -25,7 +25,7 @@ describe('lookup_a', () => {
     it('lookup_a with map', () =>
         expect(
 
-            map_a(lookup_a({a: 9, b: 10}))(['a', 'b'])
+            map_a(lookup({a: 9, b: 10}))(['a', 'b'])
 
         ).toEqual([9, 10]))
 
@@ -33,7 +33,7 @@ describe('lookup_a', () => {
     it('nothing', () =>
         expect(
 
-            map_a(lookup_a({a: 9}))(['d'])
+            map_a(lookup({a: 9}))(['d'])
 
         ).toEqual([undefined]))
 
@@ -41,7 +41,7 @@ describe('lookup_a', () => {
     it('alternative', () =>
         expect(
 
-            map_a(lookup_a({a: 9}, 13))(['d'])
+            map_a(lookup({a: 9}, 13))(['d'])
 
         ).toEqual([13]))
 })

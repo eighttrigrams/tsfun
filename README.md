@@ -73,7 +73,6 @@ as combinations, i.e. mutual nestings, thereof.
 * [update](test/struct/update.spec.ts)
 * [clone](test/struct/clone.spec.ts)
 * [jsonClone](test/struct/json_clone.spec.ts)
-* [lookup](test/struct/lookup.spec.ts)
 * [dissoc](test/struct/dissoc.spec.ts)
 
 ### Associative
@@ -92,9 +91,9 @@ Map-s (JavaScript-Objects).
 * [indices](test/associative/indices.spec.ts)
 * [all](test/associative/all.spec.ts)
 * [any](test/associative/any.spec.ts)
+* [lookup](test/associative/lookup.spec.ts)
 * [map_a](test/associative/map_a.spec.ts)
 * [filter_a](test/associative/filter_a.spec.ts)
-* [lookup_a](test/associative/lookup_a.spec.ts)
 * [update_a](test/associative/update_a.spec.ts)
 
 ### Set

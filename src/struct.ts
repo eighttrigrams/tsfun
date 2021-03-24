@@ -70,15 +70,6 @@ export function to(path: Path, alternative?) {
 }
 
 
-export function lookup<T, V>(ds: T, alternative?: V): (path: Path) => V
-export function lookup<T>(ds: Array<T>, alternative?: T): (path: number) => T
-export function lookup<T, V>(ds: T, alternative?: V): (path: string) => V
-export function lookup(ds, alternative?) {
-
-    return path => (to as any)(path, alternative)(ds)
-}
-
-
 export function update<T, K extends keyof T>(k: K, f: (val: T[K])=>T[K], o: T): T
 export function update<T, K extends keyof T,V>(k: K, f: (val: T[K])=>V, o: T): unknown
 export function update<T, K extends keyof T>(k: K, val: T[K], o: T): T
