@@ -1,6 +1,6 @@
 import {Pair, Map, Either, Maybe} from './type'
 import {isArray, isFailure, isFunction, isObject, isString} from './predicate'
-import {keys, keysAndValues} from './associative'
+import {keys, keysValues} from './associative'
 import {getSuccess} from './tuple'
 import {first, rest} from './array'
 import {convert} from './composition'
@@ -40,7 +40,7 @@ export function forEach<A>(f: (_: A, i?: number|string) => Promise<void>) {
 
         } else if (isObject(as)) {
 
-            for (let item of keysAndValues(as as any)) {
+            for (let item of keysValues(as as any)) {
                 await (f as any)(item[1], item[0])
             }
             return as as Map<A>

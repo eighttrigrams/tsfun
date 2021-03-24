@@ -50,9 +50,9 @@ export function lookup<A>(struct: Map<A>|Array<A>, alternative?: any) {
 }
 
 
-export function keysAndValues<A>(as: Array<A>): Array<[number, A]>;
-export function keysAndValues<T>(o: Map<T>): Array<[string, T]>;
-export function keysAndValues<T>(o: Map<T>|Array<T>): Array<[string|number, T]> {
+export function keysValues<A>(as: Array<A>): Array<[number, A]>;
+export function keysValues<T>(o: Map<T>): Array<[string, T]>;
+export function keysValues<T>(o: Map<T>|Array<T>): Array<[string|number, T]> {
 
     return zip(keys(o) as any, Object.values(o) as any) as Array<[string, T]>
 }

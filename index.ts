@@ -191,7 +191,7 @@ export {
     lookup,
     keys,
     values,
-    keysAndValues,
+    keysValues,
     Filter1,
     count,
     size,

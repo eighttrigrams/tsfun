@@ -83,7 +83,7 @@ Map-s (JavaScript-Objects).
 
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)
-* [keysAndValues](test/associative/keys_and_values.spec.ts)
+* [keysValues](test/associative/keys_values.spec.ts)
 * [copy](test/associative/copy.spec.ts)
 * [count](test/associative/count.spec.ts)
 * [prune](test/associative/prune.spec.ts)
