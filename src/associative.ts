@@ -2,6 +2,7 @@ import {Predicate, Map, Associative, Mapping, Key} from './type'
 import {isArray, isAssociative, isDefined, isFunction, isObject} from './predicate'
 import {filter as filterCollection} from './collection'
 import {range, zip} from './array'
+import { throwIllegalArgs } from './core'
 
 
 export type Filter1<T = any> = Mapping<Associative<T>>
@@ -126,8 +127,7 @@ export function map<A, B>(first: any, ...rest: any[]): any {
     const inner = (associativeColl: any): any => {
 
         if (rest.length === 0 && !isAssociative(associativeColl)) {
-            throw 'illegal argument - in \'map\': ' +
-            'argument in second argument list must be an associative collection'
+            throwIllegalArgs('map', 'associative collection', associativeColl)
         }
 
         if (isArray(associativeColl)) return (associativeColl as Array<A>).map(mappingFunction) as Array<B>
@@ -193,7 +193,7 @@ export function $reduce_a(...args): any {
 
         } else {
 
-            throw 'illegal argument - must be array or object'
+            throwIllegalArgs('$reduce_a', 'array or object', ts)
         }
     }
 
@@ -218,6 +218,10 @@ export function filter<A>(as: Map<A>, p: (a: A, i: string) => boolean): Map<A>
 export function filter<A>(as: Map<A>, p: (a: A) => boolean): Map<A>
 export function filter<A>(...args): any {
 
+    if (!any(isFunction)(args)) {
+        throwIllegalArgs('filter', 'at least one function', args)
+    }
+
     const $ = p => as => {
 
         if (isArray(as)||isObject(as)) {
@@ -226,7 +230,7 @@ export function filter<A>(...args): any {
 
         } else {
 
-            throw 'illegal argument - must be array or object'
+            throwIllegalArgs('filter','array or object', as)
         }
     }
 
