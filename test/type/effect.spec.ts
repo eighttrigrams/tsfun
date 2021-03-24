@@ -1,5 +1,5 @@
-import {Effect} from '../../src/type';
-import { forEach } from '../../src/array';
+import {Effect} from '../../src/type'
+import {forEach} from '../../src/associative'
 
 /**
  * tsfun | Effect

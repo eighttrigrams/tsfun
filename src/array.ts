@@ -398,29 +398,6 @@ export function prepend<A>(...as2: Array<A>) {
 }
 
 
-export function forEach<A>(f: (_: A, i: number) => void): (as: Array<A>) => Array<A>
-export function forEach<A>(f: (_: A) => void): (as: Array<A>) => Array<A>
-export function forEach<A>(f) {
-
-    return (as: any) => {
-
-        if (isArray(as)) {
-
-            let i = 0
-            for (let item of as) {
-                (f as any)(item, i)
-                i++
-            }
-            return as as Array<A>
-
-        } else {
-
-            throw 'illegal argument - in \'forEach\', must be array'
-        }
-    }
-}
-
-
 export function reduce<A, B>(f: (b: B, a: A, i: number) => B, init: B): (as: Array<A>) => B
 export function reduce<A, B>(f: (b: B, a: A) => B, init: B): (as: Array<A>) => B
 export function reduce<T, B>(f, init) {

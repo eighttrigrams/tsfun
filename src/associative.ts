@@ -138,6 +138,24 @@ export function map<A, B>(first: any, ...rest: any[]): any {
 }
 
 
+export function forEach<A = any, B = A>(f: (_: A, i?: Key) => B): <T,V = T extends Array<A> ? Array<A> : T extends Map<A> ? Map<A> : never>(as: T) => V
+export function forEach<A>(f: (_: A, i: number) => void): (as: Array<A>) => Array<A>
+export function forEach<A>(f: (_: A) => void): (as: Array<A>) => Array<A>
+export function forEach<A>(f) {
+
+    return (as: any) => {
+        if (!isAssociative(as)) throwIllegalArgs('forEach', 'Associative', as)
+
+        let i = 0
+        for (let [k,v] of keysValues(as)) {
+            f(v, k)
+            i++
+        }
+        return as
+    }
+}
+
+
 export function $reduce_a<A, B>(f: (b: B, a: A, i: string) => B, init: B, as: Map<A>): B
 export function $reduce_a<A, B>(f: (b: B, a: A) => B, init: B, as: Map<A>): B
 export function $reduce_a<A, B>(f: (b: B, a: A, i: number) => B, init: B, as: Array<A>): B
