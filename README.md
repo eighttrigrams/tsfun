@@ -229,9 +229,8 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 * [Collection](test/type/collection.spec.ts)
 * [Mapping](test/type/predicate.spec.ts)
 * [Predicate](test/type/predicate.spec.ts)
-* [Filter](test/type/filter.spec.ts)
 * [Effect](test/type/effect.spec.ts)
-* [Filter1](test/associative/filter.type.spec.ts)
+* [Filter](test/associative/filter.type.spec.ts)
 
 ## Constants reference
 

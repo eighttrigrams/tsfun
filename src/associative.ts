@@ -1,11 +1,9 @@
-import {Predicate, Map, Associative, Mapping, Key} from './type'
+import {Predicate, Map, Associative, Mapping, Key, Pair} from './type'
 import {isArray, isAssociative, isDefined, isFunction, isObject} from './predicate'
-import {filter as filterCollection} from './collection'
 import {range, zip} from './array'
 import { throwIllegalArgs } from './core'
 
-
-export type Filter1<T = any> = Mapping<Associative<T>>
+export type Filter<T = any> = Mapping<Associative<T>>
 
 // Written with Thomas Kleinke
 // TODO see to, rename to get again
@@ -86,16 +84,6 @@ const mapPropertiesReducer = <A, B>(f: (_: A) => B) =>
     (o: any) => (acc: any, val: string) => (acc[val] = f(o[val]), acc)
 
 
-const filterObj = <T>(predicate: Predicate<T>): (_: Map<T>) => Map<T> =>
-    (o: Map<T>) =>
-        Object
-            .keys(o)
-            .reduce((acc: Map<T>, key: string|number) => {
-                if (predicate(o[key])) acc[key] = o[key]
-                return acc
-            }, {})
-
-
 
 export function map<A = any, B = A>(f: (_: A, i?: Key) => B): <T,V = T extends Array<A> ? Array<B> : T extends Map<A> ? Map<B> : never>(as: T) => V
 export function map<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
@@ -148,16 +136,8 @@ export function map<A, B>(first: any, ...rest: any[]): any {
                 : first
         )
 }
-// export function map<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
-// export function map<A = any, B = A >(f: (_: A) => B): (as: Array<A>) => Array<B>
-// export function map<A, B>(...args: any[]): any {
-
-//     if (args.length > 1) throw 'illegal argument in "tsfun|map"'
-//     return map_a(args[0])
-// }
 
 
-// Library Internal
 export function $reduce_a<A, B>(f: (b: B, a: A, i: string) => B, init: B, as: Map<A>): B
 export function $reduce_a<A, B>(f: (b: B, a: A) => B, init: B, as: Map<A>): B
 export function $reduce_a<A, B>(f: (b: B, a: A, i: number) => B, init: B, as: Array<A>): B
@@ -204,7 +184,7 @@ export function $reduce_a(...args): any {
             : inner(args[1], args[2])(args[0])
 }
 
-// this variant would infer T from the predicate, not from the boxed type
+// variant: infer from predicate instead boxed type
 // export function filter<A,T,V = T extends Array<A> ? Array<A> : T extends Map<A> ? Map<A> : never>(f: (_: A, i?: Key) => boolean): (as: T) => V
 export function filter<A,T,V = T extends Array<infer A> ? Array<A> : T extends Map<infer A> ? Map<A> : never>(f: (_: A, i?: Key) => boolean): (as: T) => V
 export function filter<A>(p: (a: A, i?: number|string) => boolean): (_: Associative<A>) => Associative<A>
@@ -218,20 +198,15 @@ export function filter<A>(as: Map<A>, p: (a: A, i: string) => boolean): Map<A>
 export function filter<A>(as: Map<A>, p: (a: A) => boolean): Map<A>
 export function filter<A>(...args): any {
 
-    if (!any(isFunction)(args)) {
+    if (!any(isFunction)(args))
         throwIllegalArgs('filter', 'at least one function', args)
-    }
 
     const $ = p => as => {
 
-        if (isArray(as)||isObject(as)) {
-
-            return filterCollection(p)(as)
-
-        } else {
-
+        if (!isAssociative(as))
             throwIllegalArgs('filter','array or object', as)
-        }
+
+        return $filter(p)(as)
     }
 
     return args.length === 1
@@ -240,13 +215,6 @@ export function filter<A>(...args): any {
             ? $(args[0])(args[1])
             : $(args[1])(args[0])
 }
-// export function filter<A>(p: (a: A, i: number) => boolean): (_: Array<A>) => Array<A>
-// export function filter<A>(p: (a: A) => boolean): (_: Array<A>) => Array<A>
-// export function filter<A>(...args: any[]): any {
-
-//     if (args.length > 1) throw 'illegal argument in "tsfun|filter"'
-//     return filterColl(args[0])
-// }
 
 
 export function copy<T>(struct: Array<T>): Array<T>
@@ -265,7 +233,7 @@ export function count<A>(p: Predicate<A>): {
 }
 export function count<A>(p: Predicate<A>, as: Array<A>|Map<A>|string): number
 export function count<A>(p: Predicate<A>, as?: any): any {
-    const inner = (as: Array<A>|Map<A>|string): number => size(filterCollection(p)(as as any) as any)
+    const inner = (as: Array<A>|Map<A>|string): number => size($filter(p)(as as any) as any)
     return as === undefined
         ? inner
         : inner(as)
@@ -294,7 +262,7 @@ export function prune<T>(o: Map<T>): Map<T>
 export function prune<A>(as: Array<A>): Array<A>
 export function prune<T>(ts: Array<T>|Map<T>) {
 
-    return filterCollection(isDefined)(ts as any)
+    return $filter(isDefined)(ts as any)
 }
 
 
@@ -328,4 +296,94 @@ export function size<T>(o: Array<T>|Map<T>): number {
     return (isArray(o)
         ? o.length
         : keys(o as any).length) as number
+}
+
+
+export function $filter<A>(...args): any { // TODO always call with single param list
+
+    const $ = p => as => {
+
+        if (isArray(as)) {
+
+            const as1 = []
+            let i = 0
+            for (let a of as) {
+                if (p(a, i)) as1.push(a as never)
+                i++
+            }
+
+            return as1 as Array<A>
+        }
+        else if (isObject(as)) {
+
+            const o = as as Map<A>
+
+            const o1: any = {}
+            let i = 0
+            for (let k of keys(o)) {
+                if (p(o[k], k)) o1[k] = o[k]
+                i++
+            }
+
+            return o1 as Map<A>
+
+        } else throw 'FATAL'
+    }
+
+    return args.length === 1
+        ? $(args[0])
+        : isFunction(args[0])
+            ? $(args[0])(args[1])
+            : $(args[1])(args[0])
+}
+
+
+export function $remove<A>(p: (a: A, i?: number|string) => boolean): (as: Associative) => Associative
+export function $remove<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
+export function $remove<A>(p: (a: A) => boolean, as: Array<A>): Array<A>
+export function $remove<A>(as: Array<A>, p: (a: A, i: number) => boolean): Array<A>
+export function $remove<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
+export function $remove<A>(p: (a: A, i: number) => boolean, as: string): string
+export function $remove<A>(p: (a: A) => boolean, as: string): string
+export function $remove<A>(as: string, p: (a: A, i: number) => boolean): string
+export function $remove<A>(as: string, p: (a: A) => boolean): string
+export function $remove<A>(p: (a: A, i: string) => boolean, as: Map<A>): Map<A>
+export function $remove<A>(p: (a: A) => boolean, as: Map<A>): Map<A>
+export function $remove<A>(as: Map<A>, p: (a: A, i: string) => boolean): Map<A>
+export function $remove<A>(as: Map<A>, p: (a: A) => boolean): Map<A>
+export function $remove<A>(...args): any {
+
+    const inner = p => $filter((a: any, i: number|string) => !p(a, i))
+
+    return args.length === 1
+        ? inner(args[0])
+        : isFunction(args[0])
+            ? inner(args[0])(args[1])
+            : inner(args[1])(args[0]) as any
+}
+
+
+export function $separate<A>(p: (a: A, i?: number|string) => boolean): (as: Associative<A>) => Pair<Associative<A>>
+export function $separate<A>(p: (a: A, i: number) => boolean, as: string): Pair<string>
+export function $separate<A>(p: (a: A) => boolean, as: string): Pair<string>
+export function $separate<A>(as: string, p: (a: A, i: number) => boolean): Pair<string>
+export function $separate<A>(as: string, p: (a: A) => boolean): Pair<string>
+export function $separate<A>(p: (a: A, i: number) => boolean, as: Array<A>): Pair<Array<A>>
+export function $separate<A>(p: (a: A) => boolean, as: Array<A>): Pair<Array<A>>
+export function $separate<A>(as: Array<A>, p: (a: A, i: number) => boolean): Pair<Array<A>>
+export function $separate<A>(as: Array<A>, p: (a: A) => boolean): Pair<Array<A>>
+export function $separate<A>(p: (a: A, i: string) => boolean, as: Map<A>): Pair<Map<A>>
+export function $separate<A>(p: (a: A) => boolean, as: Map<A>): Pair<Map<A>>
+export function $separate<A>(as: Map<A>, p: (a: A, i: string) => boolean): Pair<Map<A>>
+export function $separate<A>(as: Map<A>, p: (a: A) => boolean): Pair<Map<A>>
+export function $separate<A>(...args): any {
+
+    const $ = p => (as: Array<A>|Map<A>): Pair<Array<A>, Array<A>>|Pair<Map<A>,Map<A>> =>
+        [$filter(p)(as as any) as any, $remove(p)(as as any) as any]
+
+    return args.length === 1
+        ? $(args[0])
+        : isFunction(args[0])
+            ? $(args[0])(args[1])
+            : $(args[1])(args[0])
 }

@@ -1,17 +1,14 @@
 import {liftE, getSuccess, liftM, success, just, right, left} from '../../src/tuple'
 import {Either, Mapping, Maybe} from '../../src/type'
 import {collect, cond, flow, mcompose, throws, val} from '../../src/composition'
-import {map, update_a} from '../../src/associative'
+import {map, filter, update_a, $separate} from '../../src/associative'
 import {isSuccess} from '../../src/predicate'
-import {filter, separate} from '../../src/collection'
 import {lessThan} from '../../src/comparator'
 
 
 /**
  * tsfun | mcompose
  * monadic compose function
- *
- * @author Daniel de Oliveira
  */
 describe('mcompose', () => {
 
@@ -306,7 +303,7 @@ describe('mcompose', () => {
                     [0, 3, 1],
                     map(success),
                     map(mcompose(safedivE(3), decE, squareE)),
-                    separate(isSuccess),
+                    $separate(isSuccess),
                     update_a(0, map(right) as Mapping),
                     update_a(1, map(left) as Mapping))
 

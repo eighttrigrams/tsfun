@@ -3,8 +3,7 @@ import {and, empty, isArray, isArray2, isFunction, isNot, isNumber, isObject, is
 import {subtractBy} from './set'
 import {to} from './struct'
 import {conds, flow, otherwise, throws} from './composition'
-import {remove} from './collection'
-import {size, map} from './associative'
+import {size, map, $remove} from './associative'
 import {reverse} from './array'
 import {zip} from './array'
 import { identity } from './core'
@@ -478,7 +477,7 @@ export function startsWith<A>(that: Array<A>, what?:Array<A>) {
                 : flow(
                     [what as Array<A>, that as Array<A>],
                     zip(),
-                    remove(pairIsSame),
+                    $remove(pairIsSame),
                     size,
                     is(0))
 
@@ -511,7 +510,7 @@ export function endsWith<A>(that, as2?) {
                     [ what as Array<A>, that as Array<A> ],
                     map(reverse),
                     zip(),
-                    remove(pairIsSame),
+                    $remove(pairIsSame),
                     size,
                     is(0))
 

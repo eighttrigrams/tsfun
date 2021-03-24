@@ -1,12 +1,10 @@
-import {and, isNot} from '../../src/predicate';
-import {greaterThan, is, isnt} from '../../src/comparator';
-import {filter} from '../../src/collection';
+import {and, isNot} from '../../src/predicate'
+import {greaterThan, is, isnt} from '../../src/comparator'
+import {filter} from '../../src/associative'
 
 
 /**
  * tsfun | and
- *
- * @author Daniel de Oliveira
  */
 describe('and', () => {
 
@@ -15,7 +13,7 @@ describe('and', () => {
 
            and(is(3), isnt(4))(3)
 
-       ).toBe(true));
+       ).toBe(true))
 
 
     it('false', () =>
@@ -23,7 +21,7 @@ describe('and', () => {
 
             and(is(3), isnt(4))(4)
 
-        ).toBe(false));
+        ).toBe(false))
 
 
     it('three args', () =>
@@ -31,7 +29,7 @@ describe('and', () => {
 
             and(is(3), isnt(4), isnt(5))(6)
 
-        ).toBe(false));
+        ).toBe(false))
 
 
     // use case
@@ -44,5 +42,5 @@ describe('and', () => {
                     greaterThan(1),
                     isNot(greaterThan(4))))([1, 2, 3, 4, 5])
 
-        ).toEqual([2, 3, 4]));
-});
+        ).toEqual([2, 3, 4]))
+})

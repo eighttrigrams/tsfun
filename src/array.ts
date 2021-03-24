@@ -7,12 +7,7 @@ import {
 } from './predicate'
 import {identity} from './core'
 import {Associative, Mapping, Pair, Predicate} from './type'
-import {values, map, size, copy} from './associative'
-import {
-    filter as filterColl,
-    remove as removeColl,
-    separate as separateColl
-} from './collection'
+import {values, map, size, copy, $filter, $remove, $separate} from './associative'
 import {Map} from './type'
 import { flow, throws, val } from './composition'
 
@@ -352,10 +347,10 @@ export function separate<A>(as: Array<A>, p: (a: A) => boolean): Pair<Array<A>>
 export function separate<A>(...args): any {
 
     return args.length === 1
-        ? separateColl(args[0])
+        ? $separate(args[0])
         : isFunction(args[0])
-            ? separateColl(args[0], args[1])
-            : separateColl(args[1], args[0])
+            ? $separate(args[0], args[1])
+            : $separate(args[1], args[0])
 }
 
 
@@ -368,10 +363,10 @@ export function remove<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
 export function remove(...args): any {
 
     return args.length === 1
-        ? removeColl(args[0])
+        ? $remove(args[0])
         : isFunction(args[0])
-            ? removeColl(args[0], args[1])
-            : removeColl(args[1], args[0])
+            ? $remove(args[0], args[1])
+            : $remove(args[1], args[0])
 }
 
 

@@ -5,7 +5,7 @@ import {to} from '../../src/struct'
 /**
  * tsfun | conds
  *       | + otherwise
- * 
+ *
  * As a replacement for switch-case in compositions.
  */
 describe('conds', () => {
@@ -14,7 +14,7 @@ describe('conds', () => {
 
 
     it('test by precicate, result by value', () => {
-        
+
         expect(
             conds(
                 is(3), 5,
@@ -207,7 +207,7 @@ describe('conds', () => {
                 is(3), square)
             (3)
         ).toEqual(9)
-        
+
         expect(
             conds(
                 is(1), square,
@@ -216,7 +216,7 @@ describe('conds', () => {
                 is(4), square)
             (4)
         ).toEqual(16)
-        
+
         expect(
             conds(
                 is(1), square,
@@ -277,23 +277,23 @@ describe('conds', () => {
         expect(
 
             flow(
-                {a: 7}, 
+                {a: 7},
                 conds( // TODO review seleted overload, should be first, not third
                     on('a', is(7)), on('a', square as any), // TODO
                     jsonEqual({a: 7}), to('a')))
 
-        ).toEqual(49)
+        ).toEqual(49 as any /* TODO review any */)
     )
 
 
     it('condsBy', () => {
 
         // If one does not pass functions to the left-hand-sides,
-        // and also does not want to compare by ===, one can 
+        // and also does not want to compare by ===, one can
         // construct conds with a comparator of choice
 
         const $conds = condsBy(equal)
-      
+
         expect(
             $conds(
                     { a: 3 }, 5,
