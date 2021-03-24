@@ -47,9 +47,9 @@ import {on, equal, take, update, flow} from 'tsfun'
 
 ### Associative
 
-Associative are homogeneous (i.e. all values of the same type)
+Associatives are homogeneous (i.e. all values of the same type)
 Arrays and homogeneous
-Map-s (JavaScript-Objects).
+Maps (JavaScript-Objects).
 
 * [keys](test/associative/keys.spec.ts)
 * [values](test/associative/values.spec.ts)

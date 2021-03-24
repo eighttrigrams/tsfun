@@ -2,6 +2,7 @@ import {Predicate, Map, Associative, Mapping, Key, Pair} from './type'
 import {isArray, isAssociative, isDefined, isFunction, isObject} from './predicate'
 import {range, zip} from './array'
 import { throwIllegalArgs } from './core'
+import { cond } from './composition'
 
 export type Filter<T = any> = Mapping<Associative<T>>
 
@@ -198,22 +199,18 @@ export function filter<A>(as: Map<A>, p: (a: A, i: string) => boolean): Map<A>
 export function filter<A>(as: Map<A>, p: (a: A) => boolean): Map<A>
 export function filter<A>(...args): any {
 
-    if (!any(isFunction)(args))
-        throwIllegalArgs('filter', 'at least one function', args)
+    const $ = p => cond(
+        isAssociative,
+        $filter(p),
+        as => throwIllegalArgs('filter','array or object', as)) // TODO make curryLast
 
-    const $ = p => as => {
-
-        if (!isAssociative(as))
-            throwIllegalArgs('filter','array or object', as)
-
-        return $filter(p)(as)
-    }
-
-    return args.length === 1
+    return !any(isFunction)(args) // TODO make one arg list version
+        ? throwIllegalArgs('filter', 'at least one function', args)
+        : args.length === 1
         ? $(args[0])
         : isFunction(args[0])
-            ? $(args[0])(args[1])
-            : $(args[1])(args[0])
+        ? $(args[0])(args[1])
+        : $(args[1])(args[0])
 }
 
 
