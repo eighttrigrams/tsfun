@@ -7,7 +7,7 @@ import {
 } from './predicate'
 import {identity} from './core'
 import {Associative, Mapping, Pair, Predicate} from './type'
-import {values, map, size, copy, $filter, $remove, $separate} from './associative'
+import {values, map, size, copy, $filter, $remove} from './associative'
 import {Map} from './type'
 import { flow, throws, val } from './composition'
 
@@ -351,6 +351,30 @@ export function separate<A>(...args): any {
         : isFunction(args[0])
             ? $separate(args[0], args[1])
             : $separate(args[1], args[0])
+}
+function $separate<A>(p: (a: A, i?: number|string) => boolean): (as: Associative<A>) => Pair<Associative<A>>
+function $separate<A>(p: (a: A, i: number) => boolean, as: string): Pair<string>
+function $separate<A>(p: (a: A) => boolean, as: string): Pair<string>
+function $separate<A>(as: string, p: (a: A, i: number) => boolean): Pair<string>
+function $separate<A>(as: string, p: (a: A) => boolean): Pair<string>
+function $separate<A>(p: (a: A, i: number) => boolean, as: Array<A>): Pair<Array<A>>
+function $separate<A>(p: (a: A) => boolean, as: Array<A>): Pair<Array<A>>
+function $separate<A>(as: Array<A>, p: (a: A, i: number) => boolean): Pair<Array<A>>
+function $separate<A>(as: Array<A>, p: (a: A) => boolean): Pair<Array<A>>
+function $separate<A>(p: (a: A, i: string) => boolean, as: Map<A>): Pair<Map<A>>
+function $separate<A>(p: (a: A) => boolean, as: Map<A>): Pair<Map<A>>
+function $separate<A>(as: Map<A>, p: (a: A, i: string) => boolean): Pair<Map<A>>
+function $separate<A>(as: Map<A>, p: (a: A) => boolean): Pair<Map<A>>
+function $separate<A>(...args): any {
+
+    const $ = p => (as: Array<A>|Map<A>): Pair<Array<A>, Array<A>>|Pair<Map<A>,Map<A>> =>
+        [$filter(p)(as as any) as any, $remove(p)(as as any) as any]
+
+    return args.length === 1
+        ? $(args[0])
+        : isFunction(args[0])
+            ? $(args[0])(args[1])
+            : $(args[1])(args[0])
 }
 
 

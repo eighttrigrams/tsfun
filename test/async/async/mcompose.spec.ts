@@ -1,7 +1,8 @@
 import {flow as asyncFlow, map as asyncMap, mcompose as asyncMcompose} from '../../../src/async'
 import {Either, Mapping, Maybe} from '../../../src/type'
 import {success, left, right, LEFT, RIGHT} from '../../../src/tuple'
-import {map, update_a, $separate} from '../../../src/associative'
+import {map, update_a} from '../../../src/associative'
+import {separate} from '../../../src/array'
 import {isSuccess} from '../../../src/predicate'
 
 
@@ -103,7 +104,7 @@ describe('async/mcompose', () => {
                 [0, 3, 1],
                 map(success),
                 asyncMap(asyncMcompose(safedivE(3), decE, squareE)),
-                $separate(isSuccess),
+                separate(isSuccess),
                 update_a(LEFT, map(right) as Mapping),
                 update_a(RIGHT, map(left) as Mapping))
 
