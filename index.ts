@@ -131,7 +131,6 @@ export {
     flatMap,
     range,
     dense,
-    filter,
     remove,
     separate,
     distribute,
@@ -185,8 +184,7 @@ export {
 
 export {
     update_a,
-    map as map_a,
-    filter_a,
+    filter,
     lookup,
     keys,
     values,

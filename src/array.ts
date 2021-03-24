@@ -144,15 +144,6 @@ export function flatten(p1: any, ...p2: any[]): any {
 }
 
 
-export function filter<A>(p: (a: A, i: number) => boolean): (_: Array<A>) => Array<A>
-export function filter<A>(p: (a: A) => boolean): (_: Array<A>) => Array<A>
-export function filter<A>(...args: any[]): any {
-
-    if (args.length > 1) throw 'illegal argument in "tsfun|filter"'
-    return filterColl(args[0])
-}
-
-
 export function drop(n: number): <A>(as: Array<A>) => Array<A>
 export function drop<A>(n: number, as: Array<A>): Array<A>
 export function drop(n: number, p2?: any): any {

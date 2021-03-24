@@ -16,17 +16,14 @@ import {on, equal, take, update, flow} from 'tsfun'
 
 * [range](test/array/range.spec.ts)
 * [dense](test/array/dense.spec.ts)
-* [filter](test/array/filter.spec.ts)
 * [remove](test/array/remove.spec.ts)
 * [separate](test/array/separate.spec.ts)
 * [distribute](test/array/distribute.spec.ts)
-* [map](test/array/map.spec.ts)
 * [forEach](test/array/for_each.spec.ts)
 * [reduce](test/array/reduce.spec.ts)
 * [reduce0](test/array/reduce0.spec.ts)
 * [flatten](test/array/flatten.spec.ts)
 * [flatMap](test/array/flat_map.spec.ts)
-* [take](test/array/take.spec.ts)
 * [drop](test/array/drop.spec.ts)
 * [takeRight](test/array/take_right.spec.ts)
 * [dropRight](test/array/drop_right.spec.ts)
@@ -46,6 +43,7 @@ import {on, equal, take, update, flow} from 'tsfun'
 * [sort](test/array/sort.spec.ts)
 * [join](test/array/join.spec.ts)
 * [split](test/array/split.spec.ts)
+* [take](test/array/take.spec.ts)
 
 ### Associative
 
@@ -65,7 +63,7 @@ Map-s (JavaScript-Objects).
 * [any](test/associative/any.spec.ts)
 * [lookup](test/associative/lookup.spec.ts)
 * [map](test/associative/map.spec.ts)
-* [filter_a](test/associative/filter_a.spec.ts)
+* [filter](test/associative/filter.spec.ts)
 * [update_a](test/associative/update_a.spec.ts)
 
 ### Composition

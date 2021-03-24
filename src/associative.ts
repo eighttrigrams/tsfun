@@ -1,4 +1,4 @@
-import {Predicate, Map, Associative, Mapping} from './type'
+import {Predicate, Map, Associative, Mapping, Key} from './type'
 import {isArray, isAssociative, isDefined, isFunction, isObject} from './predicate'
 import {filter as filterCollection} from './collection'
 import {range, zip} from './array'
@@ -96,7 +96,7 @@ const filterObj = <T>(predicate: Predicate<T>): (_: Map<T>) => Map<T> =>
 
 
 
-export function map<A = any, B = A>(f: (_: A) => B): <T,V = T extends Array<A> ? Array<B> : T extends Map<A> ? Map<B> : never>(as: T) => V
+export function map<A = any, B = A>(f: (_: A, i?: Key) => B): <T,V = T extends Array<A> ? Array<B> : T extends Map<A> ? Map<B> : never>(as: T) => V
 export function map<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
 export function map<A = any, B = A>(f: (_: A, key: string) => B): (as: Map<A>) => Map<B>
 export function map<A = any, B = A>(f: (_: A, i: number) => B, as: Array<A>): Array<B>
@@ -204,17 +204,19 @@ export function $reduce_a(...args): any {
             : inner(args[1], args[2])(args[0])
 }
 
-
-export function filter_a<A>(p: (a: A, i?: number|string) => boolean): (_: Associative<A>) => Associative<A>
-export function filter_a<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
-export function filter_a<A>(p: (a: A) => boolean, as: Array<A>): Array<A>
-export function filter_a<A>(as: Array<A>, p: (a: A, i: number) => boolean): Array<A>
-export function filter_a<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
-export function filter_a<A>(p: (a: A, i: string) => boolean, as: Map<A>): Map<A>
-export function filter_a<A>(p: (a: A) => boolean, as: Map<A>): Map<A>
-export function filter_a<A>(as: Map<A>, p: (a: A, i: string) => boolean): Map<A>
-export function filter_a<A>(as: Map<A>, p: (a: A) => boolean): Map<A>
-export function filter_a<A>(...args): any {
+// this variant would infer T from the predicate, not from the boxed type
+// export function filter<A,T,V = T extends Array<A> ? Array<A> : T extends Map<A> ? Map<A> : never>(f: (_: A, i?: Key) => boolean): (as: T) => V
+export function filter<A,T,V = T extends Array<infer A> ? Array<A> : T extends Map<infer A> ? Map<A> : never>(f: (_: A, i?: Key) => boolean): (as: T) => V
+export function filter<A>(p: (a: A, i?: number|string) => boolean): (_: Associative<A>) => Associative<A>
+export function filter<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
+export function filter<A>(p: (a: A) => boolean, as: Array<A>): Array<A>
+export function filter<A>(as: Array<A>, p: (a: A, i: number) => boolean): Array<A>
+export function filter<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
+export function filter<A>(p: (a: A, i: string) => boolean, as: Map<A>): Map<A>
+export function filter<A>(p: (a: A) => boolean, as: Map<A>): Map<A>
+export function filter<A>(as: Map<A>, p: (a: A, i: string) => boolean): Map<A>
+export function filter<A>(as: Map<A>, p: (a: A) => boolean): Map<A>
+export function filter<A>(...args): any {
 
     const $ = p => as => {
 
@@ -234,6 +236,13 @@ export function filter_a<A>(...args): any {
             ? $(args[0])(args[1])
             : $(args[1])(args[0])
 }
+// export function filter<A>(p: (a: A, i: number) => boolean): (_: Array<A>) => Array<A>
+// export function filter<A>(p: (a: A) => boolean): (_: Array<A>) => Array<A>
+// export function filter<A>(...args: any[]): any {
+
+//     if (args.length > 1) throw 'illegal argument in "tsfun|filter"'
+//     return filterColl(args[0])
+// }
 
 
 export function copy<T>(struct: Array<T>): Array<T>
