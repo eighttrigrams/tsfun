@@ -7,7 +7,7 @@ import {
 } from './predicate'
 import {identity} from './core'
 import {Associative, Mapping, Pair, Predicate} from './type'
-import {values, map_a, size, copy} from './associative'
+import {values, map, size, copy} from './associative'
 import {
     filter as filterColl,
     remove as removeColl,
@@ -87,15 +87,6 @@ export function reduce0<T>(f: (b: T, t: T, i?: number) => T) {
             throw 'illegal argument in "tsfun|reduce0" - array or object expected'
         }
     }
-}
-
-
-export function map<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
-export function map<A = any, B = A >(f: (_: A) => B): (as: Array<A>) => Array<B>
-export function map<A, B>(...args: any[]): any {
-
-    if (args.length > 1) throw 'illegal argument in "tsfun|map"'
-    return map_a(args[0])
 }
 
 

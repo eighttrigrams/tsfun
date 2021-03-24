@@ -1,5 +1,7 @@
-import {apply, flow} from '../../src/composition';
-import {map, zip} from '../../src/array';
+import {apply, flow} from '../../src/composition'
+import {zip} from '../../src/array'
+import {map} from '../../src/associative'
+
 
 /**
  * tsfun | apply

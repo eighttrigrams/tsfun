@@ -95,14 +95,15 @@ const filterObj = <T>(predicate: Predicate<T>): (_: Map<T>) => Map<T> =>
             }, {})
 
 
-export function map_a<A = any, B = A >(f: (_: A) => B): (as: Associative<A>) => Associative<B> // TODO maybe remove any casts in subsequent examples, it seems to not bring many benefits and maybe drawbacks, as the flatten example showed
-export function map_a<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
-export function map_a<A = any, B = A>(f: (_: A, key: string) => B): (as: Map<A>) => Map<B>
-export function map_a<A = any, B = A>(f: (_: A, i: number) => B, as: Array<A>): Array<B>
-export function map_a<A = any, B = A>(as: Array<A>, f: (_: A, i: number) => B): Array<B>
-export function map_a<A = any, B = A>(f: (_: A, i: string) => B, as: {[prop: string]: A}): Map<B>
-export function map_a<A = any, B = A>(as: {[prop: string]: A}, f: (_: A, i: string) => B): Map<B>
-export function map_a<A, B>(first: any, ...rest: any[]): any {
+
+export function map<A = any, B = A>(f: (_: A) => B): <T,V = T extends Array<A> ? Array<B> : T extends Map<A> ? Map<B> : never>(as: T) => V
+export function map<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
+export function map<A = any, B = A>(f: (_: A, key: string) => B): (as: Map<A>) => Map<B>
+export function map<A = any, B = A>(f: (_: A, i: number) => B, as: Array<A>): Array<B>
+export function map<A = any, B = A>(as: Array<A>, f: (_: A, i: number) => B): Array<B>
+export function map<A = any, B = A>(f: (_: A, i: string) => B, as: {[prop: string]: A}): Map<B>
+export function map<A = any, B = A>(as: {[prop: string]: A}, f: (_: A, i: string) => B): Map<B>
+export function map<A, B>(first: any, ...rest: any[]): any {
 
     if (rest.length > 1) {
         throw 'illegal argument - in \'map\': first argument list can have at most two arguments'
@@ -147,6 +148,13 @@ export function map_a<A, B>(first: any, ...rest: any[]): any {
                 : first
         )
 }
+// export function map<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
+// export function map<A = any, B = A >(f: (_: A) => B): (as: Array<A>) => Array<B>
+// export function map<A, B>(...args: any[]): any {
+
+//     if (args.length > 1) throw 'illegal argument in "tsfun|map"'
+//     return map_a(args[0])
+// }
 
 
 // Library Internal

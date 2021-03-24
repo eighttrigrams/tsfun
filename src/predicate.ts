@@ -1,7 +1,7 @@
 import {Array2, Either, Mapping, Maybe, Pair, Predicate, Singleton, Path} from './type'
 import {is, on} from './comparator'
 import {first} from './array'
-import {map_a, $reduce_a} from './associative'
+import {map, $reduce_a} from './associative'
 import {flow} from './composition'
 import {filter} from './collection'
 import {size} from './associative'
@@ -89,7 +89,7 @@ export function xor<A>(...preds: Array<Predicate<A>>) {
 
     return (argument: A): boolean =>
         flow(preds
-        , map_a(applyTo(argument))
+        , map(applyTo(argument))
         , filter(is(true))
         , size
         , is(1))

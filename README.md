@@ -47,6 +47,27 @@ import {on, equal, take, update, flow} from 'tsfun'
 * [join](test/array/join.spec.ts)
 * [split](test/array/split.spec.ts)
 
+### Associative
+
+Associative are homogeneous (i.e. all values of the same type)
+Arrays and homogeneous
+Map-s (JavaScript-Objects).
+
+* [keys](test/associative/keys.spec.ts)
+* [values](test/associative/values.spec.ts)
+* [keysValues](test/associative/keys_values.spec.ts)
+* [copy](test/associative/copy.spec.ts)
+* [count](test/associative/count.spec.ts)
+* [prune](test/associative/prune.spec.ts)
+* [size](test/associative/size.spec.ts)
+* [indices](test/associative/indices.spec.ts)
+* [all](test/associative/all.spec.ts)
+* [any](test/associative/any.spec.ts)
+* [lookup](test/associative/lookup.spec.ts)
+* [map](test/associative/map.spec.ts)
+* [filter_a](test/associative/filter_a.spec.ts)
+* [update_a](test/associative/update_a.spec.ts)
+
 ### Composition
 
 * [flow](test/composition/flow.spec.ts)
@@ -74,27 +95,6 @@ as combinations, i.e. mutual nestings, thereof.
 * [clone](test/struct/clone.spec.ts)
 * [jsonClone](test/struct/json_clone.spec.ts)
 * [dissoc](test/struct/dissoc.spec.ts)
-
-### Associative
-
-Associative are homogeneous (i.e. all values of the same type)
-Arrays and homogeneous
-Map-s (JavaScript-Objects).
-
-* [keys](test/associative/keys.spec.ts)
-* [values](test/associative/values.spec.ts)
-* [keysValues](test/associative/keys_values.spec.ts)
-* [copy](test/associative/copy.spec.ts)
-* [count](test/associative/count.spec.ts)
-* [prune](test/associative/prune.spec.ts)
-* [size](test/associative/size.spec.ts)
-* [indices](test/associative/indices.spec.ts)
-* [all](test/associative/all.spec.ts)
-* [any](test/associative/any.spec.ts)
-* [lookup](test/associative/lookup.spec.ts)
-* [map_a](test/associative/map_a.spec.ts)
-* [filter_a](test/associative/filter_a.spec.ts)
-* [update_a](test/associative/update_a.spec.ts)
 
 ### Set
 

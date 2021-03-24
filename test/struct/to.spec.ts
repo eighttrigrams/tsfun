@@ -1,4 +1,4 @@
-import { map } from '../../src/array'
+import { map } from '../../src/associative'
 import { flow } from '../../src/composition'
 import {to} from '../../src/struct'
 import { Expect } from '../../src/type'

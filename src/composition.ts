@@ -170,8 +170,8 @@ export function condsBy(comp) {
 }
 
 
-function $conds(comp, ...args) { 
-    
+function $conds(comp, ...args) {
+
     return (what: any) => {
 
         let cs: Array<Pair> = [];

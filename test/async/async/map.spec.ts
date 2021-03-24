@@ -3,7 +3,7 @@ import {
     map as asyncMap /* use an alias if you want to disambiguate */,
     flow as asyncFlow
 } from '../../../src/async'
-import {map} from '../../../src/array'
+import {map} from '../../../src/associative'
 
 
 /**

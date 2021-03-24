@@ -1,4 +1,5 @@
-import {map, take} from '../../src/array'
+import {take} from '../../src/array'
+import {map} from '../../src/associative'
 import { greaterThan } from '../../src/comparator'
 import { flow } from '../../src/composition'
 
@@ -16,18 +17,18 @@ describe('take', () => {
 
 
     it('try to take more than items available', () =>
-    
+
         expect(
-        
+
             take(3)
             ([1, 2])
-        
+
         ).toEqual([1, 2])
     )
 
 
     it('filter', () => {
-    
+
         expect(
             take(3, greaterThan(3), [1, 7, 9, 20, 3])
         ).toEqual([7, 9, 20])
@@ -81,7 +82,7 @@ describe('take', () => {
 
 
     it('filter - edge cases', () => {
-    
+
         expect(
             take(0, greaterThan(3), [1, 7, 9, 20, 3])
         ).toEqual([])

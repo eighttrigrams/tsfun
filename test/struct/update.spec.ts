@@ -1,9 +1,8 @@
 import {update} from '../../src/struct'
 import {equal} from '../../src/comparator'
-import {map_a} from '../../src/associative'
+import {map} from '../../src/associative'
 import {Map} from '../../src/type'
 import {flow, val} from '../../src/composition'
-import { map } from '../../src/array'
 import { LEFT, RIGHT } from '../../src/tuple'
 import { identity } from '../../src/core'
 
@@ -278,11 +277,11 @@ describe('update', () => {
 
     it('pitfall', () => {
 
-        const result = map_a(update(['a', 'b'], {}))([{a: {b: 1}}, {a: {b: 1}}]) as Array<Map>
+        const result = map(update(['a', 'b'], {}))([{a: {b: 1}}, {a: {b: 1}}]) as Array<Map>
         expect(result[0].a.b).toBe(result[1].a.b) // this is possibly not be what one wants
 
         // to circumvent this, we use it like this
-        const result2 = map_a(update(['a', 'b'], () => ({})))([{a: {b: 1}}, {a: {b: 1}}]) as Array<Map>
+        const result2 = map(update(['a', 'b'], () => ({})))([{a: {b: 1}}, {a: {b: 1}}]) as Array<Map>
         expect(result2[0].a.b).toEqual({})
         expect(result2[0].a.b).not.toBe(result[1].a.b)
     })

@@ -128,7 +128,6 @@ export {
 
 
 export {
-    map,
     flatMap,
     range,
     dense,
@@ -186,12 +185,13 @@ export {
 
 export {
     update_a,
-    map_a,
+    map as map_a,
     filter_a,
     lookup,
     keys,
     values,
     keysValues,
+    map,
     Filter1,
     count,
     size,

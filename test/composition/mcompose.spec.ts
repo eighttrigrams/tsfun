@@ -1,7 +1,7 @@
 import {liftE, getSuccess, liftM, success, just, right, left} from '../../src/tuple'
 import {Either, Mapping, Maybe} from '../../src/type'
 import {collect, cond, flow, mcompose, throws, val} from '../../src/composition'
-import {map_a, update_a} from '../../src/associative'
+import {map, update_a} from '../../src/associative'
 import {isSuccess} from '../../src/predicate'
 import {filter, separate} from '../../src/collection'
 import {lessThan} from '../../src/comparator'
@@ -267,14 +267,14 @@ describe('mcompose', () => {
 
                 flow(
                     [3, 0, 4, 2],
-                    map_a(just),
-                    map_a(
+                    map(just),
+                    map(
                         mcompose(
                             safedivM(6),
                             liftM(cond(lessThan(2), throws('')) as any),
                             liftM(square))),
                     filter(isSuccess as any),
-                    map_a(getSuccess))
+                    map(getSuccess))
 
             ).toEqual([4, 9])
         )
@@ -286,14 +286,14 @@ describe('mcompose', () => {
 
                 flow(
                     [3, 0, 4, 2],
-                    map_a(success),
-                    map_a(
+                    map(success),
+                    map(
                         mcompose(
                             safedivE(6),
                             liftE(cond(lessThan(2), throws('e1')) as any),
                             squareE)),
                     filter(isSuccess as any),
-                    map_a(getSuccess))
+                    map(getSuccess))
 
             ).toEqual([4, 9])
         )
@@ -304,11 +304,11 @@ describe('mcompose', () => {
             expect(
                 flow(
                     [0, 3, 1],
-                    map_a(success),
-                    map_a(mcompose(safedivE(3), decE, squareE)),
+                    map(success),
+                    map(mcompose(safedivE(3), decE, squareE)),
                     separate(isSuccess),
-                    update_a(0, map_a(right) as Mapping),
-                    update_a(1, map_a(left) as Mapping))
+                    update_a(0, map(right) as Mapping),
+                    update_a(1, map(left) as Mapping))
 
             ).toEqual([
                 [4],

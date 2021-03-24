@@ -4,9 +4,9 @@ import {subtractBy} from './set'
 import {to} from './struct'
 import {conds, flow, otherwise, throws} from './composition'
 import {remove} from './collection'
-import {size} from './associative'
+import {size, map} from './associative'
 import {reverse} from './array'
-import {map, zip} from './array'
+import {zip} from './array'
 import { identity } from './core'
 
 
