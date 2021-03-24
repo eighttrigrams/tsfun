@@ -216,11 +216,11 @@ export function filter<A>(...args): any {
 
 export function copy<T>(struct: Array<T>): Array<T>
 export function copy<T>(struct: Map<T>): Map<T>
-export function copy<T>(struct: any) {
+export function copy(struct) {
 
     return isArray(struct)
-            ? [...struct]
-            : {...struct as any}
+        ? [...struct]
+        : {...struct}
 }
 
 
