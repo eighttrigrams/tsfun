@@ -67,7 +67,7 @@ export function keys(t) {
 }
 
 
-export function values<T>(o: Associative<T>): Associative<T>;
+export function values<T>(o: Associative<T>): Array<T>
 export function values<T>(t) {
 
     return isArray(t)
@@ -83,7 +83,6 @@ export function values<T>(t) {
 
 const mapPropertiesReducer = <A, B>(f: (_: A) => B) =>
     (o: any) => (acc: any, val: string) => (acc[val] = f(o[val]), acc)
-
 
 
 export function map<A = any, B = A>(f: (_: A, i?: Key) => B): <T,V = T extends Array<A> ? Array<B> : T extends Map<A> ? Map<B> : never>(as: T) => V
@@ -184,6 +183,7 @@ export function $reduce_a(...args): any {
             ? inner(args[0], args[1])(args[2])
             : inner(args[1], args[2])(args[0])
 }
+
 
 // variant: infer from predicate instead boxed type
 // export function filter<A,T,V = T extends Array<A> ? Array<A> : T extends Map<A> ? Map<A> : never>(f: (_: A, i?: Key) => boolean): (as: T) => V
