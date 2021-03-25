@@ -80,7 +80,7 @@ Maps (JavaScript-Objects).
 * [nop](test/composition/nop.spec.ts)
 * [throws](test/composition/throws.spec.ts)
 * [mcompose](test/composition/mcompose.spec.ts)
-* [mmatch](test/composition/mmatch.spec.ts)
+* [mmatch](test/tuple/mmatch.spec.ts)
 
 ### Struct
 
