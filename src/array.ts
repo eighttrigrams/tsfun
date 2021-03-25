@@ -365,22 +365,6 @@ function $separate<A>(...args): any { // TODO inline into separate
 }
 
 
-export function remove<A>(p: (a: A, i: number) => boolean): (as: Array<A>) => Array<A>
-export function remove<A>(p: (a: A) => boolean): (as: Array<A>) => Array<A>
-export function remove<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
-export function remove<A>(p: (a: A) => boolean, as: Array<A>): Array<A>
-export function remove<A>(as: Array<A>, p: (a: A, i: number) => boolean): Array<A>
-export function remove<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
-export function remove(...args): any {
-
-    return args.length === 1
-        ? $remove(args[0])
-        : isFunction(args[0])
-            ? $remove(args[0], args[1])
-            : $remove(args[1], args[0])
-}
-
-
 export function append<A>(...as2: Array<A>): Mapping<Array<A>>
 export function append<A>(...as2: Array<A>) {
 

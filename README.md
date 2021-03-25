@@ -16,7 +16,6 @@ import {on, equal, take, update, flow} from 'tsfun'
 
 * [range](test/array/range.spec.ts)
 * [dense](test/array/dense.spec.ts)
-* [remove](test/array/remove.spec.ts)
 * [separate](test/array/separate.spec.ts)
 * [distribute](test/array/distribute.spec.ts)
 * [reduce](test/array/reduce.spec.ts)
@@ -63,6 +62,7 @@ Maps (JavaScript-Objects).
 * [lookup](test/associative/lookup.spec.ts)
 * [map](test/associative/map.spec.ts)
 * [filter](test/associative/filter.spec.ts)
+* [remove](test/array/remove.spec.ts)
 * [forEach](test/associative/for_each.spec.ts)
 * [update_a](test/associative/update_a.spec.ts)
 

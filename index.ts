@@ -129,7 +129,6 @@ export {
     flatMap,
     range,
     dense,
-    remove,
     separate,
     distribute,
     reduce0,
@@ -182,6 +181,7 @@ export {
 export {
     update_a,
     filter,
+    remove,
     lookup,
     keys,
     values,

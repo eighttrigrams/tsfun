@@ -225,6 +225,32 @@ export function filter<A>(...args): any {
 
 
 /**
+ * tsfun | remove
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/remove.spec.ts
+ */
+export function remove<A,T,V = T extends Array<infer A> ? Array<A> : T extends Map<infer A> ? Map<A> : never>(f: (_: A, i?: Key) => boolean): (as: T) => V
+
+export function remove<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
+export function remove<A>(p: (a: A) => boolean, as: Array<A>): Array<A>
+export function remove<A>(as: Array<A>, p: (a: A, i: number) => boolean): Array<A>
+export function remove<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
+
+export function remove<A>(p: (a: A, k: string) => boolean, as: Map<A>): Map<A>
+export function remove<A>(p: (a: A) => boolean, as: Map<A>): Map<A>
+export function remove<A>(as: Map<A>, p: (a: A, k: string) => boolean): Map<A>
+export function remove<A>(as: Map<A>, p: (a: A) => boolean): Map<A>
+
+export function remove(...args): any {
+
+    return args.length === 1
+        ? $remove(args[0])
+        : isFunction(args[0])
+            ? $remove(args[0], args[1])
+            : $remove(args[1], args[0])
+}
+
+
+/**
  * tsfun | copy
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/copy.spec.ts
  */
