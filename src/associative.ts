@@ -68,11 +68,17 @@ export function lookup<A>(struct, alternative?) {
  * tsfun | keysValues
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/keysValues.spec.ts
  */
-export function keysValues<A>(as: Array<A>): Array<[number, A]>;
-export function keysValues<T>(o: Map<T>): Array<[string, T]>;
-export function keysValues<T>(o: Map<T>|Array<T>): Array<[string|number, T]> {
+export function keysValues<T>(o: T):
+    T extends Array<infer M>
+    ? Array<[number, M]>
+    : T extends Map<infer M>
+    ? Array<[string, M]>
+    : never
+export function keysValues<T>(a) {
 
-    return zip(keys(o) as any, Object.values(o) as any) as Array<[string, T]>
+    return !isAssociative(a)
+        ? throwIllegalArgs('keysValues', 'Associative', a)
+        : zip(keys(a) as any, Object.values(a) as any) as any
 }
 
 
@@ -85,7 +91,7 @@ export function keys<T>(o: T):
     ? Array<number>
     : T extends Map<any>
     ? Array<string>
-    : void
+    : never
 export function keys(t) {
 
     return isArray(t)
@@ -105,7 +111,7 @@ export function values<T>(o: T):
     ? M[]
     : T extends Map<infer M>
     ? Array<M>
-    : void
+    : never
 export function values(t) {
 
     return isArray(t)
@@ -124,7 +130,11 @@ export function map<A = any, B = A>(f: (_: A, i?: Key) => B):
     ? Array<B>
     : T extends Map<A extends (infer C) ? C : never>
     ? Map<B>
-    : void
+    : T extends Array<any>
+    ? void // signals mismatch between A and C
+    : T extends Map<any>
+    ? void // signals mismatch between A and C
+    : never
 
 export function map<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
 export function map<A = any, B = A>(f: (_: A, key: string) => B): (as: Map<A>) => Map<B>
@@ -187,7 +197,7 @@ export function forEach<A = any>(f: (_: A, i?: Key) => void):
         ? Array<A>
         : T extends Map<A extends (infer C) ? C : never>
         ? Map<A>
-        : void
+        : never
 
 export function forEach<A>(as: Array<A>, f: (_: A) => void): Array<A>
 export function forEach<A>(as: Array<A>, f: (_: A, i: number) => void): Array<A>
@@ -225,7 +235,7 @@ export function filter<A = any>(f: (_: A, i?: Key) => boolean):
         ? Array<A>
         : T extends Map<A extends (infer C) ? C : never>
         ? Map<A>
-        : void
+        : never
 
 export function filter<A>(p: (a: A, i?: number|string) => boolean): (_: Associative<A>) => Associative<A>
 export function filter<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>

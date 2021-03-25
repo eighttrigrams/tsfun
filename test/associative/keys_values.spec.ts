@@ -20,4 +20,14 @@ describe('keysValues', () => {
             keysValues(['a', 'b'])
 
         ).toEqual([[0, 'a'], [1, 'b']]))
+
+
+    it('typing', () => {
+
+        const $1 = keysValues(['a','b'])
+
+        const $2 = keysValues({a: 1, b: 2})
+
+        // const $3 = keysValues(3) // never
+    })
 })

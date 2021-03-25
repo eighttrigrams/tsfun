@@ -1,4 +1,4 @@
-import {Array2, Either, Mapping, Maybe, Pair, Predicate, Singleton, Path} from './type'
+import {Array2, Either, Mapping, Maybe, Pair, Predicate, Singleton, Path, Associative} from './type'
 import {is, on} from './comparator'
 import {first} from './array'
 import {map, $reduce_a, filter} from './associative'
@@ -134,7 +134,10 @@ export function isArray2<T = any, V = any>(t: T|Array2<V>): t is Array2<V> {
 export const isObject: Predicate = o => o instanceof Object && o.constructor === Object
 
 
-export const isAssociative: Predicate = $ => isObject($) || isArray($)
+export function isAssociative(a: any): a is Associative {
+
+    return isObject(a) || isArray(a)
+}
 
 
 export const isCollection: Predicate = $ => isObject($) || isArray($) || isString($)
