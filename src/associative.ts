@@ -123,6 +123,11 @@ export function values(t) {
 /**
  * tsfun | map
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/map.spec.ts
+ *
+ * >> map(_ => 2 * _)([3, 7])
+ * [6, 14]
+ * >> map(_ => 2 * _)({a: 3, b: 7})
+ * {a: 6, b: 14}
  */
 export function map<A = any, B = A>(f: (_: A, i?: Key) => B):
     <T>(as: T) =>
@@ -135,12 +140,23 @@ export function map<A = any, B = A>(f: (_: A, i?: Key) => B):
     : T extends Map<any>
     ? void // signals mismatch between A and C
     : never
-
+/**
+ * >> map(_ => 2 * _, [3, 7])
+ * [6, 14]
+ * >> map(_ => 2 * _, {a: 3, b: 7})
+ * {a: 6, b: 14}
+ */
 export function map<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
 export function map<A = any, B = A>(f: (_: A, key: string) => B): (as: Map<A>) => Map<B>
 export function map<A = any, B = A>(f: (_: A, i: number) => B, as: Array<A>): Array<B>
-export function map<A = any, B = A>(as: Array<A>, f: (_: A, i: number) => B): Array<B>
 export function map<A = any, B = A>(f: (_: A, i: string) => B, as: {[prop: string]: A}): Map<B>
+/**
+ * >> map([3, 7], _ => 2 * _)
+ * [6, 14]
+ * >> map({a: 3, b: 7}, _ => 2 * _)
+ * {a: 6, b: 14}
+ */
+export function map<A = any, B = A>(as: Array<A>, f: (_: A, i: number) => B): Array<B>
 export function map<A = any, B = A>(as: {[prop: string]: A}, f: (_: A, i: string) => B): Map<B>
 export function map<A, B>(first: any, ...rest: any[]): any {
 
