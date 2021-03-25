@@ -89,11 +89,11 @@ export function keys(t) {
  * tsfun | values
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/values.spec.ts
  */
-export function values<T>(o: Associative<T>): Array<T>
-export function values<T>(t) {
+export function values<T,K = T extends Array<infer M> ? M[] : T extends Map<infer M> ? Array<M> : never>(o: T): K;
+export function values(t) {
 
     return isArray(t)
-        ? t as Array<T>
+        ? t as Array<any>
         : Object.values(t)
 }
 
