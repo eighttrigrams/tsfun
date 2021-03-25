@@ -15,24 +15,22 @@ describe('async/map', () => {
 
     it('async map over associative', async done => {
 
-        // mapping as usual, but with an async mapping function
+        // Works for Arrays
         expect(
 
             await asyncMap(delayedTimes2, [1, 2])
 
         ).toEqual([2, 4])
 
-        // works for Map, abstracting over Associative
+        // and for Maps
         expect(
 
             await asyncMap(delayedTimes2, {a: 1, b: 2})
 
         ).toEqual({a: 2, b: 4})
-        done()
-    })
 
 
-    it('async map over associative - reverse argument order', async done => {
+        // Arguments can also be given in reverse order
 
         expect(
 
@@ -42,21 +40,14 @@ describe('async/map', () => {
 
         expect(
 
-            await asyncMap({a: 1, b: 2}, delayedTimes2, )
+            await asyncMap({a: 1, b: 2}, delayedTimes2)
 
         ).toEqual({a: 2, b: 4})
-        done()
-    })
 
 
-    it('multiple param lists for use in composition', async done => {
+        // Like the synchronous version of map, it passes the keys as second
+        // argument to f. In case of maps those are strings, of course
 
-        const $1 = await (await /* ! */ asyncMap(delayedTimes2))([1, 2])
-
-        // As a standalone that does not look very good, but is necesarry for the map overload to work
-        // In a composition, however, it works just fine (see next example)
-
-        expect($1).toEqual([2, 4])
         done()
     })
 
@@ -75,6 +66,18 @@ describe('async/map', () => {
 
         ).toEqual([8,16])
 
+        done()
+    })
+
+
+    it('multiple param lists for use in composition', async done => {
+
+        const $1 = await (await /* ! */ asyncMap(delayedTimes2))([1, 2])
+
+        // As a standalone that does not look very good, but is necesarry for the map overload to work
+        // In a composition, however, it works just fine (compare last example)
+
+        expect($1).toEqual([2, 4])
         done()
     })
 
