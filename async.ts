@@ -4,6 +4,5 @@ export {
     map,
     flow,
     compose,
-    separate,
     mcompose
 } from './src/async'

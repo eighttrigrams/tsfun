@@ -1,6 +1,6 @@
 import {Pair, Map, Either, Maybe} from './type'
 import {isArray, isFailure, isFunction, isObject, isString} from './predicate'
-import {keys, keysValues} from './associative'
+import {keys} from './associative'
 import {getSuccess} from './tuple'
 import {first, rest} from './array'
 import {convert} from './composition'
@@ -84,47 +84,6 @@ export function filter(...args) {
             throw 'illegal argument - must be array or object'
         }
     }
-
-    return args.length === 1
-        ? $(args[0])
-        : isFunction(args[0])
-            ? $(args[0])(args[1])
-            : $(args[1])(args[0]) as any
-}
-
-
-export function separate<T>(p: (a: T, i?: string|number) => Promise<boolean>): {
-    (as: Array<T>): Promise<Pair<Array<T>, Array<T>>>
-    (os: Map<T>): Promise<Pair<Map<T>, Map<T>>>
-    (s: string): Promise<Pair<string, string>>
-}
-export function separate<T>(p: (t: T, i?: string|number) => Promise<boolean>) {
-
-    return async (as: Array<T>|Map<T>|string) => {
-
-        if (isArray(as)) {
-
-            return [
-                await (await filter(p))(as as Array<T>),
-                await (await $(p))(as as Array<T>)
-            ] as Pair<Array<T>, Array<T>>
-
-        } else if (isObject(as)) {
-
-            return [
-                await (await filter(p))(as as Map<T>),
-                await (await $(p))(as as Map<T>)
-            ] as Pair<Map<T>, Map<T>>
-
-        } else {
-
-            throw 'illegal argument - must be array or object'
-        }
-    }
-}
-function $<A>(...args): Promise<any> {
-
-    const $ = p => _ => filter(async (a: any, i?: string|number) => !(await p(a, i)), _)
 
     return args.length === 1
         ? $(args[0])
