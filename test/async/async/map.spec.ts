@@ -51,11 +51,12 @@ describe('async/map', () => {
 
     it('multiple param lists for use in composition', async done => {
 
-        expect(
+        const $1 = await (await /* ! */ asyncMap(delayedTimes2))([1, 2])
 
-            await (await /* ! */ asyncMap(delayedTimes2))([1, 2])
+        // As a standalone that does not look very good, but is necesarry for the map overload to work
+        // In a composition, however, it works just fine (see next example)
 
-        ).toEqual([2, 4])
+        expect($1).toEqual([2, 4])
         done()
     })
 
@@ -69,6 +70,8 @@ describe('async/map', () => {
                 , map(times2)
                 , delay
                 , asyncMap(delayedTimes2))
+
+            // Note that asynchronous as well a synchronous functions can be mixed and matched
 
         ).toEqual([8,16])
 
