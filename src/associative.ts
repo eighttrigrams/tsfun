@@ -10,6 +10,12 @@ export type Filter<T = any> = Mapping<Associative<T>>
 // TODO see to, rename to get again
 // export function to_a(i: number): <T>(as: Array<T>) => T|undefined
 
+
+
+/**
+ * tsfun | update_a
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/update_a.spec.ts
+ */
 export function update_a<T>(key: string, v: T|Mapping<T>, m: Map<T>): Map<T>
 export function update_a<T>(key: number, v: T|Mapping<T>, m: Array<T>): Array<T>
 export function update_a<T,V>(key: string, v: V|Mapping<T,V>, m: Map<T>): Map<any>
@@ -38,6 +44,10 @@ export function update_a<T>(key, arg, arg2?): any {
 }
 
 
+/**
+ * tsfun | lookup
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/lookup.spec.ts
+ */
 export function lookup<T>(struct: Map<T>, alternative?: T): (targetId: string) => T|undefined;
 export function lookup<A>(struct: Array<A>, alternative?: A): (targetId: number) => A|undefined;
 export function lookup<A>(struct: Map<A>|Array<A>, alternative?: any) {
@@ -50,6 +60,10 @@ export function lookup<A>(struct: Map<A>|Array<A>, alternative?: any) {
 }
 
 
+/**
+ * tsfun | keysValues
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/keysValues.spec.ts
+ */
 export function keysValues<A>(as: Array<A>): Array<[number, A]>;
 export function keysValues<T>(o: Map<T>): Array<[string, T]>;
 export function keysValues<T>(o: Map<T>|Array<T>): Array<[string|number, T]> {
@@ -58,6 +72,10 @@ export function keysValues<T>(o: Map<T>|Array<T>): Array<[string|number, T]> {
 }
 
 
+/**
+ * tsfun | keys
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/keys.spec.ts
+ */
 export function keys<T>(o: Associative<T>): number[]|string[]
 export function keys(t) {
 
@@ -67,6 +85,10 @@ export function keys(t) {
 }
 
 
+/**
+ * tsfun | values
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/values.spec.ts
+ */
 export function values<T>(o: Associative<T>): Array<T>
 export function values<T>(t) {
 
@@ -76,15 +98,12 @@ export function values<T>(t) {
 }
 
 
-/* internal */ export const mapProperties = <A, B>(f: (_: A) => B) =>
-    (keys: Array<number|string>, o: Map<A>): Map<B> =>
-        keys.reduce(mapPropertiesReducer(f)(o), {})
 
 
-const mapPropertiesReducer = <A, B>(f: (_: A) => B) =>
-    (o: any) => (acc: any, val: string) => (acc[val] = f(o[val]), acc)
-
-
+/**
+ * tsfun | map
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/map.spec.ts
+ */
 export function map<A = any, B = A>(f: (_: A, i?: Key) => B): <T,V = T extends Array<A> ? Array<B> : T extends Map<A> ? Map<B> : never>(as: T) => V
 export function map<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
 export function map<A = any, B = A>(f: (_: A, key: string) => B): (as: Map<A>) => Map<B>
@@ -112,7 +131,7 @@ export function map<A, B>(first: any, ...rest: any[]): any {
         ? first
         : rest[0] // typing and guards prevent this to be out of bounds
 
-    const inner = (associativeColl: any): any => {
+    const $ = (associativeColl: any): any => {
 
         if (rest.length === 0 && !isAssociative(associativeColl)) {
             throwIllegalArgs('map', 'associative collection', associativeColl)
@@ -129,8 +148,8 @@ export function map<A, B>(first: any, ...rest: any[]): any {
     }
 
     return rest.length === 0
-        ? inner
-        : inner(
+        ? $
+        : $(
             isAssociative(rest[0])
                 ? rest[0]
                 : first
@@ -138,12 +157,19 @@ export function map<A, B>(first: any, ...rest: any[]): any {
 }
 
 
-export function forEach<A = any, B = A>(f: (_: A, i?: Key) => B): <T,V = T extends Array<A> ? Array<A> : T extends Map<A> ? Map<A> : never>(as: T) => V
-export function forEach<A>(f: (_: A, i: number) => void): (as: Array<A>) => Array<A>
-export function forEach<A>(f: (_: A) => void): (as: Array<A>) => Array<A>
-export function forEach<A>(f) {
+/**
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/for_each.spec.ts
+ */
+export function forEach<A = any>(f: (_: A, i?: Key) => void): <T,V = T extends Array<A> ? Array<A> : T extends Map<A> ? Map<A> : never>(as: T) => V
 
-    return (as: any) => {
+export function forEach<A>(as: Array<A>, f: (_: A) => void): Array<A>
+export function forEach<A>(as: Array<A>, f: (_: A, i: number) => void): Array<A>
+export function forEach<A>(as: Map<A>, f: (_: A, k: string) => void): Map<A>
+export function forEach<A>(as: Map<A>, f: (_: A, k: string) => void): Map<A>
+
+export function forEach(arg, arg2?) {
+
+    const $ = f => as => {
         if (!isAssociative(as)) throwIllegalArgs('forEach', 'Associative', as)
 
         let i = 0
@@ -153,58 +179,24 @@ export function forEach<A>(f) {
         }
         return as
     }
+
+    // TODO assert concrete types
+
+    return arg2
+        ? $(arg2)(arg)
+        : $(arg)
 }
 
 
-export function $reduce_a<A, B>(f: (b: B, a: A, i: string) => B, init: B, as: Map<A>): B
-export function $reduce_a<A, B>(f: (b: B, a: A) => B, init: B, as: Map<A>): B
-export function $reduce_a<A, B>(f: (b: B, a: A, i: number) => B, init: B, as: Array<A>): B
-export function $reduce_a<A, B>(f: (b: B, a: A) => B, init: B, as: Array<A>): B
-export function $reduce_a<A, B>(as: Map<A>, f: (b: B, a: A, i: string) => B, init: B): B
-export function $reduce_a<A, B>(as: Map<A>, f: (b: B, a: A, i) => B, init: B): B
-export function $reduce_a<A, B>(as: Array<A>, f: (b: B, a: A, i: number) => B, init: B): B
-export function $reduce_a<A, B>(as: Array<A>, f: (b: B, a: A, i) => B, init: B): B
-export function $reduce_a<A, B>(f: (b: B, a: A, i?: number|string) => B, init: B): (as: Associative<A>) => B
-export function $reduce_a(...args): any {
 
-    const inner = (f, init) => (ts: any) => {
-
-        if (isArray(ts)) {
-
-            let acc = init;
-            let i = 0;
-            for (let a of ts) {
-                acc = f(acc, a, i)
-                i++
-            }
-            return acc
-
-        } else if (isObject(ts)) {
-
-            const o = ts
-
-            let acc = init
-            for (let k of keys(ts)) {
-                acc = f(acc, o[k], k)
-            }
-            return acc
-
-        } else {
-
-            throwIllegalArgs('$reduce_a', 'array or object', ts)
-        }
-    }
-
-    return args.length === 2
-        ? inner(args[0], args[1])
-        : isFunction(args[0])
-            ? inner(args[0], args[1])(args[2])
-            : inner(args[1], args[2])(args[0])
-}
 
 
 // variant: infer from predicate instead boxed type
 // export function filter<A,T,V = T extends Array<A> ? Array<A> : T extends Map<A> ? Map<A> : never>(f: (_: A, i?: Key) => boolean): (as: T) => V
+/**
+ * tsfun | filter
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/filter.spec.ts
+ */
 export function filter<A,T,V = T extends Array<infer A> ? Array<A> : T extends Map<infer A> ? Map<A> : never>(f: (_: A, i?: Key) => boolean): (as: T) => V
 export function filter<A>(p: (a: A, i?: number|string) => boolean): (_: Associative<A>) => Associative<A>
 export function filter<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
@@ -232,6 +224,10 @@ export function filter<A>(...args): any {
 }
 
 
+/**
+ * tsfun | copy
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/copy.spec.ts
+ */
 export function copy<T>(struct: Array<T>): Array<T>
 export function copy<T>(struct: Map<T>): Map<T>
 export function copy(struct) {
@@ -242,6 +238,10 @@ export function copy(struct) {
 }
 
 
+/**
+ * tsfun | count
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/count.spec.ts
+ */
 export function count<A>(p: Predicate<A>): {
     (as: Array<A>): number
     (os: Map<A>): number
@@ -255,6 +255,10 @@ export function count<A>(p: Predicate<A>, as?: any): any {
 }
 
 
+/**
+ * tsfun | any
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/all.spec.ts
+ */
 export function all<T>(p: Predicate<T>) {
 
     return (as: Array<T>|Map<T>): boolean => {
@@ -264,6 +268,10 @@ export function all<T>(p: Predicate<T>) {
 }
 
 
+/**
+ * tsfun | any
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/any.spec.ts
+ */
 export function any<T>(p: Predicate<T>) {
 
     return (as: Array<T>|Map<T>): boolean => {
@@ -273,6 +281,10 @@ export function any<T>(p: Predicate<T>) {
 }
 
 
+/**
+ * tsfun | prune
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/prune.spec.ts
+ */
 export function prune<T>(o: Map<T>): Map<T>
 export function prune<A>(as: Array<A>): Array<A>
 export function prune<T>(ts: Array<T>|Map<T>) {
@@ -281,6 +293,10 @@ export function prune<T>(ts: Array<T>|Map<T>) {
 }
 
 
+/**
+ * tsfun | indices
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/indices.spec.ts
+ */
 export function indices<A>(p: Predicate<A>): {
     (as: Array<A>): number[]
     (as: Map<A>): string[]
@@ -304,6 +320,10 @@ export function indices<A>(p: Predicate<A>, as?: any): any {
 }
 
 
+/**
+ * tsfun | size
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/size.spec.ts
+ */
 export function size<A>(as: Array<A>): number
 export function size<T>(o: Map<T>): number
 export function size<T>(o: Array<T>|Map<T>): number {
@@ -314,6 +334,9 @@ export function size<T>(o: Array<T>|Map<T>): number {
 }
 
 
+/**
+ * Library internal
+ */
 export function $filter<A>(...args): any { // TODO always call with single param list
 
     const $ = p => as => {
@@ -375,4 +398,53 @@ export function $remove<A>(...args): any {
         : isFunction(args[0])
             ? inner(args[0])(args[1])
             : inner(args[1])(args[0]) as any
+}
+
+
+/* internal */ export const mapProperties = <A, B>(f: (_: A) => B) =>
+(keys: Array<number|string>, o: Map<A>): Map<B> =>
+keys.reduce(mapPropertiesReducer(f)(o), {})
+
+
+const mapPropertiesReducer = <A, B>(f: (_: A) => B) =>
+(o: any) => (acc: any, val: string) => (acc[val] = f(o[val]), acc)
+
+/**
+ * Library internal
+ */
+ export function $reduce_a(...args): any {
+
+    const inner = (f, init) => (ts: any) => {
+
+        if (isArray(ts)) {
+
+            let acc = init;
+            let i = 0;
+            for (let a of ts) {
+                acc = f(acc, a, i)
+                i++
+            }
+            return acc
+
+        } else if (isObject(ts)) {
+
+            const o = ts
+
+            let acc = init
+            for (let k of keys(ts)) {
+                acc = f(acc, o[k], k)
+            }
+            return acc
+
+        } else {
+
+            throwIllegalArgs('$reduce_a', 'array or object', ts)
+        }
+    }
+
+    return args.length === 2
+        ? inner(args[0], args[1])
+        : isFunction(args[0])
+            ? inner(args[0], args[1])(args[2])
+            : inner(args[1], args[2])(args[0])
 }
