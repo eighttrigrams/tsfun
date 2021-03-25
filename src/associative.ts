@@ -80,12 +80,19 @@ export function keysValues<T>(o: Map<T>|Array<T>): Array<[string|number, T]> {
  * tsfun | keys
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/keys.spec.ts
  */
-export function keys<T>(o: Associative<T>): number[]|string[]
+export function keys<T>(o: T):
+    T extends Array<any>
+    ? Array<number>
+    : T extends Map<any>
+    ? Array<string>
+    : void
 export function keys(t) {
 
     return isArray(t)
         ? range(t.length)
-        : Object.keys(t)
+        : isObject(t)
+        ? Object.keys(t)
+        : throwIllegalArgs('keys', 'Associative', t)
 }
 
 
@@ -93,7 +100,12 @@ export function keys(t) {
  * tsfun | values
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/values.spec.ts
  */
-export function values<T,K = T extends Array<infer M> ? M[] : T extends Map<infer M> ? Array<M> : never>(o: T): K;
+export function values<T>(o: T):
+    T extends Array<infer M>
+    ? M[]
+    : T extends Map<infer M>
+    ? Array<M>
+    : void
 export function values(t) {
 
     return isArray(t)

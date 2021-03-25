@@ -24,7 +24,7 @@ describe('keys', () => {
 
     it('typing', () => {
 
-        const result1 = keys(['a', 'b']) as number[]
-        const result2 = keys({a: 'b'}) as string[]
+        const result1 = keys(['a', 'b'])
+        const result2 = keys({a: 'b'})
     })
 })
