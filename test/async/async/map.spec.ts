@@ -48,6 +48,18 @@ describe('async/map', () => {
         // Like the synchronous version of map, it passes the keys as second
         // argument to f. In case of maps those are strings, of course
 
+        expect(
+
+            await asyncMap([1, 2], async (_, i) => i)
+
+        ).toEqual([0, 1])
+
+        expect(
+
+            await asyncMap({a: 1, b: 2}, async (_, k) => k)
+
+        ).toEqual({a: 'a', b: 'b'})
+
         done()
     })
 
