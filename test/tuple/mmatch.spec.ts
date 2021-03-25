@@ -42,7 +42,7 @@ describe('mmatch', () => {
                 [1.5, 0.0, 2.0],
                 map(just),
                 map(mcompose(safediv(3), liftM(div(6)), liftM(square))),
-                map(mmatch(square, val(4))))
+                map(mmatch(square, val(4)))) as any
 
         ).toEqual([81, 4, 256])
     )

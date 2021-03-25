@@ -160,8 +160,15 @@ describe('map_a', () => {
         const $35 = map((x: number) => x.toString())([1, 2])
         expectType<Array<string>>($35)
 
-        const $36 = map((x: string) => '')([1, 2])
-        try {expectNever($36)} catch {}
+        const $36 = map((x: string) => 3)([1, 2])
+        const $38: void = $36
+        // const $39: undefined = $36 // should be impossible
+
+        try {
+            const $40 = map((x: number) => 3)(3)
+            const $41: void = $40
+            // const $42: undefined = $40 // should be impossible
+        } catch {}
     })
 
 

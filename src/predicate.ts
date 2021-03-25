@@ -89,7 +89,7 @@ export function xor<A>(...preds: Array<Predicate<A>>) {
     return (argument: A): boolean =>
         flow(preds
         , map(applyTo(argument))
-        , filter(is(true))
+        , filter(is(true)) as any
         , size
         , is(1))
 }

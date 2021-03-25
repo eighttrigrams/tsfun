@@ -62,7 +62,8 @@ describe('remove', () => {
 
         const $6 = [1, 2]
         const $7 = flow($6, remove((_: string) => true))
-        try {expectNever($7)} catch {}
+        const $8: void = $7
+        // const $9: undefined = $7 // should be impossible
     })
 
 

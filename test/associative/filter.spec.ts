@@ -64,7 +64,8 @@ describe('filter', () => {
         expectType<Array<any>>($20)
 
         const $36 = filter((x: string) => true)([1, 2])
-        try { expectNever($36) } catch {}
+        const $8: void = $36
+        // const $37: undefined = $36 // should be impossible
     })
 
 

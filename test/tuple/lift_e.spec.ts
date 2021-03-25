@@ -48,7 +48,7 @@ describe('liftE', () => {
         expect(
 
             map(mcompose(liftE(cond(is(1.5), throws(3))), liftE(square)))
-            ([[undefined, 1.5], [undefined, 0], [undefined, 2]])
+            ([[undefined, 1.5], [undefined, 0], [undefined, 2]]) as any
 
         ).toEqual([[3, undefined],[undefined, 0],[undefined, 4]])
     )
