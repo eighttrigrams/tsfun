@@ -9,7 +9,7 @@ import {map} from '../../../src/associative'
 /**
  * tsfun/async | map
  *
- * asynchronous map for mapping over Associative
+ * Asynchronous map for mapping over Associative
  */
 describe('async/map', () => {
 
