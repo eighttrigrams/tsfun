@@ -48,15 +48,19 @@ export function update_a<T>(key, arg, arg2?): any {
  * tsfun | lookup
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/lookup.spec.ts
  */
-export function lookup<T>(struct: Map<T>, alternative?: T): (targetId: string) => T|undefined;
-export function lookup<A>(struct: Array<A>, alternative?: A): (targetId: number) => A|undefined;
-export function lookup<A>(struct: Map<A>|Array<A>, alternative?: any) {
+export function lookup<T>(struct: Map<T>, alternative: T): (targetId: string) => T;
+export function lookup<T>(struct: Map<T>): (targetId: string) => T|undefined;
+export function lookup<A>(struct: Array<A>, alternative: A): (targetId: number) => A;
+export function lookup<A>(struct: Array<A>): (targetId: number) => A|undefined;
+export function lookup<A>(struct, alternative?) {
 
-    return (targetId: string|number): A|undefined => {
+    return !isAssociative(struct)
+        ? throwIllegalArgs('lookup', 'Associative', struct)
+        : targetId => {
 
-        const result = (struct as any)[targetId]
-        return result !== undefined ? result : alternative
-    }
+            const result = (struct as any)[targetId]
+            return result !== undefined ? result : alternative
+        }
 }
 
 
