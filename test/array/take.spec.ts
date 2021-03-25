@@ -1,3 +1,4 @@
+import { expectType } from 'ts-expect'
 import {take} from '../../src/array'
 import {map} from '../../src/associative'
 import { greaterThan } from '../../src/comparator'
@@ -70,14 +71,11 @@ describe('take', () => {
 
     it('typing', () => {
 
-        const result1: number[] = take(5)([1, 2, 7, 7, 8, 9, 11]) as number[]
-        const result2: number[] = take(5, [1, 2, 7, 7, 8, 9, 11])
-        // const result: number[] = take(5) // WRONG - second parameter list expected, to give Array<number>
+        const $1: number[] = take(5)([1, 2, 7, 7, 8, 9, 11])
+        expectType<Array<number>>($1)
 
-        // const result: string= take(5, [1, 2, 7, 7, 8, 9, 11]) // WRONG - types do not match
-        // const result: Array<string> = take(5)([1, 2, 7, 7, 8, 9, 11]) // WRONG - Array types do not match
-
-        // const result3: string = take(5)("abc") as string
+        const $2: number[] = take(5, [1, 2, 7, 7, 8, 9, 11])
+        expectType<Array<number>>($2)
     })
 
 
