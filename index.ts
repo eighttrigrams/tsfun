@@ -68,7 +68,6 @@ export {
     arrayEqual,
     sameset,
     equal,
-    equalTo,
     objectEqual,
     includedIn,
     includes,

@@ -1,4 +1,4 @@
-import {AsyncMapping, Map} from '../../../src/type'
+import {Map, Mapping} from '../../../src/type'
 import {
     map as asyncMap /* use an alias if you want to disambiguate */,
     flow as asyncFlow
@@ -76,7 +76,7 @@ describe('async/map', () => {
     })
 
 
-    const doubleArray: AsyncMapping<number[]> =
+    const doubleArray: Mapping<number[], Promise<number[]>> =
         _ => asyncMap(delayedTimes2, _) // we have to use the single arg list version here since we cant use await to unpack the promise
 
 

@@ -454,12 +454,6 @@ export function equal(o1: any, ...os: any[]): any {
 }
 
 
-export function equalTo(o1: any) {
-
-    return equal(o1)
-}
-
-
 export function startsWith<A>(as1: Array<A>, as2: Array<A>): boolean
 export function startsWith<A>(as1: Array<A>): (as2: Array<A>) => boolean
 export function startsWith<A>(that: Array<A>, what?:Array<A>) {

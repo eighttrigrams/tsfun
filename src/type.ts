@@ -81,6 +81,3 @@ export type ComparatorProducer = (_: Comparator) => Comparator
 
 
 export type PredicateProducer = <A>(_: Predicate<A>) => Predicate<A>
-
-
-export type AsyncMapping<A = any, B = A> = (_: A) => Promise<B>

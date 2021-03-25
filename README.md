@@ -210,7 +210,6 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 * [arrayEqual](test/comparator/struct/array_equal.spec.ts)
 * [objectEqual](test/comparator/struct/object_equal.spec.ts)
 * [equal](test/comparator/struct/equal.spec.ts)
-* [equalTo](test/comparator/struct/equal_to.spec.ts)
 * [on](test/comparator/struct/on.spec.ts)
 
 ## Types reference
@@ -253,19 +252,15 @@ import {map as asyncMap} from 'tsfun/async'
 
 * [map](test/async/async/map.spec.ts)
 * [filter](test/async/async/filter.spec.ts)
-* [remove](test/async/async/remove.spec.ts)
-* [forEach](test/async/async/for_each.spec.ts)
 * [reduce](test/async/async/reduce.spec.ts)
 * [flow](test/async/async/flow.spec.ts)
 * [compose](test/async/async/compose.spec.ts)
 * [separate](test/async/async/separate.spec.ts)
 * [mcompose](test/async/async/mcompose.spec.ts)
 
-###### Types
-
-* AsyncMapping
-
 ### Lazy
+
+(experimental)
 
 ```typescript
 import {zip as lZip} from 'tsfun/lazy'
@@ -281,6 +276,11 @@ import {zip as lZip} from 'tsfun/lazy'
 ## Build & Test
 
     $ npm run build && npm t
+
+or
+
+    1$ npm run build:watch
+    2$ npm t
 
 ## Credits
 

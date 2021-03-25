@@ -6,7 +6,9 @@ import {separate as asyncSeparate} from '../../../src/async'
  *
  * asynchronous function for separating items from Collection by a given Predicate
  */
-describe('asyncSeparate', () => {
+describe('async/separate', () => {
+
+    const asyncSmaller4 = (_: number) => Promise.resolve(_ < 4)
 
     it('array', async done => {
 
@@ -31,21 +33,5 @@ describe('asyncSeparate', () => {
         done()
     })
 
-
-    it('string', async done => {
-
-        expect(
-
-            await asyncSeparate((s: string) => Promise.resolve(s > 'b'))('ddebca'))
-
-            .toEqual(['ddec', 'ba'])
-
-        done()
-    })
-
-
     // typing - see comments in asyncMap typing test
 })
-
-
-const asyncSmaller4 = (_: number) => Promise.resolve(_ < 4)
