@@ -1,4 +1,4 @@
-import {expectType} from 'ts-expect'
+import {expectNever, expectType} from 'ts-expect'
 import {Expect, Map} from '../../src/type'
 import {forEach} from '../../src/associative'
 
@@ -102,6 +102,9 @@ describe('forEach', () => {
         const $2 = forEach((_: number) => {})({a: 1, b: 2})
         expectType<Map<number>>($2)
         const $3: Expect<Map<number>,typeof $2> = true
+
+        const $36 = forEach((x: string) => true)([1, 2])
+        try { expectNever($36) } catch {}
     })
 
 

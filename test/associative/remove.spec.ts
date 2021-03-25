@@ -2,7 +2,7 @@ import {greaterThan, lessThan} from '../../src/comparator';
 import {remove} from '../../src/associative';
 import {Map} from '../../src/type';
 import { flow } from '../../src/composition';
-import { expectType } from 'ts-expect';
+import { expectNever, expectType } from 'ts-expect';
 
 
 /**
@@ -49,12 +49,20 @@ describe('remove', () => {
     it('curry typing', () => {
 
         const $1 = [1, 2]
-        const $2 = flow($1, remove(_ => true))
+        const $2 = flow($1, remove((_: number) => true))
         expectType<Array<number>>($2)
 
         const $4 = {a:1, b: 2}
-        const $5 = flow($4, remove(_ => true))
+        const $5 = flow($4, remove((_: number) => true))
         expectType<Map<number>>($5)
+
+        const $19 = {a:1, b: 2}
+        const $21 = flow($19, remove(_ => true))
+        expectType<Map<any>>($21)
+
+        const $6 = [1, 2]
+        const $7 = flow($6, remove((_: string) => true))
+        try {expectNever($7)} catch {}
     })
 
 

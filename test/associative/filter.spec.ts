@@ -2,7 +2,7 @@ import {Collection, Map} from '../../src/type'
 import {lessThan} from '../../src/comparator'
 import {filter, map} from '../../src/associative'
 import { flow } from '../../src/composition'
-import { expectType } from 'ts-expect'
+import { expectNever, expectType } from 'ts-expect'
 
 
 /**
@@ -48,20 +48,23 @@ describe('filter', () => {
     it('curry typing', () => {
 
         const $1 = [1, 2]
-        const $2 = flow($1, filter(_ => true))
+        const $2 = flow($1, filter((_: number) => true))
         expectType<Array<number>>($2)
 
         const $4 = {a:1, b: 2}
-        const $5 = flow($4, filter(_ => true))
+        const $5 = flow($4, filter((_: number) => true))
         expectType<Map<number>>($5)
-
-        const $6 = {a:1, b: 2}
-        const $7 = flow($6, filter((x: string) => true)) // number gets infered by $6, not by Predicate in this case
-        expectType<Map<number>>($7)
 
         const $9 = {a:1, b: 2}
         const $10 = flow($9, filter(_ => true), map(_ => _ * 2))
         expectType<Map<number>>($10)
+
+        const $19 = [1, 2]
+        const $20 = flow($19, filter(_ => true))
+        expectType<Array<any>>($20)
+
+        const $36 = filter((x: string) => true)([1, 2])
+        try { expectNever($36) } catch {}
     })
 
 

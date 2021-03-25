@@ -58,7 +58,7 @@ describe('flatten', () => {
 
             flow([3, 4]
             , map(_ => [_ * 2, _ * 3])
-            , flatten
+            , flatten()
             )
 
         ).toEqual([6, 9, 8, 12])

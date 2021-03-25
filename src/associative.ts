@@ -104,7 +104,14 @@ export function values<T>(t) {
  * tsfun | map
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/map.spec.ts
  */
-export function map<A = any, B = A>(f: (_: A, i?: Key) => B): <T,V = T extends Array<A> ? Array<B> : T extends Map<A> ? Map<B> : never>(as: T) => V
+export function map<A = any, B = A>(f: (_: A, i?: Key) => B):
+    <T>(as: T) =>
+    T extends Array<A extends (infer C) ? C : never>
+    ? Array<B>
+    : T extends Map<A extends (infer C) ? C : never>
+    ? Map<B>
+    : never
+
 export function map<A = any, B = A>(f: (_: A, i: number) => B): (as: Array<A>) => Array<B>
 export function map<A = any, B = A>(f: (_: A, key: string) => B): (as: Map<A>) => Map<B>
 export function map<A = any, B = A>(f: (_: A, i: number) => B, as: Array<A>): Array<B>
@@ -160,7 +167,13 @@ export function map<A, B>(first: any, ...rest: any[]): any {
 /**
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/for_each.spec.ts
  */
-export function forEach<A = any>(f: (_: A, i?: Key) => void): <T,V = T extends Array<A> ? Array<A> : T extends Map<A> ? Map<A> : never>(as: T) => V
+export function forEach<A = any>(f: (_: A, i?: Key) => void):
+    <T>(as: T) =>
+        T extends Array<A extends (infer C) ? C : never>
+        ? Array<A>
+        : T extends Map<A extends (infer C) ? C : never>
+        ? Map<A>
+        : never
 
 export function forEach<A>(as: Array<A>, f: (_: A) => void): Array<A>
 export function forEach<A>(as: Array<A>, f: (_: A, i: number) => void): Array<A>
@@ -188,26 +201,29 @@ export function forEach(arg, arg2?) {
 }
 
 
-
-
-
-// variant: infer from predicate instead boxed type
-// export function filter<A,T,V = T extends Array<A> ? Array<A> : T extends Map<A> ? Map<A> : never>(f: (_: A, i?: Key) => boolean): (as: T) => V
 /**
  * tsfun | filter
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/filter.spec.ts
  */
-export function filter<A,T,V = T extends Array<infer A> ? Array<A> : T extends Map<infer A> ? Map<A> : never>(f: (_: A, i?: Key) => boolean): (as: T) => V
+export function filter<A = any>(f: (_: A, i?: Key) => boolean):
+    <T>(as: T) =>
+        T extends Array<A extends (infer C) ? C : never>
+        ? Array<A>
+        : T extends Map<A extends (infer C) ? C : never>
+        ? Map<A>
+        : never
+
 export function filter<A>(p: (a: A, i?: number|string) => boolean): (_: Associative<A>) => Associative<A>
 export function filter<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
 export function filter<A>(p: (a: A) => boolean, as: Array<A>): Array<A>
-export function filter<A>(as: Array<A>, p: (a: A, i: number) => boolean): Array<A>
-export function filter<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
 export function filter<A>(p: (a: A, i: string) => boolean, as: Map<A>): Map<A>
 export function filter<A>(p: (a: A) => boolean, as: Map<A>): Map<A>
+
+export function filter<A>(as: Array<A>, p: (a: A, i: number) => boolean): Array<A>
+export function filter<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
 export function filter<A>(as: Map<A>, p: (a: A, i: string) => boolean): Map<A>
 export function filter<A>(as: Map<A>, p: (a: A) => boolean): Map<A>
-export function filter<A>(...args): any {
+export function filter(...args): any {
 
     const $ = p => cond(
         isAssociative,
@@ -228,7 +244,13 @@ export function filter<A>(...args): any {
  * tsfun | remove
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/remove.spec.ts
  */
-export function remove<A,T,V = T extends Array<infer A> ? Array<A> : T extends Map<infer A> ? Map<A> : never>(f: (_: A, i?: Key) => boolean): (as: T) => V
+export function remove<A = any>(f: (_: A, i?: Key) => boolean):
+    <T>(as: T) =>
+        T extends Array<A extends (infer C) ? C : never>
+        ? Array<A>
+        : T extends Map<A extends (infer C) ? C : never>
+        ? Map<A>
+        : never
 
 export function remove<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
 export function remove<A>(p: (a: A) => boolean, as: Array<A>): Array<A>

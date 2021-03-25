@@ -1,9 +1,9 @@
 import {map} from '../../src/associative'
 import {to} from '../../src/struct'
-import {flow, nop} from '../../src/composition'
+import {flow, nop, val} from '../../src/composition'
 import {Map, Expect, Associative} from '../../src/type'
 import { identity } from '../../src/core'
-import { expectType } from 'ts-expect'
+import { expectNever, expectType } from 'ts-expect'
 
 
 /**
@@ -116,6 +116,12 @@ describe('map_a', () => {
         const $0 = map(identity)(s)
         expectType<Map<any>>($0)
 
+        const $0a = map(identity)(m)
+        expectType<Map<any>>($0a)
+
+        const $0b = map(_ => _ as number)(m)
+        expectType<Map<number>>($0b)
+
         const $1 = map(x => x * 2)(m)
         expectType<Map<number>>($1)
         const $2 = map((x: number) => x * 2)(m)
@@ -135,7 +141,7 @@ describe('map_a', () => {
 
         const $19 = [{a:1},{a:2}]
         const $20 = map(({a: x}) => x * 2)($19)
-        const $21: Expect<Array<any>,typeof $20> = true
+        const $21: Expect<Array<number>,typeof $20> = true
 
         const $22 = map(_ => _.a)([{a: 1}, {a: 3}])
         const $23: Expect<Array<any>,typeof $22> = true
@@ -153,6 +159,9 @@ describe('map_a', () => {
 
         const $35 = map((x: number) => x.toString())([1, 2])
         expectType<Array<string>>($35)
+
+        const $36 = map((x: string) => '')([1, 2])
+        try {expectNever($36)} catch {}
     })
 
 
