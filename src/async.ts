@@ -4,6 +4,7 @@ import {keys} from './associative'
 import {getSuccess} from './tuple'
 import {first, rest} from './array'
 import {convert} from './composition'
+import { throwIllegalArgs } from './core'
 
 
 /*
@@ -156,26 +157,23 @@ export async function map<A, B>(f: (_: A, k: string) => Promise<B>, as: Map<A>):
 export async function map<A, B>(f: (_: A) => Promise<B>, as: Map<A>): Promise<Map<B>>
 export async function map<A, B>(as: Map<A>, f: (_: A, k: string) => Promise<B>): Promise<Map<B>>
 export async function map<A, B>(as: Map<A>, f: (_: A) => Promise<B>): Promise<Map<B>>
-export async function map<A, B>(...args): Promise<any> {
+export async function map(...args) {
 
     const inner = f => async (as: any) => {
 
         if (isArray(as)) {
 
-            const bs: Array<B> = []
-            for (let a of as) bs.push(await f(a))
+            const bs: Array<any> = []
+            for (let i=0; i < as.length; i++) bs.push(await f(as[i], i))
             return bs
 
         } else if (isObject(as)) {
 
-            const result: Map<B> = {}
+            const result: Map<any> = {}
             for (let key of Object.keys(as)) result[key] = await f(as[key], key)
             return result
 
-        } else {
-
-            throw 'illegal argument - must be array or object'
-        }
+        } else throwIllegalArgs('async/map', 'Associative', as)
     }
 
     return args.length === 1
