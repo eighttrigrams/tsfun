@@ -20,12 +20,3 @@ export function throwIllegalArgs(f: string, expectation: string, got?: any) {
 
     throw `illegal argument in 'tsfun|${f}' - ${expectation} expected ${got ? '- got: ' + JSON.stringify(got) : ''}`;
 }
-
-
-
-
-
-
-
-
-

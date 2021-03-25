@@ -1,12 +1,13 @@
-import {nop} from "../../src/composition";
-/**
- * @author Daniel de Oliveira
- */
+import {nop} from '../../src/composition'
 
+
+/**
+ * tsfun | nop
+ */
 describe('nop', () => {
 
     it('demo', () => {
 
-        nop();
-    });
-});
+        nop()
+    })
+})

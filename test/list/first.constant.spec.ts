@@ -1,5 +1,5 @@
-import {is, on} from '../../src/comparator';
-import {FIRST} from '../../src/list';
+import {is, on} from '../../src/comparator'
+import {FIRST} from '../../src/list'
 
 /**
  * tsfun | FIRST
@@ -11,7 +11,7 @@ describe('FIRST', () => {
 
             on(FIRST, is(4))([4, 1])
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
     it('FIRST - nested', () =>
@@ -19,5 +19,5 @@ describe('FIRST', () => {
 
             on([FIRST, FIRST], is(3))([[3, 7], 14])
 
-        ).toEqual(true));
-});
+        ).toEqual(true))
+})

@@ -1,10 +1,8 @@
-import {range as lRange, zip as lZip, materialize} from '../../../src/lazy';
+import {range as lRange, zip as lZip, materialize} from '../../../src/lazy'
 
 
 /**
- * tsfun | lazy/zip
- *
- * @author Daniel de Oliveira
+ * tsfun/lazy | zip
  */
 describe('lazy/zip', () => {
 
@@ -16,4 +14,4 @@ describe('lazy/zip', () => {
                 ['a', 'b', 'c']))
 
     ).toEqual([[0, 'a'], [1, 'b'], [2, 'c']]));
-});
+})

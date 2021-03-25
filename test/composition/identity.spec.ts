@@ -1,6 +1,9 @@
-import {identity} from '../../src/core';
+import {identity} from '../../src/core'
 
 
+/**
+ * tsfun | identity
+ */
 describe('identity', () => {
 
    it('demo', () =>
@@ -9,4 +12,4 @@ describe('identity', () => {
            identity(3)
 
        ).toBe(3));
-});
+})

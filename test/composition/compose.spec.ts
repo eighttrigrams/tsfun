@@ -1,5 +1,5 @@
-import {compose, flow} from '../../src/composition';
-import {drop, dropRight, take} from '../../src/array';
+import {compose, flow} from '../../src/composition'
+import {drop, dropRight, take} from '../../src/array'
 
 
 /**
@@ -253,6 +253,4 @@ describe('compose', () => {
                 parseInt)               // not inferred anymore, result is typed to any
             ('3')
     })
-});
-
-
+})

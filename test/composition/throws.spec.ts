@@ -1,9 +1,7 @@
-import {throws} from '../../src/composition';
+import {throws} from '../../src/composition'
 
 /**
  * tsfun | throws
- *
- * @author Daniel de Oliveira
  */
 describe('throws', () => {
 
@@ -25,4 +23,4 @@ describe('throws', () => {
 
         ).toThrow('e')
     )
-});
+})

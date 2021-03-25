@@ -3,7 +3,7 @@ import {greaterThan} from '../../../src/comparator'
 
 
 /**
- * tsfun | lazy/filter
+ * tsfun/lazy | filter
  */
 describe('lazy/filter', () => {
 

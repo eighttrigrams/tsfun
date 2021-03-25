@@ -1,6 +1,9 @@
-import {collect} from '../../src/composition';
+import {collect} from '../../src/composition'
 
 
+/**
+ * tsfun | collect
+ */
 describe('collect', () => {
 
     it('demo', () =>
@@ -8,5 +11,5 @@ describe('collect', () => {
 
             collect(3, 5, 7)
 
-        ).toEqual([3, 5, 7]));
-});
+        ).toEqual([3, 5, 7]))
+})
