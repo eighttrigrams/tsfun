@@ -4,6 +4,12 @@
 
 ---
 
+**tsfun** aims at providing simple functional programming idioms in a way
+which fit well with the literal based data structures `[]` and `{}` while
+at the same time providing accurate typings.
+
+## Getting started
+
 ```
 npm -i tsfun
 ```
