@@ -91,10 +91,7 @@ export function reduce0<T>(f: (b: T, t: T, i?: number) => T) {
             }
             return acc
 
-        } else {
-
-            throw 'illegal argument in "tsfun|reduce0" - array or object expected'
-        }
+        } else throwIllegalArgs('reduce0', 'Array', ts)
     }
 }
 
