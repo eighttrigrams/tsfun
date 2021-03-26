@@ -16,20 +16,18 @@ export type Filter<T = any> = Mapping<Associative<T>>
  * tsfun | update_a
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/update_a.spec.ts
  */
-export function update_a<T>(key: string, v: T|Mapping<T>, m: Map<T>): Map<T>
-export function update_a<T>(key: number, v: T|Mapping<T>, m: Array<T>): Array<T>
-export function update_a<T,V>(key: string, v: V|Mapping<T,V>, m: Map<T>): Map<any>
-export function update_a<T,V>(key: number, v: V|Mapping<T,V>, m: Array<T>): Array<any>
+export function update_a<T,V>(key: string, v: Mapping<T,V>, m: Map<T>): Map<T|V>
+// export function update_a<T,V,K>(key: string, v: Mapping<K,V>, m: Map<T>): Map<void> // TODO implement
+export function update_a<T,V>(key: string, v: V, m: Map<T>): Map<T|V>
+export function update_a<T,V>(key: number, v: Mapping<T,V>, m: Array<T>): Array<T|V>
+export function update_a<T,V>(key: number, v: V, m: Array<T>): Array<T|V>
 
-export function update_a<T>(key: string, f: Mapping<T>): (m: Map<T>) => Map<T>
-export function update_a<T>(key: number, f: Mapping<T>): (m: Array<T>) => Array<T>
+export function update_a<A,B>(key: string, f: Mapping<A,B>): (m: Map<A>) => Map<A|B>
+export function update_a<B>(key: string, f: B): <A>(m: Map<A>) => Map<A|B>
+export function update_a<A,B>(key: number, f: Mapping<A,B>): (m: Array<A>) => Array<A|B>
+export function update_a<B>(key: number, f: B): <A>(m: Array<A>) => Array<A|B>
 
-export function update_a<T>(key: string, f: any): (m: Map<any>) => Map<unknown>
-export function update_a<T>(key: number, f: any): (m: Array<any>) => Array<unknown>
-export function update_a<A,B>(key: string, f: Mapping<A,B>): (m: Map<any>) => Map<unknown>
-export function update_a<A,B>(key: number, f: Mapping<A,B>): (m: Array<any>) => Array<unknown>
-
-export function update_a<T>(key, arg, arg2?): any {
+export function update_a(key, arg, arg2?): any {
 
     const $ = f => asc => {
 
@@ -52,7 +50,7 @@ export function lookup<T>(struct: Map<T>, alternative: T): (targetId: string) =>
 export function lookup<T>(struct: Map<T>): (targetId: string) => T|undefined;
 export function lookup<A>(struct: Array<A>, alternative: A): (targetId: number) => A;
 export function lookup<A>(struct: Array<A>): (targetId: number) => A|undefined;
-export function lookup<A>(struct, alternative?) {
+export function lookup(struct, alternative?) {
 
     return !isAssociative(struct)
         ? throwIllegalArgs('lookup', 'Associative', struct)

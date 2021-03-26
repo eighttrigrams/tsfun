@@ -46,30 +46,33 @@ describe('update_a', () => {
 
     it('Types changed', () => {
 
-        const $1 /*: Map<any>*/ = update_a('b', toString /*update*/, {a: 4, b: 7})
-        expect($1).toEqual({a: 4, b: '7'})
+        const $1 /*: Map<string|number>*/ = update_a('b', toString /*update*/, {a: '4', b: '7'})
+        expect($1).toEqual({a: '4', b: '7'})
 
-        const $2 /*: Map<any>*/ = update_a('b', 'a' /*assoc*/, {a: 4, b: 7})
+        const $2 /*: Map<string|number>*/ = update_a('b', 'a' /*assoc*/, {a: 4, b: 7})
         expect($2).toEqual({a: 4, b: 'a'})
 
-        const $3 /*: Map<unknown>*/ = update_a('b', toString /*update*/)({a: 4, b: 7})
+        const $3 /*: Map<string|number>*/ = update_a('b', toString /*update*/)({a: 4, b: 7})
         expect($3).toEqual({a: 4, b: '7'})
 
-        const $4 /*: Map<unknown>*/ = update_a('b', 'a' /*assoc*/)({a: 4, b: 7})
+        const $4 /*: Map<string|number>*/ = update_a('b', 'a' /*assoc*/)({a: 4, b: 7})
         expect($4).toEqual({a: 4, b: 'a'})
 
 
-        const $5 /*: Array<any>*/ = update_a(1, toString /*update*/, [4, 7])
+        const $5 /*: Array<string|number>*/ = update_a(1, toString /*update*/, [4, 7])
         expect($5).toEqual([4, '7'])
 
-        const $6 /*: Array<any>*/ = update_a(1, 'a' /*assoc*/, [4, 7])
+        const $6 /*: Array<string|number>*/ = update_a(1, 'a' /*assoc*/, [4, 7])
         expect($6).toEqual([4, 'a'])
 
-        const $7 /*: Array<unknown>*/ = update_a(1, toString /*update*/)([4, 7])
+        const $7 /*: Array<string|number>*/ = update_a(1, toString /*update*/)([4, 7])
         expect($7).toEqual([4, '7'])
 
-        const $8 /*: Array<number>*/ = update_a(1, 'a' /*assoc*/)([4, 7])
+        const $8 /*: Array<string|number>*/ = update_a(1, 'a' /*assoc*/)([4, 7])
         expect($8).toEqual([4, 'a'])
+
+
+        const $11 /*: Map<string|number|undefined>*/ = update_a('b', _ => JSON.stringify(_), {a: 7, b: undefined})
     })
 
 
