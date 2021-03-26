@@ -92,6 +92,7 @@ export function reduce0<T>(f: (b: T, t: T, i?: number) => T) {
             return acc
 
         } else throwIllegalArgs('reduce0', 'Array', ts)
+        return ts as never
     }
 }
 
@@ -577,6 +578,7 @@ export function reverse<A>(as: Array<A>): Array<A> {
     } else {
 
         throwIllegalArgs('reverse', 'Array', as)
+        return []
     }
 }
 

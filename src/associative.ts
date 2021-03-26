@@ -204,6 +204,26 @@ export function map<A, B>(first: any, ...rest: any[]): any {
 
 /**
  * tsfun | forEach
+ *
+ * ```
+ * let acc = 1
+ * const items = forEach([2, 4, 3], item => {
+ *      acc += item
+ * })
+ * expect(items).toEqual([2, 4, 3])
+ * expect(acc).toEqual(10)
+ *
+ *
+ * let acc = 1
+ * const items = forEach({a: 2, b: 4, c: 3}, item => {
+ *     acc += item
+ * })
+ * expect(items).toEqual({a: 2, b: 4, c: 3})
+ * expect(acc).toEqual(10)
+ * ```
+ *
+ * More examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/for_each.spec.ts
  */
 export function forEach<A = any>(f: (_: A, i?: Key) => void):
@@ -236,7 +256,15 @@ export function forEach(arg, arg2?) {
         return as
     }
 
-    // TODO assert concrete types
+    arg2 === undefined
+        ? !isFunction(arg)
+            ? throwIllegalArgs('forEach', 'function', arg)
+            : 0
+        : !isFunction(arg2)
+            ? throwIllegalArgs('forEach', 'function', arg2)
+            : !isAssociative(arg)
+                ? throwIllegalArgs('forEach', 'Associative', arg)
+                : 0
 
     return arg2
         ? $(arg2)(arg)

@@ -8,10 +8,10 @@ import {forEach} from '../../src/associative'
  */
 describe('forEach', () => {
 
-    it('forEach - Map', () => {
+    it('forEach - Array', () => {
 
         let acc = 1
-        const items = forEach([2, 4, 3], (item: number) => {
+        const items = forEach([2, 4, 3], item => {
             acc += item
         })
         expect(items).toEqual([2, 4, 3])
@@ -22,7 +22,7 @@ describe('forEach', () => {
     it('forEach with i', () => {
 
         let acc = 1
-        forEach([2, 4, 3], (item, i: number) => {
+        forEach([2, 4, 3], (_item, i) => {
             acc += i
         })
         expect(acc).toEqual(4)
@@ -32,7 +32,7 @@ describe('forEach', () => {
     it('forEach - Map', () => {
 
         let acc = 1
-        const items = forEach({a: 2, b: 4, c: 3}, (item: number) => {
+        const items = forEach({a: 2, b: 4, c: 3}, item => {
             acc += item
         })
         expect(items).toEqual({a: 2, b: 4, c: 3})
@@ -43,7 +43,7 @@ describe('forEach', () => {
     it('forEach - with k', () => {
 
         let acc = 1
-        const items = forEach({a: 2, b: 4, c: 3}, (item: number) => {
+        const items = forEach({a: 2, b: 4, c: 3}, item => {
             acc += item
         })
         expect(items).toEqual({a: 2, b: 4, c: 3})
