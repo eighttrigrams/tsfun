@@ -195,6 +195,10 @@ export const equalBy =
                 objectEqualBy(arrayComparator))(o1)(o2)
 
 
+/**
+ * tsfun | on
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/on.spec.ts
+ */
 export function on<T1, T2>(mapping: Mapping<T1,T2>): Comparator<T1>
 export function on<T1, T2>(mapping: Mapping<T1,T2>, comparator: Comparator<T2,T2>): Comparator<T1, T1>
 export function on<T1, T2>(mapping: Mapping<T1,T2>, predicate: Predicate<T2>): Predicate<T1>
@@ -226,6 +230,10 @@ export function on(path, compare?) {
 }
 
 
+/**
+ * tsfun | onBy
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/struct/on.spec.ts
+ */
 export function onBy<T1,T2>(compare: (l: T1) => (r: T2) => boolean): (path: Path|Mapping, cmp?: T1) => (l: T1) => (r: T2) => boolean;
 export function onBy(compare) {
 
@@ -240,6 +248,10 @@ export function onBy(compare) {
 export const by = <A>(p: Predicate<A>) => p
 
 
+/**
+ * tsfun | differentFrom
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/reference/different_from.spec.ts
+ */
 export function differentFrom(comp: Comparator, that: any): (_: any) => boolean
 export function differentFrom(that: any): (_: any) => boolean
 export function differentFrom(...args) {
@@ -253,6 +265,10 @@ export function differentFrom(...args) {
 }
 
 
+/**
+ * tsfun | includedIn
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/set/includedIn.spec.ts
+ */
 export function includedIn<A>(as: Array<A>): (a: A) => boolean
 export function includedIn<A>(comp: Comparator, as: Array<A>): (a: A) => boolean
 export function includedIn<A>(...args) {
@@ -277,6 +293,10 @@ export function includedIn<A>(...args) {
 }
 
 
+/**
+ * tsfun | includes
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/set/includes.spec.ts
+ */
 export function includes<A>(a: A): (as: Array<A>) => boolean
 export function includes<A>(comp: Comparator, a: A): (as: Array<A>) => boolean
 export function includes<A>(...args) {
@@ -301,6 +321,10 @@ export function includes<A>(...args) {
 }
 
 
+/**
+ * tsfun | arrayEqual
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/struct/array_equal.spec.ts
+ */
 export function arrayEqual<A>(comp: Comparator, that: Array<A>): (_: Array<A>) => boolean
 export function arrayEqual<A>(that: Array<A>): (_: Array<A>) => boolean
 export function arrayEqual<A>(...args) {
@@ -314,7 +338,12 @@ export function arrayEqual<A>(...args) {
 }
 
 
-// Compares 2 arrays where elements order does not matter
+/**
+ * tsfun | sameset
+ * Compares 2 arrays where elements order does not matter
+ *
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/set/sameset.spec.ts
+ */
 export function sameset<A>(that: Array<A>): (as2: Array<A>) => boolean
 export function sameset<A>(comp: Comparator, that: Array<A>): (as2: Array<A>) => boolean
 export function sameset<A>(that: Array<A>, as2: Array<A>): boolean
@@ -349,6 +378,10 @@ export function sameset<A>(...args): any {
 }
 
 
+/**
+ * tsfun | subsetOf
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/set/subset_of.spec.ts
+ */
 export function subsetOf<A>(comp: Comparator, that: Array<A>): {
     (as2: Array<A>): boolean
 }
@@ -386,7 +419,10 @@ export function subsetOf<A>(...args): any {
 }
 
 
-
+/**
+ * tsfun | supersetOf
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/set/superset_of.spec.ts
+ */
 export function supersetOf<A>(that: Array<A>): {
     (as2: Array<A>): boolean
 }
@@ -411,6 +447,10 @@ export function supersetOf<A>(that: any, as2?: any): any {
 }
 
 
+/**
+ * tsfun | objectEqual
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/struct/object_equal.spec.ts
+ */
 export function objectEqual(comp: Comparator, o1: Object): (o2: Object) => boolean
 export function objectEqual(o1: Object): (o2: Object) => boolean
 export function objectEqual(...args) {
@@ -424,6 +464,10 @@ export function objectEqual(...args) {
 }
 
 
+/**
+ * tsfun | equal
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/struct/equal.spec.ts
+ */
 export function equal(o1: undefined, o2: undefined): true
 export function equal(comp: Comparator, o1: undefined, o2: undefined): true
 export function equal<T>(comp: Comparator, o1: T, o2: T): boolean
@@ -454,6 +498,10 @@ export function equal(o1: any, ...os: any[]): any {
 }
 
 
+/**
+ * tsfun | startsWith
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/list/starts_with.spec.ts
+ */
 export function startsWith<A>(as1: Array<A>, as2: Array<A>): boolean
 export function startsWith<A>(as1: Array<A>): (as2: Array<A>) => boolean
 export function startsWith<A>(that: Array<A>, what?:Array<A>) {
@@ -490,6 +538,10 @@ export function startsWith<A>(that: Array<A>, what?:Array<A>) {
 const pairIsSame = <A>([a, b]: Pair<A, A>) => a === b
 
 
+/**
+ * tsfun | endsWith
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/list/ends_with.spec.ts
+ */
 export function endsWith<A>(as1: Array<A>, as2: Array<A>): boolean
 export function endsWith<A>(as1: Array<A>): (as2: Array<A>) => boolean
 export function endsWith<A>(that, as2?) {
@@ -520,19 +572,30 @@ export function endsWith<A>(that, as2?) {
 }
 
 
-
+/**
+ * tsfun | shorterThan
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/list/longer_than.spec.ts
+ */
 export function longerThan<T>(than: Array<T>) {
 
     return (what: Array<T>) => what.length > than.length
 }
 
 
+/**
+ * tsfun | shorterThan
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/list/shorter_than.spec.ts
+ */
 export function shorterThan<T>(than: Array<T>) {
 
     return (what: Array<T>) => what.length < than.length
 }
 
 
+/**
+ * tsfun | sameLength
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/list/same_length.spec.ts
+ */
 export function sameLength<T>(as: Array<T>) {
 
     return (what: Array<T>) => what.length === as.length
