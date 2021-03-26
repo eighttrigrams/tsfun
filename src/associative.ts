@@ -213,7 +213,11 @@ export function forEach<A = any>(f: (_: A, i?: Key) => void):
         ? Array<A>
         : T extends Map<A extends (infer C) ? C : never>
         ? Map<A>
-        : never
+        : T extends Array<any>
+        ? Array<void> // signal mismatch between A and C
+        : T extends Map<any>
+        ? Array<void> // signal mismatch between A and C
+        : never // on illegal argument for as
 
 export function forEach<A>(as: Array<A>, f: (_: A) => void): Array<A>
 export function forEach<A>(as: Array<A>, f: (_: A, i: number) => void): Array<A>
@@ -251,7 +255,11 @@ export function filter<A = any>(f: (_: A, i?: Key) => boolean):
         ? Array<A>
         : T extends Map<A extends (infer C) ? C : never>
         ? Map<A>
-        : never
+        : T extends Array<any>
+        ? Array<void> // signal mismatch between A and C
+        : T extends Map<any>
+        ? Array<void> // signal mismatch between A and C
+        : never // on illegal argument for as
 
 export function filter<A>(p: (a: A, i?: number|string) => boolean): (_: Associative<A>) => Associative<A>
 export function filter<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
@@ -290,7 +298,11 @@ export function remove<A = any>(f: (_: A, i?: Key) => boolean):
         ? Array<A>
         : T extends Map<A extends (infer C) ? C : never>
         ? Map<A>
-        : void
+        : T extends Array<any>
+        ? Array<void> // signal mismatch between A and C
+        : T extends Map<any>
+        ? Array<void> // signal mismatch between A and C
+        : never // on illegal argument for as
 
 export function remove<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
 export function remove<A>(p: (a: A) => boolean, as: Array<A>): Array<A>

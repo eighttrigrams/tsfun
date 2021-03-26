@@ -104,8 +104,7 @@ describe('forEach', () => {
         const $3: Expect<Map<number>,typeof $2> = true
 
         const $36 = forEach((x: string) => true)([1, 2])
-        const $37: void = $36
-        //const $38: undefined = $36 // should be impossible
+        const $37: void[] = $36
     })
 
 
