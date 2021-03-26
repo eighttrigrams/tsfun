@@ -56,18 +56,6 @@ describe('async/filter', () => {
     })
 
 
-    it('string', async done => {
-
-        expect(
-
-            await asyncFilter((a: string) => Promise.resolve(a > 'a'), 'abad'))
-
-            .toEqual('bd')
-
-        done()
-    })
-
-
     // typing - see comments in asyncMap typing test
 })
 

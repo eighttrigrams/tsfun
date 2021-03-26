@@ -25,7 +25,6 @@ import { throwIllegalArgs } from './core'
 export function filter<T>(p: (a: T, i?: string|number) => Promise<boolean>): Promise<{
     (as: Array<T>): Promise<Array<T>>
     (os: Map<T>): Promise<Map<T>>
-    (s: string): Promise<string>
 }>
 export function filter<T>(p: (t: T, i: number) => Promise<boolean>, as: Array<T>): Promise<Array<T>>
 export function filter<T>(p: (t: T) => Promise<boolean>, as: Array<T>): Promise<Array<T>>
@@ -35,10 +34,6 @@ export function filter<T>(p: (t: T, i: string) => Promise<boolean>, as: Map<T>):
 export function filter<T>(p: (t: T) => Promise<boolean>, as: Map<T>): Promise<Map<T>>
 export function filter<T>(as: Map<T>, p: (t: T, i: string) => Promise<boolean>): Promise<Map<T>>
 export function filter<T>(as: Map<T>, p: (t: T) => Promise<boolean>): Promise<Map<T>>
-export function filter<T>(p: (t: T, i: string) => Promise<boolean>, as: string): Promise<string>
-export function filter<T>(p: (t: T) => Promise<boolean>, as: string): Promise<string>
-export function filter<T>(as: string, p: (t: T, i: string) => Promise<boolean>): Promise<string>
-export function filter<T>(as: string, p: (t: T) => Promise<boolean>): Promise<string>
 export function filter(...args) {
 
     const $ = p => async (as) => {
@@ -67,22 +62,9 @@ export function filter(...args) {
 
             return o1
 
-        } else if (isString(as)) {
-
-            const s = as.split('')
-
-            const s1 = []
-            let i = 0
-            for (let k of keys(s)) {
-                if (await p(s[k], k)) (s1 as any)[k] = s[k]
-                i++
-            }
-
-            return (s1.join(''))
-
         } else {
 
-            throw 'illegal argument - must be array or object'
+            throwIllegalArgs('aFilter', 'Associative', as)
         }
     }
 
