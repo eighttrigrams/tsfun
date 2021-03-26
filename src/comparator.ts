@@ -219,7 +219,7 @@ export function on(path, compare?) {
                 compare === undefined
                     ? r => mapping(l) === mapping(r)
                     : isFunction(compare)
-                        ? isFunction(compare(l))
+                        ? isFunction(compare(mapping(l)))
                             ? r => compare(mapping(l))(mapping(r))
                             : compare(mapping(l))
                         : is(compare)(mapping(l)))

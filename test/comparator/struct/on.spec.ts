@@ -111,9 +111,9 @@ describe('on', () => {
 
         // which can be expressed in terms of another data structure of the same time
 
-        // expect(
-            // on(count, lessThan)([1, 2, 3])([1, 2]))
-            // .toBe(true)
+        expect(
+            on(count, lessThan)([1, 2, 3])([1, 2]))
+            .toBe(true)
 
         // As the next examples show, passing comparators to yield comparators
         // for symmetric comparisons can also be achieved on a less ad-hoc basis.
@@ -399,6 +399,14 @@ describe('on', () => {
 
 
     // regression prevention
+
+    it('fix where count was not applied in test for function', () => {
+
+        expect(
+            on(count, lessThan)([1, 2, 3])([1, 2]))
+            .toBe(true)
+    })
+
 
     it('object - see path',() =>
         expect(
