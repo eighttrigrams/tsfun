@@ -165,7 +165,7 @@ export function drop(n: number, p2?: any): any {
 
     const $ = <A>(as: any) => {
 
-        if (!isArray(as)) throw 'illegal argument in "tsfun|drop" - array expected'
+        if (!isArray(as)) throwIllegalArgs('drop', 'Array', as)
 
         const as_ = as as Array<A>
         return n < 1 ? as_ :
@@ -189,7 +189,7 @@ export function take<A>(n: number, p: Predicate<A>, as: Array<A>): Array<A>
 export function take<A>(n: number, ...args): any {
 
     const $ = p => as => {
-        if (!isArray(as)) throw 'illegal argument in "tsfun|take" - array expected'
+        if (!isArray(as)) throwIllegalArgs('take', 'Array', as)
 
         let items = []
         let i = 0
@@ -225,8 +225,7 @@ export function dropRight<A>(n: number, as: Array<A>): Array<A>
 export function dropRight(n: number, as?: any): any {
 
     const $ = <A>(as: any): any => {
-
-        if (!isArray(as)) throw 'illegal argument in "tsfun|dropRight" - array expected'
+        if (!isArray(as)) throwIllegalArgs('dropRight', 'Array', as)
 
         return (as as Array<A>).slice(0, Math.max(0, as.length-n)) as Array<A>
     }
@@ -327,7 +326,8 @@ export function takeRight(n: number): <A>(as: Array<A>) => Array<A> {
 
         } else {
 
-            throw 'illegal argument - must be array'
+            throwIllegalArgs('takeRight', 'Array', as)
+            return [] as never
         }
     }
 
