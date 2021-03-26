@@ -3,6 +3,7 @@ import {
     isEmpty, isFunction, isNot,
     isNumber,
     isObject,
+    isString,
     isUndefined
 } from './predicate'
 import {identity, throwIllegalArgs} from './core'
@@ -322,7 +323,7 @@ export function distribute(arg, arg2?) {
         as.reduce((acc, a) => {
 
             const r = f(a)
-            throwIllegalArgs('distribute', 'function argument returning string', r)
+            if (!isString(r)) throwIllegalArgs('distribute', 'function argument returning string', r)
 
             if (acc[r]) acc[r].push(a)
             else acc[r] = [a]
