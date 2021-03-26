@@ -4,6 +4,10 @@
 
 ---
 
+```
+npm -i tsfun
+```
+
 ## Function reference
 
 Example:
