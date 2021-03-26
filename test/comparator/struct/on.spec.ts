@@ -1,4 +1,4 @@
-import {samesetBy, is, jsonEqual, on, onBy, isnt, lessThan} from '../../../src/comparator'
+import {samesetBy, is, jsonEqual, on, onBy, isnt, lessThan, greaterThan} from '../../../src/comparator'
 import { identity } from '../../../src/core'
 import {isArray, isDefined, isEmpty, isNot, isUndefined, isUndefinedOrEmpty} from '../../../src/predicate'
 import {intersectBy} from '../../../src/set'
@@ -405,6 +405,18 @@ describe('on', () => {
         expect(
             on(count, lessThan)([1, 2, 3])([1, 2]))
             .toBe(true)
+    })
+
+
+    it('fix where count was not applied in test for function - reproduced case', () => {
+
+        expect(
+            on(1, greaterThan(3))([3,4]))
+            .toBe(true)
+
+        expect(
+            on(1, greaterThan(4))([3,4]))
+            .toBe(false)
     })
 
 
