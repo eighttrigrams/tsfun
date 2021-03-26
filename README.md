@@ -8,13 +8,13 @@
 npm -i tsfun
 ```
 
-## Function reference
-
 Example:
 
 ```typescript
 import {on, equal, take, update, flow} from 'tsfun'
 ```
+
+## Function reference
 
 ### Array
 
