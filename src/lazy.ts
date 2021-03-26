@@ -3,7 +3,11 @@
 // see https://codewords.recurse.com/issues/four/lazy-composable-and-modular-javascript
 
 
-export function* range(a: number, b?: number, stepSize: number = 1) {
+/**
+ * tsfun | lRange
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/lazy/l_range.spec.ts
+ */
+export function* lRange(a: number, b?: number, stepSize: number = 1) {
 
     let begin = a
     let end   = b
@@ -18,7 +22,11 @@ export function* range(a: number, b?: number, stepSize: number = 1) {
 }
 
 
-export function zip(as: any) { return function* (bs: any) {
+/**
+ * tsfun | lZip
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/lazy/l_zip.spec.ts
+ */
+export function lZip(as: any) { return function* (bs: any) {
 
     const aIterator = as[Symbol.iterator]()
     const bIterator = bs[Symbol.iterator]()
@@ -33,7 +41,11 @@ export function zip(as: any) { return function* (bs: any) {
 }}
 
 
-export function map(f: Function) {
+/**
+ * tsfun | lMap
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/lazy/l_map.spec.ts
+ */
+export function lMap(f: Function) {
     return function*(a: any) {
         for (let x of a) {
             // console.log("map x of a", x)
@@ -43,7 +55,11 @@ export function map(f: Function) {
 }
 
 
-export function take(n: number) {
+/**
+ * tsfun | lTake
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/lazy/l_take.spec.ts
+ */
+export function lTake(n: number) {
     return function*(a: any) {
         let i = 0
         for (let x of a) {
@@ -56,7 +72,11 @@ export function take(n: number) {
 }
 
 
-export function filter(f: Function) {
+/**
+ * tsfun | lFilter
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/lazy/l_filter.spec.ts
+ */
+export function lFilter(f: Function) {
     return function*(a: any) {
         for (let x of a) {
             // console.log("filter x of a", x)
@@ -66,6 +86,10 @@ export function filter(f: Function) {
 }
 
 
+/**
+ * tsfun | materialize
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/lazy/materialize.spec.ts
+ */
 export function materialize(lAs: any) {
     const as: Array<any> = []
     for (let x of lAs) {

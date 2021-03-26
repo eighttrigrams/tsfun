@@ -1,31 +1,28 @@
-import {Map, Mapping} from '../../../src/type'
-import {
-    map as asyncMap /* use an alias if you want to disambiguate */,
-    flow as asyncFlow
-} from '../../../src/async'
-import {map} from '../../../src/associative'
+import {Map, Mapping} from '../../src/type'
+import {aMap,aFlow} from '../../src/async'
+import {map} from '../../src/associative'
 
 
 /**
- * tsfun/async | map
+ * tsfun | aMap
  *
  * Asynchronous map for mapping over Associative
  */
-describe('async/map', () => {
+describe('aMap', () => {
 
     it('async map over associative', async done => {
 
         // Works for Arrays
         expect(
 
-            await asyncMap(delayedTimes2, [1, 2])
+            await aMap(delayedTimes2, [1, 2])
 
         ).toEqual([2, 4])
 
         // and for Maps
         expect(
 
-            await asyncMap(delayedTimes2, {a: 1, b: 2})
+            await aMap(delayedTimes2, {a: 1, b: 2})
 
         ).toEqual({a: 2, b: 4})
 
@@ -34,13 +31,13 @@ describe('async/map', () => {
 
         expect(
 
-            await asyncMap([1, 2], delayedTimes2)
+            await aMap([1, 2], delayedTimes2)
 
         ).toEqual([2, 4])
 
         expect(
 
-            await asyncMap({a: 1, b: 2}, delayedTimes2)
+            await aMap({a: 1, b: 2}, delayedTimes2)
 
         ).toEqual({a: 2, b: 4})
 
@@ -50,13 +47,13 @@ describe('async/map', () => {
 
         expect(
 
-            await asyncMap([1, 2], async (_, i) => i)
+            await aMap([1, 2], async (_, i) => i)
 
         ).toEqual([0, 1])
 
         expect(
 
-            await asyncMap({a: 1, b: 2}, async (_, k) => k)
+            await aMap({a: 1, b: 2}, async (_, k) => k)
 
         ).toEqual({a: 'a', b: 'b'})
 
@@ -68,11 +65,11 @@ describe('async/map', () => {
 
         expect(
 
-            await asyncFlow([1, 2]
-                , asyncMap(delayedTimes2)
+            await aFlow([1, 2]
+                , aMap(delayedTimes2)
                 , map(times2)
                 , delay
-                , asyncMap(delayedTimes2))
+                , aMap(delayedTimes2))
 
             // Note that asynchronous as well a synchronous functions can be mixed and matched
 
@@ -84,7 +81,7 @@ describe('async/map', () => {
 
     it('multiple param lists for use in composition', async done => {
 
-        const $1 = await (await /* ! */ asyncMap(delayedTimes2))([1, 2])
+        const $1 = await (await /* ! */ aMap(delayedTimes2))([1, 2])
 
         // As a standalone that does not look very good, but is necesarry for the map overload to work
         // In a composition, however, it works just fine (compare last example)
@@ -95,10 +92,10 @@ describe('async/map', () => {
 
 
     const doubleArray: Mapping<number[], Promise<number[]>> =
-        _ => asyncMap(delayedTimes2, _) // we have to use the single arg list version here since we cant use await to unpack the promise
+        _ => aMap(delayedTimes2, _) // we have to use the single arg list version here since we cant use await to unpack the promise
 
 
-    it('make an AsyncMapping', async done => {
+    it('make an aMapping', async done => {
 
         expect(
 
@@ -114,8 +111,8 @@ describe('async/map', () => {
 
         // like 'map' from 'tsfun/associative', in the case of a single
         // argument list, the box types are inferred as expected
-        const result1: Array<number> = await asyncMap(delayedTimes2, [1, 2])
-        const result2: Map<number> = await asyncMap(delayedTimes2, {a: 1, b: 2})
+        const result1: Array<number> = await aMap(delayedTimes2, [1, 2])
+        const result2: Map<number> = await aMap(delayedTimes2, {a: 1, b: 2})
 
         // the multi argument list case
         // also gives us the correct box types,
@@ -125,13 +122,13 @@ describe('async/map', () => {
         // of Associatives (in addition to there being
         // restrictions of type inference between parameter lists)
         // in a context where typing is checked in compositions
-        const result3: Array<number> = await (await asyncMap(delayedTimes2))([1, 2])
-        const result4: Map<number> = await (await asyncMap(delayedTimes2))({a: 1, b: 2})
+        const result3: Array<number> = await (await aMap(delayedTimes2))([1, 2])
+        const result4: Map<number> = await (await aMap(delayedTimes2))({a: 1, b: 2})
 
         // whereas here everything is typed to any, for reasons of simplicity.
-        await asyncFlow( // gives us just Promise<any>
+        await aFlow( // gives us just Promise<any>
             [1,2],
-            asyncMap(delayedTimes2)) // not typechecked
+            aMap(delayedTimes2)) // not typechecked
 
         done()
     })

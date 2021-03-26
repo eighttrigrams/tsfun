@@ -1,15 +1,15 @@
-import {flow as asyncFlow, map as asyncMap, mcompose as asyncMcompose} from '../../../src/async'
-import {Either, Mapping, Maybe} from '../../../src/type'
-import {success, left, right, LEFT, RIGHT} from '../../../src/tuple'
-import {map, update_a} from '../../../src/associative'
-import {separate} from '../../../src/array'
-import {isSuccess} from '../../../src/predicate'
+import {aFlow, aMap, aMcompose} from '../../src/async'
+import {Either, Mapping, Maybe} from '../../src/type'
+import {success, left, right, LEFT, RIGHT} from '../../src/tuple'
+import {map, update_a} from '../../src/associative'
+import {separate} from '../../src/array'
+import {isSuccess} from '../../src/predicate'
 
 
 /**
- * tsfun/async | mcompose
+ * tsfun | aMcompose
  */
-describe('async/mcompose', () => {
+describe('aMcompose', () => {
 
     const decM = async (x: number) => (x-1 === 0 ? [] : [x-1]) as Maybe<number>
     const syncDecM = (x: number) => (x-1 === 0 ? [] : [x-1]) as Maybe<number>
@@ -23,7 +23,7 @@ describe('async/mcompose', () => {
 
         expect(
 
-            await asyncMcompose(decM, squareM)
+            await aMcompose(decM, squareM)
             ([3])
 
         ).toEqual([4])
@@ -34,7 +34,7 @@ describe('async/mcompose', () => {
 
         expect(
 
-            await asyncMcompose(decM, syncSquareM)
+            await aMcompose(decM, syncSquareM)
             ([3])
 
         ).toEqual([4])
@@ -45,7 +45,7 @@ describe('async/mcompose', () => {
 
         expect(
 
-            await asyncMcompose(syncDecM, syncSquareM)
+            await aMcompose(syncDecM, syncSquareM)
             ([3])
 
         ).toEqual([4])
@@ -56,7 +56,7 @@ describe('async/mcompose', () => {
 
         expect(
 
-            await asyncMcompose(decE, squareE)
+            await aMcompose(decE, squareE)
             ([undefined, 3])
 
         ).toEqual([undefined, 4])
@@ -67,7 +67,7 @@ describe('async/mcompose', () => {
 
         expect(
 
-            await asyncMcompose(decM, squareM)
+            await aMcompose(decM, squareM)
             ([1])
 
         ).toEqual([])
@@ -78,7 +78,7 @@ describe('async/mcompose', () => {
 
         expect(
 
-            await asyncMcompose(decE, squareE)
+            await aMcompose(decE, squareE)
             ([undefined, 1])
 
         ).toEqual(['decfailed', undefined])
@@ -89,9 +89,9 @@ describe('async/mcompose', () => {
 
         expect(
 
-            await asyncFlow(
+            await aFlow(
                 [1],
-                asyncMcompose(decM, squareM))
+                aMcompose(decM, squareM))
 
         ).toEqual([])
     )
@@ -100,10 +100,10 @@ describe('async/mcompose', () => {
     it('use case', async () =>
 
         expect(
-            await asyncFlow(
+            await aFlow(
                 [0, 3, 1],
                 map(success),
-                asyncMap(asyncMcompose(safedivE(3), decE, squareE)),
+                aMap(aMcompose(safedivE(3), decE, squareE)),
                 separate(isSuccess),
                 update_a(LEFT, map(right) as Mapping),
                 update_a(RIGHT, map(left) as Mapping))

@@ -1,14 +1,14 @@
-import {reduce as asyncReduce} from '../../../src/async';
+import {aReduce} from '../../src/async';
 
 
 /**
- * tsfun/async | reduce
+ * tsfun | aReduce
  */
-describe('async/reduce', () => {
+describe('aReduce', () => {
 
     it('array - single parameter list', async done => {
 
-        const sum = await asyncReduce(delayedAdd, 0, [1, 3, 7])
+        const sum = await aReduce(delayedAdd, 0, [1, 3, 7])
 
         expect(sum).toBe(11)
         done()
@@ -17,7 +17,7 @@ describe('async/reduce', () => {
 
     it('array - single parameter list, collection at first position', async done => {
 
-        const sum = await asyncReduce([1, 3, 7], delayedAdd, 0)
+        const sum = await aReduce([1, 3, 7], delayedAdd, 0)
 
         expect(sum).toBe(11)
         done()
@@ -26,7 +26,7 @@ describe('async/reduce', () => {
 
     it('array - multiple parameter lists', async done => {
 
-        const asyncSum = await asyncReduce(delayedAdd, 0)
+        const asyncSum = await aReduce(delayedAdd, 0)
 
         const sum = await asyncSum([1, 3, 7])
         expect(sum).toBe(11)
@@ -37,7 +37,7 @@ describe('async/reduce', () => {
     it('object', async done => {
 
         expect(
-            await (await asyncReduce((acc: string, b: string, k: string) => Promise.resolve(acc + b + k), '.'))({
+            await (await aReduce((acc: string, b: string, k: string) => Promise.resolve(acc + b + k), '.'))({
                 a: '3',
                 b: '7',
                 c: '5'

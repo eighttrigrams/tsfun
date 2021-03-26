@@ -1,10 +1,10 @@
-import {range as lRange, zip as lZip, materialize} from '../../../src/lazy'
+import {lRange, lZip, materialize} from '../../src/lazy'
 
 
 /**
- * tsfun/lazy | zip
+ * tsfun | lZip
  */
-describe('lazy/zip', () => {
+describe('lZip', () => {
 
     it('zip', () => expect(
 

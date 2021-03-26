@@ -1,18 +1,22 @@
-import {filter as asyncFilter} from '../../../src/async'
+import {aFilter} from '../../src/async'
 
 
 /**
- * tsfun/async | filter
+ * tsfun | aFilter
  *
  * asynchronous function for filtering items from Collection by a given predicate
  */
-describe('async/filter', () => {
+describe('aFilter', () => {
+
+    const delayedSmaller4 =
+    _ => new Promise<any>(resolve => setTimeout(() => resolve(_ < 4), 50))
+
 
     it('array, multiple argument lists', async done => {
 
         expect(
 
-            await (await asyncFilter(delayedSmaller4))([2, 4, 3]))
+            await (await aFilter(delayedSmaller4))([2, 4, 3]))
 
             .toEqual([2, 3])
 
@@ -24,7 +28,7 @@ describe('async/filter', () => {
 
         expect(
 
-            await asyncFilter(delayedSmaller4, [2, 4, 3])
+            await aFilter(delayedSmaller4, [2, 4, 3])
 
         ).toEqual([2, 3])
 
@@ -36,7 +40,7 @@ describe('async/filter', () => {
 
         expect(
 
-            await asyncFilter([2, 4, 3], delayedSmaller4)
+            await aFilter([2, 4, 3], delayedSmaller4)
 
         ).toEqual([2, 3])
 
@@ -48,7 +52,7 @@ describe('async/filter', () => {
 
         expect(
 
-            await asyncFilter(delayedSmaller4, {a: 2, b: 4, c: 3}))
+            await aFilter(delayedSmaller4, {a: 2, b: 4, c: 3}))
 
             .toEqual({a: 2, c: 3})
 
@@ -58,8 +62,3 @@ describe('async/filter', () => {
 
     // typing - see comments in asyncMap typing test
 })
-
-
-const delayedSmaller4 =
-    _ => new Promise<any>(resolve => setTimeout(() => resolve(_ < 4), 50))
-

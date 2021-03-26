@@ -197,3 +197,23 @@ export {
     any,
     all
 } from './src/associative'
+
+
+export {
+    aFilter,
+    aReduce,
+    aMap,
+    aFlow,
+    aCompose,
+    aMcompose
+} from './src/async'
+
+
+export {
+    materialize,
+    lZip,
+    lFilter,
+    lTake,
+    lMap,
+    lRange,
+} from './src/lazy'

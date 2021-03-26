@@ -1,6 +1,6 @@
-import {take as lTake, filter as lFilter, materialize} from '../../../src/lazy'
-import {flow} from '../../../src/composition'
-import {greaterThan} from '../../../src/comparator'
+import {lTake, lFilter, materialize} from '../../src/lazy'
+import {flow} from '../../src/composition'
+import {greaterThan} from '../../src/comparator'
 
 
 /**

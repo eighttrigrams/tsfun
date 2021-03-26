@@ -1,20 +1,19 @@
-import {flow as asyncFlow} from '../../../src/async'
+import {aCompose} from '../../src/async';
 
 
 /**
- * tsfun/async | flow
+ * tsfun | aCompose
  */
-describe('async/flow', () => {
+describe('aCompose', () => {
 
-    it('asyncFlow', async done => {
+    it('aCompose', async done => {
 
         expect(
 
-            await asyncFlow(
-                'abc',
+            await aCompose(
                 (itm: any) => new Promise<any>(resolve => setTimeout(() => resolve(itm + 'd'), 50)),
                 (itm: any) => itm + 'ee'
-            )
+            )('abc')
 
         ).toEqual('abcdee')
 

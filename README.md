@@ -242,7 +242,7 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 * [LEFT](test/tuple/left.constant.spec.ts)
 * [RIGHT](test/tuple/right.constant.spec.ts)
 
-## Extra packages reference
+## Extra functions reference
 
 ### Async
 
@@ -250,12 +250,12 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 import {map as asyncMap} from 'tsfun/async'
 ```
 
-* [map](test/async/async/map.spec.ts)
-* [filter](test/async/async/filter.spec.ts)
-* [reduce](test/async/async/reduce.spec.ts)
-* [flow](test/async/async/flow.spec.ts)
-* [compose](test/async/async/compose.spec.ts)
-* [mcompose](test/async/async/mcompose.spec.ts)
+* [aMap](test/async/a_map.spec.ts)
+* [aFilter](test/async/a_filter.spec.ts)
+* [aReduce](test/async/a_reduce.spec.ts)
+* [aFlow](test/async/a_flow.spec.ts)
+* [aCompose](test/async/a_compose.spec.ts)
+* [aMcompose](test/async/a_mcompose.spec.ts)
 
 ### Lazy
 
@@ -265,12 +265,12 @@ import {map as asyncMap} from 'tsfun/async'
 import {zip as lZip} from 'tsfun/lazy'
 ```
 
-* [zip](test/lazy/lazy/zip.spec.ts)
-* [range](test/lazy/lazy/range.spec.ts)
-* [materialize](test/lazy/lazy/materialize.spec.ts)
-* [filter](test/lazy/lazy/filter.spec.ts)
-* [take](test/lazy/lazy/take.spec.ts)
-* [map](test/lazy/lazy/map.spec.ts)
+* [lZip](test/lazy/l_zip.spec.ts)
+* [lRange](test/lazy/l_range.spec.ts)
+* [lFilter](test/lazy/l_filter.spec.ts)
+* [lTake](test/lazy/l_take.spec.ts)
+* [lMap](test/lazy/l_map.spec.ts)
+* [materialize](test/lazy/materialize.spec.ts)
 
 ## Build & Test
 

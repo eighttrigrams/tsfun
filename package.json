@@ -14,7 +14,7 @@
     "@types/jasmine": "~2.5.41",
     "jasmine": "2.5.2",
     "jasmine-core": "2.5.2",
-    "typescript": "4.0.6"
+    "typescript": "4.1.5"
   },
   "dependencies": {
     "ts-expect": "^1.3.0"

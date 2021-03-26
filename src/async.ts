@@ -1,10 +1,10 @@
-import {Pair, Map, Either, Maybe} from './type'
+import {Map, Either, Maybe} from './type'
 import {isArray, isFailure, isFunction, isObject, isString} from './predicate'
 import {keys} from './associative'
 import {getSuccess} from './tuple'
 import {first, rest} from './array'
 import {convert} from './composition'
-import { throwIllegalArgs } from './core'
+import {throwIllegalArgs} from './core'
 
 
 /*
@@ -22,19 +22,23 @@ import { throwIllegalArgs } from './core'
  */
 
 
-export function filter<T>(p: (a: T, i?: string|number) => Promise<boolean>): Promise<{
+/**
+ * tsfun | aFilter
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/async/aFilter.spec.ts
+ */
+export function aFilter<T>(p: (a: T, i?: string|number) => Promise<boolean>): Promise<{
     (as: Array<T>): Promise<Array<T>>
     (os: Map<T>): Promise<Map<T>>
 }>
-export function filter<T>(p: (t: T, i: number) => Promise<boolean>, as: Array<T>): Promise<Array<T>>
-export function filter<T>(p: (t: T) => Promise<boolean>, as: Array<T>): Promise<Array<T>>
-export function filter<T>(as: Array<T>, p: (t: T, i: number) => Promise<boolean>): Promise<Array<T>>
-export function filter<T>(as: Array<T>, p: (t: T) => Promise<boolean>): Promise<Array<T>>
-export function filter<T>(p: (t: T, i: string) => Promise<boolean>, as: Map<T>): Promise<Map<T>>
-export function filter<T>(p: (t: T) => Promise<boolean>, as: Map<T>): Promise<Map<T>>
-export function filter<T>(as: Map<T>, p: (t: T, i: string) => Promise<boolean>): Promise<Map<T>>
-export function filter<T>(as: Map<T>, p: (t: T) => Promise<boolean>): Promise<Map<T>>
-export function filter(...args) {
+export function aFilter<T>(p: (t: T, i: number) => Promise<boolean>, as: Array<T>): Promise<Array<T>>
+export function aFilter<T>(p: (t: T) => Promise<boolean>, as: Array<T>): Promise<Array<T>>
+export function aFilter<T>(as: Array<T>, p: (t: T, i: number) => Promise<boolean>): Promise<Array<T>>
+export function aFilter<T>(as: Array<T>, p: (t: T) => Promise<boolean>): Promise<Array<T>>
+export function aFilter<T>(p: (t: T, i: string) => Promise<boolean>, as: Map<T>): Promise<Map<T>>
+export function aFilter<T>(p: (t: T) => Promise<boolean>, as: Map<T>): Promise<Map<T>>
+export function aFilter<T>(as: Map<T>, p: (t: T, i: string) => Promise<boolean>): Promise<Map<T>>
+export function aFilter<T>(as: Map<T>, p: (t: T) => Promise<boolean>): Promise<Map<T>>
+export function aFilter(...args) {
 
     const $ = p => async (as) => {
 
@@ -76,19 +80,23 @@ export function filter(...args) {
 }
 
 
-export function reduce<A, B>(f: (b: B, a: A, i?: number|string) => Promise<B>, init: B): Promise<{
+/**
+ * tsfun | aReduce
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/async/a_reduce.spec.ts
+ */
+export function aReduce<A, B>(f: (b: B, a: A, i?: number|string) => Promise<B>, init: B): Promise<{
     (as: Array<A>): Promise<B>
     (os: Map<A>): Promise<B>
 }>
-export function reduce<A, B>(f: (b: B, a: A, i: number) => Promise<B>, init: B, as: Array<A>): Promise<B>
-export function reduce<A, B>(f: (b: B, a: A) => Promise<B>, init: B, as: Array<A>): Promise<B>
-export function reduce<A, B>(as: Array<A>, f: (b: B, a: A, i: number) => Promise<B>, init: B, ): Promise<B>
-export function reduce<A, B>(as: Array<A>, f: (b: B, a: A) => Promise<B>, init: B): Promise<B>
-export function reduce<A, B>(f: (b: B, a: A, i: string) => Promise<B>, init: B, as: Map<A>): Promise<B>
-export function reduce<A, B>(f: (b: B, a: A) => Promise<B>, init: B, as: Map<A>): Promise<B>
-export function reduce<A, B>(as: Map<A>, f: (b: B, a: A, i: string) => Promise<B>, init: B): Promise<B>
-export function reduce<A, B>(as: Map<A>, f: (b: B, a: A) => Promise<B>, init: B): Promise<B>
-export function reduce<T, B>(...params): Promise<any> {
+export function aReduce<A, B>(f: (b: B, a: A, i: number) => Promise<B>, init: B, as: Array<A>): Promise<B>
+export function aReduce<A, B>(f: (b: B, a: A) => Promise<B>, init: B, as: Array<A>): Promise<B>
+export function aReduce<A, B>(as: Array<A>, f: (b: B, a: A, i: number) => Promise<B>, init: B, ): Promise<B>
+export function aReduce<A, B>(as: Array<A>, f: (b: B, a: A) => Promise<B>, init: B): Promise<B>
+export function aReduce<A, B>(f: (b: B, a: A, i: string) => Promise<B>, init: B, as: Map<A>): Promise<B>
+export function aReduce<A, B>(f: (b: B, a: A) => Promise<B>, init: B, as: Map<A>): Promise<B>
+export function aReduce<A, B>(as: Map<A>, f: (b: B, a: A, i: string) => Promise<B>, init: B): Promise<B>
+export function aReduce<A, B>(as: Map<A>, f: (b: B, a: A) => Promise<B>, init: B): Promise<B>
+export function aReduce<T, B>(...params): Promise<any> {
 
     const inner = (f, init) => async (coll) => {
 
@@ -126,20 +134,23 @@ export function reduce<T, B>(...params): Promise<any> {
 }
 
 
-
-export function map<A, B>(f: (_: A, i?: string|number) => Promise<B>): Promise<{
+/**
+ * tsfun | a_map
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/async/a_map.spec.ts
+ */
+export function aMap<A, B>(f: (_: A, i?: string|number) => Promise<B>): Promise<{
     (as: Array<A>): Promise<Array<B>>
     (os: Map<A>): Promise<Map<B>>
 }>
-export async function map<A, B>(f: (_: A, i: number) => Promise<B>, as: Array<A>): Promise<Array<B>>
-export async function map<A, B>(f: (_: A) => Promise<B>, as: Array<A>): Promise<Array<B>>
-export async function map<A, B>(as: Array<A>, f: (_: A, i: number) => Promise<B>): Promise<Array<B>>
-export async function map<A, B>(as: Array<A>, f: (_: A) => Promise<B>): Promise<Array<B>>
-export async function map<A, B>(f: (_: A, k: string) => Promise<B>, as: Map<A>): Promise<Map<B>>
-export async function map<A, B>(f: (_: A) => Promise<B>, as: Map<A>): Promise<Map<B>>
-export async function map<A, B>(as: Map<A>, f: (_: A, k: string) => Promise<B>): Promise<Map<B>>
-export async function map<A, B>(as: Map<A>, f: (_: A) => Promise<B>): Promise<Map<B>>
-export async function map(...args) {
+export async function aMap<A, B>(f: (_: A, i: number) => Promise<B>, as: Array<A>): Promise<Array<B>>
+export async function aMap<A, B>(f: (_: A) => Promise<B>, as: Array<A>): Promise<Array<B>>
+export async function aMap<A, B>(as: Array<A>, f: (_: A, i: number) => Promise<B>): Promise<Array<B>>
+export async function aMap<A, B>(as: Array<A>, f: (_: A) => Promise<B>): Promise<Array<B>>
+export async function aMap<A, B>(f: (_: A, k: string) => Promise<B>, as: Map<A>): Promise<Map<B>>
+export async function aMap<A, B>(f: (_: A) => Promise<B>, as: Map<A>): Promise<Map<B>>
+export async function aMap<A, B>(as: Map<A>, f: (_: A, k: string) => Promise<B>): Promise<Map<B>>
+export async function aMap<A, B>(as: Map<A>, f: (_: A) => Promise<B>): Promise<Map<B>>
+export async function aMap(...args) {
 
     const inner = f => async (as: any) => {
 
@@ -166,7 +177,11 @@ export async function map(...args) {
 }
 
 
-export async function flow(a: any, ...b: Array<Function|Promise<Function>>): Promise<any> {
+/**
+ * tsfun | aFlow
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/async/a_flow.spec.ts
+ */
+export async function aFlow(a: any, ...b: Array<Function|Promise<Function>>): Promise<any> {
 
     let currentA = a
     for (let currentB of b) currentA = await ((await currentB)(currentA))
@@ -174,18 +189,26 @@ export async function flow(a: any, ...b: Array<Function|Promise<Function>>): Pro
 }
 
 
-export function compose(...b: Array<Function|Promise<Function>>) {
+/**
+ * tsfun | aFilter
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/async/a_filter.spec.ts
+ */
+export function aCompose(...b: Array<Function|Promise<Function>>) {
 
-    return async /* TODO review use of async here, maybe replace by Promise return value annotation */ (a: any) => flow(a, ...b)
+    return async /* TODO review use of async here, maybe replace by Promise return value annotation */ (a: any) => aFlow(a, ...b)
 }
 
 
 // TODO review if we need the double await (like in flow here too, now since we allow single as well as multiparam lists in functions like asyncMap
-export function mcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Promise<Either<any, T>>|Either<any, T>>)
+/**
+ * tsfun | aMcompose
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/async/a_mcompose.spec.ts
+ */
+export function aMcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Promise<Either<any, T>>|Either<any, T>>)
     : (seed: Either<any, T>) => Promise<Either<any, R>>
-export function mcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Promise<Maybe<T>>|Maybe<T>>)
+export function aMcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Promise<Maybe<T>>|Maybe<T>>)
     : (seed: Maybe<T>) => Promise<Maybe<R>>
-export function mcompose<T, R>(...fs: Array<
+export function aMcompose<T, R>(...fs: Array<
                                    (x: T, ...xs: Array<T>) =>
                                        Promise<Either<any, T>>
                                        |Promise<Maybe<T>>
