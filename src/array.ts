@@ -5,7 +5,7 @@ import {
     isObject,
     isUndefined
 } from './predicate'
-import {identity} from './core'
+import {identity, throwIllegalArgs} from './core'
 import {Associative, Mapping, Pair, Predicate} from './type'
 import {values, map, size, copy, $filter, $remove} from './associative'
 import {Map} from './type'
@@ -322,6 +322,8 @@ export function distribute(arg, arg2?) {
         as.reduce((acc, a) => {
 
             const r = f(a)
+            throwIllegalArgs('distribute', 'function argument returning string', r)
+
             if (acc[r]) acc[r].push(a)
             else acc[r] = [a]
 

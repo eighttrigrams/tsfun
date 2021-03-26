@@ -3,8 +3,6 @@ import {isArray, isArray2, isAssociative, isFunction, isKey, isNumber, isObject,
 import {reverseUncurry2, throwIllegalArgs} from './core'
 import {copy} from './associative'
 import {rest} from './array'
-import { flow, throws } from './composition'
-import { is } from './comparator'
 
 
 // ------------ @author Daniel de Oliveira -----------------
