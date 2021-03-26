@@ -14,7 +14,7 @@ at the same time providing accurate typings.
 npm -i tsfun
 ```
 
-Example:
+Pick your functions:
 
 ```typescript
 import {on, equal, take, update, flow} from 'tsfun'
