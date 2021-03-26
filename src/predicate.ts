@@ -146,12 +146,6 @@ export function isKey(a): a is Key {
 }
 
 
-export const isCollection: Predicate = $ => isObject($) || isArray($) || isString($)
-
-
-export const isList: Predicate = $ => isArray($) || isString($)
-
-
 export function isString<T = any>(t: T|string): t is string {
     return typeof t === 'string'
 }

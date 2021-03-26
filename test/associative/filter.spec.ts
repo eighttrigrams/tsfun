@@ -1,8 +1,8 @@
-import {Collection, Map} from '../../src/type'
+import {Associative, Map} from '../../src/type'
 import {lessThan} from '../../src/comparator'
 import {filter, map} from '../../src/associative'
 import { flow } from '../../src/composition'
-import { expectNever, expectType } from 'ts-expect'
+import {expectType} from 'ts-expect'
 
 
 /**
@@ -70,10 +70,10 @@ describe('filter', () => {
 
     it('typing', () => {
 
-        const result1: Collection = filter(_ => true)
+        const result1: Associative = filter(_ => true)
         // const result: number = filter(_ => true)('a') // WRONG
-        // const result: Collection = filter(_ => true)('a') as number // WRONG
-        // const result: Collection = filter(_ => true) as number// WRONG
+        // const result: Associative = filter(_ => true)('a') as number // WRONG
+        // const result: Associative = filter(_ => true) as number// WRONG
         // const result: number = filter(_ => true) // WRONG
 
         const result4: Array<number> = filter((a, b: number) => true, [1,2])

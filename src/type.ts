@@ -56,12 +56,6 @@ export type Maybe<T = any> = Nothing | Just<T>
 export type Associative<T = any> = Map<T> | Array<T>
 
 
-export type List<T = any> = Array<T> | string
-
-
-export type Collection<T = any> = Associative<T> | List<T>
-
-
 export type Filter<T = any> = Mapping<Array<T>>
 
 

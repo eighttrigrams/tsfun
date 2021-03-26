@@ -1,4 +1,4 @@
-import {Comparator, ComparatorProducer, List, Pair, Predicate, Path, Mapping} from './type'
+import {Comparator, ComparatorProducer, Pair, Predicate, Path, Mapping} from './type'
 import {and, empty, isArray, isArray2, isFunction, isNot, isNumber, isObject, isString, or} from './predicate'
 import {subtractBy} from './set'
 import {to} from './struct'
