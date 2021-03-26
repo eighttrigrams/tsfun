@@ -122,10 +122,12 @@ export function values(t) {
  * tsfun | map
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/map.spec.ts
  *
+ * ```
  * >> map(_ => 2 * _)([3, 7])
  * [6, 14]
  * >> map(_ => 2 * _)({a: 3, b: 7})
  * {a: 6, b: 14}
+ * ```
  */
 export function map<A = any, B = A>(f: (_: A, i?: Key) => B):
     <T>(as: T) =>
