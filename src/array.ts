@@ -640,6 +640,10 @@ export function takeNth(n: number) {
 }
 
 
+/**
+ * tsfun | sort
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/sort.spec.ts
+ */
 export function sort(s: Array<number>): Array<number>
 export function sort<A>(f: (a: A, b: A) => number): (as: Array<A>) => Array<A>
 export function sort<A>(f: Array<number>|((a: A, b: A) => number)) {
@@ -661,16 +665,3 @@ export function sort<A>(f: Array<number>|((a: A, b: A) => number)) {
         }
     }
 }
-
-
-export function split(pattern: any) {
-
-    return (content: string) => content.split(pattern)
-}
-
-
-export function join(pattern: any) {
-
-    return <A>(content: Array<A>): string => content.join(pattern)
-}
-

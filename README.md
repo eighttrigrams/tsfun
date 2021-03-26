@@ -26,6 +26,11 @@ import {on, equal, take, update, flow} from 'tsfun'
 
 * [range](test/array/range.spec.ts)
 * [dense](test/array/dense.spec.ts)
+* [sort](test/array/sort.spec.ts)
+* [first](test/array/first.spec.ts)
+* [rest](test/array/rest.spec.ts)
+* [last](test/array/last.spec.ts)
+* [reverse](test/array/reverse.spec.ts)
 * [separate](test/array/separate.spec.ts)
 * [distribute](test/array/distribute.spec.ts)
 * [reduce](test/array/reduce.spec.ts)
@@ -43,14 +48,7 @@ import {on, equal, take, update, flow} from 'tsfun'
 * [append](test/array/append.spec.ts)
 * [prepend](test/array/prepend.spec.ts)
 * [zip](test/array/zip.spec.ts)
-* [first](test/array/first.spec.ts)
-* [rest](test/array/rest.spec.ts)
-* [last](test/array/last.spec.ts)
-* [reverse](test/array/reverse.spec.ts)
 * [takeNth](test/array/take_nth.spec.ts)
-* [sort](test/array/sort.spec.ts)
-* [join](test/array/join.spec.ts)
-* [split](test/array/split.spec.ts)
 * [take](test/array/take.spec.ts)
 
 ### Associative
