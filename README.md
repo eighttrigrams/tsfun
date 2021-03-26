@@ -246,10 +246,6 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 
 ### Async
 
-```typescript
-import {map as asyncMap} from 'tsfun/async'
-```
-
 * [aMap](test/async/a_map.spec.ts)
 * [aFilter](test/async/a_filter.spec.ts)
 * [aReduce](test/async/a_reduce.spec.ts)
@@ -260,10 +256,6 @@ import {map as asyncMap} from 'tsfun/async'
 ### Lazy
 
 (experimental)
-
-```typescript
-import {zip as lZip} from 'tsfun/lazy'
-```
 
 * [lZip](test/lazy/l_zip.spec.ts)
 * [lRange](test/lazy/l_range.spec.ts)
