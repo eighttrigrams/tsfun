@@ -221,6 +221,29 @@ export function map<A, B>(first: any, ...rest: any[]): any {
  *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/for_each.spec.ts
  */
+export function forEach<A>(as: Array<A>, f: (_: A) => void): Array<A>
+export function forEach<A>(as: Array<A>, f: (_: A, i: number) => void): Array<A>
+export function forEach<A>(as: Map<A>, f: (_: A, k: string) => void): Map<A>
+export function forEach<A>(as: Map<A>, f: (_: A, k: string) => void): Map<A>
+/**
+ * tsfun | forEach
+ *
+ * ```
+ * let acc = 1
+ * const items = forEach([2, 4, 3])((item: number) => (acc += item))
+ * expect(items).toEqual([2, 4, 3])
+ * expect(acc).toEqual(10)
+ *
+ * let acc = 1
+ * const items = forEach({a: 2, b: 4, c: 3})((item: number) => (acc += item))
+ * expect(items).toEqual({a: 2, b: 4, c: 3})
+ * expect(acc).toEqual(10)
+ * ```
+ *
+ * More examples:
+ *
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/for_each.spec.ts
+ */
 export function forEach<A = any>(f: (_: A, i?: Key) => void):
     <T>(as: T) =>
         T extends Array<A extends (infer C) ? C : never>
@@ -232,11 +255,6 @@ export function forEach<A = any>(f: (_: A, i?: Key) => void):
         : T extends Map<any>
         ? Array<void> // signal mismatch between A and C
         : never // on illegal argument for as
-
-export function forEach<A>(as: Array<A>, f: (_: A) => void): Array<A>
-export function forEach<A>(as: Array<A>, f: (_: A, i: number) => void): Array<A>
-export function forEach<A>(as: Map<A>, f: (_: A, k: string) => void): Map<A>
-export function forEach<A>(as: Map<A>, f: (_: A, k: string) => void): Map<A>
 
 export function forEach(arg, arg2?) {
 

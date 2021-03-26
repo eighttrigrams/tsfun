@@ -61,9 +61,7 @@ describe('forEach', () => {
     it('forEach with i - curried', () => {
 
         let acc = 1
-        forEach((item, i: number) => {
-            acc += i
-        })([2, 4, 3])
+        forEach((item, i: number) => (acc += i))([2, 4, 3])
         expect(acc).toEqual(4)
     })
 
