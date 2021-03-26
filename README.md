@@ -104,7 +104,9 @@ as combinations, i.e. mutual nestings, thereof.
 
 ### Set
 
-JavaScript-Arrays, viewed as sets.
+JavaScript-Arrays, viewed as sets. Obviously
+because of the choice of these should be seen as convenience
+functions for smaller sets.
 
 * [set](test/set/set.spec.ts)
 * [intersection](test/set/intersection.spec.ts)
