@@ -8,9 +8,9 @@ import {
 } from './predicate'
 import {identity, throwIllegalArgs} from './core'
 import {Associative, Mapping, Pair, Predicate} from './type'
-import {values, map, size, copy, $filter, $remove} from './associative'
+import {values, size, copy, $filter, $remove} from './associative'
 import {Map} from './type'
-import { flow, throws, val } from './composition'
+import { flow, val } from './composition'
 
 
 /**
@@ -207,12 +207,12 @@ export function take<A>(n: number, ...args): any {
             : args.length === 1 && isFunction(args[0])
                 ? [args[0], undefined]
                 : [val(true), args[0]],
-        ([p, list]) =>
-            list === undefined
+        ([p, as]) =>
+            as === undefined
                 ? $(p)
-                : isArray(list)
-                    ? $(p)(list)
-                    : throws('illegal argument in "tsfun|take" - array expexted'))
+                : isArray(as)
+                    ? $(p)(as)
+                    : throwIllegalArgs('take', 'Array', as))
 }
 
 
