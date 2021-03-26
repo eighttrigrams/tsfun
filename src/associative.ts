@@ -205,6 +205,7 @@ export function map<A, B>(first: any, ...rest: any[]): any {
 
 
 /**
+ * tsfun | forEach
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/for_each.spec.ts
  */
 export function forEach<A = any>(f: (_: A, i?: Key) => void):

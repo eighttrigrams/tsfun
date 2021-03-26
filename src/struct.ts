@@ -1,4 +1,4 @@
-import {Array2, Mapping, Path, Map, Array1} from './type'
+import {Array2, Mapping, Path, Map, Array1, Key} from './type'
 import {isArray, isArray2, isAssociative, isFunction, isNumber, isObject, isString} from './predicate'
 import {reverseUncurry2} from './core'
 import {copy} from './associative'
@@ -44,15 +44,11 @@ export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function
 }
 
 
-export function to<T = unknown>(path: number): Mapping<Array<any>, T>
-export function to<T = unknown>(path: string): (t: Map<any>) => T
-export function to<T = unknown>(path: Array2<string|number>): {
-    (t: Array<any>): T
-    (t: Map<any>): T
-}
-export function to<T = unknown>(path: number, alternative?: T): Mapping<Array<any>, T>
-export function to<T = unknown>(path: string, alternative?: T): (t: Map<any>) => T
-export function to<T = unknown>(path: Array2<string|number>, alternative?: T): {
+/**
+ * tsfun | to
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struc/to.spec.ts
+ */
+export function to<T = any>(path: Array2<Key>|Key, alternative?: any): {
     (t: Array<any>): T
     (t: Map<any>): T
 }
@@ -70,6 +66,10 @@ export function to(path: Path, alternative?) {
 }
 
 
+/**
+ * tsfun | update
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struc/update.spec.ts
+ */
 export function update<T, K extends keyof T>(k: K, f: (val: T[K])=>T[K], o: T): T
 export function update<T, K extends keyof T,V>(k: K, f: (val: T[K])=>V, o: T): unknown
 export function update<T, K extends keyof T>(k: K, val: T[K], o: T): T

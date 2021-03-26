@@ -58,44 +58,38 @@ describe('to', () => {
 
     it('typing', () => {
 
+        // everything any
+
         const $1 = to('a')({a: 1, b: '3'})
-        const $$1: Expect<typeof $1, unknown> = true
 
         const $2 = to(0)([0])
-        const $$2: Expect<typeof $2, unknown> = true
 
         const $3 = to([0,0])([[0]])
-        const $$3: Expect<typeof $3, unknown> = true
 
         const $4 = to('a', 3)({a: 1, b: '3'})
-        expectType<number>($4)
 
         const $5 = to(0, 3)([0])
-        expectType<number>($5)
 
         const $6 = to([0,0], 3)([[0]])
-        expectType<number>($6)
 
-        const $6b = to<undefined|number>([0,0], 3)([[0]])
-        expectType<number|undefined>($6b)
+        const $6b = to([0,0], 3)([[0]])
 
-        const $7 = to<number>('a')({a: 1, b: '3'})
-        expectType<number>($7)
+        const $7 = to('a')({a: 1, b: '3'})
 
-        const $8 = to<number>(0)([0])
-        expectType<number>($8)
+        const $8 = to(0)([0])
 
-        const $9 = to<number>([0,0])([[0]])
-        expectType<number>($9)
+        const $9 = to([0,0])([[0]])
 
-        const $10 = to<number>('a', 3)({a: 1, b: '3'})
-        expectType<number>($10)
+        const $10 = to('a', 3)({a: 1, b: '3'})
 
-        const $11 = to<number>(0, 3)([0])
-        expectType<number>($11)
+        const $11 = to(0, 3)([0])
 
-        const $12 = to<number>([0,0], 3)([[0]])
-        expectType<number>($12)
+        const $12 = to([0,0], 3)([[0]])
+
+
+        // except when setting by hand
+
+        const $13 = to<number>([0,0], 3)([[0]])
     })
 
 
