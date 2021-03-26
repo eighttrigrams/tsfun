@@ -207,17 +207,12 @@ export function map<A, B>(first: any, ...rest: any[]): any {
  *
  * ```
  * let acc = 1
- * const items = forEach([2, 4, 3], item => {
- *      acc += item
- * })
+ * const items = forEach([2, 4, 3], item => (acc += item))
  * expect(items).toEqual([2, 4, 3])
  * expect(acc).toEqual(10)
  *
- *
  * let acc = 1
- * const items = forEach({a: 2, b: 4, c: 3}, item => {
- *     acc += item
- * })
+ * const items = forEach({a: 2, b: 4, c: 3}, item => (acc += item))
  * expect(items).toEqual({a: 2, b: 4, c: 3})
  * expect(acc).toEqual(10)
  * ```
