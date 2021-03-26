@@ -1,4 +1,4 @@
-import {Array2, Either, Mapping, Maybe, Pair, Predicate, Singleton, Path, Associative} from './type'
+import {Array2, Either, Mapping, Maybe, Pair, Predicate, Singleton, Path, Associative, Key} from './type'
 import {is, on} from './comparator'
 import {first} from './array'
 import {map, $reduce_a, filter} from './associative'
@@ -137,6 +137,12 @@ export const isObject: Predicate = o => o instanceof Object && o.constructor ===
 export function isAssociative(a: any): a is Associative {
 
     return isObject(a) || isArray(a)
+}
+
+
+export function isKey(a): a is Key {
+
+    return isArray2(a) || isNumber(a)||isString(a)
 }
 
 

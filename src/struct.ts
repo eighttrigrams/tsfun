@@ -1,9 +1,10 @@
 import {Array2, Mapping, Path, Map, Array1, Key} from './type'
-import {isArray, isArray2, isAssociative, isFunction, isNumber, isObject, isString} from './predicate'
-import {reverseUncurry2} from './core'
+import {isArray, isArray2, isAssociative, isFunction, isKey, isNumber, isObject, isString} from './predicate'
+import {reverseUncurry2, throwIllegalArgs} from './core'
 import {copy} from './associative'
 import {rest} from './array'
 import { flow, throws } from './composition'
+import { is } from './comparator'
 
 
 // ------------ @author Daniel de Oliveira -----------------
@@ -54,8 +55,8 @@ export function to<T = any>(path: Array2<Key>|Key, alternative?: any): {
 }
 export function to(path: Path, alternative?) {
 
-    return !isString(path)&&!isNumber(path)&&!isArray2(path)
-        ? throws('illegal argument - array path must be string, number, or array of at least of length 2')
+    return !isKey(path)
+        ? throwIllegalArgs('to', 'Array of at least 2 or string or number', path)
         : ds => {
             const result = (isString(path) || isNumber(path))
                 ? ds[path]
