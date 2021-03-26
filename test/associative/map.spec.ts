@@ -161,7 +161,7 @@ describe('map_a', () => {
         expectType<Array<string>>($35)
 
         const $36 = map((x: string) => 3)([1, 2])
-        // const $38: undefined = $36 // void
+        // const $38: undefined[] = $36 // Array<void>
 
         try {
             const $40 = map((x: number) => 3)(3)

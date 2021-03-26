@@ -136,9 +136,9 @@ export function map<A = any, B = A>(f: (_: A, i?: Key) => B):
     : T extends Map<A extends (infer C) ? C : never>
     ? Map<B>
     : T extends Array<any>
-    ? void // signals mismatch between A and C
+    ? Array<void> // signals mismatch between A and C
     : T extends Map<any>
-    ? void // signals mismatch between A and C
+    ? Array<void> // signals mismatch between A and C
     : never
 /**
  * >> map(_ => 2 * _, [3, 7])
