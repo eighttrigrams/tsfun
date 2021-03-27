@@ -196,21 +196,15 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 * [greaterOrEqualThan](test/comparator/ordered/greater_or_equal_than.spec.ts)
 * [lessOrEqualThan](test/comparator/ordered/less_or_equal_than.spec.ts)
 
-###### Set
+###### Array
 
-* [subsetOf](test/comparator/set/subset_of.spec.ts)
-* [supersetOf](test/comparator/set/superset_of.spec.ts)
-* [sameset](test/comparator/set/sameset.spec.ts)
-* [includes](test/comparator/set/includes.spec.ts)
-* [includedIn](test/comparator/set/included_in.spec.ts)
-
-###### List
-
-* [startsWith](test/comparator/list/starts_with.spec.ts)
-* [endsWith](test/comparator/list/ends_with.spec.ts)
-* [shorterThan](test/comparator/list/shorter_than.spec.ts)
-* [longerThan](test/comparator/list/longer_than.spec.ts)
-* [sameLength](test/comparator/list/same_length.spec.ts)
+* [subsetOf](test/comparator/array/subset_of.spec.ts)
+* [supersetOf](test/comparator/array/superset_of.spec.ts)
+* [sameset](test/comparator/array/sameset.spec.ts)
+* [includes](test/comparator/array/includes.spec.ts)
+* [includedIn](test/comparator/array/included_in.spec.ts)
+* [startsWith](test/comparator/array/starts_with.spec.ts)
+* [endsWith](test/comparator/array/ends_with.spec.ts)
 
 ###### Struct
 

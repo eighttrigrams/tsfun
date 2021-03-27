@@ -570,33 +570,3 @@ export function endsWith<A>(that, as2?) {
         ? inner
         : inner(as2)
 }
-
-
-/**
- * tsfun | shorterThan
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/list/longer_than.spec.ts
- */
-export function longerThan<T>(than: Array<T>) {
-
-    return (what: Array<T>) => what.length > than.length
-}
-
-
-/**
- * tsfun | shorterThan
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/list/shorter_than.spec.ts
- */
-export function shorterThan<T>(than: Array<T>) {
-
-    return (what: Array<T>) => what.length < than.length
-}
-
-
-/**
- * tsfun | sameLength
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/list/same_length.spec.ts
- */
-export function sameLength<T>(as: Array<T>) {
-
-    return (what: Array<T>) => what.length === as.length
-}

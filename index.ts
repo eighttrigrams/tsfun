@@ -77,10 +77,7 @@ export {
     startsWith,
     endsWith,
     lessThan,
-    lessOrEqualThan,
-    shorterThan,
-    longerThan,
-    sameLength
+    lessOrEqualThan
 } from './src/comparator'
 
 
