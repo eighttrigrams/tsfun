@@ -191,10 +191,10 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 
 ###### Number
 
-* [gt](test/comparator/ordered/gt.spec.ts)
-* [lt](test/comparator/ordered/lt.spec.ts)
-* [greaterOrEqualThan](test/comparator/ordered/gte.spec.ts)
-* [lessOrEqualThan](test/comparator/ordered/lte.spec.ts)
+* [gt](test/comparator/number/gt.spec.ts)
+* [lt](test/comparator/number/lt.spec.ts)
+* [gte](test/comparator/number/gte.spec.ts)
+* [lte](test/comparator/number/lte.spec.ts)
 
 ###### Array
 
