@@ -1,5 +1,5 @@
 import {greaterThan, lessThan} from '../../src/comparator';
-import {remove} from '../../src/associative';
+import {map, remove} from '../../src/associative';
 import {Map} from '../../src/type';
 import { flow } from '../../src/composition';
 import { expectNever, expectType } from 'ts-expect';
@@ -60,9 +60,14 @@ describe('remove', () => {
         const $21 = flow($19, remove(_ => true))
         expectType<Map<any>>($21)
 
-        const $6 = [1, 2]
-        const $7 = flow($6, remove((_: string) => true))
-        const $8: void[] = $7
+        const $22 = {a:1, b: 2}
+        const $23 = flow($19, remove(_ => true), map(_ => _ * 2))
+        expectType<Map<number>>($23)
+
+        // ! type determined by x; we intentionally do not check this,
+        // as a tradeoff with more permissive behaviour in combination with comparators
+        const $36 = remove((x: string) => true)([1, 2])
+        const $8: string[] = $36
     })
 
 

@@ -55,7 +55,7 @@ describe('filter', () => {
         const $5 = flow($4, filter((_: number) => true))
         expectType<Map<number>>($5)
 
-        const $9 = {a:1, b: 2}
+        const $9 = {a: 1, b: 2}
         const $10 = flow($9, filter(_ => true), map(_ => _ * 2))
         expectType<Map<number>>($10)
 
@@ -63,8 +63,10 @@ describe('filter', () => {
         const $20 = flow($19, filter(_ => true))
         expectType<Array<any>>($20)
 
+        // ! type determined by x; we intentionally do not check this,
+        // as a tradeoff with more permissive behaviour in combination with comparators
         const $36 = filter((x: string) => true)([1, 2])
-        const $8: void[] = $36
+        const $8: string[] = $36
     })
 
 

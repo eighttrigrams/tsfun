@@ -200,8 +200,8 @@ export const equalBy =
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/on.spec.ts
  */
 export function on<T1, T2>(mapping: Mapping<T1,T2>): Comparator<T1>
-export function on<T1, T2>(mapping: Mapping<T1,T2>, comparator: Comparator<T2,T2>): Comparator<T1, T1>
-export function on<T1, T2>(mapping: Mapping<T1,T2>, predicate: Predicate<T2>): Predicate<T1>
+export function on<T1, T2>(mapping: Mapping<T1,T2>, comparator: Comparator<T2,T2>): Comparator
+export function on<T1, T2>(mapping: Mapping<T1,T2>, predicate: Predicate<T2>): Predicate
 export function on<T1,T2>(mapping: Mapping<T1,T2>, value: T2): Predicate<T1>
 export function on<T>(path: Path): Comparator<T>
 export function on<T1,T2>(path: Path, precicate: Predicate<T1>): Predicate<T2>

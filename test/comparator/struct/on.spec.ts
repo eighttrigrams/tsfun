@@ -1,7 +1,11 @@
+import { expectType } from 'ts-expect'
+import { filter, size } from '../../../src/associative'
 import {samesetBy, is, jsonEqual, on, onBy, isnt, lessThan, greaterThan} from '../../../src/comparator'
+import { flow } from '../../../src/composition'
 import { identity } from '../../../src/core'
 import {isArray, isDefined, isEmpty, isNot, isUndefined, isUndefinedOrEmpty} from '../../../src/predicate'
 import {intersectBy} from '../../../src/set'
+import {Map} from '../../../src/type'
 
 
 /**
@@ -484,4 +488,35 @@ describe('on', () => {
     //             .filter(on('a.b:', arrayEquivalent)([1, 2]))
     //
     //     ).toEqual([{a: {b: [2, 1]}}] as any))
+
+    it('typing with filter', () => {
+
+        const $1 = flow(
+            [{a: 1, b: 4}, {c: 3}],
+            filter<Map<number>>(
+                on(size, greaterThan)({c: 3})))
+        expectType<Array<Map<number>>>($1)
+        expect($1).toEqual([{a: 1, b: 4}])
+
+        const $2 = flow(
+            {a: [1,2], b: [1]},
+            filter<number[]>(
+                on(size, greaterThan)([1])))
+        expectType<Map<Array<number>>>($2)
+        expect($2).toEqual({a: [1,2]})
+
+        const $3 = flow(
+            [{a: 1, b: 4}, {c: 3}],
+            filter<Map<number>>(
+                on(size, greaterThan(1))))
+        expectType<Array<Map<number>>>($3)
+        expect($3).toEqual([{a: 1, b: 4}])
+
+        const $4 = flow(
+            {a: [1,2], b: [1]},
+            filter<number[]>(
+                on(size, greaterThan(1))))
+        expectType<Map<Array<number>>>($4)
+        expect($4).toEqual({a: [1,2]})
+    })
 })
