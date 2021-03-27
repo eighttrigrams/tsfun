@@ -189,13 +189,6 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 * [isnt](test/comparator/reference/isnt.spec.ts)
 * [differentFrom](test/comparator/reference/different_from.spec.ts)
 
-###### Number
-
-* [gt](test/comparator/number/gt.spec.ts)
-* [lt](test/comparator/number/lt.spec.ts)
-* [gte](test/comparator/number/gte.spec.ts)
-* [lte](test/comparator/number/lte.spec.ts)
-
 ###### Array
 
 * [subsetOf](test/comparator/array/subset_of.spec.ts)
@@ -213,6 +206,13 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 * [objectEqual](test/comparator/struct/object_equal.spec.ts)
 * [equal](test/comparator/struct/equal.spec.ts)
 * [on](test/comparator/struct/on.spec.ts)
+
+###### Number
+
+* [gt](test/comparator/number/gt.spec.ts)
+* [lt](test/comparator/number/lt.spec.ts)
+* [gte](test/comparator/number/gte.spec.ts)
+* [lte](test/comparator/number/lte.spec.ts)
 
 ## Types reference
 
