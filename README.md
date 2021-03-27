@@ -175,11 +175,6 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 * [isEither](test/predicate/is_either.spec.ts)
 * [isMaybe](test/predicate/is_maybe.spec.ts)
 
-###### Struct & Associative
-
-* [has](test/predicate/has.spec.ts)
-* [hasnt](test/predicate/hasnt.spec.ts)
-
 ### Comparator
 
 ###### Reference

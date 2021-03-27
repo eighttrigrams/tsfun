@@ -37,8 +37,6 @@ export {
     not,
     defined,
     undefinedOrEmpty,
-    has,
-    hasnt,
     empty,
     and,
     or,

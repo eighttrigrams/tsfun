@@ -51,14 +51,6 @@ export function empty($) {
 }
 
 
-export const has = (path: Path) => (o: Object) =>
-    on(path as any, isDefined)(o)
-
-
-export const hasnt = (path: Path) => (o: Object) =>
-    not(on(path as any, isDefined))(o)
-
-
 export function and(...preds: Array<Predicate<any>>) {
 
     return (argument): boolean => {
