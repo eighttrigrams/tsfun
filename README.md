@@ -228,14 +228,10 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 
 ## Constants reference
 
-###### List
-
-* [FIRST](test/tuple/first.constant.spec.ts)
-
 ###### Tuple
 
-* [LEFT](test/tuple/left.constant.spec.ts)
-* [RIGHT](test/tuple/right.constant.spec.ts)
+* [L](test/tuple/l.constant.spec.ts)
+* [R](test/tuple/r.constant.spec.ts)
 
 ## Extra functions reference
 

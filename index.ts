@@ -112,8 +112,8 @@ export {
     just,
     singleton,
     pair,
-    LEFT,
-    RIGHT
+    L,
+    R
 } from './src/tuple'
 
 
@@ -145,12 +145,6 @@ export {
     takeNth,
     sort
 } from './src/array'
-
-
-export {
-    // takeUntil, // TODO document in readme or remove
-    FIRST
-} from './src/list'
 
 
 export {

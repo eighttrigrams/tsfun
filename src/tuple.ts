@@ -4,8 +4,8 @@ import {isArray, isEither, isMaybe, isSuccess} from './predicate';
 
 
 // to be used with on
-export const LEFT = 0;
-export const RIGHT = 1;
+export const L = 0;
+export const R = 1;
 
 
 export function tuplify<S = any, T = S>(...fs : Array<(s: S) => T>) {

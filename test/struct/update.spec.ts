@@ -3,7 +3,7 @@ import {equal} from '../../src/comparator'
 import {map} from '../../src/associative'
 import {Map} from '../../src/type'
 import {flow, val} from '../../src/composition'
-import { LEFT, RIGHT } from '../../src/tuple'
+import { L, R } from '../../src/tuple'
 import { identity } from '../../src/core'
 
 
@@ -59,25 +59,25 @@ describe('update', () => {
 
         const c: C = ['Daniel', 40]
 
-        const $18 /*: [string,number]*/ = update(RIGHT, $times2, c)
-        const $19 /*: [string,string]*/= update(RIGHT, toString, c)
-        const $20 /*: [string,number]*/ = update(LEFT, identity, c)
-        const $21 /*: [number,string]*/= update(LEFT, fromString, c)
+        const $18 /*: [string,number]*/ = update(R, $times2, c)
+        const $19 /*: [string,string]*/= update(R, toString, c)
+        const $20 /*: [string,number]*/ = update(L, identity, c)
+        const $21 /*: [number,string]*/= update(L, fromString, c)
 
-        const $22 /*: [string,number]*/ = update(RIGHT, $times2)(c)
-        const $23 /*: [string,string]*/= update(RIGHT, toString)(c)
-        const $24 /*: C*/ = update(LEFT, identity)(c)
-        const $25 /*: [number,number]*/= update(LEFT, fromString)(c)
+        const $22 /*: [string,number]*/ = update(R, $times2)(c)
+        const $23 /*: [string,string]*/= update(R, toString)(c)
+        const $24 /*: C*/ = update(L, identity)(c)
+        const $25 /*: [number,number]*/= update(L, fromString)(c)
 
-        const $26 /*: [string,number]*/ = update(RIGHT, 41, c)
-        const $27 /*: [string,string]*/= update(RIGHT, 'a', c)
-        const $28 /*: [string,number]*/ = update(LEFT, 'a', c)
-        const $29 /*: [number,string]*/= update(LEFT, 0, c)
+        const $26 /*: [string,number]*/ = update(R, 41, c)
+        const $27 /*: [string,string]*/= update(R, 'a', c)
+        const $28 /*: [string,number]*/ = update(L, 'a', c)
+        const $29 /*: [number,string]*/= update(L, 0, c)
 
-        const $30 /*: [string,number]*/ = update(RIGHT, 41)(c)
-        const $31 /*: [string,string]*/= update(RIGHT, 'a')(c)
-        const $32 /*: [string,number]*/ = update(LEFT, 'a')(c)
-        const $33 /*: [number,number]*/= update(LEFT, 0)(c)
+        const $30 /*: [string,number]*/ = update(R, 41)(c)
+        const $31 /*: [string,string]*/= update(R, 'a')(c)
+        const $32 /*: [string,number]*/ = update(L, 'a')(c)
+        const $33 /*: [number,number]*/= update(L, 0)(c)
     })
 
 
@@ -127,10 +127,10 @@ describe('update', () => {
         expect($10[1].b).toBe(4)
 
         // Pair special typing
-        const $11 /*: [number,{b: number}]*/ = update([LEFT, 0], 3 /* assoc */, [[1],{b:5}])
-        const $12 /*: [number[],number]*/ = update([RIGHT, 'b'], 3 /* assoc */, [[1],{b:5}])
-        const $13 /*: [unknown,{b: number}]*/ = update([LEFT, 0], toString /* update */, [[1],{b:5}])
-        const $14 /*: [number[],unknown]*/ = update([RIGHT, 'b'], toString /* update */, [[1],{b:5}])
+        const $11 /*: [number,{b: number}]*/ = update([L, 0], 3 /* assoc */, [[1],{b:5}])
+        const $12 /*: [number[],number]*/ = update([R, 'b'], 3 /* assoc */, [[1],{b:5}])
+        const $13 /*: [unknown,{b: number}]*/ = update([L, 0], toString /* update */, [[1],{b:5}])
+        const $14 /*: [number[],unknown]*/ = update([R, 'b'], toString /* update */, [[1],{b:5}])
     })
 
 
@@ -147,10 +147,10 @@ describe('update', () => {
 
 
         // Pair special typing
-        const $11 /*: [number,{b: number}]*/ = update([LEFT, 0], 3 /* assoc */)([[1],{b:5}])
-        const $12 /*: [number[],number]*/ = update([RIGHT, 'b'], 3 /* assoc */)([[1],{b:5}])
-        const $13 /*: [unknown,{b: number}]*/ = update([LEFT, 0], toString /* update */)([[1],{b:5}])
-        const $14 /*: [number[],unknown]*/ = update([RIGHT, 'b'], toString /* update */)([[1],{b:5}])
+        const $11 /*: [number,{b: number}]*/ = update([L, 0], 3 /* assoc */)([[1],{b:5}])
+        const $12 /*: [number[],number]*/ = update([R, 'b'], 3 /* assoc */)([[1],{b:5}])
+        const $13 /*: [unknown,{b: number}]*/ = update([L, 0], toString /* update */)([[1],{b:5}])
+        const $14 /*: [number[],unknown]*/ = update([R, 'b'], toString /* update */)([[1],{b:5}])
     })
 
 

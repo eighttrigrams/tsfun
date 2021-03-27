@@ -1,4 +1,4 @@
-import {LEFT, RIGHT} from '../../src/tuple'
+import {L, R} from '../../src/tuple'
 import {is, on} from '../../src/comparator'
 
 /**
@@ -9,7 +9,7 @@ describe('LEFT', () => {
     it('LEFT', () =>
         expect(
 
-            on(LEFT, is(4))([4, 1])
+            on(L, is(4))([4, 1])
 
         ).toEqual(true))
 
@@ -17,7 +17,7 @@ describe('LEFT', () => {
     it('LEFT - nested', () =>
         expect(
 
-            on([LEFT, RIGHT], is(7))([[3, 7], 14])
+            on([L, R], is(7))([[3, 7], 14])
 
         ).toEqual(true))
 })
