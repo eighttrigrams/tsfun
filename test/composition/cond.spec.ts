@@ -1,6 +1,6 @@
 import {filter, map} from '../../src/associative'
 import {cond, val} from '../../src/composition'
-import {greaterThan, includedIn, is} from '../../src/comparator'
+import {gt, includedIn, is} from '../../src/comparator'
 import {identity} from '../../src/core'
 
 
@@ -14,7 +14,7 @@ describe('cond', () => {
     it('cond', () =>
         expect(
             map(cond(
-                greaterThan(3),
+                gt(3),
                 times(2),
                 val(18)))
             ({a: 3, b: 4, c: 5})
@@ -24,7 +24,7 @@ describe('cond', () => {
     it('pass through', () =>
         expect(
             map(cond(
-                greaterThan(3),
+                gt(3),
                 times(2)))
             ([3, 4, 5])
         ).toEqual([3, 8, 10]))
@@ -63,7 +63,7 @@ describe('cond', () => {
             filter(
                 cond(
                     includedIn([-2, 4]),
-                    greaterThan(0)))
+                    gt(0)))
             ([-2, 4, 5])
         ).toEqual([4, 5]))
 })

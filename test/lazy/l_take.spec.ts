@@ -1,6 +1,6 @@
 import {lTake, lFilter, materialize} from '../../src/lazy'
 import {flow} from '../../src/composition'
-import {greaterThan} from '../../src/comparator'
+import {gt} from '../../src/comparator'
 
 
 /**
@@ -19,7 +19,7 @@ describe('lazy/take', () => {
 
         flow(
             [2, 4, 2, 7, 1, 5],
-            lFilter(greaterThan(2)),
+            lFilter(gt(2)),
             lTake(2),
             materialize)
 

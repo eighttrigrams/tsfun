@@ -1,5 +1,5 @@
 import {lFilter, materialize} from '../../src/lazy'
-import {greaterThan} from '../../src/comparator'
+import {gt} from '../../src/comparator'
 
 
 /**
@@ -9,7 +9,7 @@ describe('lFilter', () => {
 
     it('filter', () => expect(
 
-        materialize(lFilter(greaterThan(3))([4, 2, 1]))
+        materialize(lFilter(gt(3))([4, 2, 1]))
 
     ).toEqual([4]))
 })

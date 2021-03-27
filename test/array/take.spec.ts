@@ -1,7 +1,7 @@
 import { expectType } from 'ts-expect'
 import {take} from '../../src/array'
 import {map} from '../../src/associative'
-import { greaterThan } from '../../src/comparator'
+import { gt } from '../../src/comparator'
 import { flow } from '../../src/composition'
 
 
@@ -31,16 +31,16 @@ describe('take', () => {
     it('filter', () => {
 
         expect(
-            take(3, greaterThan(3), [1, 7, 9, 20, 3])
+            take(3, gt(3), [1, 7, 9, 20, 3])
         ).toEqual([7, 9, 20])
 
         expect(
-            take(3, greaterThan(3))([1, 7, 9, 20, 3])
+            take(3, gt(3))([1, 7, 9, 20, 3])
         ).toEqual([7, 9, 20])
 
         expect(
             flow([1, 7, 9, 20, 3],
-                take(3, greaterThan(3)),
+                take(3, gt(3)),
                 map(_ => _ * 2))
         ).toEqual([14, 18, 40])
     })
@@ -82,15 +82,15 @@ describe('take', () => {
     it('filter - edge cases', () => {
 
         expect(
-            take(0, greaterThan(3), [1, 7, 9, 20, 3])
+            take(0, gt(3), [1, 7, 9, 20, 3])
         ).toEqual([])
 
         expect(
-            take(4, greaterThan(3))([1, 7, 9, 20, 3])
+            take(4, gt(3))([1, 7, 9, 20, 3])
         ).toEqual([7, 9, 20])
 
         expect(
-            take(-1, greaterThan(3), [1, 7, 9, 20, 3])
+            take(-1, gt(3), [1, 7, 9, 20, 3])
         ).toEqual([])
     })
 })

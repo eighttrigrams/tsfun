@@ -1,4 +1,4 @@
-import {greaterThan, lessThan} from '../../src/comparator';
+import {gt, lt} from '../../src/comparator';
 import {takeWhile} from '../../src/array';
 
 
@@ -9,8 +9,8 @@ describe('takeWhile', () => {
 
     it('take five', () => {
 
-        expect(takeWhile(lessThan(20))([7, 9, 10, 13, 17, 20])).toEqual([7, 9, 10, 13, 17])
-        expect(takeWhile(lessThan(20), [7, 9, 10, 13, 17, 20])).toEqual([7, 9, 10, 13, 17])
+        expect(takeWhile(lt(20))([7, 9, 10, 13, 17, 20])).toEqual([7, 9, 10, 13, 17])
+        expect(takeWhile(lt(20), [7, 9, 10, 13, 17, 20])).toEqual([7, 9, 10, 13, 17])
     })
 
 
@@ -18,7 +18,7 @@ describe('takeWhile', () => {
 
         expect(
 
-            takeWhile(greaterThan(23))
+            takeWhile(gt(23))
             ([7, 9, 10, 13, 17, 20])
 
         ).toEqual([])
@@ -29,7 +29,7 @@ describe('takeWhile', () => {
 
         expect(
 
-            takeWhile(greaterThan(1))
+            takeWhile(gt(1))
             ([7, 9])
 
         ).toEqual([7, 9])
@@ -40,7 +40,7 @@ describe('takeWhile', () => {
 
         expect(
 
-            takeWhile(greaterThan(23))([])
+            takeWhile(gt(23))([])
 
         ).toEqual([])
     )

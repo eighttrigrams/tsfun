@@ -1,4 +1,4 @@
-import {greaterThan, lessThan} from '../../src/comparator';
+import {gt, lt} from '../../src/comparator';
 import {map, remove} from '../../src/associative';
 import {Map} from '../../src/type';
 import { flow } from '../../src/composition';
@@ -12,9 +12,9 @@ describe('remove', () => {
 
     it('array', () => {
 
-        expect(remove(lessThan(4))([2, 4])).toEqual([4])
-        expect(remove(lessThan(4), [2, 4])).toEqual([4])
-        expect(remove([2, 4], lessThan(4))).toEqual([4])
+        expect(remove(lt(4))([2, 4])).toEqual([4])
+        expect(remove(lt(4), [2, 4])).toEqual([4])
+        expect(remove([2, 4], lt(4))).toEqual([4])
     })
 
 
@@ -30,9 +30,9 @@ describe('remove', () => {
 
     it('object', () => {
 
-        expect(remove(lessThan(4))({a: 2, b: 4})).toEqual({b: 4})
-        expect(remove(lessThan(4), {a: 2, b: 4})).toEqual({b: 4})
-        expect(remove({a: 2, b: 4}, lessThan(4))).toEqual({b: 4})
+        expect(remove(lt(4))({a: 2, b: 4})).toEqual({b: 4})
+        expect(remove(lt(4), {a: 2, b: 4})).toEqual({b: 4})
+        expect(remove({a: 2, b: 4}, lt(4))).toEqual({b: 4})
     })
 
 

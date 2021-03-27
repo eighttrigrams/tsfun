@@ -72,12 +72,12 @@ export {
     subsetOf,
     by,
     on,
-    greaterThan,
-    greaterOrEqualThan,
+    gt,
+    gte,
     startsWith,
     endsWith,
-    lessThan,
-    lessOrEqualThan
+    lt,
+    lte
 } from './src/comparator'
 
 

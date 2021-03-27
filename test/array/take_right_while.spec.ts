@@ -1,4 +1,4 @@
-import {greaterThan} from '../../src/comparator'
+import {gt} from '../../src/comparator'
 import {takeRightWhile} from '../../src/array'
 
 
@@ -11,7 +11,7 @@ describe('takeRightWhile', () => {
 
         expect(
 
-            takeRightWhile(greaterThan(13))
+            takeRightWhile(gt(13))
             ([7, 9, 10, 13, 17, 20])
 
         ).toEqual([17, 20])
@@ -22,7 +22,7 @@ describe('takeRightWhile', () => {
 
         expect(
 
-            takeRightWhile(greaterThan(23))
+            takeRightWhile(gt(23))
             ([7, 9, 10, 13, 17, 20])
 
         ).toEqual([])
@@ -33,7 +33,7 @@ describe('takeRightWhile', () => {
 
         expect(
 
-            takeRightWhile(greaterThan(1))
+            takeRightWhile(gt(1))
             ([7, 9])
 
         ).toEqual([7, 9])
@@ -44,7 +44,7 @@ describe('takeRightWhile', () => {
 
         expect(
 
-            takeRightWhile(greaterThan(23))
+            takeRightWhile(gt(23))
             ([])
 
         ).toEqual([])

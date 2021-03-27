@@ -1,5 +1,5 @@
 import {indices} from '../../src/associative'
-import {greaterThan, is} from '../../src/comparator'
+import {gt, is} from '../../src/comparator'
 
 
 /**
@@ -17,7 +17,7 @@ describe('indices', () => {
     it('array of number', () =>
         expect(
 
-            indices(greaterThan(2))([1, 3, 7, 1])
+            indices(gt(2))([1, 3, 7, 1])
 
         ).toEqual([1, 2]))
 
@@ -25,7 +25,7 @@ describe('indices', () => {
     it('object', () =>
         expect(
 
-            indices(greaterThan(2))({a: 3, b: 1, c: 7})
+            indices(gt(2))({a: 3, b: 1, c: 7})
 
         ).toEqual(['a', 'c']))
 })

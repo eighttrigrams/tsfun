@@ -1,4 +1,4 @@
-import {greaterThan, lessThan} from '../../src/comparator'
+import {gt, lt} from '../../src/comparator'
 import {dropRightWhile} from '../../src/array'
 
 
@@ -9,8 +9,8 @@ describe('dropRightWhile', () => {
 
     it('dropRightWhile', () => {
 
-        expect(dropRightWhile(greaterThan(19))([13, 21, 20])).toEqual([13])
-        expect(dropRightWhile(greaterThan(19), [13, 21, 20])).toEqual([13])
+        expect(dropRightWhile(gt(19))([13, 21, 20])).toEqual([13])
+        expect(dropRightWhile(gt(19), [13, 21, 20])).toEqual([13])
     })
 
 
@@ -18,7 +18,7 @@ describe('dropRightWhile', () => {
 
         expect(
 
-            dropRightWhile(lessThan(19))
+            dropRightWhile(lt(19))
             ([13, 21, 20])
 
         ).toEqual([13, 21, 20])
@@ -29,7 +29,7 @@ describe('dropRightWhile', () => {
 
         expect(
 
-            dropRightWhile(greaterThan(1))
+            dropRightWhile(gt(1))
             ([13, 21, 20])
 
         ).toEqual([])
@@ -40,7 +40,7 @@ describe('dropRightWhile', () => {
 
         expect(
 
-            dropRightWhile(greaterThan(1))
+            dropRightWhile(gt(1))
             ([])
 
         ).toEqual([])

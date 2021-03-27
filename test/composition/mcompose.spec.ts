@@ -4,7 +4,7 @@ import {collect, cond, flow, mcompose, throws, val} from '../../src/composition'
 import {map, filter, update_a} from '../../src/associative'
 import {separate} from '../../src/array';
 import {isSuccess} from '../../src/predicate'
-import {lessThan} from '../../src/comparator'
+import {lt} from '../../src/comparator'
 
 
 /**
@@ -269,7 +269,7 @@ describe('mcompose', () => {
                     map(
                         mcompose(
                             safedivM(6),
-                            liftM(cond(lessThan(2), throws('')) as any),
+                            liftM(cond(lt(2), throws('')) as any),
                             liftM(square))),
                     filter(isSuccess as any),
                     map(getSuccess))
@@ -288,7 +288,7 @@ describe('mcompose', () => {
                     map(
                         mcompose(
                             safedivE(6),
-                            liftE(cond(lessThan(2), throws('e1')) as any),
+                            liftE(cond(lt(2), throws('e1')) as any),
                             squareE)),
                     filter(isSuccess as any),
                     map(getSuccess))

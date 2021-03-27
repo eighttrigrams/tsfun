@@ -1,6 +1,6 @@
 import { expectType } from 'ts-expect'
 import { count, filter, size } from '../../../src/associative'
-import {samesetBy, is, jsonEqual, on, onBy, isnt, lessThan, greaterThan} from '../../../src/comparator'
+import {samesetBy, is, jsonEqual, on, onBy, isnt, lt, gt} from '../../../src/comparator'
 import { flow } from '../../../src/composition'
 import { identity } from '../../../src/core'
 import {isArray, isDefined, isEmpty, isNot, isUndefined, isUndefinedOrEmpty} from '../../../src/predicate'
@@ -116,7 +116,7 @@ describe('on', () => {
         // which can be expressed in terms of another data structure of the same time
 
         expect(
-            on($count, lessThan)([1, 2, 3])([1, 2]))
+            on($count, lt)([1, 2, 3])([1, 2]))
             .toBe(true)
 
         // As the next examples show, passing comparators to yield comparators
@@ -407,7 +407,7 @@ describe('on', () => {
     it('fix where count was not applied in test for function', () => {
 
         expect(
-            on($count, lessThan)([1, 2, 3])([1, 2]))
+            on($count, lt)([1, 2, 3])([1, 2]))
             .toBe(true)
     })
 
@@ -415,11 +415,11 @@ describe('on', () => {
     it('fix where count was not applied in test for function - reproduced case', () => {
 
         expect(
-            on(1, greaterThan(3))([3,4]))
+            on(1, gt(3))([3,4]))
             .toBe(true)
 
         expect(
-            on(1, greaterThan(4))([3,4]))
+            on(1, gt(4))([3,4]))
             .toBe(false)
     })
 
@@ -494,35 +494,35 @@ describe('on', () => {
         const $1 = flow(
             [{a: 1, b: 4}, {c: 3}],
             filter<Map<number>>(
-                on(size, greaterThan)({c: 3})))
+                on(size, gt)({c: 3})))
         expectType<Array<Map<number>>>($1)
         expect($1).toEqual([{a: 1, b: 4}])
 
         const $2 = flow(
             {a: [1,2], b: [1]},
             filter<number[]>(
-                on(size, greaterThan)([1])))
+                on(size, gt)([1])))
         expectType<Map<Array<number>>>($2)
         expect($2).toEqual({a: [1,2]})
 
         const $3 = flow(
             [{a: 1, b: 4}, {c: 3}],
             filter<Map<number>>(
-                on(size, greaterThan(1))))
+                on(size, gt(1))))
         expectType<Array<Map<number>>>($3)
         expect($3).toEqual([{a: 1, b: 4}])
 
         const $4 = flow(
             {a: [1,2], b: [1]},
             filter<number[]>(
-                on(size, greaterThan(1))))
+                on(size, gt(1))))
         expectType<Map<Array<number>>>($4)
         expect($4).toEqual({a: [1,2]})
 
         const $5 = flow(
             {a: [1,2,1], b: [1]},
             filter<number[]>(
-                on(count(is(1)), greaterThan(1))))
+                on(count(is(1)), gt(1))))
         expectType<Map<Array<number>>>($5)
         expect($5).toEqual({a: [1,2,1]})
     })

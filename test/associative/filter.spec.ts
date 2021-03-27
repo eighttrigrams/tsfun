@@ -1,5 +1,5 @@
 import {Associative, Map} from '../../src/type'
-import {lessThan} from '../../src/comparator'
+import {lt} from '../../src/comparator'
 import {filter, map} from '../../src/associative'
 import { flow } from '../../src/composition'
 import {expectType} from 'ts-expect'
@@ -12,16 +12,16 @@ describe('filter', () => {
 
     it('array', () => {
 
-        expect(filter(lessThan(4))([2, 4, 3])).toEqual([2, 3])
-        expect(filter(lessThan(4), [2, 4, 3])).toEqual([2, 3])
-        expect(filter([2, 4, 3], lessThan(4))).toEqual([2, 3])
+        expect(filter(lt(4))([2, 4, 3])).toEqual([2, 3])
+        expect(filter(lt(4), [2, 4, 3])).toEqual([2, 3])
+        expect(filter([2, 4, 3], lt(4))).toEqual([2, 3])
     })
 
 
     it('object', () => {
 
-        expect(filter(lessThan(4))({a: 2, b: 4, c: 3})).toEqual({a: 2, c: 3})
-        expect(filter(lessThan(4), {a: 2, b: 4, c: 3})).toEqual({a: 2, c: 3})
+        expect(filter(lt(4))({a: 2, b: 4, c: 3})).toEqual({a: 2, c: 3})
+        expect(filter(lt(4), {a: 2, b: 4, c: 3})).toEqual({a: 2, c: 3})
     })
 
 
@@ -91,7 +91,7 @@ describe('filter', () => {
     it('multiple argument lists', () =>
         expect(
 
-            filter(lessThan(4))([2, 4, 3])
+            filter(lt(4))([2, 4, 3])
 
         ).toEqual([2, 3])
     )
@@ -102,7 +102,7 @@ describe('filter', () => {
 
             flow(
             [2, 4, 3]
-            , filter(lessThan(4))
+            , filter(lt(4))
             )
 
         ).toEqual([2, 3])

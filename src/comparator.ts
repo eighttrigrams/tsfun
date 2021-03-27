@@ -19,7 +19,7 @@ export function tripleEqual<A>(l:A) {
 }
 
 
-export function greaterThan(than: number) {
+export function gt(than: number) {
     if (!isNumber(than)) throw 'illegal argument - number expected'
     return (that: number) => {
         if (!isNumber(that)) throw 'illegal argument - number expected'
@@ -28,7 +28,7 @@ export function greaterThan(than: number) {
 }
 
 
-export function lessThan(than: number) {
+export function lt(than: number) {
     if (!isNumber(than)) throw 'illegal argument - number expected'
     return (that: number) => {
         if (!isNumber(that)) throw 'illegal argument - number expected'
@@ -37,7 +37,7 @@ export function lessThan(than: number) {
 }
 
 
-export function greaterOrEqualThan(than: number) {
+export function gte(than: number) {
     if (!isNumber(than)) throw 'illegal argument - number expected'
     return (that: number) => {
         if (!isNumber(that)) throw 'illegal argument - number expected'
@@ -46,8 +46,8 @@ export function greaterOrEqualThan(than: number) {
 }
 
 
-export function lessOrEqualThan(than: number): (that: number) => boolean
-export function lessOrEqualThan(than: number) {
+export function lte(than: number): (that: number) => boolean
+export function lte(than: number) {
     if (!isNumber(than)) throw 'illegal argument - number expected'
     return (that: number) => {
         if (!isNumber(that)) throw 'illegal argument - number expected'

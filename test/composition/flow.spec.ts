@@ -1,4 +1,4 @@
-import {greaterThan, includedIn, lessThan} from '../../src/comparator'
+import {gt, includedIn, lt} from '../../src/comparator'
 import {flow} from '../../src/composition'
 import {isNot} from '../../src/predicate'
 import {filter, map} from '../../src/associative'
@@ -38,7 +38,7 @@ describe('flow', () => {
         expect(
 
             flow([5,4],
-                takeWhile(greaterThan(4))))
+                takeWhile(gt(4))))
 
         .toEqual([5]))
 
@@ -65,7 +65,7 @@ describe('flow', () => {
 
             flow(
                 [7, 9, 10, 13, 21, 20],
-                dropWhile(lessThan(20)),
+                dropWhile(lt(20)),
                 reverse))
 
             .toEqual([20, 21]))

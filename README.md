@@ -189,12 +189,12 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 * [isnt](test/comparator/reference/isnt.spec.ts)
 * [differentFrom](test/comparator/reference/different_from.spec.ts)
 
-###### Ordered
+###### Number
 
-* [greaterThan](test/comparator/ordered/greater_than.spec.ts)
-* [lessThan](test/comparator/ordered/less_than.spec.ts)
-* [greaterOrEqualThan](test/comparator/ordered/greater_or_equal_than.spec.ts)
-* [lessOrEqualThan](test/comparator/ordered/less_or_equal_than.spec.ts)
+* [gt](test/comparator/ordered/gt.spec.ts)
+* [lt](test/comparator/ordered/lt.spec.ts)
+* [greaterOrEqualThan](test/comparator/ordered/gte.spec.ts)
+* [lessOrEqualThan](test/comparator/ordered/lte.spec.ts)
 
 ###### Array
 

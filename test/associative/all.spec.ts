@@ -1,5 +1,5 @@
 import {all} from '../../src/associative'
-import {greaterThan} from '../../src/comparator'
+import {gt} from '../../src/comparator'
 
 /**
  * tsfun | all
@@ -9,7 +9,7 @@ describe('all', () => {
     it('true', () =>
         expect(
 
-            all(greaterThan(3))([4, 5, 6])
+            all(gt(3))([4, 5, 6])
 
         ).toEqual(true)
     )
@@ -18,7 +18,7 @@ describe('all', () => {
     it('false', () =>
         expect(
 
-            all(greaterThan(3))([3, 4, 5, 6])
+            all(gt(3))([3, 4, 5, 6])
 
         ).toEqual(false)
     )

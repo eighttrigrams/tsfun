@@ -1,4 +1,4 @@
-import {greaterThan, lessThan} from '../../src/comparator';
+import {gt, lt} from '../../src/comparator';
 import {separate} from '../../src/array';
 import {Map, Pair} from '../../src/type';
 
@@ -10,9 +10,9 @@ describe('separate', () => {
 
     it('array', () => {
 
-        expect(separate(lessThan(3))([2, 3, 1, 3, 4])).toEqual([[2, 1], [3, 3, 4]])
-        expect(separate(lessThan(3), [2, 3, 1, 3, 4])).toEqual([[2, 1], [3, 3, 4]])
-        expect(separate([2, 3, 1, 3, 4], lessThan(3))).toEqual([[2, 1], [3, 3, 4]])
+        expect(separate(lt(3))([2, 3, 1, 3, 4])).toEqual([[2, 1], [3, 3, 4]])
+        expect(separate(lt(3), [2, 3, 1, 3, 4])).toEqual([[2, 1], [3, 3, 4]])
+        expect(separate([2, 3, 1, 3, 4], lt(3))).toEqual([[2, 1], [3, 3, 4]])
     })
 
 

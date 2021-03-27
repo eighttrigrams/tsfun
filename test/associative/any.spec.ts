@@ -1,5 +1,5 @@
 import {any} from '../../src/associative'
-import {greaterThan} from '../../src/comparator'
+import {gt} from '../../src/comparator'
 
 /**
  * tsfun | any
@@ -9,7 +9,7 @@ describe('any', () => {
     it('true', () =>
         expect(
 
-            any(greaterThan(3))([4, 3])
+            any(gt(3))([4, 3])
 
         ).toEqual(true)
     )
@@ -18,7 +18,7 @@ describe('any', () => {
     it('false', () =>
         expect(
 
-            any(greaterThan(3))([1, 2])
+            any(gt(3))([1, 2])
 
         ).toEqual(false)
     )

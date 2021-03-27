@@ -1,16 +1,16 @@
-import {lessThan} from '../../../src/comparator'
+import {lt} from '../../../src/comparator'
 
 
 /**
- * tsfun | lessThan
+ * tsfun | lt
  */
-describe('lessThan', () => {
+describe('lt', () => {
 
     it('false', () =>
 
         expect(
 
-            lessThan(3)(4)
+            lt(3)(4)
 
         ).toEqual(false)
     )
@@ -20,7 +20,7 @@ describe('lessThan', () => {
 
         expect(
 
-            lessThan(4)(3)
+            lt(4)(3)
 
         ).toEqual(true)
     )
