@@ -1,5 +1,5 @@
 import { expectType } from 'ts-expect'
-import { filter, size } from '../../../src/associative'
+import { count, filter, size } from '../../../src/associative'
 import {samesetBy, is, jsonEqual, on, onBy, isnt, lessThan, greaterThan} from '../../../src/comparator'
 import { flow } from '../../../src/composition'
 import { identity } from '../../../src/core'
@@ -13,7 +13,7 @@ import {Map} from '../../../src/type'
  */
 describe('on', () => {
 
-    const count = (_: Array<any>) => _.length
+    const $count = (_: Array<any>) => _.length
 
 
     it('on lets you compare things along a given path', () => {
@@ -47,17 +47,17 @@ describe('on', () => {
             .toEqual(true)
 
         expect(
-            on(count, is(2))([4, 7]))
+            on($count, is(2))([4, 7]))
             .toEqual(true)
 
         // a mapping can be used instead of a path; its result is the basis for comparison
         expect(
-            on(count, is(3))([4, 7]))
+            on($count, is(3))([4, 7]))
             .toEqual(false)
 
         // use case, for more see section "use cases"
         expect(
-            [[2,4],[2,4,6]].filter(on(count, is(3))))
+            [[2,4],[2,4,6]].filter(on($count, is(3))))
             .toEqual([[2,4,6]])
     })
 
@@ -82,7 +82,7 @@ describe('on', () => {
 
         // a mapping can be used instead of a path; its result is the basis for comparison
         expect(
-            on(count)([4, 7])([5,7]))
+            on($count)([4, 7])([5,7]))
             .toEqual(true)
 
         // use case, for more see section "use cases"
@@ -101,11 +101,11 @@ describe('on', () => {
             .toBe(false)
 
         expect(
-            on(count, isnt)([1, 2, 3])([1, 2]))
+            on($count, isnt)([1, 2, 3])([1, 2]))
             .toBe(true)
 
         expect(
-            on(count, is)([1, 2])([1, 2]))
+            on($count, is)([1, 2])([1, 2]))
             .toBe(true)
 
         // One use case would be to write this
@@ -116,7 +116,7 @@ describe('on', () => {
         // which can be expressed in terms of another data structure of the same time
 
         expect(
-            on(count, lessThan)([1, 2, 3])([1, 2]))
+            on($count, lessThan)([1, 2, 3])([1, 2]))
             .toBe(true)
 
         // As the next examples show, passing comparators to yield comparators
@@ -149,7 +149,7 @@ describe('on', () => {
 
 
         // combine a mapping path with onBy
-        const $on3 = onBy<any,any>(on(count))
+        const $on3 = onBy<any,any>(on($count))
 
         expect(
             $on3('a')({a: [3, 3]})({a: [3, 4]}))
@@ -198,7 +198,7 @@ describe('on', () => {
             .toBe(true)
 
         expect(
-            on(count, 2)([2, 3]))
+            on($count, 2)([2, 3]))
             .toBe(true)
 
 
@@ -216,11 +216,11 @@ describe('on', () => {
             .toBe(true)
 
         expect(
-            differentOn(count, from(3))([2, 3]))
+            differentOn($count, from(3))([2, 3]))
             .toBe(true)
 
         expect(
-            differentOn(count, from(2))([2, 3]))
+            differentOn($count, from(2))([2, 3]))
             .toBe(false)
 
         expect(
@@ -407,7 +407,7 @@ describe('on', () => {
     it('fix where count was not applied in test for function', () => {
 
         expect(
-            on(count, lessThan)([1, 2, 3])([1, 2]))
+            on($count, lessThan)([1, 2, 3])([1, 2]))
             .toBe(true)
     })
 
@@ -518,5 +518,12 @@ describe('on', () => {
                 on(size, greaterThan(1))))
         expectType<Map<Array<number>>>($4)
         expect($4).toEqual({a: [1,2]})
+
+        const $5 = flow(
+            {a: [1,2,1], b: [1]},
+            filter<number[]>(
+                on(count(is(1)), greaterThan(1))))
+        expectType<Map<Array<number>>>($5)
+        expect($5).toEqual({a: [1,2,1]})
     })
 })
