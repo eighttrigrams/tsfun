@@ -205,6 +205,69 @@ export function map<A, B>(first: any, ...rest: any[]): any {
 
 
 /**
+ * tsfun | reduce
+ *
+ * ```
+ * >> reduce((b: number, a: number, i: number) => b + a + i, 0)([1, 5, 6])
+ * 15
+ * >> reduce((b: number, a: number, k_: string) => b + a, 0)({a: 1, b: 5, c: 6}))
+ * 12
+ *
+ * // In combination with map pass a function to construct empty structures
+ * >> map([['a'], ['b']], reduce(f, () => ({} as Map<true>)))
+ * [{a: true}, {b: true}]
+ * // or do it like this
+ * >> map([['a'], ['b']], _ => reduce(f, {})(_))
+ * [{a: true}, {b: true}]
+ * ```
+ *
+ * See examples:
+ *
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/reduce.spec.ts
+ */
+export function reduce<A, B>(f: (b: B, a: A) => B, init: B|(() => B)): (as: Array<A>|Map<A>) => B
+export function reduce<A, B>(f: (b: B, a: A, i: number) => B, init: B|(() => B)): (as: Array<A>) => B
+export function reduce<A, B>(f: (b: B, a: A, k: string) => B, init: B|(() => B)): (as: Map<A>) => B
+ /**
+  * ```
+  * >> reduce([1, 5, 6], (b: number, a: number) => b + a, 0))
+  * 12
+  * ```
+  *
+  * See examples:
+  *
+  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/reduce.spec.ts
+  */
+ export function reduce<A, B>(as: Array<A>, f: (b: B, a: A, i: number) => B, init: B): B
+ export function reduce<A, B>(as: Array<A>, f: (b: B, a: A) => B, init: B): B
+ export function reduce<A, B>(as: Map<A>, f: (b: B, a: A, k: string) => B, init: B): B
+ export function reduce<A, B>(as: Map<A>, f: (b: B, a: A) => B, init: B): B
+ export function reduce<T, B>(...args /* do it like this to also capture a 3rd element if it is passed as undefined */): any {
+
+    const $ = (f, init) => ts => {
+        if (!isAssociative(ts)) throwIllegalArgs('reduce', 'Associative', ts)
+
+        let acc = isFunction(init) ? init() : init
+        for (let [k,v] of keysValues(ts)) {
+            acc = f(acc, v, k)
+        }
+        return acc
+    }
+
+    const [ts, f, init] = args.length === 3
+        ? [args[0], args[1], args[2]]
+        : [undefined, args[0], args[1]]
+
+    if (!isFunction(f)) throwIllegalArgs('reduce', 'Function', f)
+    if (ts && isFunction(init)) throwIllegalArgs('reduce', 'not a function when used a single argument list', init)
+
+    return ts
+        ? $(f, init)(ts)
+        : $(f, init)
+ }
+
+
+/**
  * tsfun | forEach
  *
  * ```

@@ -1,6 +1,5 @@
 import {Map} from '../../src/type'
-import {reduce} from '../../src/array'
-import { map } from '../../src/associative'
+import { map, reduce } from '../../src/associative'
 
 
 /**
@@ -8,20 +7,34 @@ import { map } from '../../src/associative'
  */
 describe('reduce', () => {
 
-    it('array', () =>
+    it('Array', () =>
         expect(
 
-            reduce((b: number, a: number) => b + a, 0)([1, 5, 6]))
+            reduce((b: number, a: number, i: number) => b + a + i, 0)([1, 5, 6]))
+
+            .toBe(15))
+
+    it('Map', () =>
+        expect(
+
+            reduce((b: number, a: number, _k: string) => b + a, 0)({a: 1, b: 5, c: 6}))
 
             .toBe(12))
 
 
-    it('single argument list', () =>
+    it('Array - single argument list', () =>
         expect(
 
             reduce([1, 5, 6], (b: number, a: number) => b + a, 0))
 
             .toBe(12))
+
+    it('Map - single argument list', () =>
+        expect(
+
+            reduce({a: 1, b: 5, c: 6}, (b: number, a: number) => b + a, 0))
+
+        .toBe(12))
 
 
     it('in combination with map', () => {

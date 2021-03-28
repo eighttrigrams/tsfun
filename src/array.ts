@@ -459,66 +459,6 @@ export function prepend<A>(...as2: Array<A>) {
 }
 
 
-/**
- * tsfun | reduce
- *
- * ```
- * >> reduce((b: number, a: number) => b + a, 0)([1, 5, 6])
- * 12
- *
- * // In combination with map pass a function to construct empty structures
- * >> map([['a'], ['b']], reduce(f, () => ({} as Map<true>)))
- * [{a: true}, {b: true}]
- * // or do it like this
- * >> map([['a'], ['b']], _ => reduce(f, {})(_))
- * [{a: true}, {b: true}]
- * ```
- *
- * See examples:
- *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/reduce.spec.ts
- */
-export function reduce<A, B>(f: (b: B, a: A, i: number) => B, init: B|(() => B)): (as: Array<A>) => B
-export function reduce<A, B>(f: (b: B, a: A) => B, init: B|(() => B)): (as: Array<A>) => B
-/**
- * ```
- * >> reduce([1, 5, 6], (b: number, a: number) => b + a, 0))
- * 12
- * ```
- *
- * See examples:
- *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/reduce.spec.ts
- */
-export function reduce<A, B>(as: Array<A>, f: (b: B, a: A, i: number) => B, init: B): B
-export function reduce<A, B>(as: Array<A>, f: (b: B, a: A) => B, init: B): B
-export function reduce<T, B>(...args /* do it like this to also capture a 3rd element if it is passed as undefined */): any {
-
-    const $ = (f, init) => ts => {
-        if (!isArray(ts)) throwIllegalArgs('reduce', 'Array', ts)
-
-        let acc = isFunction(init) ? init() : init
-        let i = 0
-        for (let a of ts) {
-            acc = f(acc, a, i)
-            i++
-        }
-        return acc
-    }
-
-    const [ts, f, init] = args.length === 3
-        ? [args[0], args[1], args[2]]
-        : [undefined, args[0], args[1]]
-
-    if (!isFunction(f)) throwIllegalArgs('reduce', 'Function', f)
-    if (ts && isFunction(init)) throwIllegalArgs('reduce', 'not a function when used a single argument list', init)
-
-    return ts
-        ? $(f, init)(ts)
-        : $(f, init)
-}
-
-
 //export function zip<A>(as: Array<A>): <B>(_: Array<B>) => Array<[A,B]>
 /**
  * tsfun | zip
