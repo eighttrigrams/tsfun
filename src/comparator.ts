@@ -13,12 +13,37 @@ import { identity } from './core'
 // ------------ @author Daniel de Oliveira -----------------
 
 
+/**
+ * tsfun | tripleEqual
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/reference/triple_equal.spec.ts
+ */
 export function tripleEqual<A>(l:A) {
 
     return (r: A) => l === r
 }
 
 
+/**
+ * tsfun | is
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/reference/gt.spec.ts
+ */
+ export function is<A>(a: A) {
+
+    return tripleEqual(a)
+}
+
+
+/**
+ * tsfun | isnt
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/reference/isnt.spec.ts
+ */
+export const isnt = <A>(l: A) => isNot(tripleEqual(l))
+
+
+/**
+ * tsfun | gt
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/number/gt.spec.ts
+ */
 export function gt(than: number) {
     if (!isNumber(than)) throw 'illegal argument - number expected'
     return (that: number) => {
@@ -28,6 +53,10 @@ export function gt(than: number) {
 }
 
 
+/**
+ * tsfun | lt
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/number/lt.spec.ts
+ */
 export function lt(than: number) {
     if (!isNumber(than)) throw 'illegal argument - number expected'
     return (that: number) => {
@@ -37,6 +66,10 @@ export function lt(than: number) {
 }
 
 
+/**
+ * tsfun | gte
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/number/gte.spec.ts
+ */
 export function gte(than: number) {
     if (!isNumber(than)) throw 'illegal argument - number expected'
     return (that: number) => {
@@ -46,6 +79,10 @@ export function gte(than: number) {
 }
 
 
+/**
+ * tsfun | lte
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/number/lte.spec.ts
+ */
 export function lte(than: number): (that: number) => boolean
 export function lte(than: number) {
     if (!isNumber(than)) throw 'illegal argument - number expected'
@@ -56,15 +93,10 @@ export function lte(than: number) {
 }
 
 
-export function is<A>(a: A) {
-
-    return tripleEqual(a)
-}
-
-
-export const isnt = <A>(l: A) => isNot(tripleEqual(l))
-
-
+/**
+ * tsfun | jsonEqual
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/struct/json_equal.spec.ts
+ */
 export function jsonEqual<A>(l: A): (r: A) => boolean
 export function jsonEqual<A>(l: A, r: A): boolean
 export function jsonEqual(l: any, ...r: any[]): any {
@@ -95,6 +127,10 @@ export const includesBy =
             as.filter(compare(a)).length > 0
 
 
+/**
+ * tsfun | subsetOfBy
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/array/subset_of.spec.ts
+ */
 export const subsetOfBy = (compare: Comparator) => <A>(superset: Array<A>) =>
     (subset: Array<A>): boolean => {
 
@@ -107,6 +143,10 @@ export const subsetOfBy = (compare: Comparator) => <A>(superset: Array<A>) =>
     }
 
 
+/**
+ * tsfun | supersetOfBy
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/array/superset_of.spec.ts
+ */
 export const supersetOfBy = (compare: Comparator) => <A>(subset: Array<A>) =>
     (superset: Array<A>): boolean => subsetOfBy(compare)(superset)(subset)
 
@@ -137,6 +177,10 @@ const c = (acomparator: Comparator, ocomparator: Comparator) => (l: any) =>
     (r: any): boolean => compare(acomparator, ocomparator)(l)(r)
 
 
+/**
+ * tsfun | arrayEqualBy
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/struct/array_equal.spec.ts
+ */
 export const arrayEqualBy = (objectComparator?: Comparator) =>
     <A>(as1: Array<A>) => (as2: Array<A>): boolean => {
 
@@ -150,7 +194,14 @@ export const arrayEqualBy = (objectComparator?: Comparator) =>
     }
 
 
-// Compares 2 arrays where elements order does not matter
+/**
+ * tsfun | samesetBy
+ *
+ * Compares 2 arrays where elements order does not matter
+ *
+ * For examples see:
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/set/sameset.spec.ts
+ */
 export const samesetBy: (_: Comparator) => any =
     (objectComparator?: Comparator) =>
         <A>(as1: Array<A>) =>
@@ -164,6 +215,10 @@ export const samesetBy: (_: Comparator) => any =
             }
 
 
+/**
+ * tsfun | objectEqualBy
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/struct/object_equal.spec.ts
+ */
 export const objectEqualBy =
     (arrayComparator: Comparator) =>
         (o1: Object) =>
@@ -187,7 +242,10 @@ export const objectEqualBy =
                     .length === Object.keys(o1).length
             }
 
-
+/**
+ * tsfun | equalBy
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/struct/equal.spec.ts
+ */
 export const equalBy =
     (arrayComparator: Comparator) =>
         o1 => (o2): boolean =>
