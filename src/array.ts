@@ -73,30 +73,6 @@ export function range(a: number, b?: number, stepSize: number = 1): number[] {
 }
 
 
-/**
- * tsfun | reduce0
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/reduce0.spec.ts
- */
-export function reduce0<T>(f: (b: T, t: T, i?: number) => T) {
-
-    return (ts: T[]): T => {
-
-        if (isArray(ts) && !isEmpty(ts)) {
-
-            let acc: T = first(ts) as T
-            let i = 0
-            for (let a of rest(ts)) {
-                acc = f(acc, a, i)
-                i++
-            }
-            return acc
-
-        } else throwIllegalArgs('reduce0', 'Array', ts)
-        return ts as never
-    }
-}
-
-
 // TODO allow deeper levels to get collapsed in associative, if they all are arrays. if not, then stop at the level, it cannot get further collapsed
 // leftover: export function flatten<T>(as: Associative<T>): Array<T>
 
@@ -494,7 +470,7 @@ export function zip(...args): any {
 
     function $$(f, aas, spread = true): any {
 
-        return (reduce0(zip2 as any) as any)(aas)
+        return ($reduce0(zip2 as any) as any)(aas)
                 .map(flatten(aas.length-1))
                 .map(_ => spread ? f.apply(null, _) : f(_))
     }
@@ -634,5 +610,25 @@ export function sort<A>(f: Array<number>|((a: A, b: A) => number)) {
         } else {
             throw 'illegal argument - must be array or string'
         }
+    }
+}
+
+
+ export function $reduce0<T>(f: (b: T, t: T, i?: number) => T) {
+
+    return (ts: T[]): T => {
+
+        if (isArray(ts) && !isEmpty(ts)) {
+
+            let acc: T = first(ts) as T
+            let i = 0
+            for (let a of rest(ts)) {
+                acc = f(acc, a, i)
+                i++
+            }
+            return acc
+
+        } else throwIllegalArgs('$reduce0', 'Array', ts)
+        return ts as never
     }
 }

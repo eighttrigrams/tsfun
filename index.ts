@@ -123,7 +123,6 @@ export {
     dense,
     separate,
     distribute,
-    reduce0,
     flatten,
     take,
     takeRight,

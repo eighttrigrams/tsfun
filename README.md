@@ -33,7 +33,6 @@ import {on, equal, take, update, flow} from 'tsfun'
 * [reverse](test/array/reverse.spec.ts)
 * [separate](test/array/separate.spec.ts)
 * [distribute](test/array/distribute.spec.ts)
-* [reduce0](test/array/reduce0.spec.ts)
 * [flatten](test/array/flatten.spec.ts)
 * [flatMap](test/array/flat_map.spec.ts)
 * [drop](test/array/drop.spec.ts)

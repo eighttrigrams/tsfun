@@ -2,7 +2,7 @@ import {uncurry2} from './core'
 import {Comparator} from './type'
 import {isEmpty, isFunction, isNot, isString} from './predicate'
 import {includedInBy} from './comparator'
-import {reduce0} from './array'
+import {$reduce0} from './array'
 
 // ------------ @author Daniel de Oliveira -----------------
 
@@ -153,7 +153,7 @@ export function intersect<A>(...args): any {
 
     return sets.length === 1
         ? inner(sets[0])
-        : reduce0(uncurry2(inner))(sets) // TODO perhaps rename redue1 to fold
+        : $reduce0(uncurry2(inner))(sets) // TODO perhaps rename redue1 to fold
 }
 
 
