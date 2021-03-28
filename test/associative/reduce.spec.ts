@@ -61,5 +61,12 @@ describe('reduce', () => {
 
         expect($2).toEqual([{a: true}, {b: true}])
         expect($2[0]).not.toBe($2[1])
+
+        // which obviously could be done for arrays like this
+        const $3 = map([['a'], ['b']], _ => _.reduce(f, {}))
+
+        expect($3).toEqual([{a: true}, {b: true}])
+        expect($3[0]).not.toBe($3[1])
+        // but which does not work for Map, obviously
     })
 })
