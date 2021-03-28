@@ -1,4 +1,4 @@
-import {differentFrom, jsonEqual} from '../../../src/comparator'
+import {differentFrom, equal} from '../../../src/comparator'
 
 
 /**
@@ -18,7 +18,7 @@ describe('differentFrom', () => {
     it('comparator', () =>
         expect(
 
-            differentFrom(jsonEqual, {a: {b: 2, c: 3}})({a: {b: 2, c: 3}})
+            differentFrom(equal, {a: {b: 2, c: 3}})({a: {b: 2, c: 3}})
 
         ).toEqual(false))
 })

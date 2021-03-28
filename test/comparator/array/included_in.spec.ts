@@ -1,4 +1,4 @@
-import {includedIn, jsonEqual} from '../../../src/comparator'
+import {includedIn, equal} from '../../../src/comparator'
 
 
 /**
@@ -25,7 +25,7 @@ describe('includedIn', () => {
     it('includedInBy', () =>
         expect(
 
-            includedIn<any>(jsonEqual, [{a: 1}, {a: 2}])({a: 1})
+            includedIn<any>(equal, [{a: 1}, {a: 2}])({a: 1})
 
         ).toEqual(true))
 })

@@ -1,5 +1,5 @@
 import {set} from '../../src/set'
-import {jsonEqual, on} from '../../src/comparator'
+import {equal, on} from '../../src/comparator'
 
 /**
  * tsfun | set
@@ -32,7 +32,7 @@ describe('set', () => {
     it('comparator', () =>
         expect(
 
-            set(jsonEqual, [{a: 'c'}, {a: 'c'}]))
+            set(equal, [{a: 'c'}, {a: 'c'}]))
 
             .toEqual([{a: 'c'}]))
 })

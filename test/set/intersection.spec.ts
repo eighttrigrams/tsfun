@@ -1,5 +1,5 @@
 import {intersection} from '../../src/set'
-import {jsonEqual} from '../../src/comparator'
+import {equal} from '../../src/comparator'
 
 
 /**
@@ -50,7 +50,7 @@ describe('intersection', () => {
     it('intersectionBy', () =>
         expect(
 
-            intersection<any>(jsonEqual, [[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]]))
+            intersection<any>(equal, [[{a: 'a'}, {c: 'c'}], [{c: 'c'}, {d: 'd'}]]))
 
             .toEqual([{c: 'c'}]))
 })

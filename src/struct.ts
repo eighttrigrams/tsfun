@@ -1,5 +1,5 @@
 import {Array2, Mapping, Path, Map, Array1, Key} from './type'
-import {isArray, isArray2, isAssociative, isFunction, isKey, isNumber, isObject, isString} from './predicate'
+import {isArray, isArray2, isAssociative, isBoolean, isFunction, isKey, isNumber, isObject, isString} from './predicate'
 import {reverseUncurry2, throwIllegalArgs} from './core'
 import {copy} from './associative'
 import {rest} from './array'
@@ -7,20 +7,22 @@ import {rest} from './array'
 
 // ------------ @author Daniel de Oliveira -----------------
 
-export const jsonClone = <T>(object: T) => JSON.parse(JSON.stringify(object)) as T
-
-
+/**
+ * tsfun | clone
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/clone.spec.ts
+ */
 export function clone<T>(struct: boolean, f?: Function): boolean
 export function clone<T>(struct: string, f?: Function): string
 export function clone<T>(struct: number, f?: Function): number
 export function clone<T>(struct: undefined, f?: Function): undefined
 export function clone<T>(struct: T, f?: Function): T
-export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function): T|undefined|number|string|boolean {
+export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function): T|undefined|null|number|string|boolean {
 
     if (struct === undefined) return undefined
-    if (typeof struct === 'boolean') return struct as boolean
-    if (typeof struct === 'string') return struct as string
-    if (typeof struct === 'number') return struct as number
+    if (struct === null) return null
+    if (isBoolean(struct)) return struct as boolean
+    if (isString(struct)) return struct as string
+    if (isNumber(struct)) return struct as number
 
     if (isArray(struct)) {
 
@@ -38,14 +40,17 @@ export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function
 
     } else {
 
-        return (f ? f(struct) : jsonClone(struct)) as T
+        return (f
+                ? f(struct)
+                : throwIllegalArgs('clone', 'class instances only allowed if helper provided', struct)
+            ) as T
     }
 }
 
 
 /**
  * tsfun | to
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struc/to.spec.ts
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/to.spec.ts
  */
 export function to<T = any>(path: Array2<Key>|Key, alternative?: any): {
     (t: Array<any>): T
@@ -67,7 +72,7 @@ export function to(path: Path, alternative?) {
 
 /**
  * tsfun | update
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struc/update.spec.ts
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/update.spec.ts
  */
 export function update<T, K extends keyof T>(k: K, f: (val: T[K])=>T[K], o: T): T
 export function update<T, K extends keyof T,V>(k: K, f: (val: T[K])=>V, o: T): unknown

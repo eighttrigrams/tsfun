@@ -1,4 +1,4 @@
-import {jsonEqual, sameset} from '../../../src/comparator'
+import {equal, sameset} from '../../../src/comparator'
 
 
 /**
@@ -120,7 +120,7 @@ describe('sameset', () => {
     it('comparator - equivalent in different order', () =>
         expect(
 
-            sameset(jsonEqual, [{a: 9}, {c: 7}, {b: 4}])([{b: 4}, {a: 9}, {c: 7}])
+            sameset(equal, [{a: 9}, {c: 7}, {b: 4}])([{b: 4}, {a: 9}, {c: 7}])
 
         ).toEqual(true));
 
@@ -128,7 +128,7 @@ describe('sameset', () => {
     it('comparator - different property value in same order', () =>
         expect(
 
-            sameset(jsonEqual, [{a: 10}, {c: 7}, {b: 4}])([{a: 9}, {c: 7}, {b: 4}])
+            sameset(equal, [{a: 10}, {c: 7}, {b: 4}])([{a: 9}, {c: 7}, {b: 4}])
 
         ).toEqual(false));
 
@@ -136,7 +136,7 @@ describe('sameset', () => {
     it('comparator - left list smaller', () =>
         expect(
 
-            sameset<any>(jsonEqual, [{c: 7}])([{c: 7}, {b: 4}])
+            sameset<any>(equal, [{c: 7}])([{c: 7}, {b: 4}])
 
         ).toEqual(false));
 
@@ -144,7 +144,7 @@ describe('sameset', () => {
     it('comparator - right list smaller', () =>
         expect(
 
-            sameset(jsonEqual, [{c: 7}, {b: 4}])([{c: 7}])
+            sameset(equal, [{c: 7}, {b: 4}])([{c: 7}])
 
         ).toEqual(false));
 
@@ -152,7 +152,7 @@ describe('sameset', () => {
     it('comparator - single param list', () =>
         expect(
 
-            sameset(jsonEqual, [{c: 7}, {b: 4}], [{c: 7}])
+            sameset(equal, [{c: 7}, {b: 4}], [{c: 7}])
 
         ).toEqual(false));
 })

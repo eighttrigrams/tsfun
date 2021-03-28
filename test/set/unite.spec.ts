@@ -1,5 +1,5 @@
 import {unite} from '../../src/set'
-import {jsonEqual} from '../../src/comparator'
+import {equal} from '../../src/comparator'
 
 
 /**
@@ -18,7 +18,7 @@ describe('unite', () => {
     it('comparator ', () =>
         expect(
 
-            unite<any>(jsonEqual, [{a: 'a'}, {c: 'c'}])([{c: 'c'}, {d: 'd'}]))
+            unite<any>(equal, [{a: 'a'}, {c: 'c'}])([{c: 'c'}, {d: 'd'}]))
 
             .toEqual([{a: 'a'}, {c: 'c'}, {d: 'd'}]))
 })

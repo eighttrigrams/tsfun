@@ -1,5 +1,4 @@
 export {
-    jsonClone,
     clone,
     dissoc,
     to,
@@ -59,7 +58,6 @@ export {
     is,
     isnt,
     tripleEqual,
-    jsonEqual,
     arrayEqual,
     sameset,
     equal,

@@ -46,17 +46,17 @@ describe('equal', () => {
     it('Date true', () =>
         expect(
 
-            equal(new Date(2018, 11), new Date(2018, 11))
+            () => equal(new Date(2018, 11), new Date(2018, 11))
 
-        ).toEqual(true))
+        ).toThrow())
 
 
     it('Date false', () =>
         expect(
 
-            equal(new Date(2018, 11), new Date(2018, 12))
+            () => equal(new Date(2018, 11), new Date(2018, 12))
 
-        ).toEqual(false))
+        ).toThrow())
 
 
     it('equal - number vs string', () =>

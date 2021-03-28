@@ -1,4 +1,4 @@
-import {arrayEqual, jsonEqual} from '../../../src/comparator'
+import {arrayEqual, equal} from '../../../src/comparator'
 
 /**
  * tsfun | arrayEqual
@@ -106,7 +106,7 @@ describe('arrayEqual', () => {
     it('override objectEquivalent default - key order matters', () =>
         expect(
 
-            arrayEqual(jsonEqual, [1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
+            arrayEqual(l => r => JSON.stringify(l) === JSON.stringify(r), [1, {b: 2, c: 3}])([1, {c: 3, b: 2}])
 
         ).toEqual(false))
 })

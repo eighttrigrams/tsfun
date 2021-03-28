@@ -93,12 +93,12 @@ Maps (JavaScript-Objects).
 
 Structs are TypeScript-Tuples (which are JavaScript-Arrays),
 and JavaScript Objects, typed via TypeScript-Interfaces, as well
-as combinations, i.e. mutual nestings, thereof.
+as combinations, i.e. mutual nestings, thereof. Leafs can be of types
+`number`, `string`, `undefined`, `null`, `boolean`.
 
 * [to](test/struct/to.spec.ts)
 * [update](test/struct/update.spec.ts)
 * [clone](test/struct/clone.spec.ts)
-* [jsonClone](test/struct/json_clone.spec.ts)
 * [dissoc](test/struct/dissoc.spec.ts)
 
 ### Set
@@ -195,7 +195,6 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 
 ###### Struct
 
-* [jsonEqual](test/comparator/struct/json_equal.spec.ts)
 * [arrayEqual](test/comparator/struct/array_equal.spec.ts)
 * [objectEqual](test/comparator/struct/object_equal.spec.ts)
 * [equal](test/comparator/struct/equal.spec.ts)

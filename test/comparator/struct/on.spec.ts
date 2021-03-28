@@ -1,6 +1,6 @@
 import { expectType } from 'ts-expect'
 import { count, filter, size } from '../../../src/associative'
-import {samesetBy, is, jsonEqual, on, onBy, isnt, lt, gt} from '../../../src/comparator'
+import {samesetBy, is, equal, on, onBy, isnt, lt, gt} from '../../../src/comparator'
 import { flow } from '../../../src/composition'
 import { identity } from '../../../src/core'
 import {isArray, isDefined, isEmpty, isNot, isUndefined, isUndefinedOrEmpty} from '../../../src/predicate'
@@ -335,7 +335,7 @@ describe('on', () => {
 
     it('intersectBy onBy equalTo - symmetric',() => {
 
-        const $on = onBy(jsonEqual)
+        const $on = onBy(equal)
         const $intersect = intersectBy($on(['a', 'b']))
 
         expect(
@@ -350,7 +350,7 @@ describe('on', () => {
 
     it('find onBy equalTo - symmetric',() => {
 
-        const $on = onBy(jsonEqual)
+        const $on = onBy(equal)
 
         expect(
 

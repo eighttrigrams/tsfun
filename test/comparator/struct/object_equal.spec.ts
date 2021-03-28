@@ -73,22 +73,22 @@ describe('objectEqual', () => {
         ).toEqual(true))
 
 
-    it('objectEqual - work with Date, equal', () =>
+    it('objectEqual - class instance', () =>
         expect(
 
-            objectEqual({a: new Date(2018, 11, 24)})
+            () => objectEqual({a: new Date(2018, 11, 24)})
             ({a: new Date(2018, 11, 24)})
 
-        ).toEqual(true))
+        ).toThrow())
 
 
-    it('objectEqual - work with Date, not equal', () =>
+    it('objectEqual - class instance', () =>
         expect(
 
-            objectEqual({a: new Date(2018, 11, 24)})
+            () => objectEqual({a: new Date(2018, 11, 24)})
             ({a: new Date(2018, 11, 25)})
 
-        ).toEqual(false))
+        ).toThrow())
 
     // If the value of a certain key on both Objects is of type `Array`, the default
     // comparison is done with `arrayEqual`, which in turn uses `objectEqual`, such that

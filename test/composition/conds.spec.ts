@@ -1,4 +1,4 @@
-import {equal, is, jsonEqual, on} from '../../src/comparator'
+import {equal, is, on} from '../../src/comparator'
 import {conds, condsBy, flow, otherwise} from '../../src/composition'
 import {to} from '../../src/struct'
 
@@ -280,7 +280,7 @@ describe('conds', () => {
                 {a: 7},
                 conds( // TODO review seleted overload, should be first, not third
                     on('a', is(7)), on('a', square as any), // TODO
-                    jsonEqual({a: 7}), to('a')))
+                    equal({a: 7}), to('a')))
 
         ).toEqual(49 as any /* TODO review any */)
     )

@@ -6,7 +6,7 @@ import {conds, flow, otherwise, throws} from './composition'
 import {size, map, $remove} from './associative'
 import {reverse} from './array'
 import {zip} from './array'
-import { identity } from './core'
+import { identity, throwIllegalArgs } from './core'
 
 
 
@@ -93,21 +93,6 @@ export function lte(than: number) {
 }
 
 
-/**
- * tsfun | jsonEqual
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/struct/json_equal.spec.ts
- */
-export function jsonEqual<A>(l: A): (r: A) => boolean
-export function jsonEqual<A>(l: A, r: A): boolean
-export function jsonEqual(l: any, ...r: any[]): any {
-    if (r.length > 1) throw 'illegal argument - first param list in jsonEqual can have at most 2 arguments'
-    const inner = (r: any) => tripleEqual(JSON.stringify(l))(JSON.stringify(r))
-    return r.length === 0
-        ? inner
-        : inner(r[0])
-}
-
-
 const differentFromBy: ComparatorProducer = (compare: Comparator) => <A>(a:A) =>
     isNot(compare(a))
 
@@ -163,13 +148,12 @@ const compare = (acomparator: Comparator, ocomparator: Comparator) => (l: any) =
             return ocomparator(l)(r)
         }
 
-        return l instanceof Object && r instanceof Object
-
+        if (l instanceof Object && r instanceof Object) {
             // for example Date, Map
-            ? jsonEqual(l)(r)
+            throwIllegalArgs('compare', 'not a class instance', JSON.stringify(l) + JSON.stringify(r))
+        }
 
-            // numbers, strings
-            : typeof l === typeof r && l === r
+        return typeof l === typeof r && l === r
     }
 
 

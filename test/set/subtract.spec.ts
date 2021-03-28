@@ -1,5 +1,5 @@
 import {subtract} from '../../src/set'
-import {jsonEqual} from '../../src/comparator'
+import {equal} from '../../src/comparator'
 
 
 /**
@@ -59,7 +59,7 @@ describe('subtract', () => {
     it('comparator ', () =>
         expect(
 
-            subtract<any>(jsonEqual, [{a: 'a'}])([{a: 'a'}, {c: 'c'}]))
+            subtract<any>(equal, [{a: 'a'}])([{a: 'a'}, {c: 'c'}]))
 
             .toEqual([{c: 'c'}]))
 })
