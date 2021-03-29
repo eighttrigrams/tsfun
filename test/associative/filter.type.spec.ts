@@ -2,7 +2,7 @@ import {Filter, filter} from '../../src/associative'
 
 
 /**
- * tsfun | Filter1
+ * tsfun | Filter
  */
 describe('Filter', () => {
 

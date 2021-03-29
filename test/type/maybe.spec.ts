@@ -1,5 +1,9 @@
-import {Just, Maybe, Nothing} from '../../src/type';
+import {Just, Maybe, Nothing} from '../../src/type'
 
+
+/**
+ * tsfun | Maybe | Just | Nothing
+ */
 describe('Maybe', () => {
 
     it('Maybe', () => {
@@ -11,5 +15,5 @@ describe('Maybe', () => {
 
         const j1: Just<number> = [1];
         const n1: Nothing = [];
-    });
-});
+    })
+})

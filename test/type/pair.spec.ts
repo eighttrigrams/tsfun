@@ -1,5 +1,9 @@
-import {Pair} from '../../src/type';
+import {Pair} from '../../src/type'
 
+
+/**
+ * tsfun | Pair
+ */
 describe('Pair', () => {
 
     it('typing', () => {
@@ -11,5 +15,5 @@ describe('Pair', () => {
 
         const p2: Pair = ['3', 3];
         const p3: Pair<string> = ['3', '5'];
-    });
-});
+    })
+})

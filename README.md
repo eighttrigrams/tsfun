@@ -216,7 +216,7 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 * [Failure](test/type/either.spec.ts)
 * [Map](test/type/map.spec.ts)
 * [Associative](test/type/associative.spec.ts)
-* [Mapping](test/type/predicate.spec.ts)
+* [Mapping](test/type/mapping.spec.ts)
 * [Predicate](test/type/predicate.spec.ts)
 * [Effect](test/type/effect.spec.ts)
 * [Filter](test/associative/filter.type.spec.ts)

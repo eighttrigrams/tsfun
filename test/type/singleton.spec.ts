@@ -1,5 +1,9 @@
-import {Singleton} from '../../src/type';
+import {Singleton} from '../../src/type'
 
+
+/**
+ * tsfun | Singleton
+ */
 describe('Singleton', () => {
 
     it('Singleton', () => {
@@ -7,5 +11,5 @@ describe('Singleton', () => {
         const s1: Singleton<number> = [2];
         // wrong - const s2: Singleton<number> = [3, 4];
         // wrong - const s2: Singleton<number> = [];
-    });
-});
+    })
+})
