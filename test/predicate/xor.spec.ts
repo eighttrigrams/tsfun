@@ -1,11 +1,9 @@
-import {xor} from '../../src/predicate';
-import {is, isnt} from '../../src/comparator';
+import {xor} from '../../src/predicate'
+import {is, isnt} from '../../src/comparator'
 
 
 /**
  * tsfun | xor
- *
- * @author Daniel de Oliveira
  */
 describe('xor', () => {
 
@@ -22,7 +20,7 @@ describe('xor', () => {
 
             xor(is(3), isnt(4))(4)
 
-        ).toBe(false));
+        ).toBe(false))
 
 
     it('multiargs true', () =>
@@ -30,7 +28,7 @@ describe('xor', () => {
 
             xor(is(3), isnt(4), isnt(5))(4)
 
-        ).toBe(true));
+        ).toBe(true))
 
 
     it('multiargs false', () =>
@@ -38,5 +36,5 @@ describe('xor', () => {
 
             xor(is(4), is(4), is(3))(4)
 
-        ).toBe(false));
-});
+        ).toBe(false))
+})
