@@ -1,10 +1,9 @@
-import {value} from '../../src/tuple';
-import {Singleton} from '../../src/type';
+import {value} from '../../src/tuple'
+import {Singleton} from '../../src/type'
+
 
 /**
  * tsfun | value
- *
- * @author Daniel de Oliveira
  */
 describe('value', () => {
 
@@ -13,5 +12,5 @@ describe('value', () => {
 
             value([4] as Singleton<number>)
 
-        ).toEqual(4));
-});
+        ).toEqual(4))
+})
