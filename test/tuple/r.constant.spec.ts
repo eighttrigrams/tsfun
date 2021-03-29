@@ -1,23 +1,23 @@
-import {L, R} from '../../src/tuple';
-import {is, on} from '../../src/comparator';
+import {L, R} from '../../src/tuple'
+import {is, on} from '../../src/comparator'
 
 /**
- * tsfun | RIGHT
+ * tsfun | R
  */
-describe('RIGHT', () => {
+describe('R', () => {
 
-    it('RIGHT', () =>
+    it('R', () =>
         expect(
 
             on(R, is(4))([1, 4])
 
-        ).toEqual(true));
+        ).toEqual(true))
 
 
-    it('RIGHT - nested', () =>
+    it('R - nested', () =>
         expect(
 
             on([R, L], is(3))([1, [3, 7]])
 
-        ).toEqual(true));
-});
+        ).toEqual(true))
+})

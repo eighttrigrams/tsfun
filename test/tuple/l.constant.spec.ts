@@ -2,11 +2,11 @@ import {L, R} from '../../src/tuple'
 import {is, on} from '../../src/comparator'
 
 /**
- * tsfun | LEFT
+ * tsfun | L
  */
-describe('LEFT', () => {
+describe('L', () => {
 
-    it('LEFT', () =>
+    it('L', () =>
         expect(
 
             on(L, is(4))([4, 1])
@@ -14,7 +14,7 @@ describe('LEFT', () => {
         ).toEqual(true))
 
 
-    it('LEFT - nested', () =>
+    it('L - nested', () =>
         expect(
 
             on([L, R], is(7))([[3, 7], 14])
