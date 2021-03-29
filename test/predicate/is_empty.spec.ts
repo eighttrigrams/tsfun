@@ -1,9 +1,9 @@
+import {isEmpty} from '../../src/predicate'
+
+
 /**
- * @author Daniel de Oliveira
+ * tsfun | isEmpty
  */
-import {isEmpty} from "../../src/predicate";
-
-
 describe('isEmpty', () => {
 
     // isEmpty
@@ -13,7 +13,7 @@ describe('isEmpty', () => {
 
             isEmpty([]))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('a non-empty Array ', () =>
@@ -21,7 +21,7 @@ describe('isEmpty', () => {
 
             isEmpty([1]))
 
-            .toEqual(false));
+            .toEqual(false))
 
 
     it('an Object', () =>
@@ -29,7 +29,7 @@ describe('isEmpty', () => {
 
             isEmpty({}))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('a non-empty Object', () =>
@@ -37,7 +37,7 @@ describe('isEmpty', () => {
 
             isEmpty({a: 1}))
 
-            .toEqual(false));
+            .toEqual(false))
 
 
     it('a non-empty string', () =>
@@ -45,7 +45,7 @@ describe('isEmpty', () => {
 
             isEmpty(''))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('a string', () =>
@@ -53,7 +53,7 @@ describe('isEmpty', () => {
 
             isEmpty('1'))
 
-            .toEqual(false));
+            .toEqual(false))
 
 
     it('is undefined', () =>
@@ -61,7 +61,7 @@ describe('isEmpty', () => {
 
             () => isEmpty(undefined as any))
 
-            .toThrow());
+            .toThrow())
 
 
     it('a number', () =>
@@ -69,5 +69,5 @@ describe('isEmpty', () => {
 
             () => isEmpty(1))
 
-            .toThrow());
-});
+            .toThrow())
+})
