@@ -1,8 +1,8 @@
-import {flatMap} from '../../src/array';
+import {flatMap} from '../../src/array'
 
 
 /**
- * @author Daniel de Oliveira
+ * tsfun | flatMap
  */
 describe('flatMap', () => {
 
@@ -11,7 +11,7 @@ describe('flatMap', () => {
 
             flatMap((x: string) => x.split(' '))(['a b', 'c d']))
 
-            .toEqual(['a', 'b', 'c', 'd']));
+            .toEqual(['a', 'b', 'c', 'd']))
 
 
     it('empty', () =>
@@ -19,7 +19,7 @@ describe('flatMap', () => {
 
             flatMap((x: string) => x.split(' '))([]))
 
-            .toEqual([]));
+            .toEqual([]))
 
 
     it('one - two', () =>
@@ -27,7 +27,7 @@ describe('flatMap', () => {
 
             flatMap((x: string) => x.split(' '))(['a b']))
 
-            .toEqual(['a', 'b']));
+            .toEqual(['a', 'b']))
 
 
     it('one - one', () =>
@@ -35,7 +35,7 @@ describe('flatMap', () => {
 
             flatMap((x: string) => x.split(' '))(['a']))
 
-            .toEqual(['a']));
+            .toEqual(['a']))
 
 
     it('type A to type B', () =>
@@ -43,7 +43,7 @@ describe('flatMap', () => {
 
             flatMap((_: number) => ['l', 'l'])([3, 4]))
 
-            .toEqual(['l', 'l', 'l', 'l']));
+            .toEqual(['l', 'l', 'l', 'l']))
 
 
     it('single argument list', () =>
@@ -51,7 +51,7 @@ describe('flatMap', () => {
 
             flatMap([3, 4], _ => ['l', 'l']))
 
-            .toEqual(['l', 'l', 'l', 'l']));
+            .toEqual(['l', 'l', 'l', 'l']))
 
 
     it('single argument list - different order', () =>
@@ -59,5 +59,5 @@ describe('flatMap', () => {
 
             flatMap(_ => ['l', 'l'], [3, 4]))
 
-            .toEqual(['l', 'l', 'l', 'l']));
-});
+            .toEqual(['l', 'l', 'l', 'l']))
+})
