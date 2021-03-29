@@ -148,11 +148,8 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 ###### Defined & Empty
 
 * [isEmpty](test/predicate/is_empty.spec.ts)
-* [empty](test/predicate/empty.spec.ts)
 * [isUndefinedOrEmpty](test/predicate/is_undefined_or_empty.spec.ts)
-* [undefinedOrEmpty](test/predicate/undefined_or_empty.spec.ts)
 * [isDefined](test/predicate/is_defined.spec.ts)
-* [defined](test/predicate/defined.spec.ts)
 * [isUndefined](test/predicate/is_undefined.spec.ts)
 
 ###### Types
