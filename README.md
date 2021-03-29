@@ -140,7 +140,7 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 ###### Composition
 
 * [isNot](test/predicate/is_not.spec.ts)
-* [not](test/predicate/not.spec.ts)
+* [not](test/predicate/is_not.spec.ts)
 * [and](test/predicate/and.spec.ts)
 * [or](test/predicate/or.spec.ts)
 * [xor](test/predicate/xor.spec.ts)
