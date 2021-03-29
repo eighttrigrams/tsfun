@@ -1,5 +1,5 @@
 import {identity} from './core'
-import {Either, Fallible, Mapping, Maybe, Pair, Predicate} from './type'
+import {Array6, Either, Fallible, Mapping, Maybe, Pair, Predicate} from './type'
 import {isEither, isFailure, isFunction, isMaybe, isPair, isSuccess} from './predicate'
 import {first, rest} from './array'
 import {success, getSuccess, left, just, right} from './tuple'
@@ -8,6 +8,10 @@ import { tripleEqual } from './comparator'
 
 
 // flow can also be called 'composition'
+/**
+ * tsfun | flow
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/composition/flow.spec.ts
+ */
 export function flow<A>(t: A): A
 export function flow<A,B>(t: A, f: ((_: A) => B)): B
 export function flow<A,B,C>(t: A, f: ((_: A) => B), g: ((_: B) => C)): C
@@ -26,6 +30,10 @@ export function flow(t: any, ...transformations: Array<Function>): any {
 }
 
 
+/**
+ * tsfun | compose
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/composition/compose.spec.ts
+ */
 export function compose<A,B>(f: (_: A) => B): (_: A) => B
 export function compose<A,B,C>(f: ((_: A) => B), g: ((_: B) => C)): (_: A) => C
 export function compose<A,B,C,D>(f: ((_: A) => B), g: ((_: B) => C), h: ((_: C) => D)): (_: A) => D
@@ -43,7 +51,10 @@ export function compose(...transformations: Array<Function>) {
 }
 
 
-
+/**
+ * tsfun | curry
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/composition/curry.spec.ts
+ */
 export function curry<A,B,C>(f: (a: A, b: B) => C, b: B): (a: A) => C;
 export function curry<A,B,C,D>(f: (a: A, b: B, c: C) => D, b: B, c: C): (a: A) => D;
 export function curry<A,B,C,D,E>(f: (a: A, b: B, c: C, d: D) => E, b: B, c: C, d: D): (a: A) => E;
@@ -53,41 +64,61 @@ export function curry(f, ...args) {
 }
 
 
-
-export function cond<A, B, C>(
-    p: boolean|Predicate<A>,
-    f: Mapping<A, B>|B,
-    g: Mapping<A, C>|C
-        = identity as (_: A) => C)
-    : (v: A) => B|C {
-
-    return (v: A) => {
-
-        return (typeof p === 'function' ? p(v) : p)
-            ? typeof f === 'function' ? (f as Mapping<A,B>)(v) : f
-            : typeof g === 'function' ? (g as Mapping<A,C>)(v) : g
-    }
-}
-
-
+/**
+ * tsfun | nop
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/composition/nop.spec.ts
+ */
 export function nop() {}
 
 
+/**
+ * tsfun | val
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/composition/val.spec.ts
+ */
 export function val<A>(v: A) { return () => v as A }
 
 
+/**
+ * tsfun | throws
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/composition/throws.spec.ts
+ */
 export function throws(e1?: any) {
 
     return (e2?: any): any => { throw e1 ? e1 : e2 }
 }
 
 
+/**
+ * tsfun | collect
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/composition/collect.spec.ts
+ */
 export function collect<T>(...p: Array<T>) {
 
     return p
 }
 
 
+/**
+ * tsfun | apply
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/composition/apply.spec.ts
+ */
+ export function apply<A,B,C>(f: (a: A, b: B) => C): (args: any) => C;
+ export function apply<A,B,C,D>(f: (a: A, b: B, c: C) => D): (args: any) => D;
+ export function apply<A,B,C,D,E>(f: (a: A, b: B, c: C, d: D) => E): (args: any) => E;
+ export function apply<A,B,C,D,E,F>(f: (a: A, b: B, c: C, d: D, e: E) => F): (args: any) => F;
+ export function apply<A,B,C,D,E,F,G>(f: (a: A, b: B, c: C, d: D, e: E, f: F) => G): (args: any) => G;
+ export function apply<A,B,C,D,E,F,G,H>(f: (a: A, b: B, c: C, d: D, e: E, f: F, g: G) => H): (args: any) => G;
+ export function apply<A,B,C,D,E,F,G,H,I>(f: (a: A, b: B, c: C, d: D, e: E, f: F, g: G, ...hs: any) => I): (args: any) => I;
+ export function apply(f: any) {
+
+     return (args: any[]) => f.apply(undefined, args)
+ }
+
+
+/**
+ * tsfun | mcompose
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/composition/mcompose.spec.ts
+ */
 export function mcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Either<any, T>>)
     : (seed: Either<any, T>) => Either<any, R>
 export function mcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Maybe<T>>)
@@ -110,15 +141,10 @@ export function mcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Either<an
 }
 
 
-export function convert<T>(what: any, basedOn: Fallible<T>): any {
-
-    if (!isEither(basedOn) && !isMaybe(basedOn)) throw 'illegal argument - basedOn is neither Maybe nor Either';
-    return isEither(basedOn)
-        ? success(what)
-        : just(what)
-}
-
-
+/**
+ * tsfun | mmatch
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/composition/mmatch.spec.ts
+ */
 export function mmatch<T, R>(onSuccess: (x: T) => R,
                              onFailure: () => R) {
 
@@ -130,14 +156,30 @@ export function mmatch<T, R>(onSuccess: (x: T) => R,
 }
 
 
-export type Array6<T> = {
-    0: T
-    1: T,
-    2: T,
-    3: T,
-    4: T,
-    5: T,
-} & Array<T>
+/**
+ * tsfun | cond
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/composition/cond.spec.ts
+ */
+ export function cond<A, B, C>(
+    p: boolean|Predicate<A>,
+    f: Mapping<A, B>|B,
+    g: Mapping<A, C>|C
+        = identity as (_: A) => C)
+    : (v: A) => B|C {
+
+    return (v: A) => {
+
+        return (typeof p === 'function' ? p(v) : p)
+            ? typeof f === 'function' ? (f as Mapping<A,B>)(v) : f
+            : typeof g === 'function' ? (g as Mapping<A,C>)(v) : g
+    }
+}
+
+
+/**
+ * tsfun | conds
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/composition/conds.spec.ts
+ */
 export function conds<A,B>(...cs: Array6<Pair<Predicate<A>, Mapping<A,B>>>): (what: A) => B
 export function conds<A,B>(...cs: Array6<Pair<Predicate<A>,B>>): (what: A) => B
 export function conds<A,B>(...cs: Array6<Pair<A,Mapping<A,B>>>): (what: A) => B
@@ -168,6 +210,9 @@ export function condsBy(comp) {
 
     return ((...args) => $conds(comp, ...args)) as typeof conds;
 }
+
+
+export const otherwise: any = val(true)
 
 
 function $conds(comp, ...args) {
@@ -201,17 +246,10 @@ function $conds(comp, ...args) {
 }
 
 
-export const otherwise: any = val(true)
+export function convert<T>(what: any, basedOn: Fallible<T>): any {
 
-
-export function apply<A,B,C>(f: (a: A, b: B) => C): (args: any) => C;
-export function apply<A,B,C,D>(f: (a: A, b: B, c: C) => D): (args: any) => D;
-export function apply<A,B,C,D,E>(f: (a: A, b: B, c: C, d: D) => E): (args: any) => E;
-export function apply<A,B,C,D,E,F>(f: (a: A, b: B, c: C, d: D, e: E) => F): (args: any) => F;
-export function apply<A,B,C,D,E,F,G>(f: (a: A, b: B, c: C, d: D, e: E, f: F) => G): (args: any) => G;
-export function apply<A,B,C,D,E,F,G,H>(f: (a: A, b: B, c: C, d: D, e: E, f: F, g: G) => H): (args: any) => G;
-export function apply<A,B,C,D,E,F,G,H,I>(f: (a: A, b: B, c: C, d: D, e: E, f: F, g: G, ...hs: any) => I): (args: any) => I;
-export function apply(f: any) {
-
-    return (args: any[]) => f.apply(undefined, args)
+    if (!isEither(basedOn) && !isMaybe(basedOn)) throw 'illegal argument - basedOn is neither Maybe nor Either';
+    return isEither(basedOn)
+        ? success(what)
+        : just(what)
 }

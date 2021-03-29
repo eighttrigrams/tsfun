@@ -10,6 +10,15 @@ export type Array2<T> = {
     1: T
 } & Array<T>
 
+export type Array6<T> = {
+    0: T
+    1: T,
+    2: T,
+    3: T,
+    4: T,
+    5: T,
+} & Array<T>
+
 
 export type Expect<T, E> = T extends E ? (E extends T ? true : never) : never
 
