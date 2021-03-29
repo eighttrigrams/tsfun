@@ -69,7 +69,7 @@ Maps (JavaScript-Objects).
 * [map](test/associative/map.spec.ts)
 * [reduce](test/associative/reduce.spec.ts)
 * [filter](test/associative/filter.spec.ts)
-* [remove](test/array/remove.spec.ts)
+* [remove](test/associative/remove.spec.ts)
 * [forEach](test/associative/for_each.spec.ts)
 * [update_a](test/associative/update_a.spec.ts)
 
