@@ -1,6 +1,9 @@
-import {isDefined} from "../../src/predicate";
+import {defined, isDefined} from '../../src/predicate'
 
 
+/**
+ * tsfun | isDefined | defined
+ */
 describe('isDefined', () => {
 
     it('isDefined',() =>
@@ -8,5 +11,12 @@ describe('isDefined', () => {
 
             isDefined(true))
 
-            .toEqual(true));
-});
+            .toEqual(true))
+
+    it('defined',() =>
+        expect(
+
+            defined(true))
+
+            .toEqual(true))
+})

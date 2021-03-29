@@ -18,7 +18,7 @@ export function isDefined($) {
 
 /**
  * tsfun | defined
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/defined.spec.ts
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_defined.spec.ts
  */
 export function defined($) {
 
@@ -28,7 +28,7 @@ export function defined($) {
 
 /**
  * tsfun | not
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/not.spec.ts
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_not.spec.ts
  */
 export function not<T>(p: Predicate<T>) {
 
@@ -58,7 +58,7 @@ export function isUndefined($) {
 
 /**
  * tsfun | undefinedOrEmpty
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/undefined_or_empty.spec.ts
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_undefined_or_empty.spec.ts
  */
 export function undefinedOrEmpty($) {
 

@@ -1,10 +1,9 @@
-import {isUndefinedOrEmpty} from '../../src/predicate'
+import {isUndefinedOrEmpty, undefinedOrEmpty} from '../../src/predicate'
 
 /**
- * tsfun | isUndefinedOrEmpty
+ * tsfun | isUndefinedOrEmpty | undefinedOrEmpty
  */
 describe('isUndefinedOrEmpty', () => {
-
 
     it('is a non-empty Object', () =>
         expect(
@@ -33,7 +32,7 @@ describe('isUndefinedOrEmpty', () => {
     it('is an Array ', () =>
         expect(
 
-            isUndefinedOrEmpty([]))
+            undefinedOrEmpty([]))
 
             .toEqual(true))
 
@@ -41,14 +40,14 @@ describe('isUndefinedOrEmpty', () => {
     it('is undefined ', () =>
         expect(
 
-            isUndefinedOrEmpty(undefined as any))
+            undefinedOrEmpty(undefined as any))
 
             .toEqual(true))
 
     it('is a string non-empty string', () =>
         expect(
 
-            isUndefinedOrEmpty('a'))
+            undefinedOrEmpty('a'))
 
             .toEqual(false))
 

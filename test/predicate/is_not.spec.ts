@@ -1,5 +1,5 @@
-import {isNot} from "../../src/predicate";
-import {tripleEqual} from "../../src/comparator";
+import {isNot, not} from '../../src/predicate'
+import {tripleEqual} from '../../src/comparator'
 
 
 describe('isNot', () => {
@@ -10,5 +10,12 @@ describe('isNot', () => {
 
             isNot(tripleEqual('a'))('a'))
 
-            .toEqual(false));
-});
+            .toEqual(false))
+
+    it('not', () =>
+        expect(
+
+            not(tripleEqual('a'))('a'))
+
+            .toEqual(false))
+})
