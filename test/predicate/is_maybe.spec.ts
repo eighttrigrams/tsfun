@@ -1,5 +1,9 @@
-import {isMaybe} from '../../src/predicate';
+import {isMaybe} from '../../src/predicate'
 
+
+/**
+ * tsfun | isMaybe
+ */
 describe('isMaybe', () => {
 
     it('success', () =>
@@ -8,7 +12,7 @@ describe('isMaybe', () => {
             isMaybe([3])
 
         ).toEqual(true)
-    );
+    )
 
 
     it('failure', () =>
@@ -17,7 +21,7 @@ describe('isMaybe', () => {
             isMaybe([])
 
         ).toEqual(true)
-    );
+    )
 
 
     it('too long', () =>
@@ -26,5 +30,5 @@ describe('isMaybe', () => {
             isMaybe([1, 2])
 
         ).toEqual(false)
-    );
-});
+    )
+})

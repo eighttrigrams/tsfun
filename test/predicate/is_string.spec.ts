@@ -1,6 +1,9 @@
-import {isString} from '../../src/predicate';
+import {isString} from '../../src/predicate'
 
 
+/**
+ * tsfun | isString
+ */
 describe('isString', () => {
 
     it('true',() =>
@@ -8,7 +11,7 @@ describe('isString', () => {
 
             isString('abc'))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('false',() =>
@@ -16,5 +19,5 @@ describe('isString', () => {
 
             isString(3))
 
-            .toEqual(false));
-});
+            .toEqual(false))
+})

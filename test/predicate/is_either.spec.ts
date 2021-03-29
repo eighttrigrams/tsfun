@@ -1,9 +1,7 @@
-import {isEither} from '../../src/predicate';
+import {isEither} from '../../src/predicate'
 
 /**
  * tsfun | isEither
- *
- * @author Daniel de Oliveira
  */
 describe('isEither', () => {
 
@@ -13,7 +11,7 @@ describe('isEither', () => {
            isEither([undefined, 3])
 
        ).toEqual(true)
-   );
+   )
 
 
     it('failure', () =>
@@ -22,7 +20,7 @@ describe('isEither', () => {
             isEither([3, undefined])
 
         ).toEqual(true)
-    );
+    )
 
 
     it('2 undefined', () =>
@@ -31,7 +29,7 @@ describe('isEither', () => {
             isEither([undefined, undefined])
 
         ).toEqual(false)
-    );
+    )
 
 
     it('2 defined', () =>
@@ -41,5 +39,5 @@ describe('isEither', () => {
             isEither([3, 3])
 
         ).toEqual(false)
-    );
-});
+    )
+})

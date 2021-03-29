@@ -1,10 +1,8 @@
-import {isSingleton} from '../../src/predicate';
+import {isSingleton} from '../../src/predicate'
 
 
 /**
  * tsfun | isSingleton
- *
- * @author Daniel de Oliveira
  */
 describe('isSingleton', () => {
 
@@ -14,7 +12,7 @@ describe('isSingleton', () => {
             isSingleton(['1'])
 
         ).toEqual(true)
-    );
+    )
 
 
     it('true', () =>
@@ -23,5 +21,5 @@ describe('isSingleton', () => {
             isSingleton(['1', 2])
 
         ).toEqual(false)
-    );
-});
+    )
+})

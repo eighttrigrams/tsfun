@@ -1,5 +1,9 @@
-import {isFailure} from '../../src/predicate';
+import {isFailure} from '../../src/predicate'
 
+
+/**
+ * tsfun | isFailure
+ */
 describe('isFailure', () => {
 
     it('isFailure - Maybe - false', () =>
@@ -9,7 +13,7 @@ describe('isFailure', () => {
             isFailure([1])
 
         ).toEqual(false)
-    );
+    )
 
 
     it('isFailure - Maybe - true', () =>
@@ -19,7 +23,7 @@ describe('isFailure', () => {
             isFailure([])
 
         ).toEqual(true)
-    );
+    )
 
 
     it('isFailure - Either - false', () =>
@@ -29,7 +33,7 @@ describe('isFailure', () => {
             isFailure([undefined, 1])
 
         ).toEqual(false)
-    );
+    )
 
 
     it('isFailure - Either - true', () =>
@@ -39,5 +43,5 @@ describe('isFailure', () => {
             isFailure([1, undefined])
 
         ).toEqual(true)
-    );
-});
+    )
+})

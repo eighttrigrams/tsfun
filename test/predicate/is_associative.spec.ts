@@ -1,5 +1,9 @@
-import {isAssociative, isObject} from '../../src/predicate';
+import {isAssociative} from '../../src/predicate'
 
+
+/**
+ * tsfun | isAssociative
+ */
 describe('isAssociative', () => {
 
     it('object',() =>
@@ -7,7 +11,7 @@ describe('isAssociative', () => {
 
             isAssociative({}))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('array',() =>
@@ -15,7 +19,7 @@ describe('isAssociative', () => {
 
             isAssociative([]))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('null',() =>
@@ -23,5 +27,5 @@ describe('isAssociative', () => {
 
             isAssociative(null))
 
-            .toEqual(false));
-});
+            .toEqual(false))
+})

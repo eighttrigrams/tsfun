@@ -1,5 +1,9 @@
-import {isPair} from '../../src/predicate';
+import {isPair} from '../../src/predicate'
 
+
+/**
+ * tsfun | isPair
+ */
 describe('isPair', () => {
 
     it('success', () =>
@@ -8,7 +12,7 @@ describe('isPair', () => {
             isPair([3, 3])
 
         ).toEqual(true)
-    );
+    )
 
 
     it('too short', () =>
@@ -17,7 +21,7 @@ describe('isPair', () => {
             isPair([])
 
         ).toEqual(false)
-    );
+    )
 
 
     it('too long', () =>
@@ -26,5 +30,5 @@ describe('isPair', () => {
             isPair([1, 2, 3])
 
         ).toEqual(false)
-    );
-});
+    )
+})

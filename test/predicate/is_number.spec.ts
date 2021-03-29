@@ -1,6 +1,9 @@
-import {isNumber} from '../../src/predicate';
+import {isNumber} from '../../src/predicate'
 
 
+/**
+ * tsfun | isNumber
+ */
 describe('isNumber', () => {
 
     it('true',() =>
@@ -8,7 +11,7 @@ describe('isNumber', () => {
 
             isNumber(4))
 
-            .toEqual(true));
+            .toEqual(true))
 
 
     it('false',() =>
@@ -16,5 +19,5 @@ describe('isNumber', () => {
 
             isNumber('3'))
 
-            .toEqual(false));
-});
+            .toEqual(false))
+})
