@@ -1,9 +1,8 @@
-import {right} from '../../src/tuple';
+import {right} from '../../src/tuple'
+
 
 /**
  * tsfun | right
- *
- * @author Daniel de Oliveira
  */
 describe('right', () => {
 
@@ -12,7 +11,7 @@ describe('right', () => {
 
             right([4, 5])
 
-        ).toEqual(5));
+        ).toEqual(5))
 
 
     it('undefined', () =>
@@ -20,5 +19,5 @@ describe('right', () => {
 
             () => right([] as any)
 
-        ).toThrow());
-});
+        ).toThrow())
+})
