@@ -204,6 +204,14 @@ export function map<A, B>(first: any, ...rest: any[]): any {
 }
 
 
+class Stop {
+    public value;
+    constructor(value) { this.value = value }
+}
+
+export function stop(value) { throw new Stop(value) }
+
+
 /**
  * tsfun | reduce
  *
@@ -248,8 +256,13 @@ export function reduce<A, B>(f: (b: B, a: A, k: string) => B, init: B|(() => B))
         if (!isAssociative(ts)) throwIllegalArgs('reduce', 'Associative', ts)
 
         let acc = isFunction(init) ? init() : init
-        for (let [k,v] of keysValues(ts)) {
-            acc = f(acc, v, k)
+        try {
+            for (let [k,v] of keysValues(ts)) {
+                acc = f(acc, v, k)
+            }
+        } catch (e) {
+            if (e instanceof Stop) acc = e.value
+            else throw e
         }
         return acc
     }

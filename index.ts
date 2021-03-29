@@ -170,6 +170,7 @@ export {
     reduce,
     Filter,
     count,
+    stop,
     size,
     forEach,
     prune,

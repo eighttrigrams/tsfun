@@ -1,5 +1,5 @@
 import {Map} from '../../src/type'
-import { map, reduce } from '../../src/associative'
+import { map, reduce, stop } from '../../src/associative'
 
 
 /**
@@ -69,4 +69,17 @@ describe('reduce', () => {
         expect($3[0]).not.toBe($3[1])
         // but which does not work for Map, obviously
     })
+
+
+    it('Stop', () =>
+        expect(
+
+            reduce((b: number, a: number) => {
+
+                if (b > 1) stop(10)
+                return a + b
+
+            }, 0)({a: 1, b: 5, c: 6}))
+
+            .toBe(10))
 })
