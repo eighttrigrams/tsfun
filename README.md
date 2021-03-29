@@ -38,7 +38,7 @@ import {on, equal, take, update, flow} from 'tsfun'
 * [drop](test/array/drop.spec.ts)
 * [takeRight](test/array/take_right.spec.ts)
 * [dropRight](test/array/drop_right.spec.ts)
-* [dropRightWhile](array/list/drop_right_while.spec.ts)
+* [dropRightWhile](array/array/drop_right_while.spec.ts)
 * [takeWhile](test/array/take_while.spec.ts)
 * [takeRightWhile](test/array/take_right_while.spec.ts)
 * [dropWhile](test/array/drop_while.spec.ts)
