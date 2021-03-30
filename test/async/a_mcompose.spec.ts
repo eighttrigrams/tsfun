@@ -1,7 +1,7 @@
 import {aFlow, aMap, aMcompose} from '../../src/async'
 import {Either, Mapping, Maybe} from '../../src/type'
 import {success, left, right, L, R} from '../../src/tuple'
-import {map, update_a} from '../../src/associative'
+import {map, assoc} from '../../src/associative'
 import {separate} from '../../src/array'
 import {isSuccess} from '../../src/predicate'
 
@@ -105,8 +105,8 @@ describe('aMcompose', () => {
                 map(success),
                 aMap(aMcompose(safedivE(3), decE, squareE)),
                 separate(isSuccess),
-                update_a(L, map(right) as Mapping),
-                update_a(R, map(left) as Mapping))
+                assoc(L, map(right) as Mapping),
+                assoc(R, map(left) as Mapping))
 
         ).toEqual([
             [4],

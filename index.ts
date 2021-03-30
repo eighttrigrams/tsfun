@@ -160,7 +160,7 @@ export {
 
 
 export {
-    update_a,
+    assoc,
     filter,
     remove,
     lookup,

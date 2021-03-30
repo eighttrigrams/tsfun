@@ -13,21 +13,21 @@ export type Filter<T = any> = Mapping<Associative<T>>
 
 
 /**
- * tsfun | update_a
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/update_a.spec.ts
+ * tsfun | assoc
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/assoc.spec.ts
  */
-export function update_a<T,V>(key: string, v: Mapping<T,V>, m: Map<T>): Map<T|V>
+export function assoc<T,V>(key: string, v: Mapping<T,V>, m: Map<T>): Map<T|V>
 // export function update_a<T,V,K>(key: string, v: Mapping<K,V>, m: Map<T>): Map<void> // TODO implement
-export function update_a<T,V>(key: string, v: V, m: Map<T>): Map<T|V>
-export function update_a<T,V>(key: number, v: Mapping<T,V>, m: Array<T>): Array<T|V>
-export function update_a<T,V>(key: number, v: V, m: Array<T>): Array<T|V>
+export function assoc<T,V>(key: string, v: V, m: Map<T>): Map<T|V>
+export function assoc<T,V>(key: number, v: Mapping<T,V>, m: Array<T>): Array<T|V>
+export function assoc<T,V>(key: number, v: V, m: Array<T>): Array<T|V>
 
-export function update_a<A,B>(key: string, f: Mapping<A,B>): (m: Map<A>) => Map<A|B>
-export function update_a<B>(key: string, f: B): <A>(m: Map<A>) => Map<A|B>
-export function update_a<A,B>(key: number, f: Mapping<A,B>): (m: Array<A>) => Array<A|B>
-export function update_a<B>(key: number, f: B): <A>(m: Array<A>) => Array<A|B>
+export function assoc<A,B>(key: string, f: Mapping<A,B>): (m: Map<A>) => Map<A|B>
+export function assoc<B>(key: string, f: B): <A>(m: Map<A>) => Map<A|B>
+export function assoc<A,B>(key: number, f: Mapping<A,B>): (m: Array<A>) => Array<A|B>
+export function assoc<B>(key: number, f: B): <A>(m: Array<A>) => Array<A|B>
 
-export function update_a(key, arg, arg2?): any {
+export function assoc(key, arg, arg2?): any {
 
     const $ = f => asc => {
 

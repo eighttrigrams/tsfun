@@ -71,7 +71,7 @@ Maps (JavaScript-Objects).
 * [filter](test/associative/filter.spec.ts)
 * [remove](test/associative/remove.spec.ts)
 * [forEach](test/associative/for_each.spec.ts)
-* [update_a](test/associative/update_a.spec.ts)
+* [assoc](test/associative/assoc.spec.ts)
 
 ### Composition
 
