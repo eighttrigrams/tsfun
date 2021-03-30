@@ -9,6 +9,9 @@ import {rest} from './array'
 
 /**
  * tsfun | clone
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/clone.spec.ts
  */
 export function clone(struct: boolean): boolean
@@ -30,6 +33,9 @@ export function clone(struct) {
 
 /**
  * tsfun | to
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/to.spec.ts
  */
 export function to<T = any>(path: Array2<Key>|Key, alternative?: any): {
@@ -52,6 +58,9 @@ export function to(path: Path, alternative?) {
 
 /**
  * tsfun | update
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/update.spec.ts
  */
 export function update<T, K extends keyof T>(k: K, f: (val: T[K])=>T[K], o: T): T
