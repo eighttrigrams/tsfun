@@ -25,25 +25,39 @@ describe('clone', () => {
 
     it('clone string', () => {
 
-        const k = clone('1', fail)
+        const k = clone('1')
         expect(k).toBe('1')
     })
 
 
     it('clone boolean', () => {
 
-        const t = clone(true, fail)
+        const t = clone(true)
         expect(t).toBe(true)
 
-        const f = clone(false, fail)
+        const f = clone(false)
         expect(f).toBe(false)
     })
 
 
     it('clone number', () => {
 
-        const k = clone(1, fail)
+        const k = clone(1)
         expect(k).toBe(1)
+    })
+
+
+    it('clone undefined', () => {
+
+        const k = clone(undefined)
+        expect(k).toBe(undefined)
+    })
+
+
+    it('clone null', () => {
+
+        const k = clone(null)
+        expect(k).toBe(null)
     })
 
 
@@ -115,16 +129,14 @@ describe('clone', () => {
     })
 
 
-    it('clone date with helper', () => {
+    it('clone function', () => {
 
-        const d = new Date()
+        expect(() => clone(() => {})).toThrow()
+    })
 
-        const k = clone([d], (item: any) => {
-            expect(item).toBe(d)
-            return new Date(d)
-        })
-        expect(k[0].toString()).toEqual(d.toString())
-        expect(k[0] instanceof Date).toBe(true)
-        expect(k[0]).not.toBe(d)
+
+    it('clone class instance', () => {
+
+        expect(() => clone(new Date())).toThrow()
     })
 })

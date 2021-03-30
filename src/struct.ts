@@ -1,6 +1,6 @@
-import {Array2, Mapping, Path, Map, Array1, Key} from './type'
-import {isArray, isArray2, isAssociative, isBoolean, isFunction, isKey, isNumber, isObject, isString} from './predicate'
-import {reverseUncurry2, throwIllegalArgs} from './core'
+import {Array2, Mapping, Path, Map, Key} from './type'
+import {isArray, isArray2, isAssociative, isFunction, isKey, isNumber, isObject, isPrimitive, isString} from './predicate'
+import {throwIllegalArgs} from './core'
 import {copy} from './associative'
 import {rest} from './array'
 
@@ -11,39 +11,32 @@ import {rest} from './array'
  * tsfun | clone
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/clone.spec.ts
  */
-export function clone<T>(struct: boolean, f?: Function): boolean
-export function clone<T>(struct: string, f?: Function): string
-export function clone<T>(struct: number, f?: Function): number
-export function clone<T>(struct: undefined, f?: Function): undefined
-export function clone<T>(struct: T, f?: Function): T
-export function clone<T>(struct: T|undefined|number|string|boolean, f?: Function): T|undefined|null|number|string|boolean {
+export function clone<T>(struct: boolean): boolean
+export function clone<T>(struct: string): string
+export function clone<T>(struct: number): number
+export function clone<T>(struct: undefined): undefined
+export function clone<T>(struct: T): T
+export function clone<T>(struct: T|undefined|number|string|boolean): T|undefined|null|number|string|boolean {
 
-    if (struct === undefined) return undefined
-    if (struct === null) return null
-    if (isBoolean(struct)) return struct as boolean
-    if (isString(struct)) return struct as string
-    if (isNumber(struct)) return struct as number
+    if (isPrimitive(struct)) return struct;
 
     if (isArray(struct)) {
 
         return (struct as unknown as Array<any>).reduce((klone: Array<any>, val: any) => {
-            klone.push(clone(val, f))
+            klone.push(clone(val))
             return klone
         }, []) as T
 
     } else if (isObject(struct)) {
 
         return (Object.keys(struct as any)).reduce((klone, k: any) =>{
-            (klone as any)[k] = clone((struct as any)[k], f)
+            (klone as any)[k] = clone((struct as any)[k])
             return klone
         }, {} as Object) as T
 
     } else {
 
-        return (f
-                ? f(struct)
-                : throwIllegalArgs('clone', 'class instances only allowed if helper provided', struct)
-            ) as T
+        throwIllegalArgs('clone', 'Primitive or Associative')
     }
 }
 
