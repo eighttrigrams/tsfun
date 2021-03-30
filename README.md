@@ -32,14 +32,14 @@ Those data structures provide the ground for a couple of abstractions.
 
 First, Arrays and Objects
 can be seen as **Associatives**, meaning they both have keys (indexes, i.e. numbers, in the Array case) as well as
-(homogeneous, i.e. same-typed) values. For Arrays we have **Array\<T>** in *TypeScript*. to encode a view on Object
+(homogeneous, i.e. same-typed) values. For Arrays we have **Array\<T>** in *TypeScript*. To encode a view on Object
 as an associative collection, *tsfun* provides **Map\<T>**, analogously. Order in **Maps** does not matter, while
-in **Arrays** it does. **Arrays** seen this way are Lists or Vectors (based on their *JavaScript*) properties.
+in **Arrays** it does. **Arrays** seen this way are taken as Lists or Vectors (based on their *JavaScript* properties).
 There is however another view on Arrays, which is the **Set**-view, where order does not matter.
 
 Second, Array and Objects can be seen as **Records**, meaning there are a couple of properties, which have
 distinctive meanings and types. Think of a Person with the name and age properties for example. Analogously,
-there exists a view on Arrays, which is the Tuple-View. Both variants are supported by *TypeScripts* type system.
+there exists a view on Arrays, which is the **Tuple**-view. Both variants are supported by *TypeScripts* type system.
 
 Third, there is Struct, which is a mutually nested structure of **Tuples** and **Records**.
 
