@@ -24,9 +24,6 @@ import {on, equal, take, update, flow} from 'tsfun'
 
 ### Array
 
-* [range](test/array/range.spec.ts)
-* [dense](test/array/dense.spec.ts)
-* [sort](test/array/sort.spec.ts)
 * [first](test/array/first.spec.ts)
 * [rest](test/array/rest.spec.ts)
 * [last](test/array/last.spec.ts)
@@ -48,6 +45,9 @@ import {on, equal, take, update, flow} from 'tsfun'
 * [append](test/array/append.spec.ts)
 * [prepend](test/array/prepend.spec.ts)
 * [zip](test/array/zip.spec.ts)
+* [range](test/array/range.spec.ts)
+* [dense](test/array/dense.spec.ts)
+* [sort](test/array/sort.spec.ts)
 
 ### Associative
 
