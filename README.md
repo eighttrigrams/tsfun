@@ -33,7 +33,7 @@ Those data structures provide the ground for a couple of abstractions.
 First, Arrays and Objects
 can be seen as Associatives, meaning they both have keys (indexes in the Array case) as well as
 (homogeneous) values. For Arrays we have `Array<T>` in *TypeScript*, to encode a view on Object
-as an associative collection, **tsfun** provides `Map<T>`, analogously.
+as an associative collection, *tsfun* provides `Map<T>`, analogously.
 
 Second, Array and Objects can be seen as Records, meaning there are a couple of properties, which have
 distinctive meanings and types. Think of a Person with the name and age properties for example. Analogously,
@@ -41,7 +41,7 @@ there exists a view on Arrays, which is the Tuple-View. Both variants are suppor
 
 Third, there is Struct, which is a mutually nested structure of Tuples and Records.
 
-**tsfun** revolves around dealing with these data structures and views on them and provide various
+*tsfun* revolves around dealing with these data structures and views on them and provide various
 functions which operate on these abstractions.
 
 Note: We ignore the JavaScript Map collection and the TypeScript Record type.
