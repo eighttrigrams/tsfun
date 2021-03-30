@@ -1,5 +1,5 @@
 import {Array2, Mapping, Path, Map, Key} from './type'
-import {isArray, isArray2, isAssociative, isFunction, isKey, isNumber, isObject, isPrimitive, isString} from './predicate'
+import {isArray, isArray2, isAssociative, isFunction, isKey, isNumber, isPrimitive, isString} from './predicate'
 import {throwIllegalArgs} from './core'
 import {copy, map} from './associative'
 import {rest} from './array'
@@ -11,11 +11,11 @@ import {rest} from './array'
  * tsfun | clone
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/clone.spec.ts
  */
-export function clone<T>(struct: boolean): boolean
-export function clone<T>(struct: string): string
-export function clone<T>(struct: number): number
-export function clone<T>(struct: undefined): undefined
-export function clone<T>(struct: null): null
+export function clone(struct: boolean): boolean
+export function clone(struct: string): string
+export function clone(struct: number): number
+export function clone(struct: undefined): undefined
+export function clone(struct: null): null
 export function clone<T>(struct: Array<T>): Array<T>
 export function clone<T>(struct: Map<T>): Map<T>
 export function clone(struct) {
