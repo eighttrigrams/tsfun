@@ -160,18 +160,6 @@ export function map<A = any, B = A>(as: Array<A>, f: (_: A, i: number) => B): Ar
 export function map<A = any, B = A>(as: {[prop: string]: A}, f: (_: A, i: string) => B): Map<B>
 export function map<A, B>(first, second?) {
 
-    const [f, list] =
-        second === undefined
-            ? !isFunction(first)
-                ? (throwIllegalArgs('map', 'Function', first), 0 as never)
-                : [first, undefined]
-            : isFunction(first) && isAssociative(second)
-            ? [first, second]
-            : isAssociative(first) && isFunction(second)
-            ? [second, first]
-            : (throwIllegalArgs('map', 'Associative and Function', JSON.stringify(first) + ':' + JSON.stringify(second)),
-                0 as never)
-
     const $ = f => as => {
         if (!isAssociative(as)) throwIllegalArgs('map', 'Associative', as)
 
@@ -185,9 +173,15 @@ export function map<A, B>(first, second?) {
         }
     }
 
-    return list !== undefined
-        ? $(f)(list)
-        : $(f)
+    return second === undefined
+        ? !isFunction(first)
+            ? throwIllegalArgs('map', 'Function', first)
+            : $(first)
+        : isFunction(first) && isAssociative(second)
+        ? $(first)(second)
+        : isAssociative(first) && isFunction(second)
+        ? $(second)(first)
+        : throwIllegalArgs('map', 'Associative and Function', JSON.stringify(first) + ':' + JSON.stringify(second))
 }
 
 
