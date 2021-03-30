@@ -97,44 +97,23 @@ export function update<T>(path: Array2<Key>, f_or_v: any, s: T): T
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/update.spec.ts
  */
 export function update<V>(path: Path, v: any): <T extends Array<any>|Map<any>>(o: T) => T
-export function update(path, update_fun, o?) {
+export function update(path, update_fun, s?) {
 
-    const $ = struct => {
+    const $ = s => {
+        if (!isAssociative(s)) throwIllegalArgs('update', 'Struct', s)
 
-        if (isString(path) || isNumber(path)) {
-
-            return $update0(path, update_fun, struct)
-
-        } else if (isArray(path)) {
-
-            if (path.length < 2) throw 'illegal argument - path must be at least be of length 2'
-            return $update1(clone(path), struct, update_fun, true)
-
-        } else {
-
-            throw 'illegal argument - must be one of Array<string|number>, string, number'
-        }
+        return isString(path) || isNumber(path)
+            ? $update0(path, update_fun, s)
+            : $update1(clone(path), s, update_fun, true)
     }
 
-    return o !== undefined
-        ? $(o)
-        : $
-}
-
-
-export function $detach<T>(key: any, as?: any): any {
-
-    const $ = struct => {
-
-        const newStruct = copy(struct as any)
-        if (isArray(struct)) (newStruct as any).splice(key, 1)
-        else delete (newStruct as any)[key]
-        return newStruct
-    }
-
-    return as === undefined
-        ? $
-        : $(as)
+    return (!isString(path)&&!isNumber(path)&&!isArray2(path))
+        ? throwIllegalArgs('update', 'string or number or array with min length 2', path)
+        : s === undefined
+            ? $
+            : !isAssociative(s)
+                ? throwIllegalArgs('update', 'Struct', s)
+                : $(s)
 }
 
 
@@ -260,4 +239,20 @@ export function $getElForPathIn(object: any, path: Array2<string|number>): any {
                 : undefined
 
     })(object, path)
+}
+
+
+export function $detach<T>(key: any, as?: any): any {
+
+    const $ = struct => {
+
+        const newStruct = copy(struct as any)
+        if (isArray(struct)) (newStruct as any).splice(key, 1)
+        else delete (newStruct as any)[key]
+        return newStruct
+    }
+
+    return as === undefined
+        ? $
+        : $(as)
 }
