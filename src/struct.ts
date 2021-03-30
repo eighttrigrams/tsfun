@@ -1,4 +1,4 @@
-import {Array2, Mapping, Path, Map, Key, Associative} from './type'
+import {Array2, Path, Map, Key} from './type'
 import {isArray, isArray2, isAssociative, isFunction, isKey, isNumber, isPrimitive, isString} from './predicate'
 import {throwIllegalArgs} from './core'
 import {copy, map} from './associative'
