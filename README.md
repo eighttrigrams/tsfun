@@ -48,7 +48,7 @@ Third, there is **Struct**, which is a mutually nested structure of **Tuples** a
 functions which operate on these abstractions.
 
 Leafs in any of these structures can be of types `number`, `string`, `boolean`, `null`, `undefined`, which is denoted
-by the type `Primitive`. Class instances
+by the type **Primitive**. Class instances
 of anything other than Array or Object (which are assumed to be created via literals) are treated as illegal arguments generally.
 
 Note: We ignore the *JavaScript* `Map` collection and the *TypeScript* `Record` type.
