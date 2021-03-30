@@ -30,7 +30,7 @@ so `Date` would not count as an Object here).
 
 Those data structures provide the ground for a couple of abstractions.
 
-First, Arrays and Objects
+First, Arrays (which we assume to be non-sparse) and Objects
 can be seen as **Associatives**, meaning they both have keys (indexes, i.e. numbers, in the Array case) as well as
 (homogeneous, i.e. same-typed) values. For Arrays we have **Array\<T>** in *TypeScript*. To encode a view on Object
 as an associative collection, *tsfun* provides **Map\<T>**, analogously. Order in **Maps** does not matter, while
