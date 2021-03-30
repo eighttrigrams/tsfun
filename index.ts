@@ -43,6 +43,7 @@ export {
     isArray,
     isObject,
     isAssociative,
+    isPrimitive,
     isSingleton,
     isNumber,
     isBoolean,

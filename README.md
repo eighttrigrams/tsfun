@@ -160,6 +160,7 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 * [isNumber](test/predicate/is_number.spec.ts)
 * [isBoolean](test/predicate/is_boolean.spec.ts)
 * [isFunction](test/predicate/is_function.spec.ts)
+* [isPrimitive](test/predicate/is_primitive.spec.ts)
 * [isAssociative](test/predicate/is_associative.spec.ts)
 
 ###### Tuple

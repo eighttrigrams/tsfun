@@ -1,5 +1,5 @@
 import {Array2, Either, Mapping, Maybe, Pair, Predicate, Singleton, Path, Associative, Key} from './type'
-import {is, on} from './comparator'
+import {is} from './comparator'
 import {first} from './array'
 import {map, $reduce_a, filter} from './associative'
 import {flow} from './composition'
@@ -301,3 +301,12 @@ export function isKey(a): a is Key {
 export const flip = (v: boolean) => !v
 
 const Undefined = isUndefined
+
+
+/**
+ * tsfun | isPrimitive
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_primitive.spec.ts
+ */
+export const isPrimitive = (struct: any) =>
+    isNumber(struct)||isString(struct)||isBoolean(struct)||struct === undefined||struct === null;
+
