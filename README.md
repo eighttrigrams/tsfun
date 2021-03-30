@@ -39,9 +39,10 @@ There is however another view on Arrays, which is the **Set**-view, where order 
 
 Second, Array and Objects can be seen as **Records**, meaning there are a couple of properties, which have
 distinctive meanings and types. Think of a Person with the name and age properties for example. Analogously,
-there exists a view on Arrays, which is the **Tuple**-view. Both variants are supported by *TypeScripts* type system.
+there exists a view on Arrays, which is the **Tuple**-view, where the position in the (small) Array has a meaning.
+Both variants are supported by the *TypeScript* type system.
 
-Third, there is Struct, which is a mutually nested structure of **Tuples** and **Records**.
+Third, there is **Struct**, which is a mutually nested structure of **Tuples** and **Records**.
 
 *tsfun* revolves around dealing with these data structures and views on them and provide various
 functions which operate on these abstractions.
