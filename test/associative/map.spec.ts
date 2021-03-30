@@ -11,9 +11,9 @@ import { expectNever, expectType } from 'ts-expect'
  *
  * Allows for mapping over Arrays, Maps and Associatives
  */
-describe('map_a', () => {
+describe('map', () => {
 
-    it('map_a', () => {
+    it('map', () => {
         // map works as expected
         expect(
             map(_ => 2 * _, [3, 7])
@@ -99,7 +99,6 @@ describe('map_a', () => {
         expect(() => (map as any)([], [])).toThrow()
         expect(() => (map as any)(nop, nop)).toThrow()
         expect(() => (map as any)(nop)(nop)).toThrow()
-        expect(() => (map as any)(nop, [], [])).toThrow()
     })
 
 

@@ -158,49 +158,36 @@ export function map<A = any, B = A>(f: (_: A, i: string) => B, as: {[prop: strin
  */
 export function map<A = any, B = A>(as: Array<A>, f: (_: A, i: number) => B): Array<B>
 export function map<A = any, B = A>(as: {[prop: string]: A}, f: (_: A, i: string) => B): Map<B>
-export function map<A, B>(first: any, ...rest: any[]): any {
+export function map<A, B>(first, second?) {
 
-    if (rest.length > 1) {
-        throw 'illegal argument - in \'map\': first argument list can have at most two arguments'
-    }
-    if (rest.length === 0 && !isFunction(first)) {
-        throw 'illegal argument - in \'map\': argument must be function in one element argument list'
-    }
-    if (rest.length === 1) {
-        if (!
-            (isFunction(first) && isAssociative(rest[0])
-            || isFunction(rest[0]) && isAssociative(first)))
-        throw 'illegal argument - in \'map\': in ' +
-        'two element argument list one must be an associative collection and one a function'
-    }
+    const [f, list] =
+        second === undefined
+            ? !isFunction(first)
+                ? (throwIllegalArgs('map', 'Function', first), 0 as never)
+                : [first, undefined]
+            : isFunction(first) && isAssociative(second)
+            ? [first, second]
+            : isAssociative(first) && isFunction(second)
+            ? [second, first]
+            : (throwIllegalArgs('map', 'Associative and Function', JSON.stringify(first) + ':' + JSON.stringify(second)),
+                0 as never)
 
-    const mappingFunction = isFunction(first)
-        ? first
-        : rest[0] // typing and guards prevent this to be out of bounds
+    const $ = f => as => {
+        if (!isAssociative(as)) throwIllegalArgs('map', 'Associative', as)
 
-    const $ = (associativeColl: any): any => {
-
-        if (rest.length === 0 && !isAssociative(associativeColl)) {
-            throwIllegalArgs('map', 'associative collection', associativeColl)
-        }
-
-        if (isArray(associativeColl)) return (associativeColl as Array<A>).map(mappingFunction) as Array<B>
+        if (isArray(as)) return as.map(f)
         else {
-            const result: Map<B> = {}
-            for (let key of Object.keys(associativeColl)) {
-                result[key] = mappingFunction(associativeColl[key], key)
+            const result = {}
+            for (let key of Object.keys(as)) {
+                result[key] = f(as[key], key)
             }
             return result
         }
     }
 
-    return rest.length === 0
-        ? $
-        : $(
-            isAssociative(rest[0])
-                ? rest[0]
-                : first
-        )
+    return list !== undefined
+        ? $(f)(list)
+        : $(f)
 }
 
 

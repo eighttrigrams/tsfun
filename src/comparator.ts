@@ -150,7 +150,7 @@ const compare = (acomparator: Comparator, ocomparator: Comparator) => (l: any) =
 
         if (l instanceof Object && r instanceof Object) {
             // for example Date, Map
-            throwIllegalArgs('compare', 'not a class instance', JSON.stringify(l) + JSON.stringify(r))
+            throwIllegalArgs('compare', 'not a class instance', JSON.stringify(l) + ':' + JSON.stringify(r))
         }
 
         return typeof l === typeof r && l === r
