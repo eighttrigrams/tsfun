@@ -36,7 +36,7 @@ export function clone<T>(struct: T|undefined|number|string|boolean): T|undefined
 
     } else {
 
-        throwIllegalArgs('clone', 'Primitive or Associative')
+        throwIllegalArgs('clone', 'Primitive or Associative', struct)
     }
 }
 
