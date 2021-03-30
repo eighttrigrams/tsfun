@@ -24,18 +24,18 @@ import {on, equal, take, update, flow} from 'tsfun'
 
 *JavaScript* has two collection data structures which can be
 created using literals. Those are Arrays (`[]`) and Objects (`{}`). Objects,
-at least from the perspective taken in tsfun, do not include class instances
+at least from the perspective taken in *tsfun*, do not include class instances
 (anything else created with `new`, apart from Object and Array,
-so `Date` would not count as an Object).
+so `Date` would not count as an Object here).
 
 Those data structures provide the ground for a couple of abstractions.
 
 First, Arrays and Objects
 can be seen as **Associatives**, meaning they both have keys (indexes, i.e. numbers, in the Array case) as well as
-(homogeneous) values. For Arrays we have **Array<T>** in *TypeScript*, to encode a view on Object
-as an associative collection, *tsfun* provides **Map<T>**, analogously. Order in **Maps** does not matter, while
+(homogeneous, i.e. same-typed) values. For Arrays we have **Array\<T>** in *TypeScript*. to encode a view on Object
+as an associative collection, *tsfun* provides **Map\<T>**, analogously. Order in **Maps** does not matter, while
 in **Arrays** it does. **Arrays** seen this way are Lists or Vectors (based on their *JavaScript*) properties.
-There is however another view on Arrays, which is the **Set**-View, where order does not matter.
+There is however another view on Arrays, which is the **Set**-view, where order does not matter.
 
 Second, Array and Objects can be seen as **Records**, meaning there are a couple of properties, which have
 distinctive meanings and types. Think of a Person with the name and age properties for example. Analogously,
