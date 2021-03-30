@@ -1,6 +1,6 @@
 export {
     clone,
-    dissoc,
+    detach,
     to,
     update,
     $getElForPathIn,

@@ -142,7 +142,7 @@ export function update(path, update_fun, o?) {
 }
 
 
-export function $dissoc<T>(key: any, as?: any): any {
+export function $detach<T>(key: any, as?: any): any {
 
     const $ = struct => {
 
@@ -159,55 +159,55 @@ export function $dissoc<T>(key: any, as?: any): any {
 
 
 /**
- * tsfun | dissoc
+ * tsfun | detach
  *
  *  * ```
- * >> dissoc('a')({ a: 4 } as Map<number>)
+ * >> detach('a')({ a: 4 } as Map<number>)
  * {}                         // type: Map<number>
- * >> dissoc('a')({ a: 4 })
+ * >> detach('a')({ a: 4 })
  * {}                         // type: {a: number}
- * >> dissoc(0)([1, 2])
+ * >> detach(0)([1, 2])
  * []
- * >> dissoc(['a', 'b'])({ a: { b: {} } })
+ * >> detach(['a', 'b'])({ a: { b: {} } })
  * {a: {}}                    // type: {a: b: {}}, you may want to adjust that
  * ```
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/dissoc.spec.ts
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/detach.spec.ts
  */
-export function dissoc(k: string): <T extends Map<any>>(m: T) => T
-export function dissoc(i: number): <T  extends Array<any>>(as: T) => T
-export function dissoc(k: Path): <T extends Array<any>|Map<any>>(s: T) => T
+export function detach(k: string): <T extends Map<any>>(m: T) => T
+export function detach(i: number): <T  extends Array<any>>(as: T) => T
+export function detach(k: Path): <T extends Array<any>|Map<any>>(s: T) => T
 /**
- * tsfun | dissoc
+ * tsfun | detach
  *
  * ```
- * >> dissoc('a', { a: 4 } as Map<number>)
+ * >> detach('a', { a: 4 } as Map<number>)
  * {}                         // type: Map<number>
- * >> dissoc('a', { a: 4 })
+ * >> detach('a', { a: 4 })
  * {}                         // type: {a: number}
- * >> dissoc(0, [1, 2])
+ * >> detach(0, [1, 2])
  * []
- * >> dissoc(['a', 'b'], { a: { b: {} } })
+ * >> detach(['a', 'b'], { a: { b: {} } })
  * {a: {}}                    // type: {a: b: {}}, you may want to adjust that
  * ```
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/dissoc.spec.ts
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/detach.spec.ts
  */
-export function dissoc<T extends Map<any>>(k: string, m: T): T
-export function dissoc<T extends Array<any>>(i: number, as: T): T
-export function dissoc<T extends Map<any>|Array<any>>(k: Path, s: T): T
-export function dissoc(path, s?) {
+export function detach<T extends Map<any>>(k: string, m: T): T
+export function detach<T extends Array<any>>(i: number, as: T): T
+export function detach<T extends Map<any>|Array<any>>(k: Path, s: T): T
+export function detach(path, s?) {
 
     const $ = s => {
-        if (!isAssociative(s)) throwIllegalArgs('dissoc', 'Associative', s)
+        if (!isAssociative(s)) throwIllegalArgs('detach', 'Associative', s)
 
         if (isString(path)||isNumber(path)) {
 
-            if (isArray(s)) return $dissoc(path, s)
+            if (isArray(s)) return $detach(path, s)
 
             const c = copy(s)
             delete c[path]
@@ -217,11 +217,11 @@ export function dissoc(path, s?) {
     }
 
     return !isNumber(path)&&!isString(path)&&!isArray2(path)
-        ? throwIllegalArgs('dissoc', 'string or number or array of min length 2', path)
+        ? throwIllegalArgs('detach', 'string or number or array of min length 2', path)
         : s === undefined
             ? $
             : !isAssociative(s)
-                ? throwIllegalArgs('dissoc', 'Associative', s)
+                ? throwIllegalArgs('detach', 'Associative', s)
                 : $(s)
 }
 

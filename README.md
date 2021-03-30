@@ -99,7 +99,7 @@ as combinations, i.e. mutual nestings, thereof. Leafs can be of types
 * [to](test/struct/to.spec.ts)
 * [update](test/struct/update.spec.ts)
 * [clone](test/struct/clone.spec.ts)
-* [dissoc](test/struct/dissoc.spec.ts)
+* [detach](test/struct/detach.spec.ts)
 
 ### Set
 
