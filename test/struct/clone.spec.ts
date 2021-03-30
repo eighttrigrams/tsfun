@@ -131,12 +131,12 @@ describe('clone', () => {
 
     it('clone function', () => {
 
-        expect(() => clone(() => {})).toThrow()
+        expect(() => clone((() => {}) as any)).toThrow()
     })
 
 
     it('clone class instance', () => {
 
-        expect(() => clone(new Date())).toThrow()
+        expect(() => clone(new Date() as any)).toThrow()
     })
 })

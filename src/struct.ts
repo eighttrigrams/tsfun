@@ -1,7 +1,7 @@
 import {Array2, Mapping, Path, Map, Key} from './type'
 import {isArray, isArray2, isAssociative, isFunction, isKey, isNumber, isObject, isPrimitive, isString} from './predicate'
 import {throwIllegalArgs} from './core'
-import {copy} from './associative'
+import {copy, map} from './associative'
 import {rest} from './array'
 
 
@@ -15,29 +15,16 @@ export function clone<T>(struct: boolean): boolean
 export function clone<T>(struct: string): string
 export function clone<T>(struct: number): number
 export function clone<T>(struct: undefined): undefined
-export function clone<T>(struct: T): T
-export function clone<T>(struct: T|undefined|number|string|boolean): T|undefined|null|number|string|boolean {
+export function clone<T>(struct: null): null
+export function clone<T>(struct: Array<T>): Array<T>
+export function clone<T>(struct: Map<T>): Map<T>
+export function clone(struct) {
 
-    if (isPrimitive(struct)) return struct;
-
-    if (isArray(struct)) {
-
-        return (struct as unknown as Array<any>).reduce((klone: Array<any>, val: any) => {
-            klone.push(clone(val))
-            return klone
-        }, []) as T
-
-    } else if (isObject(struct)) {
-
-        return (Object.keys(struct as any)).reduce((klone, k: any) =>{
-            (klone as any)[k] = clone((struct as any)[k])
-            return klone
-        }, {} as Object) as T
-
-    } else {
-
-        throwIllegalArgs('clone', 'Primitive or Associative', struct)
-    }
+    return isPrimitive(struct)
+        ? struct
+        : isAssociative(struct)
+        ? map(struct, clone)
+        : throwIllegalArgs('clone', 'Primitive or Associative', struct)
 }
 
 
