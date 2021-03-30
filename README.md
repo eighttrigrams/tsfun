@@ -24,7 +24,7 @@ import {on, equal, take, update, flow} from 'tsfun'
 
 *JavaScript* has two collection data structures which can be
 created using literals. Those are Arrays (`[]`) and Objects (`{}`). Objects,
-at least from the perspective taken in *tsfun*, do not include class instances
+at least from the perspective taken in **tsfun**, do not include class instances
 (anything else created with `new`, apart from Object and Array,
 so `Date` would not count as an Object here).
 
