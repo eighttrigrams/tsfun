@@ -1,4 +1,4 @@
-import {Array2, Mapping, Path, Map, Key} from './type'
+import {Array2, Mapping, Path, Map, Key, Associative} from './type'
 import {isArray, isArray2, isAssociative, isFunction, isKey, isNumber, isPrimitive, isString} from './predicate'
 import {throwIllegalArgs} from './core'
 import {copy, map} from './associative'
@@ -158,40 +158,71 @@ export function $dissoc<T>(key: any, as?: any): any {
 }
 
 
-export function dissoc(k: string): <T>(as: Map<T>) => Map<T>
-export function dissoc(k: number): <T>(as: Array<T>) => Array<T>
-export function dissoc(path: Array<string|number>): <T extends any, V extends any>(t: T) => V
-export function dissoc(path: string|Array<string|number>): <T>(o: T) => T
-export function dissoc<T>(k: string, m: Map<T>): Map<T>
-export function dissoc<T>(k: string, as: Array<T>): Array<T>
-export function dissoc<T>(path: string|number|Array<string|number>, o: T): unknown
-export function dissoc(path, o?) {
+/**
+ * tsfun | dissoc
+ *
+ *  * ```
+ * >> dissoc('a')({ a: 4 } as Map<number>)
+ * {}                         // type: Map<number>
+ * >> dissoc('a')({ a: 4 })
+ * {}                         // type: {a: number}
+ * >> dissoc(0)([1, 2])
+ * []
+ * >> dissoc(['a', 'b'])({ a: { b: {} } })
+ * {a: {}}                    // type: {a: b: {}}, you may want to adjust that
+ * ```
+ *
+ * More examples:
+ *
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/dissoc.spec.ts
+ */
+export function dissoc(k: string): <T extends Map<any>>(m: T) => T
+export function dissoc(i: number): <T  extends Array<any>>(as: T) => T
+export function dissoc(k: Path): <T extends Array<any>|Map<any>>(s: T) => T
+/**
+ * tsfun | dissoc
+ *
+ * ```
+ * >> dissoc('a', { a: 4 } as Map<number>)
+ * {}                         // type: Map<number>
+ * >> dissoc('a', { a: 4 })
+ * {}                         // type: {a: number}
+ * >> dissoc(0, [1, 2])
+ * []
+ * >> dissoc(['a', 'b'], { a: { b: {} } })
+ * {a: {}}                    // type: {a: b: {}}, you may want to adjust that
+ * ```
+ *
+ * More examples:
+ *
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/dissoc.spec.ts
+ */
+export function dissoc<T extends Map<any>>(k: string, m: T): T
+export function dissoc<T extends Array<any>>(i: number, as: T): T
+export function dissoc<T extends Map<any>|Array<any>>(k: Path, s: T): T
+export function dissoc(path, s?) {
 
-    const $ = struct => {
+    const $ = s => {
+        if (!isAssociative(s)) throwIllegalArgs('dissoc', 'Associative', s)
 
         if (isString(path)||isNumber(path)) {
 
-            if (isArray(struct)) return $dissoc(path, struct)
+            if (isArray(s)) return $dissoc(path, s)
 
-            const c = copy(struct)
+            const c = copy(s)
             delete c[path]
             return c
 
-        } else if (isArray(path)) {
-
-            if (path.length < 1) throw 'illegal argument - array path should have min length 1'
-            return $update1(clone(path), struct, undefined, false)
-
-        } else {
-
-            throw 'illegal argument - path expected to be one of array, number, string'
-        }
-
+        } else return $update1(clone(path), s, undefined, false)
     }
 
-    return o === undefined
-        ? $
-        : $(o)
+    return !isNumber(path)&&!isString(path)&&!isArray2(path)
+        ? throwIllegalArgs('dissoc', 'string or number or array of min length 2', path)
+        : s === undefined
+            ? $
+            : !isAssociative(s)
+                ? throwIllegalArgs('dissoc', 'Associative', s)
+                : $(s)
 }
 
 

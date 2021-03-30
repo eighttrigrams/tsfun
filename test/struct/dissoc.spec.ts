@@ -1,6 +1,7 @@
 import {Map} from '../../src/type'
 import { flow } from '../../src/composition'
 import {dissoc} from '../../src/struct'
+import { expectType } from 'ts-expect'
 
 
 /**
@@ -15,34 +16,45 @@ describe('dissoc', () => {
 
     it('dissoc', () => {
 
-        const $1 /*: Map<number>*/ = dissoc('a')({ a: 4 })
+        const $1 = dissoc('a')({ a: 4 } as Map<number>)
         expect($1).toEqual({})
 
-        const $2 /*: Map<number>*/ = dissoc('a', { a: 4 })
+        const $2 = dissoc('a', { a: 4 } as Map<number>)
         expect($2).toEqual({})
 
-        const $3 /*:Array<number>*/ = dissoc(0, [1, 2])
+        const $3 = dissoc(0, [1, 2])
         expect($3).toEqual([2])
 
-        const $4 /*:Array<number>*/ = dissoc(0)([1, 2])
+        const $4 = dissoc(0)([1, 2])
         expect($4).toEqual([2])
 
 
+        const a = { a: 3, b: '4' }
 
-        // To signal a Struct, use a path
-        const a /*{ a: number, b: string }*/ = { a: 3, b: '4' }
-
-        const $5 /*: unknown*/ = dissoc(['a'])(a) // Use 1-element path to signal it's a Struct, not a Map
+        const $5: {b: string} = dissoc('a')(a)
         expect($5).toEqual({ b: '4' })
 
-        const $6 /*: unknown*/ = dissoc(['a'], a)
+        const $6: {b: string} = dissoc('a', a)
          expect($6).toEqual({ b: '4' })
 
-        const $7 /*: unknown*/ = dissoc(['a', 'b'])({ a: { b: {} } })
+
+        // Structs //
+
+        // Record
+
+        const $7: {a: {}} = dissoc(['a', 'b'])({ a: { b: {} } })
         expect($7).toEqual({ a: {}})
 
-        const $8 /*: unknown*/ = dissoc(['a', 'b'], { a: { b: {} } })
+        const $8: {a: {}} = dissoc(['a', 'b'], { a: { b: {} } })
         expect($8).toEqual({ a: {} })
+
+        // Tuple
+
+        const $9: Array<{}> = dissoc([0, 'b'])([{ b: {} }])
+        expect($9).toEqual([{}])
+
+        const $10: Array<{}> = dissoc([0, 'b'], [{ b: {} }])
+        expect($10).toEqual([{}])
     })
 
 
@@ -99,13 +111,34 @@ describe('dissoc', () => {
 
     it('typing', () => {
 
-        interface C { c: number }
+        const $1 = dissoc('a')({ a: 4 } as Map<number>)
+        expectType<Map<number>>($1)
 
-        const $1: Map<number> = dissoc('a', { a: 7, b: 7 })
-        const $2: Array<number> = dissoc(0)([2, 3])
-        const $3: Map<string|number> = dissoc('a', { a: 7, b: '4', c: 7 })
+        const $2 = dissoc('a', { a: 4 } as Map<number>)
+        expectType<Map<number>>($2)
 
-        const $4: Map<number>
+        const $3 = dissoc(0, [1, 2])
+        expectType<Array<number>>($3)
+
+        const $4 = dissoc(0)([1, 2])
+        expect($4).toEqual([2])
+        expectType<Array<number>>($4)
+
+        const a /*{ a: number, b: string }*/ = { a: 3, b: '4' }
+
+        const $5 = dissoc('a')(a)
+        expectType<{a: number, b: string}>($5)
+
+        const $6 = dissoc('a', a)
+        expectType<{a: number, b: string}>($6)
+
+        const $7 = dissoc(['a', 'b'])({ a: { b: {} } })
+        expectType<{a: {b: {}}}>($7)
+
+        const $8 = dissoc(['a', 'b'], { a: { b: {} } })
+        expectType<{a: {b: {}}}>($8)
+
+        const $9: Map<number>
             = flow({ a: 7 }
             , dissoc('a')
             )
