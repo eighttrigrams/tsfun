@@ -23,14 +23,14 @@ import {on, equal, take, update, flow} from 'tsfun'
 ## Intro
 
 *JavaScript* has two collection data structures which can be
-created using literals. Those are Arrays (`[]`) and Objects (`{}`). Objects,
-at least from the perspective taken in **tsfun**, do not include class instances
+created using literals. Those are Arrays (`[]`) and Objects (`{}`). Arrays which we assume to be non-sparse.
+Objects, at least from the perspective taken in **tsfun**, do not include class instances
 (anything else created with `new`, apart from Object and Array,
 so `Date` would not count as an Object here).
 
 Those data structures provide the ground for a couple of abstractions.
 
-First, Arrays (which we assume to be non-sparse) and Objects
+First, Arrays and Objects
 can be seen as **Associatives**, meaning they both have keys (indexes, i.e. numbers, in the Array case) as well as
 (homogeneous, i.e. same-typed) values. For Arrays we have **Array\<T>** in *TypeScript*. To encode a view on Object
 as an associative collection, *tsfun* provides **Map\<T>**, analogously. Order in **Maps** does not matter, while
