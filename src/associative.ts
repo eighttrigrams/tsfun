@@ -446,11 +446,11 @@ export function count<A>(p: Predicate<A>): {
     (os: Map<A>): number
 }
 export function count<A>(p: Predicate<A>, as: Array<A>|Map<A>|string): number
-export function count<A>(p: Predicate<A>, as?: any): any {
-    const inner = (as: Array<A>|Map<A>|string): number => size($filter(p)(as as any) as any)
+export function count<A>(p: Predicate<A>, as?) {
+    const $ = as => size($filter(p)(as))
     return as === undefined
-        ? inner
-        : inner(as)
+        ? $
+        : $(as)
 }
 
 
