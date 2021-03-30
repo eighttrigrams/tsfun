@@ -47,6 +47,9 @@ Third, there is **Struct**, which is a mutually nested structure of **Tuples** a
 *tsfun* revolves around dealing with these data structures and views on them and provide various
 functions which operate on these abstractions.
 
+Leafs in any of these structures can be of types `number`, `string`, `boolean`, `null`, `undefined`. Class instances
+of anything other than Array or Object (which are assumed to be created via literals) are treated as illegal arguments generally.
+
 Note: We ignore the *JavaScript* `Map` collection and the *TypeScript* `Record` type.
 
 ## Function reference
