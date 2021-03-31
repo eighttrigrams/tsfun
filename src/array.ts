@@ -369,15 +369,33 @@ export function distribute(arg, arg2?) {
 
 /**
  * tsfun | separate
+ *
+ * ```
+ * >> separate(lt(3))([2, 3, 1, 3, 4])
+ * [[2, 1], [3, 3, 4]]
+ * ```
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/separate.spec.ts
  */
-export function separate<A>(p: (a: A, i: number) => boolean): (as: Array<A>) => Pair<Array<A>>
-export function separate<A,B>(f: (a: A, i: number) => B): (as: Array<A>) => Array<Pair<B, Array<A>>>
-export function separate<A>(p: (a: A) => boolean): (as: Array<A>) => Pair<Array<A>>
-export function separate<A>(p: (a: A, i: number) => boolean, as: Array<A>): Pair<Array<A>>
-export function separate<A>(p: (a: A) => boolean, as: Array<A>): Pair<Array<A>>
-export function separate<A>(as: Array<A>, p: (a: A, i: number) => boolean): Pair<Array<A>>
-export function separate<A>(as: Array<A>, p: (a: A) => boolean): Pair<Array<A>>
+export function separate<A>(p: (a: A, i?: number) => boolean): (as: Array<A>) => Pair<Array<A>>
+/**
+ * tsfun | separate
+ *
+ * ```
+ * >> separate([2, 3, 1, 3, 4], lt(3))
+ * [[2, 1], [3, 3, 4]]
+ * >> separate(lt(3), [2, 3, 1, 3, 4]
+ * [[2, 1], [3, 3, 4]]
+ * ```
+ *
+ * Examples:
+ *
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/separate.spec.ts
+ */
+export function separate<A>(p: (a: A, i?: number) => boolean, as: Array<A>): Pair<Array<A>>
+export function separate<A>(as: Array<A>, p: (a: A, i?: number) => boolean): Pair<Array<A>>
 export function separate<A>(...args): any {
 
     return args.length === 1
@@ -515,6 +533,14 @@ export const takeUntil = <A>(predicate: Predicate<A>) =>
 
 /**
  * tsfun | reverse
+ *
+ * ```
+ * >> reverse([2, 7, 3])
+ * [3,7,2]
+ * ```
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/reverse.spec.ts
  */
 export function reverse<A>(as: Array<A>): Array<A> {
@@ -553,6 +579,8 @@ export function first<T>(as: Array<T>): T|undefined {
  * []
  * ```
  *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/rest.spec.ts
  */
 export function rest<T>(as: Array<T>): Array<T> {
@@ -563,6 +591,16 @@ export function rest<T>(as: Array<T>): Array<T> {
 
 /**
  * tsfun | last
+ *
+ * ```
+ * >> last([4, 5])
+ * 5
+ * >> last([])
+ * undefined
+ * ```
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/last.spec.ts
  */
 export function last<T>(as: Array<T>): T|undefined {
