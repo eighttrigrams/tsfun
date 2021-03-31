@@ -4,9 +4,9 @@
 
 ---
 
-**tsfun** aims at providing simple functional programming idioms in a way
-which fit well with the literal based data structures `[]` and `{}` while
-at the same time providing accurate typings.
+**tsfun** aims at providing simple functional programming idioms (à la *Clojure*) in a way
+which fit well with the literal based data structures `[]` and `{}` of *JavaScript* while
+at the same time providing accurate *TypeScript*-typings.
 
 ## Getting started
 
