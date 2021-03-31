@@ -32,7 +32,7 @@ export type Path = Key|Array2<Key>
 export type Effect<T = any> = (_: T) => void
 
 
-export type Map<T = any> = {[_:string]:T}
+export type Map<T> = {[_:string]: T}
 
 
 export type Mapping<A = any, B = A> = (_: A) => B

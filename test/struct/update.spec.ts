@@ -238,11 +238,11 @@ describe('update', () => {
 
     it('pitfall', () => {
 
-        const result = map(update(['a', 'b'], {}))([{a: {b: 1}}, {a: {b: 1}}]) as Array<Map>
+        const result = map(update(['a', 'b'], {}))([{a: {b: 1}}, {a: {b: 1}}]) as Array<Map<any>>
         expect(result[0].a.b).toBe(result[1].a.b) // this is possibly not be what one wants
 
         // to circumvent this, we use it like this
-        const result2 = map(update(['a', 'b'], () => ({})))([{a: {b: 1}}, {a: {b: 1}}]) as Array<Map>
+        const result2 = map(update(['a', 'b'], () => ({})))([{a: {b: 1}}, {a: {b: 1}}]) as Array<Map<any>>
         expect(result2[0].a.b).toEqual({})
         expect(result2[0].a.b).not.toBe(result[1].a.b)
     })

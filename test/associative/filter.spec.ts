@@ -81,7 +81,7 @@ describe('filter', () => {
         const result4: Array<number> = filter((a, b: number) => true, [1,2])
         const result5: Array<string> = filter((a, b: number) => true, ['a','b'])
         // const result: Array<number> = filter((a, b: string) => true, [1,2]) // WRONG
-        const result6: Map = filter((a, b: string) => true, {a: 3, b: 4})
+        const result6: Map<number> = filter((a, b: string) => true, {a: 3, b: 4})
         // const result: Map = filter((a, b: number) => true, {a: 3, b: 4}) // WRONG
     })
 
