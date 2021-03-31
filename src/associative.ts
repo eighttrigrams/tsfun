@@ -14,10 +14,21 @@ export type Filter<T = any> = Mapping<Associative<T>>
 
 /**
  * tsfun | assoc
+ *
+ * Takes an Associative and changes one element of it.
+ *
+ * ```
+ * assoc('b', (x: number) => x + 1, {a: 4, b: 7}
+ * {a: 4, b: 8}
+ * assoc('b', 8, {a: 4, b: 7}
+ * {a: 4, b: 8}
+ * ```
+ *
+ * More examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/assoc.spec.ts
  */
 export function assoc<T,V>(key: string, v: Mapping<T,V>, m: Map<T>): Map<T|V>
-// export function update_a<T,V,K>(key: string, v: Mapping<K,V>, m: Map<T>): Map<void> // TODO implement
 export function assoc<T,V>(key: string, v: V, m: Map<T>): Map<T|V>
 export function assoc<T,V>(key: number, v: Mapping<T,V>, m: Array<T>): Array<T|V>
 export function assoc<T,V>(key: number, v: V, m: Array<T>): Array<T|V>
@@ -217,21 +228,21 @@ export function stop(value) { throw new Stop(value) }
 export function reduce<A, B>(f: (b: B, a: A) => B, init: B|(() => B)): (as: Array<A>|Map<A>) => B
 export function reduce<A, B>(f: (b: B, a: A, i: number) => B, init: B|(() => B)): (as: Array<A>) => B
 export function reduce<A, B>(f: (b: B, a: A, k: string) => B, init: B|(() => B)): (as: Map<A>) => B
- /**
-  * ```
-  * >> reduce([1, 5, 6], (b: number, a: number) => b + a, 0))
-  * 12
-  * ```
-  *
-  * See examples:
-  *
-  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/reduce.spec.ts
-  */
- export function reduce<A, B>(as: Array<A>, f: (b: B, a: A, i: number) => B, init: B): B
- export function reduce<A, B>(as: Array<A>, f: (b: B, a: A) => B, init: B): B
- export function reduce<A, B>(as: Map<A>, f: (b: B, a: A, k: string) => B, init: B): B
- export function reduce<A, B>(as: Map<A>, f: (b: B, a: A) => B, init: B): B
- export function reduce<T, B>(...args /* do it like this to also capture a 3rd element if it is passed as undefined */): any {
+/**
+ * ```
+ * >> reduce([1, 5, 6], (b: number, a: number) => b + a, 0))
+ * 12
+ * ```
+ *
+ * See examples:
+ *
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/reduce.spec.ts
+ */
+export function reduce<A, B>(as: Array<A>, f: (b: B, a: A, i: number) => B, init: B): B
+export function reduce<A, B>(as: Array<A>, f: (b: B, a: A) => B, init: B): B
+export function reduce<A, B>(as: Map<A>, f: (b: B, a: A, k: string) => B, init: B): B
+export function reduce<A, B>(as: Map<A>, f: (b: B, a: A) => B, init: B): B
+export function reduce<T, B>(...args /* do it like this to also capture a 3rd element if it is passed as undefined */): any {
 
     const $ = (f, init) => ts => {
         if (!isAssociative(ts)) throwIllegalArgs('reduce', 'Associative', ts)
@@ -429,16 +440,26 @@ export function remove(...args): any {
  */
 export function copy<T>(struct: Array<T>): Array<T>
 export function copy<T>(struct: Map<T>): Map<T>
-export function copy(struct) {
+export function copy(s) {
 
-    return isArray(struct)
-        ? [...struct]
-        : {...struct}
+    return isArray(s)
+        ? [...s]
+        // : isObject(s)
+        : {...s}
+        // : throwIllegalArgs('copy', 'Associative', s) TODO enable
 }
 
 
 /**
  * tsfun | count
+ *
+ * ```
+ * >> count(gt(2), [3, 2, 7])
+ * 2
+ * ```
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/count.spec.ts
  */
 export function count<A>(p: Predicate<A>): {
@@ -455,13 +476,21 @@ export function count<A>(p: Predicate<A>, as?) {
 
 
 /**
- * tsfun | any
+ * tsfun | all
+ *
+ * ```
+ * >> all(gt(3))([4, 5, 6])
+ * true
+ * ```
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/all.spec.ts
  */
 export function all<T>(p: Predicate<T>) {
-
+    if (!isFunction(p)) throwIllegalArgs('any', 'Predicate', p)
     return (as: Array<T>|Map<T>): boolean => {
-
+        if (!isAssociative(as)) throwIllegalArgs('any', 'Associative', as)
         return (values(as as any) as any).every(p)
     }
 }
@@ -469,12 +498,20 @@ export function all<T>(p: Predicate<T>) {
 
 /**
  * tsfun | any
+ *
+ * ```
+ * >> any(gt(3))([4, 3])
+ * true
+ * ```
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/any.spec.ts
  */
 export function any<T>(p: Predicate<T>) {
-
+    if (!isFunction(p)) throwIllegalArgs('any', 'Predicate', p)
     return (as: Array<T>|Map<T>): boolean => {
-
+        if (!isAssociative(as)) throwIllegalArgs('any', 'Associative', as)
         return (values(as as any) as any).some(p)
     }
 }
@@ -482,29 +519,70 @@ export function any<T>(p: Predicate<T>) {
 
 /**
  * tsfun | prune
+ *
+ * ```
+ * >> prune({a: 1, b: undefined})
+ * {a: 1}
+ * >> prune([1, undefined, 2])
+ * [1, 2]
+ * ```
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/prune.spec.ts
  */
 export function prune<T>(o: Map<T>): Map<T>
 export function prune<A>(as: Array<A>): Array<A>
 export function prune<T>(ts: Array<T>|Map<T>) {
-
+    if (!isAssociative(ts)) throwIllegalArgs('prune', 'Associative', ts)
     return $filter(isDefined)(ts as any)
 }
 
 
 /**
  * tsfun | indices
+ *
+ * Curried version
+ *
+ * ```
+ * >> indices(is('3'))(['1', '3', '7', '1'])
+ * [1]
+ * >> indices(gt(2))({a: 3, b: 1, c: 7})
+ * ['a', 'c']
+ * ```
+ *
+ * More examples
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/indices.spec.ts
  */
 export function indices<A>(p: Predicate<A>): {
     (as: Array<A>): number[]
     (as: Map<A>): string[]
 }
+/**
+ * tsfun | indices
+ *
+ * Non-curried version
+ *
+ * ```
+ * >> indices(is('3'), ['1', '3', '7', '1'])
+ * [1]
+ * >> indices(gt(2), {a: 3, b: 1, c: 7})
+ * ['a', 'c']
+ * ```
+ *
+ * More examples
+ *
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/indices.spec.ts
+ */
 export function indices<A>(p: Predicate<A>, as: Array<A>): number[]
-export function indices<A>(p: Predicate<A>, as: Map<A>): number[]
+export function indices<A>(p: Predicate<A>, as: Map<A>): string[]
 export function indices<A>(p: Predicate<A>, as?: any): any {
 
-    const inner = (as: any): any => {
+    if (!isFunction(p)) throwIllegalArgs('indices', 'Predicate', p)
+
+    const $ = as => {
+        if (!isAssociative(as)) throwIllegalArgs('indices', 'Associative', as)
 
         return $reduce_a(
             (indices: number[], a: A, i: number|string) => p(a)
@@ -514,8 +592,8 @@ export function indices<A>(p: Predicate<A>, as?: any): any {
     }
 
     return as === undefined
-        ? inner
-        : inner(as)
+        ? $
+        : $(as)
 }
 
 
@@ -611,7 +689,7 @@ const mapPropertiesReducer = <A, B>(f: (_: A) => B) =>
 /**
  * Library internal
  */
- export function $reduce_a(...args): any {
+export function $reduce_a(...args): any {
 
     const inner = (f, init) => (ts: any) => {
 

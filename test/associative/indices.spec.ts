@@ -22,10 +22,9 @@ describe('indices', () => {
         ).toEqual([1, 2]))
 
 
-    it('object', () =>
-        expect(
+    it('object', () => {
 
-            indices(gt(2))({a: 3, b: 1, c: 7})
-
-        ).toEqual(['a', 'c']))
+        expect(indices(gt(2))({a: 3, b: 1, c: 7})).toEqual(['a', 'c'])
+        expect(indices(gt(2), {a: 3, b: 1, c: 7})).toEqual(['a', 'c'])
+    })
 })
