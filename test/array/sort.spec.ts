@@ -1,4 +1,4 @@
-import { sort } from "../../src/array"
+import { sort } from '../../src/array'
 
 
 const aFirst = (a: string, _: string) => a === 'a' ? -1 : 1

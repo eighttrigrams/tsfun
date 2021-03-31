@@ -14,6 +14,14 @@ describe('rest', () => {
         ).toEqual([5]))
 
 
+    it('none', () =>
+        expect(
+
+            rest([5])
+
+        ).toEqual([]))
+
+
     it('undefined', () =>
         expect(
 

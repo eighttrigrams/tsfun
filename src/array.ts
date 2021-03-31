@@ -543,11 +543,21 @@ export function first<T>(as: Array<T>): T|undefined {
 
 /**
  * tsfun | rest
+ *
+ * ```
+ * >> rest([4, 5])
+ * [5]
+ * >> rest([5])
+ * []
+ * >> rest([])
+ * []
+ * ```
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/rest.spec.ts
  */
 export function rest<T>(as: Array<T>): Array<T> {
 
-    return drop(1)(as as any)
+    return drop(1, as)
 }
 
 
@@ -565,56 +575,63 @@ export function last<T>(as: Array<T>): T|undefined {
 
 /**
  * tsfun | takeNth
+ *
+ * ```
+ * >> takeNth(2)([1,2,7,8,9,11])
+ * [1,7,9]
+ * ```
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/take_nth.spec.ts
  */
-export function takeNth(n: number): <A>(as: Associative<A>) => Associative<A>
+export function takeNth(n: number): <A>(as: Array<A>) => Array<A>
 export function takeNth(n: number) {
 
-    const reducer = <A>(acc: Array<A>, val: any, i: number) =>
-        i % n === 0 ? acc.concat([val]) : acc
-
-    return <A>(as: Array<A>) => {
-
-        if (isArray(as)) {
-
-            return n < 0 ? [] : (as as Array<A>).reduce(reducer, [])
-
-        } else {
-
-            throw 'illegal argument - must be array or string'
-        }
-    }
+    return as =>
+        !isArray(as)
+            ? throwIllegalArgs('takeNth', 'Array', as)
+            : n < 0
+            ? []
+            : as.reduce((acc, val, i) =>
+                i % n === 0 ? acc.concat([val]) : acc, [])
 }
 
 
 /**
  * tsfun | sort
+ *
+ * Wrapper around *JavaScripts* Array.prototype.sort()
+ * Returns a new Array instead modifying the given one in place.
+ *
+ * ```
+ * >> sort((a, _) => a === 'a' ? -1 : 1)(['b', 'a'])
+ * ['a','b]
+ *
+ * >> sort([2,1])
+ * [1,2]
+ * ```
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/sort.spec.ts
  */
-export function sort(s: Array<number>): Array<number>
+export function sort<T>(s: Array<T>): Array<T>
 export function sort<A>(f: (a: A, b: A) => number): (as: Array<A>) => Array<A>
-export function sort<A>(f: Array<number>|((a: A, b: A) => number)) {
+export function sort(arg) {
 
-    if (!isFunction(f)) {
-
-        return (f as any).sort((a: string, b: string) => {
-            if (a === b) return 0
-            if (a < b) return -1
-            return 1
-        })
-
-    } else return (as: Array<A>) => {
-
-        if (isArray(as)) {
-            return copy(as as any).sort(f as any)
-        } else {
-            throw 'illegal argument - must be array or string'
-        }
-    }
+    return isFunction(arg)
+        ? as => !isArray(as)
+            ? throwIllegalArgs('sort', 'Array', as)
+            : copy(as).sort(arg)
+        : !isArray(arg)
+            ? throwIllegalArgs('sort', 'Array', arg)
+            : arg.sort((a, b) =>
+                a === b
+                    ? 0
+                    : a < b
+                    ? -1
+                    : 1)
 }
 
 
- export function $reduce0<T>(f: (b: T, t: T, i?: number) => T) {
+export function $reduce0<T>(f: (b: T, t: T, i?: number) => T) {
 
     return (ts: T[]): T => {
 
