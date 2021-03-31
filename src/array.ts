@@ -239,19 +239,30 @@ export function dropWhile<A>(predicate: any, as?: any): any {
 
 /**
  * tsfun | dropRightWhile
+ *
+ * ```
+ * >> dropRightWhile(gt(19), [13, 21, 20]))
+ * [13]
+ * ```
+ *
+ * More examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/drop_right_while.spec.ts
  */
-export function dropRightWhile<A>(predicate: Predicate<A>): Mapping<Array<A>>
-export function dropRightWhile<A>(predicate: Predicate<A>, as: Array<A>): Array<A>
-export function dropRightWhile<A>(predicate: any, as?: any): any {
+export function dropRightWhile<A>(p: Predicate<A>): Mapping<Array<A>>
+export function dropRightWhile<A>(p: Predicate<A>, as: Array<A>): Array<A>
+export function dropRightWhile<A>(p: any, as?: any): any {
+
+    if (!isFunction(p)) throwIllegalArgs('dropRightWhile', 'Predicate', p)
 
     const $ = (as: any): any => {
+        if (!isArray(as)) throwIllegalArgs('dropRightWhile', 'Array', as)
 
         const as1 = as
 
         let go = false
         const result = as1.reduceRight((acc: Array<A>, a: any) =>
-            go || !predicate(a) ? (go = true, [a].concat(acc)) : acc, [])
+            go || !p(a) ? (go = true, [a].concat(acc)) : acc, [])
 
         return result
     }
@@ -264,18 +275,29 @@ export function dropRightWhile<A>(predicate: any, as?: any): any {
 
 /**
  * tsfun | takeRightWhile
+ *
+ * ```
+ * >> takeRightWhile(gt(13))([7, 9, 10, 13, 17, 20])
+ * [17,20]
+ * ```
+ *
+ * More examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/take_right_while.spec.ts
  */
 export function takeRightWhile<A>(predicate: Predicate<A>): Mapping<Array<A>>
-export function takeRightWhile<A>(predicate: Predicate<A>) {
+export function takeRightWhile<A>(p: Predicate<A>) {
+
+    if (!isFunction(p)) throwIllegalArgs('takeRightWhile', 'Predicate', p)
 
     return (as: Array<A>) => {
+        if (!isArray(as)) throwIllegalArgs('takeRightWhile', 'Array', as)
 
         const as1 = as
 
         let go = true
         const result = as1.reduceRight((acc: Array<A>, a: any) =>
-            go && predicate(a) ? [a].concat(acc) : (go = false, acc), [])
+            go && p(a) ? [a].concat(acc) : (go = false, acc), [])
 
         return result
     }
@@ -284,6 +306,14 @@ export function takeRightWhile<A>(predicate: Predicate<A>) {
 
 /**
  * tsfun | takeRight
+ *
+ * ```
+ * >> takeRight(1)([1, 2])
+ * [2]
+ * ```
+ *
+ * More examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/take_right.spec.ts
  */
 export function takeRight(n: number): <A>(as: Array<A>) => Array<A>
@@ -313,10 +343,38 @@ export function takeRight(n: number): <A>(as: Array<A>) => Array<A> {
 
 /**
  * tsfun | takeWhile
+ *
+ * Takes elements from an array as long as they match a given predicate.
+ *
+ * Non-curried version
+ *
+ * ```
+ * >> takeWhile(lt(20), [7, 9, 10, 13, 17, 20])
+ * [7, 9, 10, 13, 17]
+ * ```
+ *
+ * More examples:
+ *
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/take_while.spec.ts
+ */
+export function takeWhile<A>(predicate: Predicate<A>, list: Array<A>): Array<A>
+/**
+ * tsfun | takeWhile
+ *
+ * Takes elements from an array as long as they match a given predicate.
+ *
+ * Curried version
+ *
+ * ```
+ * >> takeWhile(lt(20))([7, 9, 10, 13, 17, 20])
+ * [7, 9, 10, 13, 17]
+ * ```
+ *
+ * More examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/take_while.spec.ts
  */
 export function takeWhile<A>(predicate: Predicate<A>): Mapping<Array<A>>
-export function takeWhile<A>(predicate: Predicate<A>, list: Array<A>): Array<A>
 export function takeWhile<A>(predicate, list?): any {
 
     const $ = (list: any) => {
@@ -338,6 +396,14 @@ export function takeWhile<A>(predicate, list?): any {
 
 /**
  * tsfun | distribute
+ *
+ * ```
+ * >> distribute((_: number) => _.toString())([2, 2, 3]))
+ * { '2': [2, 2], '3': [3]}
+ * ```
+ *
+ * More examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/distribute.spec.ts
  */
 export function distribute<A>(f: (a: A) => A): (as: Array<string>) => Map<Array<string>>
