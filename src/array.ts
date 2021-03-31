@@ -15,6 +15,16 @@ import { flow, val } from './composition'
 
 /**
  * tsfun | flatMap
+ *
+ * Maps an Array to an Array of Arrays and then flattens them.
+ *
+ * ```
+ * >> flatMap((x: string) => x.split(' '))(['a b', 'c d'])
+ * ['a', 'b', 'c', 'd']
+ * ```
+ *
+ * More examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/flat_map.spec.ts
  */
 export function flatMap<A,B>(as: Array<A>, f: (_: A) => Array<B>): Array<B>
@@ -22,21 +32,24 @@ export function flatMap<A,B>(f: (_: A) => Array<B>, as: Array<A>): Array<B>
 export function flatMap<A,B>(f: (_: A) => Array<B>): (as: Array<A>) => Array<B>
 export function flatMap<A,B>(arg, arg2?): any {
 
-    const $ = f => (as: Array<A>): Array<B> =>
+    const intoArrayWith = <A>(f: (_: A) => Array<A>) =>
+        (acc: Array<A>, val: A) => acc.concat(f(val))
+
+    const $ = f => as =>
             (as.length < 1
                 ? []
-                : as.reduce(intoArrayWith(f as any),[])) as unknown as Array<B>
+                : as.reduce(intoArrayWith(f as any),[]))
 
     return arg2 === undefined
-        ? $(arg)
-        : isFunction(arg)
-            ? $(arg)(arg2)
-            : $(arg2)(arg)
+        ? !isFunction(arg)
+            ? throwIllegalArgs('flatMap', 'Mapping', arg)
+            : $(arg)
+        : isFunction(arg)&&isArray(arg2)
+        ? $(arg)(arg2)
+        : isArray(arg)&&isFunction(arg2)
+        ? $(arg2)(arg)
+        : throwIllegalArgs('flatMap', 'Array and Mapping in either order', JSON.stringify(arg) + ':' + JSON.stringify(arg2))
 }
-
-
-const intoArrayWith = <A>(f: (_: A) => Array<A>) =>
-    (acc: Array<A>, val: A) => acc.concat(f(val))
 
 
 // see https://mail.mozilla.org/pipermail/es-discuss/2012-April/022273.html
@@ -52,6 +65,14 @@ export function dense(size: number) {
 
 /**
  * tsfun | range
+ *
+ * ```
+ * >> range(1,3)
+ * [1,2]
+ * ```
+ *
+ * More examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/range.spec.ts
  */
 export function range(a: number, b?: number, stepSize: number = 1): number[] {
@@ -78,6 +99,9 @@ export function range(a: number, b?: number, stepSize: number = 1): number[] {
 
 /**
  * tsfun | flatten
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/flatten.spec.ts
  */
 export function flatten<U, T extends Array<U>>(as: Array<T>): T
@@ -133,14 +157,43 @@ export function flatten(p1: any, ...p2: any[]): any {
 
 /**
  * tsfun | drop
+ *
+ * Removes elements from the beginning of an Array.
+ *
+ * Curried version
+ *
+ * ```
+ * >> drop(2)([8, 9, 11])
+ * [11]
+ * ```
+ *
+ * More examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/drop.spec.ts
  */
 export function drop(n: number): <A>(as: Array<A>) => Array<A>
+/**
+ * tsfun | drop
+ *
+ * Removes elements from the beginning of an Array.
+ *
+ * Non-curried version
+ *
+ * ```
+ * >> drop(2, [8, 9, 11])
+ * [11]
+ * ```
+ *
+ * More examples:
+ *
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/drop.spec.ts
+ */
 export function drop<A>(n: number, as: Array<A>): Array<A>
 export function drop(n: number, p2?: any): any {
 
-    const $ = <A>(as: any) => {
+    if (!isNumber(n)) throwIllegalArgs('drop', 'number', n)
 
+    const $ = <A>(as: any) => {
         if (!isArray(as)) throwIllegalArgs('drop', 'Array', as)
 
         const as_ = as as Array<A>
@@ -156,12 +209,54 @@ export function drop(n: number, p2?: any): any {
 
 /**
  * tsfun | take
+ *
+ * Takes a number of elements from the beginning of an Array.
+ *
+ * Curried version
+ *
+ * ```
+ * >> take(5)([1, 2, 7, 7, 8, 9, 11])
+ * [1,2,7,7,8]
+ * ```
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/take.spec.ts
  */
 export function take(n: number): <A>(_: Array<A>) => Array<A>
-export function take<A>(n: number, p: Predicate<A>): (_: Array<A>) => Array<A>
+/**
+ * tsfun | take
+ *
+ * Takes a number of elements from the beginning of an Array.
+ *
+ * Non-curried version
+ *
+ * ```
+ * >> take(5, [1, 2, 7, 7, 8, 9, 11])
+ * [1,2,7,7,8]
+ * ```
+ *
+ * More examples:
+ *
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/take.spec.ts
+ */
 export function take<A>(n: number, as: Array<A>): Array<A>
+/**
+ * tsfun | take
+ *
+ * Takes a number of elements from the beginning of an Array.
+ * Takes only elements matching a given Predicate.
+ *
+ * ```
+ * >> take(3, gt(3), [1, 7, 9, 20, 3])
+ * [7,9,20]
+ * >> take(3, gt(3))([1, 7, 9, 20, 3])
+ * [7,9,20]
+ *
+ * More examples:
+ *
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/take.spec.ts
+ */
 export function take<A>(n: number, p: Predicate<A>, as: Array<A>): Array<A>
+export function take<A>(n: number, p: Predicate<A>): (_: Array<A>) => Array<A>
 export function take<A>(n: number, ...args): any {
 
     const $ = p => as => {
@@ -194,10 +289,38 @@ export function take<A>(n: number, ...args): any {
 
 /**
  * tsfun | dropRight
+ *
+ * Drops a number of elements, beginning from the right side of an Array.
+ *
+ * Non-curried version.
+ *
+ * ```
+ * >> dropRight(2, [8, 9, 11])
+ * [8]
+ * ```
+ *
+ * More examples:
+ *
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/drop_right.spec.ts
+ */
+export function dropRight<A>(n: number, as: Array<A>): Array<A>
+/**
+ * tsfun | dropRight
+ *
+ * Drops a number of elements, beginning from the right side of an Array.
+ *
+ * Curried version.
+ *
+ * ```
+ * >> dropRight(2)([8, 9, 11])
+ * [8]
+ * ```
+ *
+ * More examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/drop_right.spec.ts
  */
 export function dropRight(n: number): <A>(as: Array<A>) => Array<A>
-export function dropRight<A>(n: number, as: Array<A>): Array<A>
 export function dropRight(n: number, as?: any): any {
 
     const $ = <A>(as: any): any => {
@@ -213,20 +336,47 @@ export function dropRight(n: number, as?: any): any {
 
 
 /**
- * tsfun | drop_while
+ * tsfun | dropWhile
+ *
+ * Non-curried version
+ *
+ * ```
+ * >> dropWhile(lt(20), [7, 9, 10, 13, 21, 20])
+ * [21,20]
+ * ```
+ *
+ * More examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/drop_while.spec.ts
  */
-export function dropWhile<A>(predicate: Predicate<A>): Mapping<Array<A>>
-export function dropWhile<A>(predicate: Predicate<A>, as: Array<A>): Array<A>
-export function dropWhile<A>(predicate: any, as?: any): any {
+export function dropWhile<A>(p: Predicate<A>, as: Array<A>): Array<A>
+/**
+ * tsfun | dropWhile
+ *
+ * Curried version
+ *
+ * ```
+ * >> dropWhile(lt(20))([7, 9, 10, 13, 21, 20])
+ * [21,20]
+ * ```
+ *
+ * More examples:
+ *
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/drop_while.spec.ts
+ */
+export function dropWhile<A>(p: Predicate<A>): Mapping<Array<A>>
+export function dropWhile<A>(p, as?) {
 
-    const $ = (as: Array<A>) => {
+    if (!isFunction(p)) throwIllegalArgs('dropWhile', 'Function', p)
+
+    const $ = as => {
+        if (!isArray(as)) throwIllegalArgs('dropWhile', 'Array', as)
 
         const as1 = as
 
         let go = false
         const result = as1.reduce((acc: Array<A>, a: any) =>
-            go || !predicate(a) ? (go = true, acc.concat([a])) : acc, [])
+            go || !p(a) ? (go = true, acc.concat([a])) : acc, [])
 
         return result
     }
@@ -485,6 +635,14 @@ function $separate<A>(...args): any { // TODO inline into separate
 
 /**
  * tsfun | append
+ *
+ * ```
+ * >> append(1, 2)([3, 4])
+ * [3, 4, 1, 2]
+ * ```
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/append.spec.ts
  */
 export function append<A>(...as2: Array<A>): Mapping<Array<A>>
@@ -503,6 +661,14 @@ export function append<A>(...as2: Array<A>) {
 
 /**
  * tsfun | prepend
+ *
+ * ```
+ * >> prepend(1, 2)([3, 4]))
+ * [1,2,3,4]
+ * ```
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/prepend.spec.ts
  */
 export function prepend<A>(...as2: Array<A>): Mapping<Array<A>>
@@ -522,6 +688,14 @@ export function prepend<A>(...as2: Array<A>) {
 //export function zip<A>(as: Array<A>): <B>(_: Array<B>) => Array<[A,B]>
 /**
  * tsfun | zip
+ *
+ * ```
+ * >> zip([1,2,4], [3,4,5])
+ * [[1,3],[2,4],[4,5]]
+ * ```
+ *
+ * More examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/zip.spec.ts
  */
 export function zip<A>(f: (as: Array<A>) => A): (aas: Array<Array<A>>) => Array<A>
@@ -625,10 +799,20 @@ export function reverse<A>(as: Array<A>): Array<A> {
 
 /**
  * tsfun | first
+ *
+ * ```
+ * >> first([4, 5])
+ * 4
+ * >> first([])
+ * undefined
+ * ```
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/first.spec.ts
  */
 export function first<T>(as: Array<T>): T|undefined {
-
+    if (!isArray(as)) throwIllegalArgs('first', 'Array', as)
     return as.length === 0 ? undefined : as[0]
 }
 
@@ -650,7 +834,7 @@ export function first<T>(as: Array<T>): T|undefined {
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/rest.spec.ts
  */
 export function rest<T>(as: Array<T>): Array<T> {
-
+    if (!isArray(as)) throwIllegalArgs('rest', 'Array', as)
     return drop(1, as)
 }
 
@@ -670,7 +854,7 @@ export function rest<T>(as: Array<T>): Array<T> {
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/last.spec.ts
  */
 export function last<T>(as: Array<T>): T|undefined {
-
+    if (!isArray(as)) throwIllegalArgs('last', 'Array', as)
     return as.length === 0
         ? undefined
         : as[as.length-1]
