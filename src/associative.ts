@@ -55,6 +55,9 @@ export function assoc(key, arg, arg2?): any {
 
 /**
  * tsfun | lookup
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/lookup.spec.ts
  */
 export function lookup<T>(struct: Map<T>, alternative: T): (targetId: string) => T;
@@ -66,7 +69,6 @@ export function lookup(struct, alternative?) {
     return !isAssociative(struct)
         ? throwIllegalArgs('lookup', 'Associative', struct)
         : targetId => {
-
             const result = (struct as any)[targetId]
             return result !== undefined ? result : alternative
         }
@@ -75,6 +77,14 @@ export function lookup(struct, alternative?) {
 
 /**
  * tsfun | keysValues
+ *
+ * ```
+ * >> keysValues({a: 3, b: 4})
+ * [['a', 3],['b', 4]]
+ * ```
+ *
+ * More examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/keysValues.spec.ts
  */
 export function keysValues<T>(o: T):
@@ -83,16 +93,19 @@ export function keysValues<T>(o: T):
     : T extends Map<infer M>
     ? Array<[string, M]>
     : never
-export function keysValues<T>(a) {
+export function keysValues(a) {
 
     return !isAssociative(a)
         ? throwIllegalArgs('keysValues', 'Associative', a)
-        : zip(keys(a) as any, Object.values(a) as any) as any
+        : zip(keys(a), Object.values(a))
 }
 
 
 /**
  * tsfun | keys
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/keys.spec.ts
  */
 export function keys<T>(o: T):
@@ -113,6 +126,9 @@ export function keys(t) {
 
 /**
  * tsfun | values
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/values.spec.ts
  */
 export function values<T>(o: T):
@@ -131,6 +147,9 @@ export function values(t) {
 
 /**
  * tsfun | map
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/map.spec.ts
  *
  * ```
