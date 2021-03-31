@@ -23,7 +23,7 @@ import {on, equal, take, update, flow} from 'tsfun'
 ## Intro
 
 *JavaScript* has two collection data structures which can be
-created using literals. Those are Arrays (`[]`) and Objects (`{}`). We assume Arrays to be non-sparse.
+created using literals. Those are **Arrays** (`[]`) and **Objects** (`{}`). We assume Arrays to be non-sparse.
 Objects, at least from the perspective taken in **tsfun**, do not include class instances
 (anything else created with `new`, apart from Object and Array,
 so `Date` would not count as an Object here).
@@ -34,7 +34,7 @@ First, Arrays and Objects
 can be seen as **Associatives**, meaning they both have keys (indexes, i.e. numbers, in the Array case) as well as
 (homogeneous, i.e. same-typed) values. For Arrays we have **Array\<T>** in *TypeScript*. To encode a view on Object
 as an associative collection, *tsfun* provides **Map\<T>**, analogously. Order in **Maps** does not matter, while
-in **Arrays** it does. **Arrays** seen this way are taken as Lists or Vectors (based on their *JavaScript* properties).
+in **Arrays** it does. **Arrays** seen this way are taken as `Lists` or `Vectors` (based on their *JavaScript* properties).
 There is however another view on Arrays, which is the **Set**-view, where order does not matter.
 
 Second, Array and Objects can be seen as **Records**, meaning there are a couple of properties, which have
@@ -108,6 +108,9 @@ Maps (JavaScript-Objects).
 
 ### Composition
 
+Tools for combining curried versions of *tsfun* functions into
+larger units.
+
 * [flow](test/composition/flow.spec.ts)
 * [compose](test/composition/compose.spec.ts)
 * [curry](test/composition/curry.spec.ts)
@@ -136,7 +139,7 @@ as combinations, i.e. mutual nestings, thereof. Leafs can be of types
 
 ### Set
 
-JavaScript-Arrays, viewed as sets. Obviously
+*JavaScript*-Arrays, viewed as sets. Obviously
 because of the choice of these should be seen as convenience
 functions for smaller sets.
 
@@ -150,7 +153,7 @@ functions for smaller sets.
 
 ### Tuple
 
-JavaScript-Arrays, typed as TypeScript-Tuples.
+*JavaScript*-Arrays, typed as *TypeScript*-Tuples.
 
 * [tuplify](test/tuple/tuplify.spec.ts)
 * [pairWith](test/tuple/pair-with.spec.ts)
@@ -169,6 +172,9 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 * [getSuccess](test/tuple/get_success.spec.ts)
 
 ### Predicate
+
+**Predicates** generally are functions of type `(t: T) => boolean`, which
+can be passed to higher order functions like `filter`, for example.
 
 ###### Composition
 
@@ -206,6 +212,8 @@ JavaScript-Arrays, typed as TypeScript-Tuples.
 * [isMaybe](test/predicate/is_maybe.spec.ts)
 
 ### Comparator
+
+**Comparators** generally are functions of type `(l: T1) => (t: T2) => boolean`.
 
 ###### Reference
 
