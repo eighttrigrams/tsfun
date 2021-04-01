@@ -24,6 +24,9 @@ import {throwIllegalArgs} from './core'
 
 /**
  * tsfun | aFilter
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/async/aFilter.spec.ts
  */
 export function aFilter<T>(p: (a: T, i?: string|number) => Promise<boolean>): Promise<{
@@ -82,6 +85,9 @@ export function aFilter(...args) {
 
 /**
  * tsfun | aReduce
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/async/a_reduce.spec.ts
  */
 export function aReduce<A, B>(f: (b: B, a: A, i?: number|string) => Promise<B>, init: B): Promise<{
@@ -136,6 +142,9 @@ export function aReduce<T, B>(...params): Promise<any> {
 
 /**
  * tsfun | a_map
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/async/a_map.spec.ts
  */
 export function aMap<A, B>(f: (_: A, i?: string|number) => Promise<B>): Promise<{
@@ -179,6 +188,9 @@ export async function aMap(...args) {
 
 /**
  * tsfun | aFlow
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/async/a_flow.spec.ts
  */
 export async function aFlow(a: any, ...b: Array<Function|Promise<Function>>): Promise<any> {
@@ -191,6 +203,9 @@ export async function aFlow(a: any, ...b: Array<Function|Promise<Function>>): Pr
 
 /**
  * tsfun | aFilter
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/async/a_filter.spec.ts
  */
 export function aCompose(...b: Array<Function|Promise<Function>>) {
@@ -202,6 +217,9 @@ export function aCompose(...b: Array<Function|Promise<Function>>) {
 // TODO review if we need the double await (like in flow here too, now since we allow single as well as multiparam lists in functions like asyncMap
 /**
  * tsfun | aMcompose
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/async/a_mcompose.spec.ts
  */
 export function aMcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Promise<Either<any, T>>|Either<any, T>>)

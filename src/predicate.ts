@@ -8,6 +8,9 @@ import {size} from './associative'
 
 /**
  * tsfun | isDefined
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_defined.spec.ts
  */
 export function isDefined($) {
@@ -18,6 +21,9 @@ export function isDefined($) {
 
 /**
  * tsfun | defined
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_defined.spec.ts
  */
 export function defined($) {
@@ -28,6 +34,9 @@ export function defined($) {
 
 /**
  * tsfun | not
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_not.spec.ts
  */
 export function not<T>(p: Predicate<T>) {
@@ -38,6 +47,9 @@ export function not<T>(p: Predicate<T>) {
 
 /**
  * tsfun | isNot
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_not.spec.ts
  */
 export function isNot<A>(f: Predicate<A>) {
@@ -48,6 +60,9 @@ export function isNot<A>(f: Predicate<A>) {
 
 /**
  * tsfun | isUndefined
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_undefined.spec.ts
  */
 export function isUndefined($) {
@@ -56,8 +71,14 @@ export function isUndefined($) {
 }
 
 
+const Undefined = isUndefined
+
+
 /**
  * tsfun | undefinedOrEmpty
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_undefined_or_empty.spec.ts
  */
 export function undefinedOrEmpty($) {
@@ -68,6 +89,9 @@ export function undefinedOrEmpty($) {
 
 /**
  * tsfun | isUndefinedOrEmpty
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_undefined_or_empty.spec.ts
  */
 export function isUndefinedOrEmpty<T>(coll: Object|Array<T>|string|undefined): boolean {
@@ -85,6 +109,9 @@ export function isUndefinedOrEmpty<T>(coll: Object|Array<T>|string|undefined): b
 
 /**
  * tsfun | isEmpty
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_empty.spec.ts
  */
 export function isEmpty<T>(coll: Object|Array<T>): boolean {
@@ -97,6 +124,9 @@ export function isEmpty<T>(coll: Object|Array<T>): boolean {
 
 /**
  * tsfun | empty
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/empty.spec.ts
  */
 export function empty($) {
@@ -107,6 +137,9 @@ export function empty($) {
 
 /**
  * tsfun | and
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/and.spec.ts
  */
 export function and(...preds: Array<Predicate<any>>) {
@@ -120,6 +153,9 @@ export function and(...preds: Array<Predicate<any>>) {
 
 /**
  * tsfun | or
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/or.spec.ts
  */
 export function or(...preds: Array<Predicate<any>>) {
@@ -140,6 +176,9 @@ function applyTo<A>(arg: A) {
 
 /**
  * tsfun | xor
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/xor.spec.ts
  */
 export function xor<A>(...preds: Array<Predicate<A>>) {
@@ -155,6 +194,9 @@ export function xor<A>(...preds: Array<Predicate<A>>) {
 
 /**
  * tsfun | isArray
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_array.spec.ts
  */
 export function isArray<T = any, V = any>(t: T|Array<V>): t is Array<V> {
@@ -169,9 +211,11 @@ export function isArray2<T = any, V = any>(t: T|Array2<V>): t is Array2<V> {
 }
 
 
-// TODO rename to isMap or make alias
 /**
  * tsfun | isObject
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_object.spec.ts
  */
 export const isObject: Predicate = o => o instanceof Object && o.constructor === Object
@@ -179,6 +223,9 @@ export const isObject: Predicate = o => o instanceof Object && o.constructor ===
 
 /**
  * tsfun | isAssociative
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_associative.spec.ts
  */
 export function isAssociative(a: any): a is Associative {
@@ -189,6 +236,9 @@ export function isAssociative(a: any): a is Associative {
 
 /**
  * tsfun | isString
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_string.spec.ts
  */
 export function isString<T = any>(t: T|string): t is string {
@@ -198,6 +248,9 @@ export function isString<T = any>(t: T|string): t is string {
 
 /**
  * tsfun | isNumber
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_number.spec.ts
  */
 export function isNumber<T = any>(t: T|number): t is number {
@@ -207,6 +260,9 @@ export function isNumber<T = any>(t: T|number): t is number {
 
 /**
  * tsfun | isBoolean
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_boolean.spec.ts
  */
 export const isBoolean: Predicate = $ => typeof $ === 'boolean'
@@ -214,6 +270,9 @@ export const isBoolean: Predicate = $ => typeof $ === 'boolean'
 
 /**
  * tsfun | isFunction
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_function.spec.ts
  */
 export const isFunction: Predicate = $ => typeof $ === 'function'
@@ -221,6 +280,9 @@ export const isFunction: Predicate = $ => typeof $ === 'function'
 
 /**
  * tsfun | isSuccess
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_success.spec.ts
  */
 export function isSuccess<E,T>(m: Maybe<T>|Either<E,T>): boolean {
@@ -235,6 +297,9 @@ export function isSuccess<E,T>(m: Maybe<T>|Either<E,T>): boolean {
 
 /**
  * tsfun | isFailure
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_failure.spec.ts
  */
 export function isFailure<T, E = any>(m: Maybe<T>|Either<E,T>) {
@@ -245,6 +310,9 @@ export function isFailure<T, E = any>(m: Maybe<T>|Either<E,T>) {
 
 /**
  * tsfun | isPair
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_pair.spec.ts
  */
 export function isPair(pair: any): pair is Pair {
@@ -257,6 +325,9 @@ export function isPair(pair: any): pair is Pair {
 
 /**
  * tsfun | isSingleton
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_singleton.spec.ts
  */
 export function isSingleton(l: Array<any>): l is Singleton {
@@ -269,6 +340,9 @@ export function isSingleton(l: Array<any>): l is Singleton {
 
 /**
  * tsfun | isEither
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_either.spec.ts
  */
 export function isEither(either: any) {
@@ -282,6 +356,9 @@ export function isEither(either: any) {
 
 /**
  * tsfun | isMaybe
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_maybe.spec.ts
  */
 export function isMaybe(maybe: any) {
@@ -300,11 +377,12 @@ export function isKey(a): a is Key {
 
 export const flip = (v: boolean) => !v
 
-const Undefined = isUndefined
-
 
 /**
  * tsfun | isPrimitive
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_primitive.spec.ts
  */
 export const isPrimitive = (struct: any) =>

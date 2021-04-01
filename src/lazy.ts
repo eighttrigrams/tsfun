@@ -5,6 +5,9 @@
 
 /**
  * tsfun | lRange
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/lazy/l_range.spec.ts
  */
 export function* lRange(a: number, b?: number, stepSize: number = 1) {
@@ -24,6 +27,9 @@ export function* lRange(a: number, b?: number, stepSize: number = 1) {
 
 /**
  * tsfun | lZip
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/lazy/l_zip.spec.ts
  */
 export function lZip(as: any) { return function* (bs: any) {
@@ -43,6 +49,9 @@ export function lZip(as: any) { return function* (bs: any) {
 
 /**
  * tsfun | lMap
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/lazy/l_map.spec.ts
  */
 export function lMap(f: Function) {
@@ -57,6 +66,9 @@ export function lMap(f: Function) {
 
 /**
  * tsfun | lTake
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/lazy/l_take.spec.ts
  */
 export function lTake(n: number) {
@@ -74,6 +86,9 @@ export function lTake(n: number) {
 
 /**
  * tsfun | lFilter
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/lazy/l_filter.spec.ts
  */
 export function lFilter(f: Function) {
@@ -88,6 +103,9 @@ export function lFilter(f: Function) {
 
 /**
  * tsfun | materialize
+ *
+ * Examples:
+ *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/lazy/materialize.spec.ts
  */
 export function materialize(lAs: any) {
