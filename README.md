@@ -173,7 +173,7 @@ functions for smaller sets.
 
 ### Predicate
 
-**Predicates** generally are functions of type `(t: T) => boolean`, which
+Predicates generally are functions of type `(t: T) => boolean`, which
 can be passed to higher order functions like `filter`, for example.
 
 ###### Composition
@@ -213,7 +213,7 @@ can be passed to higher order functions like `filter`, for example.
 
 ### Comparator
 
-**Comparators** generally are functions of type `(l: T1) => (t: T2) => boolean`.
+Comparators generally are functions of type `(l: T1) => (t: T2) => boolean`.
 
 ###### Reference
 
