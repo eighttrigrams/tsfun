@@ -4,7 +4,7 @@
 
 ---
 
-**tsfun** aims at providing simple functional programming idioms (à la *Clojure*) in a way
+**tsfun** aims at providing simple functional programming idioms in a way
 which fit well with the literal based data structures `[]` and `{}` of *JavaScript* while
 at the same time providing accurate *TypeScript*-typings.
 
@@ -302,5 +302,10 @@ or
     2$ npm t
 
 ## Credits
+
+The way of thinking about datastructures I owe mostly to working with `Clojure`. I tried to mimic
+some principles but without sacrificing any convenience with regards to the use of the existing collection 
+literals. The writing of library functions like this and the thinking about typing I encountered first and thus
+attribute mostly to `Functional Programming in Scala` (the red book).
 
 Ascii Art generated with http://www.patorjk.com/software/taag
