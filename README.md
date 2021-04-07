@@ -11,7 +11,7 @@ at the same time providing accurate *TypeScript*-typings.
 ## Getting started
 
 ```
-npm -i tsfun
+npm i tsfun
 ```
 
 Pick your functions:
