@@ -295,7 +295,7 @@ export const isFunction: Predicate = $ => typeof $ === 'function'
  * false
  * ```
  *
- * Use ok afterwards, to access the success value
+ * Use `tsfun | ok` afterwards, to access the success value
  *
  * Examples:
  *
