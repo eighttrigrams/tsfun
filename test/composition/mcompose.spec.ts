@@ -269,9 +269,9 @@ describe('mcompose', () => {
                     map(
                         mcompose(
                             safedivM(6),
-                            liftM(cond(lt(2), throws('')) as any),
+                            liftM(cond(lt(2), throws(''))),
                             liftM(square))),
-                    filter(isOk as any),
+                    filter(isOk),
                     map(ok))
 
             ).toEqual([4, 9])
@@ -288,9 +288,9 @@ describe('mcompose', () => {
                     map(
                         mcompose(
                             safedivE(6),
-                            liftE(cond(lt(2), throws('e1')) as any),
+                            liftE(cond(lt(2), throws('e1'))),
                             squareE)),
-                    filter(isOk as any),
+                    filter(isOk),
                     map(ok))
 
             ).toEqual([4, 9])
