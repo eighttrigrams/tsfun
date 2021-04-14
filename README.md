@@ -16,11 +16,15 @@ Install
 $ npm i tsfun
 ```
 
-Pick your functions or import as module
+Pick your functions
 
 ```typescript
 import {on, equal, take, update, flow} from 'tsfun'
-or
+```
+
+Or import as module
+
+```typescript
 import * as tsfun from 'tsfun'
 ```
 
