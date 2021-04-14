@@ -122,8 +122,6 @@ larger units.
 * [val](test/composition/val.spec.ts)
 * [nop](test/composition/nop.spec.ts)
 * [throws](test/composition/throws.spec.ts)
-* [mcompose](test/composition/mcompose.spec.ts)
-* [mmatch](test/tuple/mmatch.spec.ts)
 
 ### Struct
 
@@ -164,8 +162,6 @@ functions for smaller sets.
 * [nothing](test/tuple/nothing.spec.ts)
 * [success](test/tuple/success.spec.ts)
 * [failure](test/tuple/failure.spec.ts)
-* [liftM](test/tuple/lift_m.spec.ts)
-* [liftE](test/tuple/lift_e.spec.ts)
 * [left](test/tuple/left.spec.ts)
 * [right](test/tuple/right.spec.ts)
 * [value](test/tuple/value.spec.ts)
@@ -279,7 +275,7 @@ Comparators generally are functions of type `(l: T1) => (t: T2) => boolean`.
 * [aReduce](test/async/a_reduce.spec.ts)
 * [aFlow](test/async/a_flow.spec.ts)
 * [aCompose](test/async/a_compose.spec.ts)
-* [aMcompose](test/async/a_mcompose.spec.ts)
+
 
 ### Lazy
 
@@ -291,6 +287,18 @@ Comparators generally are functions of type `(l: T1) => (t: T2) => boolean`.
 * [lTake](test/lazy/l_take.spec.ts)
 * [lMap](test/lazy/l_map.spec.ts)
 * [materialize](test/lazy/materialize.spec.ts)
+
+### Fallible Monad
+
+(experimental)
+
+Allows for monadic computation with Either and Maybe.
+
+* [mcompose](test/composition/mcompose.spec.ts)
+* [mmatch](test/tuple/mmatch.spec.ts)
+* [aMcompose](test/async/a_mcompose.spec.ts)
+* [liftM](test/tuple/lift_m.spec.ts)
+* [liftE](test/tuple/lift_e.spec.ts)
 
 ## Build & Test
 
@@ -304,7 +312,7 @@ or
 ## Credits
 
 The way of thinking about datastructures I owe mostly to working with `Clojure`. I tried to mimic
-some principles but without sacrificing any convenience with regards to the use of the existing collection 
+some principles but without sacrificing any convenience with regards to the use of the existing collection
 literals. The writing of library functions like this and the thinking about typing I encountered first and thus
 attribute mostly to `Functional Programming in Scala` (the red book).
 
