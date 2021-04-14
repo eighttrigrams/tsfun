@@ -281,6 +281,19 @@ export const isFunction: Predicate = $ => typeof $ === 'function'
 /**
  * tsfun | isSuccess
  *
+ * Tells whether a Fallible (Maybe or Either) is a success
+ *
+ * ```
+ * >> isSuccess([1])
+ * true
+ * >> isSuccess([])
+ * false
+ * >> isSuccess([undefined, 1])
+ * true
+ * >> isSuccess([1, undefined])
+ * false
+ * ```
+ *
  * Examples:
  *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_success.spec.ts
@@ -297,6 +310,19 @@ export function isSuccess<E,T>(m: Maybe<T>|Either<E,T>): boolean {
 
 /**
  * tsfun | isFailure
+
+ * Tells whether a Fallible (Maybe or Either) is a failure
+ *
+ * ```
+ * >> isFailure([1])
+ * false
+ * >> isFailure([])
+ * true
+ * >> isFailure([undefined, 1])
+ * false
+ * >> isFailure([1, undefined])
+ * true
+ * ```
  *
  * Examples:
  *
@@ -347,8 +373,7 @@ export function isSingleton(l: Array<any>): l is Singleton {
  */
 export function isEither(either: any) {
 
-    if (!isArray(either)) return false
-    if (either.length !== 2) return false
+    if (!isArray2(either)) return false
     if (either.filter(isDefined).length !== 1) return false
     return true
 }
