@@ -53,7 +53,7 @@ of anything other than Array or Object (which are assumed to be created via lite
 
 Note: We ignore the *JavaScript* `Map` collection and the *TypeScript* `Record` type.
 
-## Function
+## Functions
 
 ### Array
 
