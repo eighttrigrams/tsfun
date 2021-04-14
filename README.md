@@ -10,6 +10,8 @@ at the same time providing accurate *TypeScript*-typings.
 
 ## Getting started
 
+Install
+
 ```
 $ npm i tsfun
 ```
