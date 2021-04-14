@@ -18,6 +18,8 @@ Pick your functions:
 
 ```typescript
 import {on, equal, take, update, flow} from 'tsfun'
+or
+import * as tsfun from 'tsfun'
 ```
 
 ## Intro
