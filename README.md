@@ -297,7 +297,7 @@ Comparators generally are functions of type `(l: T1) => (t: T2) => boolean`.
 * [lMap](test/lazy/l_map.spec.ts)
 * [materialize](test/lazy/materialize.spec.ts)
 
-### Fallible Monad
+### The Fallible Monad
 
 (experimental)
 
