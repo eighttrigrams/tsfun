@@ -295,7 +295,7 @@ export const isFunction: Predicate = $ => typeof $ === 'function'
  * false
  * ```
  *
- * Use getOk afterwards, to access the success value
+ * Use ok afterwards, to access the success value
  *
  * Examples:
  *
