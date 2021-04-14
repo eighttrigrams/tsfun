@@ -1,4 +1,5 @@
 import {nothing} from '../../src/tuple'
+import { Nothing } from '../../src/type'
 
 /**
  * tsfun | nothing
@@ -15,7 +16,6 @@ describe('nothing', () => {
 
     it('typing', () => {
 
-        const e1  = nothing()
-        e1[0] = 3; // allowed, since type is Maybe
+        const e1: Nothing  = nothing()
     })
 })

@@ -56,6 +56,12 @@ export type Left<T = any> = [T, undefined]
 export type Right<T = any> = [undefined, T]
 
 
+export type Success<T = any> = Just<T>|Right<T>
+
+
+export type Failure<T = any> = Nothing|Left<T>
+
+
 export type Just<T = any> = [T]
 
 

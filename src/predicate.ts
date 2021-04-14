@@ -294,6 +294,8 @@ export const isFunction: Predicate = $ => typeof $ === 'function'
  * false
  * ```
  *
+ * Use getSuccess afterwards, to access the success value
+ *
  * Examples:
  *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_success.spec.ts
