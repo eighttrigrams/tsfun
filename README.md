@@ -244,6 +244,20 @@ Comparators generally are functions of type `(l: T1) => (t: T2) => boolean`.
 
 ## Types reference
 
+###### Data
+
+* [Map](test/type/map.spec.ts)
+* [Associative](test/type/associative.spec.ts)
+
+###### Functions
+
+* [Predicate](test/type/predicate.spec.ts)
+* [Mapping](test/type/mapping.spec.ts)
+* [Filter](test/associative/filter.type.spec.ts)
+* [Effect](test/type/effect.spec.ts)
+
+###### Tuple
+
 * [Singleton](test/type/singleton.spec.ts)
 * [Pair](test/type/pair.spec.ts)
 * [Maybe](test/type/maybe.spec.ts)
@@ -252,12 +266,6 @@ Comparators generally are functions of type `(l: T1) => (t: T2) => boolean`.
 * [Either](test/type/either.spec.ts)
 * [Success](test/type/either.spec.ts)
 * [Failure](test/type/either.spec.ts)
-* [Map](test/type/map.spec.ts)
-* [Associative](test/type/associative.spec.ts)
-* [Mapping](test/type/mapping.spec.ts)
-* [Predicate](test/type/predicate.spec.ts)
-* [Effect](test/type/effect.spec.ts)
-* [Filter](test/associative/filter.type.spec.ts)
 
 ## Constants reference
 
