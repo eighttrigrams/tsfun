@@ -284,7 +284,6 @@ Comparators generally are functions of type `(l: T1) => (t: T2) => boolean`.
 * [aFlow](test/async/a_flow.spec.ts)
 * [aCompose](test/async/a_compose.spec.ts)
 
-
 ### Lazy
 
 (experimental)
