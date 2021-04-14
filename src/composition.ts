@@ -1,8 +1,8 @@
 import {identity} from './core'
 import {Array6, Either, Fallible, Mapping, Maybe, Pair, Predicate} from './type'
-import {isEither, isFailure, isFunction, isMaybe, isPair, isSuccess} from './predicate'
+import {isEither, isErr, isFunction, isMaybe, isPair, isOk} from './predicate'
 import {first, rest} from './array'
-import {success, getSuccess, left, just, right} from './tuple'
+import {success, getOk, left, just, right} from './tuple'
 import { tripleEqual } from './comparator'
 
 
@@ -127,14 +127,14 @@ export function mcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Either<an
     : (seed: Either<any, T>|Maybe<T>) => Maybe<R>|Either<any, R> {
 
     return (seed: Maybe<T>|Either<any, T>) => {
-        if (isFailure(seed)) return seed as any
+        if (isErr(seed)) return seed as any
 
-        let results = [getSuccess(seed)] as Array<T>
+        let results = [getOk(seed)] as Array<T>
         for (let f of fs) {
 
             const res = f(first(results) as T, ...rest(results))
-            if (isFailure(res)) return res as any
-            results = [getSuccess(res)].concat(results)
+            if (isErr(res)) return res as any
+            results = [getOk(res)].concat(results)
         }
         return convert(first(results), seed) as any
     }
@@ -149,7 +149,7 @@ export function mmatch<T, R>(onSuccess: (x: T) => R,
                              onFailure: () => R) {
 
     return (m: Maybe<T>) =>
-        isSuccess(m)
+        isOk(m)
             ? onSuccess((m as any)[0])
             : onFailure()
 

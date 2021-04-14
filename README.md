@@ -165,7 +165,7 @@ functions for smaller sets.
 * [left](test/tuple/left.spec.ts)
 * [right](test/tuple/right.spec.ts)
 * [value](test/tuple/value.spec.ts)
-* [getSuccess](test/tuple/get_success.spec.ts)
+* [getOk](test/tuple/get_ok.spec.ts)
 
 ### Predicate
 
@@ -200,8 +200,8 @@ can be passed to higher order functions like `filter`, for example.
 
 ###### Tuple
 
-* [isSuccess](test/predicate/is_success.spec.ts)
-* [isFailure](test/predicate/is_failure.spec.ts)
+* [isOk](test/predicate/is_ok.spec.ts)
+* [isErr](test/predicate/is_err.spec.ts)
 * [isSingleton](test/predicate/is_singleton.spec.ts)
 * [isPair](test/predicate/is_pair.spec.ts)
 * [isEither](test/predicate/is_either.spec.ts)
@@ -266,6 +266,8 @@ Comparators generally are functions of type `(l: T1) => (t: T2) => boolean`.
 * [Either](test/type/either.spec.ts)
 * [Success](test/type/either.spec.ts)
 * [Failure](test/type/either.spec.ts)
+* [Ok](test/type/either.spec.ts)
+* [Err](test/type/either.spec.ts)
 
 ## Constants
 

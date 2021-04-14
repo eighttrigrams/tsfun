@@ -1,9 +1,10 @@
-import {Array2, Either, Mapping, Maybe, Pair, Predicate, Singleton, Path, Associative, Key} from './type'
+import {Array2, Either, Mapping, Maybe, Pair, Predicate, Singleton, Path, Associative, Key, Fallible} from './type'
 import {is} from './comparator'
 import {first} from './array'
 import {map, $reduce_a, filter} from './associative'
 import {flow} from './composition'
 import {size} from './associative'
+import { throwIllegalArgs } from './core'
 
 
 /**
@@ -279,50 +280,51 @@ export const isFunction: Predicate = $ => typeof $ === 'function'
 
 
 /**
- * tsfun | isSuccess
+ * tsfun | isOk
  *
  * Tells whether a Fallible (Maybe or Either) is a success
  *
  * ```
- * >> isSuccess([1])
+ * >> isOk([1])
  * true
- * >> isSuccess([])
+ * >> isOk([])
  * false
- * >> isSuccess([undefined, 1])
+ * >> isOk([undefined, 1])
  * true
- * >> isSuccess([1, undefined])
+ * >> isOk([1, undefined])
  * false
  * ```
  *
- * Use getSuccess afterwards, to access the success value
+ * Use getOk afterwards, to access the success value
  *
  * Examples:
  *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_success.spec.ts
  */
-export function isSuccess<E,T>(m: Maybe<T>|Either<E,T>): boolean {
+export function isOk<T>(f: Fallible<T>): boolean {
 
-    if (!isEither(m) && !isMaybe(m)) throw 'illegal argument - in \'isSuccess\''
-    if (m.length === 0) return false
-    if (m.length === 1) return true
-    if (m.length === 2) return first(m as any) === undefined
-    throw 'illegal argument - in \'isSuccess\' - array too long'
+    if (!isEither(f) && !isMaybe(f)) throwIllegalArgs('isOk', 'Fallible', f)
+    if (f.length === 0) return false
+    if (f.length === 1) return true
+    if (f.length === 2) return first(f as any) === undefined
+    throwIllegalArgs('isOk', 'Fallible', f)
+    return 0 as never
 }
 
 
 /**
- * tsfun | isFailure
+ * tsfun | isErr
 
  * Tells whether a Fallible (Maybe or Either) is a failure
  *
  * ```
- * >> isFailure([1])
+ * >> isErr([1])
  * false
- * >> isFailure([])
+ * >> isErr([])
  * true
- * >> isFailure([undefined, 1])
+ * >> isErr([undefined, 1])
  * false
- * >> isFailure([1, undefined])
+ * >> isErr([1, undefined])
  * true
  * ```
  *
@@ -330,9 +332,9 @@ export function isSuccess<E,T>(m: Maybe<T>|Either<E,T>): boolean {
  *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_failure.spec.ts
  */
-export function isFailure<T, E = any>(m: Maybe<T>|Either<E,T>) {
+export function isErr<T, E = any>(f: Maybe<T>|Either<E,T>) {
 
-    return !isSuccess(m)
+    return !isOk(f)
 }
 
 

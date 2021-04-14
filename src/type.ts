@@ -56,6 +56,12 @@ export type Failure<T = any> = [T, undefined]
 export type Success<T = any> = [undefined, T]
 
 
+export type Ok<T> = Success<T>|Just<T>
+
+
+export type Err<T> = Failure<T>|Nothing
+
+
 export type Just<T = any> = [T]
 
 

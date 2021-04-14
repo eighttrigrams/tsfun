@@ -1,6 +1,6 @@
 import {identity, throwIllegalArgs} from './core'
 import {Either, Fallible, Just, Maybe, Nothing, Pair, Singleton} from './type'
-import {isArray, isEither, isMaybe, isSuccess} from './predicate'
+import {isArray, isEither, isMaybe, isOk} from './predicate'
 
 
 // to be used with on
@@ -218,16 +218,16 @@ export function liftE<T,R>(f: (...x: T[]) => R) {
 
 
 /**
- * tsfun | getSuccess
+ * tsfun | getOk
  *
  * ```
- * >> getSuccess([3])
+ * >> getOk([3])
  * 3
- * >> getSuccess([undefined, 3])
+ * >> getOk([undefined, 3])
  * 3
- * >> getSuccess([])
+ * >> getOk([])
  * throws error
- * >> getSuccess([3, undefined])
+ * >> getOk([3, undefined])
  * throws error
  * ```
  *
@@ -235,10 +235,10 @@ export function liftE<T,R>(f: (...x: T[]) => R) {
  *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/get_success.spec.ts
  */
-export function getSuccess<T>(x: Fallible<T>): T {
+export function getOk<T>(x: Fallible<T>): T {
 
-    if (!isEither(x) && !isMaybe(x)) throwIllegalArgs('getSuccess', 'Fallible(Maybe|Either)', x)
-    if (!isSuccess(x)) throwIllegalArgs('getSuccess', 'success value to be present', x)
+    if (!isEither(x) && !isMaybe(x)) throwIllegalArgs('getOk', 'Fallible(Maybe|Either)', x)
+    if (!isOk(x)) throwIllegalArgs('getOk', 'success value to be present', x)
     return isEither(x)
         ? (x as any)[1]
         : (x as any)[0]

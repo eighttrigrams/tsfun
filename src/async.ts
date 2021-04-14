@@ -1,7 +1,7 @@
 import {Map, Either, Maybe} from './type'
-import {isArray, isFailure, isFunction, isObject, isString} from './predicate'
+import {isArray, isErr, isFunction, isObject, isString} from './predicate'
 import {keys} from './associative'
-import {getSuccess} from './tuple'
+import {getOk} from './tuple'
 import {first, rest} from './array'
 import {convert} from './composition'
 import {throwIllegalArgs} from './core'
@@ -235,14 +235,14 @@ export function aMcompose<T, R>(...fs: Array<
                                    >) {
 
     return async (seed: Maybe<T>|Either<any, T>) => {
-        if (isFailure(seed)) return seed as any
+        if (isErr(seed)) return seed as any
 
-        let results = [getSuccess(seed)] as Array<T>
+        let results = [getOk(seed)] as Array<T>
         for (let f of fs) {
 
             const res = await f(first(results) as T, ...rest(results))
-            if (isFailure(res)) return res as any
-            results = [getSuccess(res)].concat(results)
+            if (isErr(res)) return res as any
+            results = [getOk(res)].concat(results)
         }
         return convert(first(results), seed) as any
     }

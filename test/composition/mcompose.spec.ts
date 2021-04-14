@@ -1,9 +1,9 @@
-import {liftE, getSuccess, liftM, success, just, right, left} from '../../src/tuple'
+import {liftE, getOk, liftM, success, just, right, left} from '../../src/tuple'
 import {Either, Mapping, Maybe} from '../../src/type'
 import {collect, cond, flow, mcompose, throws, val} from '../../src/composition'
 import {map, filter, assoc} from '../../src/associative'
 import {separate} from '../../src/array';
-import {isSuccess} from '../../src/predicate'
+import {isOk} from '../../src/predicate'
 import {lt} from '../../src/comparator'
 
 
@@ -271,8 +271,8 @@ describe('mcompose', () => {
                             safedivM(6),
                             liftM(cond(lt(2), throws('')) as any),
                             liftM(square))),
-                    filter(isSuccess as any),
-                    map(getSuccess))
+                    filter(isOk as any),
+                    map(getOk))
 
             ).toEqual([4, 9])
         )
@@ -290,8 +290,8 @@ describe('mcompose', () => {
                             safedivE(6),
                             liftE(cond(lt(2), throws('e1')) as any),
                             squareE)),
-                    filter(isSuccess as any),
-                    map(getSuccess))
+                    filter(isOk as any),
+                    map(getOk))
 
             ).toEqual([4, 9])
         )
@@ -304,7 +304,7 @@ describe('mcompose', () => {
                     [0, 3, 1],
                     map(success),
                     map(mcompose(safedivE(3), decE, squareE)),
-                    separate(isSuccess),
+                    separate(isOk),
                     assoc(0, map(right) as Mapping),
                     assoc(1, map(left) as Mapping))
 

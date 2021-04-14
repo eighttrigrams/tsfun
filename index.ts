@@ -16,6 +16,8 @@ export type {
     Maybe,
     Failure,
     Success,
+    Err,
+    Ok,
     Either,
     Associative,
     Fallible,
@@ -50,8 +52,14 @@ export {
     isFunction,
     isNot, isDefined,
     isString,
-    isUndefinedOrEmpty, isEmpty, isUndefined,
-    isSuccess, isFailure, isEither, isMaybe, isPair
+    isUndefinedOrEmpty,
+    isEmpty,
+    isUndefined,
+    isOk,
+    isErr,
+    isEither,
+    isMaybe,
+    isPair
 } from './src/predicate'
 
 
@@ -99,7 +107,7 @@ export {
     left,
     right,
     value,
-    getSuccess,
+    getOk,
     tuplify,
     pairWith,
     swap,

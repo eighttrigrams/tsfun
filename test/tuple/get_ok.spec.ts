@@ -1,15 +1,15 @@
-import {getSuccess} from '../../src/tuple'
+import {getOk} from '../../src/tuple'
 
 
 /**
- * tsfun | getSuccess
+ * tsfun | getOk
  */
-describe('getSuccess', () => {
+describe('getOk', () => {
 
     it('Maybe', () =>
         expect(
 
-            getSuccess([3])
+            getOk([3])
 
         ).toEqual(3)
     )
@@ -18,7 +18,7 @@ describe('getSuccess', () => {
     it('Either', () =>
         expect(
 
-            getSuccess([undefined, 3])
+            getOk([undefined, 3])
 
         ).toEqual(3)
     )
@@ -27,7 +27,7 @@ describe('getSuccess', () => {
     it('Maybe - illegal argument', () =>
         expect(
 
-            () => getSuccess([])
+            () => getOk([])
 
         ).toThrow()
     )
@@ -36,7 +36,7 @@ describe('getSuccess', () => {
     it('Either illegal argument', () =>
         expect(
 
-            () => getSuccess([3, undefined])
+            () => getOk([3, undefined])
 
         ).toThrow()
     )

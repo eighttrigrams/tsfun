@@ -3,7 +3,7 @@ import {Either, Mapping, Maybe} from '../../src/type'
 import {success, left, right, L, R} from '../../src/tuple'
 import {map, assoc} from '../../src/associative'
 import {separate} from '../../src/array'
-import {isSuccess} from '../../src/predicate'
+import {isOk} from '../../src/predicate'
 
 
 /**
@@ -104,7 +104,7 @@ describe('aMcompose', () => {
                 [0, 3, 1],
                 map(success),
                 aMap(aMcompose(safedivE(3), decE, squareE)),
-                separate(isSuccess),
+                separate(isOk),
                 assoc(L, map(right) as Mapping),
                 assoc(R, map(left) as Mapping))
 
