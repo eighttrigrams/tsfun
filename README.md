@@ -53,7 +53,7 @@ of anything other than Array or Object (which are assumed to be created via lite
 
 Note: We ignore the *JavaScript* `Map` collection and the *TypeScript* `Record` type.
 
-## Function reference
+## Function
 
 ### Array
 
@@ -242,7 +242,7 @@ Comparators generally are functions of type `(l: T1) => (t: T2) => boolean`.
 * [gte](test/comparator/number/gte.spec.ts)
 * [lte](test/comparator/number/lte.spec.ts)
 
-## Types reference
+## Types
 
 ###### Data
 
@@ -267,14 +267,14 @@ Comparators generally are functions of type `(l: T1) => (t: T2) => boolean`.
 * [Success](test/type/either.spec.ts)
 * [Failure](test/type/either.spec.ts)
 
-## Constants reference
+## Constants
 
 ###### Tuple
 
 * [L](test/tuple/l.constant.spec.ts)
 * [R](test/tuple/r.constant.spec.ts)
 
-## Extra functions reference
+## Extra functions
 
 ### Async
 
