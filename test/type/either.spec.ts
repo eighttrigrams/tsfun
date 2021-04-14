@@ -1,4 +1,4 @@
-import {Either, Left, Right} from '../../src/type'
+import {Either, Failure, Success} from '../../src/type'
 
 
 /**
@@ -13,7 +13,7 @@ describe('Either', () => {
         // wrong - const e3: Either<string, number> = ['3', 4]
         // wrong - const e3: Either<string, number> = ['3']
 
-        const l1: Left = [1, undefined]
-        const r2: Right = [undefined, 1]
+        const l1: Failure = [1, undefined]
+        const r2: Success = [undefined, 1]
     })
 })

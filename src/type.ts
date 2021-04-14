@@ -47,19 +47,13 @@ export type Pair<A = any, B = A> = [A, B]
 export type Fallible<T> = Either<any, T> | Maybe<T>
 
 
-export type Either<L = any, R = any> = Left<L>|Right<R>
+export type Either<L = any, R = any> = Failure<L>|Success<R>
 
 
-export type Left<T = any> = [T, undefined]
+export type Failure<T = any> = [T, undefined]
 
 
-export type Right<T = any> = [undefined, T]
-
-
-export type Success<T = any> = Just<T>|Right<T>
-
-
-export type Failure<T = any> = Nothing|Left<T>
+export type Success<T = any> = [undefined, T]
 
 
 export type Just<T = any> = [T]
