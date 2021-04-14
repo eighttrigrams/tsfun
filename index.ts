@@ -107,7 +107,7 @@ export {
     left,
     right,
     value,
-    getOk,
+    ok,
     tuplify,
     pairWith,
     swap,

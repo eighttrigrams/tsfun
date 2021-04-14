@@ -1,15 +1,15 @@
-import {getOk} from '../../src/tuple'
+import {ok} from '../../src/tuple'
 
 
 /**
- * tsfun | getOk
+ * tsfun | ok
  */
-describe('getOk', () => {
+describe('ok', () => {
 
     it('Maybe', () =>
         expect(
 
-            getOk([3])
+            ok([3])
 
         ).toEqual(3)
     )
@@ -18,7 +18,7 @@ describe('getOk', () => {
     it('Either', () =>
         expect(
 
-            getOk([undefined, 3])
+            ok([undefined, 3])
 
         ).toEqual(3)
     )
@@ -27,7 +27,7 @@ describe('getOk', () => {
     it('Maybe - illegal argument', () =>
         expect(
 
-            () => getOk([])
+            () => ok([])
 
         ).toThrow()
     )
@@ -36,7 +36,7 @@ describe('getOk', () => {
     it('Either illegal argument', () =>
         expect(
 
-            () => getOk([3, undefined])
+            () => ok([3, undefined])
 
         ).toThrow()
     )

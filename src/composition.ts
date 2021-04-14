@@ -2,7 +2,7 @@ import {identity} from './core'
 import {Array6, Either, Fallible, Mapping, Maybe, Pair, Predicate} from './type'
 import {isEither, isErr, isFunction, isMaybe, isPair, isOk} from './predicate'
 import {first, rest} from './array'
-import {success, getOk, left, just, right} from './tuple'
+import {success, ok, left, just, right} from './tuple'
 import { tripleEqual } from './comparator'
 
 
@@ -129,12 +129,12 @@ export function mcompose<T, R>(...fs: Array<(x: T, ...xs: Array<T>) => Either<an
     return (seed: Maybe<T>|Either<any, T>) => {
         if (isErr(seed)) return seed as any
 
-        let results = [getOk(seed)] as Array<T>
+        let results = [ok(seed)] as Array<T>
         for (let f of fs) {
 
             const res = f(first(results) as T, ...rest(results))
             if (isErr(res)) return res as any
-            results = [getOk(res)].concat(results)
+            results = [ok(res)].concat(results)
         }
         return convert(first(results), seed) as any
     }

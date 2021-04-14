@@ -165,7 +165,7 @@ functions for smaller sets.
 * [left](test/tuple/left.spec.ts)
 * [right](test/tuple/right.spec.ts)
 * [value](test/tuple/value.spec.ts)
-* [getOk](test/tuple/get_ok.spec.ts)
+* [ok](test/tuple/ok.spec.ts)
 
 ### Predicate
 

@@ -299,7 +299,7 @@ export const isFunction: Predicate = $ => typeof $ === 'function'
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_success.spec.ts
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_ok.spec.ts
  */
 export function isOk<T>(f: Fallible<T>): boolean {
 
@@ -330,7 +330,7 @@ export function isOk<T>(f: Fallible<T>): boolean {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_failure.spec.ts
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_err.spec.ts
  */
 export function isErr<T, E = any>(f: Maybe<T>|Either<E,T>) {
 

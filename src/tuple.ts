@@ -218,27 +218,27 @@ export function liftE<T,R>(f: (...x: T[]) => R) {
 
 
 /**
- * tsfun | getOk
+ * tsfun | ok
  *
  * ```
- * >> getOk([3])
+ * >> ok([3])
  * 3
- * >> getOk([undefined, 3])
+ * >> ok([undefined, 3])
  * 3
- * >> getOk([])
+ * >> ok([])
  * throws error
- * >> getOk([3, undefined])
+ * >> ok([3, undefined])
  * throws error
  * ```
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/get_success.spec.ts
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/ok.spec.ts
  */
-export function getOk<T>(x: Fallible<T>): T {
+export function ok<T>(x: Fallible<T>): T {
 
-    if (!isEither(x) && !isMaybe(x)) throwIllegalArgs('getOk', 'Fallible(Maybe|Either)', x)
-    if (!isOk(x)) throwIllegalArgs('getOk', 'success value to be present', x)
+    if (!isEither(x) && !isMaybe(x)) throwIllegalArgs('ok', 'Fallible(Maybe|Either)', x)
+    if (!isOk(x)) throwIllegalArgs('ok', 'success value to be present', x)
     return isEither(x)
         ? (x as any)[1]
         : (x as any)[0]

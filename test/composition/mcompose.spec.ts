@@ -1,4 +1,4 @@
-import {liftE, getOk, liftM, success, just, right, left} from '../../src/tuple'
+import {liftE, ok, liftM, success, just, right, left} from '../../src/tuple'
 import {Either, Mapping, Maybe} from '../../src/type'
 import {collect, cond, flow, mcompose, throws, val} from '../../src/composition'
 import {map, filter, assoc} from '../../src/associative'
@@ -272,7 +272,7 @@ describe('mcompose', () => {
                             liftM(cond(lt(2), throws('')) as any),
                             liftM(square))),
                     filter(isOk as any),
-                    map(getOk))
+                    map(ok))
 
             ).toEqual([4, 9])
         )
@@ -291,7 +291,7 @@ describe('mcompose', () => {
                             liftE(cond(lt(2), throws('e1')) as any),
                             squareE)),
                     filter(isOk as any),
-                    map(getOk))
+                    map(ok))
 
             ).toEqual([4, 9])
         )
