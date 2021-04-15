@@ -10,24 +10,21 @@ import {rest} from './array'
 /**
  * tsfun | clone
  *
+ * Makes a deep copy of a Struct.
+ * All of its leafs must be Primitives.
+ * Allows also to copy a Primitive.
+ *
  * Examples:
  *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/clone.spec.ts
  */
-export function clone(struct: boolean): boolean
-export function clone(struct: string): string
-export function clone(struct: number): number
-export function clone(struct: undefined): undefined
-export function clone(struct: null): null
-export function clone<T>(struct: Array<T>): Array<T>
-export function clone<T>(struct: Map<T>): Map<T>
-export function clone(struct) {
+export function clone<S>(s: S): S {
 
-    return isPrimitive(struct)
-        ? struct
-        : isAssociative(struct)
-        ? map(struct, clone)
-        : throwIllegalArgs('clone', 'Primitive or Associative', struct)
+    return isPrimitive(s)
+        ? s
+        : isAssociative(s)
+        ? map(s, clone)
+        : throwIllegalArgs('clone', 'Primitive or Associative', s) as any
 }
 
 
