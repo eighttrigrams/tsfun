@@ -10,14 +10,22 @@ at the same time providing accurate *TypeScript*-typings.
 
 ## Getting started
 
+Install
+
 ```
 $ npm i tsfun
 ```
 
-Pick your functions:
+Pick your functions
 
 ```typescript
 import {on, equal, take, update, flow} from 'tsfun'
+```
+
+Or import as module
+
+```typescript
+import * as tsfun from 'tsfun'
 ```
 
 ## Intro
