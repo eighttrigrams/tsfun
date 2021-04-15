@@ -1,5 +1,5 @@
 import {identity, throwIllegalArgs} from './core'
-import {Either, Fallible, Just, Maybe, Nothing, Pair, Singleton} from './type'
+import {Either, Err, Failure, Fallible, Just, Maybe, Nothing, Ok, Pair, Singleton, Success} from './type'
 import {isArray, isEither, isMaybe, isOk} from './predicate'
 
 
@@ -235,11 +235,41 @@ export function liftE<T,R>(f: (...x: T[]) => R) {
  *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/ok.spec.ts
  */
-export function ok<T>(x: Fallible<T>): T {
+export function ok<T>(x: Ok<T>): T {
 
     if (!isEither(x) && !isMaybe(x)) throwIllegalArgs('ok', 'Fallible(Maybe|Either)', x)
     if (!isOk(x)) throwIllegalArgs('ok', 'success value to be present', x)
     return isEither(x)
         ? (x as any)[1]
         : (x as any)[0]
+}
+
+
+/**
+ * tsfun | err
+ *
+ * ```
+ * >> err([3, undefined])
+ * 3
+ * >> err([])
+ * undefined
+ * >> err([3])
+ * throws error
+ * >> err([undefined 3])
+ * throws error
+ * ```
+ *
+ * Examples:
+ *
+ * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/ok.spec.ts
+ */
+export function err<T>(x: Failure<T>): T
+export function err(x: Nothing): undefined
+export function err<T>(x: Err<T>): T|undefined {
+
+    if (!isEither(x) && !isMaybe(x)) throwIllegalArgs('ok', 'Fallible(Maybe|Either)', x)
+    if (isOk(x)) throwIllegalArgs('ok', 'success value not to be present', x)
+    return isEither(x)
+        ? (x as any)[0]
+        : undefined
 }

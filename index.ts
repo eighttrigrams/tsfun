@@ -108,6 +108,7 @@ export {
     right,
     value,
     ok,
+    err,
     tuplify,
     pairWith,
     swap,

@@ -153,19 +153,20 @@ functions for smaller sets.
 
 *JavaScript*-Arrays, typed as *TypeScript*-Tuples.
 
-* [tuplify](test/tuple/tuplify.spec.ts)
-* [pairWith](test/tuple/pair-with.spec.ts)
-* [swap](test/tuple/swap.spec.ts)
 * [singleton](test/tuple/singleton.spec.ts)
+* [value](test/tuple/value.spec.ts)
 * [pair](test/tuple/pair.spec.ts)
+* [left](test/tuple/left.spec.ts)
+* [right](test/tuple/right.spec.ts)
+* [swap](test/tuple/swap.spec.ts)
+* [pairWith](test/tuple/pair-with.spec.ts)
+* [tuplify](test/tuple/tuplify.spec.ts)
 * [just](test/tuple/just.spec.ts)
 * [nothing](test/tuple/nothing.spec.ts)
 * [success](test/tuple/success.spec.ts)
 * [failure](test/tuple/failure.spec.ts)
-* [left](test/tuple/left.spec.ts)
-* [right](test/tuple/right.spec.ts)
-* [value](test/tuple/value.spec.ts)
 * [ok](test/tuple/ok.spec.ts)
+* [err](test/tuple/err.spec.ts)
 
 ### Predicate
 

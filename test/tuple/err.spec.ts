@@ -1,33 +1,33 @@
-import {ok} from '../../src/tuple'
+import {err} from '../../src/tuple'
 
 
 /**
- * tsfun | ok
+ * tsfun | err
  */
-describe('ok', () => {
+describe('err', () => {
 
     it('Maybe', () =>
         expect(
 
-            ok([3])
+            err([])
 
-        ).toEqual(3)
+        ).toEqual(undefined)
     )
 
 
     it('Either', () =>
         expect(
 
-            ok([undefined, 3])
+            err([1, undefined])
 
-        ).toEqual(3)
+        ).toEqual(1)
     )
 
 
     it('Maybe - illegal argument', () =>
         expect(
 
-            () => ok([] as any)
+            () => err([3] as any)
 
         ).toThrow()
     )
@@ -36,7 +36,7 @@ describe('ok', () => {
     it('Either illegal argument', () =>
         expect(
 
-            () => ok([3, undefined] as any)
+            () => err([undefined, 3] as any)
 
         ).toThrow()
     )

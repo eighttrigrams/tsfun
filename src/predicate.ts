@@ -1,4 +1,4 @@
-import {Array2, Either, Mapping, Maybe, Pair, Predicate, Singleton, Path, Associative, Key, Fallible} from './type'
+import {Array2, Either, Mapping, Maybe, Pair, Predicate, Singleton, Path, Associative, Key, Fallible, Err, Ok} from './type'
 import {is} from './comparator'
 import {first} from './array'
 import {map, $reduce_a, filter} from './associative'
@@ -301,7 +301,7 @@ export const isFunction: Predicate = $ => typeof $ === 'function'
  *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_ok.spec.ts
  */
-export function isOk<T>(f: Fallible<T>): boolean {
+export function isOk<T>(f: Fallible<T>): f is Ok<T> {
 
     if (!isEither(f) && !isMaybe(f)) throwIllegalArgs('isOk', 'Fallible', f)
     if (f.length === 0) return false
@@ -332,7 +332,7 @@ export function isOk<T>(f: Fallible<T>): boolean {
  *
  * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/predicate/is_err.spec.ts
  */
-export function isErr<T, E = any>(f: Maybe<T>|Either<E,T>) {
+export function isErr<T, E = any>(f: Maybe<T>|Either<E,T>): f is Err<E> {
 
     return !isOk(f)
 }
