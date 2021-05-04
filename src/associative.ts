@@ -1,8 +1,8 @@
-import {Predicate, Map, Associative, Mapping, Key, Pair} from './type'
-import {isArray, isAssociative, isDefined, isFunction, isObject} from './predicate'
-import {range, zip} from './array'
-import { throwIllegalArgs } from './core'
+import { range, zip } from './array'
 import { cond } from './composition'
+import { throwIllegalArgs } from './core'
+import { isArray, isAssociative, isDefined, isFunction, isObject } from './predicate'
+import { Associative, Key, Map, Mapping, Predicate } from './type'
 
 export type Filter<T = any> = Mapping<Associative<T>>
 
@@ -432,22 +432,27 @@ export function remove<A = any>(f: (_: A, i?: Key) => boolean):
         : T extends Map<any>
         ? Array<A> // fallback on mismatch between A and C
         : never // on illegal argument for as
+export function remove<A = any>(i: Key): (as: Associative<A>) => A
 
 export function remove<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array<A>
 export function remove<A>(p: (a: A) => boolean, as: Array<A>): Array<A>
 export function remove<A>(as: Array<A>, p: (a: A, i: number) => boolean): Array<A>
 export function remove<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
+export function remove<A>(k: number, as: Map<A>): Array<A>
+export function remove<A>(as: Map<A>, k: number): Array<A>
 
 export function remove<A>(p: (a: A, k: string) => boolean, as: Map<A>): Map<A>
 export function remove<A>(p: (a: A) => boolean, as: Map<A>): Map<A>
 export function remove<A>(as: Map<A>, p: (a: A, k: string) => boolean): Map<A>
 export function remove<A>(as: Map<A>, p: (a: A) => boolean): Map<A>
+export function remove<A>(k: string, as: Map<A>): Map<A>
+export function remove<A>(as: Map<A>, k: string): Map<A>
 
 export function remove(...args): any {
 
     return args.length === 1
         ? $remove(args[0])
-        : isFunction(args[0])
+        : isAssociative(args[1])
             ? $remove(args[0], args[1])
             : $remove(args[1], args[0])
 }
@@ -677,6 +682,8 @@ export function $remove<A>(p: (a: A, i: number) => boolean, as: Array<A>): Array
 export function $remove<A>(p: (a: A) => boolean, as: Array<A>): Array<A>
 export function $remove<A>(as: Array<A>, p: (a: A, i: number) => boolean): Array<A>
 export function $remove<A>(as: Array<A>, p: (a: A) => boolean): Array<A>
+export function $remove<A>(k: number, as: Map<A>): Array<A>
+export function $remove<A>(as: Map<A>, k: number): Array<A>
 export function $remove<A>(p: (a: A, i: number) => boolean, as: string): string
 export function $remove<A>(p: (a: A) => boolean, as: string): string
 export function $remove<A>(as: string, p: (a: A, i: number) => boolean): string
@@ -685,13 +692,18 @@ export function $remove<A>(p: (a: A, i: string) => boolean, as: Map<A>): Map<A>
 export function $remove<A>(p: (a: A) => boolean, as: Map<A>): Map<A>
 export function $remove<A>(as: Map<A>, p: (a: A, i: string) => boolean): Map<A>
 export function $remove<A>(as: Map<A>, p: (a: A) => boolean): Map<A>
+export function $remove<A>(k: string, as: Map<A>): Map<A>
+export function $remove<A>(as: Map<A>, k: string): Map<A>
 export function $remove<A>(...args): any {
 
-    const inner = p => $filter((a: any, i: number|string) => !p(a, i))
+    const inner = p =>
+        isFunction(p)
+            ? $filter((a: any, i: number|string) => !p(a, i))
+            : $filter((_: any, i: number|string) => p !== i)
 
     return args.length === 1
         ? inner(args[0])
-        : isFunction(args[0])
+        : isAssociative(args[1])
             ? inner(args[0])(args[1])
             : inner(args[1])(args[0]) as any
 }

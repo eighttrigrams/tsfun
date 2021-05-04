@@ -1,8 +1,8 @@
-import {gt, lt} from '../../src/comparator';
-import {map, remove} from '../../src/associative';
-import {Map} from '../../src/type';
+import { expectType } from 'ts-expect';
+import { map, remove } from '../../src/associative';
+import { lt } from '../../src/comparator';
 import { flow } from '../../src/composition';
-import { expectNever, expectType } from 'ts-expect';
+import { Map } from '../../src/type';
 
 
 /**
@@ -41,6 +41,10 @@ describe('remove', () => {
         expect(
 
             remove((_, k: string) => k === 'a')({a: 2, b: 4}))
+
+            .toEqual({b: 4});
+
+            remove('a')({a: 2, b: 4})
 
             .toEqual({b: 4});
     })
