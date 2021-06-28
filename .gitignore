@@ -1,0 +1,9 @@
+package-lock.json
+*.iml
+.idea
+node_modules
+**/*.js
+**/*.js.map
+**/*.d.ts
+!**/test/karma.conf.js
+!**/test/test-main.js
