@@ -14,7 +14,7 @@ export const R = 1
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/tuplify.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/tuple/tuplify.spec.ts
  */
 export function tuplify<S = any, T = S>(...fs : Array<(s: S) => T>) {
 
@@ -27,7 +27,7 @@ export function tuplify<S = any, T = S>(...fs : Array<(s: S) => T>) {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/pair_with.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/tuple/pair_with.spec.ts
  */
 export function pairWith<S = any, T = S>(f: (s: S) => T) {
 
@@ -40,7 +40,7 @@ export function pairWith<S = any, T = S>(f: (s: S) => T) {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/left.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/tuple/left.spec.ts
  */
 export function left<T = any>(pair: Pair<T, any>|Either<T>): T {
 
@@ -55,7 +55,7 @@ export function left<T = any>(pair: Pair<T, any>|Either<T>): T {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/right.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/tuple/right.spec.ts
  */
 export function right<T>(pair: Pair<any, T>|Either<any,T>): T {
 
@@ -69,7 +69,7 @@ export function right<T>(pair: Pair<any, T>|Either<any,T>): T {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/value.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/tuple/value.spec.ts
  */
 export function value<T = any>(s: Singleton<T>): T {
 
@@ -83,7 +83,7 @@ export function value<T = any>(s: Singleton<T>): T {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/swap.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/tuple/swap.spec.ts
  */
 export function swap<S, T>([l, r]: Pair<S, T>): Pair<T, S> {
 
@@ -96,7 +96,7 @@ export function swap<S, T>([l, r]: Pair<S, T>): Pair<T, S> {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/just.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/tuple/just.spec.ts
  */
 export function just<T = any>(v: T): Just<T> {
 
@@ -109,7 +109,7 @@ export function just<T = any>(v: T): Just<T> {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/nothing.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/tuple/nothing.spec.ts
  */
 export function nothing(): Nothing {
 
@@ -123,7 +123,7 @@ export function nothing(): Nothing {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/singleton.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/tuple/singleton.spec.ts
  */
 export function singleton<T = any>(v: T): Singleton<T> {
 
@@ -137,7 +137,7 @@ export function singleton<T = any>(v: T): Singleton<T> {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/pair.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/tuple/pair.spec.ts
  */
 export function pair<L = any, R = L>(l: L, r: R): Pair<L, R> {
 
@@ -151,7 +151,7 @@ export function pair<L = any, R = L>(l: L, r: R): Pair<L, R> {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/success.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/tuple/success.spec.ts
  */
 export function success<L = string, R = any>(v: R): Either<L, R> {
 
@@ -165,7 +165,7 @@ export function success<L = string, R = any>(v: R): Either<L, R> {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/failure.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/tuple/failure.spec.ts
  */
 export function failure<L = string, R = any>(v: L): Either<L, R> {
 
@@ -189,7 +189,7 @@ export function failure<L = string, R = any>(v: L): Either<L, R> {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/ok.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/tuple/ok.spec.ts
  */
 export function ok<T>(x: Ok<T>): T {
 
@@ -217,7 +217,7 @@ export function ok<T>(x: Ok<T>): T {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/tuple/ok.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/tuple/ok.spec.ts
  */
 export function err<T>(x: Failure<T>): T
 export function err(x: Nothing): undefined

@@ -25,7 +25,7 @@ import { flow, val } from './composition'
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/flat_map.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/flat_map.spec.ts
  */
 export function flatMap<A,B>(as: Array<A>, f: (_: A) => Array<B>): Array<B>
 export function flatMap<A,B>(f: (_: A) => Array<B>, as: Array<A>): Array<B>
@@ -55,7 +55,7 @@ export function flatMap<A,B>(arg, arg2?): any {
 // see https://mail.mozilla.org/pipermail/es-discuss/2012-April/022273.html
 /**
  * tsfun | dense
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/dense.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/dense.spec.ts
  */
 export function dense(size: number) {
 
@@ -73,7 +73,7 @@ export function dense(size: number) {
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/range.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/range.spec.ts
  */
 export function range(a: number, b?: number, stepSize: number = 1): number[] {
 
@@ -102,7 +102,7 @@ export function range(a: number, b?: number, stepSize: number = 1): number[] {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/flatten.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/flatten.spec.ts
  */
 export function flatten<U, T extends Array<U>>(as: Array<T>): T
 export function flatten<U, T extends Array<U>>(depth: 1, as: Array<T>): T
@@ -169,7 +169,7 @@ export function flatten(p1: any, ...p2: any[]): any {
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/drop.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/drop.spec.ts
  */
 export function drop(n: number): <A>(as: Array<A>) => Array<A>
 /**
@@ -186,7 +186,7 @@ export function drop(n: number): <A>(as: Array<A>) => Array<A>
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/drop.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/drop.spec.ts
  */
 export function drop<A>(n: number, as: Array<A>): Array<A>
 export function drop(n: number, p2?: any): any {
@@ -229,7 +229,7 @@ export function drop(n: number, p2?: any): any {
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/take.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/take.spec.ts
  */
 export function take(n: number): <A>(_: Array<A>) => Array<A>
 export function take<A>(n: number, as: Array<A>): Array<A>
@@ -287,7 +287,7 @@ export function take(...args): any {
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/drop_right.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/drop_right.spec.ts
  */
 export function dropRight<A>(n: number, as: Array<A>): Array<A>
 /**
@@ -304,7 +304,7 @@ export function dropRight<A>(n: number, as: Array<A>): Array<A>
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/drop_right.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/drop_right.spec.ts
  */
 export function dropRight(n: number): <A>(as: Array<A>) => Array<A>
 export function dropRight(n: number, as?: any): any {
@@ -333,7 +333,7 @@ export function dropRight(n: number, as?: any): any {
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/drop_while.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/drop_while.spec.ts
  */
 export function dropWhile<A>(p: Predicate<A>, as: Array<A>): Array<A>
 /**
@@ -348,7 +348,7 @@ export function dropWhile<A>(p: Predicate<A>, as: Array<A>): Array<A>
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/drop_while.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/drop_while.spec.ts
  */
 export function dropWhile<A>(p: Predicate<A>): Mapping<Array<A>>
 export function dropWhile<A>(p, as?) {
@@ -383,7 +383,7 @@ export function dropWhile<A>(p, as?) {
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/drop_right_while.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/drop_right_while.spec.ts
  */
 export function dropRightWhile<A>(p: Predicate<A>): Mapping<Array<A>>
 export function dropRightWhile<A>(p: Predicate<A>, as: Array<A>): Array<A>
@@ -419,7 +419,7 @@ export function dropRightWhile<A>(p: any, as?: any): any {
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/take_right_while.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/take_right_while.spec.ts
  */
 export function takeRightWhile<A>(predicate: Predicate<A>): Mapping<Array<A>>
 export function takeRightWhile<A>(p: Predicate<A>) {
@@ -450,7 +450,7 @@ export function takeRightWhile<A>(p: Predicate<A>) {
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/take_right.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/take_right.spec.ts
  */
 export function takeRight(n: number): <A>(as: Array<A>) => Array<A>
 export function takeRight(n: number): <A>(as: Array<A>) => Array<A> {
@@ -491,7 +491,7 @@ export function takeRight(n: number): <A>(as: Array<A>) => Array<A> {
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/take_while.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/take_while.spec.ts
  */
 export function takeWhile<A>(predicate: Predicate<A>): Mapping<Array<A>>
 export function takeWhile<A>(predicate: Predicate<A>, as: Array<A>): Array<A>
@@ -524,7 +524,7 @@ export function takeWhile(...args): any {
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/distribute.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/distribute.spec.ts
  */
 export function distribute<A>(f: (a: A) => A): (as: Array<string>) => Map<Array<string>>
 export function distribute<A>(f: (a: A) => string): (as: Array<A>) => Map<Array<A>>
@@ -563,7 +563,7 @@ export function distribute(arg, arg2?) {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/separate.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/separate.spec.ts
  */
 export function separate<A>(p: (a: A, i?: number) => boolean): (as: Array<A>) => Pair<Array<A>>
 /**
@@ -578,7 +578,7 @@ export function separate<A>(p: (a: A, i?: number) => boolean): (as: Array<A>) =>
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/separate.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/separate.spec.ts
  */
 export function separate<A>(p: (a: A, i?: number) => boolean, as: Array<A>): Pair<Array<A>>
 export function separate<A>(as: Array<A>, p: (a: A, i?: number) => boolean): Pair<Array<A>>
@@ -613,7 +613,7 @@ function $separate<A>(...args): any { // TODO inline into separate
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/append.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/append.spec.ts
  */
 export function append<A>(...as2: Array<A>): Mapping<Array<A>>
 export function append<A>(...as2: Array<A>) {
@@ -639,7 +639,7 @@ export function append<A>(...as2: Array<A>) {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/prepend.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/prepend.spec.ts
  */
 export function prepend<A>(...as2: Array<A>): Mapping<Array<A>>
 export function prepend<A>(...as2: Array<A>) {
@@ -666,7 +666,7 @@ export function prepend<A>(...as2: Array<A>) {
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/zip.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/zip.spec.ts
  */
 export function zip<A>(f: (as: Array<A>) => A): (aas: Array<Array<A>>) => Array<A>
 export function zip<A>(): (aas: Array<Array<A>>) => Array<Array<A>>
@@ -731,7 +731,7 @@ export function zip(...args): any {
 
 /**
  * tsfun | takeUntil
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/take_until.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/take_until.spec.ts
  */
 export const takeUntil = <A>(predicate: Predicate<A>) =>
     (as: Array<A>) =>
@@ -751,7 +751,7 @@ export const takeUntil = <A>(predicate: Predicate<A>) =>
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/reverse.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/reverse.spec.ts
  */
 export function reverse<A>(as: Array<A>): Array<A> {
 
@@ -779,7 +779,7 @@ export function reverse<A>(as: Array<A>): Array<A> {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/first.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/first.spec.ts
  */
 export function first<T>(as: Array<T>): T|undefined {
     if (!isArray(as)) throwIllegalArgs('first', 'Array', as)
@@ -801,7 +801,7 @@ export function first<T>(as: Array<T>): T|undefined {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/rest.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/rest.spec.ts
  */
 export function rest<T>(as: Array<T>): Array<T> {
     if (!isArray(as)) throwIllegalArgs('rest', 'Array', as)
@@ -821,7 +821,7 @@ export function rest<T>(as: Array<T>): Array<T> {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/last.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/last.spec.ts
  */
 export function last<T>(as: Array<T>): T|undefined {
     if (!isArray(as)) throwIllegalArgs('last', 'Array', as)
@@ -839,7 +839,7 @@ export function last<T>(as: Array<T>): T|undefined {
  * [1,7,9]
  * ```
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/take_nth.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/take_nth.spec.ts
  */
 export function takeNth(n: number): <A>(as: Array<A>) => Array<A>
 export function takeNth(n: number) {
@@ -868,7 +868,7 @@ export function takeNth(n: number) {
  * [1,2]
  * ```
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/array/sort.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/array/sort.spec.ts
  */
 export function sort<T>(s: Array<T>): Array<T>
 export function sort<A>(f: (a: A, b: A) => number): (as: Array<A>) => Array<A>

@@ -16,7 +16,7 @@ import {rest} from './array'
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/clone.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/struct/clone.spec.ts
  */
 export function clone<S>(s: S): S {
 
@@ -33,7 +33,7 @@ export function clone<S>(s: S): S {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/to.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/struct/to.spec.ts
  */
 export function to<T = any>(path: Array2<Key>|Key, alternative?: any): {
     (t: Array<any>): T
@@ -69,7 +69,7 @@ export function to(path: Path, alternative?) {
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/update.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/struct/update.spec.ts
  */
 export function update<T, K extends keyof T>(k: K, f: (val: T[K]) => T[K], s: T): T
 export function update<T, K extends keyof T>(k: K, f: T[K], s: T): T
@@ -91,7 +91,7 @@ export function update<T>(path: Array2<Key>, f_or_v: any, s: T): T
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/update.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/struct/update.spec.ts
  */
 export function update<V>(path: Path, v: any): <T extends Array<any>|Map<any>>(o: T) => T
 export function update(path, update_fun, s?) {
@@ -130,7 +130,7 @@ export function update(path, update_fun, s?) {
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/detach.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/struct/detach.spec.ts
  */
 export function detach(k: string): <T extends Map<any>>(m: T) => T
 export function detach(i: number): <T  extends Array<any>>(as: T) => T
@@ -151,7 +151,7 @@ export function detach(k: Path): <T extends Array<any>|Map<any>>(s: T) => T
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/struct/detach.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/struct/detach.spec.ts
  */
 export function detach<T extends Map<any>>(k: string, m: T): T
 export function detach<T extends Array<any>>(i: number, as: T): T

@@ -26,7 +26,7 @@ export type Filter<T = any> = Mapping<Associative<T>>
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/assoc.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/assoc.spec.ts
  */
 export function assoc<T,V>(key: string, v: Mapping<T,V>, m: Map<T>): Map<T|V>
 export function assoc<T,V>(key: string, v: V, m: Map<T>): Map<T|V>
@@ -58,7 +58,7 @@ export function assoc(key, arg, arg2?): any {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/lookup.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/lookup.spec.ts
  */
 export function lookup<T>(struct: Map<T>, alternative: T): (targetId: string) => T;
 export function lookup<T>(struct: Map<T>): (targetId: string) => T|undefined;
@@ -85,7 +85,7 @@ export function lookup(struct, alternative?) {
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/keysValues.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/keysValues.spec.ts
  */
 export function keysValues<T>(o: T):
     T extends Array<infer M>
@@ -106,7 +106,7 @@ export function keysValues(a) {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/keys.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/keys.spec.ts
  */
 export function keys<T>(o: T):
     T extends Array<any>
@@ -129,7 +129,7 @@ export function keys(t) {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/values.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/values.spec.ts
  */
 export function values<T>(o: T):
     T extends Array<infer M>
@@ -150,7 +150,7 @@ export function values(t) {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/map.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/map.spec.ts
  *
  * ```
  * >> map(_ => 2 * _)([3, 7])
@@ -242,7 +242,7 @@ export function stop(value) { throw new Stop(value) }
  *
  * See examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/reduce.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/reduce.spec.ts
  */
 export function reduce<A, B>(f: (b: B, a: A) => B, init: B|(() => B)): (as: Array<A>|Map<A>) => B
 export function reduce<A, B>(f: (b: B, a: A, i: number) => B, init: B|(() => B)): (as: Array<A>) => B
@@ -255,7 +255,7 @@ export function reduce<A, B>(f: (b: B, a: A, k: string) => B, init: B|(() => B))
  *
  * See examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/reduce.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/reduce.spec.ts
  */
 export function reduce<A, B>(as: Array<A>, f: (b: B, a: A, i: number) => B, init: B): B
 export function reduce<A, B>(as: Array<A>, f: (b: B, a: A) => B, init: B): B
@@ -308,7 +308,7 @@ export function reduce<T, B>(...args /* do it like this to also capture a 3rd el
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/for_each.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/for_each.spec.ts
  */
 export function forEach<A>(as: Array<A>, f: (_: A) => void): Array<A>
 export function forEach<A>(as: Array<A>, f: (_: A, i: number) => void): Array<A>
@@ -331,7 +331,7 @@ export function forEach<A>(as: Map<A>, f: (_: A, k: string) => void): Map<A>
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/for_each.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/for_each.spec.ts
  */
 export function forEach<A = any>(f: (_: A, i?: Key) => void):
     <T>(as: T) =>
@@ -376,7 +376,7 @@ export function forEach(arg, arg2?) {
 
 /**
  * tsfun | filter
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/filter.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/filter.spec.ts
  */
 export function filter<A = any>(f: (_: A, i?: Key) => boolean):
     <T>(as: T) =>
@@ -419,7 +419,7 @@ export function filter(...args): any {
 
 /**
  * tsfun | remove
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/remove.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/remove.spec.ts
  */
 export function remove<A = any>(f: (_: A, i?: Key) => boolean):
     <T>(as: T) =>
@@ -455,7 +455,7 @@ export function remove(...args): any {
 
 /**
  * tsfun | copy
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/copy.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/copy.spec.ts
  */
 export function copy<T>(struct: Array<T>): Array<T>
 export function copy<T>(struct: Map<T>): Map<T>
@@ -479,7 +479,7 @@ export function copy(s) {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/count.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/count.spec.ts
  */
 export function count<A>(p: Predicate<A>): {
     (as: Array<A>): number
@@ -504,7 +504,7 @@ export function count<A>(p: Predicate<A>, as?) {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/all.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/all.spec.ts
  */
 export function all<T>(p: Predicate<T>) {
     if (!isFunction(p)) throwIllegalArgs('any', 'Predicate', p)
@@ -525,7 +525,7 @@ export function all<T>(p: Predicate<T>) {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/any.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/any.spec.ts
  */
 export function any<T>(p: Predicate<T>) {
     if (!isFunction(p)) throwIllegalArgs('any', 'Predicate', p)
@@ -548,7 +548,7 @@ export function any<T>(p: Predicate<T>) {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/prune.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/prune.spec.ts
  */
 export function prune<T>(o: Map<T>): Map<T>
 export function prune<A>(as: Array<A>): Array<A>
@@ -572,7 +572,7 @@ export function prune<T>(ts: Array<T>|Map<T>) {
  *
  * More examples
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/indices.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/indices.spec.ts
  */
 export function indices<A>(p: Predicate<A>): {
     (as: Array<A>): number[]
@@ -592,7 +592,7 @@ export function indices<A>(p: Predicate<A>): {
  *
  * More examples
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/indices.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/indices.spec.ts
  */
 export function indices<A>(p: Predicate<A>, as: Array<A>): number[]
 export function indices<A>(p: Predicate<A>, as: Map<A>): string[]
@@ -618,7 +618,7 @@ export function indices<A>(p: Predicate<A>, as?: any): any {
 
 /**
  * tsfun | size
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/associative/size.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/associative/size.spec.ts
  */
 export function size<A>(as: Array<A>): number
 export function size<T>(o: Map<T>): number

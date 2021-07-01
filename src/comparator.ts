@@ -18,7 +18,7 @@ import {subtract} from './set'
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/reference/gt.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/reference/gt.spec.ts
  */
  export function is<A>(a: A) {
 
@@ -31,7 +31,7 @@ import {subtract} from './set'
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/reference/isnt.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/reference/isnt.spec.ts
  */
 export const isnt = <A>(l: A) => isNot(is(l))
 
@@ -41,7 +41,7 @@ export const isnt = <A>(l: A) => isNot(is(l))
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/number/gt.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/number/gt.spec.ts
  */
 export function gt(than: number) {
     if (!isNumber(than)) throwIllegalArgs('gt', 'number', than)
@@ -57,7 +57,7 @@ export function gt(than: number) {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/number/lt.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/number/lt.spec.ts
  */
 export function lt(than: number) {
     if (!isNumber(than)) throwIllegalArgs('lt', 'number', than)
@@ -73,7 +73,7 @@ export function lt(than: number) {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/number/gte.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/number/gte.spec.ts
  */
 export function gte(than: number) {
     if (!isNumber(than)) throwIllegalArgs('gte', 'number', than)
@@ -89,7 +89,7 @@ export function gte(than: number) {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/number/lte.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/number/lte.spec.ts
  */
 export function lte(than: number): (that: number) => boolean
 export function lte(than: number) {
@@ -131,7 +131,7 @@ const c = (acomparator: Comparator, ocomparator: Comparator) => (l: any) =>
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/on.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/on.spec.ts
  */
 export function on<T1, T2>(mapping: Mapping<T1,T2>): Comparator<T1>
 export function on<T1, T2>(mapping: Mapping<T1,T2>, comparator: Comparator<T2,T2>): Comparator
@@ -169,7 +169,7 @@ export function on(path, compare?) {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/struct/on.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/struct/on.spec.ts
  */
 export function onBy<T1,T2>(compare: (l: T1) => (r: T2) => boolean): (path: Path|Mapping, cmp?: T1) => (l: T1) => (r: T2) => boolean;
 export function onBy(compare) {
@@ -190,7 +190,7 @@ export const by = <A>(p: Predicate<A>) => p
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/reference/different_from.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/reference/different_from.spec.ts
  */
 export function differentFrom(comp: Comparator, that: any): (_: any) => boolean
 export function differentFrom(comp: Comparator): (that: any) => (_: any) => boolean
@@ -219,7 +219,7 @@ export function differentFrom(...args) {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/set/includedIn.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/set/includedIn.spec.ts
  */
 export function includedIn<A>(as: Array<A>): (a: A) => boolean
 export function includedIn<A>(comp: Comparator): (as: Array<A>) => (a: A) => boolean
@@ -266,7 +266,7 @@ export function includedIn<A>(...args): any {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/set/includes.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/set/includes.spec.ts
  */
 export function includes<A>(comp: Comparator, a: A, as: Array<A>): boolean
 export function includes<A>(comp: Comparator, a: A): (as: Array<A>) => boolean
@@ -322,7 +322,7 @@ export function includes<A>(...args): any {
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/struct/object_equal.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/struct/object_equal.spec.ts
  */
  export function same<T>(comp: Comparator, o1: Array<T>): (o2: Array<T>) => boolean
  export function same(comp: Comparator): <T>(o1: Array<T>) => (o2: Array<T>) => boolean
@@ -380,7 +380,7 @@ export function includes<A>(...args): any {
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/map/samemap.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/map/samemap.spec.ts
  */
 export function samemap<T>(comp: Comparator, o1: Map<T>): (o2: Map<T>) => boolean
 export function samemap(comp: Comparator): <T>(o1: Map<T>) => (o2: Map<T>) => boolean
@@ -428,7 +428,7 @@ export function samemap(...args): any {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/set/sameset.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/set/sameset.spec.ts
  */
 export function sameset<A>(that: Array<A>): (as2: Array<A>) => boolean
 export function sameset<A>(comp: Comparator, that: Array<A>): (as2: Array<A>) => boolean
@@ -484,7 +484,7 @@ export function sameset<A>(...args): any {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/set/subset_of.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/set/subset_of.spec.ts
  */
 export function subsetOf<A>(comp: Comparator, that: Array<A>): (as2: Array<A>) => boolean
 export function subsetOf<A>(comp: Comparator): (that: Array<A>) => (as2: Array<A>) => boolean
@@ -540,7 +540,7 @@ export function subsetOf(...args): any {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/set/superset_of.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/set/superset_of.spec.ts
  */
 export function supersetOf<A>(that: Array<A>): (as2: Array<A>) => boolean
 export function supersetOf<A>(that: Array<A>, as2: Array<A>): boolean
@@ -588,7 +588,7 @@ export function supersetOf(that: any, as2?: any, as3?: any): any {
  *
  * More examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/struct/equal.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/struct/equal.spec.ts
  */
 export function equal<T>(o1: Array<T>): (o2: Array<T>) => boolean
 export function equal<T>(o1: Map<T>): (o2: Map<T>) => boolean
@@ -634,7 +634,7 @@ export function equal(...args): any {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/list/starts_with.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/list/starts_with.spec.ts
  */
 export function startsWith<A>(as1: Array<A>, as2: Array<A>): boolean
 export function startsWith<A>(as1: Array<A>): (as2: Array<A>) => boolean
@@ -672,7 +672,7 @@ export function startsWith<A>(...args) {
  *
  * Examples:
  *
- * https://github.com/danielmarreirosdeoliveira/tsfun/blob/master/test/comparator/list/ends_with.spec.ts
+ * https://github.com/dainst/tsfun/blob/master/test/comparator/list/ends_with.spec.ts
  */
 export function endsWith<A>(as1: Array<A>, as2: Array<A>): boolean
 export function endsWith<A>(as1: Array<A>): (as2: Array<A>) => boolean
