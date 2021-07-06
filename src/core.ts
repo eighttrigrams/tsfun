@@ -18,5 +18,5 @@ export const uncurry2 = <A>(f: (_: Array<A>) => (_: Array<A>) => Array<A>) =>
 
 export function throwIllegalArgs(f: string, expectation: string, got?: any) {
 
-    throw `illegal argument in 'tsfun|${f}' - ${expectation} expected ${got ? '- got: ' + JSON.stringify(got) : ''}`
+    throw new Error(`illegal argument in 'tsfun|${f}' - ${expectation} expected ${got ? '- got: ' + JSON.stringify(got) : ''}`)
 }
