@@ -23,6 +23,7 @@ export type {
     Fallible,
     Mapping,
     Effect,
+    Array1,
     Array2,
     Key,
     Path,
