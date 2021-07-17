@@ -66,6 +66,7 @@ export {
     is,
     isnt,
     sameset,
+    samemap,
     equal,
     same,
     includedIn,
