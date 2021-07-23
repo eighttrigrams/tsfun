@@ -574,8 +574,9 @@ export function separate<A>(p: (a: A, i?: number) => boolean, as: Array<A>): Pai
 export function separate<A>(as: Array<A>, p: (a: A, i?: number) => boolean): Pair<Array<A>>
 export function separate<A>(...args): any {
 
-    const $ = p => (as: Array<A>|Map<A>): Pair<Array<A>, Array<A>>|Pair<Map<A>,Map<A>> =>
-        [$filter(p)(as as any) as any, $remove(p)(as as any) as any]
+    const $ = p => as => isArray(as)
+        ? [$filter(p)(as), $remove(p)(as)]
+        : throwIllegalArgs('separate', 'Array', as)
 
     const [p, as] = args.length === 2
         ? isFunction(args[0]) && isArray(args[1])
