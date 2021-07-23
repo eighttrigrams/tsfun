@@ -556,6 +556,11 @@ export function distribute(arg, arg2?) {
 /**
  * tsfun | separate
  *
+ * Creates a pair of Arrays,
+ * the left hand side of which contains the items
+ * filtered, the right hand side the items removed
+ * by the given Predicate (see `filter` and `remove`).
+ *
  * ```
  * >> separate(lt(3))([2, 3, 1, 3, 4])
  * [[2, 1], [3, 3, 4]]
@@ -572,7 +577,7 @@ export function distribute(arg, arg2?) {
 export function separate<A>(p: (a: A, i?: number) => boolean): (as: Array<A>) => Pair<Array<A>>
 export function separate<A>(p: (a: A, i?: number) => boolean, as: Array<A>): Pair<Array<A>>
 export function separate<A>(as: Array<A>, p: (a: A, i?: number) => boolean): Pair<Array<A>>
-export function separate<A>(...args): any {
+export function separate(...args): any {
 
     const $ = p => as => isArray(as)
         ? [$filter(p)(as), $remove(p)(as)]
