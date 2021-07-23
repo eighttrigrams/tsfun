@@ -559,47 +559,39 @@ export function distribute(arg, arg2?) {
  * ```
  * >> separate(lt(3))([2, 3, 1, 3, 4])
  * [[2, 1], [3, 3, 4]]
- * ```
- *
- * Examples:
- *
- * https://github.com/dainst/tsfun/blob/master/test/array/separate.spec.ts
- */
-export function separate<A>(p: (a: A, i?: number) => boolean): (as: Array<A>) => Pair<Array<A>>
-/**
- * tsfun | separate
- *
- * ```
  * >> separate([2, 3, 1, 3, 4], lt(3))
  * [[2, 1], [3, 3, 4]]
  * >> separate(lt(3), [2, 3, 1, 3, 4]
  * [[2, 1], [3, 3, 4]]
  * ```
  *
- * Examples:
+ * More examples:
  *
  * https://github.com/dainst/tsfun/blob/master/test/array/separate.spec.ts
  */
+export function separate<A>(p: (a: A, i?: number) => boolean): (as: Array<A>) => Pair<Array<A>>
 export function separate<A>(p: (a: A, i?: number) => boolean, as: Array<A>): Pair<Array<A>>
 export function separate<A>(as: Array<A>, p: (a: A, i?: number) => boolean): Pair<Array<A>>
 export function separate<A>(...args): any {
 
-    return args.length === 1
-        ? $separate(args[0])
-        : isFunction(args[0])
-            ? $separate(args[0], args[1])
-            : $separate(args[1], args[0])
-}
-function $separate<A>(...args): any { // TODO inline into separate
-
     const $ = p => (as: Array<A>|Map<A>): Pair<Array<A>, Array<A>>|Pair<Map<A>,Map<A>> =>
         [$filter(p)(as as any) as any, $remove(p)(as as any) as any]
 
-    return args.length === 1
-        ? $(args[0])
-        : isFunction(args[0])
-            ? $(args[0])(args[1])
-            : $(args[1])(args[0])
+    const [p, as] = args.length === 2
+        ? isFunction(args[0]) && isArray(args[1])
+            ? [args[0], args[1]]
+            : isFunction(args[1]) && isArray(args[0])
+            ? [args[1], args[0]]
+            : throwIllegalArgs('separate', 'Predicate and Array or Array and Predicate /w 2-argument list', args) as never
+        : args.length === 1
+            ? isFunction(args[0])
+                ? [args[0], undefined]
+                : throwIllegalArgs('separate', 'function /w 1-argument list)', args[0]) as never
+            : throwIllegalArgs('separate', '1 or 2 arguments', args.length) as never
+
+    return as === undefined
+        ? $(p)
+        : $(p)(as)
 }
 
 
