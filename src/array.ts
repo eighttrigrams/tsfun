@@ -622,7 +622,7 @@ export function append<A>(...as2: Array<A>) {
 
             return as.concat(as2 as any) as Array<A>
 
-        } else throw 'illegal argument - in \'append\''
+        } else throwIllegalArgs('append', 'Array', as)
     }
 }
 
@@ -648,7 +648,7 @@ export function prepend<A>(...as2: Array<A>) {
 
             return as2.concat(as as any) as Array<A>
 
-        } else throw 'illegal argument - in \'prepend\''
+        } else throwIllegalArgs('prepend', 'Array', as)
     }
 }
 
