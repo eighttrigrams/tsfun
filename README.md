@@ -1,6 +1,6 @@
 ![alt](README_splash.png)
  
-**tsfun - functional combinator library for TypeScript**
+**tsfun - functional combinator library for TypeScript** 
 
 ---
 
