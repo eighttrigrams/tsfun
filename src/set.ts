@@ -19,7 +19,7 @@ import {$reduce0} from './array'
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/set/duplicates.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/set/duplicates.spec.ts
  */
 export function duplicates<A>(as: Array<A>): Array<A>
 export function duplicates<A>(comparator: Comparator<A>, as: Array<A>): Array<A>
@@ -56,7 +56,7 @@ export function duplicates(...args): any {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/set/intersection.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/set/intersection.spec.ts
  */
 export function intersection(aas: Array<string>): Array<string>;
 export function intersection<A>(aas: Array<Array<A>>): Array<A>;
@@ -105,7 +105,7 @@ export function intersection(a, b?): any {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/set/intersect.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/set/intersect.spec.ts
  */
 export function intersect<A>(set1: Array<A>): (set2: Array<A>) => Array<A>
 export function intersect<A>(comp: Comparator, set1: Array<A>): (set2: Array<A>) => Array<A>
@@ -145,7 +145,7 @@ export function intersect(...args): any {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/set/union.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/set/union.spec.ts
  */
 export function union<A>(aas: Array<Array<A>>): Array<A>
 export function union<A>(comp: Comparator): (aas: Array<Array<A>>) => Array<A>
@@ -190,7 +190,7 @@ export function union(...args): any {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/set/unite.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/set/unite.spec.ts
  */
 export function unite<A>(as1: Array<A>): (as2: Array<A>) => Array<A>;
 export function unite<A>(comp: Comparator, as1: Array<A>): (as2: Array<A>) => Array<A>;
@@ -218,7 +218,7 @@ export function unite<A>(...args) {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/set/set.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/set/set.spec.ts
  */
 export function subtract<A>(as1: Array<A>): (as2: Array<A>) => Array<A>
 export function subtract<A>(comp: Comparator, as1: Array<A>): (as2: Array<A>) => Array<A>
@@ -264,7 +264,7 @@ export function subtract<A>(...args) {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/set/set.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/set/set.spec.ts
  */
 export function set<A>(as: Array<A>): Array<A>
 export function set<A>(comp: Comparator, as: Array<A>): Array<A>

@@ -12,7 +12,7 @@ import { throwIllegalArgs } from './core'
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_defined.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_defined.spec.ts
  */
 export function isDefined($) {
 
@@ -25,7 +25,7 @@ export function isDefined($) {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_not.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_not.spec.ts
  */
 export function not<T>(p: Predicate<T>) {
 
@@ -38,7 +38,7 @@ export function not<T>(p: Predicate<T>) {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_not.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_not.spec.ts
  */
 export function isNot<A>(f: Predicate<A>) {
 
@@ -51,7 +51,7 @@ export function isNot<A>(f: Predicate<A>) {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_undefined.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_undefined.spec.ts
  */
 export function isUndefined($) {
 
@@ -64,7 +64,7 @@ export function isUndefined($) {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_undefined_or_empty.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_undefined_or_empty.spec.ts
  */
 export function isUndefinedOrEmpty<T>(coll: Object|Array<T>|string|undefined): boolean {
 
@@ -84,7 +84,7 @@ export function isUndefinedOrEmpty<T>(coll: Object|Array<T>|string|undefined): b
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_empty.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_empty.spec.ts
  */
 export function isEmpty<T>(coll: Object|Array<T>): boolean {
 
@@ -98,7 +98,7 @@ export function isEmpty<T>(coll: Object|Array<T>): boolean {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/and.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/and.spec.ts
  */
 export function and(...preds: Array<Predicate<any>>) {
 
@@ -114,7 +114,7 @@ export function and(...preds: Array<Predicate<any>>) {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/or.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/or.spec.ts
  */
 export function or(...preds: Array<Predicate<any>>) {
 
@@ -137,7 +137,7 @@ function applyTo<A>(arg: A) {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/xor.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/xor.spec.ts
  */
 export function xor<A>(...preds: Array<Predicate<A>>) {
 
@@ -155,7 +155,7 @@ export function xor<A>(...preds: Array<Predicate<A>>) {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_array.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_array.spec.ts
  */
 export function isArray<T = any, V = any>(t: T|Array<V>): t is Array<V> {
 
@@ -174,7 +174,7 @@ export function isArray2<T = any, V = any>(t: T|Array2<V>): t is Array2<V> {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_object.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_object.spec.ts
  */
 export const isObject: Predicate = o => o instanceof Object && o.constructor === Object
 
@@ -184,7 +184,7 @@ export const isObject: Predicate = o => o instanceof Object && o.constructor ===
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_associative.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_associative.spec.ts
  */
 export function isAssociative(a: any): a is Associative {
 
@@ -197,7 +197,7 @@ export function isAssociative(a: any): a is Associative {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_string.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_string.spec.ts
  */
 export function isString<T = any>(t: T|string): t is string {
     return typeof t === 'string'
@@ -209,7 +209,7 @@ export function isString<T = any>(t: T|string): t is string {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_number.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_number.spec.ts
  */
 export function isNumber<T = any>(t: T|number): t is number {
     return typeof t === 'number'
@@ -221,7 +221,7 @@ export function isNumber<T = any>(t: T|number): t is number {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_boolean.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_boolean.spec.ts
  */
 export const isBoolean: Predicate = $ => typeof $ === 'boolean'
 
@@ -231,7 +231,7 @@ export const isBoolean: Predicate = $ => typeof $ === 'boolean'
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_function.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_function.spec.ts
  */
 export const isFunction: Predicate = $ => typeof $ === 'function'
 
@@ -256,7 +256,7 @@ export const isFunction: Predicate = $ => typeof $ === 'function'
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_ok.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_ok.spec.ts
  */
 export function isOk<T>(f: Fallible<T>): f is Ok<T> {
 
@@ -287,7 +287,7 @@ export function isOk<T>(f: Fallible<T>): f is Ok<T> {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_err.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_err.spec.ts
  */
 export function isErr<T, E = any>(f: Maybe<T>|Either<E,T>): f is Err<E> {
 
@@ -300,7 +300,7 @@ export function isErr<T, E = any>(f: Maybe<T>|Either<E,T>): f is Err<E> {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_pair.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_pair.spec.ts
  */
 export function isPair(pair: any): pair is Pair {
 
@@ -315,7 +315,7 @@ export function isPair(pair: any): pair is Pair {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_singleton.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_singleton.spec.ts
  */
 export function isSingleton(l: Array<any>): l is Singleton {
 
@@ -330,7 +330,7 @@ export function isSingleton(l: Array<any>): l is Singleton {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_either.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_either.spec.ts
  */
 export function isEither(either: any) {
 
@@ -345,7 +345,7 @@ export function isEither(either: any) {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_maybe.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_maybe.spec.ts
  */
 export function isMaybe(maybe: any) {
 
@@ -369,7 +369,7 @@ export const flip = (v: boolean) => !v
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/predicate/is_primitive.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/predicate/is_primitive.spec.ts
  */
 export const isPrimitive = (struct: any) =>
     isNumber(struct)||isString(struct)||isBoolean(struct)||struct === undefined||struct === null;

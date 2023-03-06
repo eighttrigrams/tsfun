@@ -27,7 +27,7 @@ import {throwIllegalArgs} from './core'
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/async/aFilter.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/async/aFilter.spec.ts
  */
 export function aFilter<T>(p: (a: T, i?: string|number) => Promise<boolean>): Promise<{
     (as: Array<T>): Promise<Array<T>>
@@ -88,7 +88,7 @@ export function aFilter(...args) {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/async/a_reduce.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/async/a_reduce.spec.ts
  */
 export function aReduce<A, B>(f: (b: B, a: A, i?: number|string) => Promise<B>, init: B): Promise<{
     (as: Array<A>): Promise<B>
@@ -145,7 +145,7 @@ export function aReduce<T, B>(...params): Promise<any> {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/async/a_map.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/async/a_map.spec.ts
  */
 export function aMap<A, B>(f: (_: A, i?: string|number) => Promise<B>): Promise<{
     (as: Array<A>): Promise<Array<B>>
@@ -191,7 +191,7 @@ export async function aMap(...args) {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/async/a_flow.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/async/a_flow.spec.ts
  */
 export async function aFlow(a: any, ...b: Array<Function|Promise<Function>>): Promise<any> {
 
@@ -206,7 +206,7 @@ export async function aFlow(a: any, ...b: Array<Function|Promise<Function>>): Pr
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/async/a_filter.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/async/a_filter.spec.ts
  */
 export function aCompose(...b: Array<Function|Promise<Function>>) {
 

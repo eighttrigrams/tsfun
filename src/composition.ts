@@ -9,7 +9,7 @@ import { is } from './comparator'
 // flow can also be called 'composition'
 /**
  * tsfun | flow
- * https://github.com/dainst/tsfun/blob/master/test/composition/flow.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/composition/flow.spec.ts
  */
 export function flow<A>(t: A): A
 export function flow<A,B>(t: A, f: ((_: A) => B)): B
@@ -31,7 +31,7 @@ export function flow(t: any, ...transformations: Array<Function>): any {
 
 /**
  * tsfun | compose
- * https://github.com/dainst/tsfun/blob/master/test/composition/compose.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/composition/compose.spec.ts
  */
 export function compose<A,B>(f: (_: A) => B): (_: A) => B
 export function compose<A,B,C>(f: ((_: A) => B), g: ((_: B) => C)): (_: A) => C
@@ -60,7 +60,7 @@ export function compose(...transformations: Array<Function>) {
  * >> '312'
  * ```
  *
- * https://github.com/dainst/tsfun/blob/master/test/composition/pipe.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/composition/pipe.spec.ts
  */
 export function pipe<A,B,C>(f: (a: A, b: B) => C, b: B): (a: A) => C
 export function pipe<A,B,C,D>(f: (a: A, b: B, c: C) => D, b: B, c: C): (a: A) => D
@@ -83,7 +83,7 @@ export function pipe(f, ...args) {
  *
  * Examples:
  *
- * https://github.com/dainst/tsfun/blob/master/test/composition/curry.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/composition/curry.spec.ts
  */
  export function curry<A,B,C>(f: (a: A, b: B) => C, a: A): (b: B) => C
  export function curry<A,B,C,D>(f: (a: A, b: B, c: C) => D, a: A, b: B): (c: C) => D
@@ -95,21 +95,21 @@ export function pipe(f, ...args) {
 
 /**
  * tsfun | nop
- * https://github.com/dainst/tsfun/blob/master/test/composition/nop.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/composition/nop.spec.ts
  */
 export function nop() {}
 
 
 /**
  * tsfun | val
- * https://github.com/dainst/tsfun/blob/master/test/composition/val.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/composition/val.spec.ts
  */
 export function val<A>(v: A) { return () => v as A }
 
 
 /**
  * tsfun | throws
- * https://github.com/dainst/tsfun/blob/master/test/composition/throws.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/composition/throws.spec.ts
  */
 export function throws(e1?: any) {
 
@@ -119,7 +119,7 @@ export function throws(e1?: any) {
 
 /**
  * tsfun | collect
- * https://github.com/dainst/tsfun/blob/master/test/composition/collect.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/composition/collect.spec.ts
  */
 export function collect<T>(...p: Array<T>) {
 
@@ -129,7 +129,7 @@ export function collect<T>(...p: Array<T>) {
 
 /**
  * tsfun | apply
- * https://github.com/dainst/tsfun/blob/master/test/composition/apply.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/composition/apply.spec.ts
  */
  export function apply<A,B,C>(f: (a: A, b: B) => C): (args: any) => C;
  export function apply<A,B,C,D>(f: (a: A, b: B, c: C) => D): (args: any) => D;
@@ -146,7 +146,7 @@ export function collect<T>(...p: Array<T>) {
 
 /**
  * tsfun | cond
- * https://github.com/dainst/tsfun/blob/master/test/composition/cond.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/composition/cond.spec.ts
  */
  export function cond<A, B, C>(
     p: boolean|Predicate<A>,
@@ -166,7 +166,7 @@ export function collect<T>(...p: Array<T>) {
 
 /**
  * tsfun | conds
- * https://github.com/dainst/tsfun/blob/master/test/composition/conds.spec.ts
+ * https://github.com/eighttrigrams/tsfun/blob/master/test/composition/conds.spec.ts
  */
 export function conds<A,B>(...cs: Array6<Pair<Predicate<A>, Mapping<A,B>>>): (what: A) => B
 export function conds<A,B>(...cs: Array6<Pair<Predicate<A>,B>>): (what: A) => B
